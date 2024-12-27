@@ -5,10 +5,17 @@ Authors@R:
     person(c("Andrew", "Allen"), "Bruce", , "andrewallenbruce@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Andrew Allen Bruce <andrewallenbruce@gmail.com>
 Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 URL: https://github.com/andrewallenbruce/providertwo
 BugReports: https://github.com/andrewallenbruce/providertwo/issues
+Suggests: 
+    roxyglobals,
+    testthat (>= 3.0.0)
+Config/roxyglobals/filename: generated-globals.R
+Config/roxyglobals/unique: TRUE
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
