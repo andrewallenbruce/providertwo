@@ -31,15 +31,14 @@ offset_sequence <- \(rows, size = 5000) {
 #' @returns `<chr>` vector of human-readable recurrence rule descriptions
 #'
 #' @examples
-#' data.frame(
-#'   accrualPeriodicity = c(
+#' accrualPeriodicity = c(
 #'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
 #'   "R/P0.33W", "R/P0.5W", "R/P1W", "R/P2W",
 #'   "R/P0.33M", "R/P0.5M", "R/P1M", "R/P2M",
 #'   "R/P3M",    "R/P4M",   "R/P6M", "R/P1Y",
-#'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y"),
-#'   accrualDescription = recode_iso8601(accrualPeriodicity)
-#' )
+#'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
+#'
+#' recode_iso8601(accrualPeriodicity)
 #'
 #' @autoglobal
 #'
