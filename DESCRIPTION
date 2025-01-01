@@ -19,8 +19,8 @@ Imports:
     stringi (>= 1.8.4),
     vctrs (>= 0.6.5)
 Suggests: 
-    roxyglobals (>= 1.0.0),
     qs (>= 0.27.2),
+    roxyglobals (>= 1.0.0),
     testthat (>= 3.0.0)
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
