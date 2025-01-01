@@ -24,7 +24,37 @@ offset_sequence <- \(rows, size = 5000) {
 
 }
 
-#' Parse ISO8601 Recurrence Rules
+#' Replace All Fixed Strings
+#'
+#' @param x `<chr>` vector or string to search in
+#'
+#' @param p `<chr>` vector of search patterns
+#'
+#' @param r `<chr>` vector of replacements for matched patterns
+#'
+#' @param v `<lgl>` default is FALSE; should each occurrence of a pattern in
+#'   every string be replaced by a corresponding replacement string?
+#'
+#' @returns `<chr>` vector with all occurrences of each pattern replaced
+#'
+#' @examplesIf FALSE
+#' replace_fixed(
+#'   x,
+#'   c(":", "%", "@", "$"),
+#'   c("_", "", "", ""))
+#'
+#' @autoglobal
+#'
+#' @export
+replace_fixed <- \(x, p, r, v = FALSE) {
+  stringi::stri_replace_all_fixed(
+    str = x,
+    pattern = p,
+    replacement = r,
+    vectorize_all = v)
+}
+
+#' ISO 8601 Recurring Time Intervals
 #'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
 #'
@@ -39,6 +69,11 @@ offset_sequence <- \(rows, size = 5000) {
 #'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 #'
 #' recode_iso8601(accrualPeriodicity)
+#'
+#' @section References:
+#'    * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+#'    * [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
+#'    * [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
 #'
 #' @autoglobal
 #'
@@ -71,32 +106,54 @@ recode_iso8601 <- \(x) {
   )
 }
 
-#' Replace All Fixed Strings
+#' Program Code
 #'
-#' @param x `<chr>` vector or string to search in
+#' Primary program related to a data asset,
+#' from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
 #'
-#' @param p `<chr>` vector of search patterns
+#' @param x `<chr>`  The program code to search for, e.g., `"009:000"`; if
+#'   `NULL` (the default), returns all program codes
 #'
-#' @param r `<chr>` vector of replacements for matched patterns
+#' @returns `<tibble>` of search results
 #'
-#' @param v `<lgl>` default is FALSE; should each occurrence of a pattern in
-#'   every string be replaced by a corresponding replacement string?
+#' @examples
+#' program_code("009:000")
 #'
-#' @returns `<chr>` vector with all occurrences of each pattern replaced
-#'
-#' @examplesIf FALSE
-#' replace_fixed(
-#'   x,
-#'   c(":", "%", "@", "$"),
-#'   c("_", "", "", ""))
+#' head(program_code())
 #'
 #' @autoglobal
 #'
 #' @export
-replace_fixed <- \(x, p, r, v = FALSE) {
-  stringi::stri_replace_all_fixed(
-    str = x,
-    pattern = p,
-    replacement = r,
-    vectorize_all = v)
-  }
+program_code <- \(x = NULL) {
+
+  search_in(
+    get_pin("programCodes"),
+    "programCodePODfmt",
+    x)
+}
+
+#' Bureau Code
+#'
+#' Combined Agency and Bureau Code,
+#' from [OMB Circular A-11, Appendix C](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
+#'
+#' @param x `<chr>`  The bureau code to search for, e.g., `"38"`; if
+#'   `NULL` (the default), returns all bureau codes
+#'
+#' @returns `<tibble>` of search results
+#'
+#' @examples
+#' bureau_code("38")
+#'
+#' head(bureau_code())
+#'
+#' @autoglobal
+#'
+#' @export
+bureau_code <- \(x = NULL) {
+
+  search_in(
+    get_pin("bureauCodes"),
+    "bureauCode",
+    x)
+}

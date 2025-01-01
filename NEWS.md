@@ -2,15 +2,15 @@
 
 # providertwo 0.0.0.9002 (2025-01-01)
 
-- Same as previous version.
+- Added utility functions, DCAT Schema pins
 
 
 # providertwo 0.0.0.9001 (2024-12-27)
 
-* use-standalone-helpers
-* initial setup
+- use-standalone-helpers
+- initial setup
 
 
-# providertwo (development version)
+# providertwo
 
-* Initial commit
+- Initial commit

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{recode_iso8601}
 \alias{recode_iso8601}
-\title{Parse ISO8601 Recurrence Rules}
+\title{ISO 8601 Recurring Time Intervals}
 \usage{
 recode_iso8601(x)
 }
@@ -13,8 +13,17 @@ recode_iso8601(x)
 \verb{<chr>} vector of human-readable recurrence rule descriptions
 }
 \description{
-Parse ISO8601 Recurrence Rules
+ISO 8601 Recurring Time Intervals
 }
+\section{References}{
+
+\itemize{
+\item \href{https://en.wikipedia.org/wiki/ISO_8601}{ISO 8601}
+\item \href{https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals}{ISO 8601 Repeating_intervals}
+\item \href{https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals}{Recurring Time Intervals}
+}
+}
+
 \examples{
 accrualPeriodicity = c(
   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
