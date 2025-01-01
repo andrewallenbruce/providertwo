@@ -1,0 +1,10 @@
+file: programCodes.qs
+file_size: 24191
+pin_hash: 0a20d230f3bc178c
+type: qs
+title: Data Asset Primary Program
+description: Primary program related to data asset, from the Federal Program Inventory
+tags: ~
+urls: ~
+created: 20250101T070654Z
+api_version: 1
