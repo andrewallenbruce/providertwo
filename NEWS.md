@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9004 (2025-01-02)
+
+* removed replace_fixed
+* updated standalone-helpers
+
+
 # providertwo 0.0.0.9003 (2025-01-01)
 
 * Added `program_code()` and `bureau_code()` lookups
