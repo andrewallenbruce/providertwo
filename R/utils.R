@@ -24,36 +24,6 @@ offset_sequence <- \(rows, size = 5000) {
 
 }
 
-#' Replace All Fixed Strings
-#'
-#' @param x `<chr>` vector or string to search in
-#'
-#' @param p `<chr>` vector of search patterns
-#'
-#' @param r `<chr>` vector of replacements for matched patterns
-#'
-#' @param v `<lgl>` default is FALSE; should each occurrence of a pattern in
-#'   every string be replaced by a corresponding replacement string?
-#'
-#' @returns `<chr>` vector with all occurrences of each pattern replaced
-#'
-#' @examplesIf FALSE
-#' replace_fixed(
-#'   x,
-#'   c(":", "%", "@", "$"),
-#'   c("_", "", "", ""))
-#'
-#' @autoglobal
-#'
-#' @export
-replace_fixed <- \(x, p, r, v = FALSE) {
-  stringi::stri_replace_all_fixed(
-    str = x,
-    pattern = p,
-    replacement = r,
-    vectorize_all = v)
-}
-
 #' ISO 8601 Recurring Time Intervals
 #'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
