@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9009 (2025-01-06)
+
+* minor alteration in `public_filter()`
+
+
 # providertwo 0.0.0.9008 (2025-01-06)
 
 * renamed `providers2()` to `enrollees()`
