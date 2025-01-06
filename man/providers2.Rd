@@ -8,6 +8,8 @@ providers2(
   npi = NULL,
   pac = NULL,
   enid = NULL,
+  spec_code = NULL,
+  spec_desc = NULL,
   first = NULL,
   middle = NULL,
   last = NULL,
@@ -22,6 +24,10 @@ providers2(
 \item{pac}{\verb{<chr>} 10-digit PECOS Associate Control (PAC) ID}
 
 \item{enid}{\verb{<chr>} 15-digit Medicare Enrollment ID}
+
+\item{spec_code}{\verb{<chr>} Enrollment specialty code}
+
+\item{spec_desc}{\verb{<chr>} Enrollment specialty description}
 
 \item{first, middle, last}{\verb{<chr>} Individual provider's name}
 
@@ -61,7 +67,7 @@ providers actively approved to bill Medicare.
 \examples{
 providers2(enid = "I20040309000221")
 
-# providers2(npi = "1417918293", specialty = "14-41")
+providers2(npi = "1417918293", spec_code = "14-41")
 
 providers2(pac = "2860305554", gender = "9")
 
