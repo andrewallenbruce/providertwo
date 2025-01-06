@@ -2,8 +2,8 @@
 
 # providertwo 0.0.0.9004 (2025-01-02)
 
-* removed replace_fixed
-* updated standalone-helpers
+* removed `replace_fixed()`
+* updated `standalone-helpers`
 
 
 # providertwo 0.0.0.9003 (2025-01-01)
