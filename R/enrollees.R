@@ -67,8 +67,7 @@ enrollees <- function(npi       = NULL,
     "MDL_NAME"           = middle,
     "LAST_NAME"          = last,
     "ORG_NAME"           = org,
-    "GNDR_SW"            = gender) |>
-    purrr::compact()
+    "GNDR_SW"            = gender)
 
   url <- public_filter(
     endpoint = "dataset",
@@ -88,20 +87,6 @@ enrollees <- function(npi       = NULL,
     RcppSimdJson::fparse()
 
   collapse::qTBL(resp[["data"]]) |>
-    setNames(
-      c(
-        "NPI",
-        "PECOS_ASCT_CNTL_ID",
-        "ENRLMT_ID",
-        "PROVIDER_TYPE_CD",
-        "PROVIDER_TYPE_DESC",
-        "STATE_CD",
-        "FIRST_NAME",
-        "MDL_NAME",
-        "LAST_NAME",
-        "ORG_NAME",
-        "GNDR_SW"
-        )
-      )
+    setNames(names(args))
 
 }
