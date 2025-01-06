@@ -10,7 +10,7 @@
 #'
 #' @autoglobal
 #'
-#' @returns description
+#' @returns `<list>` of `<tibbles>`: `dataset`, `latest`, `api`, `csv`
 #'
 #' @keywords internal
 #'
@@ -30,4 +30,37 @@ public_dataset <- \() {
     api     = collapse::fsubset(distribution, not_na(format) & na(description)) |> remove_all_na(),
     csv     = collapse::fsubset(distribution, mediaType %==% "text/csv") |> remove_all_na()
   )
+}
+
+#' Filter Public Catalog
+#'
+#' @param endpoint `<chr>` API endpoint; options are `"dataset"` (default),
+#'   `"latest"`, `"api"`, `"csv"`
+#'
+#' @param title `<chr>` dataset title to search for; use `NULL` to return all
+#'
+#' @returns `<tibble>` of search results
+#'
+#' @examples
+#' public_filter(
+#'   endpoint = "latest",
+#'   title = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+#'
+#' public_filter(
+#'   endpoint = "dataset",
+#'   title = "Medicare Fee-For-Service  Public Provider Enrollment")
+#'
+#' @autoglobal
+#'
+#' @export
+public_filter <- function(endpoint = c("dataset", "latest", "api", "csv"),
+                          title = NULL) {
+
+  endpoint <- match.arg(endpoint)
+
+  if (!exists(".__public")) .__public <- public_dataset()
+
+  x <- .__public[[endpoint]]
+
+  search_in(x, "title", title)
 }
