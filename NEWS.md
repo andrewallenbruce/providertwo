@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9011 (2025-01-06)
+
+* clean up NEWS bullets
+* further refinement of `enrollees()`
+
+
 # providertwo 0.0.0.9010 (2025-01-06)
 
 * moved `onLoad` hooks to `aaa.R`
