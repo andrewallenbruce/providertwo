@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9005 (2025-01-06)
+
+* added `onLoad` dataset hook
+
+
 # providertwo 0.0.0.9004 (2025-01-02)
 
 * removed `replace_fixed()`
