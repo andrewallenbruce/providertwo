@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9007 (2025-01-06)
+
+* added rudimentary version of `providers2`
+
+
 # providertwo 0.0.0.9006 (2025-01-06)
 
 * added public_filter
