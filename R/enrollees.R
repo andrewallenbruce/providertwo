@@ -35,26 +35,26 @@
 #' @returns `<tibble>` of search results
 #'
 #' @examples
-#' providers2(enid = "I20040309000221")
+#' enrollees(enid = "I20040309000221")
 #'
-#' providers2(npi = "1417918293", spec_code = "14-41")
+#' enrollees(npi = "1417918293", spec_code = "14-41")
 #'
-#' providers2(pac = "2860305554", gender = "9")
+#' enrollees(pac = "2860305554", gender = "9")
 #'
 #' @autoglobal
 #'
 #' @export
-providers2 <- function(npi       = NULL,
-                       pac       = NULL,
-                       enid      = NULL,
-                       spec_code = NULL,
-                       spec_desc = NULL,
-                       first     = NULL,
-                       middle    = NULL,
-                       last      = NULL,
-                       org       = NULL,
-                       state     = NULL,
-                       gender    = NULL) {
+enrollees <- function(npi       = NULL,
+                      pac       = NULL,
+                      enid      = NULL,
+                      spec_code = NULL,
+                      spec_desc = NULL,
+                      first     = NULL,
+                      middle    = NULL,
+                      last      = NULL,
+                      org       = NULL,
+                      state     = NULL,
+                      gender    = NULL) {
 
   args <- rlang::list2(
     "NPI"                = npi,
@@ -88,9 +88,20 @@ providers2 <- function(npi       = NULL,
     RcppSimdJson::fparse()
 
   collapse::qTBL(resp[["data"]]) |>
-    setNames(c("NPI", "PECOS_ASCT_CNTL_ID", "ENRLMT_ID",
-               "PROVIDER_TYPE_CD", "PROVIDER_TYPE_DESC",
-               "STATE_CD", "FIRST_NAME", "MDL_NAME",
-               "LAST_NAME", "ORG_NAME", "GNDR_SW"))
+    setNames(
+      c(
+        "NPI",
+        "PECOS_ASCT_CNTL_ID",
+        "ENRLMT_ID",
+        "PROVIDER_TYPE_CD",
+        "PROVIDER_TYPE_DESC",
+        "STATE_CD",
+        "FIRST_NAME",
+        "MDL_NAME",
+        "LAST_NAME",
+        "ORG_NAME",
+        "GNDR_SW"
+        )
+      )
 
 }

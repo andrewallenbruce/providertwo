@@ -64,35 +64,3 @@ public_filter <- function(endpoint = c("dataset", "latest", "api", "csv"),
 
   search_in(x, "title", title)
 }
-
-#' Format API Queries
-#'
-#' @param args `<list>` of `<chr>` arguments
-#'
-#' @returns `<list>` of formatted query `<expr>`
-#'
-#' @examples
-#' format_query(list("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
-#'
-#' @autoglobal
-#'
-#' @export
-format_query <- \(args) {
-
-  query <- glue::glue(
-    '
-  "filter[fID{fID}][path]" = "{PATH}",
-  "filter[fID{fID}][operator]" = "{OPERATOR}",
-  "filter[fID{fID}][value]" = "{VALUE}"
-  ',
-    fID = seq_along(args),
-    PATH = names(args),
-    OPERATOR = "=",
-    VALUE = args
-  ) |>
-    glue::glue_collapse(sep = ",\n")
-
-  glue::glue('c({query})') |>
-    rlang::parse_expr() |>
-    rlang::eval_bare()
-}
