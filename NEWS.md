@@ -2,17 +2,17 @@
 
 # providertwo 0.0.0.9008 (2025-01-06)
 
-* renamed providers to enrollees
+* renamed `providers2()` to `enrollees()`
 
 
 # providertwo 0.0.0.9007 (2025-01-06)
 
-* added rudimentary version of `providers2`
+* added rudimentary version of `providers2()`
 
 
 # providertwo 0.0.0.9006 (2025-01-06)
 
-* added public_filter
+* added internal `public_filter()`
 
 
 # providertwo 0.0.0.9005 (2025-01-06)
@@ -23,7 +23,7 @@
 # providertwo 0.0.0.9004 (2025-01-02)
 
 * removed `replace_fixed()`
-* updated `standalone-helpers`
+* updated `use-standalone-helpers`
 
 
 # providertwo 0.0.0.9003 (2025-01-01)

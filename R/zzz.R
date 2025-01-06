@@ -58,7 +58,7 @@ public_filter <- function(endpoint = c("dataset", "latest", "api", "csv"),
 
   endpoint <- match.arg(endpoint)
 
-  if (!exists(".__public")) .__public <- public_dataset()
+  if (!exists(".__public")) .__public <<- public_dataset()
 
   x <- .__public[[endpoint]]
 
