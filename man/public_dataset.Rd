@@ -12,4 +12,3 @@ public_dataset()
 \description{
 Public CMS Dataset Object
 }
-\keyword{internal}

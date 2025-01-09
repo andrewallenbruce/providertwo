@@ -6,7 +6,7 @@ Authors@R:
 Maintainer: Andrew Allen Bruce <andrewallenbruce@gmail.com>
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
-URL: https://github.com/andrewallenbruce/providertwo
+URL: https://github.com/andrewallenbruce/providertwo, https://andrewallenbruce.github.io/providertwo/
 BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Imports: 
     cheapr (>= 0.9.92),

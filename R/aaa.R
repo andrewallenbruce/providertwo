@@ -4,8 +4,6 @@
 #'
 #' @returns `<list>` of `<tibbles>`: `dataset`, `latest`, `api`, `csv`
 #'
-#' @keywords internal
-#'
 #' @export
 public_dataset <- \() {
 
