@@ -18,6 +18,8 @@ MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://choosealicense.
 
 <!-- badges: end -->
 
+## :package: Installation
+
 You can install `providertwo` from [GitHub](https://github.com/) with:
 
 ``` r

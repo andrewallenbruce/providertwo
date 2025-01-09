@@ -26,6 +26,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
+## :package: Installation
+
 You can install `providertwo` from [GitHub](https://github.com/) with:
 
 ``` r
