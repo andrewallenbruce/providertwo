@@ -2,6 +2,7 @@
 
 utils::globalVariables(c(
   # <public_filter>
+  # <provider_enrollment>
   ".__public",
   # <public_dataset>
   "accessURL",
@@ -12,6 +13,7 @@ utils::globalVariables(c(
   # <public_dataset>
   "description",
   # <public_dataset>
+  # <provider_enrollment>
   "downloadURL",
   # <public_dataset>
   "identifier",
@@ -26,6 +28,7 @@ utils::globalVariables(c(
   # <public_dataset>
   "temporal",
   # <public_dataset>
+  # <provider_enrollment>
   "title",
   NULL
 ))

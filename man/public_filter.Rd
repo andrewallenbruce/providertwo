@@ -4,7 +4,7 @@
 \alias{public_filter}
 \title{Filter Public Catalog}
 \usage{
-public_filter(endpoint = c("dataset", "latest", "api", "csv"), title = NULL)
+public_filter(endpoint = c("dataset", "api", "csv"), title = NULL)
 }
 \arguments{
 \item{endpoint}{\verb{<chr>} API endpoint; options are \code{"dataset"} (default),

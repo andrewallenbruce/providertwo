@@ -9,14 +9,21 @@ public_dataset <- \() {
 
   dataset <- RcppSimdJson::fload("https://data.cms.gov/data.json")
 
-  dataset <- collapse::qTBL(dataset[["dataset"]])
+  dataset <- collapse::qTBL(dataset[["dataset"]]) |>
+    collapse::fmutate(
+      modified = as_date(modified),
+      temporal = as_date(sf_sub(temporal, stop = 10)),
+      accrualPeriodicity = recode_iso8601(accrualPeriodicity))
 
   distribution <- collapse::slt(dataset, distribution) |>
-    tidyr::unnest(distribution)
+    tidyr::unnest(distribution) |>
+    collapse::fmutate(
+      modified = as_date(modified),
+      temporal = as_date(sf_sub(temporal, start = 10, stop = 20)))
 
   list(
     dataset = collapse::slt(dataset, title, modified, temporal, accrualPeriodicity, identifier, describedBy, description, landingPage),
-    latest  = collapse::sbt(distribution, description %==% "latest", title, modified, temporal, accessURL, resourcesAPI),
+    # latest  = collapse::sbt(distribution, description %==% "latest", title, modified, temporal, accessURL, resourcesAPI),
     api     = collapse::sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
     csv     = collapse::sbt(distribution, mediaType %==% "text/csv", title, modified, temporal, downloadURL, resourcesAPI)
   )
@@ -43,7 +50,7 @@ public_dataset <- \() {
 #' @autoglobal
 #'
 #' @export
-public_filter <- function(endpoint = c("dataset", "latest", "api", "csv"),
+public_filter <- function(endpoint = c("dataset", "api", "csv"),
                           title = NULL) {
 
   endpoint <- match.arg(endpoint)

@@ -90,3 +90,25 @@ enrollees <- function(npi       = NULL,
     setNames(names(args))
 
 }
+
+#' Public Provider Enrollment Experiment
+#'
+#' @returns `<tibble>` of search results
+#'
+#' @examples
+#' provider_enrollment()
+#'
+#' @autoglobal
+#'
+#' @export
+provider_enrollment <- \() {
+
+  if (!exists(".__public")) .__public <<- public_dataset()
+
+  c(
+    collapse::sbt(.__public[["dataset"]], sf_detect(title, "Public Provider Enrollment")),
+    collapse::sbt(.__public[["api"]], sf_detect(title, "Public Provider Enrollment")),
+    collapse::sbt(.__public[["csv"]], sf_detect(title, "Public Provider Enrollment"), downloadURL)
+  )
+
+}
