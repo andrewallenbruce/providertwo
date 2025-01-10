@@ -1,3 +1,5 @@
+.__public <- NULL
+
 .onLoad <- function(libname, pkgname) {
 
   debugme::debugme()
@@ -5,6 +7,6 @@
   .__public <<- public_dataset()
 }
 
-.onUnload <- function(libpath) {
-  remove(".__public", envir = .GlobalEnv)
-}
+# .onUnload <- function(libpath) {
+#   remove(".__public", envir = .GlobalEnv)
+# }

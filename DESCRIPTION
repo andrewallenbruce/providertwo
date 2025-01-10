@@ -6,25 +6,27 @@ Authors@R:
 Maintainer: Andrew Allen Bruce <andrewallenbruce@gmail.com>
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
-URL: https://github.com/andrewallenbruce/providertwo, https://andrewallenbruce.github.io/providertwo/
+URL: https://github.com/andrewallenbruce/providertwo,
+    https://andrewallenbruce.github.io/providertwo/
 BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Imports: 
     cheapr (>= 0.9.92),
     collapse (>= 2.0.18),
+    debugme (>= 1.2.0),
     fs (>= 1.6.5),
-    glue,
-    httr2,
+    glue (>= 1.8.0),
+    httr2 (>= 1.0.7),
     kit (>= 0.0.19),
     pins (>= 1.4.0),
-    purrr,
+    purrr (>= 1.0.2),
     RcppSimdJson (>= 0.1.12),
     rlang (>= 1.1.4),
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
-    tidyr,
+    tidyr (>= 1.3.1),
     vctrs (>= 0.6.5)
 Suggests: 
-    debugme,
+    terse,
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
     testthat (>= 3.0.0)
