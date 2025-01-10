@@ -11,14 +11,14 @@ public_dataset <- \() {
 
   dataset <- collapse::qTBL(dataset[["dataset"]])
 
-  distribution <- collapse::fselect(dataset, distribution) |>
+  distribution <- collapse::slt(dataset, distribution) |>
     tidyr::unnest(distribution)
 
   list(
-    dataset = collapse::fselect(dataset, -distribution) |> remove_all_na(),
-    latest  = collapse::fsubset(distribution, description %==% "latest") |> remove_all_na(),
-    api     = collapse::fsubset(distribution, not_na(format) & na(description)) |> remove_all_na(),
-    csv     = collapse::fsubset(distribution, mediaType %==% "text/csv") |> remove_all_na()
+    dataset = collapse::slt(dataset, title, modified, temporal, accrualPeriodicity, identifier, describedBy, description, landingPage),
+    latest  = collapse::sbt(distribution, description %==% "latest", title, modified, temporal, accessURL, resourcesAPI),
+    api     = collapse::sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
+    csv     = collapse::sbt(distribution, mediaType %==% "text/csv", title, modified, temporal, downloadURL, resourcesAPI)
   )
 }
 

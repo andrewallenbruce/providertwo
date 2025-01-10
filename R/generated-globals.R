@@ -4,8 +4,28 @@ utils::globalVariables(c(
   # <public_filter>
   ".__public",
   # <public_dataset>
+  "accessURL",
+  # <public_dataset>
+  "accrualPeriodicity",
+  # <public_dataset>
+  "describedBy",
+  # <public_dataset>
   "description",
   # <public_dataset>
+  "downloadURL",
+  # <public_dataset>
+  "identifier",
+  # <public_dataset>
+  "landingPage",
+  # <public_dataset>
   "mediaType",
+  # <public_dataset>
+  "modified",
+  # <public_dataset>
+  "resourcesAPI",
+  # <public_dataset>
+  "temporal",
+  # <public_dataset>
+  "title",
   NULL
 ))
