@@ -56,72 +56,43 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">provider_enrollment</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Fee-For-Service  Public Provider Enrollment"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$modified</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$temporal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2023-01-01"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $accrualPeriodicity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$accrualPeriodicity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "[R/P3M] Quarterly"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$identifier</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $describedBy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$describedBy</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $description</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$description</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The Medicare Fee-For-Service Public Provider Enrollment dataset includes information on providers who are actively approved to bill Medicare or have completed the 855O at the time the data was pulled from the Provider Enrollment, Chain, and Ownership System (PECOS). The release of this provider enrollment data is not related to other provider information releases such as Physician Compare or Data Transparency.\n\n \n\nNote: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $landingPage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dataset$landingPage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Medicare Fee-For-Service Public Provider Enrollment : 2024-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Medicare Fee-For-Service Public Provider Enrollment : 2024-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Medicare Fee-For-Service Public Provider Enrollment : 2023-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "Medicare Fee-For-Service Public Provider Enrollment : 2023-09-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "Medicare Fee-For-Service Public Provider Enrollment : 2023-06-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Medicare Fee-For-Service Public Provider Enrollment : 2023-03-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-16" "2024-07-15" "2024-04-15" "2024-01-16" "2023-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "2023-09-22" "2023-04-19"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA NA NA NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/57312fe7-f2cc-4cda-b4a0-78d9edb42f67/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.cms.gov/data-api/v1/dataset/8d9854d3-6b9f-49df-b315-5e4e50df7aa7/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.cms.gov/data-api/v1/dataset/a5cac43c-010d-4190-9395-d8841b1c5cc6/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://data.cms.gov/data-api/v1/dataset/3d7326b6-f5cc-49ba-967b-20c484af40ce/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "https://data.cms.gov/data-api/v1/dataset/cf2b32cc-c0e8-4d3c-bfdf-7752be357f6b/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "https://data.cms.gov/data-api/v1/dataset/20fd773a-7f15-48ed-8164-f543706269a4/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "https://data.cms.gov/data-api/v1/dataset/f783ac85-fd89-4db9-a7e9-288cda155258/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $resourcesAPI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset-resources/57312fe7-f2cc-4cda-b4a0-78d9edb42f67"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.cms.gov/data-api/v1/dataset-resources/8d9854d3-6b9f-49df-b315-5e4e50df7aa7"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.cms.gov/data-api/v1/dataset-resources/a5cac43c-010d-4190-9395-d8841b1c5cc6"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://data.cms.gov/data-api/v1/dataset-resources/3d7326b6-f5cc-49ba-967b-20c484af40ce"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "https://data.cms.gov/data-api/v1/dataset-resources/cf2b32cc-c0e8-4d3c-bfdf-7752be357f6b"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "https://data.cms.gov/data-api/v1/dataset-resources/20fd773a-7f15-48ed-8164-f543706269a4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "https://data.cms.gov/data-api/v1/dataset-resources/f783ac85-fd89-4db9-a7e9-288cda155258"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $downloadURL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/sites/default/files/2024-10/8e1bbada-e9a4-4a4c-9017-539c5cb1fff8/PPEF_Enrollment_Extract_2024.10.07.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.cms.gov/sites/default/files/2024-07/0c28f2f8-4153-421c-a9b7-72a5be89d9e6/PPEF_Enrollment_Extract_2024.07.01.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.cms.gov/sites/default/files/2024-04/07dedcbc-ff73-4097-a83d-7be34d526aa9/PPEF_Enrollment_Extract_2024.04.01.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://data.cms.gov/sites/default/files/2024-01/22961024-cac8-43fc-86d1-163e19dca5cf/PPEF_Enrollment_Extract_2024.01.05.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "https://data.cms.gov/sites/default/files/2023-10/d2c13c22-d68b-4d46-8436-0e2a6abac4c9/PPEF_Enrollment_Extract_2023.10.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "https://data.cms.gov/sites/default/files/2023-07/dc5e6313-b126-4f77-9846-2a63d32787d7/PPEF_Enrollment_Extract_2023.07.06.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "https://data.cms.gov/sites/default/files/2023-04/0239bace-c79e-461c-9fed-04e165280f25/PPEF_Enrollment_Extract_2023.03.31.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                 modified   temporal   accessURL resourcesAPI downloadURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Medicare Fee-For-Ser… 2024-10-16 2024-09-30 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Medicare Fee-For-Ser… 2024-07-15 2024-06-30 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Medicare Fee-For-Ser… 2024-04-15 2024-03-31 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Medicare Fee-For-Ser… 2024-01-16 2023-12-31 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Medicare Fee-For-Ser… 2023-10-16 2023-09-30 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Medicare Fee-For-Ser… 2023-09-22 2023-06-30 https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Medicare Fee-For-Ser… 2023-04-19 2023-03-31 https://… https://dat… https://da…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

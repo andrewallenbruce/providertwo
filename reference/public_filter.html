@@ -69,9 +69,12 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_filter</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  endpoint <span class="op">=</span> <span class="st">"latest"</span>,</span></span>
+<span class="r-in"><span>  endpoint <span class="op">=</span> <span class="st">"api"</span>,</span></span>
 <span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in match.arg(endpoint):</span> 'arg' should be one of “dataset”, “api”, “csv”</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                             modified   temporal   accessURL resourcesAPI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Medicare Fee-For-Service Public … 2024-10-16 2024-09-30 https://… https://dat…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">public_filter</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  endpoint <span class="op">=</span> <span class="st">"dataset"</span>,</span></span>
@@ -81,6 +84,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Medicare Fee-… 2024-10-16 2023-01-01 [R/P3M] Quarterly  https://d… https://da…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: description &lt;chr&gt;, landingPage &lt;chr&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">public_filter</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  endpoint <span class="op">=</span> <span class="st">"csv"</span>,</span></span>
+<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                           modified   temporal   downloadURL resourcesAPI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Medicare Fee-For-Service Publi… 2024-10-16 2024-09-30 https://da… https://dat…</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
