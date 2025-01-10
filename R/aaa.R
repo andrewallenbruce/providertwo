@@ -13,19 +13,45 @@ public_dataset <- \() {
     collapse::fmutate(
       modified = as_date(modified),
       temporal = as_date(sf_sub(temporal, stop = 10)),
-      accrualPeriodicity = recode_iso8601(accrualPeriodicity))
+      accrualPeriodicity = recode_iso8601(accrualPeriodicity)
+    )
 
   distribution <- collapse::slt(dataset, distribution) |>
     tidyr::unnest(distribution) |>
-    collapse::fmutate(
-      modified = as_date(modified),
-      temporal = as_date(sf_sub(temporal, start = 10, stop = 20)))
+    collapse::fmutate(modified = as_date(modified),
+                      temporal = as_date(sf_sub(temporal, start = 12, stop = 21)))
 
   list(
-    dataset = collapse::slt(dataset, title, modified, temporal, accrualPeriodicity, identifier, describedBy, description, landingPage),
-    # latest  = collapse::sbt(distribution, description %==% "latest", title, modified, temporal, accessURL, resourcesAPI),
-    api     = collapse::sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
-    csv     = collapse::sbt(distribution, mediaType %==% "text/csv", title, modified, temporal, downloadURL, resourcesAPI)
+    dataset = collapse::slt(
+      dataset,
+      title,
+      modified,
+      temporal,
+      accrualPeriodicity,
+      identifier,
+      describedBy,
+      description,
+      landingPage
+    ),
+    api     = collapse::sbt(
+      distribution,
+      not_na(format) &
+        na(description),
+      title,
+      modified,
+      temporal,
+      accessURL,
+      resourcesAPI
+    ),
+    csv     = collapse::sbt(
+      distribution,
+      mediaType %==% "text/csv",
+      title,
+      modified,
+      temporal,
+      downloadURL,
+      resourcesAPI
+    )
   )
 }
 

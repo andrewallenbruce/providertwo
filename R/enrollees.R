@@ -75,12 +75,16 @@ enrollees <- function(npi       = NULL,
     httr2::request() |>
     httr2::req_url_query(!!!format_query(args), size = 5000)
 
+  "!DEBUG url = `url`"
+
   stats <- url |>
   httr2::req_url_path_append("stats") |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 
-  # offset_sequence(stats$data$found_rows)
+  # "!DEBUG stats = `stats`"
+
+  # offset_sequence(stats$data$found_rows, size = 5000)
 
   resp <- url |> httr2::req_perform() |>
     httr2::resp_body_string() |>
@@ -103,12 +107,26 @@ enrollees <- function(npi       = NULL,
 #' @export
 provider_enrollment <- \() {
 
-  if (!exists(".__public")) .__public <<- public_dataset()
+  if (!exists(".__public")) {
+    "!DEBUG Loading public_dataset"
+    .__public <<- public_dataset()
+    }
 
-  c(
-    collapse::sbt(.__public[["dataset"]], sf_detect(title, "Public Provider Enrollment")),
-    collapse::sbt(.__public[["api"]], sf_detect(title, "Public Provider Enrollment")),
-    collapse::sbt(.__public[["csv"]], sf_detect(title, "Public Provider Enrollment"), downloadURL)
+  list(
+    dataset = as.list(collapse::sbt(
+      .__public[["dataset"]],
+      sf_detect(title, "Public Provider Enrollment")
+    )),
+    distribution = vctrs::vec_cbind(
+      collapse::sbt(
+        .__public[["api"]],
+        sf_detect(title, "Public Provider Enrollment")),
+      collapse::sbt(
+        .__public[["csv"]],
+        sf_detect(title, "Public Provider Enrollment"),
+        downloadURL
+      )
+    )
   )
 
 }

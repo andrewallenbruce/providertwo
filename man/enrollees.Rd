@@ -52,7 +52,7 @@ providers actively approved to bill Medicare.
 \section{accrualPeriodicity}{
 
 \itemize{
-\item \code{R/P1Y} (Annually)
+\item \link{R/P1Y} Annually
 }
 }
 

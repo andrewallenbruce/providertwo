@@ -2,7 +2,6 @@
 
   debugme::debugme()
 
-  "!DEBUG Loading public_dataset"
   .__public <<- public_dataset()
 }
 
