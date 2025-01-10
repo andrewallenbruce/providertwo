@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{program_code}
 \alias{program_code}
-\title{DCAT Schema: Program Code}
+\title{Program Code}
 \source{
 \href{https://resources.data.gov/resources/dcat-us/#programCode}{DCAT Schema: Program Code}
 }
@@ -17,8 +17,7 @@ program_code(x = NULL)
 \verb{<tibble>} of search results
 }
 \description{
-Primary program related to a data asset,
-from the \href{https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv}{Federal Program Inventory}.
+Code for primary program related to a data asset, from the \href{https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv}{Federal Program Inventory}.
 }
 \examples{
 program_code("009:000")

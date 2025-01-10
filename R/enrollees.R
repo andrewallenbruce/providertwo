@@ -1,14 +1,14 @@
-#' Provider Enrollment in Medicare
+#' Medicare Provider Enrollees
 #'
-#' Provides access to individual and organizational enrollment level data on
-#' providers actively approved to bill Medicare.
+#' Individual & Organizational Enrollment-level Data
+#' on Providers Actively Approved to Bill Medicare.
 #'
-#' @section accrualPeriodicity:
-#'    * `r recode_iso8601("R/P1Y")`
+#' @section Accrual Periodicity:
+#'    * `r roxy8601("R/P1Y")`
 #'
 #' @section Links:
-#'    * [Provider Enrollment API](https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment)
-#'    * [Provider Enrollment Data Dictionary](https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary)
+#'    * [Enrollment API](https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment)
+#'    * [Enrollment Data Dictionary](https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary)
 #'
 #' @param npi `<chr>` 10-digit Individual NPI
 #'

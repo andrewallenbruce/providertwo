@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{recode_iso8601}
 \alias{recode_iso8601}
-\title{ISO 8601 Recurring Time Intervals}
+\title{Recode ISO 8601 Recurring Time Intervals}
 \source{
 \href{https://resources.data.gov/resources/dcat-us/#accrualPeriodicity}{DCAT Schema: accrualPeriodicity}
 }
@@ -16,7 +16,7 @@ recode_iso8601(x)
 \verb{<chr>} vector of human-readable recurrence rule descriptions
 }
 \description{
-ISO 8601 Recurring Time Intervals
+Recode ISO 8601 Recurring Time Intervals
 }
 \section{References}{
 

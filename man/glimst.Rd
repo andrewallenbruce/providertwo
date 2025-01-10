@@ -4,7 +4,7 @@
 \alias{glimst}
 \title{Wrapper for \code{terse::terse()}}
 \usage{
-glimst(x, p = "- ", w = 0, m = 20, s = " ")
+glimst(x, p = "- ", w = 0, m = 20, s = " ", a = FALSE)
 }
 \arguments{
 \item{x}{\verb{<list>} or \verb{<data.frame>} to be printed}
@@ -16,6 +16,11 @@ glimst(x, p = "- ", w = 0, m = 20, s = " ")
 \item{m}{\verb{<int>} maximum vector length anywhere in original object}
 
 \item{s}{\verb{<chr>} separator to be used for each line}
+
+\item{a}{\verb{<chr>} Use ANSI to colour output? default: FALSE}
+}
+\value{
+\verb{<chr>} terse representation of \code{x}
 }
 \description{
 Wrapper for \code{terse::terse()}

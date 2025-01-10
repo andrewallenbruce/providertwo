@@ -12,3 +12,7 @@ public_dataset()
 \description{
 Public CMS Dataset Object
 }
+\examples{
+public_dataset()
+
+}

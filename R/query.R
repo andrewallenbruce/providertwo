@@ -1,15 +1,18 @@
 #' Format API Queries
 #'
-#' @param args `<list>` of `<chr>` arguments
+#' @param args named `<list>` or vector of `<chr>` arguments
 #'
-#' @param operator `<chr>` logical operator to use; options are "=" (default),
-#'   ">=", "<=", ">", "<", "<>", "STARTS_WITH", "ENDS_WITH", "CONTAINS", "IN",
-#'   "NOT IN", "BETWEEN", "NOT BETWEEN", "IS NULL", "IS NOT NULL"
+#' @param operator `<chr>` logical operator; acceptable options are:
+#'                         `=`, `>=`, `<=`, `>`, `<`, `<>`, `STARTS_WITH`,
+#'                         `ENDS_WITH`, `CONTAINS`, `IN`, `NOT IN`, `BETWEEN`,
+#'                         `NOT BETWEEN`, `IS NULL`, `IS NOT NULL`
 #'
-#' @returns `<list>` of formatted query `<expr>`
+#' @returns `<list>` of formatted query `<exprs>`
 #'
 #' @examples
 #' format_query(list("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
+#'
+#' format_query(c("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
 #'
 #' @autoglobal
 #'

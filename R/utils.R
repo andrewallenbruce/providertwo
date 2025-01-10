@@ -35,7 +35,7 @@ offset_sequence <- \(rows, size) {
 
 }
 
-#' ISO 8601 Recurring Time Intervals
+#' Recode ISO 8601 Recurring Time Intervals
 #'
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #'
@@ -65,13 +65,46 @@ offset_sequence <- \(rows, size) {
 recode_iso8601 <- \(x) {
   kit::nswitch(
     x,
+    "R/P10Y",   "[R/P10Y] Decennially",
+    "R/P4Y",    "[R/P4Y] Quadrennially",
+    "R/P3Y",    "[R/P3Y] Triennially",
+    "R/P2Y",    "[R/P2Y] Biennially",
+    "R/P1Y",    "[R/P1Y] Annually",
+    "R/P6M",    "[R/P6M] Biannually",
+    "R/P4M",    "[R/P4M] Triannually",
+    "R/P3M",    "[R/P3M] Quarterly",
+    "R/P2M",    "[R/P2M] Bimonthly",
+    "R/P1M",    "[R/P1M] Monthly",
+    "R/P0.5M",  "[R/P0.5M] Biweekly",
+    "R/P2W",    "[R/P2W] Biweekly",
+    "R/P0.33M", "[R/P0.33M] Three Times a Month",
+    "R/P1W",    "[R/P1W] Weekly",
+    "R/P0.5W",  "[R/P0.5W] Twice a Week",
+    "R/P3.5D",  "[R/P3.5D] Twice a Week",
+    "R/P0.33W", "[R/P0.33W] Three Times a Week",
+    "R/P1D",    "[R/P1D] Daily",
+    "R/PT1H",   "[R/PT1H] Hourly",
+    "R/PT1S",   "[R/PT1S] Continuously",
+    default = NA_character_,
+    nThread = 4L
+  )
+}
+
+#' Roxygenise ISO 8601 Recurring Time Intervals
+#'
+#' @autoglobal
+#'
+#' @noRd
+roxy8601 <- \(x) {
+  kit::nswitch(
+    x,
     "R/P10Y",   "Decennially (R/P10Y)",
     "R/P4Y",    "Quadrennially (R/P4Y)",
     "R/P3Y",    "Triennially (R/P3Y)",
     "R/P2Y",    "Biennially (R/P2Y)",
     "R/P1Y",    "Annually (R/P1Y)",
-    "R/P6M",    "Twice a Year (R/P6M)",
-    "R/P4M",    "Three Times a Year (R/P4M)",
+    "R/P6M",    "Biannually (R/P6M)",
+    "R/P4M",    "Triannually (R/P4M)",
     "R/P3M",    "Quarterly (R/P3M)",
     "R/P2M",    "Bimonthly (R/P2M)",
     "R/P1M",    "Monthly (R/P1M)",
@@ -84,16 +117,15 @@ recode_iso8601 <- \(x) {
     "R/P0.33W", "Three Times a Week (R/P0.33W)",
     "R/P1D",    "Daily (R/P1D)",
     "R/PT1H",   "Hourly (R/PT1H)",
-    "R/PT1S",   "Continuously Updated (R/PT1S)",
+    "R/PT1S",   "Continuously (R/PT1S)",
     default = NA_character_,
     nThread = 4L
   )
 }
 
-#' DCAT Schema: Program Code
+#' Program Code
 #'
-#' Primary program related to a data asset,
-#' from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
+#' Code for primary program related to a data asset, from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
 #'
 #' @source [DCAT Schema: Program Code](https://resources.data.gov/resources/dcat-us/#programCode)
 #'
@@ -112,14 +144,13 @@ recode_iso8601 <- \(x) {
 #' @export
 program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePODfmt", x) }
 
-#' DCAT Schema: Bureau Code
+#' Bureau Code
 #'
-#' Combined Agency and Bureau Code,
-#' from [OMB Circular A-11, Appendix C](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
+#' Combined Agency and Bureau Code, from the [OMB Circular A-11, Appendix C (PDF)](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
 #'
 #' @source [DCAT Schema: Bureau Code](https://resources.data.gov/resources/dcat-us/#bureauCode)
 #'
-#' @param x `<chr>`  The bureau code to search for, e.g., `"38"`; if
+#' @param x `<chr>` The bureau code to search for, e.g., `"38"`; if
 #'   `NULL` (the default), returns all bureau codes
 #'
 #' @returns `<tibble>` of search results
@@ -135,20 +166,22 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
 #' Wrapper for `terse::terse()`
-#'
 #' @param x `<list>` or `<data.frame>` to be printed
 #' @param p `<chr>` prefix to be used for each line
 #' @param w `<int>` target width; 0 = auto; -1 = no limit
 #' @param m `<int>` maximum vector length anywhere in original object
 #' @param s `<chr>` separator to be used for each line
+#' @param a `<chr>` Use ANSI to colour output? default: FALSE
+#' @returns `<chr>` terse representation of `x`
 #' @autoglobal
 #' @keywords internal
 #' @export
 glimst <- \(x,
-           p = "- ",
-           w = 0,
-           m = 20,
-           s = " ") {
+            p = "- ",
+            w = 0,
+            m = 20,
+            s = " ",
+            a = FALSE) {
 
   terse::terse(
     x           = x,
@@ -157,6 +190,6 @@ glimst <- \(x,
     max_vec_len = m,
     config      = list(
       gsep      = s,
-      ansi      = FALSE)
+      ansi      = a)
   )
 }

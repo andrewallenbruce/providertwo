@@ -2,7 +2,7 @@
 % Please edit documentation in R/enrollees.R
 \name{enrollees}
 \alias{enrollees}
-\title{Provider Enrollment in Medicare}
+\title{Medicare Provider Enrollees}
 \usage{
 enrollees(
   npi = NULL,
@@ -46,10 +46,10 @@ enrollees(
 \verb{<tibble>} of search results
 }
 \description{
-Provides access to individual and organizational enrollment level data on
-providers actively approved to bill Medicare.
+Individual & Organizational Enrollment-level Data
+on Providers Actively Approved to Bill Medicare.
 }
-\section{accrualPeriodicity}{
+\section{Accrual Periodicity}{
 
 \itemize{
 \item Annually (R/P1Y)
@@ -59,8 +59,8 @@ providers actively approved to bill Medicare.
 \section{Links}{
 
 \itemize{
-\item \href{https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment}{Provider Enrollment API}
-\item \href{https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary}{Provider Enrollment Data Dictionary}
+\item \href{https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment}{Enrollment API}
+\item \href{https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary}{Enrollment Data Dictionary}
 }
 }
 

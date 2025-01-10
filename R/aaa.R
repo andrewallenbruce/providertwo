@@ -4,6 +4,9 @@
 #'
 #' @returns `<list>` of `<tibbles>`: `dataset`, `latest`, `api`, `csv`
 #'
+#' @examples
+#' public_dataset()
+#'
 #' @export
 public_dataset <- \() {
 
@@ -18,8 +21,9 @@ public_dataset <- \() {
 
   distribution <- collapse::slt(dataset, distribution) |>
     tidyr::unnest(distribution) |>
-    collapse::fmutate(modified = as_date(modified),
-                      temporal = as_date(sf_sub(temporal, start = 12, stop = 21)))
+    collapse::fmutate(
+      modified = as_date(modified),
+      temporal = as_date(sf_sub(temporal, start = 12, stop = 21)))
 
   list(
     dataset = collapse::slt(
@@ -66,22 +70,21 @@ public_dataset <- \() {
 #'
 #' @examples
 #' public_filter(
-#'   endpoint = "api",
-#'   title = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+#'   endpoint = "dataset",
+#'   title    = "Medicare Fee-For-Service  Public Provider Enrollment")
 #'
 #' public_filter(
-#'   endpoint = "dataset",
-#'   title = "Medicare Fee-For-Service  Public Provider Enrollment")
+#'   endpoint = "api",
+#'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 #'
 #' public_filter(
 #'   endpoint = "csv",
-#'   title = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+#'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 #'
 #' @autoglobal
 #'
 #' @export
-public_filter <- function(endpoint = c("dataset", "api", "csv"),
-                          title = NULL) {
+public_filter <- \(endpoint = c("dataset", "api", "csv"), title = NULL) {
 
   endpoint <- match.arg(endpoint)
 

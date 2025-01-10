@@ -5,8 +5,8 @@ template:
   theme: tango
   light-switch: true
   bslib:
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto Slab"}
+    base_font: {google: "Roboto Condensed"}
+    heading_font: {google: "Roboto"}
     code_font: {google: "JetBrains Mono"}
 
 navbar:

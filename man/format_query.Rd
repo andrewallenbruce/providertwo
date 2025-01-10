@@ -7,19 +7,22 @@
 format_query(args, operator = "=")
 }
 \arguments{
-\item{args}{\verb{<list>} of \verb{<chr>} arguments}
+\item{args}{named \verb{<list>} or vector of \verb{<chr>} arguments}
 
-\item{operator}{\verb{<chr>} logical operator to use; options are "=" (default),
-">=", "<=", ">", "<", "<>", "STARTS_WITH", "ENDS_WITH", "CONTAINS", "IN",
-"NOT IN", "BETWEEN", "NOT BETWEEN", "IS NULL", "IS NOT NULL"}
+\item{operator}{\verb{<chr>} logical operator; acceptable options are:
+\code{=}, \code{>=}, \code{<=}, \code{>}, \code{<}, \verb{<>}, \code{STARTS_WITH},
+\code{ENDS_WITH}, \code{CONTAINS}, \code{IN}, \verb{NOT IN}, \code{BETWEEN},
+\verb{NOT BETWEEN}, \verb{IS NULL}, \verb{IS NOT NULL}}
 }
 \value{
-\verb{<list>} of formatted query \verb{<expr>}
+\verb{<list>} of formatted query \verb{<exprs>}
 }
 \description{
 Format API Queries
 }
 \examples{
 format_query(list("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
+
+format_query(c("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
 
 }

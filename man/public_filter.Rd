@@ -20,15 +20,15 @@ Filter Public Catalog
 }
 \examples{
 public_filter(
-  endpoint = "api",
-  title = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+  endpoint = "dataset",
+  title    = "Medicare Fee-For-Service  Public Provider Enrollment")
 
 public_filter(
-  endpoint = "dataset",
-  title = "Medicare Fee-For-Service  Public Provider Enrollment")
+  endpoint = "api",
+  title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 
 public_filter(
   endpoint = "csv",
-  title = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+  title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 
 }
