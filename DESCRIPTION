@@ -24,6 +24,7 @@ Imports:
     tidyr,
     vctrs (>= 0.6.5)
 Suggests: 
+    debugme,
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
     testthat (>= 3.0.0)
