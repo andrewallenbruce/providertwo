@@ -4,7 +4,7 @@
 #' providers actively approved to bill Medicare.
 #'
 #' @section accrualPeriodicity:
-#'   * `R/P1Y` (Annually)
+#'    * `r recode_iso8601("R/P1Y")`
 #'
 #' @section Links:
 #'    * [Provider Enrollment API](https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment)

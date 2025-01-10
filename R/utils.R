@@ -23,12 +23,13 @@ offset_sequence <- \(rows, size) {
 
   if (!rlang::is_integerish(rows)) {
     rlang::abort("`rows` must be integerish.", call = call("offset_sequence"))
-    }
+  }
   if (!rlang::is_integerish(size)) {
     rlang::abort("`size` must be integerish.", call = call("offset_sequence"))
   }
 
-  if (rows <= size) return(rows)
+  if (rows <= size)
+    return(rows)
 
   0:round(rows / size) * size
 

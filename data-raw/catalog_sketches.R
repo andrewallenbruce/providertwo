@@ -2,7 +2,6 @@ replace_open_columns  <- \(x) replace_fixed(x, c(":", "%", "@", "$", "properties
 replace_open_desc     <- \(x) replace_fixed(x, c("\n", "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=\"https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3\">Microsoft Excel</a> supports. If you can't download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>"), c(". ", ""))
 remove_at_symbol      <- \(x) fuimus::sf_remove(s = x, p = "@", fix = TRUE)
 flatten_column        <- \(i) purrr::map_chr(i, \(x) paste0(fuimus::delist(x), collapse = ", "))
-glist <- \(x, pre = "- ", wid = 0, max = 20, sep = " ") terse::terse(x = x, prefix = pre, width = wid, max_vec_len = max, config = list(gsep = sep, ansi = FALSE))
 
 main_data_arrow <- \() {
 
