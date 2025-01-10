@@ -3,6 +3,9 @@
 \name{recode_iso8601}
 \alias{recode_iso8601}
 \title{ISO 8601 Recurring Time Intervals}
+\source{
+\href{https://resources.data.gov/resources/dcat-us/#accrualPeriodicity}{DCAT Schema: accrualPeriodicity}
+}
 \usage{
 recode_iso8601(x)
 }

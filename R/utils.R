@@ -4,19 +4,29 @@
 #'
 #' @param size `<int>` The size or limit of the offset sequence
 #'
-#' @returns `<int>` vector, length equal to rows / size, as sequence begins
-#'                  at zero. If `rows` is less than or equal to `size`, the
-#'                  function simply returns `rows`.
+#' @returns `<int>` If `rows > size`, vector of length equal to
+#'                  `rows / size + 1` (sequence begins at zero).
+#'                  If `rows <= size`, the function simply returns
+#'                  `rows`.
 #'
 #' @examples
 #' offset_sequence(rows = 100, size = 10)
+#'
+#' offset_sequence(rows = 10, size = 100)
 #'
 #' offset_sequence(rows = 47984, size = 5000)
 #'
 #' @autoglobal
 #'
 #' @export
-offset_sequence <- \(rows, size = 5000) {
+offset_sequence <- \(rows, size) {
+
+  if (!rlang::is_integerish(rows)) {
+    rlang::abort("`rows` must be integerish.", call = call("offset_sequence"))
+    }
+  if (!rlang::is_integerish(size)) {
+    rlang::abort("`size` must be integerish.", call = call("offset_sequence"))
+  }
 
   if (rows <= size) return(rows)
 
@@ -25,6 +35,8 @@ offset_sequence <- \(rows, size = 5000) {
 }
 
 #' ISO 8601 Recurring Time Intervals
+#'
+#' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
 #'
@@ -41,6 +53,7 @@ offset_sequence <- \(rows, size = 5000) {
 #' recode_iso8601(accrualPeriodicity)
 #'
 #' @section References:
+#'
 #'    * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 #'    * [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
 #'    * [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
@@ -76,10 +89,12 @@ recode_iso8601 <- \(x) {
   )
 }
 
-#' Program Code
+#' DCAT Schema: Program Code
 #'
 #' Primary program related to a data asset,
 #' from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
+#'
+#' @source [DCAT Schema: Program Code](https://resources.data.gov/resources/dcat-us/#programCode)
 #'
 #' @param x `<chr>`  The program code to search for, e.g., `"009:000"`; if
 #'   `NULL` (the default), returns all program codes
@@ -94,18 +109,14 @@ recode_iso8601 <- \(x) {
 #' @autoglobal
 #'
 #' @export
-program_code <- \(x = NULL) {
+program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePODfmt", x) }
 
-  search_in(
-    get_pin("programCodes"),
-    "programCodePODfmt",
-    x)
-}
-
-#' Bureau Code
+#' DCAT Schema: Bureau Code
 #'
 #' Combined Agency and Bureau Code,
 #' from [OMB Circular A-11, Appendix C](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
+#'
+#' @source [DCAT Schema: Bureau Code](https://resources.data.gov/resources/dcat-us/#bureauCode)
 #'
 #' @param x `<chr>`  The bureau code to search for, e.g., `"38"`; if
 #'   `NULL` (the default), returns all bureau codes
@@ -120,10 +131,31 @@ program_code <- \(x = NULL) {
 #' @autoglobal
 #'
 #' @export
-bureau_code <- \(x = NULL) {
+bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
-  search_in(
-    get_pin("bureauCodes"),
-    "bureauCode",
-    x)
+#' Wrapper for `terse::terse()`
+#'
+#' @param x `<list>` or `<data.frame>` to be printed
+#' @param p `<chr>` prefix to be used for each line
+#' @param w `<int>` target width; 0 = auto; -1 = no limit
+#' @param m `<int>` maximum vector length anywhere in original object
+#' @param s `<chr>` separator to be used for each line
+#' @autoglobal
+#' @keywords internal
+#' @export
+glimst <- \(x,
+           p = "- ",
+           w = 0,
+           m = 20,
+           s = " ") {
+
+  terse::terse(
+    x           = x,
+    prefix      = p,
+    width       = w,
+    max_vec_len = m,
+    config      = list(
+      gsep      = s,
+      ansi      = FALSE)
+  )
 }

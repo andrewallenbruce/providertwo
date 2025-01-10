@@ -1,4 +1,8 @@
 .onLoad <- function(libname, pkgname) {
+
+  debugme::debugme()
+
+  "!DEBUG Loading public_dataset"
   .__public <<- public_dataset()
 }
 

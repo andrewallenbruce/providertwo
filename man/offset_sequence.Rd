@@ -4,7 +4,7 @@
 \alias{offset_sequence}
 \title{Create Offset Sequence}
 \usage{
-offset_sequence(rows, size = 5000)
+offset_sequence(rows, size)
 }
 \arguments{
 \item{rows}{\verb{<int>} The number of rows found in the dataset}
@@ -12,15 +12,18 @@ offset_sequence(rows, size = 5000)
 \item{size}{\verb{<int>} The size or limit of the offset sequence}
 }
 \value{
-\verb{<int>} vector, length equal to rows / size, as sequence begins
-at zero. If \code{rows} is less than or equal to \code{size}, the
-function simply returns \code{rows}.
+\verb{<int>} If \code{rows > size}, vector of length equal to
+\code{rows / size + 1} (sequence begins at zero).
+If \code{rows <= size}, the function simply returns
+\code{rows}.
 }
 \description{
 Create Offset Sequence
 }
 \examples{
 offset_sequence(rows = 100, size = 10)
+
+offset_sequence(rows = 10, size = 100)
 
 offset_sequence(rows = 47984, size = 5000)
 

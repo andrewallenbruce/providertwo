@@ -2,7 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{program_code}
 \alias{program_code}
-\title{Program Code}
+\title{DCAT Schema: Program Code}
+\source{
+\href{https://resources.data.gov/resources/dcat-us/#programCode}{DCAT Schema: Program Code}
+}
 \usage{
 program_code(x = NULL)
 }

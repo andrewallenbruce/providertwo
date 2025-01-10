@@ -2,7 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{bureau_code}
 \alias{bureau_code}
-\title{Bureau Code}
+\title{DCAT Schema: Bureau Code}
+\source{
+\href{https://resources.data.gov/resources/dcat-us/#bureauCode}{DCAT Schema: Bureau Code}
+}
 \usage{
 bureau_code(x = NULL)
 }
