@@ -30,6 +30,8 @@ Suggests:
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
     testthat (>= 3.0.0)
+Remotes:
+    github::coolbutuseless/terse
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
