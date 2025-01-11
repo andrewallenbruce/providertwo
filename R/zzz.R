@@ -9,6 +9,6 @@
   S7::methods_register()
 }
 
-# .onUnload <- function(libpath) {
-#   remove(".__public", envir = .GlobalEnv)
-# }
+.onUnload <- function(libpath) {
+  remove(".__public", envir = .GlobalEnv)
+}

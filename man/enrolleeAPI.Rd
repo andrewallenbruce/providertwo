@@ -9,7 +9,7 @@ enrolleeAPI(
   description = character(0),
   periodicity = character(0),
   modified = numeric(0),
-  temporal = numeric(0),
+  temporal = character(0),
   identifier = NULL,
   accessurl = NULL,
   resourceapi = NULL,
@@ -48,6 +48,21 @@ valid \code{enrolleeAPI} classed object
 The \code{enrolleeAPI} object contains validated API metadata
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\dontshow{\}) # examplesIf}
+x <- enrollapi()
+
+enroll <- enrolleeAPI(
+          x$title,
+          x$description,
+          x$accrualPeriodicity,
+          x$modified,
+          x$temporal,
+          x$identifier,
+          x$accessURL,
+          x$resourcesAPI,
+          x$downloadURL,
+          x$describedBy,
+          x$landingPage)
+
+enroll
+
 }

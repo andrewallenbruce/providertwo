@@ -26,7 +26,23 @@
 #'
 #' @returns valid `enrolleeAPI` classed object
 #'
-#' @examplesIf FALSE
+#' @examples
+#' x <- enrollapi()
+#'
+#' enroll <- enrolleeAPI(
+#'           x$title,
+#'           x$description,
+#'           x$accrualPeriodicity,
+#'           x$modified,
+#'           x$temporal,
+#'           x$identifier,
+#'           x$accessURL,
+#'           x$resourcesAPI,
+#'           x$downloadURL,
+#'           x$describedBy,
+#'           x$landingPage)
+#'
+#' enroll
 #'
 #' @autoglobal
 #'
@@ -39,7 +55,7 @@ enrolleeAPI <- new_class(
     description = class_character,
     periodicity = class_character,
     modified    = new_property(class_double | class_Date),
-    temporal    = new_property(class_double | class_Date),
+    temporal    = class_character,
     identifier  = new_property(
       class     = NULL | class_list,
       setter    = function(self, value) {
