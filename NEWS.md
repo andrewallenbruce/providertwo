@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9022 (2025-01-11)
+
+* enrolleeAPI S7 class
+
+
 # providertwo 0.0.0.9021 (2025-01-11)
 
 * centralized importFrom calls
