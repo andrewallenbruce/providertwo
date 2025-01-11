@@ -4,12 +4,17 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  collapse  = TRUE,
+  echo      = TRUE,
+  message   = FALSE, 
+  warning   = FALSE,
+  error     = TRUE,
+  comment   = "#>",
+  dpi       = 300, 
+  out.width = "100%",
+  fig.path  = "man/figures/README-"
 )
 ```
 
@@ -39,7 +44,7 @@ pak::pak("andrewallenbruce/providertwo")
 
 ## :balance_scale: Code of Conduct
 
-Please note that the **`providertwo`** project is released with a [Contributor Code of Conduct](https://andrewallenbruce.github.io/providertwo/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the `providertwo` project is released with a [Contributor Code of Conduct](https://andrewallenbruce.github.io/providertwo/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 ## :classical_building: Governance
 

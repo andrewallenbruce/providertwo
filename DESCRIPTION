@@ -15,13 +15,13 @@ Imports:
     debugme (>= 1.2.0),
     fs (>= 1.6.5),
     glue (>= 1.8.0),
-    httr2 (>= 1.0.7.9000),
+    httr2,
     kit (>= 0.0.19),
     pins (>= 1.4.0),
     purrr (>= 1.0.2),
     RcppSimdJson (>= 0.1.12),
     rlang (>= 1.1.4),
-    S7 (>= 0.2.0.9000),
+    S7,
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
     tidyr (>= 1.3.1),
@@ -30,9 +30,6 @@ Suggests:
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
     testthat (>= 3.0.0)
-Remotes:
-    github::RConsortium/S7
-    github::r-lib/httr2
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
