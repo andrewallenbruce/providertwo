@@ -8,17 +8,11 @@ enrolleeAPI(
   title = character(0),
   description = character(0),
   periodicity = character(0),
-  modified = (function (.data = double()) 
- {
-     .Date(.data)
- })(),
-  temporal = (function (.data = double()) 
- {
-     .Date(.data)
- })(),
-  identifier = list(),
-  accessurl = list(),
-  resourceapi = list(),
+  modified = numeric(0),
+  temporal = numeric(0),
+  identifier = NULL,
+  accessurl = NULL,
+  resourceapi = NULL,
   downloadurl = character(0),
   dictionary = character(0),
   landingpage = character(0)

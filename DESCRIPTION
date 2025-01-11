@@ -15,7 +15,7 @@ Imports:
     debugme (>= 1.2.0),
     fs (>= 1.6.5),
     glue (>= 1.8.0),
-    httr2 (>= 1.0.7),
+    httr2 (>= 1.0.7.9000),
     kit (>= 0.0.19),
     pins (>= 1.4.0),
     purrr (>= 1.0.2),
@@ -34,6 +34,7 @@ Suggests:
 Remotes:
     github::coolbutuseless/terse
     github::RConsortium/S7
+    github::r-lib/httr2
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3

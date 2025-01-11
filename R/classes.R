@@ -55,34 +55,38 @@ enrolleeAPI <- new_class(
     title       = class_character,
     description = class_character,
     periodicity = class_character,
-    modified    = new_property(class_Date | class_numeric),
-    temporal    = new_property(class_Date | class_numeric),
+    modified    = new_property(class_double | class_Date),
+    temporal    = new_property(class_double | class_Date),
     identifier  = new_property(
-      class     = class_list | NULL,
+      class     = NULL | class_list,
       setter    = \(self, value) {
-      self@identifier <- httr2::request(value)
-      self
-    }),
+        if (not_null(value)) {
+          self@identifier <- httr2::request(value)
+          self
+          }}),
     accessurl   = new_property(
-      class     = class_list | NULL,
+      class     = NULL | class_list,
       setter    = \(self, value) {
-      self@accessurl <- httr2::request(value)
-      self
-    }),
+        if (not_null(value)) {
+          self@accessurl <- httr2::request(value)
+          self
+          }}),
     resourceapi = new_property(
-      class     = class_list | NULL,
+      class     = NULL | class_list,
       setter    = \(self, value) {
-      self@resourceapi <- httr2::request(value)
-      self
-    }),
+        if (not_null(value)) {
+          self@resourceapi <- httr2::request(value)
+          self
+        }}),
     totalrows   = new_property(
-      class     = class_integer | NULL,
+      class     = NULL | class_list,
       getter    = \(self) {
-      httr2::req_url_path_append(self@identifier, "stats") |>
-        httr2::req_perform() |>
-        httr2::resp_body_json(simplifyVector = TRUE) |>
-        gelm("total_rows")
-    }),
+        if (not_null(self@identifier)) {
+          httr2::req_url_path_append(self@identifier, "stats") |>
+            httr2::req_perform() |>
+            httr2::resp_body_json(simplifyVector = TRUE) |>
+            gelm("total_rows")
+          }}),
     downloadurl = class_character,
     dictionary  = class_character,
     landingpage = class_character
