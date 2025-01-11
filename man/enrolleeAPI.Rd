@@ -12,7 +12,7 @@ enrolleeAPI(
   temporal = character(0),
   identifier = Identifier(),
   accessURL = NULL,
-  resourcesAPI = NULL,
+  resourcesAPI = Resources(),
   downloadURL = character(0),
   describedBy = character(0),
   landingPage = character(0)
@@ -33,7 +33,7 @@ enrolleeAPI(
 
 \item{accessURL}{\verb{<chr>} Source}
 
-\item{resourcesAPI}{\verb{<chr>} Source}
+\item{resourcesAPI}{\verb{<Resources>} Source}
 
 \item{downloadURL}{\verb{<chr>} Source}
 
@@ -60,7 +60,7 @@ enroll <- enrolleeAPI(
   x$temporal,
   Identifier(x$identifier),
   x$accessURL,
-  x$resourcesAPI,
+  Resources(x$resourcesAPI),
   x$downloadURL,
   x$describedBy,
   x$landingPage

@@ -31,6 +31,29 @@ Identifier <- new_class(
     )
 )
 
+#' Resources Class
+#'
+#' The `Resources` class object contains validated API metadata
+#'
+#' @param url `NULL` | `class_character` API identifier url
+#'
+#' @autoglobal
+#'
+#' @export
+Resources <- new_class(
+  name       = "Resources",
+  properties = list(
+    url = NULL | class_character,
+    files = new_property(
+      class  = NULL | class_data.frame,
+      getter = function(self) {
+        if (not_null(self@url)) {
+          qTBL(fload(self@url, query = "/data")) |>
+            mtt(fileSize = prettyunits::pretty_bytes(fileSize, "nopad"))
+        }})
+  )
+)
+
 #' Enrollee API Class
 #'
 #' The `enrolleeAPI` object contains validated API metadata
@@ -49,7 +72,7 @@ Identifier <- new_class(
 #'
 #' @param accessURL `<chr>` Source
 #'
-#' @param resourcesAPI `<chr>` Source
+#' @param resourcesAPI `<Resources>` Source
 #'
 #' @param downloadURL `<chr>` Source
 #'
@@ -72,7 +95,7 @@ Identifier <- new_class(
 #'   x$temporal,
 #'   Identifier(x$identifier),
 #'   x$accessURL,
-#'   x$resourcesAPI,
+#'   Resources(x$resourcesAPI),
 #'   x$downloadURL,
 #'   x$describedBy,
 #'   x$landingPage
@@ -93,8 +116,7 @@ enrolleeAPI <- new_class(
     temporal           = class_character,
     identifier         = new_property(class  = Identifier),
     accessURL          = new_property(class  = NULL | class_list, setter = \(self, value) { if (not_null(value)) { self@accessURL <- request(value); self }}),
-    resourcesAPI       = new_property(class  = NULL | class_list, setter = \(self, value) { if (not_null(value)) { self@resourcesAPI <- request(value); self }}),
-    totalRows          = new_property(class  = NULL | class_list, getter = \(self)        { if (not_null(self@accessURL)) { req_url_path_append(self@accessURL, "stats") |> req_perform() |> resp_body_json(simplifyVector = TRUE) |> gelm("total_rows") }}),
+    resourcesAPI       = new_property(class  = Resources),
     downloadURL        = class_character,
     describedBy        = class_character,
     landingPage        = class_character
