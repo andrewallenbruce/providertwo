@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9023</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9024</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
 <span>  temporal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  identifier <span class="op">=</span> <span class="fu"><a href="Identifier.html">Identifier</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  accessURL <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  resourcesAPI <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  resourcesAPI <span class="op">=</span> <span class="fu"><a href="Resources.html">Resources</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  downloadURL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  describedBy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  landingPage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
@@ -93,7 +93,7 @@
 
 
 <dt id="arg-resourcesapi">resourcesAPI<a class="anchor" aria-label="anchor" href="#arg-resourcesapi"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Source</p></dd>
+<dd><p><code>&lt;Resources&gt;</code> Source</p></dd>
 
 
 <dt id="arg-downloadurl">downloadURL<a class="anchor" aria-label="anchor" href="#arg-downloadurl"></a></dt>
@@ -130,8 +130,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal          : &lt;character&gt;              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier        : &lt;providertwo::Identifier&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ accessURL         : &lt;NULL&gt; or &lt;list&gt;         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resourcesAPI      : &lt;NULL&gt; or &lt;list&gt;         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ totalRows         : &lt;NULL&gt; or &lt;list&gt;         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resourcesAPI      : &lt;providertwo::Resources&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL       : &lt;character&gt;              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ describedBy       : &lt;character&gt;              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ landingPage       : &lt;character&gt;              </span>
@@ -144,7 +143,7 @@
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">temporal</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="Identifier.html">Identifier</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">identifier</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">accessURL</span>,</span></span>
-<span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">resourcesAPI</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="Resources.html">Resources</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">resourcesAPI</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">downloadURL</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">describedBy</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">landingPage</span></span></span>
@@ -178,16 +177,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ options : list()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ policies: list()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. - attr(*, "class")= chr "httr2_request"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      :List of 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ url     : chr "https://data.cms.gov/data-api/v1/dataset-resources/57312fe7-f2cc-4cda-b4a0-78d9edb42f67"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ method  : NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ headers : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ body    : NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ fields  : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ options : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ policies: list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. - attr(*, "class")= chr "httr2_request"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ totalRows         : int 2907050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      : &lt;providertwo::Resources&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url  : chr "https://data.cms.gov/data-api/v1/dataset-resources/57312fe7-f2cc-4cda-b4a0-78d9edb42f67"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ files: tibble [7 × 3] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ name       : chr [1:7] "Medicare FFS Public Provider Enrollment Q3 2024" "Medicare FFS Public Provider Enrollment Data Dictionary" "Medicare FFS  Public Provider Enrollment Methodology" "Reassignment Sub-File 2024 Q3" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fileSize   : chr [1:7] "312.38 MB" "144.35 kB" "61.36 kB" "108.96 MB" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL: chr [1:7] "https://data.cms.gov/sites/default/files/2024-10/8e1bbada-e9a4-4a4c-9017-539c5cb1fff8/PPEF_Enrollment_Extract_2024.10.07.csv" "https://data.cms.gov/sites/default/files/2022-07/adb9dd34-73da-4488-855f-f091a648f87c/Medicare%20Fee-For-Servic"| __truncated__ "https://data.cms.gov/sites/default/files/2020-08/PPEF_Data_Guidance_07_31_2020.pdf" "https://data.cms.gov/sites/default/files/2024-10/9dc1f6a0-4339-4250-b9da-d25284650662/PPEF_Reassignment_Extract_2024.10.07.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ downloadURL       : chr "https://data.cms.gov/sites/default/files/2024-10/8e1bbada-e9a4-4a4c-9017-539c5cb1fff8/PPEF_Enrollment_Extract_2024.10.07.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ describedBy       : chr "https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingPage       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-pu"| __truncated__</span>
