@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9020 (2025-01-11)
+
+* removed terse wrapper
+
+
 # providertwo 0.0.0.9019 (2025-01-11)
 
 * API class working(?)
