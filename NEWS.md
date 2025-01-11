@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9018 (2025-01-11)
+
+* first attempt at api class
+
+
 # providertwo 0.0.0.9017 (2025-01-10)
 
 * clean up
