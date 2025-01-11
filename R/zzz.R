@@ -1,10 +1,12 @@
 .__public <- NULL
 
-.onLoad <- function(libname, pkgname) {
+.onLoad <- function(libname, pkgname, ...) {
+
+  .__public <<- public_dataset()
 
   debugme::debugme()
 
-  .__public <<- public_dataset()
+  S7::methods_register()
 }
 
 # .onUnload <- function(libpath) {

@@ -21,17 +21,19 @@ Imports:
     purrr (>= 1.0.2),
     RcppSimdJson (>= 0.1.12),
     rlang (>= 1.1.4),
+    S7 (>= 0.2.0.9000),
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
     tidyr (>= 1.3.1),
     vctrs (>= 0.6.5)
 Suggests: 
-    terse,
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
+    terse,
     testthat (>= 3.0.0)
 Remotes:
     github::coolbutuseless/terse
+    github::RConsortium/S7
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
