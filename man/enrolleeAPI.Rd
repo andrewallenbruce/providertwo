@@ -49,32 +49,5 @@ The \code{enrolleeAPI} object contains validated API metadata
 }
 \examples{
 \dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-if (!exists(".__public")) .__public <<- public_dataset()
-
-x <- as.list(
-     collapse::sbt(.__public[["dataset"]],
-     sf_detect(title, "Public Provider Enrollment")))
-
-y <- as.list(
-     collapse::sbt(.__public[["api"]],
-     sf_detect(title, "Public Provider Enrollment"))[1, 4:5])
-
-z <- collapse::sbt(.__public[["csv"]],
-     sf_detect(title, "Public Provider Enrollment"),
-     downloadURL)[1,][[1]]
-
-enrolleeAPI(
-  title       = x$title,
-  description = x$description,
-  periodicity = x$accrualPeriodicity,
-  modified    = x$modified,
-  temporal    = x$temporal,
-  identifier  = x$identifier,
-  accessurl   = y$accessURL,
-  resourceapi = y$resourcesAPI,
-  downloadurl = z,
-  dictionary  = x$describedBy,
-  landingpage = x$landingPage)
 \dontshow{\}) # examplesIf}
 }

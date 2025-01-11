@@ -19,9 +19,9 @@
 #' @export
 format_query <- \(args, operator = "=") {
 
-  args <- purrr::discard(args, null)
+  args  <- discard(args, null)
 
-  query <- glue::glue(
+  query <- glue(
     '
   "filter[fID{fID}][path]" = "{PATH}",
   "filter[fID{fID}][operator]" = "{OPERATOR}",
@@ -30,11 +30,10 @@ format_query <- \(args, operator = "=") {
     fID      = seq_along(args),
     PATH     = names(args),
     OPERATOR = operator,
-    VALUE    = args
-  ) |>
-    glue::glue_collapse(sep = ",\n")
+    VALUE    = args) |>
+    glue_collapse(sep = ",\n")
 
-  glue::glue('c({query})') |>
-    rlang::parse_expr() |>
-    rlang::eval_bare()
+  glue('c({query})') |>
+    parse_expr() |>
+    eval_bare()
 }

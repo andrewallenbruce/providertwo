@@ -28,33 +28,6 @@
 #'
 #' @examplesIf FALSE
 #'
-#' if (!exists(".__public")) .__public <<- public_dataset()
-#'
-#' x <- as.list(
-#'      collapse::sbt(.__public[["dataset"]],
-#'      sf_detect(title, "Public Provider Enrollment")))
-#'
-#' y <- as.list(
-#'      collapse::sbt(.__public[["api"]],
-#'      sf_detect(title, "Public Provider Enrollment"))[1, 4:5])
-#'
-#' z <- collapse::sbt(.__public[["csv"]],
-#'      sf_detect(title, "Public Provider Enrollment"),
-#'      downloadURL)[1,][[1]]
-#'
-#' enrolleeAPI(
-#'   title       = x$title,
-#'   description = x$description,
-#'   periodicity = x$accrualPeriodicity,
-#'   modified    = x$modified,
-#'   temporal    = x$temporal,
-#'   identifier  = x$identifier,
-#'   accessurl   = y$accessURL,
-#'   resourceapi = y$resourcesAPI,
-#'   downloadurl = z,
-#'   dictionary  = x$describedBy,
-#'   landingpage = x$landingPage)
-#'
 #' @autoglobal
 #'
 #' @export
@@ -69,32 +42,32 @@ enrolleeAPI <- new_class(
     temporal    = new_property(class_double | class_Date),
     identifier  = new_property(
       class     = NULL | class_list,
-      setter    = \(self, value) {
+      setter    = function(self, value) {
         if (not_null(value)) {
-          self@identifier <- httr2::request(value)
+          self@identifier <- request(value)
           self
           }}),
     accessurl   = new_property(
       class     = NULL | class_list,
-      setter    = \(self, value) {
+      setter    = function(self, value) {
         if (not_null(value)) {
-          self@accessurl <- httr2::request(value)
+          self@accessurl <- request(value)
           self
           }}),
     resourceapi = new_property(
       class     = NULL | class_list,
-      setter    = \(self, value) {
+      setter    = function(self, value) {
         if (not_null(value)) {
-          self@resourceapi <- httr2::request(value)
+          self@resourceapi <- request(value)
           self
         }}),
     totalrows   = new_property(
       class     = NULL | class_list,
-      getter    = \(self) {
+      getter    = function(self) {
         if (not_null(self@identifier)) {
-          httr2::req_url_path_append(self@identifier, "stats") |>
-            httr2::req_perform() |>
-            httr2::resp_body_json(simplifyVector = TRUE) |>
+          req_url_path_append(self@identifier, "stats") |>
+            req_perform() |>
+            resp_body_json(simplifyVector = TRUE) |>
             gelm("total_rows")
           }}),
     downloadurl = class_character,

@@ -21,15 +21,10 @@
 #' @export
 offset_sequence <- \(rows, size) {
 
-  if (!rlang::is_integerish(rows)) {
-    rlang::abort("`rows` must be integerish.", call = call("offset_sequence"))
-  }
-  if (!rlang::is_integerish(size)) {
-    rlang::abort("`size` must be integerish.", call = call("offset_sequence"))
-  }
+  if (!is_integerish(rows)) abort("`rows` must be integerish.", call = call("offset_sequence"))
+  if (!is_integerish(size)) abort("`size` must be integerish.", call = call("offset_sequence"))
 
-  if (rows <= size)
-    return(rows)
+  if (rows <= size) return(rows)
 
   0:round(rows / size) * size
 
@@ -91,9 +86,7 @@ recode_iso8601 <- \(x) {
 }
 
 #' Roxygenise ISO 8601 Recurring Time Intervals
-#'
 #' @autoglobal
-#'
 #' @noRd
 roxy8601 <- \(x) {
   kit::nswitch(
@@ -164,3 +157,12 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 #'
 #' @export
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
+
+#' @noRd
+debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
+
+#' @noRd
+debugme_off <- \() Sys.unsetenv("DEBUGME")
+
+#' @noRd
+is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo")

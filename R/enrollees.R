@@ -56,7 +56,7 @@ enrollees <- function(npi       = NULL,
                       state     = NULL,
                       gender    = NULL) {
 
-  args <- rlang::list2(
+  args <- list2(
     "NPI"                = npi,
     "PECOS_ASCT_CNTL_ID" = pac,
     "ENRLMT_ID"          = enid,
@@ -72,25 +72,21 @@ enrollees <- function(npi       = NULL,
   url <- public_filter(
     endpoint = "dataset",
     title = "Medicare Fee-For-Service  Public Provider Enrollment")[["identifier"]] |>
-    httr2::request() |>
-    httr2::req_url_query(!!!format_query(args), size = 5000)
-
-  # "!DEBUG url = `url`"
+    request() |>
+    req_url_query(!!!format_query(args), size = 5000)
 
   stats <- url |>
-  httr2::req_url_path_append("stats") |>
-    httr2::req_perform() |>
-    httr2::resp_body_json()
-
-  # "!DEBUG stats = `stats`"
+  req_url_path_append("stats") |>
+    req_perform() |>
+    resp_body_json()
 
   # offset_sequence(stats$data$found_rows, size = 5000)
 
-  resp <- url |> httr2::req_perform() |>
-    httr2::resp_body_string() |>
-    RcppSimdJson::fparse()
+  resp <- req_perform(url) |>
+    resp_body_string() |>
+    fparse()
 
-  collapse::qTBL(resp[["data"]]) |>
+  qTBL(resp[["data"]]) |>
     setNames(names(args))
 
 }
@@ -100,33 +96,24 @@ enrollees <- function(npi       = NULL,
 #' @returns `<tibble>` of search results
 #'
 #' @examples
-#' provider_enrollment()
+#' enrollapi()
 #'
 #' @autoglobal
 #'
 #' @export
-provider_enrollment <- \() {
+enrollapi <- \() {
 
-  if (!exists(".__public")) {
-    "!DEBUG Loading public_dataset"
-    .__public <<- public_dataset()
-    }
+  if (!exists(".__public")) .__public <<- public_dataset()
 
-  list(
-    dataset = as.list(collapse::sbt(
-      .__public[["dataset"]],
-      sf_detect(title, "Public Provider Enrollment")
-    )),
-    distribution = vctrs::vec_cbind(
-      collapse::sbt(
-        .__public[["api"]],
-        sf_detect(title, "Public Provider Enrollment")),
-      collapse::sbt(
-        .__public[["csv"]],
-        sf_detect(title, "Public Provider Enrollment"),
-        downloadURL
-      )
-    )
-  )
+  c(
+    as.list(
+      sbt(.__public[["dataset"]],
+          sf_detect(title, "Public Provider Enrollment"))),
+    as.list(
+      sbt(.__public[["api"]],
+          sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
+    as.list(
+      sbt(.__public[["csv"]],
+          sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
 
 }
