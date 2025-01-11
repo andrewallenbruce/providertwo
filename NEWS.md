@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9021 (2025-01-11)
+
+* centralized importFrom calls
+* general tidying
+* Try removing dev S7 and httr2
+
+
 # providertwo 0.0.0.9020 (2025-01-11)
 
 * removed terse wrapper
