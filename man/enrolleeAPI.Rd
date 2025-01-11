@@ -7,15 +7,15 @@
 enrolleeAPI(
   title = character(0),
   description = character(0),
-  periodicity = character(0),
+  accrualPeriodicity = character(0),
   modified = numeric(0),
   temporal = character(0),
-  identifier = NULL,
-  accessurl = NULL,
-  resourceapi = NULL,
-  downloadurl = character(0),
-  dictionary = character(0),
-  landingpage = character(0)
+  identifier = Identifier(),
+  accessURL = NULL,
+  resourcesAPI = NULL,
+  downloadURL = character(0),
+  describedBy = character(0),
+  landingPage = character(0)
 )
 }
 \arguments{
@@ -23,23 +23,23 @@ enrolleeAPI(
 
 \item{description}{\verb{<chr>} Source}
 
-\item{periodicity}{\verb{<chr>} Source}
+\item{accrualPeriodicity}{\verb{<chr>} Source}
 
 \item{modified}{\verb{<chr>} Source}
 
 \item{temporal}{\verb{<chr>} Source}
 
-\item{identifier}{\verb{<chr>} Source}
+\item{identifier}{\verb{<Identifier>} Source}
 
-\item{accessurl}{\verb{<chr>} Source}
+\item{accessURL}{\verb{<chr>} Source}
 
-\item{resourceapi}{\verb{<chr>} Source}
+\item{resourcesAPI}{\verb{<chr>} Source}
 
-\item{downloadurl}{\verb{<chr>} Source}
+\item{downloadURL}{\verb{<chr>} Source}
 
-\item{dictionary}{\verb{<chr>} Source}
+\item{describedBy}{\verb{<chr>} Source}
 
-\item{landingpage}{\verb{<chr>} Source}
+\item{landingPage}{\verb{<chr>} Source}
 }
 \value{
 valid \code{enrolleeAPI} classed object
@@ -50,18 +50,21 @@ The \code{enrolleeAPI} object contains validated API metadata
 \examples{
 x <- enrollapi()
 
+enrolleeAPI
+
 enroll <- enrolleeAPI(
-          x$title,
-          x$description,
-          x$accrualPeriodicity,
-          x$modified,
-          x$temporal,
-          x$identifier,
-          x$accessURL,
-          x$resourcesAPI,
-          x$downloadURL,
-          x$describedBy,
-          x$landingPage)
+  x$title,
+  x$description,
+  x$accrualPeriodicity,
+  x$modified,
+  x$temporal,
+  Identifier(x$identifier),
+  x$accessURL,
+  x$resourcesAPI,
+  x$downloadURL,
+  x$describedBy,
+  x$landingPage
+)
 
 enroll
 
