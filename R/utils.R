@@ -164,32 +164,3 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 #'
 #' @export
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
-
-#' Wrapper for `terse::terse()`
-#' @param x `<list>` or `<data.frame>` to be printed
-#' @param p `<chr>` prefix to be used for each line
-#' @param w `<int>` target width; 0 = auto; -1 = no limit
-#' @param m `<int>` maximum vector length anywhere in original object
-#' @param s `<chr>` separator to be used for each line
-#' @param a `<chr>` Use ANSI to colour output? default: FALSE
-#' @returns `<chr>` terse representation of `x`
-#' @autoglobal
-#' @keywords internal
-#' @export
-glimst <- \(x,
-            p = "- ",
-            w = 0,
-            m = 20,
-            s = " ",
-            a = FALSE) {
-
-  terse::terse(
-    x           = x,
-    prefix      = p,
-    width       = w,
-    max_vec_len = m,
-    config      = list(
-      gsep      = s,
-      ansi      = a)
-  )
-}

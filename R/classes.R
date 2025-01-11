@@ -3,15 +3,25 @@
 #' The `enrolleeAPI` object contains validated API metadata
 #'
 #' @param title `<chr>` Source
+#'
 #' @param description `<chr>` Source
+#'
 #' @param periodicity `<chr>` Source
+#'
 #' @param modified `<chr>` Source
+#'
 #' @param temporal `<chr>` Source
+#'
 #' @param identifier `<chr>` Source
+#'
 #' @param accessurl `<chr>` Source
+#'
 #' @param resourceapi `<chr>` Source
+#'
 #' @param downloadurl `<chr>` Source
+#'
 #' @param dictionary `<chr>` Source
+#'
 #' @param landingpage `<chr>` Source
 #'
 #' @returns valid `enrolleeAPI` classed object

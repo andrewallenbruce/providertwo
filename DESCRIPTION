@@ -29,10 +29,8 @@ Imports:
 Suggests: 
     qs (>= 0.27.2),
     roxyglobals (>= 1.0.0),
-    terse,
     testthat (>= 3.0.0)
 Remotes:
-    github::coolbutuseless/terse
     github::RConsortium/S7
     github::r-lib/httr2
 Config/roxyglobals/filename: generated-globals.R

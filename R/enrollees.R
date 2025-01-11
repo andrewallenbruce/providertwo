@@ -75,7 +75,7 @@ enrollees <- function(npi       = NULL,
     httr2::request() |>
     httr2::req_url_query(!!!format_query(args), size = 5000)
 
-  "!DEBUG url = `url`"
+  # "!DEBUG url = `url`"
 
   stats <- url |>
   httr2::req_url_path_append("stats") |>
