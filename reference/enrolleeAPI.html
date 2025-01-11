@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9021</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9022</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
 <span>  description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  periodicity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  modified <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  temporal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>  temporal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  identifier <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  accessurl <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  resourceapi <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -115,8 +115,60 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="enrollapi.html">enrollapi</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">enroll</span> <span class="op">&lt;-</span> <span class="fu">enrolleeAPI</span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">title</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">description</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">accrualPeriodicity</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">modified</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">temporal</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">identifier</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">accessURL</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">resourcesAPI</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">downloadURL</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">describedBy</span>,</span></span>
+<span class="r-in"><span>          <span class="va">x</span><span class="op">$</span><span class="va">landingPage</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">enroll</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::enrolleeAPI&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Medicare Fee-For-Service  Public Provider Enrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Medicare Fee-For-Service Public Provider Enrollment dataset includes information on providers who are activ"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "[R/P3M] Quarterly"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-01-01/2024-09-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ url     : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ method  : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ headers : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ body    : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ fields  : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ options : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ policies: list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. - attr(*, "class")= chr "httr2_request"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessurl  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ url     : chr "https://data.cms.gov/data-api/v1/dataset/57312fe7-f2cc-4cda-b4a0-78d9edb42f67/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ method  : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ headers : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ body    : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ fields  : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ options : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ policies: list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. - attr(*, "class")= chr "httr2_request"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourceapi:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ url     : chr "https://data.cms.gov/data-api/v1/dataset-resources/57312fe7-f2cc-4cda-b4a0-78d9edb42f67"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ method  : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ headers : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ body    : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ fields  : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ options : list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ policies: list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. - attr(*, "class")= chr "httr2_request"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ totalrows  : int 2907050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ downloadurl: chr "https://data.cms.gov/sites/default/files/2024-10/8e1bbada-e9a4-4a4c-9017-539c5cb1fff8/PPEF_Enrollment_Extract_2024.10.07.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingpage: chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-pu"| __truncated__</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
