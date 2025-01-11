@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9024 (2025-01-11)
+
+* Resources class
+
+
 # providertwo 0.0.0.9023 (2025-01-11)
 
 * Identifier S7 class
