@@ -2,29 +2,30 @@
 % Please edit documentation in R/utils.R
 \name{offset_sequence}
 \alias{offset_sequence}
-\title{Create Offset Sequence}
+\title{Generate API Request "Offset" Sequence}
 \usage{
-offset_sequence(rows, size)
+offset_sequence(nobs, limit)
 }
 \arguments{
-\item{rows}{\verb{<int>} The number of rows found in the dataset}
+\item{nobs}{\verb{<int>} Number of results returned in the API request}
 
-\item{size}{\verb{<int>} The size or limit of the offset sequence}
+\item{limit}{\verb{<int>} Maximum number of results an API will return per request}
 }
 \value{
-\verb{<int>} If \code{rows > size}, vector of length equal to
-\code{rows / size + 1} (sequence begins at zero).
-If \code{rows <= size}, the function simply returns
-\code{rows}.
+\verb{<int>} If \code{nobs > limit}, an integer sequence beginning at \code{0} of
+length equal to \code{nobs / limit + 1}. If \code{nobs <= limit}, the function
+simply returns \code{nobs}.
 }
 \description{
-Create Offset Sequence
+Generate API Request "Offset" Sequence
 }
 \examples{
-offset_sequence(rows = 100, size = 10)
+offset_sequence(100, 10)
 
-offset_sequence(rows = 10, size = 100)
+offset_sequence(10, 100)
 
-offset_sequence(rows = 47984, size = 5000)
+offset_sequence(47984, 5000)
+
+offset_sequence(147984, 2000)
 
 }

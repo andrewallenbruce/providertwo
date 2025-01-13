@@ -1,33 +1,38 @@
-#' Create Offset Sequence
+#' Generate API Request "Offset" Sequence
 #'
-#' @param rows `<int>` The number of rows found in the dataset
+#' @param nobs `<int>` Number of results returned in the API request
 #'
-#' @param size `<int>` The size or limit of the offset sequence
+#' @param limit `<int>` Maximum number of results an API will return per request
 #'
-#' @returns `<int>` If `rows > size`, vector of length equal to
-#'                  `rows / size + 1` (sequence begins at zero).
-#'                  If `rows <= size`, the function simply returns
-#'                  `rows`.
+#' @returns `<int>` If `nobs > limit`, an integer sequence beginning at `0` of
+#'    length equal to `nobs / limit + 1`. If `nobs <= limit`, the function
+#'    simply returns `nobs`.
 #'
 #' @examples
-#' offset_sequence(rows = 100, size = 10)
+#' offset_sequence(100, 10)
 #'
-#' offset_sequence(rows = 10, size = 100)
+#' offset_sequence(10, 100)
 #'
-#' offset_sequence(rows = 47984, size = 5000)
+#' offset_sequence(47984, 5000)
+#'
+#' offset_sequence(147984, 2000)
 #'
 #' @autoglobal
 #'
+#' @importFrom cheapr seq_
+#'
 #' @export
-offset_sequence <- \(rows, size) {
+offset_sequence <- \(nobs, limit) {
 
-  if (!is_integerish(rows)) abort("`rows` must be integerish.", call = call("offset_sequence"))
-  if (!is_integerish(size)) abort("`size` must be integerish.", call = call("offset_sequence"))
+  if (!is_integerish(c(nobs, limit), n = 2)) {
+    abort(
+      "Both `nobs` and `limit` must be whole numbers.",
+      call = call("offset_sequence")
+      )
+    }
+  if (nobs <= limit) return(nobs)
 
-  if (rows <= size) return(rows)
-
-  0:round(rows / size) * size
-
+  c(0, seq_(limit, nobs, by = limit) + 1, nobs)
 }
 
 #' Recode ISO 8601 Recurring Time Intervals
@@ -166,3 +171,6 @@ debugme_off <- \() Sys.unsetenv("DEBUGME")
 
 #' @noRd
 is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo")
+
+#' @noRd
+online <- \() curl::has_internet()
