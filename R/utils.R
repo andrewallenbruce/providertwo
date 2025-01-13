@@ -30,6 +30,7 @@ offset_sequence <- \(nobs, limit) {
       call = call("offset_sequence")
       )
     }
+
   if (nobs <= limit) return(nobs)
 
   c(0, seq_(limit, nobs, by = limit) + 1, nobs)
