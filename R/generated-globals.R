@@ -10,7 +10,7 @@ utils::globalVariables(c(
   # <public_dataset>
   "description",
   # <public_dataset>
-  # <enrollapi>
+  # <enrollee_API>
   "downloadURL",
   # <public_dataset>
   "identifier",
@@ -25,7 +25,7 @@ utils::globalVariables(c(
   # <public_dataset>
   "temporal",
   # <public_dataset>
-  # <enrollapi>
+  # <enrollee_API>
   "title",
   NULL
 ))

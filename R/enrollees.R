@@ -1,3 +1,42 @@
+#' Public Provider Enrollment Experiment
+#'
+#' @returns `<S7_class>` object
+#'
+#' @examples
+#' enrollee_API()
+#'
+#' @autoglobal
+#'
+#' @export
+enrollee_API <- \() {
+
+  if (!exists(".__public")) .__public <<- public_dataset()
+
+  a <- c(as.list(
+    sbt(.__public[["dataset"]],
+        sf_detect(title, "Public Provider Enrollment"))),
+    as.list(
+      sbt(.__public[["api"]],
+          sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
+    as.list(
+      sbt(.__public[["csv"]],
+          sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
+
+  class_API(
+    title              = a[["title"]],
+    description        = a[["description"]],
+    accrualPeriodicity = a[["accrualPeriodicity"]],
+    modified           = a[["modified"]],
+    temporal           = a[["temporal"]],
+    identifier         = class_Identifier(url = a[["identifier"]]),
+    accessURL          = a[["accessURL"]],
+    resourcesAPI       = class_Resources(url = a[["resourcesAPI"]]),
+    downloadURL        = a[["downloadURL"]],
+    describedBy        = a[["describedBy"]],
+    landingPage        = a[["landingPage"]])
+
+}
+
 #' Medicare Provider Enrollees
 #'
 #' Individual & Organizational Enrollment-level Data
@@ -69,51 +108,32 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  url <- public_filter(
-    endpoint = "dataset",
-    title = "Medicare Fee-For-Service  Public Provider Enrollment")[["identifier"]] |>
+  api <- enrollee_API()
+  url <- api@identifier@url |>
     request() |>
-    req_url_query(!!!format_query(args), size = 5000)
+    req_url_query(
+      !!!format_query(args),
+      size = 5000)
 
   stats <- url |>
   req_url_path_append("stats") |>
     req_perform() |>
     resp_body_json()
 
-  # offset_sequence(stats$data$found_rows, size = 5000)
-
   resp <- req_perform(url) |>
     resp_body_string() |>
     fparse()
 
+  cat(format(api@title), "\n")
+  utils::formatUL(
+    label = "==>",
+    offset = 2,
+    c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
+      paste0("Last Modified:       ", format(api@modified)))) |>
+    writeLines()
+  cat("\n")
+
   qTBL(resp[["data"]]) |>
     setNames(names(args))
-
-}
-
-#' Public Provider Enrollment Experiment
-#'
-#' @returns `<tibble>` of search results
-#'
-#' @examples
-#' enrollapi()
-#'
-#' @autoglobal
-#'
-#' @export
-enrollapi <- \() {
-
-  if (!exists(".__public")) .__public <<- public_dataset()
-
-  c(
-    as.list(
-      sbt(.__public[["dataset"]],
-          sf_detect(title, "Public Provider Enrollment"))),
-    as.list(
-      sbt(.__public[["api"]],
-          sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
-    as.list(
-      sbt(.__public[["csv"]],
-          sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
 
 }

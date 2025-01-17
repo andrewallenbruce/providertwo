@@ -4,22 +4,14 @@
 \alias{class_Identifier}
 \title{Identifier Class}
 \usage{
-class_Identifier(.data = character(0), url = NULL)
+class_Identifier(url = NULL)
 }
 \arguments{
-\item{.data}{\verb{<tibble>} Identifier data}
-
 \item{url}{\verb{<chr>} Identifier url}
 }
 \value{
-\verb{<tibble>} of resourcesAPI data
+\verb{<S7_class>} object
 }
 \description{
-The \code{class_Identifier} object
-}
-\examples{
-x <- class_Identifier(url = "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer")
-
-x
-
+\code{class_Identifier} object
 }

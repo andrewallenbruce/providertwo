@@ -4,22 +4,14 @@
 \alias{class_Resources}
 \title{Resources Class}
 \usage{
-class_Resources(.data = character(0), url = NULL)
+class_Resources(url = NULL)
 }
 \arguments{
-\item{.data}{\verb{<tibble>} resourcesAPI data}
-
 \item{url}{\verb{<chr>} resourcesAPI url}
 }
 \value{
-\verb{<tibble>} of resourcesAPI data
+\verb{<S7_class>} object
 }
 \description{
-The \code{class_Resources} object
-}
-\examples{
-x <- class_Resources(url = "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541")
-
-x@files
-
+\code{class_Resources} object
 }

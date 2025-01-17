@@ -19,51 +19,31 @@ class_API(
 )
 }
 \arguments{
-\item{title}{\verb{<chr>} Source}
+\item{title}{\verb{<chr>} Dataset title}
 
-\item{description}{\verb{<chr>} Source}
+\item{description}{\verb{<chr>} Dataset description}
 
-\item{accrualPeriodicity}{\verb{<chr>} Source}
+\item{accrualPeriodicity}{\verb{<chr>} Dataset update frequency}
 
-\item{modified}{\verb{<chr>} Source}
+\item{modified}{\verb{<chr>} Date Dataset was last modified}
 
-\item{temporal}{\verb{<chr>} Source}
+\item{temporal}{\verb{<chr>} Date range the Current dataset covers}
 
-\item{identifier}{\verb{<class_Identifier>} Source}
+\item{identifier}{\verb{<S7_class>} dcat:Dataset url and nrows in dataset}
 
-\item{accessURL}{\verb{<chr>} Source}
+\item{accessURL}{\verb{<chr>} dcat:Distribution url}
 
-\item{resourcesAPI}{\verb{<class_Resources>} Source}
+\item{resourcesAPI}{\verb{<S7_class>} \code{data.frame} of available supplemental resources}
 
-\item{downloadURL}{\verb{<chr>} Source}
+\item{downloadURL}{\verb{<chr>} dcat:Distribution url to csv versions}
 
-\item{describedBy}{\verb{<chr>} Source}
+\item{describedBy}{\verb{<chr>} Link to Data dictionary}
 
-\item{landingPage}{\verb{<chr>} Source}
+\item{landingPage}{\verb{<chr>} Link to API landing page}
 }
 \value{
-valid \code{class_API} object
+\verb{<S7_class>} object
 }
 \description{
-The \code{class_API} object contains validated API metadata
-}
-\examples{
-x <- enrollapi()
-
-enroll <- class_API(
-  x$title,
-  x$description,
-  x$accrualPeriodicity,
-  x$modified,
-  x$temporal,
-  class_Identifier(url = x$identifier),
-  x$accessURL,
-  class_Resources(url = x$resourcesAPI),
-  x$downloadURL,
-  x$describedBy,
-  x$landingPage
-)
-
-enroll
-
+\code{class_API} object
 }

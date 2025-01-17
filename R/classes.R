@@ -9,25 +9,17 @@ class_double_Date    <- new_union(class_double, class_Date)
 
 #' Identifier Class
 #'
-#' The `class_Identifier` object
+#' `class_Identifier` object
 #'
 #' @param url `<chr>` Identifier url
 #'
-#' @param .data `<tibble>` Identifier data
-#'
-#' @returns `<tibble>` of resourcesAPI data
-#'
-#' @examples
-#' x <- class_Identifier(url = "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer")
-#'
-#' x
+#' @returns `<S7_class>` object
 #'
 #' @autoglobal
 #'
 #' @export
 class_Identifier <- new_class(
   name       = "class_Identifier",
-  parent     = class_character,
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -54,25 +46,17 @@ class_Identifier <- new_class(
 
 #' Resources Class
 #'
-#' The `class_Resources` object
+#' `class_Resources` object
 #'
 #' @param url `<chr>` resourcesAPI url
 #'
-#' @param .data `<tibble>` resourcesAPI data
-#'
-#' @returns `<tibble>` of resourcesAPI data
-#'
-#' @examples
-#' x <- class_Resources(url = "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541")
-#'
-#' x@files
+#' @returns `<S7_class>` object
 #'
 #' @autoglobal
 #'
 #' @export
 class_Resources <- new_class(
   name = "class_Resources",
-  parent = class_character,
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -92,42 +76,21 @@ class_Resources <- new_class(
 
 #' API Class
 #'
-#' The `class_API` object contains validated API metadata
+#' `class_API` object
 #'
-#' @param title `<chr>` Source
-#' @param description `<chr>` Source
-#' @param accrualPeriodicity `<chr>` Source
-#' @param modified `<chr>` Source
-#' @param temporal `<chr>` Source
-#' @param identifier `<class_Identifier>` Source
-#' @param accessURL `<chr>` Source
-#' @param resourcesAPI `<class_Resources>` Source
-#' @param downloadURL `<chr>` Source
-#' @param describedBy `<chr>` Source
-#' @param landingPage `<chr>` Source
-#' @returns valid `class_API` object
-#'
-#' @examples
-#' x <- enrollapi()
-#'
-#' enroll <- class_API(
-#'   x$title,
-#'   x$description,
-#'   x$accrualPeriodicity,
-#'   x$modified,
-#'   x$temporal,
-#'   class_Identifier(url = x$identifier),
-#'   x$accessURL,
-#'   class_Resources(url = x$resourcesAPI),
-#'   x$downloadURL,
-#'   x$describedBy,
-#'   x$landingPage
-#' )
-#'
-#' enroll
-#'
+#' @param title `<chr>` Dataset title
+#' @param description `<chr>` Dataset description
+#' @param accrualPeriodicity `<chr>` Dataset update frequency
+#' @param modified `<chr>` Date Dataset was last modified
+#' @param temporal `<chr>` Date range the Current dataset covers
+#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
+#' @param accessURL `<chr>` dcat:Distribution url
+#' @param resourcesAPI `<S7_class>` `data.frame` of available supplemental resources
+#' @param downloadURL `<chr>` dcat:Distribution url to csv versions
+#' @param describedBy `<chr>` Link to Data dictionary
+#' @param landingPage `<chr>` Link to API landing page
+#' @returns `<S7_class>` object
 #' @autoglobal
-#'
 #' @export
 class_API <- new_class(
   name = "class_API",
@@ -145,3 +108,41 @@ class_API <- new_class(
     landingPage        = class_character
   )
 )
+
+# S7::method(print, class_API) <- function(x, ...) {
+#   cli::col_cyan(x@title)
+#   substr(x@description, 1, 415)
+#
+#   paste(
+#     glue::glue(
+#       '"*" = cli::style_hyperlink("{text}", {url})',
+#       text = c("Landing Page", "Data Dictionary"),
+#       url = c("x@landingPage", "x@describedBy")
+#       )) |>
+#     rlang::parse_expr() |>
+#     rlang::eval_tidy()
+#
+#   cli::cat_boxx(
+#     c(cli::cli_text(),
+#       cli::cli_bullets(
+#         c("*" = cli::style_hyperlink("Landing Page", x@landingPage),
+#           "*" = cli::style_hyperlink("Data Dictionary", x@describedBy))))
+#   )
+#
+#   cli::boxx(
+#     label = c(cli::cli_text(substr(x@description, 1, 415)),
+#               cli::cli_bullets(
+#                 c("*" = cli::style_hyperlink("Landing Page", x@landingPage),
+#                   "*" = cli::style_hyperlink("Data Dictionary", x@describedBy)))),
+#     border_style="round",
+#     padding = 1,
+#     header = cli::col_cyan(x@title))
+#
+#   cat(
+#     "Accrual Periodicity: ", x@accrualPeriodicity, "\n",
+#     "Last Modified: ", x@modified, "\n",
+#     "Temporal Range: ", x@temporal, "\n",
+#     "Identifier: ", x@identifier, "\n",
+#     "Resources API: ", x@resourcesAPI, "\n",
+#   )
+# }
