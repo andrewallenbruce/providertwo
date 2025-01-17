@@ -11,7 +11,7 @@ class_API(
   modified = numeric(0),
   temporal = character(0),
   identifier = class_Identifier(),
-  accessURL = NULL,
+  accessURL = character(0),
   resourcesAPI = class_Resources(),
   downloadURL = character(0),
   describedBy = character(0),
@@ -42,7 +42,7 @@ class_API(
 \item{landingPage}{\verb{<chr>} Source}
 }
 \value{
-valid \code{class_API} classed object
+valid \code{class_API} object
 }
 \description{
 The \code{class_API} object contains validated API metadata
@@ -56,9 +56,9 @@ enroll <- class_API(
   x$accrualPeriodicity,
   x$modified,
   x$temporal,
-  class_Identifier(x$identifier),
+  class_Identifier(url = x$identifier),
   x$accessURL,
-  class_Resources(x$resourcesAPI),
+  class_Resources(url = x$resourcesAPI),
   x$downloadURL,
   x$describedBy,
   x$landingPage

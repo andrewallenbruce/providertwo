@@ -1,9 +1,11 @@
-null_numeric      <- new_union(NULL, class_numeric)
-null_integer      <- new_union(NULL, class_integer)
-null_character    <- new_union(NULL, class_character)
-null_list         <- new_union(NULL, class_list)
-null_data.frame   <- new_union(NULL, class_data.frame)
-class_double_Date <- new_union(class_double, class_Date)
+null_numeric         <- new_union(NULL, class_numeric)
+null_integer         <- new_union(NULL, class_integer)
+null_character       <- new_union(NULL, class_character)
+null_character_integer <- new_union(NULL, class_character, class_integer)
+null_list            <- new_union(NULL, class_list)
+null_data.frame      <- new_union(NULL, class_data.frame)
+class_double_Date    <- new_union(class_double, class_Date)
+# class_character_name <- new_union(class_character, class_name)
 
 #' Identifier Class
 #'
@@ -11,11 +13,21 @@ class_double_Date <- new_union(class_double, class_Date)
 #'
 #' @param url `<chr>` Identifier url
 #'
+#' @param .data `<tibble>` Identifier data
+#'
+#' @returns `<tibble>` of resourcesAPI data
+#'
+#' @examples
+#' x <- class_Identifier(url = "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer")
+#'
+#' x
+#'
 #' @autoglobal
 #'
 #' @export
 class_Identifier <- new_class(
   name       = "class_Identifier",
+  parent     = class_character,
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -27,7 +39,8 @@ class_Identifier <- new_class(
       class  = null_integer,
       getter = function(self) {
         if (not_null(self@url)) {
-            request(self@url) |>
+          online()
+          request(self@url) |>
             req_url_path_append("stats") |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
@@ -43,13 +56,23 @@ class_Identifier <- new_class(
 #'
 #' The `class_Resources` object
 #'
-#' @param url `<chr>` ResourcesAPI url
+#' @param url `<chr>` resourcesAPI url
+#'
+#' @param .data `<tibble>` resourcesAPI data
+#'
+#' @returns `<tibble>` of resourcesAPI data
+#'
+#' @examples
+#' x <- class_Resources(url = "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541")
+#'
+#' x@files
 #'
 #' @autoglobal
 #'
 #' @export
 class_Resources <- new_class(
   name = "class_Resources",
+  parent = class_character,
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -58,7 +81,7 @@ class_Resources <- new_class(
         self
       }),
     files    = new_property(
-      class  = null_data.frame,
+      class  = null_list,
       getter = function(self) {
         if (not_null(self@url)) {
           qTBL(fload(self@url, query = "/data")) |>
@@ -82,7 +105,7 @@ class_Resources <- new_class(
 #' @param downloadURL `<chr>` Source
 #' @param describedBy `<chr>` Source
 #' @param landingPage `<chr>` Source
-#' @returns valid `class_API` classed object
+#' @returns valid `class_API` object
 #'
 #' @examples
 #' x <- enrollapi()
@@ -93,9 +116,9 @@ class_Resources <- new_class(
 #'   x$accrualPeriodicity,
 #'   x$modified,
 #'   x$temporal,
-#'   class_Identifier(x$identifier),
+#'   class_Identifier(url = x$identifier),
 #'   x$accessURL,
-#'   class_Resources(x$resourcesAPI),
+#'   class_Resources(url = x$resourcesAPI),
 #'   x$downloadURL,
 #'   x$describedBy,
 #'   x$landingPage
@@ -115,12 +138,7 @@ class_API <- new_class(
     modified           = class_double_Date,
     temporal           = class_character,
     identifier         = class_Identifier,
-    accessURL          = new_property(
-      class  = null_character,
-      setter = function(self, value) {
-        self@accessURL <- value
-        self
-        }),
+    accessURL          = class_character,
     resourcesAPI       = class_Resources,
     downloadURL        = class_character,
     describedBy        = class_character,
