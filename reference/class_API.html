@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9026</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9027</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@
 <span>  modified <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  temporal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  identifier <span class="op">=</span> <span class="fu"><a href="class_Identifier.html">class_Identifier</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  accessURL <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  accessURL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  resourcesAPI <span class="op">=</span> <span class="fu"><a href="class_Resources.html">class_Resources</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  downloadURL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
 <span>  describedBy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
@@ -110,7 +110,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>valid <code>class_API</code> classed object</p>
+    <p>valid <code>class_API</code> object</p>
     </div>
 
     <div class="section level2">
@@ -123,9 +123,9 @@
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">accrualPeriodicity</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">modified</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">temporal</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="class_Identifier.html">class_Identifier</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">identifier</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="class_Identifier.html">class_Identifier</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">identifier</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">accessURL</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="class_Resources.html">class_Resources</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">resourcesAPI</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="class_Resources.html">class_Resources</a></span><span class="op">(</span>url <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">resourcesAPI</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">downloadURL</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">describedBy</span>,</span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">landingPage</span></span></span>
@@ -138,11 +138,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ accrualPeriodicity: chr "[R/P3M] Quarterly"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified          : Date[1:1], format: "2025-01-15"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal          : chr "2023-01-01/2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier        : &lt;providertwo::class_Identifier&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier        : &lt;providertwo::class_Identifier&gt; chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows: int 2945846</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessURL         : chr "https://data.cms.gov/data-api/v1/dataset/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      : &lt;providertwo::class_Resources&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      : &lt;providertwo::class_Resources&gt; chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url  : chr "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ files: tibble [7 × 3] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ name       : chr [1:7] "Medicare FFS Public Provider Enrollment Q4 2024" "Medicare FFS Public Provider Enrollment Data Dictionary" "Medicare FFS  Public Provider Enrollment Methodology" "Reassignment Sub-File 2024 Q4" ...</span>
