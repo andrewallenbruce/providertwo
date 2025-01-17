@@ -1,51 +1,64 @@
+null_numeric      <- new_union(NULL, class_numeric)
+null_integer      <- new_union(NULL, class_integer)
+null_character    <- new_union(NULL, class_character)
+null_list         <- new_union(NULL, class_list)
+null_data.frame   <- new_union(NULL, class_data.frame)
+class_double_Date <- new_union(class_double, class_Date)
+
 #' Identifier Class
 #'
-#' The `Identifier` class object contains validated API metadata
+#' The `class_Identifier` object
 #'
-#' @param url `NULL` | `class_list` API identifier url
+#' @param url `<chr>` Identifier url
 #'
 #' @autoglobal
 #'
 #' @export
-Identifier <- new_class(
-  name       = "Identifier",
+class_Identifier <- new_class(
+  name       = "class_Identifier",
   properties = list(
     url      = new_property(
-      class  = NULL | class_list,
+      class  = null_character,
       setter = function(self, value) {
-        if (not_null(value)) {
-          self@url <- url_parse(value)
-          self
-        }}),
-    totalRows = new_property(
-      class  = NULL | class_integer,
+        self@url <- value
+        self
+      }),
+    rows     = new_property(
+      class  = null_integer,
       getter = function(self) {
         if (not_null(self@url)) {
-          url_build(self@url) |>
-            request() |>
+            request(self@url) |>
             req_url_path_append("stats") |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
             gelm("total_rows")
         }})
-    )
-)
+    ),
+    validator = function(self) {
+      if (length(self@url) != 1L) "@url must be length 1"
+    }
+  )
 
 #' Resources Class
 #'
-#' The `Resources` class object contains validated API metadata
+#' The `class_Resources` object
 #'
-#' @param url `NULL` | `class_character` API identifier url
+#' @param url `<chr>` ResourcesAPI url
 #'
 #' @autoglobal
 #'
 #' @export
-Resources <- new_class(
-  name       = "Resources",
+class_Resources <- new_class(
+  name = "class_Resources",
   properties = list(
-    url = NULL | class_character,
-    files = new_property(
-      class  = NULL | class_data.frame,
+    url      = new_property(
+      class  = null_character,
+      setter = function(self, value) {
+        self@url <- value
+        self
+      }),
+    files    = new_property(
+      class  = null_data.frame,
       getter = function(self) {
         if (not_null(self@url)) {
           qTBL(fload(self@url, query = "/data")) |>
@@ -54,48 +67,35 @@ Resources <- new_class(
   )
 )
 
-#' Enrollee API Class
+#' API Class
 #'
-#' The `enrolleeAPI` object contains validated API metadata
+#' The `class_API` object contains validated API metadata
 #'
 #' @param title `<chr>` Source
-#'
 #' @param description `<chr>` Source
-#'
 #' @param accrualPeriodicity `<chr>` Source
-#'
 #' @param modified `<chr>` Source
-#'
 #' @param temporal `<chr>` Source
-#'
-#' @param identifier `<Identifier>` Source
-#'
+#' @param identifier `<class_Identifier>` Source
 #' @param accessURL `<chr>` Source
-#'
-#' @param resourcesAPI `<Resources>` Source
-#'
+#' @param resourcesAPI `<class_Resources>` Source
 #' @param downloadURL `<chr>` Source
-#'
 #' @param describedBy `<chr>` Source
-#'
 #' @param landingPage `<chr>` Source
-#'
-#' @returns valid `enrolleeAPI` classed object
+#' @returns valid `class_API` classed object
 #'
 #' @examples
 #' x <- enrollapi()
 #'
-#' enrolleeAPI
-#'
-#' enroll <- enrolleeAPI(
+#' enroll <- class_API(
 #'   x$title,
 #'   x$description,
 #'   x$accrualPeriodicity,
 #'   x$modified,
 #'   x$temporal,
-#'   Identifier(x$identifier),
+#'   x$identifier,
 #'   x$accessURL,
-#'   Resources(x$resourcesAPI),
+#'   x$resourcesAPI,
 #'   x$downloadURL,
 #'   x$describedBy,
 #'   x$landingPage
@@ -106,17 +106,22 @@ Resources <- new_class(
 #' @autoglobal
 #'
 #' @export
-enrolleeAPI <- new_class(
-  name = "enrolleeAPI",
+class_API <- new_class(
+  name = "class_API",
   properties = list(
     title              = class_character,
     description        = class_character,
     accrualPeriodicity = class_character,
-    modified           = new_property(class_double | class_Date),
+    modified           = class_double_Date,
     temporal           = class_character,
-    identifier         = new_property(class  = Identifier),
-    accessURL          = new_property(class  = NULL | class_list, setter = \(self, value) { if (not_null(value)) { self@accessURL <- request(value); self }}),
-    resourcesAPI       = new_property(class  = Resources),
+    identifier         = class_Identifier,
+    accessURL          = new_property(
+      class  = null_character,
+      setter = function(self, value) {
+        self@accessURL <- value
+        self
+        }),
+    resourcesAPI       = class_Resources,
     downloadURL        = class_character,
     describedBy        = class_character,
     landingPage        = class_character
