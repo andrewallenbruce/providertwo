@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9026 (2025-01-16)
+
+* updated classes
+
+
 # providertwo 0.0.0.9025 (2025-01-13)
 
 * rewrote offset_sequence
