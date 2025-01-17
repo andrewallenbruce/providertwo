@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9027 (2025-01-17)
+
+* arg class sketch
+
+
 # providertwo 0.0.0.9026 (2025-01-16)
 
 * updated classes
