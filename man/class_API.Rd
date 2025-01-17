@@ -56,9 +56,9 @@ enroll <- class_API(
   x$accrualPeriodicity,
   x$modified,
   x$temporal,
-  x$identifier,
+  class_Identifier(x$identifier),
   x$accessURL,
-  x$resourcesAPI,
+  class_Resources(x$resourcesAPI),
   x$downloadURL,
   x$describedBy,
   x$landingPage
