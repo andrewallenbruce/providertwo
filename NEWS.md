@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9030 (2025-01-19)
+
+* imported standalone purrr, type checks
+* removed prettyunits in favor of `rlang::parsebytes()`
+* added `luhn_check()` for NPIs
+* NEWS tidied
+
+
 # providertwo 0.0.0.9029 (2025-01-18)
 
 * bump dependency versions (`collapse`, `httr2`, `S7`, `testthat`)
