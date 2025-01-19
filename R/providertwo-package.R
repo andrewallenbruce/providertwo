@@ -3,9 +3,8 @@
 
 ## usethis namespace: start
 #' @importFrom RcppSimdJson fparse fload
-#' @importFrom collapse %==% qTBL mtt slt sbt
+#' @importFrom collapse %==% qTBL mtt slt sbt colorder
 #' @importFrom stats setNames
-#' @importFrom purrr discard
 #' @importFrom tidyr unnest
 #' @importFrom glue glue glue_collapse
 #' @import httr2

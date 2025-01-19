@@ -1,3 +1,37 @@
+#' Luhn Algorithm Check for NPIs
+#'
+#' @param x `<chr>` NPI
+#'
+#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
+#'
+#' @examples
+#' luhn_check("1417918293")
+#'
+#' luhn_check("1234567890")
+#'
+#' luhn_check("123456789")
+#'
+#' @autoglobal
+#'
+#' @export
+luhn_check <- function(x) {
+
+  x <- rev(as.integer(desplit(x)))
+
+  odd  <- seq_along(x) %% 2 == 1
+  even <- seq_along(x) %% 2 == 0
+
+  x[even] <- x[even] * 2
+  x[even] <- ifelse(x[even] > 9, x[even] - 9, x[even])
+
+  sum_odd  <- sum(x[odd])
+  sum_even <- sum(x[even])
+
+  sum_x <- sum_odd + sum_even
+
+  sum_x %% 10 == 0
+}
+
 #' Generate API Request "Offset" Sequence
 #'
 #' @param nobs `<int>` Number of results returned in the API request
@@ -164,14 +198,11 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 #' @export
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
-#' @noRd
-debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
-
-#' @noRd
-debugme_off <- \() Sys.unsetenv("DEBUGME")
-
-#' @noRd
-is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo")
-
-#' @noRd
-online <- \() curl::has_internet()
+#' #' @noRd
+#' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
+#'
+#' #' @noRd
+#' debugme_off <- \() Sys.unsetenv("DEBUGME")
+#'
+#' #' @noRd
+#' is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo")

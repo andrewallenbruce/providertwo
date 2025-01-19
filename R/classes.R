@@ -1,11 +1,5 @@
-null_numeric         <- new_union(NULL, class_numeric)
-null_integer         <- new_union(NULL, class_integer)
-null_character       <- new_union(NULL, class_character)
-null_character_integer <- new_union(NULL, class_character, class_integer)
-null_list            <- new_union(NULL, class_list)
-null_data.frame      <- new_union(NULL, class_data.frame)
-class_double_Date    <- new_union(class_double, class_Date)
-# class_character_name <- new_union(class_character, class_name)
+#' @include props.R
+NULL
 
 #' Identifier Class
 #'
@@ -31,7 +25,7 @@ class_Identifier <- new_class(
       class  = null_integer,
       getter = function(self) {
         if (not_null(self@url)) {
-          online()
+          is_online()
           request(self@url) |>
             req_url_path_append("stats") |>
             req_perform() |>
@@ -69,7 +63,9 @@ class_Resources <- new_class(
       getter = function(self) {
         if (not_null(self@url)) {
           qTBL(fload(self@url, query = "/data")) |>
-            mtt(fileSize = prettyunits::pretty_bytes(fileSize, "nopad"))
+            mtt(fileSize = parse_bytes(as.character(fileSize)),
+                fileType = tools::file_ext(downloadURL)) |>
+            colorder(downloadURL, pos = "end")
         }})
   )
 )
@@ -98,7 +94,7 @@ class_API <- new_class(
     title              = class_character,
     description        = class_character,
     accrualPeriodicity = class_character,
-    modified           = class_double_Date,
+    modified           = class_dbl_Date,
     temporal           = class_character,
     identifier         = class_Identifier,
     accessURL          = class_character,
@@ -109,9 +105,31 @@ class_API <- new_class(
   )
 )
 
+# class_API
+#
+# x <- enrollee_API()
+#
 # S7::method(print, class_API) <- function(x, ...) {
+#
+#   ob <- props(x)
+#   ob$identifier <- NULL
+#   ob$resourcesAPI <- NULL
+#   ob$description <- substr(ob@description, 1, 415)
+#   id <- props(x@identifier)
+#   re <- props(x@resourcesAPI)
+#   # re_files <- as.list(re$files)
+#   # re$files <- NULL
+#
+#   ob
+#
+#   glue::glue_data(
+#     x@resourcesAPI@files,
+#     "{.strong {.field <<name>>}} >=> <<fileSize>>",
+#     .open = "<<",
+#     .close = ">>")
+#
 #   cli::col_cyan(x@title)
-#   substr(x@description, 1, 415)
+#
 #
 #   paste(
 #     glue::glue(

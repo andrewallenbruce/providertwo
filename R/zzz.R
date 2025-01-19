@@ -4,7 +4,7 @@
 
   .__public <<- public_dataset()
 
-  debugme::debugme()
+  # debugme::debugme()
 
   S7::methods_register()
 }
