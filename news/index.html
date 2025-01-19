@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9029</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9030</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,26 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9030" id="providertwo-0009030-2025-01-19">providertwo 0.0.0.9030 (2025-01-19)<a class="anchor" aria-label="anchor" href="#providertwo-0009030-2025-01-19"></a></h2>
+<ul><li>imported standalone purrr, type checks</li>
+<li>removed prettyunits in favor of <code>rlang::parsebytes()</code>
+</li>
+<li>added <code><a href="../reference/luhn_check.html">luhn_check()</a></code> for NPIs</li>
+<li>NEWS tidied</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9029" id="providertwo-0009029-2025-01-18">providertwo 0.0.0.9029 (2025-01-18)<a class="anchor" aria-label="anchor" href="#providertwo-0009029-2025-01-18"></a></h2>
-<ul><li>bump dependency versions (collapse, httr2, S7, testthat)</li>
+<ul><li>bump dependency versions (<code>collapse</code>, <code>httr2</code>, <code>S7</code>, <code>testthat</code>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9028" id="providertwo-0009028-2025-01-17">providertwo 0.0.0.9028 (2025-01-17)<a class="anchor" aria-label="anchor" href="#providertwo-0009028-2025-01-17"></a></h2>
-<ul><li>enrollee_API() draft</li>
+<ul><li>
+<code><a href="../reference/enrollee_API.html">enrollee_API()</a></code> rework</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9027" id="providertwo-0009027-2025-01-17">providertwo 0.0.0.9027 (2025-01-17)<a class="anchor" aria-label="anchor" href="#providertwo-0009027-2025-01-17"></a></h2>
-<ul><li>arg class sketch</li>
+<ul><li>
+<code>class_args()</code> draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9026" id="providertwo-0009026-2025-01-16">providertwo 0.0.0.9026 (2025-01-16)<a class="anchor" aria-label="anchor" href="#providertwo-0009026-2025-01-16"></a></h2>
@@ -56,37 +66,43 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9025" id="providertwo-0009025-2025-01-13">providertwo 0.0.0.9025 (2025-01-13)<a class="anchor" aria-label="anchor" href="#providertwo-0009025-2025-01-13"></a></h2>
-<ul><li>rewrote offset_sequence</li>
+<ul><li>
+<code><a href="../reference/offset_sequence.html">offset_sequence()</a></code> rewrite</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9024" id="providertwo-0009024-2025-01-11">providertwo 0.0.0.9024 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009024-2025-01-11"></a></h2>
-<ul><li>Resources class</li>
+<ul><li>
+<code>class_Resources</code> draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9023" id="providertwo-0009023-2025-01-11">providertwo 0.0.0.9023 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009023-2025-01-11"></a></h2>
-<ul><li>Identifier S7 class</li>
+<ul><li>
+<code>class_Identifier</code> draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9022" id="providertwo-0009022-2025-01-11">providertwo 0.0.0.9022 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009022-2025-01-11"></a></h2>
-<ul><li>enrolleeAPI S7 class</li>
+<ul><li>
+<code>enrolleeAPI</code> class draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9021" id="providertwo-0009021-2025-01-11">providertwo 0.0.0.9021 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009021-2025-01-11"></a></h2>
-<ul><li>centralized importFrom calls</li>
+<ul><li>centralized <code>importFrom</code> calls</li>
 <li>general tidying</li>
-<li>Try removing dev S7 and httr2</li>
+<li>Reverted dev <code>S7</code> and <code>httr2</code> dependencies</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9020" id="providertwo-0009020-2025-01-11">providertwo 0.0.0.9020 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009020-2025-01-11"></a></h2>
-<ul><li>removed terse wrapper</li>
+<ul><li>removed <code>terse</code> wrapper</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9019" id="providertwo-0009019-2025-01-11">providertwo 0.0.0.9019 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009019-2025-01-11"></a></h2>
-<ul><li>API class working(?)</li>
+<ul><li>
+<code>class_API</code> working again</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9018" id="providertwo-0009018-2025-01-11">providertwo 0.0.0.9018 (2025-01-11)<a class="anchor" aria-label="anchor" href="#providertwo-0009018-2025-01-11"></a></h2>
-<ul><li>first attempt at api class</li>
+<ul><li>
+<code>class_API</code> draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9017" id="providertwo-0009017-2025-01-10">providertwo 0.0.0.9017 (2025-01-10)<a class="anchor" aria-label="anchor" href="#providertwo-0009017-2025-01-10"></a></h2>
@@ -117,18 +133,18 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9011" id="providertwo-0009011-2025-01-06">providertwo 0.0.0.9011 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009011-2025-01-06"></a></h2>
-<ul><li>clean up NEWS bullets</li>
+<ul><li>clean up <code>NEWS</code> bullets</li>
 <li>further refinement of <code><a href="../reference/enrollees.html">enrollees()</a></code>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9010" id="providertwo-0009010-2025-01-06">providertwo 0.0.0.9010 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009010-2025-01-06"></a></h2>
-<ul><li>moved <code>onLoad</code> hooks to <code>aaa.R</code>
+<ul><li>moved <code>.onLoad</code> hooks to <code>aaa.R</code>
 </li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9009" id="providertwo-0009009-2025-01-06">providertwo 0.0.0.9009 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009009-2025-01-06"></a></h2>
-<ul><li>minor alteration in <code><a href="../reference/public_filter.html">public_filter()</a></code>
+<ul><li>minor alteration to <code><a href="../reference/public_filter.html">public_filter()</a></code>
 </li>
 </ul></div>
     <div class="section level2">
@@ -138,17 +154,18 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9007" id="providertwo-0009007-2025-01-06">providertwo 0.0.0.9007 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009007-2025-01-06"></a></h2>
-<ul><li>added rudimentary version of <code>providers2()</code>
-</li>
+<ul><li>
+<code>providers2()</code> draft</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9006" id="providertwo-0009006-2025-01-06">providertwo 0.0.0.9006 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009006-2025-01-06"></a></h2>
-<ul><li>added internal <code><a href="../reference/public_filter.html">public_filter()</a></code>
-</li>
+<ul><li>
+<code><a href="../reference/public_filter.html">public_filter()</a></code> internal added</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9005" id="providertwo-0009005-2025-01-06">providertwo 0.0.0.9005 (2025-01-06)<a class="anchor" aria-label="anchor" href="#providertwo-0009005-2025-01-06"></a></h2>
-<ul><li>added <code>onLoad</code> dataset hook</li>
+<ul><li>
+<code>.onLoad</code> API call added</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9004" id="providertwo-0009004-2025-01-02">providertwo 0.0.0.9004 (2025-01-02)<a class="anchor" aria-label="anchor" href="#providertwo-0009004-2025-01-02"></a></h2>
@@ -159,7 +176,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9003" id="providertwo-0009003-2025-01-01">providertwo 0.0.0.9003 (2025-01-01)<a class="anchor" aria-label="anchor" href="#providertwo-0009003-2025-01-01"></a></h2>
-<ul><li>Added <code><a href="../reference/program_code.html">program_code()</a></code> and <code><a href="../reference/bureau_code.html">bureau_code()</a></code> lookups</li>
+<ul><li>Added lookups <code><a href="../reference/program_code.html">program_code()</a></code> and <code><a href="../reference/bureau_code.html">bureau_code()</a></code>
+</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9002" id="providertwo-0009002-2025-01-01">providertwo 0.0.0.9002 (2025-01-01)<a class="anchor" aria-label="anchor" href="#providertwo-0009002-2025-01-01"></a></h2>
