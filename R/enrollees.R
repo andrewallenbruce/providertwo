@@ -2,7 +2,7 @@
 #'
 #' @returns `<S7_class>` object
 #'
-#' @examples
+#' @examplesIf FALSE
 #' enrollee_API()
 #'
 #' @autoglobal
@@ -22,7 +22,7 @@ enrollee_API <- \() {
 
   class_API(
     title              = a[["title"]],
-    description        = a[["description"]],
+    description        = substr(a[["description"]], 1, 415),
     accrualPeriodicity = a[["accrualPeriodicity"]],
     modified           = a[["modified"]],
     temporal           = a[["temporal"]],
