@@ -2,17 +2,17 @@
 
 # providertwo 0.0.0.9029 (2025-01-18)
 
-* bump dependency versions (collapse, httr2, S7, testthat)
+* bump dependency versions (`collapse`, `httr2`, `S7`, `testthat`)
 
 
 # providertwo 0.0.0.9028 (2025-01-17)
 
-* enrollee_API() draft
+* `enrollee_API()` rework
 
 
 # providertwo 0.0.0.9027 (2025-01-17)
 
-* arg class sketch
+* `class_args()` draft
 
 
 # providertwo 0.0.0.9026 (2025-01-16)
@@ -22,44 +22,44 @@
 
 # providertwo 0.0.0.9025 (2025-01-13)
 
-* rewrote offset_sequence
+* `offset_sequence()` rewrite
 
 
 # providertwo 0.0.0.9024 (2025-01-11)
 
-* Resources class
+* `class_Resources` draft
 
 
 # providertwo 0.0.0.9023 (2025-01-11)
 
-* Identifier S7 class
+* `class_Identifier` draft
 
 
 # providertwo 0.0.0.9022 (2025-01-11)
 
-* enrolleeAPI S7 class
+* `enrolleeAPI` class draft
 
 
 # providertwo 0.0.0.9021 (2025-01-11)
 
-* centralized importFrom calls
+* centralized `importFrom` calls
 * general tidying
-* Try removing dev S7 and httr2
+* Reverted dev `S7` and `httr2` dependencies
 
 
 # providertwo 0.0.0.9020 (2025-01-11)
 
-* removed terse wrapper
+* removed `terse` wrapper
 
 
 # providertwo 0.0.0.9019 (2025-01-11)
 
-* API class working(?)
+* `class_API` working again
 
 
 # providertwo 0.0.0.9018 (2025-01-11)
 
-* first attempt at api class
+* `class_API` draft
 
 
 # providertwo 0.0.0.9017 (2025-01-10)
@@ -97,18 +97,18 @@
 
 # providertwo 0.0.0.9011 (2025-01-06)
 
-* clean up NEWS bullets
+* clean up `NEWS` bullets
 * further refinement of `enrollees()`
 
 
 # providertwo 0.0.0.9010 (2025-01-06)
 
-* moved `onLoad` hooks to `aaa.R`
+* moved `.onLoad` hooks to `aaa.R`
 
 
 # providertwo 0.0.0.9009 (2025-01-06)
 
-* minor alteration in `public_filter()`
+* minor alteration to `public_filter()`
 
 
 # providertwo 0.0.0.9008 (2025-01-06)
@@ -118,17 +118,17 @@
 
 # providertwo 0.0.0.9007 (2025-01-06)
 
-* added rudimentary version of `providers2()`
+* `providers2()` draft
 
 
 # providertwo 0.0.0.9006 (2025-01-06)
 
-* added internal `public_filter()`
+* `public_filter()` internal added
 
 
 # providertwo 0.0.0.9005 (2025-01-06)
 
-* added `onLoad` dataset hook
+* `.onLoad` API call added
 
 
 # providertwo 0.0.0.9004 (2025-01-02)
@@ -139,7 +139,7 @@
 
 # providertwo 0.0.0.9003 (2025-01-01)
 
-* Added `program_code()` and `bureau_code()` lookups
+* Added lookups `program_code()` and `bureau_code()`
 
 
 # providertwo 0.0.0.9002 (2025-01-01)
