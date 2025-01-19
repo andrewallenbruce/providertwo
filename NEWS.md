@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9029 (2025-01-18)
+
+* bump dependency versions (collapse, httr2, S7, testthat)
+
+
 # providertwo 0.0.0.9028 (2025-01-17)
 
 * enrollee_API() draft
