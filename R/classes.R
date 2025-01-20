@@ -63,7 +63,7 @@ class_Resources <- new_class(
       getter = function(self) {
         if (not_null(self@url)) {
           qTBL(fload(self@url, query = "/data")) |>
-            mtt(fileSize = parse_bytes(as.character(fileSize)),
+            mtt(fileSize = trimws(as.character(parse_bytes(as.character(fileSize)))),
                 fileType = tools::file_ext(downloadURL)) |>
             colorder(downloadURL, pos = "end")
         }})
@@ -104,63 +104,3 @@ class_API <- new_class(
     landingPage        = class_character
   )
 )
-
-# class_API
-#
-# x <- enrollee_API()
-#
-# S7::method(print, class_API) <- function(x, ...) {
-#
-#   ob <- props(x)
-#   ob$identifier <- NULL
-#   ob$resourcesAPI <- NULL
-#   ob$description <- substr(ob@description, 1, 415)
-#   id <- props(x@identifier)
-#   re <- props(x@resourcesAPI)
-#   # re_files <- as.list(re$files)
-#   # re$files <- NULL
-#
-#   ob
-#
-#   glue::glue_data(
-#     x@resourcesAPI@files,
-#     "{.strong {.field <<name>>}} >=> <<fileSize>>",
-#     .open = "<<",
-#     .close = ">>")
-#
-#   cli::col_cyan(x@title)
-#
-#
-#   paste(
-#     glue::glue(
-#       '"*" = cli::style_hyperlink("{text}", {url})',
-#       text = c("Landing Page", "Data Dictionary"),
-#       url = c("x@landingPage", "x@describedBy")
-#       )) |>
-#     rlang::parse_expr() |>
-#     rlang::eval_tidy()
-#
-#   cli::cat_boxx(
-#     c(cli::cli_text(),
-#       cli::cli_bullets(
-#         c("*" = cli::style_hyperlink("Landing Page", x@landingPage),
-#           "*" = cli::style_hyperlink("Data Dictionary", x@describedBy))))
-#   )
-#
-#   cli::boxx(
-#     label = c(cli::cli_text(substr(x@description, 1, 415)),
-#               cli::cli_bullets(
-#                 c("*" = cli::style_hyperlink("Landing Page", x@landingPage),
-#                   "*" = cli::style_hyperlink("Data Dictionary", x@describedBy)))),
-#     border_style="round",
-#     padding = 1,
-#     header = cli::col_cyan(x@title))
-#
-#   cat(
-#     "Accrual Periodicity: ", x@accrualPeriodicity, "\n",
-#     "Last Modified: ", x@modified, "\n",
-#     "Temporal Range: ", x@temporal, "\n",
-#     "Identifier: ", x@identifier, "\n",
-#     "Resources API: ", x@resourcesAPI, "\n",
-#   )
-# }

@@ -22,7 +22,7 @@ enrollee_API <- \() {
 
   class_API(
     title              = a[["title"]],
-    description        = substr(a[["description"]], 1, 415),
+    description        = substr(a[["description"]], 1, 411),
     accrualPeriodicity = a[["accrualPeriodicity"]],
     modified           = a[["modified"]],
     temporal           = a[["temporal"]],
