@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9031 (2025-01-20)
+
+* fixed bug in `class_Resources()`
+
+
 # providertwo 0.0.0.9030 (2025-01-19)
 
 * imported standalone purrr, type checks
