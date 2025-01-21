@@ -5,10 +5,20 @@
 \title{API Class}
 \usage{
 class_API(
+  type = "dcat:Dataset",
+  accessLevel = "public",
+  bureauCode = "009:38",
+  programCode = "009:000",
+  contactPoint = class_contactPoint(),
+  dataQuality = TRUE,
+  publisher = class_publisher(),
+  references = character(0),
   title = character(0),
   description = character(0),
   accrualPeriodicity = character(0),
-  modified = numeric(0),
+  issued = NULL,
+  modified = NULL,
+  released = NULL,
   temporal = character(0),
   identifier = class_Identifier(),
   accessURL = character(0),
@@ -19,13 +29,33 @@ class_API(
 )
 }
 \arguments{
+\item{type}{\verb{<chr>} type}
+
+\item{accessLevel}{\verb{<chr>} Dataset access level}
+
+\item{bureauCode}{\verb{<chr>} Dataset bureau code}
+
+\item{programCode}{\verb{<chr>} Dataset program code}
+
+\item{contactPoint}{\verb{<S7_class>}}
+
+\item{dataQuality}{\verb{<lgl>} Dataset data quality}
+
+\item{publisher}{\verb{<S7_class>}}
+
+\item{references}{\verb{<chr>} Dataset references}
+
 \item{title}{\verb{<chr>} Dataset title}
 
 \item{description}{\verb{<chr>} Dataset description}
 
 \item{accrualPeriodicity}{\verb{<chr>} Dataset update frequency}
 
+\item{issued}{\verb{<chr>} Date Dataset was issued}
+
 \item{modified}{\verb{<chr>} Date Dataset was last modified}
+
+\item{released}{\verb{<chr>} Date Dataset was released}
 
 \item{temporal}{\verb{<chr>} Date range the Current dataset covers}
 
@@ -37,9 +67,9 @@ class_API(
 
 \item{downloadURL}{\verb{<chr>} dcat:Distribution url to csv versions}
 
-\item{describedBy}{\verb{<chr>} Link to Data dictionary}
+\item{describedBy}{\verb{<chr>} Hyperlink to Data dictionary}
 
-\item{landingPage}{\verb{<chr>} Link to API landing page}
+\item{landingPage}{\verb{<chr>} Hyperlink to API landing page}
 }
 \value{
 \verb{<S7_class>} object

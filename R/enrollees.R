@@ -14,11 +14,17 @@ enrollee_API <- \() {
 
   a <- c(
     as.list(
-      sbt(.__public[["dataset"]], sf_detect(title, "Public Provider Enrollment"))),
+      sbt(
+        .__public[["dataset"]],
+        sf_detect(title, "Public Provider Enrollment"))),
     as.list(
-      sbt(.__public[["api"]], sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
+      sbt(
+        .__public[["api"]],
+        sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
     as.list(
-      sbt(.__public[["csv"]], sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
+      sbt(
+        .__public[["csv"]],
+        sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
 
   class_API(
     title              = a[["title"]],

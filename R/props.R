@@ -4,7 +4,7 @@ null_character  <- new_union(NULL, class_character)
 null_char_int   <- new_union(NULL, class_character, class_integer)
 null_list       <- new_union(NULL, class_list)
 null_data.frame <- new_union(NULL, class_data.frame)
-class_dbl_Date  <- new_union(class_double, class_Date)
+null_dbl_Date   <- new_union(NULL, class_double, class_Date)
 
 # .npi <- new_property(
 #   class = null_character,

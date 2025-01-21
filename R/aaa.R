@@ -15,18 +15,39 @@ public_dataset <- \() {
   dataset <- qTBL(dataset[["dataset"]]) |>
     mtt(modified = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity))
-      # temporal = as_date(sf_sub(temporal, stop = 10)),
 
   distribution <- slt(dataset, distribution) |>
     unnest(distribution) |>
     mtt(modified = as_date(modified))
-      # temporal = as_date(sf_sub(temporal, start = 12, stop = 21)),
 
   list(
-    dataset = slt(dataset, title, modified, temporal, accrualPeriodicity, identifier, describedBy, description, landingPage),
-    api = sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
-    csv = sbt(distribution, mediaType %==% "text/csv", title, modified, temporal, downloadURL, resourcesAPI)
-  )
+    dataset = slt(
+      dataset,
+      title,
+      modified,
+      temporal,
+      accrualPeriodicity,
+      identifier,
+      describedBy,
+      description,
+      landingPage),
+    api = sbt(
+      distribution,
+      not_na(format) &
+        na(description),
+      title,
+      modified,
+      temporal,
+      accessURL,
+      resourcesAPI),
+    csv = sbt(
+      distribution,
+      mediaType %==% "text/csv",
+      title,
+      modified,
+      temporal,
+      downloadURL,
+      resourcesAPI))
 }
 
 #' Filter Public Catalog
