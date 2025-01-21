@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9032 (2025-01-21)
+
+* added class_contactPoint, class_publisher
+* expanded class_API
+
+
 # providertwo 0.0.0.9031 (2025-01-20)
 
 * fixed bug in `class_Resources()`
