@@ -32,6 +32,7 @@ class_contactPoint <- new_class(
 #' `class_publisher` object
 #'
 #' @param type `<chr>` type
+#'
 #' @param name `<chr>` publisher name
 #'
 #' @returns `<S7_class>` object
@@ -59,6 +60,13 @@ class_publisher <- new_class(
 #'
 #' @returns `<S7_class>` object
 #'
+#' @examples
+#' class_Identifier(url =
+#'    paste0(
+#'    "https://data.cms.gov/data-api/v1/dataset/",
+#'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
+#'    "data-viewer"))
+#'
 #' @autoglobal
 #'
 #' @export
@@ -71,16 +79,36 @@ class_Identifier <- new_class(
         self@url <- value
         self
       }),
+    request  = new_property(
+      class  = null_list,
+      getter = function(self) {
+        if (not_null(self@url)) {
+          request(self@url)
+        }}),
     rows     = new_property(
       class  = null_integer,
       getter = function(self) {
         if (not_null(self@url)) {
           is_online()
-          request(self@url) |>
+          self@request |>
             req_url_path_append("stats") |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
             gelm("total_rows")
+        }}),
+    fields   = new_property(
+      class  = null_character,
+      getter = function(self) {
+        if (not_null(self@url)) {
+          is_online()
+          self@request |>
+            req_url_query(
+              size   = 1,
+              offset = 0) |>
+            req_perform() |>
+            resp_body_json(simplifyVector = TRUE) |>
+            gelm("meta") |>
+            gelm("headers")
         }})
     ),
     validator = function(self) {
@@ -95,6 +123,13 @@ class_Identifier <- new_class(
 #' @param url `<chr>` resourcesAPI url
 #'
 #' @returns `<S7_class>` object
+#'
+#' @examples
+#' class_Resources(url = paste0(
+#'    "https://data.cms.gov/",
+#'    "data-api/v1/dataset-resources/",
+#'    "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
+#'    ))
 #'
 #' @autoglobal
 #'

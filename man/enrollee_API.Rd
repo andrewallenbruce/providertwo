@@ -13,7 +13,6 @@ enrollee_API()
 Public Provider Enrollment Experiment
 }
 \examples{
-\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 enrollee_API()
-\dontshow{\}) # examplesIf}
+
 }

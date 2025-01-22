@@ -2,12 +2,12 @@
 
 # providertwo 0.0.0.9033 (2025-01-21)
 
-* luhn_check working again
+* `luhn_check()` working again
 
 
 # providertwo 0.0.0.9032 (2025-01-21)
 
-* added class_contactPoint, class_publisher
+* added `class_contactPoint`, `class_publisher`
 * expanded class_API
 
 
@@ -19,7 +19,7 @@
 # providertwo 0.0.0.9030 (2025-01-19)
 
 * imported standalone purrr, type checks
-* removed prettyunits in favor of `rlang::parsebytes()`
+* removed `prettyunits` in favor of `rlang::parsebytes()`
 * added `luhn_check()` for NPIs
 * NEWS tidied
 

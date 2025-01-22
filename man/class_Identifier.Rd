@@ -15,3 +15,11 @@ class_Identifier(url = NULL)
 \description{
 \code{class_Identifier} object
 }
+\examples{
+class_Identifier(url =
+   paste0(
+   "https://data.cms.gov/data-api/v1/dataset/",
+   "2457ea29-fc82-48b0-86ec-3b0755de7515/",
+   "data-viewer"))
+
+}

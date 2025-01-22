@@ -52,7 +52,7 @@ on Providers Actively Approved to Bill Medicare.
 \section{Accrual Periodicity}{
 
 \itemize{
-\item Annually (R/P1Y)
+\item Quarterly (R/P3M)
 }
 }
 

@@ -2,7 +2,7 @@
 #'
 #' @returns `<S7_class>` object
 #'
-#' @examplesIf FALSE
+#' @examples
 #' enrollee_API()
 #'
 #' @autoglobal
@@ -47,7 +47,7 @@ enrollee_API <- \() {
 #' on Providers Actively Approved to Bill Medicare.
 #'
 #' @section Accrual Periodicity:
-#'    * `r roxy8601("R/P1Y")`
+#'    * `r roxy8601("R/P3M")`
 #'
 #' @section Links:
 #'    * [Enrollment API](https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-public-provider-enrollment)

@@ -15,3 +15,11 @@ class_Resources(url = NULL)
 \description{
 \code{class_Resources} object
 }
+\examples{
+class_Resources(url = paste0(
+   "https://data.cms.gov/",
+   "data-api/v1/dataset-resources/",
+   "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
+   ))
+
+}
