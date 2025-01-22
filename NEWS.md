@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9035 (2025-01-22)
+
+* `query_helpers` first draft
+* bumped `cheapr` version to 1.0.0
+
+
 # providertwo 0.0.0.9034 (2025-01-21)
 
 * added fields computed property to class_Identifier
