@@ -118,7 +118,7 @@ class_Resources <- new_class(
                 parse_bytes(
               as.character(fileSize)
             ))),
-            fileType = tools::file_ext(downloadURL)) |>
+            fileType = file_ext(downloadURL)) |>
             colorder(downloadURL, pos = "end")
         }})
   )

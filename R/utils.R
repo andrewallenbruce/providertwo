@@ -9,6 +9,8 @@
 #'
 #' luhn_check("1234567890")
 #'
+#' luhn_check("1234567893")
+#'
 #' luhn_check("123456789")
 #'
 #' @autoglobal
@@ -16,20 +18,21 @@
 #' @export
 luhn_check <- function(x) {
 
-  x <- rev(as.integer(desplit(x)))
+  idx <- c(1, 3, 5, 7, 9)
 
-  odd  <- seq_along(x) %% 2 == 1
-  even <- seq_along(x) %% 2 == 0
+  id <- as_int(cheapr_rev(desplit(x)[1:9]))
 
-  x[even] <- x[even] * 2
-  x[even] <- ifelse(x[even] > 9, x[even] - 9, x[even])
+  id[idx] <- id[idx] * 2
 
-  sum_odd  <- sum(x[odd])
-  sum_even <- sum(x[even])
+  id[idx] <- iif_else(id[idx] > 9, id[idx] - 9, id[idx])
 
-  sum_x <- sum_odd + sum_even
+  id <- sum(id) + 24
 
-  sum_x %% 10 == 0
+  ck <- (ceiling(id / 10) * 10) - id
+
+  test <- sf_smush(sf_c(sf_sub(x, start = 1, stop = 9), as_chr(ck)))
+
+  identical(test, x)
 }
 
 #' Generate API Request "Offset" Sequence
@@ -52,8 +55,6 @@ luhn_check <- function(x) {
 #' offset_sequence(147984, 2000)
 #'
 #' @autoglobal
-#'
-#' @importFrom cheapr seq_
 #'
 #' @export
 offset_sequence <- \(nobs, limit) {
@@ -98,7 +99,7 @@ offset_sequence <- \(nobs, limit) {
 #'
 #' @export
 recode_iso8601 <- \(x) {
-  kit::nswitch(
+  nswitch(
     x,
     "R/P10Y",   "[R/P10Y] Decennially",
     "R/P4Y",    "[R/P4Y] Quadrennially",
@@ -129,7 +130,7 @@ recode_iso8601 <- \(x) {
 #' @autoglobal
 #' @noRd
 roxy8601 <- \(x) {
-  kit::nswitch(
+  nswitch(
     x,
     "R/P10Y",   "Decennially (R/P10Y)",
     "R/P4Y",    "Quadrennially (R/P4Y)",
