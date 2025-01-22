@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9036 (2025-01-22)
+
+* args default props
+
+
 # providertwo 0.0.0.9035 (2025-01-22)
 
 * `query_helpers` first draft
