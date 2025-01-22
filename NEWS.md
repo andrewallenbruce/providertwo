@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9033 (2025-01-21)
+
+* luhn_check working again
+
+
 # providertwo 0.0.0.9032 (2025-01-21)
 
 * added class_contactPoint, class_publisher
