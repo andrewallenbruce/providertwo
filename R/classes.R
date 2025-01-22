@@ -83,16 +83,22 @@ class_Identifier <- new_class(
       class  = null_list,
       getter = function(self) {
         if (not_null(self@url)) {
-          request(self@url)
+            request(self@url)
+        }}),
+    stats    = new_property(
+      class  = null_list,
+      getter = function(self) {
+        if (not_null(self@url)) {
+          req_url_path_append(
+            self@request,
+            "stats")
         }}),
     rows     = new_property(
       class  = null_integer,
       getter = function(self) {
         if (not_null(self@url)) {
           is_online()
-          self@request |>
-            req_url_path_append("stats") |>
-            req_perform() |>
+          req_perform(self@stats) |>
             resp_body_json(simplifyVector = TRUE) |>
             gelm("total_rows")
         }}),
@@ -101,8 +107,8 @@ class_Identifier <- new_class(
       getter = function(self) {
         if (not_null(self@url)) {
           is_online()
-          self@request |>
             req_url_query(
+              self@request,
               size   = 1,
               offset = 0) |>
             req_perform() |>

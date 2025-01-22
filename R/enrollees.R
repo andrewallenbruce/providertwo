@@ -28,7 +28,7 @@ enrollee_API <- \() {
 
   class_API(
     title              = a[["title"]],
-    description        = substr(a[["description"]], 1, 411),
+    description        = sf_sub(a[["description"]], 1, 411),
     accrualPeriodicity = a[["accrualPeriodicity"]],
     modified           = a[["modified"]],
     temporal           = a[["temporal"]],
@@ -113,11 +113,8 @@ enrollees <- function(npi       = NULL,
     "GNDR_SW"            = gender)
 
   api <- enrollee_API()
-  url <- api@identifier@url |>
-    request() |>
-    req_url_query(
-      !!!format_query(args),
-      size = 5000)
+  url <- api@identifier@request |>
+    req_url_query(!!!format_query(args), size = 5000)
 
   stats <- url |>
   req_url_path_append("stats") |>

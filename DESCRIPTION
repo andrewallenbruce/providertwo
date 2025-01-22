@@ -10,7 +10,7 @@ URL: https://github.com/andrewallenbruce/providertwo,
     https://andrewallenbruce.github.io/providertwo/
 BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Imports: 
-    cheapr (>= 0.9.92),
+    cheapr (>= 1.0.0),
     collapse (>= 2.0.19),
     fs (>= 1.6.5),
     glue (>= 1.8.0),
@@ -27,11 +27,11 @@ Imports:
 Suggests: 
     qs (>= 0.27.2),
     testthat (>= 3.2.3)
+Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/Needs/check: anthonynorth/roxyglobals
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
@@ -47,6 +47,7 @@ Collate:
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
     'providertwo-package.R'
+    'query-helpers.R'
     'query.R'
     'utils.R'
     'zzz.R'
