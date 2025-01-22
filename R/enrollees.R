@@ -114,7 +114,9 @@ enrollees <- function(npi       = NULL,
 
   api <- enrollee_API()
   url <- api@identifier@request |>
-    req_url_query(!!!format_query(args), size = 5000)
+    req_url_query(
+      !!!format_query(args),
+      size = 5000)
 
   stats <- url |>
   req_url_path_append("stats") |>
@@ -126,12 +128,14 @@ enrollees <- function(npi       = NULL,
     fparse()
 
   cat(format(api@title), "\n")
+
   utils::formatUL(
-    label = "==>",
+    label  = "==>",
     offset = 2,
     c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
       paste0("Last Modified:       ", format(api@modified)))) |>
     writeLines()
+
   cat("\n")
 
   qTBL(resp[["data"]]) |>

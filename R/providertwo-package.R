@@ -3,8 +3,8 @@
 
 ## usethis namespace: start
 #' @importFrom RcppSimdJson fparse fload
-#' @importFrom collapse %==% qTBL mtt slt sbt colorder
-#' @importFrom cheapr cheapr_rev seq_
+#' @importFrom collapse %==% qTBL mtt slt sbt colorder anyv
+#' @importFrom cheapr cheapr_rev seq_ which_
 #' @importFrom kit nswitch
 #' @importFrom stats setNames
 #' @importFrom tools file_ext

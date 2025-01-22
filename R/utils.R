@@ -15,6 +15,8 @@
 #'
 #' @autoglobal
 #'
+#' @keywords internal
+#'
 #' @export
 luhn_check <- function(x) {
 
@@ -33,6 +35,29 @@ luhn_check <- function(x) {
   test <- sf_smush(sf_c(sf_sub(x, start = 1, stop = 9), as_chr(ck)))
 
   identical(test, x)
+}
+
+#' Luhn Algorithm Check for NPIs
+#'
+#' @param x `<chr>` NPI
+#'
+#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
+#'
+#' @examples
+#' check_luhn("1234567890")
+#'
+#' check_luhn(c("1417918293", "1234567890"))
+#'
+#' @autoglobal
+#'
+#' @export
+check_luhn <- function(x) {
+
+  if (length(x) > 1) {
+    map_lgl(x, luhn_check)
+  } else {
+    luhn_check(x)
+  }
 }
 
 #' Generate API Request "Offset" Sequence
