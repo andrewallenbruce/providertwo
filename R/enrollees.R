@@ -1,14 +1,14 @@
-#' Public Provider Enrollment Experiment
+#' Public Provider Enrollment Dataset Object
 #'
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' enrollee_API()
+#' Dataset_enrollee()
 #'
 #' @autoglobal
 #'
 #' @export
-enrollee_API <- \() {
+Dataset_enrollee <- \() {
 
   if (!exists(".__public")) .__public <<- public_dataset()
 
@@ -26,18 +26,33 @@ enrollee_API <- \() {
         .__public[["csv"]],
         sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
 
-  class_API(
-    title              = a[["title"]],
-    description        = sf_sub(a[["description"]], 1, 411),
+  Dataset(
+    type               = a[["type"]],
+    accessLevel        = a[["accessLevel"]],
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    modified           = a[["modified"]],
-    temporal           = a[["temporal"]],
-    identifier         = class_Identifier(url = a[["identifier"]]),
-    accessURL          = a[["accessURL"]],
-    resourcesAPI       = class_Resources(url = a[["resourcesAPI"]]),
-    downloadURL        = a[["downloadURL"]],
+    bureauCode         = a[["bureauCode"]],
+    contactPoint       = class_contactPoint(
+      type             = gelm(a[["contactPoint"]], "type"),
+      fn               = gelm(a[["contactPoint"]], "fn"),
+      hasEmail         = gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
-    landingPage        = a[["landingPage"]])
+    description        = sf_sub(a[["description"]], 1, 413),
+    identifier         = class_Identifier(
+      url              = a[["identifier"]]),
+    keyword            = a[["keyword"]],
+    landingPage        = a[["landingPage"]],
+    modified           = a[["modified"]],
+    programCode        = a[["programCode"]],
+    publisher          = class_publisher(
+      type             = gelm(a[["publisher"]], "type"),
+      name             = gelm(a[["publisher"]], "name")),
+    references         = a[["references"]],
+    temporal           = a[["temporal"]],
+    title              = a[["title"]],
+    accessURL          = a[["accessURL"]],
+    resourcesAPI       = class_Resources(
+      url              = a[["resourcesAPI"]]),
+    downloadURL        = a[["downloadURL"]])
 
 }
 
@@ -112,7 +127,7 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- enrollee_API()
+  api <- Dataset_enrollee()
   url <- api@identifier@request |>
     req_url_query(
       !!!format_query(args),

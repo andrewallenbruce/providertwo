@@ -20,17 +20,30 @@ public_dataset <- \() {
     unnest(distribution) |>
     mtt(modified = as_date(modified))
 
+  dataset <- slt(dataset, -distribution) |>
+    unnest(bureauCode) |>
+    unnest(programCode) |>
+    unnest(references)
+
   list(
     dataset = slt(
       dataset,
-      title,
-      modified,
-      temporal,
+      type = `@type`,
+      accessLevel,
       accrualPeriodicity,
-      identifier,
+      bureauCode,
+      contactPoint,
       describedBy,
       description,
-      landingPage),
+      identifier,
+      keyword,
+      landingPage,
+      modified,
+      programCode,
+      publisher,
+      references,
+      temporal,
+      title),
     api = sbt(
       distribution,
       not_na(format) &

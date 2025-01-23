@@ -2,18 +2,28 @@
 
 utils::globalVariables(c(
   # <public_dataset>
+  "@type",
+  # <public_dataset>
+  "accessLevel",
+  # <public_dataset>
   "accessURL",
   # <public_dataset>
   "accrualPeriodicity",
+  # <public_dataset>
+  "bureauCode",
+  # <public_dataset>
+  "contactPoint",
   # <public_dataset>
   "describedBy",
   # <public_dataset>
   "description",
   # <public_dataset>
-  # <enrollee_API>
+  # <Dataset_enrollee>
   "downloadURL",
   # <public_dataset>
   "identifier",
+  # <public_dataset>
+  "keyword",
   # <public_dataset>
   "landingPage",
   # <public_dataset>
@@ -21,11 +31,17 @@ utils::globalVariables(c(
   # <public_dataset>
   "modified",
   # <public_dataset>
+  "programCode",
+  # <public_dataset>
+  "publisher",
+  # <public_dataset>
+  "references",
+  # <public_dataset>
   "resourcesAPI",
   # <public_dataset>
   "temporal",
   # <public_dataset>
-  # <enrollee_API>
+  # <Dataset_enrollee>
   "title",
   NULL
 ))
