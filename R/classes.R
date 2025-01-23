@@ -1,9 +1,9 @@
 #' @include props.R
 NULL
 
-#' contactPoint Class
+#' ContactPoint Class
 #'
-#' `class_contactPoint` object
+#' `ContactPoint` object
 #'
 #' @param type `<chr>` type
 #' @param fn `<chr>` contact name
@@ -15,8 +15,8 @@ NULL
 #' @autoglobal
 #'
 #' @export
-class_contactPoint <- new_class(
-  name       = "class_contactPoint",
+ContactPoint <- new_class(
+  name       = "ContactPoint",
   properties = list(
     type     = new_property(
       class_character,
@@ -27,9 +27,9 @@ class_contactPoint <- new_class(
   )
 )
 
-#' publisher Class
+#' Publisher Class
 #'
-#' `class_publisher` object
+#' `Publisher` object
 #'
 #' @param type `<chr>` type
 #'
@@ -40,8 +40,8 @@ class_contactPoint <- new_class(
 #' @autoglobal
 #'
 #' @export
-class_publisher <- new_class(
-  name       = "class_publisher",
+Publisher <- new_class(
+  name       = "Publisher",
   properties = list(
     type     = new_property(
       class_character,
@@ -61,7 +61,7 @@ class_publisher <- new_class(
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' class_Identifier(url =
+#' Identifier(url =
 #'    paste0(
 #'    "https://data.cms.gov/data-api/v1/dataset/",
 #'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
@@ -70,8 +70,8 @@ class_publisher <- new_class(
 #' @autoglobal
 #'
 #' @export
-class_Identifier <- new_class(
-  name       = "class_Identifier",
+Identifier <- new_class(
+  name       = "Identifier",
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -124,14 +124,14 @@ class_Identifier <- new_class(
 
 #' Resources Class
 #'
-#' `class_Resources` object
+#' `Resources` object
 #'
 #' @param url `<chr>` resourcesAPI url
 #'
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' class_Resources(url = paste0(
+#' Resources(url = paste0(
 #'    "https://data.cms.gov/",
 #'    "data-api/v1/dataset-resources/",
 #'    "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
@@ -140,8 +140,8 @@ class_Identifier <- new_class(
 #' @autoglobal
 #'
 #' @export
-class_Resources <- new_class(
-  name = "class_Resources",
+Resources <- new_class(
+  name = "Resources",
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -155,10 +155,7 @@ class_Resources <- new_class(
         if (not_null(self@url)) {
           qTBL(fload(self@url, query = "/data")) |>
             mtt(fileSize = trimws(
-              as.character(
-                parse_bytes(
-              as.character(fileSize)
-            ))),
+              as_chr(parse_bytes(as_chr(fileSize)))),
             fileType = file_ext(downloadURL)) |>
             colorder(downloadURL, pos = "end")
         }})
@@ -201,20 +198,20 @@ Dataset <- new_class(
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = class_character,
     bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = class_contactPoint,
+    contactPoint       = ContactPoint,
     describedBy        = class_character,
     description        = class_character,
-    identifier         = class_Identifier,
+    identifier         = Identifier,
     keyword            = class_list,
     landingPage        = class_character,
     modified           = null_dbl_Date,
     programCode        = new_property(class_character, default = "009:000"),
-    publisher          = class_publisher,
+    publisher          = Publisher,
     references         = class_character,
     temporal           = class_character,
     title              = class_character,
     accessURL          = class_character,
-    resourcesAPI       = class_Resources,
+    resourcesAPI       = Resources,
     downloadURL        = class_character
   )
 )
