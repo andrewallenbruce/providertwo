@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9037 (2025-01-23)
+
+* class_API renamed to Dataset
+
+
 # providertwo 0.0.0.9036 (2025-01-22)
 
 * args default props
