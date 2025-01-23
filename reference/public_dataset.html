@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9036</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9037</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,21 +57,23 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_dataset</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dataset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title           modified   temporal accrualPeriodicity identifier describedBy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountable Ca… 2025-01-15 2014-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountable Ca… 2025-01-15 2017-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ACO Realizing … 2024-01-12 2021-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ACO Realizing … 2024-01-12 2021-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ACO Realizing … 2024-01-12 2021-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ACO Realizing … 2024-01-12 2021-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Advance Invest… 2024-01-29 2024-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Agency for Hea… 2020-12-08 2015-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> CMS Program St… 2024-05-16 2016-01… [R/P1Y] Annually   https://d… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CMS Program St… 2024-05-16 2016-01… [R/P1Y] Annually   https://d… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    type       accessLevel accrualPeriodicity bureauCode contactPoint describedBy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> dcat:Data… public      Annually [R/P1Y]   009:38     <span style="color: #949494;">&lt;named list&gt;</span> https://da…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 129 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: description &lt;chr&gt;, landingPage &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 10 more variables: description &lt;chr&gt;, identifier &lt;chr&gt;, keyword &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   landingPage &lt;chr&gt;, modified &lt;date&gt;, programCode &lt;chr&gt;, publisher &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   references &lt;chr&gt;, temporal &lt;chr&gt;, title &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $api</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,697 × 5</span></span>
