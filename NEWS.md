@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9040 (2025-01-23)
+
+* changed structure of query helpers
+
+
 # providertwo 0.0.0.9039 (2025-01-23)
 
 * renamed Resources class to dataset_Resources
