@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9042 (2025-01-24)
+
+* added Distribution class, as_Distribution, and handle_na
+
+
 # providertwo 0.0.0.9041 (2025-01-24)
 
 * as_Dataset draft
