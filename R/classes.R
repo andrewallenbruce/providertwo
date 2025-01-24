@@ -122,16 +122,16 @@ Identifier <- new_class(
     }
   )
 
-#' Resources Class
+#' dataset_Resources Class
 #'
-#' `Resources` object
+#' `dataset_Resources` object
 #'
 #' @param url `<chr>` resourcesAPI url
 #'
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' Resources(url = paste0(
+#' dataset_Resources(url = paste0(
 #'    "https://data.cms.gov/",
 #'    "data-api/v1/dataset-resources/",
 #'    "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
@@ -140,8 +140,8 @@ Identifier <- new_class(
 #' @autoglobal
 #'
 #' @export
-Resources <- new_class(
-  name = "Resources",
+dataset_Resources <- new_class(
+  name = "dataset_Resources",
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -168,23 +168,21 @@ Resources <- new_class(
 #'
 #' @param type `<chr>` type
 #' @param accessLevel `<chr>` Dataset access level
+#' @param accrualPeriodicity `<chr>` Dataset update frequency
 #' @param bureauCode `<chr>` Dataset bureau code
-#' @param programCode `<chr>` Dataset program code
 #' @param contactPoint `<S7_class>`
+#' @param describedBy `<chr>` Hyperlink to Data dictionary
+#' @param description `<chr>` Dataset description
+#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
+#' @param keyword `<chr>` Hyperlink to API landing page
+#' @param landingPage `<chr>` Hyperlink to API landing page
+#' @param modified `<chr>` Date Dataset was last modified
+#' @param programCode `<chr>` Dataset program code
 #' @param publisher `<S7_class>`
 #' @param references `<chr>` Dataset references
-#' @param title `<chr>` Dataset title
-#' @param description `<chr>` Dataset description
-#' @param accrualPeriodicity `<chr>` Dataset update frequency
-#' @param modified `<chr>` Date Dataset was last modified
 #' @param temporal `<chr>` Date range the Current dataset covers
-#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
-#' @param accessURL `<chr>` dcat:Distribution url
+#' @param title `<chr>` Dataset title
 #' @param resourcesAPI `<S7_class>` `data.frame` of available supplemental resources
-#' @param downloadURL `<chr>` dcat:Distribution url to csv versions
-#' @param describedBy `<chr>` Hyperlink to Data dictionary
-#' @param landingPage `<chr>` Hyperlink to API landing page
-#' @param keyword `<list>` Hyperlink to API landing page
 #'
 #' @returns `<S7_class>` object
 #'
@@ -202,7 +200,7 @@ Dataset <- new_class(
     describedBy        = class_character,
     description        = class_character,
     identifier         = Identifier,
-    keyword            = class_list,
+    keyword            = class_character,
     landingPage        = class_character,
     modified           = null_dbl_Date,
     programCode        = new_property(class_character, default = "009:000"),
@@ -210,8 +208,6 @@ Dataset <- new_class(
     references         = class_character,
     temporal           = class_character,
     title              = class_character,
-    accessURL          = class_character,
-    resourcesAPI       = Resources,
-    downloadURL        = class_character
+    resourcesAPI       = dataset_Resources
   )
 )

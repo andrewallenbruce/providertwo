@@ -13,7 +13,7 @@ Dataset(
   describedBy = character(0),
   description = character(0),
   identifier = Identifier(),
-  keyword = list(),
+  keyword = character(0),
   landingPage = character(0),
   modified = NULL,
   programCode = "009:000",
@@ -21,9 +21,7 @@ Dataset(
   references = character(0),
   temporal = character(0),
   title = character(0),
-  accessURL = character(0),
-  resourcesAPI = Resources(),
-  downloadURL = character(0)
+  resourcesAPI = dataset_Resources()
 )
 }
 \arguments{
@@ -43,7 +41,7 @@ Dataset(
 
 \item{identifier}{\verb{<S7_class>} dcat:Dataset url and nrows in dataset}
 
-\item{keyword}{\verb{<list>} Hyperlink to API landing page}
+\item{keyword}{\verb{<chr>} Hyperlink to API landing page}
 
 \item{landingPage}{\verb{<chr>} Hyperlink to API landing page}
 
@@ -59,11 +57,7 @@ Dataset(
 
 \item{title}{\verb{<chr>} Dataset title}
 
-\item{accessURL}{\verb{<chr>} dcat:Distribution url}
-
 \item{resourcesAPI}{\verb{<S7_class>} \code{data.frame} of available supplemental resources}
-
-\item{downloadURL}{\verb{<chr>} dcat:Distribution url to csv versions}
 }
 \value{
 \verb{<S7_class>} object

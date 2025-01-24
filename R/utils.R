@@ -224,6 +224,17 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 #' @export
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
+#' Flatten Column
+#'
+#' @param i `<list>` list to flatten
+#'
+#' @returns `<chr>` flattened list
+#'
+#' @autoglobal
+#'
+#' @noRd
+flatten_column <- \(i) map_chr(i, \(x) paste0(delist(x), collapse = ", "))
+
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
 #'

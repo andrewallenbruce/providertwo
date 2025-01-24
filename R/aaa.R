@@ -13,8 +13,9 @@ public_dataset <- \() {
   dataset <- fload("https://data.cms.gov/data.json")
 
   dataset <- qTBL(dataset[["dataset"]]) |>
-    mtt(modified = as_date(modified),
-        accrualPeriodicity = recode_iso8601(accrualPeriodicity))
+    mtt(modified           = as_date(modified),
+        accrualPeriodicity = recode_iso8601(accrualPeriodicity),
+        keyword            = flatten_column(keyword))
 
   distribution <- slt(dataset, distribution) |>
     unnest(distribution) |>

@@ -31,28 +31,20 @@ Dataset_enrollee <- \() {
     accessLevel        = a[["accessLevel"]],
     accrualPeriodicity = a[["accrualPeriodicity"]],
     bureauCode         = a[["bureauCode"]],
-    contactPoint       = ContactPoint(
-      type             = gelm(a[["contactPoint"]], "type"),
-      fn               = gelm(a[["contactPoint"]], "fn"),
-      hasEmail         = gelm(a[["contactPoint"]], "hasEmail")),
+    contactPoint       = ContactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = sf_sub(a[["description"]], 1, 413),
-    identifier         = Identifier(
-      url              = a[["identifier"]]),
+    identifier         = Identifier(url = a[["identifier"]]),
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
     modified           = a[["modified"]],
     programCode        = a[["programCode"]],
-    publisher          = Publisher(
-      type             = gelm(a[["publisher"]], "type"),
-      name             = gelm(a[["publisher"]], "name")),
+    publisher          = Publisher(type = gelm(a[["publisher"]], "type"), name = gelm(a[["publisher"]], "name")),
     references         = a[["references"]],
     temporal           = a[["temporal"]],
     title              = a[["title"]],
-    accessURL          = a[["accessURL"]],
-    resourcesAPI       = Resources(
-      url              = a[["resourcesAPI"]]),
-    downloadURL        = a[["downloadURL"]])
+    resourcesAPI       = dataset_Resources(url = a[["resourcesAPI"]])
+  )
 
 }
 
