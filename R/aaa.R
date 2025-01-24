@@ -1,6 +1,6 @@
 #' Public CMS Dataset Object
 #'
-#' @returns `<list>` of `<tibbles>`: `dataset`, `latest`, `api`, `csv`
+#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
 #'
 #' @examples
 #' public_dataset()
@@ -45,29 +45,29 @@ public_dataset <- \() {
       references,
       temporal,
       title),
-    api = sbt(
+    distribution = sbt(
       distribution,
-      not_na(format) &
-        na(description),
+      not_na(format) & na(description),
       title,
       modified,
       temporal,
       accessURL,
       resourcesAPI),
-    csv = sbt(
+    downloads = sbt(
       distribution,
       mediaType %==% "text/csv",
       title,
       modified,
       temporal,
       downloadURL,
-      resourcesAPI))
+      resourcesAPI)
+    )
 }
 
 #' Filter Public Catalog
 #'
 #' @param endpoint `<chr>` API endpoint; options are `"dataset"` (default),
-#'   `"latest"`, `"api"`, `"csv"`
+#'   `"distribution"` and `"downloads"`
 #'
 #' @param title `<chr>` dataset title to search for; use `NULL` to return all
 #'
@@ -79,17 +79,17 @@ public_dataset <- \() {
 #'   title    = "Medicare Fee-For-Service  Public Provider Enrollment")
 #'
 #' public_filter(
-#'   endpoint = "api",
+#'   endpoint = "distribution",
 #'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 #'
 #' public_filter(
-#'   endpoint = "csv",
+#'   endpoint = "downloads",
 #'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 #'
 #' @autoglobal
 #'
 #' @export
-public_filter <- \(endpoint = c("dataset", "api", "csv"), title = NULL) {
+public_filter <- \(endpoint = c("dataset", "distribution", "downloads"), title = NULL) {
 
   endpoint <- match.arg(endpoint)
 

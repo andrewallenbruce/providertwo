@@ -4,6 +4,8 @@
 
   .__public <<- public_dataset()
 
+  # run_on_load()
+
   S7::methods_register()
 }
 

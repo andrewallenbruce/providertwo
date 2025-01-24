@@ -1,30 +1,22 @@
 #' Public Provider Enrollment Dataset Object
 #'
+#' @param dataset `<chr>` dataset title
+#'
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' Dataset_enrollee()
+#' as_Dataset(dataset = "Public Provider Enrollment")
 #'
 #' @autoglobal
 #'
 #' @export
-Dataset_enrollee <- \() {
+as_Dataset <- \(dataset) {
 
   if (!exists(".__public")) .__public <<- public_dataset()
 
   a <- c(
-    as.list(
-      sbt(
-        .__public[["dataset"]],
-        sf_detect(title, "Public Provider Enrollment"))),
-    as.list(
-      sbt(
-        .__public[["api"]],
-        sf_detect(title, "Public Provider Enrollment"))[1, 4:5]),
-    as.list(
-      sbt(
-        .__public[["csv"]],
-        sf_detect(title, "Public Provider Enrollment"), downloadURL)[1, ]))
+    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
+    as.list(sbt(.__public[["distribution"]], sf_detect(title, dataset))[1, 5]))
 
   Dataset(
     type               = a[["type"]],
@@ -119,7 +111,7 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- Dataset_enrollee()
+  api <- as_Dataset("Public Provider Enrollment")
   url <- api@identifier@request |>
     req_url_query(
       !!!format_query(args),

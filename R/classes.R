@@ -85,32 +85,20 @@ dataset_Identifier <- new_class(
         if (not_null(self@url)) {
             request(self@url)
         }}),
-    stats    = new_property(
-      class  = null_list,
-      getter = function(self) {
-        if (not_null(self@url)) {
-          req_url_path_append(
-            self@request,
-            "stats")
-        }}),
     rows     = new_property(
       class  = null_integer,
       getter = function(self) {
-        if (not_null(self@url)) {
-          is_online()
-          req_perform(self@stats) |>
+        if (not_null(self@request) & is_online()) {
+          req_url_path_append(self@request, "stats") |>
+            req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
             gelm("total_rows")
         }}),
     fields   = new_property(
       class  = null_character,
       getter = function(self) {
-        if (not_null(self@url)) {
-          is_online()
-            req_url_query(
-              self@request,
-              size   = 1,
-              offset = 0) |>
+        if (not_null(self@request) & is_online()) {
+            req_url_query(self@request, size = 1, offset = 0) |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
             gelm("meta") |>
@@ -152,14 +140,16 @@ dataset_Resources <- new_class(
     files    = new_property(
       class  = null_list,
       getter = function(self) {
-        if (not_null(self@url)) {
+        if (not_null(self@url) & is_online()) {
           qTBL(fload(self@url, query = "/data")) |>
-            mtt(fileSize = trimws(
-              as_chr(parse_bytes(as_chr(fileSize)))),
-            fileType = file_ext(downloadURL)) |>
+            mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
+                fileType = file_ext(downloadURL)) |>
             colorder(downloadURL, pos = "end")
         }})
-  )
+  ),
+  validator = function(self) {
+    if (length(self@url) != 1L) "@url must be length 1"
+  }
 )
 
 #' Dataset Class

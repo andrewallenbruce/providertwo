@@ -7,7 +7,7 @@
 public_dataset()
 }
 \value{
-\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{latest}, \code{api}, \code{csv}
+\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{distribution}, \code{downloads}
 }
 \description{
 Public CMS Dataset Object

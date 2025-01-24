@@ -4,11 +4,14 @@
 \alias{public_filter}
 \title{Filter Public Catalog}
 \usage{
-public_filter(endpoint = c("dataset", "api", "csv"), title = NULL)
+public_filter(
+  endpoint = c("dataset", "distribution", "downloads"),
+  title = NULL
+)
 }
 \arguments{
 \item{endpoint}{\verb{<chr>} API endpoint; options are \code{"dataset"} (default),
-\code{"latest"}, \code{"api"}, \code{"csv"}}
+\code{"distribution"} and \code{"downloads"}}
 
 \item{title}{\verb{<chr>} dataset title to search for; use \code{NULL} to return all}
 }
@@ -24,11 +27,11 @@ public_filter(
   title    = "Medicare Fee-For-Service  Public Provider Enrollment")
 
 public_filter(
-  endpoint = "api",
+  endpoint = "distribution",
   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 
 public_filter(
-  endpoint = "csv",
+  endpoint = "downloads",
   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
 
 }
