@@ -2,12 +2,12 @@
 % Please edit documentation in R/query-helpers.R
 \name{query-helpers}
 \alias{query-helpers}
-\alias{greaterthan}
-\alias{greaterequal}
-\alias{lessthan}
-\alias{lessequal}
-\alias{startswith}
-\alias{endswith}
+\alias{greater_than}
+\alias{greater_equal}
+\alias{less_than}
+\alias{less_equal}
+\alias{starts_with}
+\alias{ends_with}
 \alias{includes}
 \alias{inside}
 \alias{outside}
@@ -15,17 +15,17 @@
 \alias{not_in}
 \title{Query Formatting Helpers}
 \usage{
-greaterthan(x)
+greater_than(x)
 
-greaterequal(x)
+greater_equal(x)
 
-lessthan(x)
+less_than(x)
 
-lessequal(x)
+less_equal(x)
 
-startswith(x)
+starts_with(x)
 
-endswith(x)
+ends_with(x)
 
 includes(x)
 
@@ -47,9 +47,9 @@ not_in(x)
 Query Formatting Helpers
 }
 \examples{
-greaterthan(1)
+greater_than(1)
 
-startswith("foo")
+starts_with("foo")
 
 is_in(state.abb[10:15])
 }

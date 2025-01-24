@@ -1,9 +1,9 @@
 #' @include props.R
 NULL
 
-#' ContactPoint Class
+#' dataset_contactPoint Class
 #'
-#' `ContactPoint` object
+#' `dataset_contactPoint` object
 #'
 #' @param type `<chr>` type
 #' @param fn `<chr>` contact name
@@ -15,8 +15,8 @@ NULL
 #' @autoglobal
 #'
 #' @export
-ContactPoint <- new_class(
-  name       = "ContactPoint",
+dataset_contactPoint <- new_class(
+  name       = "dataset_contactPoint",
   properties = list(
     type     = new_property(
       class_character,
@@ -27,9 +27,9 @@ ContactPoint <- new_class(
   )
 )
 
-#' Publisher Class
+#' dataset_Publisher Class
 #'
-#' `Publisher` object
+#' `dataset_Publisher` object
 #'
 #' @param type `<chr>` type
 #'
@@ -40,8 +40,8 @@ ContactPoint <- new_class(
 #' @autoglobal
 #'
 #' @export
-Publisher <- new_class(
-  name       = "Publisher",
+dataset_Publisher <- new_class(
+  name       = "dataset_Publisher",
   properties = list(
     type     = new_property(
       class_character,
@@ -52,16 +52,16 @@ Publisher <- new_class(
   )
 )
 
-#' Identifier Class
+#' dataset_Identifier Class
 #'
-#' `class_Identifier` object
+#' `dataset_Identifier` object
 #'
-#' @param url `<chr>` Identifier url
+#' @param url `<chr>` dataset_Identifier url
 #'
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' Identifier(url =
+#' dataset_Identifier(url =
 #'    paste0(
 #'    "https://data.cms.gov/data-api/v1/dataset/",
 #'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
@@ -70,8 +70,8 @@ Publisher <- new_class(
 #' @autoglobal
 #'
 #' @export
-Identifier <- new_class(
-  name       = "Identifier",
+dataset_Identifier <- new_class(
+  name       = "dataset_Identifier",
   properties = list(
     url      = new_property(
       class  = null_character,
@@ -196,15 +196,15 @@ Dataset <- new_class(
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = class_character,
     bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = ContactPoint,
+    contactPoint       = dataset_contactPoint,
     describedBy        = class_character,
     description        = class_character,
-    identifier         = Identifier,
+    identifier         = dataset_Identifier,
     keyword            = class_character,
     landingPage        = class_character,
     modified           = null_dbl_Date,
     programCode        = new_property(class_character, default = "009:000"),
-    publisher          = Publisher,
+    publisher          = dataset_Publisher,
     references         = class_character,
     temporal           = class_character,
     title              = class_character,
