@@ -1,14 +1,18 @@
-.__public <- NULL
+.__public <- .__provider <- NULL
 
 .onLoad <- function(libname, pkgname, ...) {
 
-  .__public <<- public_dataset()
-
-  # run_on_load()
+  .__public   <<- public_dataset()
+  .__provider <<- provider_dataset()
 
   S7::methods_register()
 }
 
 .onUnload <- function(libpath) {
-  remove(".__public", envir = .GlobalEnv)
+  remove(
+    list = c(
+      ".__public",
+      ".__provider"
+    ),
+    envir = .GlobalEnv)
 }

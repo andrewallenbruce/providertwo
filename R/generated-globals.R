@@ -2,44 +2,62 @@
 
 utils::globalVariables(c(
   # <public_dataset>
+  # <provider_dataset>
   "@type",
   # <public_dataset>
+  # <provider_dataset>
   "accessLevel",
   # <public_dataset>
   "accessURL",
   # <public_dataset>
   "accrualPeriodicity",
   # <public_dataset>
+  # <provider_dataset>
   "bureauCode",
   # <public_dataset>
+  # <provider_dataset>
   "contactPoint",
   # <public_dataset>
   "describedBy",
   # <public_dataset>
+  # <provider_dataset>
   "description",
   # <public_dataset>
+  # <provider_dataset>
   "downloadURL",
   # <public_dataset>
+  # <provider_dataset>
   "identifier",
+  # <provider_dataset>
+  "issued",
   # <public_dataset>
+  # <provider_dataset>
   "keyword",
   # <public_dataset>
+  # <provider_dataset>
   "landingPage",
   # <public_dataset>
+  # <provider_dataset>
   "mediaType",
   # <public_dataset>
+  # <provider_dataset>
   "modified",
   # <public_dataset>
+  # <provider_dataset>
   "programCode",
   # <public_dataset>
+  # <provider_dataset>
   "publisher",
   # <public_dataset>
   "references",
+  # <provider_dataset>
+  "released",
   # <public_dataset>
   "resourcesAPI",
   # <public_dataset>
   "temporal",
   # <public_dataset>
+  # <provider_dataset>
   # <as_Dataset>
   # <as_Distribution>
   "title",

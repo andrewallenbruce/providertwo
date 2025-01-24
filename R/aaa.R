@@ -65,38 +65,55 @@ public_dataset <- \() {
     )
 }
 
-#' Filter Public Catalog
+#' Provider CMS Dataset Object
 #'
-#' @param endpoint `<chr>` API endpoint; options are `"dataset"` (default),
-#'   `"distribution"` and `"downloads"`
-#'
-#' @param title `<chr>` dataset title to search for; use `NULL` to return all
-#'
-#' @returns `<tibble>` of search results
+#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`
 #'
 #' @examples
-#' public_filter(
-#'   endpoint = "dataset",
-#'   title    = "Medicare Fee-For-Service  Public Provider Enrollment")
-#'
-#' public_filter(
-#'   endpoint = "distribution",
-#'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
-#'
-#' public_filter(
-#'   endpoint = "downloads",
-#'   title    = "Medicare Fee-For-Service Public Provider Enrollment : 2024-09-01")
+#' provider_dataset()
 #'
 #' @autoglobal
 #'
 #' @export
-public_filter <- \(endpoint = c("dataset", "distribution", "downloads"), title = NULL) {
+provider_dataset <- \() {
 
-  endpoint <- match.arg(endpoint)
+  dataset <- qTBL(fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
+    sbt(sf_ndetect(title, "Office Visit Costs$")) |>
+    mtt(issued = as_date(modified),
+        modified = as_date(modified),
+        released = as_date(modified),
+        keyword = flatten_column(keyword),
+        description = sf_remove(description, "\n"))
 
-  if (!exists(".__public")) .__public <<- public_dataset()
+  distribution <- slt(dataset, identifier, distribution) |>
+    unnest(distribution)
 
-  x <- .__public[[endpoint]]
+  dataset <- slt(dataset, -distribution) |>
+    unnest(bureauCode) |>
+    unnest(programCode)
 
-  search_in(x, "title", title)
+  list(
+    dataset = slt(
+      dataset,
+      accessLevel,
+      landingPage,
+      bureauCode,
+      issued,
+      type = `@type`,
+      modified,
+      released,
+      keyword,
+      contactPoint,
+      publisher,
+      identifier,
+      description,
+      title,
+      programCode),
+    distribution = slt(
+      distribution,
+      identifier,
+      type = `@type`,
+      downloadURL,
+      mediaType)
+  )
 }
