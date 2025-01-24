@@ -41,6 +41,7 @@ utils::globalVariables(c(
   "temporal",
   # <public_dataset>
   # <as_Dataset>
+  # <as_Distribution>
   "title",
   NULL
 ))

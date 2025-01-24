@@ -25,7 +25,7 @@ as_Dataset <- \(dataset) {
     bureauCode         = a[["bureauCode"]],
     contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
-    description        = sf_sub(a[["description"]], 1, 413),
+    description        = a[["description"]],
     identifier         = dataset_Identifier(url = a[["identifier"]]),
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
@@ -36,6 +36,48 @@ as_Dataset <- \(dataset) {
     temporal           = a[["temporal"]],
     title              = a[["title"]],
     resourcesAPI       = dataset_Resources(url = a[["resourcesAPI"]])
+  )
+
+}
+
+#' Public Provider Enrollment Distribution Object
+#'
+#' @param dataset `<chr>` dataset title
+#'
+#' @returns `<S7_class>` object
+#'
+#' @examples
+#' as_Distribution(dataset = "Public Provider Enrollment")
+#'
+#' @autoglobal
+#'
+#' @export
+as_Distribution <- \(dataset) {
+
+  if (!exists(".__public")) .__public <<- public_dataset()
+
+  a <- c(
+    as.list(
+      sbt(.__public[["dataset"]], sf_detect(title, dataset))),
+    list(
+      distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset)))
+    )
+
+  Distribution(
+    type               = a[["type"]],
+    accessLevel        = a[["accessLevel"]],
+    accrualPeriodicity = a[["accrualPeriodicity"]],
+    bureauCode         = a[["bureauCode"]],
+    contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
+    describedBy        = a[["describedBy"]],
+    description        = a[["description"]],
+    keyword            = a[["keyword"]],
+    landingPage        = a[["landingPage"]],
+    programCode        = a[["programCode"]],
+    publisher          = dataset_Publisher(type = gelm(a[["publisher"]], "type"), name = gelm(a[["publisher"]], "name")),
+    references         = a[["references"]],
+    title              = a[["title"]],
+    distributions      = a[["distribution"]]
   )
 
 }

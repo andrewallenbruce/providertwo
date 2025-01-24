@@ -10,12 +10,12 @@ dataset_Publisher(
 )
 }
 \arguments{
-\item{type}{\verb{<chr>} type}
+\item{type}{\verb{<chr>} Schema publisher type; default is \code{org:Organization}}
 
-\item{name}{\verb{<chr>} publisher name}
+\item{name}{\verb{<chr>} publisher name; default is \verb{Centers for Medicare & Medicaid Services}}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<S7_class>} dataset_Publisher object
 }
 \description{
 \code{dataset_Publisher} object

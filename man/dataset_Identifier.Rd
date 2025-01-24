@@ -7,10 +7,10 @@
 dataset_Identifier(url = NULL)
 }
 \arguments{
-\item{url}{\verb{<chr>} dataset_Identifier url}
+\item{url}{\verb{<chr>} identifier url}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<S7_class>} dataset_Identifier object
 }
 \description{
 \code{dataset_Identifier} object

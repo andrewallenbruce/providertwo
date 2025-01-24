@@ -225,15 +225,19 @@ program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePOD
 bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
 #' Flatten Column
-#'
 #' @param i `<list>` list to flatten
-#'
 #' @returns `<chr>` flattened list
-#'
 #' @autoglobal
-#'
 #' @noRd
 flatten_column <- \(i) map_chr(i, \(x) paste0(delist(x), collapse = ", "))
+
+
+#' Handle NAs
+#' @param x `<list>` list to handle
+#' @returns `<list>` list with NAs handled
+#' @autoglobal
+#' @noRd
+handle_na <- \(x) { remove_all_na(map_if(x, is.character, \(x) na_if(x, y = ""))) }
 
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")

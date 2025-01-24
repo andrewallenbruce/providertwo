@@ -15,7 +15,8 @@ public_dataset <- \() {
   dataset <- qTBL(dataset[["dataset"]]) |>
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
-        keyword            = flatten_column(keyword))
+        keyword            = flatten_column(keyword),
+        description        = sf_remove(description, "\n"))
 
   distribution <- slt(dataset, distribution) |>
     unnest(distribution) |>

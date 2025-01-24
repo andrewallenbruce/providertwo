@@ -10,7 +10,7 @@ dataset_Resources(url = NULL)
 \item{url}{\verb{<chr>} resourcesAPI url}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<S7_class>} dataset_Resources object
 }
 \description{
 \code{dataset_Resources} object

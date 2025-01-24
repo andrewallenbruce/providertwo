@@ -5,15 +5,12 @@ NULL
 #'
 #' `dataset_contactPoint` object
 #'
-#' @param type `<chr>` type
-#' @param fn `<chr>` contact name
-#' @param hasEmail `<chr>` contact email
-#' @param hasURL `<chr>` contact url
-#'
-#' @returns `<S7_class>` object
-#'
+#' @param type `<chr>` Schema contact type; default is `vcard:Contact`
+#' @param fn `<chr>` contact's full name
+#' @param hasEmail `<chr>` contact's email
+#' @param hasURL `<chr>` contact's url
+#' @returns `<S7_class>` dataset_contactPoint object
 #' @autoglobal
-#'
 #' @export
 dataset_contactPoint <- new_class(
   name       = "dataset_contactPoint",
@@ -31,14 +28,10 @@ dataset_contactPoint <- new_class(
 #'
 #' `dataset_Publisher` object
 #'
-#' @param type `<chr>` type
-#'
-#' @param name `<chr>` publisher name
-#'
-#' @returns `<S7_class>` object
-#'
+#' @param type `<chr>` Schema publisher type; default is `org:Organization`
+#' @param name `<chr>` publisher name; default is `Centers for Medicare & Medicaid Services`
+#' @returns `<S7_class>` dataset_Publisher object
 #' @autoglobal
-#'
 #' @export
 dataset_Publisher <- new_class(
   name       = "dataset_Publisher",
@@ -56,10 +49,8 @@ dataset_Publisher <- new_class(
 #'
 #' `dataset_Identifier` object
 #'
-#' @param url `<chr>` dataset_Identifier url
-#'
-#' @returns `<S7_class>` object
-#'
+#' @param url `<chr>` identifier url
+#' @returns `<S7_class>` dataset_Identifier object
 #' @examples
 #' dataset_Identifier(url =
 #'    paste0(
@@ -68,7 +59,6 @@ dataset_Publisher <- new_class(
 #'    "data-viewer"))
 #'
 #' @autoglobal
-#'
 #' @export
 dataset_Identifier <- new_class(
   name       = "dataset_Identifier",
@@ -115,9 +105,7 @@ dataset_Identifier <- new_class(
 #' `dataset_Resources` object
 #'
 #' @param url `<chr>` resourcesAPI url
-#'
-#' @returns `<S7_class>` object
-#'
+#' @returns `<S7_class>` dataset_Resources object
 #' @examples
 #' dataset_Resources(url = paste0(
 #'    "https://data.cms.gov/",
@@ -126,7 +114,6 @@ dataset_Identifier <- new_class(
 #'    ))
 #'
 #' @autoglobal
-#'
 #' @export
 dataset_Resources <- new_class(
   name = "dataset_Resources",
@@ -156,25 +143,25 @@ dataset_Resources <- new_class(
 #'
 #' `Dataset` object
 #'
-#' @param type `<chr>` type
-#' @param accessLevel `<chr>` Dataset access level
+#' @param type `<chr>` Schema type; default is `dcat:Dataset`
+#' @param accessLevel `<chr>` Dataset access level; default is `public`
 #' @param accrualPeriodicity `<chr>` Dataset update frequency
-#' @param bureauCode `<chr>` Dataset bureau code
-#' @param contactPoint `<S7_class>`
+#' @param bureauCode `<chr>` Dataset bureau code; default is `009:38`
+#' @param contactPoint `<S7_class>` Dataset contact
 #' @param describedBy `<chr>` Hyperlink to Data dictionary
 #' @param description `<chr>` Dataset description
 #' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
 #' @param keyword `<chr>` Hyperlink to API landing page
 #' @param landingPage `<chr>` Hyperlink to API landing page
 #' @param modified `<chr>` Date Dataset was last modified
-#' @param programCode `<chr>` Dataset program code
-#' @param publisher `<S7_class>`
+#' @param programCode `<chr>` Dataset program code; default is `009:000`
+#' @param publisher `<S7_class>` Dataset publisher
 #' @param references `<chr>` Dataset references
 #' @param temporal `<chr>` Date range the Current dataset covers
 #' @param title `<chr>` Dataset title
 #' @param resourcesAPI `<S7_class>` `data.frame` of available supplemental resources
 #'
-#' @returns `<S7_class>` object
+#' @returns `<S7_class>` Dataset object
 #'
 #' @autoglobal
 #'
@@ -199,5 +186,49 @@ Dataset <- new_class(
     temporal           = class_character,
     title              = class_character,
     resourcesAPI       = dataset_Resources
+  )
+)
+
+#' Distribution Class
+#'
+#' `Distribution` object
+#'
+#' @param type `<chr>` Schema type; default is `dcat:Distribution`
+#' @param accessLevel `<chr>` Distribution access level; default is `public`
+#' @param accrualPeriodicity `<chr>` Distribution update frequency
+#' @param bureauCode `<chr>` Distribution bureau code; default is `009:38`
+#' @param contactPoint `<S7_class>` Distribution contact
+#' @param describedBy `<chr>` Hyperlink to Data dictionary
+#' @param description `<chr>` Distribution description
+#' @param keyword `<chr>` Hyperlink to API landing page
+#' @param landingPage `<chr>` Hyperlink to API landing page
+#' @param programCode `<chr>` Distribution program code; default is `009:000`
+#' @param publisher `<S7_class>` Distribution publisher
+#' @param references `<chr>` Distribution references
+#' @param title `<chr>` Distribution title
+#' @param distributions `<S7_class>` `data.frame` of available distributions
+#'
+#' @returns `<S7_class>` Distribution object
+#'
+#' @autoglobal
+#'
+#' @export
+Distribution <- new_class(
+  name           = "Distribution",
+  properties     = list(
+    type               = new_property(class_character, default = "dcat:Distribution"),
+    accessLevel        = new_property(class_character, default = "public"),
+    accrualPeriodicity = class_character,
+    bureauCode         = new_property(class_character, default = "009:38"),
+    contactPoint       = dataset_contactPoint,
+    describedBy        = class_character,
+    description        = class_character,
+    keyword            = class_character,
+    landingPage        = class_character,
+    programCode        = new_property(class_character, default = "009:000"),
+    publisher          = dataset_Publisher,
+    references         = class_character,
+    title              = class_character,
+    distributions      = class_list
   )
 )

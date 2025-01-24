@@ -12,16 +12,16 @@ dataset_contactPoint(
 )
 }
 \arguments{
-\item{type}{\verb{<chr>} type}
+\item{type}{\verb{<chr>} Schema contact type; default is \code{vcard:Contact}}
 
-\item{fn}{\verb{<chr>} contact name}
+\item{fn}{\verb{<chr>} contact's full name}
 
-\item{hasEmail}{\verb{<chr>} contact email}
+\item{hasEmail}{\verb{<chr>} contact's email}
 
-\item{hasURL}{\verb{<chr>} contact url}
+\item{hasURL}{\verb{<chr>} contact's url}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<S7_class>} dataset_contactPoint object
 }
 \description{
 \code{dataset_contactPoint} object

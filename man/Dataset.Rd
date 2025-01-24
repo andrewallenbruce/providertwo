@@ -25,15 +25,15 @@ Dataset(
 )
 }
 \arguments{
-\item{type}{\verb{<chr>} type}
+\item{type}{\verb{<chr>} Schema type; default is \code{dcat:Dataset}}
 
-\item{accessLevel}{\verb{<chr>} Dataset access level}
+\item{accessLevel}{\verb{<chr>} Dataset access level; default is \code{public}}
 
 \item{accrualPeriodicity}{\verb{<chr>} Dataset update frequency}
 
-\item{bureauCode}{\verb{<chr>} Dataset bureau code}
+\item{bureauCode}{\verb{<chr>} Dataset bureau code; default is \code{009:38}}
 
-\item{contactPoint}{\verb{<S7_class>}}
+\item{contactPoint}{\verb{<S7_class>} Dataset contact}
 
 \item{describedBy}{\verb{<chr>} Hyperlink to Data dictionary}
 
@@ -47,9 +47,9 @@ Dataset(
 
 \item{modified}{\verb{<chr>} Date Dataset was last modified}
 
-\item{programCode}{\verb{<chr>} Dataset program code}
+\item{programCode}{\verb{<chr>} Dataset program code; default is \code{009:000}}
 
-\item{publisher}{\verb{<S7_class>}}
+\item{publisher}{\verb{<S7_class>} Dataset publisher}
 
 \item{references}{\verb{<chr>} Dataset references}
 
@@ -60,7 +60,7 @@ Dataset(
 \item{resourcesAPI}{\verb{<S7_class>} \code{data.frame} of available supplemental resources}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<S7_class>} Dataset object
 }
 \description{
 \code{Dataset} object
