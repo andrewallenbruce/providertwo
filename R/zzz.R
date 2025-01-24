@@ -2,8 +2,8 @@
 
 .onLoad <- function(libname, pkgname, ...) {
 
-  .__public   <<- public_dataset()
-  .__provider <<- provider_dataset()
+  .__public   <<- Catalog_public()
+  .__provider <<- Catalog_provider()
 
   S7::methods_register()
 }

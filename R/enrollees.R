@@ -12,7 +12,7 @@
 #' @export
 as_Dataset <- \(dataset) {
 
-  if (!exists(".__public")) .__public <<- public_dataset()
+  if (!exists(".__public")) .__public <<- Catalog_public()
 
   a <- c(
     as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
@@ -26,7 +26,7 @@ as_Dataset <- \(dataset) {
     contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
-    identifier         = dataset_Identifier(url = a[["identifier"]]),
+    identifier         = public_Identifier(url = a[["identifier"]]),
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
     modified           = a[["modified"]],
@@ -54,14 +54,11 @@ as_Dataset <- \(dataset) {
 #' @export
 as_Distribution <- \(dataset) {
 
-  if (!exists(".__public")) .__public <<- public_dataset()
+  if (!exists(".__public")) .__public <<- Catalog_public()
 
   a <- c(
-    as.list(
-      sbt(.__public[["dataset"]], sf_detect(title, dataset))),
-    list(
-      distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset)))
-    )
+    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
+    list(distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset))))
 
   Distribution(
     type               = a[["type"]],

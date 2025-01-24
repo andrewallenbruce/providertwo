@@ -15,13 +15,17 @@ NULL
 dataset_contactPoint <- new_class(
   name       = "dataset_contactPoint",
   properties = list(
-    type     = new_property(
-      class_character,
-      default = "vcard:Contact"),
+    type     = new_property(class_character, default = "vcard:Contact"),
     fn       = null_character,
     hasEmail = null_character,
     hasURL   = null_character
-  )
+  ),
+  validator = function(self) {
+    if (length(self@type) != 1L)     "@type must be length 1"
+    if (length(self@fn) != 1L)       "@fn must be length 1"
+    if (length(self@hasEmail) != 1L) "@hasEmail must be length 1"
+    # if (length(self@hasURL) != 1L)   "@hasURL must be length 1"
+  }
 )
 
 #' dataset_Publisher Class
@@ -34,25 +38,25 @@ dataset_contactPoint <- new_class(
 #' @autoglobal
 #' @export
 dataset_Publisher <- new_class(
-  name       = "dataset_Publisher",
+  name = "dataset_Publisher",
   properties = list(
-    type     = new_property(
-      class_character,
-      default = "org:Organization"),
-    name     = new_property(
-      class_character,
-      default = "Centers for Medicare & Medicaid Services")
-  )
+    type = new_property(class_character, default = "org:Organization"),
+    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")
+  ),
+  validator = function(self) {
+    if (length(self@type) != 1L) "@type must be length 1"
+    if (length(self@name) != 1L) "@name must be length 1"
+  }
 )
 
-#' dataset_Identifier Class
+#' public_Identifier Class
 #'
-#' `dataset_Identifier` object
+#' `public_Identifier` object
 #'
 #' @param url `<chr>` identifier url
-#' @returns `<S7_class>` dataset_Identifier object
+#' @returns `<S7_class>` public_Identifier object
 #' @examples
-#' dataset_Identifier(url =
+#' public_Identifier(url =
 #'    paste0(
 #'    "https://data.cms.gov/data-api/v1/dataset/",
 #'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
@@ -60,25 +64,17 @@ dataset_Publisher <- new_class(
 #'
 #' @autoglobal
 #' @export
-dataset_Identifier <- new_class(
-  name       = "dataset_Identifier",
+public_Identifier <- new_class(
+  name       = "public_Identifier",
   properties = list(
-    url      = new_property(
-      class  = null_character,
-      setter = function(self, value) {
-        self@url <- value
-        self
-      }),
+    url      = null_character,
     request  = new_property(
       class  = null_list,
-      getter = function(self) {
-        if (not_null(self@url)) {
-            request(self@url)
-        }}),
+      getter = function(self) request(self@url)),
     rows     = new_property(
       class  = null_integer,
       getter = function(self) {
-        if (not_null(self@request) & is_online()) {
+        if (is_online()) {
           req_url_path_append(self@request, "stats") |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
@@ -87,7 +83,7 @@ dataset_Identifier <- new_class(
     fields   = new_property(
       class  = null_character,
       getter = function(self) {
-        if (not_null(self@request) & is_online()) {
+        if (is_online()) {
             req_url_query(self@request, size = 1, offset = 0) |>
             req_perform() |>
             resp_body_json(simplifyVector = TRUE) |>
@@ -99,6 +95,57 @@ dataset_Identifier <- new_class(
       if (length(self@url) != 1L) "@url must be length 1"
     }
   )
+
+#' provider_Identifier Class
+#'
+#' `provider_Identifier` object
+#'
+#' @param id `<chr>` identifier
+#' @returns `<S7_class>` provider_Identifier object
+#' @examples
+#' provider_Identifier(id = "mj5m-pzi6")
+#'
+#' @autoglobal
+#' @export
+provider_Identifier <- new_class(
+  name       = "provider_Identifier",
+  properties = list(
+    id       = null_character,
+    request  = new_property(
+      class  = null_list,
+      getter = function(self) {
+        request(paste0(
+          "https://data.cms.gov/",
+          "provider-data/api/1/",
+          "datastore/query/",
+          self@id,
+          "/0"))
+        }),
+    rows     = new_property(
+      class  = null_integer,
+      getter = function(self) {
+        if (is_online()) {
+          req_url_query(self@request, limit = 1, offset = 0) |>
+            req_perform() |>
+            resp_body_json(simplifyVector = TRUE) |>
+            gelm("count") |>
+            gelm("count")
+        }}),
+    fields   = new_property(
+      class  = null_character,
+      getter = function(self) {
+        if (is_online()) {
+          req_url_query(self@request, limit = 1, offset = 0) |>
+            req_perform() |>
+            resp_body_json(simplifyVector = TRUE) |>
+            gelm("query") |>
+            gelm("properties")
+        }})
+  ),
+  validator = function(self) {
+    if (length(self@id) != 1L) "@id must be length 1"
+  }
+)
 
 #' dataset_Resources Class
 #'
@@ -118,16 +165,11 @@ dataset_Identifier <- new_class(
 dataset_Resources <- new_class(
   name = "dataset_Resources",
   properties = list(
-    url      = new_property(
-      class  = null_character,
-      setter = function(self, value) {
-        self@url <- value
-        self
-      }),
+    url      = null_character,
     files    = new_property(
       class  = null_list,
       getter = function(self) {
-        if (not_null(self@url) & is_online()) {
+        if (is_online()) {
           qTBL(fload(self@url, query = "/data")) |>
             mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
                 fileType = file_ext(downloadURL)) |>
@@ -171,19 +213,19 @@ Dataset <- new_class(
   properties = list(
     type               = new_property(class_character, default = "dcat:Dataset"),
     accessLevel        = new_property(class_character, default = "public"),
-    accrualPeriodicity = class_character,
+    accrualPeriodicity = null_character,
     bureauCode         = new_property(class_character, default = "009:38"),
     contactPoint       = dataset_contactPoint,
-    describedBy        = class_character,
+    describedBy        = null_character,
     description        = class_character,
-    identifier         = dataset_Identifier,
-    keyword            = class_character,
+    identifier         = public_Identifier,
+    keyword            = null_character,
     landingPage        = class_character,
     modified           = null_dbl_Date,
     programCode        = new_property(class_character, default = "009:000"),
     publisher          = dataset_Publisher,
     references         = class_character,
-    temporal           = class_character,
+    temporal           = null_character,
     title              = class_character,
     resourcesAPI       = dataset_Resources
   )

@@ -1,7 +1,5 @@
 replace_open_columns  <- \(x) replace_fixed(x, c(":", "%", "@", "$", "properties_"), c("_", "", "", "", "pr_"))
 replace_open_desc     <- \(x) replace_fixed(x, c("\n", "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=\"https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3\">Microsoft Excel</a> supports. If you can't download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>"), c(". ", ""))
-remove_at_symbol      <- \(x) fuimus::sf_remove(s = x, p = "@", fix = TRUE)
-flatten_column        <- \(i) purrr::map_chr(i, \(x) paste0(fuimus::delist(x), collapse = ", "))
 
 #' Wrapper for `terse::terse()`
 #' @param x `<list>` or `<data.frame>` to be printed
@@ -32,75 +30,52 @@ glimst <- \(x,
   )
 }
 
+api <- as_Dataset("Public Provider Enrollment")
 
-main_data_arrow <- \() {
+S7::method(print, Dataset) <- function(x, ...) {
 
-  x <- arrow::read_json_arrow(
-    file          = "https://data.cms.gov/data.json",
-    col_select    = c("dataset"),
-    as_data_frame = TRUE) |>
-    arrow::to_duckdb() |>
-    dplyr::collect()
+  ob <- props(x)
+  ob$identifier <- NULL
+  ob$resourcesAPI <- NULL
+  ob$description <- substr(ob@description, 1, 415)
+  id <- props(x@identifier)
+  re <- props(x@resourcesAPI)
+  # re_files <- as.list(re$files)
+  # re$files <- NULL
 
-  collapse::qTBL(x[["dataset"]][[1]]) |>
-    collapse::fmutate(
-      bureauCode   = delist(bureauCode),
-      language     = delist(language),
-      programCode  = delist(programCode),
-      references   = delist(references),
-      theme        = flatten_column(theme),
-      keyword      = flatten_column(keyword)) |>
-    collapse::frename(remove_at_symbol)
-}
+  ob
 
-main_data_rcpp <- \() {
+  glue::glue_data(
+    x@resourcesAPI@files,
+    "{.strong {.field <<name>>}} >=> <<fileSize>>",
+    .open = "<<",
+    .close = ">>")
 
-  x <- RcppSimdJson::fload("https://data.cms.gov/data.json")
 
-  dataset <- collapse::qTBL(x[["dataset"]]) |>
-    collapse::fmutate(
-      bureauCode   = delist(bureauCode),
-      language     = delist(language),
-      programCode  = delist(programCode),
-      references   = delist(references),
-      theme        = flatten_column(theme),
-      keyword      = flatten_column(keyword)) |>
-    collapse::frename(remove_at_symbol)
+  paste(
+    glue::glue(
+      '"*" = cli::style_hyperlink("{text}", {url})',
+      text = c("Landing Page", "Data Dictionary"),
+      url = c("x@landingPage", "x@describedBy")
+    )) |>
+    rlang::parse_expr() |>
+    rlang::eval_tidy()
 
-  distro <- collapse::fselect(dataset, distribution) |>
-    tidyr::unnest(distribution) |>
-    collapse::frename(remove_at_symbol)
-
-  list(
-    context             = x[["@context"]],
-    id                  = x[["@id"]],
-    type                = x[["@type"]],
-    conformsTo          = x[["conformsTo"]],
-    describedBy         = x[["describedBy"]],
-    dataset             = collapse::fselect(dataset, -distribution) |> remove_all_na(),
-    distribution_latest = collapse::fsubset(distro, description %==% "latest") |> remove_all_na(),
-    distribution_api    = collapse::fsubset(distro, not_na(format) & na(description)) |> remove_all_na(),
-    distribution_csv    = collapse::fsubset(distro, mediaType %==% "text/csv") |> remove_all_na()
+  cat(
+    c(cli::cli_h2(c(cli::col_red("API: "), cli::col_blue(x@title))),
+      cli::cli_par(cli::col_silver(x@description))),
+    cli::cli_h3(cli::col_yellow("Hyperlinks")),
+    cli::cli_bullets(
+      c("*" = cli::style_hyperlink("Landing Page", x@landingPage),
+        "*" = cli::style_hyperlink("Data Dictionary", x@describedBy)))
   )
-}
 
-provider_data <- \() {
-
-  httr2::request(
-    "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items"
-  ) |>
-    httr2::req_perform() |>
-    httr2::resp_body_json(simplifyVector = TRUE) |>
-    dplyr::tibble() |>
-    tidyr::unnest_wider(contactPoint, names_sep = "_") |>
-    tidyr::unnest_wider(publisher, names_sep = "_") |>
-    tidyr::unnest_wider(distribution, names_sep = "_") |>
-    dplyr::mutate(
-      bureauCode  = delist(bureauCode),
-      programCode = delist(programCode),
-      keyword     = flatten_column(keyword),
-      theme       = flatten_column(theme)) |>
-    dplyr::rename_with(remove_at_symbol) |>
-    fuimus::remove_all_na()
-
+  cat(
+    c(cli::cli_h2(c(cli::col_red("API: "), cli::col_blue(x@title)))), "\n",
+    cli::cli_par(cli::col_silver(x@description)), "\n\n",
+    "Accrual Periodicity: ", x@accrualPeriodicity, "\n",
+    "Last Modified: ", format(x@modified), "\n",
+    "Date Range: ", x@temporal, "\n",
+    "Total Rows: ", format(x@identifier@rows), "\n"
+  )
 }

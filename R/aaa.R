@@ -1,14 +1,14 @@
-#' Public CMS Dataset Object
+#' CMS Public Catalog
 #'
 #' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
 #'
 #' @examples
-#' public_dataset()
+#' Catalog_public()
 #'
 #' @autoglobal
 #'
 #' @export
-public_dataset <- \() {
+Catalog_public <- \() {
 
   dataset <- fload("https://data.cms.gov/data.json")
 
@@ -16,16 +16,14 @@ public_dataset <- \() {
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         keyword            = flatten_column(keyword),
-        description        = sf_remove(description, "\n"))
+        description        = sf_remove(description, "\n"),
+        bureauCode         = delist(bureauCode),
+        programCode        = delist(programCode),
+        references         = delist(references))
 
-  distribution <- slt(dataset, distribution) |>
-    unnest(distribution) |>
+  distribution <- qTBL(
+    rowbind(dataset[["distribution"]], fill = TRUE)) |>
     mtt(modified = as_date(modified))
-
-  dataset <- slt(dataset, -distribution) |>
-    unnest(bureauCode) |>
-    unnest(programCode) |>
-    unnest(references)
 
   list(
     dataset = slt(
@@ -65,32 +63,32 @@ public_dataset <- \() {
     )
 }
 
-#' Provider CMS Dataset Object
+#' CMS Provider Catalog
 #'
 #' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`
 #'
 #' @examples
-#' provider_dataset()
+#' Catalog_provider()
 #'
 #' @autoglobal
 #'
 #' @export
-provider_dataset <- \() {
+Catalog_provider <- \() {
 
-  dataset <- qTBL(fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
+  dataset <- qTBL(
+    fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
     sbt(sf_ndetect(title, "Office Visit Costs$")) |>
-    mtt(issued = as_date(modified),
-        modified = as_date(modified),
-        released = as_date(modified),
-        keyword = flatten_column(keyword),
-        description = sf_remove(description, "\n"))
+    mtt(issued      = as_date(modified),
+        modified    = as_date(modified),
+        released    = as_date(modified),
+        keyword     = flatten_column(keyword),
+        description = sf_remove(description, "\n"),
+        bureauCode  = delist(bureauCode),
+        programCode = delist(programCode))
 
-  distribution <- slt(dataset, identifier, distribution) |>
-    unnest(distribution)
-
-  dataset <- slt(dataset, -distribution) |>
-    unnest(bureauCode) |>
-    unnest(programCode)
+  distribution <- qTBL(
+    rowbind(dataset[["distribution"]], fill = TRUE)) |>
+    add_vars(dataset[["title"]], pos = "front")
 
   list(
     dataset = slt(
@@ -111,7 +109,7 @@ provider_dataset <- \() {
       programCode),
     distribution = slt(
       distribution,
-      identifier,
+      title,
       type = `@type`,
       downloadURL,
       mediaType)
