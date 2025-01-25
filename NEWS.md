@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9047 (2025-01-25)
+
+* enrollees work
+
+
 # providertwo 0.0.0.9046 (2025-01-25)
 
 * bug fixed?
