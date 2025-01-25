@@ -2,12 +2,6 @@
 
 utils::globalVariables(c(
   # <Catalog_public>
-  # <Catalog_provider>
-  "@type",
-  # <Catalog_public>
-  # <Catalog_provider>
-  "accessLevel",
-  # <Catalog_public>
   "accessURL",
   # <Catalog_public>
   "accrualPeriodicity",
@@ -37,7 +31,6 @@ utils::globalVariables(c(
   # <Catalog_provider>
   "landingPage",
   # <Catalog_public>
-  # <Catalog_provider>
   "mediaType",
   # <Catalog_public>
   # <Catalog_provider>
@@ -45,9 +38,6 @@ utils::globalVariables(c(
   # <Catalog_public>
   # <Catalog_provider>
   "programCode",
-  # <Catalog_public>
-  # <Catalog_provider>
-  "publisher",
   # <Catalog_public>
   "references",
   # <Catalog_provider>

@@ -6,7 +6,7 @@
 \usage{
 dataset_Publisher(
   type = "org:Organization",
-  name = "Centers for Medicare & Medicaid Services"
+  name = "Centers for Medicare & Medicaid Services (CMS)"
 )
 }
 \arguments{

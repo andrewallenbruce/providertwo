@@ -26,10 +26,8 @@ Catalog_public <- \() {
   list(
     dataset = slt(
       dataset,
-      type = `@type`,
-      accessLevel,
+      title,
       accrualPeriodicity,
-      bureauCode,
       contactPoint,
       describedBy,
       description,
@@ -37,11 +35,8 @@ Catalog_public <- \() {
       keyword,
       landingPage,
       modified,
-      programCode,
-      publisher,
       references,
-      temporal,
-      title),
+      temporal),
     distribution = sbt(
       distribution,
       not_na(format) & na(description),
@@ -91,25 +86,18 @@ Catalog_provider <- \() {
   list(
     dataset = slt(
       dataset,
-      accessLevel,
       landingPage,
-      bureauCode,
       issued,
-      type = `@type`,
       modified,
       released,
       keyword,
       contactPoint,
-      publisher,
       identifier,
       description,
-      title,
-      programCode),
+      title),
     distribution = slt(
       distribution,
       title,
-      type = `@type`,
-      downloadURL,
-      mediaType)
+      downloadURL)
   )
 }

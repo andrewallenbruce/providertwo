@@ -37,6 +37,7 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
+    'as_class.R'
     'props.R'
     'classes.R'
     'enrollees.R'

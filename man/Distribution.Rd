@@ -5,6 +5,7 @@
 \title{Distribution Class}
 \usage{
 Distribution(
+  title = character(0),
   type = "dcat:Distribution",
   accessLevel = "public",
   accrualPeriodicity = character(0),
@@ -17,11 +18,12 @@ Distribution(
   programCode = "009:000",
   publisher = dataset_Publisher(),
   references = character(0),
-  title = character(0),
   distributions = list()
 )
 }
 \arguments{
+\item{title}{\verb{<chr>} Distribution title}
+
 \item{type}{\verb{<chr>} Schema type; default is \code{dcat:Distribution}}
 
 \item{accessLevel}{\verb{<chr>} Distribution access level; default is \code{public}}
@@ -45,8 +47,6 @@ Distribution(
 \item{publisher}{\verb{<S7_class>} Distribution publisher}
 
 \item{references}{\verb{<chr>} Distribution references}
-
-\item{title}{\verb{<chr>} Distribution title}
 
 \item{distributions}{\verb{<S7_class>} \code{data.frame} of available distributions}
 }

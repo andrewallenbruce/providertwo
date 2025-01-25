@@ -40,7 +40,7 @@ dataset_Publisher <- new_class(
   name = "dataset_Publisher",
   properties = list(
     type = new_property(class_character, default = "org:Organization"),
-    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")
+    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services (CMS)")
   ),
   validator = function(self) {
     if (length(self@type) != 1L) "@type must be length 1"
@@ -210,6 +210,7 @@ dataset_Resources <- new_class(
 Dataset <- new_class(
   name = "Dataset",
   properties = list(
+    title              = class_character,
     type               = new_property(class_character, default = "dcat:Dataset"),
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = null_character,
@@ -225,7 +226,6 @@ Dataset <- new_class(
     publisher          = dataset_Publisher,
     references         = class_character,
     temporal           = null_character,
-    title              = class_character,
     resourcesAPI       = dataset_Resources
   )
 )
@@ -257,6 +257,7 @@ Dataset <- new_class(
 Distribution <- new_class(
   name           = "Distribution",
   properties     = list(
+    title              = class_character,
     type               = new_property(class_character, default = "dcat:Distribution"),
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = class_character,
@@ -269,7 +270,6 @@ Distribution <- new_class(
     programCode        = new_property(class_character, default = "009:000"),
     publisher          = dataset_Publisher,
     references         = class_character,
-    title              = class_character,
     distributions      = class_list
   )
 )

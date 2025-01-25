@@ -5,6 +5,7 @@
 \title{Dataset Class}
 \usage{
 Dataset(
+  title = character(0),
   type = "dcat:Dataset",
   accessLevel = "public",
   accrualPeriodicity = NULL,
@@ -20,11 +21,12 @@ Dataset(
   publisher = dataset_Publisher(),
   references = character(0),
   temporal = NULL,
-  title = character(0),
   resourcesAPI = dataset_Resources()
 )
 }
 \arguments{
+\item{title}{\verb{<chr>} Dataset title}
+
 \item{type}{\verb{<chr>} Schema type; default is \code{dcat:Dataset}}
 
 \item{accessLevel}{\verb{<chr>} Dataset access level; default is \code{public}}
@@ -54,8 +56,6 @@ Dataset(
 \item{references}{\verb{<chr>} Dataset references}
 
 \item{temporal}{\verb{<chr>} Date range the Current dataset covers}
-
-\item{title}{\verb{<chr>} Dataset title}
 
 \item{resourcesAPI}{\verb{<S7_class>} \code{data.frame} of available supplemental resources}
 }
