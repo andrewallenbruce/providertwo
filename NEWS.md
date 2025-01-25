@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9049 (2025-01-25)
+
+* offset_sequence now works
+* lookups now internal
+
+
 # providertwo 0.0.0.9048 (2025-01-25)
 
 * removed constants from initial onloads
