@@ -10,9 +10,7 @@
 #' @export
 Catalog_public <- \() {
 
-  dataset <- fload("https://data.cms.gov/data.json")
-
-  dataset <- qTBL(dataset[["dataset"]]) |>
+  dataset <- qTBL(gelm(fload("https://data.cms.gov/data.json"), "dataset")) |>
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         keyword            = flatten_column(keyword),
@@ -22,7 +20,7 @@ Catalog_public <- \() {
         references         = delist(references))
 
   distribution <- qTBL(
-    rowbind(dataset[["distribution"]], fill = TRUE)) |>
+    rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     mtt(modified = as_date(modified))
 
   list(
@@ -87,8 +85,8 @@ Catalog_provider <- \() {
         programCode = delist(programCode))
 
   distribution <- qTBL(
-    rowbind(dataset[["distribution"]], fill = TRUE)) |>
-    add_vars(dataset[["title"]], pos = "front")
+    rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
+    add_vars(gelm(dataset, "title"), pos = "front")
 
   list(
     dataset = slt(

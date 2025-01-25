@@ -5,18 +5,19 @@
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' as_Dataset(dataset = "Public Provider Enrollment")
+#' public_Dataset(dataset = "Public Provider Enrollment")
+#' public_Dataset(dataset = "Hospital Enrollments")
 #'
 #' @autoglobal
 #'
 #' @export
-as_Dataset <- \(dataset) {
+public_Dataset <- \(dataset) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
   a <- c(
-    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
-    list(resourcesAPI = sbt(.__public[["distribution"]], sf_detect(title, dataset))[1, 5]))
+    as.list(sbt(gelm(.__public, "dataset"), sf_detect(title, dataset))),
+    as.list(sbt(gelm(.__public, "distribution"), sf_detect(title, dataset))[1, 5]))
 
   Dataset(
     type               = a[["type"]],
@@ -47,12 +48,12 @@ as_Dataset <- \(dataset) {
 #' @returns `<S7_class>` object
 #'
 #' @examples
-#' as_Distribution(dataset = "Public Provider Enrollment")
+#' public_Distribution(dataset = "Public Provider Enrollment")
 #'
 #' @autoglobal
 #'
 #' @export
-as_Distribution <- \(dataset) {
+public_Distribution <- \(dataset) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
@@ -122,6 +123,8 @@ as_Distribution <- \(dataset) {
 #'
 #' enrollees(pac = "2860305554", gender = "9")
 #'
+#' enrollees(state = "GA", gender = "F")
+#'
 #' @autoglobal
 #'
 #' @export
@@ -150,20 +153,24 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- as_Dataset("Public Provider Enrollment")
-  url <- api@identifier@request |>
-    req_url_query(
-      !!!format_query(args),
-      size = 5000)
+  api <- public_Dataset("Public Provider Enrollment")
 
-  stats <- url |>
-  req_url_path_append("stats") |>
+  nobs <- req_url_query(api@identifier@request, !!!format_query(args), size = 5000) |>
+    req_url_path_append("stats") |>
     req_perform() |>
-    resp_body_json()
+    resp_body_json(simplifyVector = TRUE) |>
+    gelm("found_rows")
 
-  resp <- req_perform(url) |>
-    resp_body_string() |>
-    fparse()
+  is_complete <- \(resp) length(resp_body_json(resp)$data) < 5000
+
+  resp <- req_url_query(api@identifier@request, !!!format_query(args), size = 5000) |>
+    req_perform_iterative(
+    next_req = iterate_with_offset(
+      "offset",
+      start = 0,
+      offset = 5000,
+      resp_complete = is_complete))
+
 
   cat(format(api@title), "\n")
 
@@ -171,12 +178,21 @@ enrollees <- function(npi       = NULL,
     label  = "==>",
     offset = 2,
     c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
-      paste0("Last Modified:       ", format(api@modified)))) |>
+      paste0("Last Modified:       ", format(api@modified)))
+    ) |>
     writeLines()
 
   cat("\n")
 
-  qTBL(resp[["data"]]) |>
+  map(resp, \(x)
+      resp_body_string(x) |>
+        fparse() |>
+        _[["data"]] |>
+        qTBL()) |>
+    rowbind() |>
     setNames(names(args))
+
+  # qTBL(resp[["data"]]) |>
+  #   setNames(names(args))
 
 }

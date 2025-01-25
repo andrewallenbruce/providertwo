@@ -58,8 +58,8 @@ utils::globalVariables(c(
   "temporal",
   # <Catalog_public>
   # <Catalog_provider>
-  # <as_Dataset>
-  # <as_Distribution>
+  # <public_Dataset>
+  # <public_Distribution>
   "title",
   NULL
 ))

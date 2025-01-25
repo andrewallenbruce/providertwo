@@ -176,7 +176,7 @@ dataset_Resources <- new_class(
         }})
   ),
   validator = function(self) {
-    if (length(self@url) != 1L) "@url must be length 1"
+    if (length(self@url) != 1L) paste0("@url must be length 1, not ", length(self@url))
   }
 )
 
