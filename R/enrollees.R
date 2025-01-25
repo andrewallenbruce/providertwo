@@ -44,6 +44,8 @@
 #'
 #' enrollees(pac = "2860305554", gender = "9")
 #'
+#' enrollees(state = "GA", gender = "9")
+#'
 #' enrollees(state = "GA", gender = "F")
 #'
 #' @autoglobal
@@ -115,7 +117,8 @@ enrollees <- function(npi       = NULL,
         _[["data"]] |>
         qTBL()) |>
     rowbind() |>
-    setNames(names(args))
+    setNames(names(args)) |>
+    vna_if()
 
   # qTBL(resp[["data"]]) |>
   #   setNames(names(args))

@@ -38,6 +38,7 @@ RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
     'as_class.R'
+    'checks.R'
     'props.R'
     'classes.R'
     'enrollees.R'
@@ -46,6 +47,7 @@ Collate:
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
+    'lookups.R'
     'providertwo-package.R'
     'query.R'
     'utils.R'

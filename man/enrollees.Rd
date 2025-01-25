@@ -74,6 +74,8 @@ enrollees(npi = "1417918293", spec_code = "14-41")
 
 enrollees(pac = "2860305554", gender = "9")
 
+enrollees(state = "GA", gender = "9")
+
 enrollees(state = "GA", gender = "F")
 
 }

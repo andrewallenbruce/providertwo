@@ -1,65 +1,3 @@
-#' Luhn Algorithm Check for NPIs
-#'
-#' @param x `<chr>` NPI
-#'
-#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#'
-#' @examples
-#' luhn_check("1417918293")
-#'
-#' luhn_check("1234567890")
-#'
-#' luhn_check("1234567893")
-#'
-#' luhn_check("123456789")
-#'
-#' @autoglobal
-#'
-#' @keywords internal
-#'
-#' @export
-luhn_check <- function(x) {
-
-  idx <- c(1, 3, 5, 7, 9)
-
-  id <- as_int(cheapr_rev(desplit(x)[1:9]))
-
-  id[idx] <- id[idx] * 2
-
-  id[idx] <- iif_else(id[idx] > 9, id[idx] - 9, id[idx])
-
-  id <- sum(id) + 24
-
-  ck <- (ceiling(id / 10) * 10) - id
-
-  test <- sf_smush(sf_c(sf_sub(x, start = 1, stop = 9), as_chr(ck)))
-
-  identical(test, x)
-}
-
-#' Luhn Algorithm Check for NPIs
-#'
-#' @param x `<chr>` NPI
-#'
-#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#'
-#' @examples
-#' check_luhn("1234567890")
-#'
-#' check_luhn(c("1417918293", "1234567890"))
-#'
-#' @autoglobal
-#'
-#' @export
-check_luhn <- function(x) {
-
-  if (length(x) > 1) {
-    map_lgl(x, luhn_check)
-  } else {
-    luhn_check(x)
-  }
-}
-
 #' Generate API Request "Offset" Sequence
 #'
 #' @param nobs `<int>` Number of results returned in the API request
@@ -87,167 +25,53 @@ offset_sequence <- \(nobs, limit) {
   check_number_whole(nobs)
   check_number_whole(limit)
 
-  if (nobs <= limit) {
-    return(list(
-      nobs  = nobs,
-      limit = limit,
-      len   = 1L,
-      off   = nobs
-    ))
-    }
+  if (nobs <= limit) return(nobs)
 
-  off <- c(0, seq_(limit, nobs, by = limit))
+  seq_(
+    from = 0,
+    to   = ifelse(nobs %% limit == 0,
+                  nobs,
+                  sum(nobs, limit)),
+    by   = limit)
 
-  list(
-    nobs  = nobs,
-    limit = limit,
-    len   = length(off),
-    off   = off
-  )
+  # seq_(from = 0, to = sum(100, 10), by = 10)
+  # seq_(from = 0, to = sum(47984, 5000), by = 5000)
+  # seq_(from = 0, to = sum(47984, 2000), by = 2000)
+
 }
-
-#' Recode ISO 8601 Recurring Time Intervals
-#'
-#' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
-#'
-#' @param x `<chr>` vector of ISO8601 recurrence rules
-#'
-#' @returns `<chr>` vector of human-readable recurrence rule descriptions
-#'
-#' @examples
-#' accrualPeriodicity = c(
-#'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
-#'   "R/P0.33W", "R/P0.5W", "R/P1W", "R/P2W",
-#'   "R/P0.33M", "R/P0.5M", "R/P1M", "R/P2M",
-#'   "R/P3M",    "R/P4M",   "R/P6M", "R/P1Y",
-#'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
-#'
-#' recode_iso8601(accrualPeriodicity)
-#'
-#' @section References:
-#'
-#'    * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-#'    * [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
-#'    * [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
-#'
-#' @autoglobal
-#'
-#' @export
-recode_iso8601 <- \(x) {
-  nswitch(
-    x,
-    "R/P10Y",   "Decennially [R/P10Y]",
-    "R/P4Y",    "Quadrennially [R/P4Y]",
-    "R/P3Y",    "Triennially [R/P3Y]",
-    "R/P2Y",    "Biennially [R/P2Y]",
-    "R/P1Y",    "Annually [R/P1Y]",
-    "R/P6M",    "Biannually [R/P6M]",
-    "R/P4M",    "Triannually [R/P4M]",
-    "R/P3M",    "Quarterly [R/P3M]",
-    "R/P2M",    "Bimonthly [R/P2M]",
-    "R/P1M",    "Monthly [R/P1M]",
-    "R/P0.5M",  "Biweekly [R/P0.5M]",
-    "R/P2W",    "Biweekly [R/P2W]",
-    "R/P0.33M", "Three Times a Month [R/P0.33M]",
-    "R/P1W",    "Weekly [R/P1W]",
-    "R/P0.5W",  "Twice a Week [R/P0.5W]",
-    "R/P3.5D",  "Twice a Week [R/P3.5D]",
-    "R/P0.33W", "Three Times a Week [R/P0.33W]",
-    "R/P1D",    "Daily [R/P1D]",
-    "R/PT1H",   "Hourly [R/PT1H]",
-    "R/PT1S",   "Continuously [R/PT1S]",
-    default = NA_character_,
-    nThread = 4L
-  )
-}
-
-#' Roxygenise ISO 8601 Recurring Time Intervals
-#' @autoglobal
-#' @noRd
-roxy8601 <- \(x) {
-  nswitch(
-    x,
-    "R/P10Y",   "Decennially (R/P10Y)",
-    "R/P4Y",    "Quadrennially (R/P4Y)",
-    "R/P3Y",    "Triennially (R/P3Y)",
-    "R/P2Y",    "Biennially (R/P2Y)",
-    "R/P1Y",    "Annually (R/P1Y)",
-    "R/P6M",    "Biannually (R/P6M)",
-    "R/P4M",    "Triannually (R/P4M)",
-    "R/P3M",    "Quarterly (R/P3M)",
-    "R/P2M",    "Bimonthly (R/P2M)",
-    "R/P1M",    "Monthly (R/P1M)",
-    "R/P0.5M",  "Biweekly (R/P0.5M)",
-    "R/P2W",    "Biweekly (R/P2W)",
-    "R/P0.33M", "Three Times a Month (R/P0.33M)",
-    "R/P1W",    "Weekly (R/P1W)",
-    "R/P0.5W",  "Twice a Week (R/P0.5W)",
-    "R/P3.5D",  "Twice a Week (R/P3.5D)",
-    "R/P0.33W", "Three Times a Week (R/P0.33W)",
-    "R/P1D",    "Daily (R/P1D)",
-    "R/PT1H",   "Hourly (R/PT1H)",
-    "R/PT1S",   "Continuously (R/PT1S)",
-    default = NA_character_,
-    nThread = 4L
-  )
-}
-
-#' Program Code
-#'
-#' Code for primary program related to a data asset, from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
-#'
-#' @source [DCAT Schema: Program Code](https://resources.data.gov/resources/dcat-us/#programCode)
-#'
-#' @param x `<chr>`  The program code to search for, e.g., `"009:000"`; if
-#'   `NULL` (the default), returns all program codes
-#'
-#' @returns `<tibble>` of search results
-#'
-#' @examples
-#' program_code("009:000")
-#'
-#' head(program_code())
-#'
-#' @autoglobal
-#'
-#' @export
-program_code <- \(x = NULL) { search_in(get_pin("programCodes"), "programCodePODfmt", x) }
-
-#' Bureau Code
-#'
-#' Combined Agency and Bureau Code, from the [OMB Circular A-11, Appendix C (PDF)](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
-#'
-#' @source [DCAT Schema: Bureau Code](https://resources.data.gov/resources/dcat-us/#bureauCode)
-#'
-#' @param x `<chr>` The bureau code to search for, e.g., `"38"`; if
-#'   `NULL` (the default), returns all bureau codes
-#'
-#' @returns `<tibble>` of search results
-#'
-#' @examples
-#' bureau_code("38")
-#'
-#' head(bureau_code())
-#'
-#' @autoglobal
-#'
-#' @export
-bureau_code <- \(x = NULL) { search_in(get_pin("bureauCodes"), "bureauCode", x) }
 
 #' Flatten Column
 #' @param i `<list>` list to flatten
 #' @returns `<chr>` flattened list
 #' @autoglobal
 #' @noRd
-flatten_column <- \(i) map_chr(i, \(x) paste0(delist(x), collapse = ", "))
-
+flatten_column <- \(i) {
+  map_chr(i, \(x) paste0(delist(x), collapse = ", "))
+  }
 
 #' Handle NAs
 #' @param x `<list>` list to handle
 #' @returns `<list>` list with NAs handled
 #' @autoglobal
 #' @noRd
-handle_na <- \(x) { remove_all_na(map_if(x, is.character, \(x) na_if(x, y = ""))) }
+handle_na <- \(x) {
+  remove_all_na(
+    map_if(
+      x,
+      is.character,
+      \(x) na_if(x, y = "")
+      )
+    )
+  }
+
+#' Vectorized na_if
+#' @param x `<list>` list to handle
+#' @returns `<list>` list with NAs handled
+#' @autoglobal
+#' @noRd
+vna_if <- \(x) {
+  map_if(x, is.character, \(x) na_if(x, y = ""))
+  }
 
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")

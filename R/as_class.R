@@ -20,10 +20,7 @@ public_Dataset <- \(dataset) {
     as.list(sbt(gelm(.__public, "distribution"), sf_detect(title, dataset))[1, 5]))
 
   Dataset(
-    # type               = a[["type"]],
-    # accessLevel        = a[["accessLevel"]],
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    # bureauCode         = a[["bureauCode"]],
     contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
@@ -31,8 +28,6 @@ public_Dataset <- \(dataset) {
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
     modified           = a[["modified"]],
-    # programCode        = a[["programCode"]],
-    # publisher          = dataset_Publisher(type = gelm(a[["publisher"]], "type"), name = gelm(a[["publisher"]], "name")),
     references         = a[["references"]],
     temporal           = a[["temporal"]],
     title              = a[["title"]],
@@ -62,17 +57,12 @@ public_Distribution <- \(dataset) {
     list(distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset))))
 
   Distribution(
-    # type               = a[["type"]],
-    # accessLevel        = a[["accessLevel"]],
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    # bureauCode         = a[["bureauCode"]],
     contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
-    # programCode        = a[["programCode"]],
-    # publisher          = dataset_Publisher(type = gelm(a[["publisher"]], "type"), name = gelm(a[["publisher"]], "name")),
     references         = a[["references"]],
     title              = a[["title"]],
     distributions      = a[["distribution"]]

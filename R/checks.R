@@ -1,0 +1,61 @@
+#' Luhn Algorithm Check for NPIs
+#'
+#' @param x `<chr>` NPI
+#'
+#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
+#'
+#' @examples
+#' luhn_check("1417918293")
+#'
+#' luhn_check("1234567890")
+#'
+#' luhn_check("1234567893")
+#'
+#' luhn_check("123456789")
+#'
+#' @autoglobal
+#'
+#' @keywords internal
+#'
+#' @export
+luhn_check <- function(x) {
+
+  idx <- c(1, 3, 5, 7, 9)
+
+  id <- as_int(cheapr_rev(desplit(x)[1:9]))
+
+  id[idx] <- id[idx] * 2
+
+  id[idx] <- iif_else(id[idx] > 9, id[idx] - 9, id[idx])
+
+  id <- sum(id) + 24
+
+  ck <- (ceiling(id / 10) * 10) - id
+
+  test <- sf_smush(sf_c(sf_sub(x, start = 1, stop = 9), as_chr(ck)))
+
+  identical(test, x)
+}
+
+#' Luhn Algorithm Check for NPIs
+#'
+#' @param x `<chr>` NPI
+#'
+#' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
+#'
+#' @examples
+#' check_luhn("1234567890")
+#'
+#' check_luhn(c("1417918293", "1234567890"))
+#'
+#' @autoglobal
+#'
+#' @export
+check_luhn <- function(x) {
+
+  if (length(x) > 1) {
+    map_lgl(x, luhn_check)
+  } else {
+    luhn_check(x)
+  }
+}
