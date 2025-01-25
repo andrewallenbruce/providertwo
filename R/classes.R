@@ -24,7 +24,6 @@ dataset_contactPoint <- new_class(
     if (length(self@type) != 1L)     "@type must be length 1"
     if (length(self@fn) != 1L)       "@fn must be length 1"
     if (length(self@hasEmail) != 1L) "@hasEmail must be length 1"
-    # if (length(self@hasURL) != 1L)   "@hasURL must be length 1"
   }
 )
 

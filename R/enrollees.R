@@ -16,7 +16,7 @@ as_Dataset <- \(dataset) {
 
   a <- c(
     as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
-    as.list(sbt(.__public[["distribution"]], sf_detect(title, dataset))[1, 5]))
+    list(resourcesAPI = sbt(.__public[["distribution"]], sf_detect(title, dataset))[1, 5]))
 
   Dataset(
     type               = a[["type"]],

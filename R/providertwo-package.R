@@ -8,7 +8,6 @@
 #' @importFrom kit nswitch
 #' @importFrom stats setNames
 #' @importFrom tools file_ext
-#' @importFrom tidyr unnest
 #' @importFrom glue glue glue_collapse
 #' @import httr2
 #' @import S7

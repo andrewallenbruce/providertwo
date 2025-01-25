@@ -22,7 +22,6 @@ Imports:
     S7 (>= 0.2.0),
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
-    tidyr (>= 1.3.1),
     vctrs (>= 0.6.5)
 Suggests: 
     qs (>= 0.27.2),
@@ -47,7 +46,6 @@ Collate:
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
     'providertwo-package.R'
-    'query-helpers.R'
     'query.R'
     'utils.R'
     'zzz.R'
