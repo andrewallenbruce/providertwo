@@ -10,8 +10,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Distribution.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_Dataset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_Distribution.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
@@ -47,6 +45,8 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/program_code.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Dataset.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Distribution.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/random_string.html</loc></url>
