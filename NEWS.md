@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9046 (2025-01-25)
+
+* bug fixed?
+* req_perform_iterative/iterate_with_offset used in enrollees
+
+
 # providertwo 0.0.0.9045 (2025-01-24)
 
 * Bug in as_Dataset - dataset_Resources
