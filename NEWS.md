@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9045 (2025-01-24)
+
+* Bug in as_Dataset - dataset_Resources
+
+
 # providertwo 0.0.0.9044 (2025-01-24)
 
 * added provider_catalog methods
