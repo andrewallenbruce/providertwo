@@ -15,7 +15,8 @@ enrollees(
   last = NULL,
   org = NULL,
   state = NULL,
-  gender = NULL
+  gender = NULL,
+  limit = 5000
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ enrollees(
 \item \code{"M"} (Male)
 \item \code{"9"} (Unknown/Organization)
 }}
+
+\item{limit}{\verb{<int>} Maximum number of search results; default is \code{5000}}
 }
 \value{
 \verb{<tibble>} of search results

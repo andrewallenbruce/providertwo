@@ -108,11 +108,14 @@ public_Distribution <- \(dataset) {
 #'
 #' @param org `<chr>` Organizational provider's name
 #'
+#'
 #' @param gender `<chr>` Individual provider's gender:
 #'
 #'    * `"F"` (Female)
 #'    * `"M"` (Male)
 #'    * `"9"` (Unknown/Organization)
+#'
+#' @param limit `<int>` Maximum number of search results; default is `5000`
 #'
 #' @returns `<tibble>` of search results
 #'
@@ -138,7 +141,10 @@ enrollees <- function(npi       = NULL,
                       last      = NULL,
                       org       = NULL,
                       state     = NULL,
-                      gender    = NULL) {
+                      gender    = NULL,
+                      limit     = 5000) {
+
+  check_number_whole(limit)
 
   args <- list2(
     "NPI"                = npi,
@@ -155,15 +161,16 @@ enrollees <- function(npi       = NULL,
 
   api <- public_Dataset("Public Provider Enrollment")
 
-  nobs <- req_url_query(api@identifier@request, !!!format_query(args), size = 5000) |>
+  nobs <- req_url_query(api@identifier@request, !!!format_query(args), size = limit) |>
     req_url_path_append("stats") |>
     req_perform() |>
     resp_body_json(simplifyVector = TRUE) |>
-    gelm("found_rows")
+    gelm("found_rows") |>
+    offset_sequence(limit = limit)
 
-  is_complete <- \(resp) length(resp_body_json(resp)$data) < 5000
+  is_complete <- \(resp) length(resp_body_json(resp)$data) < limit
 
-  resp <- req_url_query(api@identifier@request, !!!format_query(args), size = 5000) |>
+  resp <- req_url_query(api@identifier@request, !!!format_query(args), size = limit) |>
     req_perform_iterative(
     next_req = iterate_with_offset(
       "offset",

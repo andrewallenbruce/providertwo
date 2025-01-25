@@ -84,16 +84,26 @@ check_luhn <- function(x) {
 #' @export
 offset_sequence <- \(nobs, limit) {
 
-  if (!is_integerish(c(nobs, limit), n = 2)) {
-    abort(
-      "Both `nobs` and `limit` must be whole numbers.",
-      call = call("offset_sequence")
-      )
+  check_number_whole(nobs)
+  check_number_whole(limit)
+
+  if (nobs <= limit) {
+    return(list(
+      nobs  = nobs,
+      limit = limit,
+      len   = 1L,
+      off   = nobs
+    ))
     }
 
-  if (nobs <= limit) return(nobs)
+  off <- c(0, seq_(limit, nobs, by = limit))
 
-  c(0, seq_(limit, nobs, by = limit) + 1, nobs)
+  list(
+    nobs  = nobs,
+    limit = limit,
+    len   = length(off),
+    off   = off
+  )
 }
 
 #' Recode ISO 8601 Recurring Time Intervals
