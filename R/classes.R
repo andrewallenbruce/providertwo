@@ -218,7 +218,7 @@ Dataset <- new_class(
     contactPoint       = dataset_contactPoint,
     describedBy        = null_character,
     description        = class_character,
-    identifier         = public_Identifier,
+    identifier         = new_property(public_Identifier | provider_Identifier),
     keyword            = null_character,
     landingPage        = class_character,
     modified           = null_dbl_Date,

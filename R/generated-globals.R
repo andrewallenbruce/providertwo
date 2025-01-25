@@ -2,52 +2,67 @@
 
 utils::globalVariables(c(
   # <Catalog_public>
+  # <Catalog_openpayments>
   "accessURL",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "accrualPeriodicity",
   # <Catalog_public>
-  # <Catalog_provider>
+  # <Catalog_openpayments>
   "bureauCode",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "contactPoint",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "describedBy",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "description",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "downloadURL",
   # <Catalog_public>
   # <Catalog_provider>
   "identifier",
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "issued",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "keyword",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "landingPage",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "mediaType",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   "modified",
   # <Catalog_public>
-  # <Catalog_provider>
+  # <Catalog_openpayments>
   "programCode",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "references",
   # <Catalog_provider>
   "released",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "resourcesAPI",
   # <Catalog_public>
+  # <Catalog_openpayments>
   "temporal",
   # <Catalog_public>
   # <Catalog_provider>
+  # <Catalog_openpayments>
   # <public_Dataset>
   # <public_Distribution>
   "title",

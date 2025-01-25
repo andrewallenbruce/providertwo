@@ -27,16 +27,16 @@ Catalog_public <- \() {
     dataset = slt(
       dataset,
       title,
+      modified,
       accrualPeriodicity,
+      temporal,
+      description,
+      keyword,
+      identifier,
       contactPoint,
       describedBy,
-      description,
-      identifier,
-      keyword,
-      landingPage,
-      modified,
       references,
-      temporal),
+      landingPage),
     distribution = sbt(
       distribution,
       not_na(format) & na(description),
@@ -51,14 +51,13 @@ Catalog_public <- \() {
       title,
       modified,
       temporal,
-      downloadURL,
-      resourcesAPI)
+      downloadURL)
     )
 }
 
 #' CMS Provider Catalog
 #'
-#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`
+#' @returns `<list>` of `<tibbles>`: `dataset`, `download`
 #'
 #' @examples
 #' Catalog_provider()
@@ -71,33 +70,94 @@ Catalog_provider <- \() {
   dataset <- qTBL(
     fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
     sbt(sf_ndetect(title, "Office Visit Costs$")) |>
-    mtt(issued      = as_date(modified),
+    mtt(issued      = as_date(issued),
         modified    = as_date(modified),
-        released    = as_date(modified),
+        released    = as_date(released),
         keyword     = flatten_column(keyword),
-        description = sf_remove(description, "\n"),
-        bureauCode  = delist(bureauCode),
-        programCode = delist(programCode))
+        description = sf_remove(description, "\n"))
 
-  distribution <- qTBL(
+  download <- qTBL(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     add_vars(gelm(dataset, "title"), pos = "front")
 
   list(
     dataset = slt(
       dataset,
-      landingPage,
+      title,
       issued,
       modified,
       released,
-      keyword,
-      contactPoint,
-      identifier,
       description,
-      title),
-    distribution = slt(
-      distribution,
+      identifier,
+      contactPoint,
+      keyword,
+      landingPage),
+    download = slt(
+      download,
       title,
+      downloadURL)
+  )
+}
+
+#' CMS Open Payments Catalog
+#'
+#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
+#'
+#' @examplesIf FALSE
+#' Catalog_openpayments()
+#'
+#' @autoglobal
+#'
+#' @export
+Catalog_openpayments <- \() {
+
+  dataset <- qTBL(fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids"), keep.attr = TRUE) |>
+    mtt(issued             = as_date(issued),
+        modified           = as_date(modified),
+        accrualPeriodicity = recode_iso8601(accrualPeriodicity),
+        description        = sf_remove(description, "\n"),
+        bureauCode         = delist(bureauCode),
+        programCode        = delist(programCode))
+
+  identifiers <- uniq(qTBL(rowbind(gelm(dataset, "keyword"))))
+
+
+
+  identifier <- qTBL(rowbind(gelm(dataset, "distribution"), fill = TRUE), keep.attr = TRUE)
+
+  distribution <- qTBL(rowbind(gelm(identifier, "data"), fill = TRUE), keep.attr = TRUE)
+
+  dataset <- slt(dataset, -distribution) |>
+    add_vars(id2 = gelm(identifier, "identifier"))
+
+  list(
+    dataset = slt(
+      dataset,
+      title,
+      modified,
+      accrualPeriodicity,
+      temporal,
+      description,
+      keyword,
+      identifier,
+      contactPoint,
+      describedBy,
+      references,
+      landingPage),
+    distribution = sbt(
+      distribution,
+      not_na(format) & na(description),
+      title,
+      modified,
+      temporal,
+      accessURL,
+      resourcesAPI),
+    downloads = sbt(
+      distribution,
+      mediaType %==% "text/csv",
+      title,
+      modified,
+      temporal,
       downloadURL)
   )
 }
