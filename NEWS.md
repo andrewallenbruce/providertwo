@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9050 (2025-01-25)
+
+* Catalog_openpayments draft
+
+
 # providertwo 0.0.0.9049 (2025-01-25)
 
 * offset_sequence now works
