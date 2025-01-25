@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9046</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9047</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,23 +70,67 @@ simply returns <code>nobs</code>.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]   0  11  21  31  41  51  61  71  81  91 101 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nobs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $len</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $off</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]   0  10  20  30  40  50  60  70  80  90 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nobs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $len</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $off</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">47984</span>, <span class="fl">5000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]     0  5001 10001 15001 20001 25001 30001 35001 40001 45001 47984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nobs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $len</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $off</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]     0  5000 10000 15000 20000 25000 30000 35000 40000 45000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">147984</span>, <span class="fl">2000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]      0   2001   4001   6001   8001  10001  12001  14001  16001  18001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11]  20001  22001  24001  26001  28001  30001  32001  34001  36001  38001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21]  40001  42001  44001  46001  48001  50001  52001  54001  56001  58001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31]  60001  62001  64001  66001  68001  70001  72001  74001  76001  78001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41]  80001  82001  84001  86001  88001  90001  92001  94001  96001  98001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] 100001 102001 104001 106001 108001 110001 112001 114001 116001 118001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] 120001 122001 124001 126001 128001 130001 132001 134001 136001 138001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] 140001 142001 144001 146001 147984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nobs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 147984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $len</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $off</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]      0   2000   4000   6000   8000  10000  12000  14000  16000  18000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11]  20000  22000  24000  26000  28000  30000  32000  34000  36000  38000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21]  40000  42000  44000  46000  48000  50000  52000  54000  56000  58000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31]  60000  62000  64000  66000  68000  70000  72000  74000  76000  78000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41]  80000  82000  84000  86000  88000  90000  92000  94000  96000  98000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] 100000 102000 104000 106000 108000 110000 112000 114000 116000 118000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] 120000 122000 124000 126000 128000 130000 132000 134000 136000 138000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [71] 140000 142000 144000 146000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
