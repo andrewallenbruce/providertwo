@@ -22,23 +22,22 @@
 #' @export
 offset_sequence <- \(nobs, limit) {
 
-  check_number_whole(nobs)
-  check_number_whole(limit)
+  check_number_whole(nobs, min = 0)
+  check_number_whole(limit, min = 0)
 
   if (nobs <= limit) return(nobs)
 
   seq_(
-    from = 0,
+    from = limit,
     to   = ifelse(nobs %% limit == 0,
                   nobs,
                   sum(nobs, limit)),
     by   = limit)
-
-  # seq_(from = 0, to = sum(100, 10), by = 10)
-  # seq_(from = 0, to = sum(47984, 5000), by = 5000)
-  # seq_(from = 0, to = sum(47984, 2000), by = 2000)
-
 }
+
+# seq_(from = 0, to = sum(100, 10), by = 10)
+# seq_(from = 0, to = sum(47984, 5000), by = 5000)
+# seq_(from = 0, to = sum(47984, 2000), by = 2000)
 
 #' Flatten Column
 #' @param i `<list>` list to flatten
