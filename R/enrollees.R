@@ -64,7 +64,7 @@ enrollees <- function(npi       = NULL,
                       gender    = NULL,
                       limit     = 5000) {
 
-  check_number_whole(limit)
+  check_number_whole(limit, min = 0)
 
   args <- list2(
     "NPI"                = npi,

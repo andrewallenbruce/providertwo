@@ -4,17 +4,21 @@
 \alias{offset_sequence}
 \title{Generate API Request "Offset" Sequence}
 \usage{
-offset_sequence(nobs, limit)
+offset_sequence(n, limit, start = 0)
 }
 \arguments{
-\item{nobs}{\verb{<int>} Number of results returned in the API request}
+\item{n}{\verb{<int>} Number of results returned in an API request}
 
-\item{limit}{\verb{<int>} Maximum number of results an API will return per request}
+\item{limit}{\verb{<int>} API rate limit, i.e. the maximum number of results an
+API will return per request.}
+
+\item{start}{\verb{<int>} Offset start; either \code{0} (default) or \code{limit}}
 }
 \value{
-\verb{<int>} If \code{nobs > limit}, an integer sequence beginning at \code{0} of
-length equal to \code{nobs / limit + 1}. If \code{nobs <= limit}, the function
-simply returns \code{nobs}.
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ `<int>` If `n <= limit`, simply returns `n`. If `n > limit`,
+                  an integer sequence is returned, beginning at `start`
+                  and of length equal to `n / limit`.
+}\if{html}{\out{</div>}}
 }
 \description{
 Generate API Request "Offset" Sequence

@@ -1,12 +1,15 @@
 #' Generate API Request "Offset" Sequence
 #'
-#' @param nobs `<int>` Number of results returned in the API request
+#' @param n     `<int>` Number of results returned in an API request
 #'
-#' @param limit `<int>` Maximum number of results an API will return per request
+#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
+#'                      API will return per request.
 #'
-#' @returns `<int>` If `nobs > limit`, an integer sequence beginning at `0` of
-#'    length equal to `nobs / limit + 1`. If `nobs <= limit`, the function
-#'    simply returns `nobs`.
+#' @param start `<int>` Offset start; either `0` (default) or `limit`
+#'
+#' @returns      `<int>` If `n <= limit`, simply returns `n`. If `n > limit`,
+#'                       an integer sequence is returned, beginning at `start`
+#'                       and of length equal to `n / limit`.
 #'
 #' @examples
 #' offset_sequence(100, 10)
@@ -20,18 +23,20 @@
 #' @autoglobal
 #'
 #' @export
-offset_sequence <- \(nobs, limit) {
+offset_sequence <- \(n, limit, start = 0) {
 
-  check_number_whole(nobs, min = 0)
+  check_number_whole(n, min = 0)
   check_number_whole(limit, min = 0)
+  check_number_whole(start, min = 0)
 
-  if (nobs <= limit) return(nobs)
+  if (n <= limit) return(n)
 
   seq_(
-    from = limit,
-    to   = ifelse(nobs %% limit == 0,
-                  nobs,
-                  sum(nobs, limit)),
+    from = start,
+    to   = ifelse(
+      n %% limit == 0,
+      n,
+      sum(n, limit)),
     by   = limit)
 }
 
