@@ -15,10 +15,9 @@ API will return per request.}
 \item{start}{\verb{<int>} Offset start; either \code{0} (default) or \code{limit}}
 }
 \value{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ `<int>` If `n <= limit`, simply returns `n`. If `n > limit`,
-                  an integer sequence is returned, beginning at `start`
-                  and of length equal to `n / limit`.
-}\if{html}{\out{</div>}}
+\verb{<int>} If \code{n <= limit}, simply returns \code{n}. If \code{n > limit}, an
+integer sequence is returned, beginning at \code{start} and of
+length equal to \code{n / limit}.
 }
 \description{
 Generate API Request "Offset" Sequence
