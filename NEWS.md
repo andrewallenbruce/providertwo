@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9053 (2025-01-27)
+
+* corrected `offset_sequence()` behavior
+
+
 # providertwo 0.0.0.9052 (2025-01-26)
 
 * added `start` parameter to `offset_sequence()`
