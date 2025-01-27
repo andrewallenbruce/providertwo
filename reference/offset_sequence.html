@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9052</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9053</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,9 +67,9 @@ API will return per request.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="st">`</span><span class="at">&lt;int&gt;</span><span class="st">`</span> If <span class="st">`</span><span class="at">n &lt;= limit</span><span class="st">`</span>, simply returns <span class="st">`</span><span class="at">n</span><span class="st">`</span>. If <span class="st">`</span><span class="at">n &gt; limit</span><span class="st">`</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>                  an integer sequence is returned, beginning at <span class="st">`</span><span class="at">start</span><span class="st">`</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>                  and of length equal to <span class="st">`</span><span class="at">n / limit</span><span class="st">`</span>.</span></code></pre><p></p></div>
+    <p><code>&lt;int&gt;</code> If <code>n &lt;= limit</code>, simply returns <code>n</code>. If <code>n &gt; limit</code>, an
+integer sequence is returned, beginning at <code>start</code> and of
+length equal to <code>n / limit</code>.</p>
     </div>
 
     <div class="section level2">
@@ -81,7 +81,7 @@ API will return per request.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">47984</span>, <span class="fl">5000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]     0  5000 10000 15000 20000 25000 30000 35000 40000 45000 50000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]     0  5000 10000 15000 20000 25000 30000 35000 40000 45000</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">offset_sequence</span><span class="op">(</span><span class="fl">147984</span>, <span class="fl">2000</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]      0   2000   4000   6000   8000  10000  12000  14000  16000  18000</span>
@@ -91,7 +91,7 @@ API will return per request.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [41]  80000  82000  84000  86000  88000  90000  92000  94000  96000  98000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [51] 100000 102000 104000 106000 108000 110000 112000 114000 116000 118000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [61] 120000 122000 124000 126000 128000 130000 132000 134000 136000 138000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] 140000 142000 144000 146000 148000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [71] 140000 142000 144000 146000</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
