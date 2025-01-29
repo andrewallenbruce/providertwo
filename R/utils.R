@@ -26,7 +26,7 @@
 offset_sequence <- \(n, limit, start = 0) {
 
   check_number_whole(n, min = 0)
-  check_number_whole(limit, min = 0)
+  check_number_whole(limit, min = 1)
   check_number_whole(start, min = 0)
 
   if (n <= limit) return(n)
@@ -36,14 +36,6 @@ offset_sequence <- \(n, limit, start = 0) {
 
 # Incorrect
 # seq_(from = start, to = ifelse(n %% limit == 0, n, sum(n, limit)), by = limit)
-# seq_(from = 0, to = sum(100, 10), by = 10)
-# seq_(from = 0, to = sum(47984, 5000), by = 5000)
-# seq_(from = 0, to = sum(47984, 2000), by = 2000)
-
-# Correct
-# seq_(from = 0, to = 100, by = 10)
-# seq_(from = 0, to = 47984, by = 5000)
-# seq_(from = 0, to = 47984, by = 2000)
 
 #' Flatten Column
 #' @param i `<list>` list to flatten
@@ -60,23 +52,49 @@ flatten_column <- \(i) {
 #' @autoglobal
 #' @noRd
 handle_na <- \(x) {
-  remove_all_na(
-    map_if(
-      x,
-      is.character,
-      \(x) na_if(x, y = "")
-      )
-    )
-  }
+  remove_all_na(map_if(x, is.character, \(x) na_if(x, y = "")))
+}
 
-#' Vectorized na_if
+#' Vectorized `na_if`
 #' @param x `<list>` list to handle
 #' @returns `<list>` list with NAs handled
 #' @autoglobal
 #' @noRd
-vna_if <- \(x) {
+map_na_if <- \(x) {
   map_if(x, is.character, \(x) na_if(x, y = ""))
-  }
+}
+
+#' Helper for `iterate_with_offset`
+#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
+#'                      API will return per request.
+#' @returns `<function>` Function to check if API request is complete
+is_complete_with_limit <- function(limit) {
+
+  check_number_whole(limit, min = 1)
+
+  function(resp) length(resp_body_json(resp)$data) < limit
+
+}
+
+#' Parse datetime character vectors
+#' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
+#' @returns `<chr>` parsed ISOdatetime vector
+#' @examples
+#' as_datetime("2024-07-29T20:37:53")
+#' @seealso [clock::date_time_parse_RFC_3339()]
+#' @autoglobal
+#' @noRd
+as_datetime <- \(x) {
+
+  ISOdatetime(
+    sf_sub(x, 1, 4),
+    sf_sub(x, 6, 7),
+    sf_sub(x, 9, 10),
+    sf_sub(x, 12, 13),
+    sf_sub(x, 15, 16),
+    sf_sub(x, 18, 19))
+
+}
 
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")

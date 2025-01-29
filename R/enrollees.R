@@ -88,15 +88,13 @@ enrollees <- function(npi       = NULL,
     gelm("found_rows") |>
     offset_sequence(limit = limit)
 
-  is_complete <- \(resp) length(resp_body_json(resp)$data) < limit
-
   resp <- req_url_query(api@identifier@request, !!!format_query(args), size = limit) |>
     req_perform_iterative(
     next_req = iterate_with_offset(
       "offset",
       start = 0,
       offset = 5000,
-      resp_complete = is_complete))
+      resp_complete = is_complete_with_limit(limit)))
 
 
   cat(format(api@title), "\n")
@@ -118,9 +116,8 @@ enrollees <- function(npi       = NULL,
         qTBL()) |>
     rowbind() |>
     setNames(names(args)) |>
-    vna_if()
+    map_na_if()
 
-  # qTBL(resp[["data"]]) |>
-  #   setNames(names(args))
+  # qTBL(resp[["data"]]) |> setNames(names(args))
 
 }

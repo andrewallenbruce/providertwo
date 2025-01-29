@@ -50,6 +50,8 @@ luhn_check <- function(x) {
 #'
 #' @autoglobal
 #'
+#' @keywords internal
+#'
 #' @export
 check_luhn <- function(x) {
 

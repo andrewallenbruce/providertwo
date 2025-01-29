@@ -117,33 +117,28 @@ Catalog_openpayments <- \() {
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         description        = sf_remove(description, "\n"),
         bureauCode         = delist(bureauCode),
-        programCode        = delist(programCode))
+        programCode        = delist(programCode),
+        theme              = delist(map(theme, \(x) gelm(as.list(x), "data"))),
+        year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
+        `%modified`        = as_datetime(`%modified`))
 
-  identifiers <- uniq(qTBL(rowbind(gelm(dataset, "keyword"))))
-
-
-
-  identifier <- qTBL(rowbind(gelm(dataset, "distribution"), fill = TRUE), keep.attr = TRUE)
+  # identifier <- qTBL(rowbind(gelm(dataset, "distribution"), fill = TRUE), keep.attr = TRUE)
 
   distribution <- qTBL(rowbind(gelm(identifier, "data"), fill = TRUE), keep.attr = TRUE)
-
-  dataset <- slt(dataset, -distribution) |>
-    add_vars(id2 = gelm(identifier, "identifier"))
 
   list(
     dataset = slt(
       dataset,
+      year,
       title,
-      modified,
-      accrualPeriodicity,
-      temporal,
       description,
-      keyword,
-      identifier,
-      contactPoint,
-      describedBy,
-      references,
-      landingPage),
+      theme,
+      issued,
+      modified,
+      modified_dttm = `%modified`,
+      temporal,
+      accrualPeriodicity,
+      distribution),
     distribution = sbt(
       distribution,
       not_na(format) & na(description),

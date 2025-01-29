@@ -21,3 +21,4 @@ check_luhn("1234567890")
 check_luhn(c("1417918293", "1234567890"))
 
 }
+\keyword{internal}
