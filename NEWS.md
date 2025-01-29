@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9054 (2025-01-28)
+
+* added `is_complete_with_limit()` function factory for use with `iterate_with_offset()`
+* `vna_if()` renamed to `map_na_if()`
+* added `as_datetime()` helper to parse RFC 3339 ISO datetimes
+
+
 # providertwo 0.0.0.9053 (2025-01-27)
 
 * corrected `offset_sequence()` behavior
