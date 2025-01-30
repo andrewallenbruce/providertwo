@@ -9,8 +9,12 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_openpayments.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_public.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/ContactPoint.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Distribution.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Identifier.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Publisher.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_datetime.html</loc></url>
@@ -18,9 +22,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/dataset_Publisher.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/dataset_Resources.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/dataset_contactPoint.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/desplit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/empty.html</loc></url>
@@ -49,11 +50,9 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/program_code.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Distribution.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/random_string.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/recode_iso8601.html</loc></url>
