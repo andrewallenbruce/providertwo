@@ -13,15 +13,23 @@
 #'
 #' @examples
 #' offset_sequence(100, 10)
+#' offset_length(100, 10)
 #'
 #' offset_sequence(10, 100)
+#' offset_length(10, 100)
 #'
 #' offset_sequence(47984, 5000)
+#' offset_length(47984, 5000)
 #'
 #' offset_sequence(147984, 2000)
+#' offset_length(147984, 2000)
 #'
+#' @name offset
+NULL
+
+#' @rdname offset
 #' @autoglobal
-#'
+#' @keywords internal
 #' @export
 offset_sequence <- \(n, limit, start = 0) {
 
@@ -34,6 +42,19 @@ offset_sequence <- \(n, limit, start = 0) {
   seq_(from = start, to = n, by = limit)
 }
 
+#' @rdname offset
+#' @autoglobal
+#' @keywords internal
+#' @export
+offset_length <- \(n, limit, start = 0) {
+
+  check_number_whole(n, min = 0)
+
+  if (n <= limit) return(1L)
+
+  length(offset_sequence(n, limit, start))
+}
+
 # Incorrect
 # seq_(from = start, to = ifelse(n %% limit == 0, n, sum(n, limit)), by = limit)
 
@@ -41,7 +62,8 @@ offset_sequence <- \(n, limit, start = 0) {
 #' @param i `<list>` list to flatten
 #' @returns `<chr>` flattened list
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 flatten_column <- \(i) {
   map_chr(i, \(x) paste0(delist(x), collapse = ", "))
   }
@@ -50,7 +72,8 @@ flatten_column <- \(i) {
 #' @param x `<list>` list to handle
 #' @returns `<list>` list with NAs handled
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 handle_na <- \(x) {
   remove_all_na(map_if(x, is.character, \(x) na_if(x, y = "")))
 }
@@ -59,7 +82,8 @@ handle_na <- \(x) {
 #' @param x `<list>` list to handle
 #' @returns `<list>` list with NAs handled
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 map_na_if <- \(x) {
   map_if(x, is.character, \(x) na_if(x, y = ""))
 }
@@ -68,6 +92,9 @@ map_na_if <- \(x) {
 #' @param limit `<int>` API rate limit, i.e. the maximum number of results an
 #'                      API will return per request.
 #' @returns `<function>` Function to check if API request is complete
+#' @autoglobal
+#' @keywords internal
+#' @export
 is_complete_with_limit <- function(limit) {
 
   check_number_whole(limit, min = 1)
@@ -83,7 +110,8 @@ is_complete_with_limit <- function(limit) {
 #' as_datetime("2024-07-29T20:37:53")
 #' @seealso [clock::date_time_parse_RFC_3339()]
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 as_datetime <- \(x) {
 
   ISOdatetime(

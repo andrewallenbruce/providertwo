@@ -16,3 +16,4 @@ API will return per request.}
 \description{
 Helper for \code{iterate_with_offset}
 }
+\keyword{internal}

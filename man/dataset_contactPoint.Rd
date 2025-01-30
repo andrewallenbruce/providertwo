@@ -4,12 +4,7 @@
 \alias{dataset_contactPoint}
 \title{dataset_contactPoint Class}
 \usage{
-dataset_contactPoint(
-  type = "vcard:Contact",
-  fn = NULL,
-  hasEmail = NULL,
-  hasURL = NULL
-)
+dataset_contactPoint(type = "vcard:Contact", fn = NULL, hasEmail = NULL)
 }
 \arguments{
 \item{type}{\verb{<chr>} Schema contact type; default is \code{vcard:Contact}}
@@ -17,8 +12,6 @@ dataset_contactPoint(
 \item{fn}{\verb{<chr>} contact's full name}
 
 \item{hasEmail}{\verb{<chr>} contact's email}
-
-\item{hasURL}{\verb{<chr>} contact's url}
 }
 \value{
 \verb{<S7_class>} dataset_contactPoint object

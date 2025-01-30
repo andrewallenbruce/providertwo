@@ -8,7 +8,6 @@ NULL
 #' @param type `<chr>` Schema contact type; default is `vcard:Contact`
 #' @param fn `<chr>` contact's full name
 #' @param hasEmail `<chr>` contact's email
-#' @param hasURL `<chr>` contact's url
 #' @returns `<S7_class>` dataset_contactPoint object
 #' @autoglobal
 #' @export
@@ -17,8 +16,7 @@ dataset_contactPoint <- new_class(
   properties = list(
     type     = new_property(class_character, default = "vcard:Contact"),
     fn       = null_character,
-    hasEmail = null_character,
-    hasURL   = null_character
+    hasEmail = null_character
   ),
   validator = function(self) {
     if (length(self@type) != 1L)     "@type must be length 1"

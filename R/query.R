@@ -16,6 +16,8 @@
 #'
 #' @autoglobal
 #'
+#' @keywords internal
+#'
 #' @export
 format_query <- \(args, operator = "=") {
 
