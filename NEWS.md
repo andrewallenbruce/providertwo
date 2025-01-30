@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9056 (2025-01-30)
+
+* `offset_length()` added
+* utilities exported as internal functions
+* `hasURL` property removed from `contactPoint` class
+
+
 # providertwo 0.0.0.9055 (2025-01-30)
 
 * Simplified catalog loading
