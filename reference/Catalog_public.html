@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9054</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9055</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,54 +57,38 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">Catalog_public</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dataset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title   modified   accrualPeriodicity temporal description keyword identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accoun… 2025-01-15 Annually [R/P1Y]   2014-01… <span style="color: #949494;">"</span>The Accou… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accoun… 2025-01-15 Annually [R/P1Y]   2017-01… <span style="color: #949494;">"</span>The Accou… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ACO Re… 2024-01-12 Annually [R/P1Y]   2021-01… <span style="color: #949494;">"</span>The Accou… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ACO Re… 2024-01-12 Annually [R/P1Y]   2021-01… <span style="color: #949494;">"</span>Accountab… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ACO Re… 2024-01-12 Annually [R/P1Y]   2021-01… <span style="color: #949494;">"</span>The Accou… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ACO Re… 2024-01-12 Annually [R/P1Y]   2021-01… <span style="color: #949494;">"</span>The Accou… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Advanc… 2024-01-29 Annually [R/P1Y]   2024-01… <span style="color: #949494;">"</span>The Advan… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Agency… 2020-12-08 Annually [R/P1Y]   2015-01… <span style="color: #949494;">"</span>The Agenc… Medica… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> CMS Pr… 2024-05-16 Annually [R/P1Y]   2016-01… <span style="color: #949494;">"</span>The CMS P… Nation… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CMS Pr… 2024-05-16 Annually [R/P1Y]   2016-01… <span style="color: #949494;">"</span>The CMS P… Nation… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title      accrualPeriodicity contactPoint describedBy description identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountab… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Accou… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountab… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Accou… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ACO Reali… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Accou… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ACO Reali… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>Accountab… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ACO Reali… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Accou… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ACO Reali… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Accou… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Advance I… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Advan… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Agency fo… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The Agenc… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> CMS Progr… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The CMS P… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CMS Progr… Annually [R/P1Y]   <span style="color: #949494;">&lt;named list&gt;</span> https://da… <span style="color: #949494;">"</span>The CMS P… https://d…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 129 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: contactPoint &lt;list&gt;, describedBy &lt;chr&gt;, references &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   landingPage &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: keyword &lt;chr&gt;, landingPage &lt;chr&gt;, modified &lt;date&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   references &lt;chr&gt;, temporal &lt;chr&gt;, theme &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,697 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title                              modified   temporal accessURL resourcesAPI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountable Care Organization Par… 2025-01-15 2025-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountable Care Organization Par… 2024-01-29 2024-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Accountable Care Organization Par… 2023-03-06 2023-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Accountable Care Organization Par… 2022-01-26 2022-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Accountable Care Organization Par… 2022-01-27 2021-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Accountable Care Organization Par… 2022-01-27 2020-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Accountable Care Organization Par… 2024-01-29 2019-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Accountable Care Organization Par… 2022-01-27 2019-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Accountable Care Organization Par… 2022-01-27 2018-01… https://… https://dat…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Accountable Care Organization Par… 2022-01-27 2017-01… https://… https://dat…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,697 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title                  modified   temporal accessURL resourcesAPI downloadURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountable Care Orga… 2025-01-15 2025-01… https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountable Care Orga… 2024-01-29 2024-01… https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Accountable Care Orga… 2023-03-06 2023-01… https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Accountable Care Orga… 2022-01-26 2022-01… https://… https://dat… https://da…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Accountable Care Orga… 2022-01-27 2021-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Accountable Care Orga… 2022-01-27 2020-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Accountable Care Orga… 2024-01-29 2019-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Accountable Care Orga… 2022-01-27 2019-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Accountable Care Orga… 2022-01-27 2018-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Accountable Care Orga… 2022-01-27 2017-01… https://… https://dat… <span style="color: #BB0000;">NA</span>         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,687 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $downloads</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,675 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title                                         modified   temporal downloadURL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                         <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountable Care Organization Participants :… 2025-01-15 2025-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountable Care Organization Participants :… 2024-01-29 2024-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Accountable Care Organization Participants :… 2023-03-06 2023-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Accountable Care Organization Participants :… 2022-01-26 2022-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Accountable Care Organization Skilled Nursin… 2025-01-15 2025-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Accountable Care Organization Skilled Nursin… 2024-04-23 2024-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Accountable Care Organization Skilled Nursin… 2023-03-06 2023-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Accountable Care Organization Skilled Nursin… 2022-01-26 2022-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ACO Realizing Equity, Access and Community H… 2024-01-12 2021-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ACO Realizing Equity, Access and Community H… 2024-01-12 2021-01… https://da…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,665 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
