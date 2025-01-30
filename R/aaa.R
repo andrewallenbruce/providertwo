@@ -11,12 +11,24 @@
 Catalog_public <- \() {
 
   dataset <- qTBL(gelm(fload("https://data.cms.gov/data.json"), "dataset")) |>
+    slt(title,
+        accrualPeriodicity,
+        contactPoint,
+        describedBy,
+        description,
+        distribution,
+        identifier,
+        keyword,
+        landingPage,
+        modified,
+        references,
+        temporal,
+        theme) |>
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         keyword            = flatten_column(keyword),
+        theme              = flatten_column(theme),
         description        = sf_remove(description, "\n"),
-        bureauCode         = delist(bureauCode),
-        programCode        = delist(programCode),
         references         = delist(references))
 
   distribution <- qTBL(
@@ -24,34 +36,16 @@ Catalog_public <- \() {
     mtt(modified = as_date(modified))
 
   list(
-    dataset = slt(
-      dataset,
-      title,
-      modified,
-      accrualPeriodicity,
-      temporal,
-      description,
-      keyword,
-      identifier,
-      contactPoint,
-      describedBy,
-      references,
-      landingPage),
-    distribution = sbt(
-      distribution,
-      not_na(format) & na(description),
-      title,
-      modified,
-      temporal,
-      accessURL,
-      resourcesAPI),
-    downloads = sbt(
-      distribution,
-      mediaType %==% "text/csv",
-      title,
-      modified,
-      temporal,
-      downloadURL)
+    dataset = slt(dataset, -distribution),
+    distribution = collapse::join(
+      sbt(distribution,
+          not_na(format) & na(description),
+          title, modified, temporal, accessURL, resourcesAPI),
+      sbt(distribution,
+          mediaType %==% "text/csv",
+          title, temporal, downloadURL),
+      on = c("title", "temporal"),
+      verbose = 0)
     )
 }
 
@@ -69,34 +63,31 @@ Catalog_provider <- \() {
 
   dataset <- qTBL(
     fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
-    sbt(sf_ndetect(title, "Office Visit Costs$")) |>
+    sbt(
+      sf_ndetect(title, "Office Visit Costs$"),
+      -`@type`,
+      -accessLevel,
+      -bureauCode,
+      -programCode,
+      -archiveExclude,
+      -publisher) |>
     mtt(issued      = as_date(issued),
         modified    = as_date(modified),
         released    = as_date(released),
         keyword     = flatten_column(keyword),
-        description = sf_remove(description, "\n"))
+        theme       = flatten_column(theme),
+        description = sf_remove(description, "\n"),
+        identifier  = paste0(
+          "https://data.cms.gov/provider-data/api/1/datastore/query/",
+          identifier,
+          "/0"))
 
   download <- qTBL(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
-    add_vars(gelm(dataset, "title"), pos = "front")
+    add_vars(gelm(dataset, "title"), pos = "front") |>
+    slt(-`@type`)
 
-  list(
-    dataset = slt(
-      dataset,
-      title,
-      issued,
-      modified,
-      released,
-      description,
-      identifier,
-      contactPoint,
-      keyword,
-      landingPage),
-    download = slt(
-      download,
-      title,
-      downloadURL)
-  )
+  collapse::join(dataset, download, on = "title", verbose = 0)
 }
 
 #' CMS Open Payments Catalog
@@ -121,8 +112,6 @@ Catalog_openpayments <- \() {
         theme              = delist(map(theme, \(x) gelm(as.list(x), "data"))),
         year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
         `%modified`        = as_datetime(`%modified`))
-
-  # identifier <- qTBL(rowbind(gelm(dataset, "distribution"), fill = TRUE), keep.attr = TRUE)
 
   distribution <- qTBL(rowbind(gelm(identifier, "data"), fill = TRUE), keep.attr = TRUE)
 

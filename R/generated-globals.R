@@ -3,17 +3,22 @@
 utils::globalVariables(c(
   # <Catalog_openpayments>
   "%modified",
+  # <Catalog_provider>
+  "@type",
+  # <Catalog_provider>
+  "accessLevel",
   # <Catalog_public>
   # <Catalog_openpayments>
   "accessURL",
   # <Catalog_public>
   # <Catalog_openpayments>
   "accrualPeriodicity",
-  # <Catalog_public>
+  # <Catalog_provider>
+  "archiveExclude",
+  # <Catalog_provider>
   # <Catalog_openpayments>
   "bureauCode",
   # <Catalog_public>
-  # <Catalog_provider>
   "contactPoint",
   # <Catalog_public>
   "describedBy",
@@ -22,7 +27,6 @@ utils::globalVariables(c(
   # <Catalog_openpayments>
   "description",
   # <Catalog_public>
-  # <Catalog_provider>
   # <Catalog_openpayments>
   "downloadURL",
   # <Catalog_public>
@@ -37,7 +41,6 @@ utils::globalVariables(c(
   # <Catalog_openpayments>
   "keyword",
   # <Catalog_public>
-  # <Catalog_provider>
   "landingPage",
   # <Catalog_public>
   # <Catalog_openpayments>
@@ -46,9 +49,11 @@ utils::globalVariables(c(
   # <Catalog_provider>
   # <Catalog_openpayments>
   "modified",
-  # <Catalog_public>
+  # <Catalog_provider>
   # <Catalog_openpayments>
   "programCode",
+  # <Catalog_provider>
+  "publisher",
   # <Catalog_public>
   "references",
   # <Catalog_provider>
@@ -59,6 +64,8 @@ utils::globalVariables(c(
   # <Catalog_public>
   # <Catalog_openpayments>
   "temporal",
+  # <Catalog_public>
+  # <Catalog_provider>
   # <Catalog_openpayments>
   "theme",
   # <Catalog_public>
