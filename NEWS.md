@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9055 (2025-01-30)
+
+* Simplified catalog loading
+
+
 # providertwo 0.0.0.9054 (2025-01-28)
 
 * added `is_complete_with_limit()` function factory for use with `iterate_with_offset()`
