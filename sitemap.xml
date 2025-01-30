@@ -13,6 +13,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Distribution.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_datetime.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
@@ -25,10 +26,12 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/empty.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/enrollees.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/false.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/flatten_column.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/gelm.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_pin.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/getelem.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/handle_na.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/if_empty_null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/iif_else.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/index.html</loc></url>
@@ -36,6 +39,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/is_complete_with_limit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/list_pins.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/luhn_check.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_na_if.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/max_vlen.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/mount_board.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/na.html</loc></url>
@@ -43,7 +47,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/not_na.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/not_null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset_sequence.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/program_code.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
