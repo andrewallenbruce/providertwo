@@ -81,14 +81,20 @@ enrollees <- function(npi       = NULL,
 
   api <- public_Dataset("Public Provider Enrollment")
 
-  nobs <- req_url_query(api@identifier@request, !!!format_query(args), size = limit) |>
+  nobs <- req_url_query(
+    request(api@identifier@url),
+    !!!format_query(args),
+    size = limit) |>
     req_url_path_append("stats") |>
     req_perform() |>
     resp_body_json(simplifyVector = TRUE) |>
     gelm("found_rows") |>
     offset_sequence(limit = limit)
 
-  resp <- req_url_query(api@identifier@request, !!!format_query(args), size = limit) |>
+  resp <- req_url_query(
+    request(api@identifier@url),
+    !!!format_query(args),
+    size = limit) |>
     req_perform_iterative(
     next_req = iterate_with_offset(
       "offset",

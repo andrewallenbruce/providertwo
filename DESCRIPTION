@@ -48,6 +48,7 @@ Collate:
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
     'lookups.R'
+    'perform_request.R'
     'providertwo-package.R'
     'query.R'
     'utils.R'

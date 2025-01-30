@@ -21,17 +21,17 @@ public_Dataset <- \(dataset) {
 
   Dataset(
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
+    contactPoint       = ContactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
-    identifier         = public_Identifier(url = a[["identifier"]]),
+    identifier         = Identifier(url = a[["identifier"]]),
     keyword            = a[["keyword"]],
     landingPage        = a[["landingPage"]],
     modified           = a[["modified"]],
     references         = a[["references"]],
     temporal           = a[["temporal"]],
     title              = a[["title"]],
-    resourcesAPI       = dataset_Resources(url = a[["resourcesAPI"]])
+    resourcesAPI       = Resources(url = a[["resourcesAPI"]])
   )
 
 }
@@ -58,7 +58,7 @@ public_Distribution <- \(dataset) {
 
   Distribution(
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = dataset_contactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
+    contactPoint       = ContactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
     keyword            = a[["keyword"]],

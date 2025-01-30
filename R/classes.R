@@ -1,9 +1,9 @@
 #' @include props.R
 NULL
 
-#' dataset_contactPoint Class
+#' ContactPoint Class
 #'
-#' `dataset_contactPoint` object
+#' `ContactPoint` object
 #'
 #' @param type `<chr>` Schema contact type; default is `vcard:Contact`
 #' @param fn `<chr>` contact's full name
@@ -11,8 +11,8 @@ NULL
 #' @returns `<S7_class>` dataset_contactPoint object
 #' @autoglobal
 #' @export
-dataset_contactPoint <- new_class(
-  name       = "dataset_contactPoint",
+ContactPoint <- new_class(
+  name       = "ContactPoint",
   properties = list(
     type     = new_property(class_character, default = "vcard:Contact"),
     fn       = null_character,
@@ -25,17 +25,17 @@ dataset_contactPoint <- new_class(
   }
 )
 
-#' dataset_Publisher Class
+#' Publisher Class
 #'
-#' `dataset_Publisher` object
+#' `Publisher` object
 #'
 #' @param type `<chr>` Schema publisher type; default is `org:Organization`
 #' @param name `<chr>` publisher name; default is `Centers for Medicare & Medicaid Services`
 #' @returns `<S7_class>` dataset_Publisher object
 #' @autoglobal
 #' @export
-dataset_Publisher <- new_class(
-  name = "dataset_Publisher",
+Publisher <- new_class(
+  name = "Publisher",
   properties = list(
     type = new_property(class_character, default = "org:Organization"),
     name = new_property(class_character, default = "Centers for Medicare & Medicaid Services (CMS)")
@@ -46,14 +46,14 @@ dataset_Publisher <- new_class(
   }
 )
 
-#' public_Identifier Class
+#' Identifier Class
 #'
-#' `public_Identifier` object
+#' `Identifier` object
 #'
 #' @param url `<chr>` identifier url
-#' @returns `<S7_class>` public_Identifier object
+#' @returns `<S7_class>` Identifier object
 #' @examples
-#' public_Identifier(url =
+#' Identifier(url =
 #'    paste0(
 #'    "https://data.cms.gov/data-api/v1/dataset/",
 #'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
@@ -61,97 +61,58 @@ dataset_Publisher <- new_class(
 #'
 #' @autoglobal
 #' @export
-public_Identifier <- new_class(
-  name       = "public_Identifier",
+Identifier <- new_class(
+  name       = "Identifier",
   properties = list(
-    url      = null_character,
-    request  = new_property(
-      class  = null_list,
-      getter = function(self) request(self@url)),
+    url      = class_character,
     rows     = new_property(
-      class  = null_integer,
+      class  = class_integer,
       getter = function(self) {
-        if (is_online()) {
-          req_url_path_append(self@request, "stats") |>
-            req_perform() |>
-            resp_body_json(simplifyVector = TRUE) |>
-            gelm("total_rows")
-        }}),
+        req <- if (sf_detect(self@url, "provider-data")) {
+          req_url_query(request(self@url), limit = 1, offset = 0)
+        } else {
+          req_url_path_append(request(self@url), "stats")
+        }
+
+          req <- req_perform(req) |>
+            resp_body_json(
+              simplifyVector = TRUE,
+              check_type = FALSE)
+
+          ifelse(
+            sf_detect(self@url, "provider-data"),
+            getelem(getelem(req, "count"), "count"),
+            getelem(req, "total_rows"))
+      }),
     fields   = new_property(
-      class  = null_character,
+      class  = class_character,
       getter = function(self) {
-        if (is_online()) {
-            req_url_query(self@request, size = 1, offset = 0) |>
-            req_perform() |>
-            resp_body_json(simplifyVector = TRUE) |>
-            gelm("meta") |>
-            gelm("headers")
-        }})
+
+        resp <- request(self@url) |>
+          req_url_query(limit = 1, offset = 0) |>
+          req_perform() |>
+          resp_body_json(simplifyVector = TRUE,
+                         check_type = FALSE)
+
+        ifelse(
+          sf_detect(self@url, "provider-data"),
+          getelem(getelem(resp, "query"), "properties"),
+          getelem(getelem(resp, "meta"), "headers"))
+      })
     ),
     validator = function(self) {
       if (length(self@url) != 1L) "@url must be length 1"
     }
   )
 
-#' provider_Identifier Class
+#' Resources Class
 #'
-#' `provider_Identifier` object
-#'
-#' @param id `<chr>` identifier
-#' @returns `<S7_class>` provider_Identifier object
-#' @examples
-#' provider_Identifier(id = "mj5m-pzi6")
-#'
-#' @autoglobal
-#' @export
-provider_Identifier <- new_class(
-  name       = "provider_Identifier",
-  properties = list(
-    id       = null_character,
-    request  = new_property(
-      class  = null_list,
-      getter = function(self) {
-        request(paste0(
-          "https://data.cms.gov/",
-          "provider-data/api/1/",
-          "datastore/query/",
-          self@id,
-          "/0"))
-        }),
-    rows     = new_property(
-      class  = null_integer,
-      getter = function(self) {
-        if (is_online()) {
-          req_url_query(self@request, limit = 1, offset = 0) |>
-            req_perform() |>
-            resp_body_json(simplifyVector = TRUE) |>
-            gelm("count") |>
-            gelm("count")
-        }}),
-    fields   = new_property(
-      class  = null_character,
-      getter = function(self) {
-        if (is_online()) {
-          req_url_query(self@request, limit = 1, offset = 0) |>
-            req_perform() |>
-            resp_body_json(simplifyVector = TRUE) |>
-            gelm("query") |>
-            gelm("properties")
-        }})
-  ),
-  validator = function(self) {
-    if (length(self@id) != 1L) "@id must be length 1"
-  }
-)
-
-#' dataset_Resources Class
-#'
-#' `dataset_Resources` object
+#' `Resources` object
 #'
 #' @param url `<chr>` resourcesAPI url
 #' @returns `<S7_class>` dataset_Resources object
 #' @examples
-#' dataset_Resources(url = paste0(
+#' Resources(url = paste0(
 #'    "https://data.cms.gov/",
 #'    "data-api/v1/dataset-resources/",
 #'    "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
@@ -159,8 +120,8 @@ provider_Identifier <- new_class(
 #'
 #' @autoglobal
 #' @export
-dataset_Resources <- new_class(
-  name = "dataset_Resources",
+Resources <- new_class(
+  name = "Resources",
   properties = list(
     url      = null_character,
     files    = new_property(
@@ -213,18 +174,18 @@ Dataset <- new_class(
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = null_character,
     bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = dataset_contactPoint,
+    contactPoint       = ContactPoint,
     describedBy        = null_character,
     description        = class_character,
-    identifier         = new_property(public_Identifier | provider_Identifier),
+    identifier         = Identifier,
     keyword            = null_character,
     landingPage        = class_character,
     modified           = null_dbl_Date,
     programCode        = new_property(class_character, default = "009:000"),
-    publisher          = dataset_Publisher,
+    publisher          = Publisher,
     references         = class_character,
     temporal           = null_character,
-    resourcesAPI       = dataset_Resources
+    resourcesAPI       = Resources
   )
 )
 
@@ -260,13 +221,13 @@ Distribution <- new_class(
     accessLevel        = new_property(class_character, default = "public"),
     accrualPeriodicity = class_character,
     bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = dataset_contactPoint,
+    contactPoint       = ContactPoint,
     describedBy        = class_character,
     description        = class_character,
     keyword            = class_character,
     landingPage        = class_character,
     programCode        = new_property(class_character, default = "009:000"),
-    publisher          = dataset_Publisher,
+    publisher          = Publisher,
     references         = class_character,
     distributions      = class_list
   )

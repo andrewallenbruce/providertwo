@@ -10,18 +10,18 @@ Dataset(
   accessLevel = "public",
   accrualPeriodicity = NULL,
   bureauCode = "009:38",
-  contactPoint = dataset_contactPoint(),
+  contactPoint = ContactPoint(),
   describedBy = NULL,
   description = character(0),
-  identifier = public_Identifier(),
+  identifier = Identifier(),
   keyword = NULL,
   landingPage = character(0),
   modified = NULL,
   programCode = "009:000",
-  publisher = dataset_Publisher(),
+  publisher = Publisher(),
   references = character(0),
   temporal = NULL,
-  resourcesAPI = dataset_Resources()
+  resourcesAPI = Resources()
 )
 }
 \arguments{

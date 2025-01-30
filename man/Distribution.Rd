@@ -10,13 +10,13 @@ Distribution(
   accessLevel = "public",
   accrualPeriodicity = character(0),
   bureauCode = "009:38",
-  contactPoint = dataset_contactPoint(),
+  contactPoint = ContactPoint(),
   describedBy = character(0),
   description = character(0),
   keyword = character(0),
   landingPage = character(0),
   programCode = "009:000",
-  publisher = dataset_Publisher(),
+  publisher = Publisher(),
   references = character(0),
   distributions = list()
 )
