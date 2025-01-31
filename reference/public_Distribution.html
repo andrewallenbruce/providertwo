@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9059</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9060</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="va">dataset</span>, fname <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,6 +55,10 @@
 <dl><dt id="arg-dataset">dataset<a class="anchor" aria-label="anchor" href="#arg-dataset"></a></dt>
 <dd><p><code>&lt;chr&gt;</code> dataset title</p></dd>
 
+
+<dt id="arg-fname">fname<a class="anchor" aria-label="anchor" href="#arg-fname"></a></dt>
+<dd><p><code>&lt;lgl&gt;</code> Is <code>dataset</code> a function name?; default is <code>TRUE</code></p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -63,7 +67,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"Public Provider Enrollment"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"Public Provider Enrollment"</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::Distribution&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Medicare Fee-For-Service  Public Provider Enrollment"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Distribution"</span>
@@ -91,7 +95,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resourcesAPI: chr [1:8] "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541" "https://data.cms.gov/data-api/v1/dataset-resources/57312fe7-f2cc-4cda-b4a0-78d9edb42f67" "https://data.cms.gov/data-api/v1/dataset-resources/8d9854d3-6b9f-49df-b315-5e4e50df7aa7" "https://data.cms.gov/data-api/v1/dataset-resources/a5cac43c-010d-4190-9395-d8841b1c5cc6" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL : chr [1:8] "https://data.cms.gov/sites/default/files/2025-01/8ced283e-4017-4b90-b511-142aabb8531b/PPEF_Enrollment_Extract_2025.01.02.csv" "https://data.cms.gov/sites/default/files/2024-10/8e1bbada-e9a4-4a4c-9017-539c5cb1fff8/PPEF_Enrollment_Extract_2024.10.07.csv" "https://data.cms.gov/sites/default/files/2024-07/0c28f2f8-4153-421c-a9b7-72a5be89d9e6/PPEF_Enrollment_Extract_2024.07.01.csv" "https://data.cms.gov/sites/default/files/2024-04/07dedcbc-ff73-4097-a83d-7be34d526aa9/PPEF_Enrollment_Extract_2024.04.01.csv" ...</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"Quality Payment Program Experience"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"Quality Payment Program Experience"</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::Distribution&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Quality Payment Program Experience"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Distribution"</span>
