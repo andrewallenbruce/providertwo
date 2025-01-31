@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9060 (2025-01-31)
+
+* added function name to dataset title lookup
+
+
 # providertwo 0.0.0.9059 (2025-01-30)
 
 * added limit checks
