@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9058 (2025-01-30)
+
+* initial draft: `request` -> `response` -> `return` flow
+
+
 # providertwo 0.0.0.9057 (2025-01-30)
 
 * tweaks to classes
