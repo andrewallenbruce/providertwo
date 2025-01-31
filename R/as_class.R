@@ -2,19 +2,23 @@
 #'
 #' @param dataset `<chr>` dataset title
 #'
+#' @param fname `<lgl>` Is `dataset` a function name?; default is `TRUE`
+#'
 #' @returns `<Dataset>` object
 #'
 #' @examples
-#' public_Dataset("Public Provider Enrollment")
+#' public_Dataset("Public Provider Enrollment", FALSE)
 #'
-#' public_Dataset("Hospital Enrollments")
+#' public_Dataset("Hospital Enrollments", FALSE)
 #'
 #' @autoglobal
 #'
 #' @export
-public_Dataset <- \(dataset) {
+public_Dataset <- \(dataset, fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
+
+  dataset <- if (fname) public(dataset) else dataset
 
   a <- c(
     as.list(sbt(gelm(.__public, "dataset"), sf_detect(title, dataset))),
@@ -43,19 +47,23 @@ public_Dataset <- \(dataset) {
 #'
 #' @param dataset `<chr>` dataset title
 #'
+#' @param fname `<lgl>` Is `dataset` a function name?; default is `TRUE`
+#'
 #' @returns `<Distribution>` object
 #'
 #' @examples
-#' public_Distribution("Public Provider Enrollment")
+#' public_Distribution("Public Provider Enrollment", FALSE)
 #'
-#' public_Distribution("Quality Payment Program Experience")
+#' public_Distribution("Quality Payment Program Experience", FALSE)
 #'
 #' @autoglobal
 #'
 #' @export
-public_Distribution <- \(dataset) {
+public_Distribution <- \(dataset, fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
+
+  dataset <- if (fname) public(dataset) else dataset
 
   a <- c(
     as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),

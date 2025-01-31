@@ -4,10 +4,12 @@
 \alias{public_Distribution}
 \title{Load Public API \code{Distribution}}
 \usage{
-public_Distribution(dataset)
+public_Distribution(dataset, fname = TRUE)
 }
 \arguments{
 \item{dataset}{\verb{<chr>} dataset title}
+
+\item{fname}{\verb{<lgl>} Is \code{dataset} a function name?; default is \code{TRUE}}
 }
 \value{
 \verb{<Distribution>} object
@@ -16,8 +18,8 @@ public_Distribution(dataset)
 Load Public API \code{Distribution}
 }
 \examples{
-public_Distribution("Public Provider Enrollment")
+public_Distribution("Public Provider Enrollment", FALSE)
 
-public_Distribution("Quality Payment Program Experience")
+public_Distribution("Quality Payment Program Experience", FALSE)
 
 }

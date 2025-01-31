@@ -79,7 +79,7 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- public_Dataset(public("enrollees"))
+  api <- public_Dataset("enrollees")
 
   cat(format(api@title), "\n")
 
@@ -87,8 +87,7 @@ enrollees <- function(npi       = NULL,
     label  = "==>",
     offset = 2,
     c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
-      paste0("Last Modified:       ", format(api@modified)))
-  ) |>
+      paste0("Last Modified:       ", format(api@modified)))) |>
     writeLines()
 
   cat("\n")

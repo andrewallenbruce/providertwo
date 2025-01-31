@@ -4,10 +4,12 @@
 \alias{public_Dataset}
 \title{Load Public API \code{Dataset}}
 \usage{
-public_Dataset(dataset)
+public_Dataset(dataset, fname = TRUE)
 }
 \arguments{
 \item{dataset}{\verb{<chr>} dataset title}
+
+\item{fname}{\verb{<lgl>} Is \code{dataset} a function name?; default is \code{TRUE}}
 }
 \value{
 \verb{<Dataset>} object
@@ -16,8 +18,8 @@ public_Dataset(dataset)
 Load Public API \code{Dataset}
 }
 \examples{
-public_Dataset("Public Provider Enrollment")
+public_Dataset("Public Provider Enrollment", FALSE)
 
-public_Dataset("Hospital Enrollments")
+public_Dataset("Hospital Enrollments", FALSE)
 
 }
