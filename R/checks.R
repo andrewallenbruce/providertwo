@@ -61,3 +61,21 @@ check_luhn <- function(x) {
     luhn_check(x)
   }
 }
+
+#' Check Public API Limit
+#' @param limit `<int>` API limit
+#' @returns Nothing if valid, aborts otherwise
+#' @autoglobal
+#' @noRd
+check_public_limit <- \(limit) {
+  check_number_whole(limit, min = 0, max = 5000)
+}
+
+#' Check Provider API Limit
+#' @param limit `<int>` API limit
+#' @returns Nothing if valid, aborts otherwise
+#' @autoglobal
+#' @noRd
+check_provider_limit <- \(limit) {
+  check_number_whole(limit, min = 0, max = 2000)
+}

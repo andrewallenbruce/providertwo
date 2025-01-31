@@ -2,7 +2,7 @@
 % Please edit documentation in R/as_class.R
 \name{public_Distribution}
 \alias{public_Distribution}
-\title{Populate a public_Distribution class object}
+\title{Load Public API \code{Distribution}}
 \usage{
 public_Distribution(dataset)
 }
@@ -10,12 +10,14 @@ public_Distribution(dataset)
 \item{dataset}{\verb{<chr>} dataset title}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<Distribution>} object
 }
 \description{
-Populate a public_Distribution class object
+Load Public API \code{Distribution}
 }
 \examples{
-public_Distribution(dataset = "Public Provider Enrollment")
+public_Distribution("Public Provider Enrollment")
+
+public_Distribution("Quality Payment Program Experience")
 
 }

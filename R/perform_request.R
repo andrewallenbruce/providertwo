@@ -164,7 +164,7 @@ perform_request <- \(url, query, limit) {
       return(
         req_perform_iterative(
           req,
-          next_req        = iterate_with_offset(
+          next_req      = iterate_with_offset(
           param_name    = "offset",
           start         = 0,
           offset        = limit,

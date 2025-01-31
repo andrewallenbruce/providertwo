@@ -1,12 +1,13 @@
-#' Populate a public_Dataset class object
+#' Load Public API `Dataset`
 #'
 #' @param dataset `<chr>` dataset title
 #'
-#' @returns `<S7_class>` object
+#' @returns `<Dataset>` object
 #'
 #' @examples
-#' public_Dataset(dataset = "Public Provider Enrollment")
-#' public_Dataset(dataset = "Hospital Enrollments")
+#' public_Dataset("Public Provider Enrollment")
+#'
+#' public_Dataset("Hospital Enrollments")
 #'
 #' @autoglobal
 #'
@@ -38,14 +39,16 @@ public_Dataset <- \(dataset) {
 
 }
 
-#' Populate a public_Distribution class object
+#' Load Public API `Distribution`
 #'
 #' @param dataset `<chr>` dataset title
 #'
-#' @returns `<S7_class>` object
+#' @returns `<Distribution>` object
 #'
 #' @examples
-#' public_Distribution(dataset = "Public Provider Enrollment")
+#' public_Distribution("Public Provider Enrollment")
+#'
+#' public_Distribution("Quality Payment Program Experience")
 #'
 #' @autoglobal
 #'

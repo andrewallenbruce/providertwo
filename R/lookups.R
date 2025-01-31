@@ -1,3 +1,31 @@
+#' Public Catalog Dataset/Distribution Names
+#' @autoglobal
+#' @noRd
+public <- \(x) {
+  nswitch(
+    x,
+    "enrollees",             "Medicare Fee-For-Service  Public Provider Enrollment",
+    "opt_out",               "Opt Out Affidavits",
+    "order_refer",           "Order and Referring",
+    "reassignments",         "Revalidation Reassignment List",
+    "hospitals",             "Hospital Enrollments",
+    "laboratories",          "Provider of Services File - Clinical Laboratories",
+    "quality_payment",       "Quality Payment Program Experience",
+    "crosswalk",             "Medicare Provider and Supplier Taxonomy Crosswalk",
+    "rbcs",                  "Restructured BETOS Classification System",
+    "pending_nonphysicians", "Pending Initial Logging and Tracking Non Physicians",
+    "pending_physicians",    "Pending Initial Logging and Tracking Physicians",
+    "prescribers_drug",      "Medicare Part D Prescribers - by Provider and Drug",
+    "prescribers_provider",  "Medicare Part D Prescribers - by Provider",
+    "prescribers_geography", "Medicare Part D Prescribers - by Geography and Drug",
+    "utilization_service",   "Medicare Physician & Other Practitioners - by Provider and Service",
+    "utilization_provider",  "Medicare Physician & Other Practitioners - by Provider",
+    "utilization_geography", "Medicare Physician & Other Practitioners - by Geography and Service",
+    default = NA_character_,
+    nThread = 4L
+  )
+}
+
 #' ISO 8601 Recurring Time Intervals
 #'
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/as_class.R
 \name{public_Dataset}
 \alias{public_Dataset}
-\title{Populate a public_Dataset class object}
+\title{Load Public API \code{Dataset}}
 \usage{
 public_Dataset(dataset)
 }
@@ -10,13 +10,14 @@ public_Dataset(dataset)
 \item{dataset}{\verb{<chr>} dataset title}
 }
 \value{
-\verb{<S7_class>} object
+\verb{<Dataset>} object
 }
 \description{
-Populate a public_Dataset class object
+Load Public API \code{Dataset}
 }
 \examples{
-public_Dataset(dataset = "Public Provider Enrollment")
-public_Dataset(dataset = "Hospital Enrollments")
+public_Dataset("Public Provider Enrollment")
+
+public_Dataset("Hospital Enrollments")
 
 }

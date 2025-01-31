@@ -64,7 +64,7 @@ enrollees <- function(npi       = NULL,
                       gender    = NULL,
                       limit     = 5000) {
 
-  check_number_whole(limit, min = 0)
+  check_public_limit(limit)
 
   args <- list2(
     "NPI"                = npi,
@@ -79,7 +79,7 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- public_Dataset("Public Provider Enrollment")
+  api <- public_Dataset(public("enrollees"))
 
   cat(format(api@title), "\n")
 
