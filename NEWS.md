@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9059 (2025-01-30)
+
+* added limit checks
+
+
 # providertwo 0.0.0.9058 (2025-01-30)
 
 * initial draft: `request` -> `response` -> `return` flow
