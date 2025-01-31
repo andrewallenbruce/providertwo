@@ -49,6 +49,8 @@ utils::globalVariables(c(
   # <Catalog_provider>
   # <Catalog_openpayments>
   "modified",
+  # <Catalog_openpayments>
+  "modified_dttm",
   # <Catalog_provider>
   # <Catalog_openpayments>
   "programCode",
@@ -74,6 +76,8 @@ utils::globalVariables(c(
   # <public_Dataset>
   # <public_Distribution>
   "title",
+  # <fields_provider>
+  "x",
   # <Catalog_openpayments>
   "year",
   NULL

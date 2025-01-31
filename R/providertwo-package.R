@@ -3,7 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom RcppSimdJson fparse fload
-#' @importFrom collapse %==% qTBL mtt slt sbt colorder rowbind add_vars
+#' @importFrom collapse %==% qTBL mtt slt sbt colorder rowbind add_vars join
 #' @importFrom cheapr cheapr_rev seq_ which_
 #' @importFrom kit nswitch
 #' @importFrom stats setNames

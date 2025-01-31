@@ -68,42 +68,28 @@ Identifier <- new_class(
     rows     = new_property(
       class  = class_integer,
       getter = function(self) {
-        req <- if (sf_detect(self@url, "provider-data")) {
-          req_url_query(request(self@url), limit = 1, offset = 0)
-        } else {
-          req_url_path_append(request(self@url), "stats")
-        }
-
-          req <- req_perform(req) |>
-            resp_body_json(
-              simplifyVector = TRUE,
-              check_type = FALSE)
-
-          ifelse(
-            sf_detect(self@url, "provider-data"),
-            getelem(getelem(req, "count"), "count"),
-            getelem(req, "total_rows"))
-      }),
+        ifelse(
+          sf_detect(
+            self@url,
+            "provider-data"),
+          nrows_provider(self@url),
+          nrows_public(self@url))
+        }),
     fields   = new_property(
       class  = class_character,
       getter = function(self) {
-
-        resp <- request(self@url) |>
-          req_url_query(limit = 1, offset = 0) |>
-          req_perform() |>
-          resp_body_json(simplifyVector = TRUE,
-                         check_type = FALSE)
-
         ifelse(
-          sf_detect(self@url, "provider-data"),
-          getelem(getelem(resp, "query"), "properties"),
-          getelem(getelem(resp, "meta"), "headers"))
+          sf_detect(
+            self@url,
+            "provider-data"),
+          fields_provider(self@url),
+          fields_public(self@url))
       })
     ),
     validator = function(self) {
       if (length(self@url) != 1L) "@url must be length 1"
-    }
-  )
+  }
+)
 
 #' Resources Class
 #'
@@ -127,15 +113,15 @@ Resources <- new_class(
     files    = new_property(
       class  = null_list,
       getter = function(self) {
-        if (is_online()) {
-          qTBL(fload(self@url, query = "/data")) |>
-            mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
-                fileType = file_ext(downloadURL)) |>
-            colorder(downloadURL, pos = "end")
-        }})
+        qTBL(fload(self@url, query = "/data")) |>
+          mtt(fileSize = trimws(
+            as_chr(parse_bytes(as_chr(fileSize)))),
+              fileType = file_ext(downloadURL)) |>
+          colorder(downloadURL, pos = "end")
+    })
   ),
   validator = function(self) {
-    if (length(self@url) != 1L) paste0("@url must be length 1, not ", length(self@url))
+    if (length(self@url) != 1L) "@url must be length 1"
   }
 )
 

@@ -81,28 +81,6 @@ enrollees <- function(npi       = NULL,
 
   api <- public_Dataset("Public Provider Enrollment")
 
-  nobs <- req_url_query(
-    request(api@identifier@url),
-    !!!format_query(args),
-    size = limit) |>
-    req_url_path_append("stats") |>
-    req_perform() |>
-    resp_body_json(simplifyVector = TRUE) |>
-    gelm("found_rows") |>
-    offset_sequence(limit = limit)
-
-  resp <- req_url_query(
-    request(api@identifier@url),
-    !!!format_query(args),
-    size = limit) |>
-    req_perform_iterative(
-    next_req = iterate_with_offset(
-      "offset",
-      start = 0,
-      offset = 5000,
-      resp_complete = is_complete_with_limit(limit)))
-
-
   cat(format(api@title), "\n")
 
   utils::formatUL(
@@ -110,20 +88,14 @@ enrollees <- function(npi       = NULL,
     offset = 2,
     c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
       paste0("Last Modified:       ", format(api@modified)))
-    ) |>
+  ) |>
     writeLines()
 
   cat("\n")
 
-  map(resp, \(x)
-      resp_body_string(x) |>
-        fparse() |>
-        _[["data"]] |>
-        qTBL()) |>
-    rowbind() |>
-    setNames(names(args)) |>
-    map_na_if()
-
-  # qTBL(resp[["data"]]) |> setNames(names(args))
+  perform_request(
+    url   = api@identifier@url,
+    query = args,
+    limit = limit)
 
 }

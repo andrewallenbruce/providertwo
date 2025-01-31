@@ -21,7 +21,9 @@ public_Dataset <- \(dataset) {
 
   Dataset(
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = ContactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
+    contactPoint       = ContactPoint(type     = gelm(a[["contactPoint"]], "type"),
+                                      fn       = gelm(a[["contactPoint"]], "fn"),
+                                      hasEmail = gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
     identifier         = Identifier(url = a[["identifier"]]),
@@ -58,7 +60,9 @@ public_Distribution <- \(dataset) {
 
   Distribution(
     accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = ContactPoint(type = gelm(a[["contactPoint"]], "type"), fn = gelm(a[["contactPoint"]], "fn"), hasEmail= gelm(a[["contactPoint"]], "hasEmail")),
+    contactPoint       = ContactPoint(type     = gelm(a[["contactPoint"]], "type"),
+                                      fn       = gelm(a[["contactPoint"]], "fn"),
+                                      hasEmail = gelm(a[["contactPoint"]], "hasEmail")),
     describedBy        = a[["describedBy"]],
     description        = a[["description"]],
     keyword            = a[["keyword"]],

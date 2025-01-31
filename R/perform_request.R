@@ -1,51 +1,177 @@
-perform_request <- \(request, query, limit) {
+#' Request number of results from public catalog
+#' @param url `<chr>` API URL
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+nrows_public <- \(url) {
 
-  req <- req_url_query(
-    request,
-    !!!format_query(query),
-    size = limit)
-
-  n <- req_url_path_append(req, "stats") |>
+  request(url) |>
+    req_url_path_append("stats") |>
     req_perform() |>
-    resp_body_json(simplifyVector = TRUE) |>
-    getelem("found_rows")
+    resp_body_json(
+      simplifyVector = TRUE,
+      check_type     = FALSE) |>
+    _[["data"]] |>
+    _[["found_rows"]]
+}
+
+#' Request number of results from provider catalog
+#' @param url `<chr>` API URL
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+nrows_provider <- \(url) {
+  request(url) |>
+    req_url_query(
+      limit   = 1,
+      offset  = 0,
+      count   = "true",
+      results = "false",
+      schema  = "false") |>
+    req_perform() |>
+    resp_body_json(
+      simplifyVector = TRUE,
+      check_type     = FALSE) |>
+    _[["count"]]
+}
+
+#' Request field names from public catalog
+#' @param url `<chr>` API URL
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+fields_public <- \(url) {
+
+  request(url) |>
+    req_url_query(
+      limit  = 1,
+      offset = 0) |>
+    req_perform() |>
+    resp_body_json(
+      simplifyVector = TRUE,
+      check_type     = FALSE) |>
+    _[["meta"]] |>
+    _[["headers"]]
+
+}
+
+#' Request field names from provider catalog
+#' @param url `<chr>` API URL
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+fields_provider <- \(url) {
+
+  request(x) |>
+    req_url_query(
+      limit  = 1,
+      offset = 0) |>
+    req_perform() |>
+    resp_body_json(
+      simplifyVector = TRUE,
+      check_type     = FALSE) |>
+    _[["query"]] |>
+    _[["properties"]]
+
+}
+
+#' Request number of results
+#' @param request `<httr_request>` API request
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+request_nrows <- \(request) {
+
+  req_url_path_append(
+    request,
+    "stats") |>
+    req_perform() |>
+    resp_body_json(
+      simplifyVector = TRUE,
+      check_type     = FALSE) |>
+    _[["data"]] |>
+    _[["found_rows"]]
+
+}
+
+#' Parse JSON response
+#' @param response `<httr_response>` API response
+#' @returns `<tibble>` Parsed JSON response as tibble
+#' @autoglobal
+#' @noRd
+parse_json_response <- \(response) {
+  resp_body_string(response) |>
+    fparse(query = "/data") |>
+    qTBL(keep.attr = TRUE)
+
+}
+
+#' Mapped Parse JSON response
+#' @param response `<httr_response>` API response
+#' @returns `<tibble>` Parsed JSON response as tibble
+#' @autoglobal
+#' @noRd
+map_parse_json_response <- \(response) {
+  map(response, \(x) parse_json_response(x)) |>
+    rowbind()
+}
+
+#' Clean JSON response
+#' @param x `<data.frame>` tibble of API response
+#' @param names `<chr>` vector of column names
+#' @returns `<tibble>` Parsed JSON response as tibble
+#' @autoglobal
+#' @noRd
+tidyup <- \(x, names) {
+  set_names(x, names(names)) |>
+    map_na_if()
+}
+
+#' Perform API request
+#' @param url `<url>` API identifier url
+#' @param query `<chr>` vector of query parameters
+#' @param limit `<int>` API rate limit
+#' @returns `<int>` Number of results
+#' @autoglobal
+#' @noRd
+perform_request <- \(url, query, limit) {
+
+  req <- request(url) |>
+    req_url_query(
+      !!!format_query(query),
+      size = limit)
+
+  n <- request_nrows(req)
 
   if (n == 0) {
     abort(
-      message = c("!" = glue("{n} results found.")),
+      message = c("!" = "0 results found."),
       use_cli_format = TRUE,
       call = caller_env(),
       class = "abort_no_results"
     )
   }
 
-  off_len <- length(offset_sequence(n = n, limit = limit))
+  nreq <- offset_length(n, limit) > 1
 
-  if (off_len == 1) {
+  if (false(nreq)) {
     return(
-      qTBL(
-        fparse(
-          resp_body_string(
-            req_perform(req))) |>
-          _[["data"]]) |>
-        set_names(names(query)) |>
-        map_na_if()
-    )
-  }
-
-  if (off_len > 1) {
-    return(
-      req_perform_iterative(
-        req,
-        next_req        = iterate_with_offset(
+      req_perform(req) |>
+      parse_json_response() |>
+        tidyup(names = query)
+      )
+    } else {
+      return(
+        req_perform_iterative(
+          req,
+          next_req        = iterate_with_offset(
           param_name    = "offset",
           start         = 0,
           offset        = limit,
           resp_complete = is_complete_with_limit(limit))) |>
-        map(\(x) qTBL(fparse(resp_body_string(x)) |> _[["data"]])) |>
-        rowbind() |>
-        set_names(names(query)) |>
-        map_na_if()
-    )
+        map_parse_json_response() |>
+        tidyup(names = query)
+       )
   }
+
 }
