@@ -10,7 +10,7 @@
 #' @export
 Catalog_public <- \() {
 
-  dataset <- fastplyr::as_tbl(
+  dataset <- as_tbl(
     fload("https://data.cms.gov/data.json",
           query = "/dataset")) |>
     slt(title,
@@ -33,7 +33,7 @@ Catalog_public <- \() {
         description        = sf_remove(description, "\n"),
         references         = delist(references))
 
-  distribution <- fastplyr::as_tbl(
+  distribution <- as_tbl(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     mtt(modified = as_date(modified))
 
@@ -61,7 +61,7 @@ Catalog_public <- \() {
 #' @export
 Catalog_provider <- \() {
 
-  dataset <- fastplyr::as_tbl(
+  dataset <- as_tbl(
     fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
     sbt(sf_ndetect(title, "Office Visit Costs$"),
         -`@type`,
@@ -81,7 +81,7 @@ Catalog_provider <- \() {
           identifier,
           "/0"))
 
-  download <- fastplyr::as_tbl(
+  download <- as_tbl(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     add_vars(gelm(dataset, "title"), pos = "front") |>
     slt(-`@type`)
@@ -101,7 +101,7 @@ Catalog_provider <- \() {
 #' @export
 Catalog_openpayments <- \() {
 
-  dataset <- fastplyr::as_tbl(
+  dataset <- as_tbl(
     fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")) |>
     mtt(issued             = as_date(issued),
         modified           = as_date(modified),
@@ -113,7 +113,7 @@ Catalog_openpayments <- \() {
         year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
         modified_dttm      = as_datetime(`%modified`))
 
-  distribution <- fastplyr::as_tbl(rowbind(gelm(identifier, "data"), fill = TRUE))
+  distribution <- as_tbl(rowbind(gelm(identifier, "data"), fill = TRUE))
 
   list(
     dataset = slt(

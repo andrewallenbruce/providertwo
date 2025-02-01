@@ -102,7 +102,7 @@ request_nrows <- \(request) {
 parse_json_response <- \(response) {
   resp_body_string(response) |>
     fparse(query = "/data") |>
-    qTBL(keep.attr = TRUE)
+    as_tbl()
 
 }
 

@@ -105,7 +105,7 @@ Resources <- new_class(
     files    = new_property(
       class  = null_list,
       getter = function(self) {
-        qTBL(fload(self@url, query = "/data")) |>
+        as_tbl(fload(self@url, query = "/data")) |>
           mtt(fileSize = trimws(
             as_chr(parse_bytes(as_chr(fileSize)))),
               fileType = file_ext(downloadURL)) |>
