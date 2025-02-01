@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9062 (2025-01-31)
+
+* removed all `collapse::qTBL` calls
+
+
 # providertwo 0.0.0.9061 (2025-01-31)
 
 * replace `collapse::qTBL` calls with `fastplyr::as_tbl`
