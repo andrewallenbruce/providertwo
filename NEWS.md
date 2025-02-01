@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9063 (2025-01-31)
+
+* use func name when loading dataset
+
+
 # providertwo 0.0.0.9062 (2025-01-31)
 
 * removed all `collapse::qTBL` calls
