@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9061 (2025-01-31)
+
+* replace `collapse::qTBL` calls with `fastplyr::as_tbl`
+
+
 # providertwo 0.0.0.9060 (2025-01-31)
 
 * added function name to dataset title lookup
