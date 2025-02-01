@@ -1,6 +1,6 @@
 #' CMS Public Catalog
 #'
-#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
+#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`
 #'
 #' @examples
 #' Catalog_public()
@@ -10,8 +10,12 @@
 #' @export
 Catalog_public <- \() {
 
-  dataset <- qTBL(gelm(fload("https://data.cms.gov/data.json"), "dataset")) |>
-    slt(title, accrualPeriodicity, contactPoint,
+  dataset <- fastplyr::as_tbl(
+    fload("https://data.cms.gov/data.json",
+          query = "/dataset")) |>
+    slt(title,
+        accrualPeriodicity,
+        contactPoint,
         describedBy,
         description,
         distribution,
@@ -29,15 +33,17 @@ Catalog_public <- \() {
         description        = sf_remove(description, "\n"),
         references         = delist(references))
 
-  distribution <- qTBL(
+  distribution <- fastplyr::as_tbl(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     mtt(modified = as_date(modified))
 
   list(
     dataset      = slt(dataset, -distribution),
     distribution = join(
-      sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
-      sbt(distribution, mediaType %==% "text/csv", title, temporal, downloadURL),
+      sbt(distribution, not_na(format) & na(description),
+          title, modified, temporal, accessURL, resourcesAPI),
+      sbt(distribution, mediaType %==% "text/csv",
+          title, temporal, downloadURL),
       on = c("title", "temporal"),
       verbose = 0)
     )
@@ -55,16 +61,15 @@ Catalog_public <- \() {
 #' @export
 Catalog_provider <- \() {
 
-  dataset <- qTBL(
+  dataset <- fastplyr::as_tbl(
     fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
-    sbt(
-      sf_ndetect(title, "Office Visit Costs$"),
-      -`@type`,
-      -accessLevel,
-      -bureauCode,
-      -programCode,
-      -archiveExclude,
-      -publisher) |>
+    sbt(sf_ndetect(title, "Office Visit Costs$"),
+        -`@type`,
+        -accessLevel,
+        -bureauCode,
+        -programCode,
+        -archiveExclude,
+        -publisher) |>
     mtt(issued      = as_date(issued),
         modified    = as_date(modified),
         released    = as_date(released),
@@ -76,7 +81,7 @@ Catalog_provider <- \() {
           identifier,
           "/0"))
 
-  download <- qTBL(
+  download <- fastplyr::as_tbl(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
     add_vars(gelm(dataset, "title"), pos = "front") |>
     slt(-`@type`)
@@ -96,9 +101,8 @@ Catalog_provider <- \() {
 #' @export
 Catalog_openpayments <- \() {
 
-  dataset <- qTBL(
-    fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids"),
-    keep.attr = TRUE) |>
+  dataset <- fastplyr::as_tbl(
+    fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")) |>
     mtt(issued             = as_date(issued),
         modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
@@ -109,7 +113,7 @@ Catalog_openpayments <- \() {
         year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
         modified_dttm      = as_datetime(`%modified`))
 
-  distribution <- qTBL(rowbind(gelm(identifier, "data"), fill = TRUE), keep.attr = TRUE)
+  distribution <- fastplyr::as_tbl(rowbind(gelm(identifier, "data"), fill = TRUE))
 
   list(
     dataset = slt(

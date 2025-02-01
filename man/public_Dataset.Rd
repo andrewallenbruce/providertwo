@@ -18,6 +18,8 @@ public_Dataset(dataset, fname = TRUE)
 Load Public API \code{Dataset}
 }
 \examples{
+public_Dataset("enrollees")
+
 public_Dataset("Public Provider Enrollment", FALSE)
 
 public_Dataset("Hospital Enrollments", FALSE)

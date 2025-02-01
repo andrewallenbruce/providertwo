@@ -7,6 +7,8 @@
 #' @returns `<Dataset>` object
 #'
 #' @examples
+#' public_Dataset("enrollees")
+#'
 #' public_Dataset("Public Provider Enrollment", FALSE)
 #'
 #' public_Dataset("Hospital Enrollments", FALSE)
@@ -14,15 +16,15 @@
 #' @autoglobal
 #'
 #' @export
-public_Dataset <- \(dataset, fname = TRUE) {
+public_Dataset <- \(dataset,
+                    fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
   dataset <- if (fname) public(dataset) else dataset
 
-  a <- c(
-    as.list(sbt(gelm(.__public, "dataset"), sf_detect(title, dataset))),
-    as.list(sbt(gelm(.__public, "distribution"), sf_detect(title, dataset))[1, 5]))
+  a <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
+         as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]))
 
   Dataset(
     accrualPeriodicity = a[["accrualPeriodicity"]],

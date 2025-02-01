@@ -53,11 +53,7 @@ Publisher <- new_class(
 #' @param url `<chr>` identifier url
 #' @returns `<S7_class>` Identifier object
 #' @examples
-#' Identifier(url =
-#'    paste0(
-#'    "https://data.cms.gov/data-api/v1/dataset/",
-#'    "2457ea29-fc82-48b0-86ec-3b0755de7515/",
-#'    "data-viewer"))
+#' # Identifier(ex_identifier_url)
 #'
 #' @autoglobal
 #' @export
@@ -95,14 +91,10 @@ Identifier <- new_class(
 #'
 #' `Resources` object
 #'
-#' @param url `<chr>` resourcesAPI url
-#' @returns `<S7_class>` dataset_Resources object
+#' @param url `<chr>` `resourcesAPI` url
+#' @returns `<S7_class>` Resources object
 #' @examples
-#' Resources(url = paste0(
-#'    "https://data.cms.gov/",
-#'    "data-api/v1/dataset-resources/",
-#'    "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
-#'    ))
+#' # Resources(ex_resource_url)
 #'
 #' @autoglobal
 #' @export

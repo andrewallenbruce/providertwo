@@ -7,19 +7,15 @@
 Resources(url = NULL)
 }
 \arguments{
-\item{url}{\verb{<chr>} resourcesAPI url}
+\item{url}{\verb{<chr>} \code{resourcesAPI} url}
 }
 \value{
-\verb{<S7_class>} dataset_Resources object
+\verb{<S7_class>} Resources object
 }
 \description{
 \code{Resources} object
 }
 \examples{
-Resources(url = paste0(
-   "https://data.cms.gov/",
-   "data-api/v1/dataset-resources/",
-   "7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
-   ))
+# Resources(ex_resource_url)
 
 }

@@ -79,7 +79,7 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- public_Dataset("enrollees")
+  api <- public_Dataset("Public Provider Enrollment", FALSE)
 
   cat(format(api@title), "\n")
 

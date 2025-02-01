@@ -4,7 +4,7 @@
 public <- \(x) {
   nswitch(
     x,
-    "enrollees",             "Medicare Fee-For-Service  Public Provider Enrollment",
+    "enrollees",             "Public Provider Enrollment",  # "Medicare Fee-For-Service  Public Provider Enrollment",
     "opt_out",               "Opt Out Affidavits",
     "order_refer",           "Order and Referring",
     "reassignments",         "Revalidation Reassignment List",

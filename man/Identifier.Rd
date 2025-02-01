@@ -16,10 +16,6 @@ Identifier(url = character(0))
 \code{Identifier} object
 }
 \examples{
-Identifier(url =
-   paste0(
-   "https://data.cms.gov/data-api/v1/dataset/",
-   "2457ea29-fc82-48b0-86ec-3b0755de7515/",
-   "data-viewer"))
+# Identifier(ex_identifier_url)
 
 }

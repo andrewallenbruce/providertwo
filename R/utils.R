@@ -124,6 +124,12 @@ as_datetime <- \(x) {
 
 }
 
+#' @noRd
+ex_resource_url   <- "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
+
+#' @noRd
+ex_identifier_url <- "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"
+
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
 #'

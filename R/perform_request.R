@@ -44,7 +44,7 @@ fields_public <- \(url) {
 
   request(url) |>
     req_url_query(
-      limit  = 1,
+      size   = 1,
       offset = 0) |>
     req_perform() |>
     resp_body_json(
@@ -62,7 +62,7 @@ fields_public <- \(url) {
 #' @noRd
 fields_provider <- \(url) {
 
-  request(x) |>
+  request(url) |>
     req_url_query(
       limit  = 1,
       offset = 0) |>

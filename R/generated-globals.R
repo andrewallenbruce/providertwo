@@ -76,8 +76,6 @@ utils::globalVariables(c(
   # <public_Dataset>
   # <public_Distribution>
   "title",
-  # <fields_provider>
-  "x",
   # <Catalog_openpayments>
   "year",
   NULL

@@ -7,7 +7,7 @@
 Catalog_public()
 }
 \value{
-\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{distribution}, \code{downloads}
+\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{distribution}
 }
 \description{
 CMS Public Catalog
