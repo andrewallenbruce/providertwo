@@ -74,12 +74,7 @@ Identifier <- new_class(
     fields   = new_property(
       class  = class_character,
       getter = function(self) {
-        ifelse(
-          sf_detect(
-            self@url,
-            "provider-data"),
-          fields_provider(self@url),
-          fields_public(self@url))
+        get_fields(self@url)
       })
     ),
     validator = function(self) {

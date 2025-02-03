@@ -37,7 +37,7 @@ nrows_provider <- \(url) {
 
 #' Request field names from public catalog
 #' @param url `<chr>` API URL
-#' @returns `<int>` Number of results
+#' @returns `<chr>` Field names
 #' @autoglobal
 #' @noRd
 fields_public <- \(url) {
@@ -57,7 +57,7 @@ fields_public <- \(url) {
 
 #' Request field names from provider catalog
 #' @param url `<chr>` API URL
-#' @returns `<int>` Number of results
+#' @returns `<chr>` Field names
 #' @autoglobal
 #' @noRd
 fields_provider <- \(url) {
@@ -73,6 +73,19 @@ fields_provider <- \(url) {
     _[["query"]] |>
     _[["properties"]]
 
+}
+
+#' Request field names from catalog
+#' @param url `<chr>` API URL
+#' @returns `<chr>` Field names
+#' @autoglobal
+#' @noRd
+get_fields <- \(url) {
+  if (sf_detect(url, "provider-data")) {
+    fields_provider(url)
+  } else {
+    fields_public(url)
+  }
 }
 
 #' Request number of results
