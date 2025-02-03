@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9064 (2025-02-03)
+
+* fixed bug in get_fields (removed ifelse call)
+
+
 # providertwo 0.0.0.9063 (2025-01-31)
 
 * use func name when loading dataset
