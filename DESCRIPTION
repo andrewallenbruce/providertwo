@@ -38,12 +38,12 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
-    'as_class.R'
     'checks.R'
     'props.R'
     'classes.R'
     'enrollees.R'
     'generated-globals.R'
+    'get_nrows_fields.R'
     'import-standalone-helpers.R'
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
@@ -52,5 +52,6 @@ Collate:
     'perform_request.R'
     'providertwo-package.R'
     'query.R'
+    'select_public.R'
     'utils.R'
     'zzz.R'

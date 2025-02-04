@@ -64,12 +64,7 @@ Identifier <- new_class(
     rows     = new_property(
       class  = class_integer,
       getter = function(self) {
-        ifelse(
-          sf_detect(
-            self@url,
-            "provider-data"),
-          nrows_provider(self@url),
-          nrows_public(self@url))
+        get_nrows(self@url)
         }),
     fields   = new_property(
       class  = class_character,

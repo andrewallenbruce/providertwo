@@ -1,99 +1,9 @@
-#' Request number of results from public catalog
-#' @param url `<chr>` API URL
-#' @returns `<int>` Number of results
-#' @autoglobal
-#' @noRd
-nrows_public <- \(url) {
-
-  request(url) |>
-    req_url_path_append("stats") |>
-    req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
-    _[["data"]] |>
-    _[["found_rows"]]
-}
-
-#' Request number of results from provider catalog
-#' @param url `<chr>` API URL
-#' @returns `<int>` Number of results
-#' @autoglobal
-#' @noRd
-nrows_provider <- \(url) {
-  request(url) |>
-    req_url_query(
-      limit   = 1,
-      offset  = 0,
-      count   = "true",
-      results = "false",
-      schema  = "false") |>
-    req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
-    _[["count"]]
-}
-
-#' Request field names from public catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @noRd
-fields_public <- \(url) {
-
-  request(url) |>
-    req_url_query(
-      size   = 1,
-      offset = 0) |>
-    req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
-    _[["meta"]] |>
-    _[["headers"]]
-
-}
-
-#' Request field names from provider catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @noRd
-fields_provider <- \(url) {
-
-  request(url) |>
-    req_url_query(
-      limit  = 1,
-      offset = 0) |>
-    req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
-    _[["query"]] |>
-    _[["properties"]]
-
-}
-
-#' Request field names from catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @noRd
-get_fields <- \(url) {
-  if (sf_detect(url, "provider-data")) {
-    fields_provider(url)
-  } else {
-    fields_public(url)
-  }
-}
-
 #' Request number of results
 #' @param request `<httr_request>` API request
 #' @returns `<int>` Number of results
 #' @autoglobal
 #' @noRd
-request_nrows <- \(request) {
+query_nrows <- function(request) {
 
   req_url_path_append(
     request,
@@ -112,7 +22,7 @@ request_nrows <- \(request) {
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
 #' @noRd
-parse_json_response <- \(response) {
+parse_json_response <- function(response) {
   resp_body_string(response) |>
     fparse(query = "/data") |>
     as_tbl()
@@ -124,7 +34,7 @@ parse_json_response <- \(response) {
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
 #' @noRd
-map_parse_json_response <- \(response) {
+map_parse_json_response <- function(response) {
   map(response, \(x) parse_json_response(x)) |>
     rowbind()
 }
@@ -135,7 +45,7 @@ map_parse_json_response <- \(response) {
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
 #' @noRd
-tidyup <- \(x, names) {
+tidyup <- function(x, names) {
   set_names(x, names(names)) |>
     map_na_if()
 }
@@ -147,14 +57,14 @@ tidyup <- \(x, names) {
 #' @returns `<int>` Number of results
 #' @autoglobal
 #' @noRd
-perform_request <- \(url, query, limit) {
+perform_request <- function(url, query, limit) {
 
   req <- request(url) |>
     req_url_query(
       !!!format_query(query),
       size = limit)
 
-  n <- request_nrows(req)
+  n <- query_nrows(req)
 
   if (n == 0) {
     abort(
