@@ -52,7 +52,7 @@ public_Dataset <- \(dataset,
 #' @returns `<Distribution>` object
 #'
 #' @examples
-#' # public_Distribution("utilization_provider")
+#' public_Distribution("utilization_provider")
 #'
 #' public_Distribution("quality_payment")
 #'
@@ -66,7 +66,7 @@ public_Distribution <- \(dataset, fname = TRUE) {
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
   a <- c(
-    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),
+    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))[1, ]),
     list(distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset))))
 
   Distribution(

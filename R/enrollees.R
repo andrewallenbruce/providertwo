@@ -81,7 +81,7 @@ enrollees <- function(npi       = NULL,
 
   api <- public_Dataset("enrollees")
 
-  cat(format(api@title), "\n")
+  cat(format(gsub("  ", " ", api@title)), "\n")
 
   utils::formatUL(
     label  = "==>",
