@@ -79,3 +79,16 @@ check_public_limit <- \(limit) {
 check_provider_limit <- \(limit) {
   check_number_whole(limit, min = 0, max = 2000)
 }
+
+#' Check Function parameters are valid API fields
+#' @param params `<chr>` vector of function parameters
+#' @param fields `<chr>` vector of API field names
+#' @returns Nothing if valid, aborts otherwise
+#' @autoglobal
+#' @noRd
+check_params_fields <- \(params, fields) {
+  if (!any(params %in% fields)) {
+    invalid_params <- setdiff(params, fields)
+    abort(glue("Invalid Parameter(s): {invalid_params}"))
+  }
+}

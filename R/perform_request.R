@@ -1,17 +1,15 @@
-#' Request number of results
+#' Request number of results for query
 #' @param request `<httr_request>` API request
 #' @returns `<int>` Number of results
 #' @autoglobal
 #' @noRd
-query_nrows <- function(request) {
+query_nrows_public <- function(request) {
 
   req_url_path_append(
     request,
     "stats") |>
     req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
+    resp_simple_json() |>
     _[["data"]] |>
     _[["found_rows"]]
 
@@ -64,7 +62,7 @@ perform_request <- function(url, query, limit) {
       !!!format_query(query),
       size = limit)
 
-  n <- query_nrows(req)
+  n <- query_nrows_public(req)
 
   if (n == 0) {
     abort(

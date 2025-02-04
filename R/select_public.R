@@ -19,7 +19,7 @@ public_Dataset <- \(dataset,
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
-  dataset <- if (fname) public(dataset) else dataset
+  dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
   a <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
          as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]))
@@ -52,9 +52,9 @@ public_Dataset <- \(dataset,
 #' @returns `<Distribution>` object
 #'
 #' @examples
-#' public_Distribution("Public Provider Enrollment", FALSE)
+#' # public_Distribution("utilization_provider")
 #'
-#' public_Distribution("Quality Payment Program Experience", FALSE)
+#' public_Distribution("quality_payment")
 #'
 #' @autoglobal
 #'
@@ -63,7 +63,7 @@ public_Distribution <- \(dataset, fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
-  dataset <- if (fname) public(dataset) else dataset
+  dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
   a <- c(
     as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))),

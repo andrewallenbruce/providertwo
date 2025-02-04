@@ -1,7 +1,7 @@
 #' Public Catalog Dataset/Distribution Names
 #' @autoglobal
 #' @noRd
-public <- \(x) {
+fname_to_dataset <- function(x) {
   nswitch(
     x,
     "enrollees",             "Public Provider Enrollment",  # "Medicare Fee-For-Service  Public Provider Enrollment",

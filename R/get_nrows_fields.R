@@ -8,9 +8,7 @@ nrows_public <- function(url) {
   request(url) |>
     req_url_path_append("stats") |>
     req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
+    resp_simple_json() |>
     _[["data"]] |>
     _[["found_rows"]]
 }
@@ -29,10 +27,21 @@ nrows_provider <- function(url) {
       results = "false",
       schema  = "false") |>
     req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
+    resp_simple_json() |>
     _[["count"]]
+}
+
+#' Request total number of rows from catalog
+#' @param url `<chr>` API URL
+#' @returns `<chr>` Field names
+#' @autoglobal
+#' @noRd
+get_nrows <- function(url) {
+  if (sf_detect(url, "provider-data")) {
+    nrows_provider(url)
+  } else {
+    nrows_public(url)
+  }
 }
 
 #' Request field names from public catalog
@@ -47,9 +56,7 @@ fields_public <- function(url) {
       size   = 1,
       offset = 0) |>
     req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
+    resp_simple_json() |>
     _[["meta"]] |>
     _[["headers"]]
 
@@ -67,9 +74,7 @@ fields_provider <- function(url) {
       limit  = 1,
       offset = 0) |>
     req_perform() |>
-    resp_body_json(
-      simplifyVector = TRUE,
-      check_type     = FALSE) |>
+    resp_simple_json() |>
     _[["query"]] |>
     _[["properties"]]
 
@@ -85,18 +90,5 @@ get_fields <- function(url) {
     fields_provider(url)
   } else {
     fields_public(url)
-  }
-}
-
-#' Request total number of rows from catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @noRd
-get_nrows <- function(url) {
-  if (sf_detect(url, "provider-data")) {
-    nrows_provider(url)
-  } else {
-    nrows_public(url)
   }
 }

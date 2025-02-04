@@ -18,8 +18,8 @@ public_Distribution(dataset, fname = TRUE)
 Load Public API \code{Distribution}
 }
 \examples{
-public_Distribution("Public Provider Enrollment", FALSE)
+# public_Distribution("utilization_provider")
 
-public_Distribution("Quality Payment Program Experience", FALSE)
+public_Distribution("quality_payment")
 
 }

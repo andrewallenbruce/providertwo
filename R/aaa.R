@@ -40,9 +40,11 @@ Catalog_public <- \() {
   list(
     dataset      = slt(dataset, -distribution),
     distribution = join(
-      sbt(distribution, not_na(format) & na(description),
+      sbt(distribution,
+          not_na(format) & na(description),
           title, modified, temporal, accessURL, resourcesAPI),
-      sbt(distribution, mediaType %==% "text/csv",
+      sbt(distribution,
+          mediaType %==% "text/csv",
           title, temporal, downloadURL),
       on = c("title", "temporal"),
       verbose = 0)
