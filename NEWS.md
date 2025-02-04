@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9065 (2025-02-03)
+
+* added get_nrows
+
+
 # providertwo 0.0.0.9064 (2025-02-03)
 
 * fixed bug in get_fields (removed ifelse call)
