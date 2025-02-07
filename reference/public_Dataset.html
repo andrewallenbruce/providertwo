@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9068</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9069</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,72 +68,35 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_Dataset</span><span class="op">(</span><span class="st">"enrollees"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::Dataset&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Medicare Fee-For-Service  Public Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Dataset"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessLevel       : chr "public"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accrualPeriodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ bureauCode        : chr "009:38"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contactPoint      : &lt;providertwo::ContactPoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type    : chr "vcard:Contact"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fn      : chr "Provider Enrollment Data Requests - CPI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ hasEmail: chr "mailto:ProviderEnrollmentDataRequests@cms.hhs.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ describedBy       : chr "https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description       : chr "The Medicare Fee-For-Service Public Provider Enrollment dataset includes information on providers who are activ"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier        : &lt;providertwo::Identifier&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url   : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 2945846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:11] "NPI" "PECOS_ASCT_CNTL_ID" "ENRLMT_ID" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ keyword           : chr "Medicare, Original Medicare, Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingPage       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-pu"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified          : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ programCode       : chr "009:000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ publisher         : &lt;providertwo::Publisher&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type: chr "org:Organization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ name: chr "Centers for Medicare &amp; Medicaid Services (CMS)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references        : chr "https://data.cms.gov/resources/fee-for-service-public-provider-enrollment-methodology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal          : chr "2023-01-01/2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      : &lt;providertwo::Resources&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url  : chr "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ files: tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ name       : chr [1:7] "Medicare FFS Public Provider Enrollment Q4 2024" "Medicare FFS Public Provider Enrollment Data Dictionary" "Medicare FFS  Public Provider Enrollment Methodology" "Reassignment Sub-File 2024 Q4" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fileSize   : chr [1:7] "316.55 MB" "144.35 kB" "61.36 kB" "111.75 MB" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fileType   : chr [1:7] "csv" "pdf" "pdf" "csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL: chr [1:7] "https://data.cms.gov/sites/default/files/2025-01/8ced283e-4017-4b90-b511-142aabb8531b/PPEF_Enrollment_Extract_2025.01.02.csv" "https://data.cms.gov/sites/default/files/2022-07/adb9dd34-73da-4488-855f-f091a648f87c/Medicare%20Fee-For-Servic"| __truncated__ "https://data.cms.gov/sites/default/files/2020-08/PPEF_Data_Guidance_07_31_2020.pdf" "https://data.cms.gov/sites/default/files/2025-01/PPEF_Reassignment_Extract_2025.01.02.csv" ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Medicare Fee-For-Service Public Provider Enrollment</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="font-weight: bold;">Rows</span>: 2,945,846 | <span style="font-weight: bold;">Fields</span>: 11 | <span style="font-weight: bold;">Resources</span>: 7 files</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity: Quarterly [R/P3M]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Last Modified: 2025-01-15</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Time Period: 2023-01-01 - 2024-12-31</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Keywords: Medicare, Original Medicare, Provider Enrollment</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">The Medicare Fee-For-Service Public Provider Enrollment dataset includes</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">information on providers who are actively approved to bill Medicare or have</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">completed the 855O at the time the data was pulled from the Provider</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Enrollment, Chain, and Ownership...</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">public_Dataset</span><span class="op">(</span><span class="st">"hospitals"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::Dataset&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Hospital Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Dataset"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessLevel       : chr "public"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accrualPeriodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ bureauCode        : chr "009:38"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contactPoint      : &lt;providertwo::ContactPoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type    : chr "vcard:Contact"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fn      : chr "Provider Enrollment Data Requests - CPI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ hasEmail: chr "mailto:ProviderEnrollmentDataRequests@cms.hhs.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ describedBy       : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description       : chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier        : &lt;providertwo::Identifier&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url   : chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 9272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:39] "ENROLLMENT ID" "ENROLLMENT STATE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ keyword           : chr "Medicare, Original Medicare, Medicare Advantage, Hospitals &amp; Facilities, Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingPage       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified          : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ programCode       : chr "009:000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ publisher         : &lt;providertwo::Publisher&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type: chr "org:Organization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ name: chr "Centers for Medicare &amp; Medicaid Services (CMS)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references        : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal          : chr "2022-11-01/2025-01-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resourcesAPI      : &lt;providertwo::Resources&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ url  : chr "https://data.cms.gov/data-api/v1/dataset-resources/4a4388c8-4a14-4a4d-b03a-f67d85d041f0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ files: tibble [5 × 4] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ name       : chr [1:5] "Hospital Enrollments Jan 2025" "Hospital Enrollments Data Dictionary (Current)" "Hospital All Owners and Enrollments Data Guidance-4" "Hospital Additional NPIs" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fileSize   : chr [1:5] "2.59 MB" "364.20 kB" "509.26 kB" "71.81 kB" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ fileType   : chr [1:5] "csv" "pdf" "pdf" "csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL: chr [1:5] "https://data.cms.gov/sites/default/files/2025-01/0ef8ef0d-bf93-4b00-a542-a4e2853947cc/Hospital_Enrollments_2025.01.02.csv" "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf" "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf" "https://data.cms.gov/sites/default/files/2025-01/Hospital_Additional_NPIs_2025.01.02.csv" ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Hospital Enrollments</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="font-weight: bold;">Rows</span>: 9,272 | <span style="font-weight: bold;">Fields</span>: 39 | <span style="font-weight: bold;">Resources</span>: 5 files</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity: Monthly [R/P1M]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Last Modified: 2025-01-15</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Time Period: 2022-11-01 - 2025-01-31</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Keywords: Medicare, Original Medicare, Medicare Advantage, Hospitals &amp;</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   Facilities, Provider Enrollment</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">The Hospital Enrollments dataset provides enrollment information of all</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Hospitals currently enrolled in Medicare. This data includes information on the</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Hospital's sub-group type, legal business name, doing business as name,</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">organization type and addr...</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
