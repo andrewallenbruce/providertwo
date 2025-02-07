@@ -1,6 +1,6 @@
-.__public <- .__provider <- NULL
+# .__public <- .__provider <- NULL
 
-.onLoad <- function(libname, pkgname, ...) {
+.onLoad <- function(lib, pkg) {
 
   .__public   <<- Catalog_public()
   .__provider <<- Catalog_provider()

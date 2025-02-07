@@ -12,7 +12,8 @@ NULL
 #' @autoglobal
 #' @export
 ContactPoint <- new_class(
-  name       = "ContactPoint",
+  name    = "ContactPoint",
+  package = "provider",
   properties = list(
     type     = new_property(class_character, default = "vcard:Contact"),
     fn       = null_character,
@@ -35,7 +36,8 @@ ContactPoint <- new_class(
 #' @autoglobal
 #' @export
 Publisher <- new_class(
-  name = "Publisher",
+  name    = "Publisher",
+  package = "provider",
   properties = list(
     type = new_property(class_character, default = "org:Organization"),
     name = new_property(class_character, default = "Centers for Medicare & Medicaid Services (CMS)")
@@ -58,7 +60,8 @@ Publisher <- new_class(
 #' @autoglobal
 #' @export
 Identifier <- new_class(
-  name       = "Identifier",
+  name    = "Identifier",
+  package = "provider",
   properties = list(
     url      = class_character,
     rows     = new_property(
@@ -89,7 +92,8 @@ Identifier <- new_class(
 #' @autoglobal
 #' @export
 Resources <- new_class(
-  name = "Resources",
+  name    = "Resources",
+  package = "provider",
   properties = list(
     url      = null_character,
     files    = new_property(
@@ -134,7 +138,8 @@ Resources <- new_class(
 #'
 #' @export
 Dataset <- new_class(
-  name = "Dataset",
+  name    = "Dataset",
+  package = "provider",
   properties = list(
     title              = class_character,
     type               = new_property(class_character, default = "dcat:Dataset"),
@@ -156,12 +161,7 @@ Dataset <- new_class(
   )
 )
 
-#' Print Method for Dataset Class
-#' @param x `<S7_class>` Dataset object
-#' @returns `<S7_class>` Dataset object
-#' @autoglobal
-#' @keywords internal
-#' @noRd
+# Print Method for Dataset Class
 S7::method(print, Dataset) <- function(x) {
   cli::cli_h3(cli::style_bold(gsub("  ", " ", x@title)))
   cli::cli_bullets(
@@ -213,6 +213,7 @@ S7::method(print, Dataset) <- function(x) {
 #' @export
 Distribution <- new_class(
   name           = "Distribution",
+  package        = "provider",
   properties     = list(
     title              = class_character,
     type               = new_property(class_character, default = "dcat:Distribution"),

@@ -3,6 +3,9 @@
 utils::globalVariables(c(
   # <Catalog_openpayments>
   "%modified",
+  # <public_Dataset>
+  # <public_Distribution>
+  ".__public",
   # <Catalog_provider>
   "@type",
   # <Catalog_provider>
