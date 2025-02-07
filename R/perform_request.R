@@ -44,7 +44,9 @@ map_parse_json_response <- function(response) {
 #' @autoglobal
 #' @noRd
 tidyup <- function(x, names) {
-  set_names(x, names(names)) |>
+  set_names(
+    x,
+    names(names)) |>
     map_na_if()
 }
 

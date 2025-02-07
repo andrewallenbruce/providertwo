@@ -32,7 +32,12 @@ luhn_check <- function(x) {
 
   ck <- (ceiling(id / 10) * 10) - id
 
-  test <- sf_smush(sf_c(sf_sub(x, start = 1, stop = 9), as_chr(ck)))
+  test <- sf_smush(
+    sf_c(
+      sf_sub(x, start = 1, stop = 9),
+      as_chr(ck)
+      )
+    )
 
   identical(test, x)
 }

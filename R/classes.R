@@ -156,6 +156,37 @@ Dataset <- new_class(
   )
 )
 
+#' Print Method for Dataset Class
+#' @param x `<S7_class>` Dataset object
+#' @returns `<S7_class>` Dataset object
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+S7::method(print, Dataset) <- function(x) {
+  cli::cli_h3(cli::style_bold(gsub("  ", " ", x@title)))
+  cli::cli_bullets(
+    c(">" = paste0(cli::style_bold("Rows"),
+                   ": {prettyNum(x@identifier@rows, big.mark = ',')} | ",
+                   cli::style_bold("Fields"),
+                   ": {length(x@identifier@fields)} | ",
+                   cli::style_bold("Resources"),
+                   ": {nrow(x@resourcesAPI@files)} files"),
+    " ",
+    "*" = "Periodicity: {x@accrualPeriodicity}",
+    "*" = "Last Modified: {x@modified}",
+    "*" = "Time Period: {gsub('/', ' - ', x@temporal)}",
+    "*" = "Keywords: {x@keyword}",
+    " "))
+  cli::cli_text(
+    cli::style_italic(
+      paste0(
+        sf_sub(x@description, start = 1, stop = 250), "...")
+    )
+  )
+
+  invisible(x)
+}
+
 #' Distribution Class
 #'
 #' `Distribution` object
