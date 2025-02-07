@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9070 (2025-02-07)
+
+* Don't `@export` S7 methods. Use `S7::methods_register` in .onLoad call instead.
+
+
 # providertwo 0.0.0.9069 (2025-02-07)
 
 * rudimentary print method for Dataset class
