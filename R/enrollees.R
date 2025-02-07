@@ -64,7 +64,7 @@ enrollees <- function(npi       = NULL,
                       gender    = NULL,
                       limit     = 5000) {
 
-  check_public_limit(limit)
+  check_limit_public(limit)
 
   args <- list2(
     "NPI"                = npi,
@@ -92,7 +92,7 @@ enrollees <- function(npi       = NULL,
 
   cat("\n")
 
-  perform_request(
+  perform_request_public(
     url   = api@identifier@url,
     query = args,
     limit = limit)

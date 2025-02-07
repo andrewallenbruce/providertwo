@@ -31,7 +31,7 @@ NULL
 #' @autoglobal
 #' @keywords internal
 #' @export
-offset_sequence <- \(n, limit, start = 0) {
+offset_sequence <- function(n, limit, start = 0) {
 
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
@@ -46,13 +46,15 @@ offset_sequence <- \(n, limit, start = 0) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-offset_length <- \(n, limit, start = 0) {
+offset_length <- function(n, limit, start = 0) {
 
   check_number_whole(n, min = 0)
+  check_number_whole(limit, min = 1)
+  check_number_whole(start, min = 0)
 
   if (n <= limit) return(1L)
 
-  length(offset_sequence(n, limit, start))
+  length(seq_(from = start, to = n, by = limit))
 }
 
 # Incorrect
@@ -64,9 +66,9 @@ offset_length <- \(n, limit, start = 0) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-flatten_column <- \(i) {
-  map_chr(i, \(x) paste0(delist(x), collapse = ", "))
-  }
+flatten_column <- function(i) {
+  map_chr(i, function(x) paste0(delist(x), collapse = ", "))
+}
 
 #' Handle NAs
 #' @param x `<list>` list to handle
@@ -74,8 +76,8 @@ flatten_column <- \(i) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-handle_na <- \(x) {
-  remove_all_na(map_if(x, is.character, \(x) na_if(x, y = "")))
+handle_na <- function(x) {
+  remove_all_na(map_if(x, is.character, function(x) na_if(x, y = "")))
 }
 
 #' Vectorized `na_if`
@@ -84,23 +86,8 @@ handle_na <- \(x) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-map_na_if <- \(x) {
-  map_if(x, is.character, \(x) na_if(x, y = ""))
-}
-
-#' Helper for `iterate_with_offset`
-#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
-#'                      API will return per request.
-#' @returns `<function>` Function to check if API request is complete
-#' @autoglobal
-#' @keywords internal
-#' @export
-is_complete_with_limit <- function(limit) {
-
-  check_number_whole(limit, min = 1)
-
-  function(resp) length(resp_body_json(resp)$data) < limit
-
+map_na_if <- function(x) {
+  map_if(x, is.character, function(x) na_if(x, y = ""))
 }
 
 #' Parse datetime character vectors
@@ -112,7 +99,7 @@ is_complete_with_limit <- function(limit) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-as_datetime <- \(x) {
+as_datetime <- function(x) {
 
   ISOdatetime(
     sf_sub(x, 1, 4),
@@ -124,20 +111,11 @@ as_datetime <- \(x) {
 
 }
 
-#' Parse Simple JSON Response
-#' @param resp `<httr_response>` API response
-#' @returns `<list>` Parsed JSON response
-#' @autoglobal
 #' @noRd
-resp_simple_json <- function(resp, ...) {
-  resp_body_json(resp, simplifyVector = TRUE, check_type = FALSE, ...)
-}
+# ex_resource_url <- "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
 
 #' @noRd
-ex_resource_url   <- "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
-
-#' @noRd
-ex_identifier_url <- "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"
+# ex_identifier_url <- "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"
 
 #' #' @noRd
 #' debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")

@@ -67,8 +67,10 @@ check_luhn <- function(x) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_public_limit <- \(limit) {
-  check_number_whole(limit, min = 0, max = 5000)
+check_limit_public <- \(limit) {
+  check_number_whole(limit,
+                     min = 1,
+                     max = 5000)
 }
 
 #' Check Provider API Limit
@@ -76,8 +78,21 @@ check_public_limit <- \(limit) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_provider_limit <- \(limit) {
-  check_number_whole(limit, min = 0, max = 2000)
+check_limit_provider <- \(limit) {
+  check_number_whole(limit,
+                     min = 1,
+                     max = 2000)
+}
+
+#' Check Open Payments API Limit
+#' @param limit `<int>` API limit
+#' @returns Nothing if valid, aborts otherwise
+#' @autoglobal
+#' @noRd
+check_limit_open <- \(limit) {
+  check_number_whole(limit,
+                     min = 1,
+                     max = 2000)
 }
 
 #' Check Function parameters are valid API fields
@@ -87,8 +102,14 @@ check_provider_limit <- \(limit) {
 #' @autoglobal
 #' @noRd
 check_params_fields <- \(params, fields) {
+
   if (!any(params %in% fields)) {
+
     invalid_params <- setdiff(params, fields)
-    abort(glue("Invalid Parameter(s): {invalid_params}"))
+
+    abort(
+      glue("Invalid Parameter(s): {invalid_params}")
+      )
+
   }
 }

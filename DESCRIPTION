@@ -44,6 +44,7 @@ Collate:
     'enrollees.R'
     'generated-globals.R'
     'get_nrows_fields.R'
+    'httr2_utils.R'
     'import-standalone-helpers.R'
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'

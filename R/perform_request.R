@@ -55,7 +55,7 @@ tidyup <- function(x, names) {
 #' @returns `<int>` Number of results
 #' @autoglobal
 #' @noRd
-perform_request <- function(url, query, limit) {
+perform_request_public <- function(url, query, limit) {
 
   req <- request(url) |>
     req_url_query(
