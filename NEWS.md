@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9069 (2025-02-07)
+
+* rudimentary print method for Dataset class
+
+
 # providertwo 0.0.0.9068 (2025-02-07)
 
 * renaming API specific methods
