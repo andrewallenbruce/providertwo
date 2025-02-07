@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9068 (2025-02-07)
+
+* renaming API specific methods
+
+
 # providertwo 0.0.0.9067 (2025-02-04)
 
 * fixed bug in `public_Distribution` (only keeps the first `dataset` row if more than one is returned)
