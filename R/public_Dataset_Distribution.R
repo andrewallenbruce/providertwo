@@ -1,3 +1,46 @@
+#' Load Provider API `Dataset`
+#'
+#' @param dataset `<chr>` dataset title
+#'
+#' @param fname `<lgl>` Is `dataset` a function name?; default is `TRUE`
+#'
+#' @returns `<Dataset>` object
+#'
+#' @examples
+#' provider_Dataset("affiliations")
+#'
+#' provider_Dataset("clinicians")
+#'
+#' @autoglobal
+#'
+#' @export
+provider_Dataset <- function(dataset = "clinicians", fname = TRUE) {
+
+  if (!exists(".__provider")) .__provider <<- Catalog_provider()
+
+  dataset <- if (fname) fname_to_dataset(dataset) else dataset
+
+  x <- c(sbt(.__provider, sf_detect(title, dataset)))
+
+  Dataset(
+    contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
+                          getElement(x$contactPoint[[1]], "hasEmail")),
+    identifier  = Identifier(x$identifier),
+    modified    = x$modified,
+    title       = x$title,
+    # periodicity = x$accrualPeriodicity,
+    dictionary  = x$describedBy,
+    description = x$description,
+    keyword     = x$keyword,
+    landingpage = x$landingPage,
+    # references  = x$references,
+    # downloadURL  = x$downloadURL,
+    temporal    = paste0(x$issued, "/", x$released),
+    theme       = x$theme
+  )
+
+}
+
 #' Load Public API `Dataset`
 #'
 #' @param dataset `<chr>` dataset title

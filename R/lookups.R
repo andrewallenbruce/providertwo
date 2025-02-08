@@ -4,6 +4,8 @@
 fname_to_dataset <- function(x) {
   nswitch(
     x,
+    "affiliations",          "Facility Affiliation Data",
+    "clinicians",            "National Downloadable File",
     "enrollees",             "Public Provider Enrollment",  # "Medicare Fee-For-Service  Public Provider Enrollment",
     "opt_out",               "Opt Out Affidavits",
     "order_refer",           "Order and Referring",

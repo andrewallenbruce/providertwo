@@ -46,6 +46,7 @@ utils::globalVariables(c(
   # <Catalog_public>
   "landingPage",
   # <Catalog_public>
+  # <Catalog_provider>
   # <Catalog_openpayments>
   "mediaType",
   # <Catalog_public>
@@ -76,6 +77,7 @@ utils::globalVariables(c(
   # <Catalog_public>
   # <Catalog_provider>
   # <Catalog_openpayments>
+  # <provider_Dataset>
   # <public_Dataset>
   # <public_Distribution>
   "title",
