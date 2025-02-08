@@ -15,6 +15,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Publisher.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/affiliations.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_datetime.html</loc></url>
@@ -30,7 +31,8 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/fields_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/fields_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/flatten_column.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query_provider.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/gelm.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_nrows.html</loc></url>
@@ -46,7 +48,8 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/list_pins.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/luhn_check.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_na_if.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response_provider.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/max_vlen.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/mount_board.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/na.html</loc></url>
@@ -57,7 +60,9 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/nrows_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_provider.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_public.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/perform_request_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/perform_request_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/program_code.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Dataset.html</loc></url>
@@ -65,6 +70,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Distribution.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/random_string.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/recode_iso8601.html</loc></url>
