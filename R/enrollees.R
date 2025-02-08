@@ -22,10 +22,9 @@
 #'
 #' @param state `<chr>` Enrollment state abbreviation
 #'
-#' @param first,middle,last `<chr>` Individual provider's name
+#' @param first,middle,last `<chr>` Individual provider's name(s)
 #'
 #' @param org `<chr>` Organizational provider's name
-#'
 #'
 #' @param gender `<chr>` Individual provider's gender:
 #'
@@ -79,21 +78,22 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org,
     "GNDR_SW"            = gender)
 
-  api <- public_Dataset("enrollees")
+  x <- public_Dataset("enrollees")
+  x
 
-  cat(format(gsub("  ", " ", api@title)), "\n")
+  cat(format(gsub("  ", " ", x@title)), "\n")
 
   utils::formatUL(
     label  = "==>",
     offset = 2,
-    c(paste0("Periodicity: ", format(api@periodicity)),
-      paste0("Last Modified:       ", format(api@modified)))) |>
+    c(paste0("Periodicity: ",   format(x@periodicity)),
+      paste0("Last Modified: ", format(x@modified)))) |>
     writeLines()
 
   cat("\n")
 
   perform_request_public(
-    url   = api@identifier@url,
+    url   = x@identifier@url,
     query = args,
     limit = limit)
 

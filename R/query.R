@@ -1,4 +1,4 @@
-#' Format API Queries
+#' Format Public API Queries
 #'
 #' @param args named `<list>` or vector of `<chr>` arguments
 #'
@@ -10,14 +10,18 @@
 #' @returns `<list>` of formatted query `<exprs>`
 #'
 #' @examples
-#' format_query(list("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_public(
+#'   list("NPI" = "1417918293",
+#'        "PECOS_ASCT_CNTL_ID" = NULL))
 #'
-#' format_query(c("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_public(
+#'   c("NPI" = "1417918293",
+#'     "PECOS_ASCT_CNTL_ID" = NULL))
 #'
 #' @autoglobal
 #' @keywords internal
 #' @export
-format_query <- \(args, operator = "=") {
+format_query_public <- function(args, operator = "=") {
 
   args  <- discard(args, null)
 
@@ -29,6 +33,50 @@ format_query <- \(args, operator = "=") {
   ',
     fID      = seq_along(args),
     PATH     = names(args),
+    OPERATOR = operator,
+    VALUE    = args) |>
+    glue_collapse(sep = ",\n")
+
+  glue('c({query})') |>
+    parse_expr() |>
+    eval_bare()
+}
+
+#' Format Provider API Queries
+#'
+#' @param args named `<list>` or vector of `<chr>` arguments
+#'
+#' @param operator `<chr>` logical operator; acceptable options are:
+#'                         `=`, `>=`, `<=`, `>`, `<`, `<>`, `STARTS_WITH`,
+#'                         `ENDS_WITH`, `CONTAINS`, `IN`, `NOT IN`, `BETWEEN`,
+#'                         `NOT BETWEEN`, `IS NULL`, `IS NOT NULL`
+#'
+#' @returns `<list>` of formatted query `<exprs>`
+#'
+#' @examples
+#' format_query_provider(
+#'   list("NPI" = "1417918293",
+#'        "PECOS_ASCT_CNTL_ID" = NULL))
+#'
+#' format_query_provider(
+#'   c("NPI" = "1417918293",
+#'     "PECOS_ASCT_CNTL_ID" = NULL))
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+format_query_provider <- function(args, operator = "=") {
+
+  args  <- discard(args, null)
+
+  query <- glue(
+    '
+  "conditions[0][property]" = "{PROPERTY}",
+  "conditions[0][operator]" = "{OPERATOR}",
+  "conditions[0][value]" = "{VALUE}"
+  ',
+    # idx      = seq_along(args),
+    PROPERTY = names(args),
     OPERATOR = operator,
     VALUE    = args) |>
     glue_collapse(sep = ",\n")

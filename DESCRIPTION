@@ -23,7 +23,8 @@ Imports:
     S7 (>= 0.2.0),
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
-    vctrs (>= 0.6.5)
+    vctrs (>= 0.6.5),
+    cli
 Suggests: 
     qs (>= 0.27.2),
     testthat (>= 3.2.3)
@@ -38,6 +39,7 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
+    'affiliations.R'
     'checks.R'
     'props.R'
     'classes.R'

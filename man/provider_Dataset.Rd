@@ -4,7 +4,7 @@
 \alias{provider_Dataset}
 \title{Load Provider API \code{Dataset}}
 \usage{
-provider_Dataset(dataset = "clinicians", fname = TRUE)
+provider_Dataset(dataset, fname = TRUE)
 }
 \arguments{
 \item{dataset}{\verb{<chr>} dataset title}

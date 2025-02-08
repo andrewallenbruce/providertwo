@@ -14,7 +14,7 @@
 #' @autoglobal
 #'
 #' @export
-provider_Dataset <- function(dataset = "clinicians", fname = TRUE) {
+provider_Dataset <- function(dataset, fname = TRUE) {
 
   if (!exists(".__provider")) .__provider <<- Catalog_provider()
 

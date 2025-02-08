@@ -30,7 +30,7 @@ enrollees(
 
 \item{spec_desc}{\verb{<chr>} Enrollment specialty description}
 
-\item{first, middle, last}{\verb{<chr>} Individual provider's name}
+\item{first, middle, last}{\verb{<chr>} Individual provider's name(s)}
 
 \item{org}{\verb{<chr>} Organizational provider's name}
 
