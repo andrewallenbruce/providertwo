@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9072 (2025-02-08)
+
+* tidying
+
+
 # providertwo 0.0.0.9071 (2025-02-08)
 
 * renamed & simplified classes
