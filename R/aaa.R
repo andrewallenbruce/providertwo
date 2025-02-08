@@ -78,8 +78,8 @@ Catalog_provider <- \() {
         keyword     = flatten_column(keyword),
         theme       = flatten_column(theme),
         description = sf_remove(description, "\n"),
-        identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
-        describedBy = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"))
+        describedBy = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
+        identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"))
 
   download <- as_tbl(
     rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
