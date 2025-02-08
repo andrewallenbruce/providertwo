@@ -16,27 +16,27 @@
 * renamed & simplified classes
 * `lookups` regex differentiation
 * `httr2` utils
-* reworked `public_` selection functionality
+* reworked `public_Dataset/Distribution` selection functionality
 
 
 # providertwo 0.0.0.9070 (2025-02-07)
 
-* Don't `@export` S7 methods. Use `S7::methods_register` in .onLoad call instead.
+* Don't `@export` S7 methods. Use `S7::methods_register` in `.onLoad` call instead.
 
 
 # providertwo 0.0.0.9069 (2025-02-07)
 
-* rudimentary print method for Dataset class
+* rudimentary print method for `Dataset` class
 
 
 # providertwo 0.0.0.9068 (2025-02-07)
 
-* renaming API specific methods
+* renaming API-specific methods
 
 
 # providertwo 0.0.0.9067 (2025-02-04)
 
-* fixed bug in `public_Distribution` (only keeps the first `dataset` row if more than one is returned)
+* fixed bug in `public_Distribution` (keeps first `dataset` row only, if more than one is returned)
 
 
 # providertwo 0.0.0.9066 (2025-02-04)
@@ -46,17 +46,17 @@
 
 # providertwo 0.0.0.9065 (2025-02-03)
 
-* added get_nrows
+* added `get_nrows`
 
 
 # providertwo 0.0.0.9064 (2025-02-03)
 
-* fixed bug in get_fields (removed ifelse call)
+* fixed bug in `get_fields` (removed `ifelse()` call)
 
 
 # providertwo 0.0.0.9063 (2025-01-31)
 
-* use func name when loading dataset
+* testing using function name when loading dataset/distribution
 
 
 # providertwo 0.0.0.9062 (2025-01-31)
@@ -76,7 +76,7 @@
 
 # providertwo 0.0.0.9059 (2025-01-30)
 
-* added limit checks
+* added rate limit checks
 
 
 # providertwo 0.0.0.9058 (2025-01-30)
@@ -105,7 +105,7 @@
 
 * added `is_complete_with_limit()` function factory for use with `iterate_with_offset()`
 * `vna_if()` renamed to `map_na_if()`
-* added `as_datetime()` helper to parse RFC 3339 ISO datetimes
+* added `as_datetime()` helper to parse _RFC 3339_ ISO datetimes
 
 
 # providertwo 0.0.0.9053 (2025-01-27)
@@ -125,64 +125,64 @@
 
 # providertwo 0.0.0.9050 (2025-01-25)
 
-* Catalog_openpayments draft
+* `Catalog_openpayments()` draft
 
 
 # providertwo 0.0.0.9049 (2025-01-25)
 
-* offset_sequence now works
+* `offset_sequence()` now works
 * lookups now internal
 
 
 # providertwo 0.0.0.9048 (2025-01-25)
 
-* removed constants from initial onloads
+* removed constants from initial `.onLoad`
 
 
 # providertwo 0.0.0.9047 (2025-01-25)
 
-* enrollees work
+* `enrollees()` work
 
 
 # providertwo 0.0.0.9046 (2025-01-25)
 
 * bug fixed?
-* req_perform_iterative/iterate_with_offset used in enrollees
+* `req_perform_iterative()`/`iterate_with_offset()` use in `enrollees()`
 
 
 # providertwo 0.0.0.9045 (2025-01-24)
 
-* Bug in as_Dataset - dataset_Resources
+* Bug in `as_Dataset` - `dataset_Resources`
 
 
 # providertwo 0.0.0.9044 (2025-01-24)
 
-* added provider_catalog methods
+* added `provider_catalog` methods
 
 
 # providertwo 0.0.0.9043 (2025-01-24)
 
-* draft of provider_dataset
+* draft of `provider_dataset`
 
 
 # providertwo 0.0.0.9042 (2025-01-24)
 
-* added Distribution class, as_Distribution, and handle_na
+* added `Distribution` class, `as_Distribution`, and `handle_na()` helper
 
 
 # providertwo 0.0.0.9041 (2025-01-24)
 
-* as_Dataset draft
+* `as_Dataset` draft
 
 
 # providertwo 0.0.0.9040 (2025-01-23)
 
-* changed structure of query helpers
+* changed structure of `query` helpers
 
 
 # providertwo 0.0.0.9039 (2025-01-23)
 
-* renamed Resources class to dataset_Resources
+* renamed `Resources` class to `dataset_Resources`
 
 
 # providertwo 0.0.0.9038 (2025-01-23)
@@ -192,12 +192,12 @@
 
 # providertwo 0.0.0.9037 (2025-01-23)
 
-* class_API renamed to Dataset
+* `class_API` renamed to `Dataset`
 
 
 # providertwo 0.0.0.9036 (2025-01-22)
 
-* args default props
+* args default `props`
 
 
 # providertwo 0.0.0.9035 (2025-01-22)
@@ -208,7 +208,7 @@
 
 # providertwo 0.0.0.9034 (2025-01-21)
 
-* added fields computed property to class_Identifier
+* added computed `fields` property to `class_Identifier`
 
 
 # providertwo 0.0.0.9033 (2025-01-21)
@@ -218,8 +218,8 @@
 
 # providertwo 0.0.0.9032 (2025-01-21)
 
-* added `class_contactPoint`, `class_publisher`
-* expanded class_API
+* added `class_contactPoint()`, `class_publisher()`
+* expanded `class_API()`
 
 
 # providertwo 0.0.0.9031 (2025-01-20)
@@ -229,10 +229,9 @@
 
 # providertwo 0.0.0.9030 (2025-01-19)
 
-* imported standalone purrr, type checks
+* imported standalone `purrr`, type checks
 * removed `prettyunits` in favor of `rlang::parsebytes()`
 * added `luhn_check()` for NPIs
-* NEWS tidied
 
 
 # providertwo 0.0.0.9029 (2025-01-18)
@@ -262,17 +261,17 @@
 
 # providertwo 0.0.0.9024 (2025-01-11)
 
-* `class_Resources` draft
+* `class_Resources()` draft
 
 
 # providertwo 0.0.0.9023 (2025-01-11)
 
-* `class_Identifier` draft
+* `class_Identifier()` draft
 
 
 # providertwo 0.0.0.9022 (2025-01-11)
 
-* `enrolleeAPI` class draft
+* `enrolleeAPI()` class draft
 
 
 # providertwo 0.0.0.9021 (2025-01-11)
@@ -284,17 +283,17 @@
 
 # providertwo 0.0.0.9020 (2025-01-11)
 
-* removed `terse` wrapper
+* removed `terse()` wrapper
 
 
 # providertwo 0.0.0.9019 (2025-01-11)
 
-* `class_API` working again
+* `class_API()` working again
 
 
 # providertwo 0.0.0.9018 (2025-01-11)
 
-* `class_API` draft
+* `class_API()` draft
 
 
 # providertwo 0.0.0.9017 (2025-01-10)
@@ -319,14 +318,14 @@
 
 # providertwo 0.0.0.9013 (2025-01-09)
 
-* tweaking initial load
+* tweaking initial `.onLoad`
 * tweaked readme
 
 
 # providertwo 0.0.0.9012 (2025-01-09)
 
-* added code of conduct
-* rebuilt readme
+* added Code of Conduct
+* rebuilt Readme
 * added pkgdown site
 
 

@@ -16,7 +16,6 @@ utils::globalVariables(c(
   # <Catalog_provider>
   "archiveExclude",
   # <Catalog_provider>
-  # <Catalog_openpayments>
   "bureauCode",
   # <Catalog_public>
   "contactPoint",
@@ -26,6 +25,8 @@ utils::globalVariables(c(
   # <Catalog_provider>
   # <Catalog_openpayments>
   "description",
+  # <Catalog_provider>
+  "distribution",
   # <Catalog_public>
   # <Catalog_openpayments>
   # <get_resources>
@@ -46,7 +47,6 @@ utils::globalVariables(c(
   # <Catalog_public>
   "landingPage",
   # <Catalog_public>
-  # <Catalog_provider>
   # <Catalog_openpayments>
   "mediaType",
   # <Catalog_public>
@@ -56,7 +56,6 @@ utils::globalVariables(c(
   # <Catalog_openpayments>
   "modified_dttm",
   # <Catalog_provider>
-  # <Catalog_openpayments>
   "programCode",
   # <Catalog_provider>
   "publisher",
@@ -75,7 +74,6 @@ utils::globalVariables(c(
   # <Catalog_openpayments>
   "theme",
   # <Catalog_public>
-  # <Catalog_provider>
   # <Catalog_openpayments>
   # <provider_Dataset>
   # <public_Dataset>

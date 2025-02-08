@@ -10,31 +10,16 @@
 #' @export
 Catalog_public <- \() {
 
-  dataset <- as_tbl(
-    fload("https://data.cms.gov/data.json",
-          query = "/dataset")) |>
-    slt(title,
-        accrualPeriodicity,
-        contactPoint,
-        describedBy,
-        description,
-        distribution,
-        identifier,
-        keyword,
-        landingPage,
-        modified,
-        references,
-        temporal,
-        theme) |>
+  dataset <- as_tbl(fload("https://data.cms.gov/data.json", query = "/dataset") |>
+    slt(accrualPeriodicity, contactPoint, describedBy, description, distribution, identifier, keyword, landingPage, modified, references, temporal, theme, title) |>
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         keyword            = flatten_column(keyword),
         theme              = flatten_column(theme),
-        description        = sf_remove(description, "\n"),
-        references         = delist(references))
+        description        = trimws(sf_remove(description, "\n")),
+        references         = delist(references)))
 
-  distribution <- as_tbl(
-    rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
+  distribution <- as_tbl(rowbind(get_elem(dataset, "distribution"), fill = TRUE)) |>
     mtt(modified = as_date(modified))
 
   list(
@@ -63,31 +48,25 @@ Catalog_public <- \() {
 #' @export
 Catalog_provider <- \() {
 
-  dataset <- as_tbl(
-    fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")) |>
-    sbt(sf_ndetect(title, "Office Visit Costs$"),
-        -`@type`,
-        -accessLevel,
-        -bureauCode,
-        -programCode,
-        -archiveExclude,
-        -publisher) |>
+  dataset <- as_tbl(fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items") |>
+    slt(-c(`@type`, accessLevel, bureauCode, programCode, archiveExclude, publisher)) |>
     mtt(issued      = as_date(issued),
         modified    = as_date(modified),
         released    = as_date(released),
         keyword     = flatten_column(keyword),
         theme       = flatten_column(theme),
-        description = sf_remove(description, "\n"),
+        description = trimws(sf_remove(description, "\n")),
         describedBy = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
-        identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"))
+        identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0")))
 
-  download <- as_tbl(
-    rowbind(gelm(dataset, "distribution"), fill = TRUE)) |>
-    add_vars(gelm(dataset, "title"), pos = "front") |>
-    slt(-`@type`,
-        -mediaType)
-
-  join(dataset, download, on = "title", verbose = 0)
+  dataset |>
+    slt(-distribution) |>
+    add_vars(
+      downloadURL = delist(
+        get_elem(
+          dataset$distribution,
+          "downloadURL",
+          DF.as.list = TRUE)))
 }
 
 #' CMS Open Payments Catalog
@@ -102,17 +81,16 @@ Catalog_provider <- \() {
 #' @export
 Catalog_openpayments <- \() {
 
-  dataset <- as_tbl(
-    fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")) |>
+  dataset <- as_tbl(fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
     mtt(issued             = as_date(issued),
         modified           = as_date(modified),
-        accrualPeriodicity = recode_iso8601(accrualPeriodicity),
+        # accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         description        = sf_remove(description, "\n"),
-        bureauCode         = delist(bureauCode),
-        programCode        = delist(programCode),
+        # bureauCode         = delist(bureauCode),
+        # programCode        = delist(programCode),
         theme              = delist(map(theme, \(x) gelm(as.list(x), "data"))),
         year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
-        modified_dttm      = as_datetime(`%modified`))
+        modified_dttm      = as_datetime(`%modified`)))
 
   distribution <- as_tbl(rowbind(gelm(identifier, "data"), fill = TRUE))
 
