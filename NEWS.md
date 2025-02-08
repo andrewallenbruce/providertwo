@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9071 (2025-02-08)
+
+* renamed & simplified classes
+* `lookups` regex differentiation
+* `httr2` utils
+* reworked `public_` selection functionality
+
+
 # providertwo 0.0.0.9070 (2025-02-07)
 
 * Don't `@export` S7 methods. Use `S7::methods_register` in .onLoad call instead.
