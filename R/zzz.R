@@ -1,4 +1,4 @@
-# .__public <- .__provider <- NULL
+.__public <- .__provider <- NULL
 
 .onLoad <- function(lib, pkg) {
 

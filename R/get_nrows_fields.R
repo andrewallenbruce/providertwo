@@ -92,3 +92,15 @@ get_fields <- function(url) {
     fields_public(url)
   }
 }
+
+#' Request resources from catalog
+#' @param url `<chr>` API URL
+#' @returns `<tibble>` Resources
+#' @autoglobal
+#' @noRd
+get_resources <- function(url) {
+  as_tbl(fload(url, query = "/data")) |>
+    mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
+        fileType = file_ext(downloadURL)) |>
+    colorder(downloadURL, pos = "end")
+}

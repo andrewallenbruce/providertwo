@@ -85,13 +85,7 @@ perform_request_public <- function(url, query, limit) {
       )
     } else {
       return(
-        req_perform_iterative(
-          req,
-          next_req      = iterate_with_offset(
-          param_name    = "offset",
-          start         = 0,
-          offset        = limit,
-          resp_complete = is_complete_with_limit(limit))) |>
+        req_perform_iterative_offset(req, limit) |>
         map_parse_json_response() |>
         tidyup(names = query)
        )

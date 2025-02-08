@@ -7,7 +7,6 @@
 #' @importFrom cheapr cheapr_rev seq_ which_
 #' @importFrom fastplyr as_tbl
 #' @importFrom kit nswitch
-#' @importFrom stats setNames
 #' @importFrom tools file_ext
 #' @importFrom glue glue glue_collapse
 #' @import httr2

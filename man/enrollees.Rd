@@ -68,6 +68,8 @@ on Providers Actively Approved to Bill Medicare.
 }
 
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
 enrollees(enid = "I20040309000221")
 
 enrollees(npi = "1417918293", spec_code = "14-41")
@@ -76,6 +78,6 @@ enrollees(pac = "2860305554", gender = "9")
 
 enrollees(state = "GA", gender = "9")
 
-enrollees(state = "GA", gender = "F")
-
+# enrollees(state = "GA", gender = "F")
+\dontshow{\}) # examplesIf}
 }

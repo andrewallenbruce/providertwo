@@ -3,9 +3,6 @@
 utils::globalVariables(c(
   # <Catalog_openpayments>
   "%modified",
-  # <public_Dataset>
-  # <public_Distribution>
-  ".__public",
   # <Catalog_provider>
   "@type",
   # <Catalog_provider>
@@ -31,7 +28,10 @@ utils::globalVariables(c(
   "description",
   # <Catalog_public>
   # <Catalog_openpayments>
+  # <get_resources>
   "downloadURL",
+  # <get_resources>
+  "fileSize",
   # <Catalog_public>
   # <Catalog_provider>
   # <Catalog_openpayments>

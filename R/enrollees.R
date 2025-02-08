@@ -38,6 +38,7 @@
 #' @returns `<tibble>` of search results
 #'
 #' @examples
+#'
 #' enrollees(enid = "I20040309000221")
 #'
 #' enrollees(npi = "1417918293", spec_code = "14-41")
@@ -46,7 +47,7 @@
 #'
 #' enrollees(state = "GA", gender = "9")
 #'
-#' enrollees(state = "GA", gender = "F")
+#' # enrollees(state = "GA", gender = "F")
 #'
 #' @autoglobal
 #'
@@ -86,7 +87,7 @@ enrollees <- function(npi       = NULL,
   utils::formatUL(
     label  = "==>",
     offset = 2,
-    c(paste0("Periodicity: ", format(api@accrualPeriodicity)),
+    c(paste0("Periodicity: ", format(api@periodicity)),
       paste0("Last Modified:       ", format(api@modified)))) |>
     writeLines()
 

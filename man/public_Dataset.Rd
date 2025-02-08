@@ -22,4 +22,10 @@ public_Dataset("enrollees")
 
 public_Dataset("hospitals")
 
+public_Dataset("reassignments")
+
+public_Dataset("opt_out")
+
+public_Dataset("laboratories")
+
 }

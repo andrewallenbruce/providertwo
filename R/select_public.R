@@ -11,34 +11,39 @@
 #'
 #' public_Dataset("hospitals")
 #'
+#' public_Dataset("reassignments")
+#'
+#' public_Dataset("opt_out")
+#'
+#' public_Dataset("laboratories")
+#'
 #' @autoglobal
 #'
 #' @export
-public_Dataset <- \(dataset,
-                    fname = TRUE) {
+public_Dataset <- function(dataset, fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  a <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
+  x <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
          as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]))
 
   Dataset(
-    accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = ContactPoint(type     = gelm(a[["contactPoint"]], "type"),
-                                      fn       = gelm(a[["contactPoint"]], "fn"),
-                                      hasEmail = gelm(a[["contactPoint"]], "hasEmail")),
-    describedBy        = a[["describedBy"]],
-    description        = a[["description"]],
-    identifier         = Identifier(url = a[["identifier"]]),
-    keyword            = a[["keyword"]],
-    landingPage        = a[["landingPage"]],
-    modified           = a[["modified"]],
-    references         = a[["references"]],
-    temporal           = a[["temporal"]],
-    title              = a[["title"]],
-    resourcesAPI       = Resources(url = a[["resourcesAPI"]])
+    contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
+                          getElement(x$contactPoint[[1]], "hasEmail")),
+    identifier  = Identifier(x$identifier),
+    resources   = Resources(x$resourcesAPI),
+    modified    = x$modified,
+    title       = x$title,
+    periodicity = x$accrualPeriodicity,
+    dictionary  = x$describedBy,
+    description = x$description,
+    keyword     = x$keyword,
+    landingpage = x$landingPage,
+    references  = x$references,
+    temporal    = x$temporal,
+    theme       = x$theme
   )
 
 }
@@ -52,6 +57,7 @@ public_Dataset <- \(dataset,
 #' @returns `<Distribution>` object
 #'
 #' @examples
+#'
 #' public_Distribution("utilization_provider")
 #'
 #' public_Distribution("quality_payment")
@@ -59,28 +65,32 @@ public_Dataset <- \(dataset,
 #' @autoglobal
 #'
 #' @export
-public_Distribution <- \(dataset, fname = TRUE) {
+public_Distribution <- function(dataset, fname = TRUE) {
 
   if (!exists(".__public")) .__public <<- Catalog_public()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  a <- c(
-    as.list(sbt(.__public[["dataset"]], sf_detect(title, dataset))[1, ]),
-    list(distribution = sbt(.__public[["distribution"]], sf_detect(title, dataset))))
+  x <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
+         as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]),
+         list(distribution = sbt(.__public$distribution, sf_detect(title, dataset))))
 
   Distribution(
-    accrualPeriodicity = a[["accrualPeriodicity"]],
-    contactPoint       = ContactPoint(type     = gelm(a[["contactPoint"]], "type"),
-                                      fn       = gelm(a[["contactPoint"]], "fn"),
-                                      hasEmail = gelm(a[["contactPoint"]], "hasEmail")),
-    describedBy        = a[["describedBy"]],
-    description        = a[["description"]],
-    keyword            = a[["keyword"]],
-    landingPage        = a[["landingPage"]],
-    references         = a[["references"]],
-    title              = a[["title"]],
-    distributions      = a[["distribution"]]
+    contact       = Contact(getElement(x$contactPoint[[1]], "fn"),
+                            getElement(x$contactPoint[[1]], "hasEmail")),
+    identifier    = Identifier(x$identifier),
+    resources     = Resources(x$resourcesAPI),
+    modified      = x$modified,
+    title         = x$title,
+    periodicity   = x$accrualPeriodicity,
+    dictionary    = x$describedBy,
+    description   = x$description,
+    keyword       = x$keyword,
+    landingpage   = x$landingPage,
+    references    = x$references,
+    temporal      = x$temporal,
+    theme         = x$theme,
+    distributions = x$distribution
   )
 
 }

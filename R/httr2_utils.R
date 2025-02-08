@@ -25,3 +25,21 @@ is_complete_with_limit <- function(limit) {
   function(resp) length(resp_body_json(resp)$data) < limit
 
 }
+
+#' Perform Iterative API request with Offset
+#' @param req `<httr2_request>` object
+#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
+#'                      API will return per request.
+#' @returns list of `<httr2_response>`s
+req_perform_iterative_offset <- function(req, limit) {
+
+  req_perform_iterative(
+    req,
+    next_req        = iterate_with_offset(
+      param_name    = "offset",
+      start         = 0,
+      offset        = limit,
+      resp_complete = is_complete_with_limit(limit)
+      )
+    )
+}

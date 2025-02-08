@@ -1,112 +1,80 @@
 #' @include props.R
 NULL
 
-#' ContactPoint Class
-#'
-#' `ContactPoint` object
-#'
-#' @param type `<chr>` Schema contact type; default is `vcard:Contact`
-#' @param fn `<chr>` contact's full name
-#' @param hasEmail `<chr>` contact's email
-#' @returns `<S7_class>` dataset_contactPoint object
+#' Contact Class
+#' @param name `<chr>` Contact name
+#' @param email `<chr>` Contact email
+#' @returns `<S7_class>` Contact object
 #' @autoglobal
-#' @export
-ContactPoint <- new_class(
-  name    = "ContactPoint",
-  package = "provider",
+#' @noRd
+Contact <- new_class(
+  name       = "Contact",
+  package    = "provider",
   properties = list(
-    type     = new_property(class_character, default = "vcard:Contact"),
-    fn       = null_character,
-    hasEmail = null_character
-  ),
-  validator = function(self) {
-    if (length(self@type) != 1L)     "@type must be length 1"
-    if (length(self@fn) != 1L)       "@fn must be length 1"
-    if (length(self@hasEmail) != 1L) "@hasEmail must be length 1"
-  }
-)
+    name     = class_character,
+    email    = class_character),
+  validator  = function(self) {
+    if (length(self@name)  != 1L) "@name must be length 1"
+    if (length(self@email) != 1L) "@email must be length 1"
+  })
 
 #' Publisher Class
-#'
-#' `Publisher` object
-#'
-#' @param type `<chr>` Schema publisher type; default is `org:Organization`
-#' @param name `<chr>` publisher name; default is `Centers for Medicare & Medicaid Services`
-#' @returns `<S7_class>` dataset_Publisher object
+#' @param type `<chr>` Publisher type; default is `org:Organization`
+#' @param name `<chr>` Publisher name; default is `Centers for Medicare & Medicaid Services`
+#' @returns `<S7_class>` Publisher object
 #' @autoglobal
-#' @export
+#' @noRd
 Publisher <- new_class(
   name    = "Publisher",
   package = "provider",
   properties = list(
     type = new_property(class_character, default = "org:Organization"),
-    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services (CMS)")
-  ),
+    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")),
   validator = function(self) {
     if (length(self@type) != 1L) "@type must be length 1"
     if (length(self@name) != 1L) "@name must be length 1"
-  }
-)
+  })
 
 #' Identifier Class
-#'
-#' `Identifier` object
-#'
 #' @param url `<chr>` identifier url
 #' @returns `<S7_class>` Identifier object
-#' @examples
-#' # Identifier(ex_identifier_url)
-#'
 #' @autoglobal
-#' @export
+#' @noRd
 Identifier <- new_class(
-  name    = "Identifier",
-  package = "provider",
+  name       = "Identifier",
+  package    = "provider",
   properties = list(
     url      = class_character,
     rows     = new_property(
       class  = class_integer,
-      getter = function(self) {
-        get_nrows(self@url)
-        }),
+      getter = function(self) get_nrows(self@url)),
     fields   = new_property(
       class  = class_character,
-      getter = function(self) {
-        get_fields(self@url)
-      })
-    ),
-    validator = function(self) {
-      if (length(self@url) != 1L) "@url must be length 1"
-  }
-)
+      getter = function(self) get_fields(self@url))),
+  validator  = function(self) if (length(self@url) != 1L) "@url must be length 1")
 
 #' Resources Class
-#'
-#' `Resources` object
-#'
-#' @param url `<chr>` `resourcesAPI` url
+#' @param url `<chr>` `resourcesAPI` url; default is `NA`
 #' @returns `<S7_class>` Resources object
-#' @examples
-#' # Resources(ex_resource_url)
-#'
 #' @autoglobal
-#' @export
+#' @noRd
 Resources <- new_class(
-  name    = "Resources",
-  package = "provider",
+  name       = "Resources",
+  package    = "provider",
   properties = list(
-    url      = null_character,
+    url      = new_property(class_character, default = NA_character_),
     files    = new_property(
-      class  = null_list,
+      class  = class_list,
       getter = function(self) {
-        as_tbl(fload(self@url, query = "/data")) |>
-          mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
-              fileType = file_ext(downloadURL)) |>
-          colorder(downloadURL, pos = "end")
-    })
-  ),
-  validator = function(self) {
-    if (length(self@url) != 1L) "@url must be length 1"
+        if (not_na(self@url)) {
+        get_resources(self@url)
+        }}
+      )
+    ),
+  validator  = function(self) {
+    if (not_na(self@url)) {
+      if (length(self@url) != 1L) "@url must be length 1"
+    }
   }
 )
 
@@ -115,74 +83,93 @@ Resources <- new_class(
 #' `Dataset` object
 #'
 #' @param type `<chr>` Schema type; default is `dcat:Dataset`
-#' @param accessLevel `<chr>` Dataset access level; default is `public`
-#' @param accrualPeriodicity `<chr>` Dataset update frequency
-#' @param bureauCode `<chr>` Dataset bureau code; default is `009:38`
-#' @param contactPoint `<S7_class>` Dataset contact
-#' @param describedBy `<chr>` Hyperlink to Data dictionary
-#' @param description `<chr>` Dataset description
+#' @param access `<chr>` Dataset access level; default is `public`
+#' @param bureau `<chr>` Dataset bureau code; default is `009:38`
+#' @param program `<chr>` Dataset program code; default is `009:000`
+#' @param contact `<S7_class>` Dataset contact
 #' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
-#' @param keyword `<chr>` Hyperlink to API landing page
-#' @param landingPage `<chr>` Hyperlink to API landing page
-#' @param modified `<chr>` Date Dataset was last modified
-#' @param programCode `<chr>` Dataset program code; default is `009:000`
 #' @param publisher `<S7_class>` Dataset publisher
+#' @param resources `<S7_class>` `data.frame` of available supplemental resource files; default is `NA`
+#' @param modified `<dbl> | <Date>` Date Dataset was last modified
+#' @param title `<chr>` Dataset title
+#' @param periodicity `<chr>` Dataset update frequency
+#' @param dictionary `<chr>` Hyperlink to Data dictionary
+#' @param description `<chr>` Dataset description
+#' @param keyword `<chr>` Hyperlink to API landing page
+#' @param landingpage `<chr>` Hyperlink to API landing page
 #' @param references `<chr>` Dataset references
 #' @param temporal `<chr>` Date range the Current dataset covers
-#' @param title `<chr>` Dataset title
-#' @param resourcesAPI `<S7_class>` `data.frame` of available supplemental resources
-#'
+#' @param theme `<chr>` Dataset theme
 #' @returns `<S7_class>` Dataset object
 #'
 #' @autoglobal
 #'
-#' @export
+#' @noRd
 Dataset <- new_class(
   name    = "Dataset",
   package = "provider",
   properties = list(
-    title              = class_character,
-    type               = new_property(class_character, default = "dcat:Dataset"),
-    accessLevel        = new_property(class_character, default = "public"),
-    accrualPeriodicity = null_character,
-    bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = ContactPoint,
-    describedBy        = null_character,
-    description        = class_character,
-    identifier         = Identifier,
-    keyword            = null_character,
-    landingPage        = class_character,
-    modified           = null_dbl_Date,
-    programCode        = new_property(class_character, default = "009:000"),
-    publisher          = Publisher,
-    references         = class_character,
-    temporal           = null_character,
-    resourcesAPI       = Resources
+    type        = new_property(class_character, default = "dcat:Dataset"),
+    access      = new_property(class_character, default = "public"),
+    bureau      = new_property(class_character, default = "009:38"),
+    program     = new_property(class_character, default = "009:000"),
+    contact     = Contact,
+    identifier  = Identifier,
+    publisher   = Publisher,
+    resources   = Resources,
+    modified    = double_Date,
+    title       = class_character,
+    periodicity = class_character,
+    dictionary  = class_character,
+    description = class_character,
+    keyword     = class_character,
+    landingpage = class_character,
+    references  = class_character,
+    temporal    = class_character,
+    theme       = class_character
   )
 )
 
 # Print Method for Dataset Class
 S7::method(print, Dataset) <- function(x) {
-  cli::cli_h3(cli::style_bold(gsub("  ", " ", x@title)))
+
+  cli::cli_h3(
+    paste0(
+      cli::col_red("{.emph Dataset} "),
+      cli::style_bold(gsub("  ", " ", x@title)))
+    )
+
   cli::cli_bullets(
-    c(">" = paste0(cli::style_bold("Rows"),
-                   ": {prettyNum(x@identifier@rows, big.mark = ',')} | ",
-                   cli::style_bold("Fields"),
-                   ": {length(x@identifier@fields)} | ",
-                   cli::style_bold("Resources"),
-                   ": {nrow(x@resourcesAPI@files)} files"),
-    " ",
-    "*" = "Periodicity: {x@accrualPeriodicity}",
-    "*" = "Last Modified: {x@modified}",
-    "*" = "Time Period: {gsub('/', ' - ', x@temporal)}",
-    "*" = "Keywords: {x@keyword}",
-    " "))
+    c(">" = paste0(
+      cli::style_bold("Rows"),
+      ": {prettyNum(x@identifier@rows, big.mark = ',')} | ",
+      cli::style_bold("Fields"),
+      ": {length(x@identifier@fields)} | ",
+      cli::style_bold("Resources"),
+      ": {nrow(x@resources@files)} files"),
+      " ",
+      "*" = "Periodicity: {x@periodicity}",
+      "*" = "Last Modified: {x@modified}",
+      "*" = "Time Period: {gsub('/', ' - ', x@temporal)}",
+      "*" = "Theme: {x@theme}",
+      "*" = "Keywords: {x@keyword}",
+      " "))
+
   cli::cli_text(
     cli::style_italic(
-      paste0(
-        sf_sub(x@description, start = 1, stop = 250), "...")
-    )
-  )
+    if (sf_chars(x@description) <= 400)
+      x@description else
+        paste0(sf_sub(x@description,
+                      start = 1,
+                      stop = 400),
+               "...[truncated]")))
+
+  cli::cli_bullets(
+    c(" ",
+      "i" = paste0(
+      cli::style_hyperlink("Data Dictionary", x@dictionary), " | ",
+      cli::style_hyperlink("Landing Page", x@landingpage), " | ",
+      cli::style_hyperlink("References", x@references))))
 
   invisible(x)
 }
@@ -192,42 +179,50 @@ S7::method(print, Dataset) <- function(x) {
 #' `Distribution` object
 #'
 #' @param type `<chr>` Schema type; default is `dcat:Distribution`
-#' @param accessLevel `<chr>` Distribution access level; default is `public`
-#' @param accrualPeriodicity `<chr>` Distribution update frequency
-#' @param bureauCode `<chr>` Distribution bureau code; default is `009:38`
-#' @param contactPoint `<S7_class>` Distribution contact
-#' @param describedBy `<chr>` Hyperlink to Data dictionary
+#' @param access `<chr>` Dataset access level; default is `public`
+#' @param bureau `<chr>` Dataset bureau code; default is `009:38`
+#' @param program `<chr>` Dataset program code; default is `009:000`
+#' @param contact `<S7_class>` Dataset contact
+#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
+#' @param publisher `<S7_class>` Dataset publisher
+#' @param resources `<S7_class>` `data.frame` of available supplemental resource files; default is `NA`
+#' @param distributions `<S7_class>` `data.frame` of available distributions
+#' @param modified `<dbl> | <Date>` Date Dataset was last modified
+#' @param title `<chr>` Dataset title
+#' @param periodicity `<chr>` Dataset update frequency
+#' @param dictionary `<chr>` Hyperlink to Data dictionary
+#' @param description `<chr>` Dataset description
+#' @param keyword `<chr>` Hyperlink to API landing page
+#' @param landingpage `<chr>` Hyperlink to API landing page
+#' @param references `<chr>` Dataset references
+#' @param temporal `<chr>` Date range the Current dataset covers
+#' @param theme `<chr>` Dataset theme
+#' @returns `<S7_class>` Dataset object
+#'
+#' @param access `<chr>` Distribution access level; default is `public`
+#' @param periodicity `<chr>` Distribution update frequency
+#' @param bureau `<chr>` Distribution bureau code; default is `009:38`
+#' @param contact `<S7_class>` Distribution contact
+#' @param dictionary `<chr>` Hyperlink to Data dictionary
 #' @param description `<chr>` Distribution description
 #' @param keyword `<chr>` Hyperlink to API landing page
-#' @param landingPage `<chr>` Hyperlink to API landing page
-#' @param programCode `<chr>` Distribution program code; default is `009:000`
+#' @param landingpage `<chr>` Hyperlink to API landing page
+#' @param program `<chr>` Distribution program code; default is `009:000`
 #' @param publisher `<S7_class>` Distribution publisher
 #' @param references `<chr>` Distribution references
 #' @param title `<chr>` Distribution title
-#' @param distributions `<S7_class>` `data.frame` of available distributions
 #'
 #' @returns `<S7_class>` Distribution object
 #'
 #' @autoglobal
 #'
-#' @export
+#' @noRd
 Distribution <- new_class(
   name           = "Distribution",
+  parent         = Dataset,
   package        = "provider",
   properties     = list(
-    title              = class_character,
-    type               = new_property(class_character, default = "dcat:Distribution"),
-    accessLevel        = new_property(class_character, default = "public"),
-    accrualPeriodicity = class_character,
-    bureauCode         = new_property(class_character, default = "009:38"),
-    contactPoint       = ContactPoint,
-    describedBy        = class_character,
-    description        = class_character,
-    keyword            = class_character,
-    landingPage        = class_character,
-    programCode        = new_property(class_character, default = "009:000"),
-    publisher          = Publisher,
-    references         = class_character,
-    distributions      = class_list
+    type = new_property(class_character, default = "dcat:Distribution"),
+    distributions = class_list
   )
 )

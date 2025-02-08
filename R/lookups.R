@@ -19,7 +19,7 @@ fname_to_dataset <- function(x) {
     "prescribers_provider",  "Medicare Part D Prescribers - by Provider",
     "prescribers_geography", "Medicare Part D Prescribers - by Geography and Drug",
     "utilization_service",   "Medicare Physician & Other Practitioners - by Provider and Service",
-    "utilization_provider",  "Medicare Physician & Other Practitioners - by Provider",
+    "utilization_provider",  "Medicare Physician & Other Practitioners - by Provider$|Medicare Physician & Other Practitioners - by Provider : ", # "8889d81e-2ee7-448f-8713-f071038289b5",
     "utilization_geography", "Medicare Physician & Other Practitioners - by Geography and Service",
     default = NA_character_,
     nThread = 4L
