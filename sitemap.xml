@@ -9,12 +9,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_openpayments.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Catalog_public.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/ContactPoint.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Dataset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Distribution.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Identifier.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Publisher.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_datetime.html</loc></url>
@@ -59,6 +53,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/remove_all_na.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/remove_quotes.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/replace_fixed.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/req_perform_iterative_offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/roundup.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/search_in.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_at.html</loc></url>

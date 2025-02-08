@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9070</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9071</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,61 +67,47 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;provider::Distribution&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Medicare Physician &amp; Other Practitioners - by Provider and Service"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Distribution"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessLevel       : chr "public"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accrualPeriodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ bureauCode        : chr "009:38"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contactPoint      : &lt;provider::ContactPoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type    : chr "vcard:Contact"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fn      : chr "Medicare Provider Data - OEDA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ hasEmail: chr "mailto:IPAG_Data_Products@cms.hhs.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ describedBy       : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-provider-and-service-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description       : chr "The Medicare Physician &amp; Other Practitioners by Provider and Service dataset provides information on use, payme"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ keyword           : chr "Medicare, Original Medicare, Physicians &amp; Practitioners, Health Care Use &amp; Payments, Health Equity"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingPage       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ programCode       : chr "009:000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ publisher         : &lt;provider::Publisher&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type: chr "org:Organization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ name: chr "Centers for Medicare &amp; Medicaid Services (CMS)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references        : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-methodology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ distributions     : tibble [20 × 6] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ title       : chr [1:20] "Medicare Physician &amp; Other Practitioners - by Provider and Service : 2022-12-01" "Medicare Physician &amp; Other Practitioners - by Provider and Service : 2021-12-31" "Medicare Physician &amp; Other Practitioners - by Provider and Service : 2020-12-31" "Medicare Physician &amp; Other Practitioners - by Provider and Service : 2019-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified    : Date[1:20], format: "2024-06-04" "2023-05-10" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal    : chr [1:20] "2022-01-01/2022-12-31" "2021-01-01/2021-12-31" "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ accessURL   : chr [1:20] "https://data.cms.gov/data-api/v1/dataset/4f307be4-6868-4a9e-ae92-acf3fd4b5543/data" "https://data.cms.gov/data-api/v1/dataset/5c67d835-3862-4f63-897d-85d3eac82d5b/data" "https://data.cms.gov/data-api/v1/dataset/862ed658-1f38-4b2f-b02b-0b359e12c78a/data" "https://data.cms.gov/data-api/v1/dataset/5fccd951-9538-48a7-9075-6f02b9867868/data" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resourcesAPI: chr [1:20] "https://data.cms.gov/data-api/v1/dataset-resources/4f307be4-6868-4a9e-ae92-acf3fd4b5543" "https://data.cms.gov/data-api/v1/dataset-resources/5c67d835-3862-4f63-897d-85d3eac82d5b" "https://data.cms.gov/data-api/v1/dataset-resources/862ed658-1f38-4b2f-b02b-0b359e12c78a" "https://data.cms.gov/data-api/v1/dataset-resources/5fccd951-9538-48a7-9075-6f02b9867868" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL : chr [1:20] "https://data.cms.gov/sites/default/files/2024-05/1570d9f0-59ef-416f-bb37-e78a7afe6f88/MUP_PHY_R24_P05_V10_D22_Prov_Svc.csv" "https://data.cms.gov/sites/default/files/2023-05/914a4463-7af3-423f-83a7-b343794e20ee/MUP_PHY_R23_P05_V10_D21_Prov_Svc.csv" "https://data.cms.gov/sites/default/files/2022-11/2260d1cc-9635-4c36-b890-61e672c3fea1/MUP_PHY_R22_P05_V10_D20_Prov_Svc.csv" "https://data.cms.gov/sites/default/files/2021-08/MUP_PHY_R21_P04_V10_D19_Prov_Svc.csv" ...</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="color: #BB0000; font-style: italic;">Dataset</span><span style="color: #BB0000;"> </span><span style="font-weight: bold;">Medicare Physician &amp; Other Practitioners - by Provider</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="font-weight: bold;">Rows</span>: 1,230,293 | <span style="font-weight: bold;">Fields</span>: 82 | <span style="font-weight: bold;">Resources</span>: 4 files</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity: Annually [R/P1Y]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Last Modified: 2024-06-04</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Time Period: 2013-01-01 - 2022-12-31</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Theme: Medicare</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Keywords: Medicare, Original Medicare, Physicians &amp; Practitioners, Health</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   Care Use &amp; Payments, Health Equity</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">The Medicare Physician &amp; Other Practitioners by Provider dataset provides</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">information on use, payments, submitted charges and beneficiary demographic and</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">health characteristics organized by National Provider Identifier (NPI). Note:</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">This full dataset contains more records than most spreadsheet programs can</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">handle, which will result in an incomplete load of data. Use of a database or</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">statistical sof...[truncated]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">public_Distribution</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;provider::Distribution&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title             : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ type              : chr "dcat:Distribution"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accessLevel       : chr "public"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ accrualPeriodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ bureauCode        : chr "009:38"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contactPoint      : &lt;provider::ContactPoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type    : chr "vcard:Contact"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fn      : chr "Quality Payment Program - CCSQ"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ hasEmail: chr "mailto:qpp@cms.hhs.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ describedBy       : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description       : chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ keyword           : chr "Medicare, Original Medicare, Health Care Use &amp; Payments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ landingPage       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ programCode       : chr "009:000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ publisher         : &lt;provider::Publisher&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ type: chr "org:Organization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ name: chr "Centers for Medicare &amp; Medicaid Services (CMS)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references        : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Methodology.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ distributions     : tibble [6 × 6] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ title       : chr [1:6] "Quality Payment Program Experience : 2022-01-01" "Quality Payment Program Experience : 2021-05-30" "Quality Payment Program Experience : 2020-12-31" "Quality Payment Program Experience : 2019-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified    : Date[1:6], format: "2024-05-08" "2023-06-12" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal    : chr [1:6] "2022-01-01/2022-12-31" "2021-01-01/2021-12-31" "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ accessURL   : chr [1:6] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data" "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data" "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data" "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resourcesAPI: chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/b3438273-b4a6-44ca-8fb2-9e6026b74642" "https://data.cms.gov/data-api/v1/dataset-resources/8c2ab3e4-597e-43c9-9d94-7223c66d7f25" "https://data.cms.gov/data-api/v1/dataset-resources/48a484e6-ff02-4284-8666-6045b3cac17f" "https://data.cms.gov/data-api/v1/dataset-resources/5776e77d-a844-49fd-b697-a2b01bdacdc7" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ downloadURL : chr [1:6] "https://data.cms.gov/sites/default/files/2024-04/a963b1e9-d6d2-47a5-a385-80e37884aca2/2022_puf.csv" "https://data.cms.gov/sites/default/files/2023-05/0bac88bc-a4c8-4dff-bdbf-660d24e6a689/2021_puf_QPPAR-18260.csv" "https://data.cms.gov/sites/default/files/2023-04/fb3758dd-6ace-4ddb-863b-1b895cef4d7e/2020_puf_qppar_QPPAR-17660.csv" "https://data.cms.gov/sites/default/files/2023-04/f9ef9f64-91d8-49a2-a1be-5a48bbdcc1e9/2019_puf_qppar_QPPAR-17661.csv" ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="color: #BB0000; font-style: italic;">Dataset</span><span style="color: #BB0000;"> </span><span style="font-weight: bold;">Quality Payment Program Experience</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="font-weight: bold;">Rows</span>: 624,200 | <span style="font-weight: bold;">Fields</span>: 165 | <span style="font-weight: bold;">Resources</span>: 3 files</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity: Annually [R/P1Y]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Last Modified: 2024-05-08</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Time Period: 2017-01-01 - 2022-12-31</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Theme: Medicare</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Keywords: Medicare, Original Medicare, Health Care Use &amp; Payments</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">The Quality Payment Program (QPP) Experience dataset provides participation and</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">performance information in the Merit-based Incentive Payment System (MIPS)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">during each performance year. They cover eligibility and participation,</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">performance categories, and final score and payment adjustments. The dataset</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">provides additional details at the TIN/NPI level on what was published in the</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">previous performan...[truncated]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
