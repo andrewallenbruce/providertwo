@@ -18,3 +18,4 @@ list of \verb{<httr2_response>}s
 \description{
 Perform Iterative API request with Offset
 }
+\keyword{internal}

@@ -53,3 +53,4 @@ starts_with("foo")
 
 is_in(state.abb[10:15])
 }
+\keyword{internal}

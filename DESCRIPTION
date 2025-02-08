@@ -52,7 +52,7 @@ Collate:
     'lookups.R'
     'perform_request.R'
     'providertwo-package.R'
+    'public_Dataset_Distribution.R'
     'query.R'
-    'select_public.R'
     'utils.R'
     'zzz.R'

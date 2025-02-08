@@ -38,7 +38,6 @@
 #' @returns `<tibble>` of search results
 #'
 #' @examples
-#'
 #' enrollees(enid = "I20040309000221")
 #'
 #' enrollees(npi = "1417918293", spec_code = "14-41")

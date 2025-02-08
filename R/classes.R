@@ -6,7 +6,7 @@ NULL
 #' @param email `<chr>` Contact email
 #' @returns `<S7_class>` Contact object
 #' @autoglobal
-#' @noRd
+#' @export
 Contact <- new_class(
   name       = "Contact",
   package    = "provider",
@@ -23,7 +23,7 @@ Contact <- new_class(
 #' @param name `<chr>` Publisher name; default is `Centers for Medicare & Medicaid Services`
 #' @returns `<S7_class>` Publisher object
 #' @autoglobal
-#' @noRd
+#' @export
 Publisher <- new_class(
   name    = "Publisher",
   package = "provider",
@@ -39,7 +39,7 @@ Publisher <- new_class(
 #' @param url `<chr>` identifier url
 #' @returns `<S7_class>` Identifier object
 #' @autoglobal
-#' @noRd
+#' @export
 Identifier <- new_class(
   name       = "Identifier",
   package    = "provider",
@@ -57,7 +57,7 @@ Identifier <- new_class(
 #' @param url `<chr>` `resourcesAPI` url; default is `NA`
 #' @returns `<S7_class>` Resources object
 #' @autoglobal
-#' @noRd
+#' @export
 Resources <- new_class(
   name       = "Resources",
   package    = "provider",
@@ -79,9 +79,6 @@ Resources <- new_class(
 )
 
 #' Dataset Class
-#'
-#' `Dataset` object
-#'
 #' @param type `<chr>` Schema type; default is `dcat:Dataset`
 #' @param access `<chr>` Dataset access level; default is `public`
 #' @param bureau `<chr>` Dataset bureau code; default is `009:38`
@@ -104,7 +101,7 @@ Resources <- new_class(
 #'
 #' @autoglobal
 #'
-#' @noRd
+#' @export
 Dataset <- new_class(
   name    = "Dataset",
   package = "provider",
@@ -175,9 +172,6 @@ S7::method(print, Dataset) <- function(x) {
 }
 
 #' Distribution Class
-#'
-#' `Distribution` object
-#'
 #' @param type `<chr>` Schema type; default is `dcat:Distribution`
 #' @param access `<chr>` Dataset access level; default is `public`
 #' @param bureau `<chr>` Dataset bureau code; default is `009:38`
@@ -197,26 +191,9 @@ S7::method(print, Dataset) <- function(x) {
 #' @param references `<chr>` Dataset references
 #' @param temporal `<chr>` Date range the Current dataset covers
 #' @param theme `<chr>` Dataset theme
-#' @returns `<S7_class>` Dataset object
-#'
-#' @param access `<chr>` Distribution access level; default is `public`
-#' @param periodicity `<chr>` Distribution update frequency
-#' @param bureau `<chr>` Distribution bureau code; default is `009:38`
-#' @param contact `<S7_class>` Distribution contact
-#' @param dictionary `<chr>` Hyperlink to Data dictionary
-#' @param description `<chr>` Distribution description
-#' @param keyword `<chr>` Hyperlink to API landing page
-#' @param landingpage `<chr>` Hyperlink to API landing page
-#' @param program `<chr>` Distribution program code; default is `009:000`
-#' @param publisher `<S7_class>` Distribution publisher
-#' @param references `<chr>` Distribution references
-#' @param title `<chr>` Distribution title
-#'
 #' @returns `<S7_class>` Distribution object
-#'
 #' @autoglobal
-#'
-#' @noRd
+#' @export
 Distribution <- new_class(
   name           = "Distribution",
   parent         = Dataset,
@@ -226,3 +203,47 @@ Distribution <- new_class(
     distributions = class_list
   )
 )
+
+# Print Method for Dataset Class
+S7::method(print, Distribution) <- function(x) {
+
+  cli::cli_h3(
+    paste0(
+      cli::col_red("{.emph Distribution} "),
+      cli::style_bold(gsub("  ", " ", x@title)))
+  )
+
+  cli::cli_bullets(
+    c(">" = paste0(
+      cli::style_bold("Rows"),
+      ": {prettyNum(x@identifier@rows, big.mark = ',')} | ",
+      cli::style_bold("Fields"),
+      ": {length(x@identifier@fields)} | ",
+      cli::style_bold("Resources"),
+      ": {nrow(x@resources@files)} files"),
+      " ",
+      "*" = "Periodicity: {x@periodicity}",
+      "*" = "Last Modified: {x@modified}",
+      "*" = "Time Period: {gsub('/', ' - ', x@temporal)}",
+      "*" = "Theme: {x@theme}",
+      "*" = "Keywords: {x@keyword}",
+      " "))
+
+  cli::cli_text(
+    cli::style_italic(
+      if (sf_chars(x@description) <= 400)
+        x@description else
+          paste0(sf_sub(x@description,
+                        start = 1,
+                        stop = 400),
+                 "...[truncated]")))
+
+  cli::cli_bullets(
+    c(" ",
+      "i" = paste0(
+        cli::style_hyperlink("Data Dictionary", x@dictionary), " | ",
+        cli::style_hyperlink("Landing Page", x@landingpage), " | ",
+        cli::style_hyperlink("References", x@references))))
+
+  invisible(x)
+}

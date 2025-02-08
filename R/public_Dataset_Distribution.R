@@ -57,7 +57,6 @@ public_Dataset <- function(dataset, fname = TRUE) {
 #' @returns `<Distribution>` object
 #'
 #' @examples
-#'
 #' public_Distribution("utilization_provider")
 #'
 #' public_Distribution("quality_payment")

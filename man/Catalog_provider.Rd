@@ -7,7 +7,7 @@
 Catalog_provider()
 }
 \value{
-\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{download}
+\verb{<tibble>} of Provider API catalog information
 }
 \description{
 CMS Provider Catalog

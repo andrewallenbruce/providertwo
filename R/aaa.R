@@ -53,7 +53,7 @@ Catalog_public <- \() {
 
 #' CMS Provider Catalog
 #'
-#' @returns `<list>` of `<tibbles>`: `dataset`, `download`
+#' @returns `<tibble>` of Provider API catalog information
 #'
 #' @examples
 #' Catalog_provider()

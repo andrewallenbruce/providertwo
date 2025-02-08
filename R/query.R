@@ -15,9 +15,7 @@
 #' format_query(c("NPI" = "1417918293", "PECOS_ASCT_CNTL_ID" = NULL))
 #'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
 format_query <- \(args, operator = "=") {
 
@@ -58,6 +56,7 @@ NULL
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 greater_than <- \(x) {
   list(path      = NA_character_,
@@ -67,6 +66,7 @@ greater_than <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 greater_equal <- \(x) {
   list(path      = NA_character_,
@@ -76,6 +76,7 @@ greater_equal <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 less_than <- \(x) {
   list(path      = NA_character_,
@@ -85,6 +86,7 @@ less_than <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 less_equal <- \(x) {
   list(path      = NA_character_,
@@ -94,6 +96,7 @@ less_equal <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 starts_with <- \(x) {
   list(path      = NA_character_,
@@ -103,6 +106,7 @@ starts_with <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 ends_with <- \(x) {
   list(path      = NA_character_,
@@ -112,6 +116,7 @@ ends_with <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 includes <- \(x) {
   list(path      = NA_character_,
@@ -121,6 +126,7 @@ includes <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 inside <- \(x) {
   list(path      = NA_character_,
@@ -130,6 +136,7 @@ inside <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 outside <- \(x) {
   list(path      = NA_character_,
@@ -139,6 +146,7 @@ outside <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 is_in <- \(x) {
   list(path      = NA_character_,
@@ -148,6 +156,7 @@ is_in <- \(x) {
 
 #' @rdname query-helpers
 #' @autoglobal
+#' @keywords internal
 #' @export
 not_in <- \(x) {
   list(path      = NA_character_,

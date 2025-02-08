@@ -2,7 +2,8 @@
 #' @param request `<httr_request>` API request
 #' @returns `<int>` Number of results
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 query_nrows_public <- function(request) {
 
   req_url_path_append(
@@ -19,7 +20,8 @@ query_nrows_public <- function(request) {
 #' @param response `<httr_response>` API response
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 parse_json_response <- function(response) {
   resp_body_string(response) |>
     fparse(query = "/data") |>
@@ -31,7 +33,8 @@ parse_json_response <- function(response) {
 #' @param response `<httr_response>` API response
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 map_parse_json_response <- function(response) {
   map(response, \(x) parse_json_response(x)) |>
     rowbind()
@@ -42,7 +45,8 @@ map_parse_json_response <- function(response) {
 #' @param names `<chr>` vector of column names
 #' @returns `<tibble>` Parsed JSON response as tibble
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 tidyup <- function(x, names) {
   set_names(
     x,
@@ -56,7 +60,8 @@ tidyup <- function(x, names) {
 #' @param limit `<int>` API rate limit
 #' @returns `<int>` Number of results
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 perform_request_public <- function(url, query, limit) {
 
   req <- request(url) |>

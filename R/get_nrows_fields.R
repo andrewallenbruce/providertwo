@@ -2,7 +2,8 @@
 #' @param url `<chr>` API URL
 #' @returns `<int>` Number of results
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 nrows_public <- function(url) {
 
   request(url) |>
@@ -17,7 +18,8 @@ nrows_public <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<int>` Number of results
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 nrows_provider <- function(url) {
   request(url) |>
     req_url_query(
@@ -35,7 +37,8 @@ nrows_provider <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<chr>` Field names
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 get_nrows <- function(url) {
   if (sf_detect(url, "provider-data")) {
     nrows_provider(url)
@@ -48,7 +51,8 @@ get_nrows <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<chr>` Field names
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 fields_public <- function(url) {
 
   request(url) |>
@@ -66,7 +70,8 @@ fields_public <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<chr>` Field names
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 fields_provider <- function(url) {
 
   request(url) |>
@@ -84,7 +89,8 @@ fields_provider <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<chr>` Field names
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 get_fields <- function(url) {
   if (sf_detect(url, "provider-data")) {
     fields_provider(url)
@@ -97,7 +103,8 @@ get_fields <- function(url) {
 #' @param url `<chr>` API URL
 #' @returns `<tibble>` Resources
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 get_resources <- function(url) {
   as_tbl(fload(url, query = "/data")) |>
     mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),

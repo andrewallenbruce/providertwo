@@ -2,7 +2,8 @@
 #' @param resp `<httr2_response>` object
 #' @returns `<list>` Parsed JSON response
 #' @autoglobal
-#' @noRd
+#' @keywords internal
+#' @export
 resp_simple_json <- function(resp, ...) {
   resp_body_json(resp,
                  simplifyVector = TRUE,
@@ -31,6 +32,8 @@ is_complete_with_limit <- function(limit) {
 #' @param limit `<int>` API rate limit, i.e. the maximum number of results an
 #'                      API will return per request.
 #' @returns list of `<httr2_response>`s
+#' @keywords internal
+#' @export
 req_perform_iterative_offset <- function(req, limit) {
 
   req_perform_iterative(
