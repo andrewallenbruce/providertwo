@@ -100,14 +100,16 @@ get_fields <- function(url) {
 }
 
 #' Request resources from catalog
-#' @param url `<chr>` API URL
-#' @returns `<tibble>` Resources
+#' @param url `<chr>` resources API URL
+#' @returns `<tibble>` Resource Files Data
 #' @autoglobal
 #' @keywords internal
 #' @export
 get_resources <- function(url) {
-  as_tbl(fload(url, query = "/data")) |>
+  if (not_na(url)) {
+    as_tbl(fload(url, query = "/data")) |>
     mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
         fileType = file_ext(downloadURL)) |>
     colorder(downloadURL, pos = "end")
+  }
 }

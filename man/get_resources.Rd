@@ -7,10 +7,10 @@
 get_resources(url)
 }
 \arguments{
-\item{url}{\verb{<chr>} API URL}
+\item{url}{\verb{<chr>} resources API URL}
 }
 \value{
-\verb{<tibble>} Resources
+\verb{<tibble>} Resource Files Data
 }
 \description{
 Request resources from catalog

@@ -14,8 +14,8 @@ Contact <- new_class(
     name     = class_character,
     email    = class_character),
   validator  = function(self) {
-    if (length(self@name)  != 1L) "@name must be length 1"
-    if (length(self@email) != 1L) "@email must be length 1"
+    if (length(self@name)  != 1L) "must be length 1"
+    if (length(self@email) != 1L) "must be length 1"
   })
 
 #' Publisher Class
@@ -31,8 +31,8 @@ Publisher <- new_class(
     type = new_property(class_character, default = "org:Organization"),
     name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")),
   validator = function(self) {
-    if (length(self@type) != 1L) "@type must be length 1"
-    if (length(self@name) != 1L) "@name must be length 1"
+    if (length(self@type) != 1L) "must be length 1"
+    if (length(self@name) != 1L) "must be length 1"
   })
 
 #' Identifier Class
@@ -45,13 +45,9 @@ Identifier <- new_class(
   package    = "provider",
   properties = list(
     url      = class_character,
-    rows     = new_property(
-      class  = class_integer,
-      getter = function(self) get_nrows(self@url)),
-    fields   = new_property(
-      class  = class_character,
-      getter = function(self) get_fields(self@url))),
-  validator  = function(self) if (length(self@url) != 1L) "@url must be length 1")
+    rows     = new_property(class = class_integer, getter = function(self) get_nrows(self@url)),
+    fields   = new_property(class = class_character, getter = function(self) get_fields(self@url))),
+  validator  = function(self) if (length(self@url) != 1L) "must be length 1")
 
 #' Resources Class
 #' @param url `<chr>` `resourcesAPI` url; default is `NA`
@@ -63,20 +59,8 @@ Resources <- new_class(
   package    = "provider",
   properties = list(
     url      = new_property(class_character, default = NA_character_),
-    files    = new_property(
-      class  = class_list,
-      getter = function(self) {
-        if (not_na(self@url)) {
-        get_resources(self@url)
-        }}
-      )
-    ),
-  validator  = function(self) {
-    if (not_na(self@url)) {
-      if (length(self@url) != 1L) "@url must be length 1"
-    }
-  }
-)
+    files    = new_property(class_character | class_list, getter = function(self) get_resources(self@url), default = NA_character_)),
+  validator  = function(self) if (not_na(self@url)) if (length(self@url) != 1L) "must be length 1")
 
 #' Dataset Class
 #' @param type `<chr>` Schema type; default is `dcat:Dataset`
