@@ -113,6 +113,7 @@ as_datetime <- function(x) {
 
 # ex_resource_url   <- "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
 # ex_identifier_url <- "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"
-# debugme_on <- \() Sys.setenv(DEBUGME = "providertwo")
-# debugme_off <- \() Sys.unsetenv("DEBUGME")
-# is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo")
+
+# debugme_on     <- \() Sys.setenv(DEBUGME = "providertwo-VERBOSE")
+# debugme_off    <- \() Sys.unsetenv("DEBUGME")
+# is_debuggingme <- \() identical(Sys.getenv("DEBUGME"), "providertwo-VERBOSE")

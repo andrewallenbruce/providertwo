@@ -45,9 +45,15 @@ Identifier <- new_class(
   package    = "provider",
   properties = list(
     url      = class_character,
-    rows     = new_property(class = class_integer, getter = function(self) get_nrows(self@url)),
-    fields   = new_property(class = class_character, getter = function(self) get_fields(self@url))),
-  validator  = function(self) if (length(self@url) != 1L) "must be length 1")
+    rows     = new_property(class = class_integer,
+                            getter = function(self)
+                              get_nrows(self@url)),
+    fields   = new_property(class = class_character,
+                            getter = function(self)
+                              get_fields(self@url))),
+  validator  = function(self)
+    if (length(self@url) != 1L) "must be length 1"
+  )
 
 #' Resources Class
 #' @param url `<chr>` `resourcesAPI` url; default is `NA`

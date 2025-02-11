@@ -16,6 +16,7 @@
 #' @export
 provider_Dataset <- function(dataset, fname = TRUE) {
 
+
   if (!exists(".__provider")) .__provider <<- Catalog_provider()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
@@ -38,7 +39,6 @@ provider_Dataset <- function(dataset, fname = TRUE) {
     temporal    = paste0(x$issued, "/", x$released),
     theme       = x$theme
   )
-
 }
 
 #' Load Public API `Dataset`
