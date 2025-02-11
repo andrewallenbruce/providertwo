@@ -1,7 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# providertwo
+<h1 align="center">
+
+<b>provider</b><sup><i>2</i></sup>
+</h1>
 
 > Tidy Healthcare Provider API Interface
 
