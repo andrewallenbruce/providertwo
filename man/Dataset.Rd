@@ -68,3 +68,11 @@ Dataset(
 \description{
 Dataset Class
 }
+\seealso{
+Other classes: 
+\code{\link{Contact}()},
+\code{\link{Identifier}()},
+\code{\link{Publisher}()},
+\code{\link{Resources}()}
+}
+\concept{classes}

@@ -17,11 +17,11 @@
 provider_Dataset <- function(dataset, fname = TRUE) {
 
 
-  if (!exists(".__provider")) .__provider <<- Catalog_provider()
+  if (!exists(".api__provider")) .api__provider <<- load_provider()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  x <- c(sbt(.__provider, sf_detect(title, dataset)))
+  x <- c(sbt(.api__provider, sf_detect(title, dataset)))
 
   Dataset(
     contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
@@ -65,12 +65,12 @@ provider_Dataset <- function(dataset, fname = TRUE) {
 #' @export
 public_Dataset <- function(dataset, fname = TRUE) {
 
-  if (!exists(".__public")) .__public <<- Catalog_public()
+  if (!exists(".api__public")) .api__public <<- load_public()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  x <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
-         as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]))
+  x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
+         as.list(sbt(.api__public$distribution, sf_detect(title, dataset))[1, 5]))
 
   Dataset(
     contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
@@ -109,13 +109,13 @@ public_Dataset <- function(dataset, fname = TRUE) {
 #' @export
 public_Distribution <- function(dataset, fname = TRUE) {
 
-  if (!exists(".__public")) .__public <<- Catalog_public()
+  if (!exists(".api__public")) .api__public <<- load_public()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  x <- c(as.list(sbt(.__public$dataset, sf_detect(title, dataset))),
-         as.list(sbt(.__public$distribution, sf_detect(title, dataset))[1, 5]),
-         list(distribution = sbt(.__public$distribution, sf_detect(title, dataset))))
+  x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
+         as.list(sbt(.api__public$distribution, sf_detect(title, dataset))[1, 5]),
+         list(distribution = sbt(.api__public$distribution, sf_detect(title, dataset))))
 
   Distribution(
     contact       = Contact(getElement(x$contactPoint[[1]], "fn"),

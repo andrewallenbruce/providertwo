@@ -5,6 +5,7 @@ NULL
 #' @param name `<chr>` Contact name
 #' @param email `<chr>` Contact email
 #' @returns `<S7_class>` Contact object
+#' @family classes
 #' @autoglobal
 #' @export
 Contact <- new_class(
@@ -22,6 +23,7 @@ Contact <- new_class(
 #' @param type `<chr>` Publisher type; default is `org:Organization`
 #' @param name `<chr>` Publisher name; default is `Centers for Medicare & Medicaid Services`
 #' @returns `<S7_class>` Publisher object
+#' @family classes
 #' @autoglobal
 #' @export
 Publisher <- new_class(
@@ -38,6 +40,7 @@ Publisher <- new_class(
 #' Identifier Class
 #' @param url `<chr>` identifier url
 #' @returns `<S7_class>` Identifier object
+#' @family classes
 #' @autoglobal
 #' @export
 Identifier <- new_class(
@@ -58,6 +61,7 @@ Identifier <- new_class(
 #' Resources Class
 #' @param url `<chr>` `resourcesAPI` url; default is `NA`
 #' @returns `<S7_class>` Resources object
+#' @family classes
 #' @autoglobal
 #' @export
 Resources <- new_class(
@@ -69,6 +73,7 @@ Resources <- new_class(
   validator  = function(self) if (not_na(self@url)) if (length(self@url) != 1L) "must be length 1")
 
 #' Dataset Class
+#' @name Dataset
 #' @param type `<chr>` Schema type; default is `dcat:Dataset`
 #' @param access `<chr>` Dataset access level; default is `public`
 #' @param bureau `<chr>` Dataset bureau code; default is `009:38`
@@ -88,9 +93,8 @@ Resources <- new_class(
 #' @param temporal `<chr>` Date range the Current dataset covers
 #' @param theme `<chr>` Dataset theme
 #' @returns `<S7_class>` Dataset object
-#'
+#' @family classes
 #' @autoglobal
-#'
 #' @export
 Dataset <- new_class(
   name    = "Dataset",
@@ -117,7 +121,8 @@ Dataset <- new_class(
   )
 )
 
-# Print Method for Dataset Class
+print <- S7::new_external_generic("base", "print", "x")
+
 S7::method(print, Dataset) <- function(x) {
 
   cli::cli_h3(
@@ -162,6 +167,7 @@ S7::method(print, Dataset) <- function(x) {
 }
 
 #' Distribution Class
+#' @name Distribution
 #' @param type `<chr>` Schema type; default is `dcat:Distribution`
 #' @param access `<chr>` Dataset access level; default is `public`
 #' @param bureau `<chr>` Dataset bureau code; default is `009:38`
@@ -194,7 +200,6 @@ Distribution <- new_class(
   )
 )
 
-# Print Method for Dataset Class
 S7::method(print, Distribution) <- function(x) {
 
   cli::cli_h3(

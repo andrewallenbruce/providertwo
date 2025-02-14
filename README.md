@@ -1,7 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-<h1 align="center">
+<h1 align="left">
 
 <b>provider</b><sup><i>2</i></sup>
 </h1>

@@ -17,3 +17,11 @@ Contact(name = character(0), email = character(0))
 \description{
 Contact Class
 }
+\seealso{
+Other classes: 
+\code{\link{Dataset}()},
+\code{\link{Identifier}()},
+\code{\link{Publisher}()},
+\code{\link{Resources}()}
+}
+\concept{classes}

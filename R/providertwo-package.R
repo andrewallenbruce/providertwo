@@ -9,6 +9,7 @@
 #' @importFrom kit nswitch
 #' @importFrom tools file_ext
 #' @importFrom glue glue glue_collapse
+#' @importFrom tidyr unnest unnest_wider
 #' @import httr2
 #' @import S7
 #' @import rlang

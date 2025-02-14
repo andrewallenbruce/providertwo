@@ -20,3 +20,11 @@ Publisher(
 \description{
 Publisher Class
 }
+\seealso{
+Other classes: 
+\code{\link{Contact}()},
+\code{\link{Dataset}()},
+\code{\link{Identifier}()},
+\code{\link{Resources}()}
+}
+\concept{classes}

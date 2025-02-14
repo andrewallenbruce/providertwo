@@ -1,11 +1,12 @@
-.__public <- .__provider <- NULL
+.api__public <- .api__provider <- .api_openpay <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
   if (httr2::is_online()) {
 
-  .__public   <<- Catalog_public()
-  .__provider <<- Catalog_provider()
+  .api__public   <<- load_public()
+  .api__provider <<- load_provider()
+  .api__openpay  <<- load_openpayments()
 
   }
 
@@ -15,7 +16,9 @@
 .onUnload <- function(libpath) {
   remove(
     list = c(
-      ".__public",
-      ".__provider"),
+      ".api__public",
+      ".api__provider",
+      ".api__openpay"
+      ),
     envir = .GlobalEnv)
 }

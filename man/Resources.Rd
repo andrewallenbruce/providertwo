@@ -15,3 +15,11 @@ Resources(url = NA_character_)
 \description{
 Resources Class
 }
+\seealso{
+Other classes: 
+\code{\link{Contact}()},
+\code{\link{Dataset}()},
+\code{\link{Identifier}()},
+\code{\link{Publisher}()}
+}
+\concept{classes}

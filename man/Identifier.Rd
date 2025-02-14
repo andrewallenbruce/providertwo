@@ -15,3 +15,11 @@ Identifier(url = character(0))
 \description{
 Identifier Class
 }
+\seealso{
+Other classes: 
+\code{\link{Contact}()},
+\code{\link{Dataset}()},
+\code{\link{Publisher}()},
+\code{\link{Resources}()}
+}
+\concept{classes}

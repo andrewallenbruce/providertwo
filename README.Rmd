@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-<h1 align="center"><b>provider</b><sup><i>2</i></sup></h1>
+<h1 align="left"><b>provider</b><sup><i>2</i></sup></h1>
 
 > Tidy Healthcare Provider API Interface
 

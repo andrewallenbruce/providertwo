@@ -3,15 +3,29 @@
 #' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`
 #'
 #' @examples
-#' Catalog_public()
+#' load_public()
 #'
 #' @autoglobal
 #'
 #' @export
-Catalog_public <- \() {
+load_public <- \() {
 
-  dataset <- as_tbl(fload("https://data.cms.gov/data.json", query = "/dataset") |>
-    slt(accrualPeriodicity, contactPoint, describedBy, description, distribution, identifier, keyword, landingPage, modified, references, temporal, theme, title) |>
+  dataset <- as_tbl(
+    fload("https://data.cms.gov/data.json",
+          query = "/dataset") |>
+    slt(accrualPeriodicity,
+        contactPoint,
+        describedBy,
+        description,
+        distribution,
+        identifier,
+        keyword,
+        landingPage,
+        modified,
+        references,
+        temporal,
+        theme,
+        title) |>
     mtt(modified           = as_date(modified),
         accrualPeriodicity = recode_iso8601(accrualPeriodicity),
         keyword            = flatten_column(keyword),
@@ -19,18 +33,16 @@ Catalog_public <- \() {
         description        = trimws(sf_remove(description, "\n")),
         references         = delist(references)))
 
-  distribution <- as_tbl(rowbind(get_elem(dataset, "distribution"), fill = TRUE)) |>
+  distribution <- as_tbl(rowbind(
+    get_elem(dataset, "distribution"),
+    fill = TRUE)) |>
     mtt(modified = as_date(modified))
 
   list(
     dataset      = slt(dataset, -distribution),
     distribution = join(
-      sbt(distribution,
-          not_na(format) & na(description),
-          title, modified, temporal, accessURL, resourcesAPI),
-      sbt(distribution,
-          mediaType %==% "text/csv",
-          title, temporal, downloadURL),
+      sbt(distribution, not_na(format) & na(description), title, modified, temporal, accessURL, resourcesAPI),
+      sbt(distribution, mediaType %==% "text/csv", title, temporal, downloadURL),
       on = c("title", "temporal"),
       verbose = 0)
     )
@@ -41,14 +53,15 @@ Catalog_public <- \() {
 #' @returns `<tibble>` of Provider API catalog information
 #'
 #' @examples
-#' Catalog_provider()
+#' load_provider()
 #'
 #' @autoglobal
 #'
 #' @export
-Catalog_provider <- \() {
+load_provider <- \() {
 
-  dataset <- as_tbl(fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items") |>
+  dataset <- as_tbl(
+    fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items") |>
     slt(-c(`@type`, accessLevel, bureauCode, programCode, archiveExclude, publisher)) |>
     mtt(issued      = as_date(issued),
         modified    = as_date(modified),
@@ -73,54 +86,42 @@ Catalog_provider <- \() {
 #'
 #' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
 #'
-#' @examplesIf FALSE
-#' Catalog_openpayments()
+#' @examples
+#' load_openpayments()
 #'
 #' @autoglobal
 #'
 #' @export
-Catalog_openpayments <- \() {
+load_openpayments <- \() {
 
-  dataset <- as_tbl(fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
-    mtt(issued             = as_date(issued),
-        modified           = as_date(modified),
-        # accrualPeriodicity = recode_iso8601(accrualPeriodicity),
-        description        = sf_remove(description, "\n"),
-        # bureauCode         = delist(bureauCode),
-        # programCode        = delist(programCode),
-        theme              = delist(map(theme, \(x) gelm(as.list(x), "data"))),
-        year               = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
-        modified_dttm      = as_datetime(`%modified`)))
-
-  distribution <- as_tbl(rowbind(gelm(identifier, "data"), fill = TRUE))
-
-  list(
-    dataset = slt(
-      dataset,
+  as_tbl(fload(
+    "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
+      mtt(issued          = as_date(issued),
+          modified        = as_date(modified),
+          description     = sf_remove(description, "\n"),
+          theme           = delist(map(theme, \(x) gelm(as.list(x), "data"))),
+          year            = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
+          identifier_year = delist(map(keyword, \(x) gelm(as.list(x), "identifier"))),
+          identifier_dist = delist(map(distribution, \(x) gelm(as.list(x), "identifier"))),
+          # distribution = delist(map(distribution, \(x) gelm(as.list(x), "data"))),
+          modified_dttm   = as_datetime(`%modified`))) |>
+    slt(
+      theme,
       year,
       title,
+      contactPoint,
       description,
-      theme,
+      distribution,
+      temporal,
+      identifier,
+      identifier_year,
       issued,
       modified,
       modified_dttm,
-      temporal,
-      accrualPeriodicity,
-      distribution),
-    distribution = sbt(
-      distribution,
-      not_na(format) & na(description),
-      title,
-      modified,
-      temporal,
-      accessURL,
-      resourcesAPI),
-    downloads = sbt(
-      distribution,
-      mediaType %==% "text/csv",
-      title,
-      modified,
-      temporal,
-      downloadURL)
-  )
+      publisher) |>
+    unnest(distribution, names_sep = "_") |>
+    unnest_wider(distribution_data, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL`, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL_data`, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL_data_1`, names_sep = "_")
 }
