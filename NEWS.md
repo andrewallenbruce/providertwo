@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9078 (2025-02-15)
+
+* work on class print methods
+
+
 # providertwo 0.0.0.9077 (2025-02-13)
 
 * added `load_openpayments()`
