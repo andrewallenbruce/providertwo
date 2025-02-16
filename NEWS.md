@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9080 (2025-02-16)
+
+* More openpayments work
+
+
 # providertwo 0.0.0.9079 (2025-02-16)
 
 * `load_openpayments()` pruning
