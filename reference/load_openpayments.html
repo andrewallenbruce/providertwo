@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9079</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9080</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,32 +50,29 @@
 
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>&lt;list&gt;</code> of <code>&lt;tibbles&gt;</code>: <code>dataset</code>, <code>distribution</code>, <code>downloads</code></p>
+    <p><code>&lt;tibble&gt;</code> of Open Payments API catalog information</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">load_openpayments</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 74 × 19</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    theme  year  title description temporal identifier identifier_year issued    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Resea… 2017  2017… <span style="color: #949494;">"</span>Research … 2017-01… 0e3977b9-… 7a69eb60-9b96-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Owner… 2017  2017… <span style="color: #949494;">"</span>Ownership… 2017-01… f90c33d1-… 7a69eb60-9b96-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Gener… 2017  2017… <span style="color: #949494;">"</span>All gener… 2017-01… 74e3a32c-… 7a69eb60-9b96-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Summa… all … Repo… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       1cf0c6c0-… 33f48f29-a62d-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Summa… all … Teac… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       8219fcb3-… 33f48f29-a62d-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Summa… all … Phys… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       6ed6ae76-… 33f48f29-a62d-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Summa… 2023  2023… <span style="color: #949494;">"</span>This data… 2023-01… 29c23b6a-… 9409f61b-252f-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Summa… 2017  2017… <span style="color: #949494;">"</span>This data… 2017-01… d3d4880a-… 7a69eb60-9b96-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Summa… 2018  2018… <span style="color: #949494;">"</span>This data… 2018-01… c1ce263b-… 84dbcaf9-e303-… 2025-01-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Summa… 2019  2019… <span style="color: #949494;">"</span>This data… 2019-01… 6c8251d4-… 9a0e833d-bee5-… 2025-01-30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 74 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    theme             year  title description temporal identifier identifier_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Research Payments 2017  2017… <span style="color: #949494;">"</span>Research … 2017-01… 0e3977b9-… 7a69eb60-9b96-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Ownership Paymen… 2017  2017… <span style="color: #949494;">"</span>Ownership… 2017-01… f90c33d1-… 7a69eb60-9b96-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> General Payments  2017  2017… <span style="color: #949494;">"</span>All gener… 2017-01… 74e3a32c-… 7a69eb60-9b96-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Summary           all … Repo… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       1cf0c6c0-… 33f48f29-a62d-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Summary           all … Teac… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       8219fcb3-… 33f48f29-a62d-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Summary           all … Phys… <span style="color: #949494;">"</span>This data… <span style="color: #BB0000;">NA</span>       6ed6ae76-… 33f48f29-a62d-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Summary           2023  2023… <span style="color: #949494;">"</span>This data… 2023-01… 29c23b6a-… 9409f61b-252f-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Summary           2017  2017… <span style="color: #949494;">"</span>This data… 2017-01… d3d4880a-… 7a69eb60-9b96-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Summary           2018  2018… <span style="color: #949494;">"</span>This data… 2018-01… c1ce263b-… 84dbcaf9-e303-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Summary           2019  2019… <span style="color: #949494;">"</span>This data… 2019-01… 6c8251d4-… 9a0e833d-bee5-…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: modified &lt;date&gt;, modified_dttm &lt;dttm&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distribution_identifier &lt;chr&gt;, distribution_title &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distribution_mediaType &lt;chr&gt;, distribution_downloadURL &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distribution_describedBy &lt;chr&gt;, distribution_describedByType &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   downloadURL_identifier &lt;chr&gt;, downloadURL_filePath &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   downloadURL_mimeType &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: identifier_distro &lt;chr&gt;, modified &lt;date&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distribution_title &lt;chr&gt;, distribution_downloadURL &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distribution_describedBy &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
