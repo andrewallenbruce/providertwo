@@ -29,13 +29,10 @@ provider_Dataset <- function(dataset, fname = TRUE) {
     identifier  = Identifier(x$identifier),
     modified    = x$modified,
     title       = x$title,
-    # periodicity = x$accrualPeriodicity,
     dictionary  = x$describedBy,
     description = x$description,
     keyword     = x$keyword,
     landingpage = x$landingPage,
-    # references  = x$references,
-    # downloadURL  = x$downloadURL,
     temporal    = paste0(x$issued, "/", x$released),
     theme       = x$theme
   )

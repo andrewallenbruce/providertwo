@@ -84,7 +84,7 @@ load_provider <- \() {
 
 #' CMS Open Payments Catalog
 #'
-#' @returns `<list>` of `<tibbles>`: `dataset`, `distribution`, `downloads`
+#' @returns `<tibble>` of Open Payments API catalog information
 #'
 #' @examples
 #' load_openpayments()
@@ -98,16 +98,17 @@ load_openpayments <- \() {
   # contactPoint =
   #        fn       = "Open Payments",
   #        hasEmail = "mailto:openpayments@cms.hhs.gov"
+  #
+  # Data Dictionary: https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items?show-reference-ids=true
+  # All Schemas: https://openpaymentsdata.cms.gov/api/1/metastore/schemas
 
   as_tbl(fload(
     "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
-      mtt(issued          = as_date(issued),
-          modified        = as_date(modified),
-          description     = sf_remove(description, "\n"),
+      mtt(modified        = as_date(modified),
+          description     = sf_replace(description, "\n", ". "),
           theme           = delist(map(theme, \(x) gelm(as.list(x), "data"))),
           year            = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
-          identifier_year = delist(map(keyword, \(x) gelm(as.list(x), "identifier"))),
-          modified_dttm   = as_datetime(`%modified`))) |>
+          identifier_year = delist(map(keyword, \(x) gelm(as.list(x), "identifier"))))) |>
     unnest(distribution, names_sep = "_") |>
     unnest_wider(distribution_data, names_sep = "_") |>
     unnest_wider(`distribution_data_%Ref:downloadURL`, names_sep = "_") |>
@@ -121,17 +122,10 @@ load_openpayments <- \() {
       temporal,
       identifier,
       identifier_year,
-      issued,
+      identifier_distro = distribution_identifier,
       modified,
-      modified_dttm,
-      distribution_identifier,
       distribution_title = distribution_data_title,
-      distribution_mediaType = distribution_data_mediaType,
       distribution_downloadURL = distribution_data_downloadURL,
-      distribution_describedBy = distribution_data_describedBy,
-      distribution_describedByType = distribution_data_describedByType,
-      downloadURL_identifier = `distribution_data_%Ref:downloadURL_identifier`,
-      downloadURL_filePath = `distribution_data_%Ref:downloadURL_data_1_filePath`,
-      downloadURL_mimeType = `distribution_data_%Ref:downloadURL_data_1_mimeType`
+      distribution_describedBy = distribution_data_describedBy
     )
 }

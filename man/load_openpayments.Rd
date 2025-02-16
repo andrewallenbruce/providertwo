@@ -7,7 +7,7 @@
 load_openpayments()
 }
 \value{
-\verb{<list>} of \verb{<tibbles>}: \code{dataset}, \code{distribution}, \code{downloads}
+\verb{<tibble>} of Open Payments API catalog information
 }
 \description{
 CMS Open Payments Catalog
