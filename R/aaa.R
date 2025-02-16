@@ -94,6 +94,11 @@ load_provider <- \() {
 #' @export
 load_openpayments <- \() {
 
+  # publisher = "openpaymentsdata.cms.gov"
+  # contactPoint =
+  #        fn       = "Open Payments",
+  #        hasEmail = "mailto:openpayments@cms.hhs.gov"
+
   as_tbl(fload(
     "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
       mtt(issued          = as_date(issued),
@@ -102,26 +107,31 @@ load_openpayments <- \() {
           theme           = delist(map(theme, \(x) gelm(as.list(x), "data"))),
           year            = delist(map(keyword, \(x) gelm(as.list(x), "data"))),
           identifier_year = delist(map(keyword, \(x) gelm(as.list(x), "identifier"))),
-          identifier_dist = delist(map(distribution, \(x) gelm(as.list(x), "identifier"))),
-          # distribution = delist(map(distribution, \(x) gelm(as.list(x), "data"))),
           modified_dttm   = as_datetime(`%modified`))) |>
+    unnest(distribution, names_sep = "_") |>
+    unnest_wider(distribution_data, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL`, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL_data`, names_sep = "_") |>
+    unnest_wider(`distribution_data_%Ref:downloadURL_data_1`, names_sep = "_") |>
     slt(
       theme,
       year,
       title,
-      contactPoint,
       description,
-      distribution,
       temporal,
       identifier,
       identifier_year,
       issued,
       modified,
       modified_dttm,
-      publisher) |>
-    unnest(distribution, names_sep = "_") |>
-    unnest_wider(distribution_data, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL`, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL_data`, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL_data_1`, names_sep = "_")
+      distribution_identifier,
+      distribution_title = distribution_data_title,
+      distribution_mediaType = distribution_data_mediaType,
+      distribution_downloadURL = distribution_data_downloadURL,
+      distribution_describedBy = distribution_data_describedBy,
+      distribution_describedByType = distribution_data_describedByType,
+      downloadURL_identifier = `distribution_data_%Ref:downloadURL_identifier`,
+      downloadURL_filePath = `distribution_data_%Ref:downloadURL_data_1_filePath`,
+      downloadURL_mimeType = `distribution_data_%Ref:downloadURL_data_1_mimeType`
+    )
 }

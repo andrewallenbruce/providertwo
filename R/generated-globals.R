@@ -16,7 +16,6 @@ utils::globalVariables(c(
   # <load_provider>
   "bureauCode",
   # <load_public>
-  # <load_openpayments>
   "contactPoint",
   # <load_public>
   "describedBy",
@@ -35,6 +34,24 @@ utils::globalVariables(c(
   "distribution_data_%Ref:downloadURL_data",
   # <load_openpayments>
   "distribution_data_%Ref:downloadURL_data_1",
+  # <load_openpayments>
+  "distribution_data_%Ref:downloadURL_data_1_filePath",
+  # <load_openpayments>
+  "distribution_data_%Ref:downloadURL_data_1_mimeType",
+  # <load_openpayments>
+  "distribution_data_%Ref:downloadURL_identifier",
+  # <load_openpayments>
+  "distribution_data_describedBy",
+  # <load_openpayments>
+  "distribution_data_describedByType",
+  # <load_openpayments>
+  "distribution_data_downloadURL",
+  # <load_openpayments>
+  "distribution_data_mediaType",
+  # <load_openpayments>
+  "distribution_data_title",
+  # <load_openpayments>
+  "distribution_identifier",
   # <load_public>
   # <get_resources>
   "downloadURL",
@@ -66,7 +83,6 @@ utils::globalVariables(c(
   # <load_provider>
   "programCode",
   # <load_provider>
-  # <load_openpayments>
   "publisher",
   # <load_public>
   "references",
