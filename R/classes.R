@@ -31,11 +31,15 @@ Publisher <- new_class(
   package = "provider",
   properties = list(
     type = new_property(class_character, default = "org:Organization"),
-    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")),
+    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")
+  ),
   validator = function(self) {
-    if (length(self@type) != 1L) "must be length 1"
-    if (length(self@name) != 1L) "must be length 1"
-  })
+    if (length(self@type) != 1L)
+      "must be length 1"
+    if (length(self@name) != 1L)
+      "must be length 1"
+  }
+)
 
 #' Identifier Class
 #' @param url `<chr>` identifier url
@@ -48,15 +52,21 @@ Identifier <- new_class(
   package    = "provider",
   properties = list(
     url      = class_character,
-    rows     = new_property(class = class_integer,
-                            getter = function(self)
-                              get_nrows(self@url)),
-    fields   = new_property(class = class_character,
-                            getter = function(self)
-                              get_fields(self@url))),
+    rows     = new_property(
+      class = class_integer,
+      getter = function(self)
+        get_nrows(self@url)
+    ),
+    fields   = new_property(
+      class = class_character,
+      getter = function(self)
+        get_fields(self@url)
+    )
+  ),
   validator  = function(self)
-    if (length(self@url) != 1L) "must be length 1"
-  )
+    if (length(self@url) != 1L)
+      "must be length 1"
+)
 
 #' Resources Class
 #' @param url `<chr>` `resourcesAPI` url; default is `NA`
@@ -69,8 +79,19 @@ Resources <- new_class(
   package    = "provider",
   properties = list(
     url      = new_property(class_character, default = NA_character_),
-    files    = new_property(class_character | class_list, getter = function(self) get_resources(self@url), default = NA_character_)),
-  validator  = function(self) if (not_na(self@url)) if (length(self@url) != 1L) "must be length 1")
+    files    = new_property(
+      class_character |
+        class_list,
+      getter = function(self)
+        get_resources(self@url),
+      default = NA_character_
+    )
+  ),
+  validator  = function(self)
+    if (not_na(self@url))
+      if (length(self@url) != 1L)
+        "must be length 1"
+)
 
 #' Dataset Class
 #' @name Dataset
@@ -159,24 +180,22 @@ Distribution <- new_class(
 print  <- S7::new_external_generic("base", "print", "x")
 format <- S7::new_external_generic("base", "format", "x")
 
-cli_dim <- \(x) {
 
+cli_dim <- \(x) {
   s      <- cli::col_silver(cli::symbol$menu)
   rows   <- cli::style_bold(cli::col_yellow("Rows"))
   fields <- cli::style_bold(cli::col_yellow("Fields"))
   pages  <- cli::style_bold(cli::col_yellow("Pages"))
   files  <- cli::style_bold(cli::col_yellow("Resources"))
 
-  n <- prettyNum(prop(prop(x, "identifier"),"rows"), ',')
+  n <- prettyNum(prop(prop(x, "identifier"), "rows"), ',')
   f <- length(prop(prop(x, "identifier"), "fields"))
   o <- offset_length(prop(prop(x, "identifier"), "rows"), limit = 5000)
   r <- nrow(prop(prop(x, "resources"), "files"))
 
-  cli::cat_line(
-    cli::cli_text(
-      '{s} {rows} {n} {s} {fields} {f} {s} {pages} {o} {s} {files} {r} {s}'
-    )
-  )
+  cli::cat_line(cli::cli_text(
+    '{s} {rows} {n} {s} {fields} {f} {s} {pages} {o} {s} {files} {r} {s}'
+  ))
 }
 
 cli_temporal <- \(x) {
@@ -189,45 +208,40 @@ cli_temporal <- \(x) {
   release  <- cli::style_italic(cli::col_yellow(prop(x, "periodicity")))
   modified <- cli::style_italic(cli::col_yellow(prop(x, "modified")))
 
-  cli::cat_line(
-    cli::cli_text(
-      '{tmp} {v} {timespan} {rel} {v} {release} {mod} {v} {modified}' )
-  )
+  cli::cat_line(cli::cli_text('{tmp} {v} {timespan} {rel} {v} {release} {mod} {v} {modified}'))
 }
 
 cli_desc <- \(x) {
   cli::ansi_strwrap(
-    cli::col_cyan(
-      cli::style_italic(
-        x)),
+    cli::col_cyan(cli::style_italic(x)),
     width = 60,
     indent = 2,
-    exdent = 2) |>
+    exdent = 2
+  ) |>
     cli::cat_line()
 }
 
 cli_title <- \(x) {
-  cli::cat_print(
-    cli::rule(
-      left = cli::style_bold(x),
-      line = 2,
-      line_col = "silver",
-      width = 60))
+  cli::cat_print(cli::rule(
+    left = cli::style_bold(x),
+    line = 2,
+    line_col = "silver",
+    width = 60
+  ))
 }
 
 cli_org <- \(x) {
-  cli::cat_print(
-    cli::rule(
-      left = cli::style_bold(x),
-      line = 2,
-      line_col = "silver",
-      width = 60))
+  cli::cat_print(cli::rule(
+    left = cli::style_bold(x),
+    line = 2,
+    line_col = "silver",
+    width = 60
+  ))
 }
 
 
 # Print Method for Dataset Class
 S7::method(print, Dataset) <- function(x) {
-
   cli_title(prop(x, "title"))
   cli::cat_line()
 
@@ -240,12 +254,16 @@ S7::method(print, Dataset) <- function(x) {
 
   # cli::cli_bullets(c("*" = "Theme: {x@theme}", "*" = "Keywords: {x@keyword}", " "))
 
-  cli::cli_bullets(
-    c(" ",
-      "i" = paste0(
-        cli::style_hyperlink("Data Dictionary", x@dictionary), " | ",
-        cli::style_hyperlink("Landing Page", x@landingpage), " | ",
-        cli::style_hyperlink("References", x@references))))
+  cli::cli_bullets(c(
+    " ",
+    "i" = paste0(
+      cli::style_hyperlink("Data Dictionary", x@dictionary),
+      " | ",
+      cli::style_hyperlink("Landing Page", x@landingpage),
+      " | ",
+      cli::style_hyperlink("References", x@references)
+    )
+  ))
 
   invisible(x)
 }

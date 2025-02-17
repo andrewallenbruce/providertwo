@@ -1,3 +1,45 @@
+#' Load Open Payments API `Dataset`
+#'
+#' @param period `<chr>` dataset year
+#'
+#' @param group `<chr>` dataset group keyword
+#'
+#' @param dataset `<chr>` dataset title
+#'
+#' @returns `<Dataset>` object
+#'
+#' @examples
+#' open_Dataset(period = "All", group = "Summary", dataset = "Covered Recipient Profile Supplement")
+#'
+#' @autoglobal
+#'
+#' @export
+open_Dataset <- function(period = NULL, group = NULL, dataset = NULL) {
+
+
+  if (!exists(".api__openpay")) .api__openpay <<- load_openpayments()
+
+  if (not_null(period))   x <- sbt(.api__openpay, sf_detect(year, period))
+  if (not_null(group))    x <- sbt(.api__openpay, sf_detect(theme, group))
+  if (not_null(dataset))  x <- sbt(.api__openpay, sf_detect(title, dataset))
+
+  c(x)
+
+  # Dataset(
+  #   contact     = Contact("Open Payments", "mailto:openpayments@cms.hhs.gov"),
+  #   publisher   = Publisher(name = "openpaymentsdata.cms.gov"),
+  #   periodicity = "Annual",
+  #   identifier  = Identifier(x$identifier),
+  #   modified    = x$modified,
+  #   title       = x$title,
+  #   dictionary  = x$describedBy,
+  #   description = x$description,
+  #   landingpage = x$landingPage,
+  #   temporal    = x$temporal,
+  #   theme       = x$theme
+  # )
+}
+
 #' Load Provider API `Dataset`
 #'
 #' @param dataset `<chr>` dataset title

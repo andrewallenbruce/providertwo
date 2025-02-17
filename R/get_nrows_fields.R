@@ -40,7 +40,7 @@ nrows_provider <- function(url) {
 #' @keywords internal
 #' @export
 get_nrows <- function(url) {
-  if (sf_detect(url, "provider-data")) {
+  if (sf_detect(url, "provider-data|openpaymentsdata")) {
     nrows_provider(url)
   } else {
     nrows_public(url)
@@ -73,16 +73,18 @@ fields_public <- function(url) {
 #' @keywords internal
 #' @export
 fields_provider <- function(url) {
-
   request(url) |>
     req_url_query(
-      limit  = 1,
-      offset = 0) |>
+      limit   = 1,
+      offset  = 0,
+      count   = "false",
+      schema  = "false",
+      results = "false"
+    ) |>
     req_perform() |>
     resp_simple_json() |>
     _[["query"]] |>
     _[["properties"]]
-
 }
 
 #' Request field names from catalog
@@ -92,7 +94,7 @@ fields_provider <- function(url) {
 #' @keywords internal
 #' @export
 get_fields <- function(url) {
-  if (sf_detect(url, "provider-data")) {
+  if (sf_detect(url, "provider-data|openpaymentsdata")) {
     fields_provider(url)
   } else {
     fields_public(url)
@@ -108,8 +110,10 @@ get_fields <- function(url) {
 get_resources <- function(url) {
   if (not_na(url)) {
     as_tbl(fload(url, query = "/data")) |>
-    mtt(fileSize = trimws(as_chr(parse_bytes(as_chr(fileSize)))),
-        fileType = file_ext(downloadURL)) |>
-    colorder(downloadURL, pos = "end")
+      mtt(fileSize = trimws(as_chr(parse_bytes(
+        as_chr(fileSize)
+      ))),
+      fileType = file_ext(downloadURL)) |>
+      colorder(downloadURL, pos = "end")
   }
 }

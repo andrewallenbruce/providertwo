@@ -37,8 +37,6 @@ utils::globalVariables(c(
   # <load_openpayments>
   "distribution_data_downloadURL",
   # <load_openpayments>
-  "distribution_data_title",
-  # <load_openpayments>
   "distribution_identifier",
   # <load_public>
   # <get_resources>
@@ -49,8 +47,6 @@ utils::globalVariables(c(
   # <load_provider>
   # <load_openpayments>
   "identifier",
-  # <load_openpayments>
-  "identifier_year",
   # <load_provider>
   "issued",
   # <load_public>
@@ -81,14 +77,17 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <open_Dataset>
   "theme",
   # <load_public>
   # <load_openpayments>
+  # <open_Dataset>
   # <provider_Dataset>
   # <public_Dataset>
   # <public_Distribution>
   "title",
   # <load_openpayments>
+  # <open_Dataset>
   "year",
   NULL
 ))
