@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9082 (2025-02-18)
+
+* experimenting with `fn_fmls()` for queries
+
+
 # providertwo 0.0.0.9081 (2025-02-17)
 
 * added `open_Dataset()` draft
