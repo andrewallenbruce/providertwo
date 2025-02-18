@@ -10,11 +10,11 @@ enrollees(
   enid = NULL,
   spec_code = NULL,
   spec_desc = NULL,
+  state = NULL,
   first = NULL,
   middle = NULL,
   last = NULL,
   org = NULL,
-  state = NULL,
   gender = NULL,
   limit = 5000
 )
@@ -30,11 +30,11 @@ enrollees(
 
 \item{spec_desc}{\verb{<chr>} Enrollment specialty description}
 
+\item{state}{\verb{<chr>} Enrollment state abbreviation}
+
 \item{first, middle, last}{\verb{<chr>} Individual provider's name(s)}
 
 \item{org}{\verb{<chr>} Organizational provider's name}
-
-\item{state}{\verb{<chr>} Enrollment state abbreviation}
 
 \item{gender}{\verb{<chr>} Individual provider's gender:
 \itemize{

@@ -37,31 +37,18 @@ load_public <- \() {
   )
 
   distribution <- as_tbl(rowbind(get_elem(dataset, "distribution"), fill = TRUE)) |>
-    mtt(modified = as_date(modified))
+    mtt(modified = as_date(modified),
+        format = cheapr::cheapr_if_else(not_na(description), paste0(format, "-", description), format),
+        `@type` = NULL,
+        description = NULL) |>
+    colorder(title)
 
   list(
-    dataset      = slt(dataset, -distribution),
+    dataset      = slt(dataset, title, theme, keyword, description, accrualPeriodicity, contactPoint, describedBy, identifier, modified, landingPage, temporal, references),
     distribution = join(
-      sbt(
-        distribution,
-        not_na(format) &
-          na(description),
-        title,
-        modified,
-        temporal,
-        accessURL,
-        resourcesAPI
-      ),
-      sbt(
-        distribution,
-        mediaType %==% "text/csv",
-        title,
-        temporal,
-        downloadURL
-      ),
-      on = c("title", "temporal"),
-      verbose = 0
-    )
+      sbt(distribution, not_na(mediaType), title, mediaType, downloadURL, resourcesAPI, modified, temporal),
+      sbt(distribution, not_na(format), title, format, accessURL, resourcesAPI, modified, temporal),
+      on = c("title", "temporal", "resourcesAPI", "modified"),verbose = 0, overid = 0)
   )
 }
 

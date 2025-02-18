@@ -37,17 +37,15 @@ query_nrows_provider <- function(request) {
 #' Perform Public API request
 #' @param url `<url>` API identifier url
 #' @param query `<chr>` vector of query parameters
-#' @param limit `<int>` API rate limit
 #' @returns `<int>` Number of results
 #' @autoglobal
 #' @keywords internal
 #' @export
-perform_request_public <- function(url, query, limit) {
+perform_request_public <- function(url, query) {
 
   req <- req_url_query(
     request(url),
-    !!!format_query_public(query),
-    size = limit)
+    !!!format_query_public(query))
 
   n <- query_nrows_public(req)
 
@@ -60,19 +58,17 @@ perform_request_public <- function(url, query, limit) {
     )
   }
 
-  nreq <- offset_length(n, limit) > 1
+  nreq <- offset_length(n, query$size) > 1
 
   if (false(nreq)) {
     return(
       req_perform(req) |>
-      parse_json_response_public() |>
-        tidyup(names = query)
+      parse_json_response_public()
       )
     } else {
       return(
-        req_perform_iterative_offset(req, limit) |>
-        map_parse_json_response_public() |>
-        tidyup(names = query)
+        req_perform_iterative_offset(req, query$size) |>
+        map_parse_json_response_public()
        )
   }
 

@@ -4,7 +4,7 @@
 \alias{public_Dataset}
 \title{Load Public API \code{Dataset}}
 \usage{
-public_Dataset(dataset, fname = TRUE)
+public_Dataset(dataset = "enrollees", fname = TRUE)
 }
 \arguments{
 \item{dataset}{\verb{<chr>} dataset title}

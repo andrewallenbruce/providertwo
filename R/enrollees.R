@@ -55,46 +55,32 @@ enrollees <- function(npi       = NULL,
                       enid      = NULL,
                       spec_code = NULL,
                       spec_desc = NULL,
+                      state     = NULL,
                       first     = NULL,
                       middle    = NULL,
                       last      = NULL,
                       org       = NULL,
-                      state     = NULL,
                       gender    = NULL,
                       limit     = 5000) {
 
   check_limit_public(limit)
 
-  args <- list2(
-    "NPI"                = npi,
-    "PECOS_ASCT_CNTL_ID" = pac,
-    "ENRLMT_ID"          = enid,
-    "PROVIDER_TYPE_CD"   = spec_code,
-    "PROVIDER_TYPE_DESC" = spec_desc,
-    "STATE_CD"           = state,
-    "FIRST_NAME"         = first,
-    "MDL_NAME"           = middle,
-    "LAST_NAME"          = last,
-    "ORG_NAME"           = org,
-    "GNDR_SW"            = gender)
+  # args <- list2(
+  #   "NPI"                = npi,
+  #   "PECOS_ASCT_CNTL_ID" = pac,
+  #   "ENRLMT_ID"          = enid,
+  #   "PROVIDER_TYPE_CD"   = spec_code,
+  #   "PROVIDER_TYPE_DESC" = spec_desc,
+  #   "STATE_CD"           = state,
+  #   "FIRST_NAME"         = first,
+  #   "MDL_NAME"           = middle,
+  #   "LAST_NAME"          = last,
+  #   "ORG_NAME"           = org,
+  #   "GNDR_SW"            = gender)
 
-  x <- public_Dataset("enrollees")
-  x
-
-  cat(format(gsub("  ", " ", x@title)), "\n")
-
-  utils::formatUL(
-    label  = "==>",
-    offset = 2,
-    c(paste0("Periodicity: ",   format(x@periodicity)),
-      paste0("Last Modified: ", format(x@modified)))) |>
-    writeLines()
-
-  cat("\n")
 
   perform_request_public(
-    url   = x@identifier@url,
-    query = args,
-    limit = limit)
+    url   = endpoint(public_Dataset("enrollees")),
+    query = process_params(fn_fmls_names(), fields(public_Dataset("enrollees"))) |> eval_bare() |> compact())
 
 }

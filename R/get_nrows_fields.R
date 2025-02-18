@@ -55,14 +55,17 @@ get_nrows <- function(url) {
 #' @export
 fields_public <- function(url) {
 
-  request(url) |>
+  c(
+    request(url) |>
     req_url_query(
       size   = 1,
       offset = 0) |>
     req_perform() |>
     resp_simple_json() |>
     _[["meta"]] |>
-    _[["headers"]]
+    _[["headers"]],
+    "size"
+    )
 
 }
 
@@ -73,7 +76,8 @@ fields_public <- function(url) {
 #' @keywords internal
 #' @export
 fields_provider <- function(url) {
-  request(url) |>
+  c(
+    request(url) |>
     req_url_query(
       limit   = 1,
       offset  = 0,
@@ -84,7 +88,9 @@ fields_provider <- function(url) {
     req_perform() |>
     resp_simple_json() |>
     _[["query"]] |>
-    _[["properties"]]
+    _[["properties"]],
+    "limit"
+   )
 }
 
 #' Request field names from catalog

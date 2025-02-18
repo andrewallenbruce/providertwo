@@ -1,3 +1,66 @@
+#' Process Query Parameters
+#'
+#' @param arg_names `<chr>` vector of argument names
+#' @param field_names `<chr>` vector of API field names
+#' @returns `<expr>` of processed query parameters
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+process_params <- function(arg_names, field_names) {
+
+  nms <- set_names(arg_names, field_names)
+
+  parse_expr(
+    paste0(
+      "list2(",
+      glue_collapse(
+      glue('{names(nms)} = {unname(nms)}'),
+      sep = ", "),
+      ")")
+    )
+}
+
+#' Evaluate Query Parameters
+#'
+#' @param args `<list>` of query parameters
+#' @param fields `<chr>` vector of API field names
+#' @returns `<list>` of evaluated query parameters
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+eval_params <- function(args, fields) {
+
+  process_params(args, fields) |>
+    eval_bare() |>
+    compact()
+}
+
+#' Retrieve Fields
+#'
+#' @param x `<S7_class>` Dataset
+#' @returns `<chr>` vector of API field names
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+fields <- function(x) {
+  prop(prop(x, "identifier"), "fields")
+}
+
+#' Retrieve Identifier URL
+#'
+#' @param x `<S7_class>` Dataset
+#' @returns `<chr>` Identifier URL
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+endpoint <- function(x) {
+  prop(prop(x, "identifier"), "url")
+}
+
 #' Format Public API Queries
 #'
 #' @param args named `<list>` or vector of `<chr>` arguments

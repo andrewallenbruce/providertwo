@@ -28,7 +28,7 @@ open_Dataset <- function(period = NULL, group = NULL, dataset = NULL) {
   # Dataset(
   #   contact     = Contact("Open Payments", "mailto:openpayments@cms.hhs.gov"),
   #   publisher   = Publisher(name = "openpaymentsdata.cms.gov"),
-  #   periodicity = "Annual",
+  #   periodicity = "Annually [R/P1Y]",
   #   identifier  = Identifier(x$identifier),
   #   modified    = x$modified,
   #   title       = x$title,
@@ -102,14 +102,15 @@ provider_Dataset <- function(dataset, fname = TRUE) {
 #' @autoglobal
 #'
 #' @export
-public_Dataset <- function(dataset, fname = TRUE) {
+public_Dataset <- function(dataset = "enrollees", fname = TRUE) {
 
   if (!exists(".api__public")) .api__public <<- load_public()
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
   x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
-         as.list(sbt(.api__public$distribution, sf_detect(title, dataset))[1, 5]))
+         as.list(sset(sbt(.api__public$distribution, sf_detect(title, dataset)), 1, j = "resourcesAPI"))
+         )
 
   Dataset(
     contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
@@ -153,7 +154,7 @@ public_Distribution <- function(dataset, fname = TRUE) {
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
   x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
-         as.list(sbt(.api__public$distribution, sf_detect(title, dataset))[1, 5]),
+         as.list(sset(sbt(.api__public$distribution, sf_detect(title, dataset)), 1, j = "resourcesAPI")),
          list(distribution = sbt(.api__public$distribution, sf_detect(title, dataset))))
 
   Distribution(
