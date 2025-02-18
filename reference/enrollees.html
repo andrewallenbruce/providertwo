@@ -9,7 +9,7 @@ on Providers Actively Approved to Bill Medicare."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9081</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9082</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,11 +54,11 @@ on Providers Actively Approved to Bill Medicare.</p>
 <span>  enid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  spec_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  spec_desc <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  first <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  middle <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  last <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  org <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  gender <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  limit <span class="op">=</span> <span class="fl">5000</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -88,16 +88,16 @@ on Providers Actively Approved to Bill Medicare.</p>
 <dd><p><code>&lt;chr&gt;</code> Enrollment specialty description</p></dd>
 
 
+<dt id="arg-state">state<a class="anchor" aria-label="anchor" href="#arg-state"></a></dt>
+<dd><p><code>&lt;chr&gt;</code> Enrollment state abbreviation</p></dd>
+
+
 <dt id="arg-first-middle-last">first, middle, last<a class="anchor" aria-label="anchor" href="#arg-first-middle-last"></a></dt>
 <dd><p><code>&lt;chr&gt;</code> Individual provider's name(s)</p></dd>
 
 
 <dt id="arg-org">org<a class="anchor" aria-label="anchor" href="#arg-org"></a></dt>
 <dd><p><code>&lt;chr&gt;</code> Organizational provider's name</p></dd>
-
-
-<dt id="arg-state">state<a class="anchor" aria-label="anchor" href="#arg-state"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Enrollment state abbreviation</p></dd>
 
 
 <dt id="arg-gender">gender<a class="anchor" aria-label="anchor" href="#arg-gender"></a></dt>
@@ -132,62 +132,38 @@ on Providers Actively Approved to Bill Medicare.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>enid <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Medicare Fee-For-Service Public Provider Enrollment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Periodicity: Quarterly [R/P3M]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Last Modified: 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   NPI        PECOS_ASCT_CNTL_ID ENRLMT_ID    PROVIDER_TYPE_CD PROVIDER_TYPE_DESC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 3870481252         I2004030900… 14-41            PRACTITIONER - OP…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: STATE_CD &lt;chr&gt;, FIRST_NAME &lt;chr&gt;, MDL_NAME &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   LAST_NAME &lt;chr&gt;, ORG_NAME &lt;chr&gt;, GNDR_SW &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   V1         V2         V3       V4    V5    V6    V7    V8    V9    V10   V11  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 3870481252 I200403… 14-41 PRAC… FL    STEV… D     SHEI… <span style="color: #949494;">""</span>    M    </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1417918293"</span>, spec_code <span class="op">=</span> <span class="st">"14-41"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Medicare Fee-For-Service Public Provider Enrollment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Periodicity: Quarterly [R/P3M]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Last Modified: 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   NPI        PECOS_ASCT_CNTL_ID ENRLMT_ID    PROVIDER_TYPE_CD PROVIDER_TYPE_DESC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 3870481252         I2004030900… 14-41            PRACTITIONER - OP…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: STATE_CD &lt;chr&gt;, FIRST_NAME &lt;chr&gt;, MDL_NAME &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   LAST_NAME &lt;chr&gt;, ORG_NAME &lt;chr&gt;, GNDR_SW &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   V1         V2         V3       V4    V5    V6    V7    V8    V9    V10   V11  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 3870481252 I200403… 14-41 PRAC… FL    STEV… D     SHEI… <span style="color: #949494;">""</span>    M    </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>pac <span class="op">=</span> <span class="st">"2860305554"</span>, gender <span class="op">=</span> <span class="st">"9"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Medicare Fee-For-Service Public Provider Enrollment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Periodicity: Quarterly [R/P3M]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Last Modified: 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   NPI        PECOS_ASCT_CNTL_ID ENRLMT_ID    PROVIDER_TYPE_CD PROVIDER_TYPE_DESC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1134122260 2860305554         I2003111000… 14-41            PRACTITIONER - OP…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: STATE_CD &lt;chr&gt;, FIRST_NAME &lt;chr&gt;, MDL_NAME &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   LAST_NAME &lt;chr&gt;, ORG_NAME &lt;chr&gt;, GNDR_SW &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   V1         V2         V3       V4    V5    V6    V7    V8    V9    V10   V11  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1134122260 2860305554 I200311… 14-41 PRAC… TX    ROBE… <span style="color: #949494;">""</span>    YEAM… <span style="color: #949494;">""</span>    9    </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"GA"</span>, gender <span class="op">=</span> <span class="st">"9"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Medicare Fee-For-Service Public Provider Enrollment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Periodicity: Quarterly [R/P3M]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ==&gt; Last Modified: 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 121 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    NPI        PECOS_ASCT_CNTL_ID ENRLMT_ID   PROVIDER_TYPE_CD PROVIDER_TYPE_DESC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1508822776 3476457953         I200311250… 14-77            PRACTITIONER - VA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1619914975 1557264553         I200401280… 14-11            PRACTITIONER - IN…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1285670901 7012807977         I200403160… 14-11            PRACTITIONER - IN…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1841207917 1456343961         I200404020… 14-02            PRACTITIONER - GE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1942275425 1658364039         I200404050… 14-93            PRACTITIONER - EM…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1275645459 4789677840         I200404050… 14-38            PRACTITIONER - GE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1073608899 9638164619         I200404190… 14-66            PRACTITIONER - RH…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1124147343 1850388026         I200404290… 14-65            PRACTITIONER - PH…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1336246149 7911996392         I200405110… 14-16            PRACTITIONER - OB…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1891773792 7113917816         I200405140… 14-50            PRACTITIONER - NU…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 111 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: STATE_CD &lt;chr&gt;, FIRST_NAME &lt;chr&gt;, MDL_NAME &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   LAST_NAME &lt;chr&gt;, ORG_NAME &lt;chr&gt;, GNDR_SW &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    V1         V2         V3      V4    V5    V6    V7    V8    V9    V10   V11  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1508822776 3476457953 I20031… 14-77 PRAC… GA    KENN… <span style="color: #949494;">"</span>F<span style="color: #949494;">"</span>   MENC… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1619914975 1557264553 I20040… 14-11 PRAC… GA    DINA… <span style="color: #949494;">"</span>B<span style="color: #949494;">"</span>   SHET… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1285670901 7012807977 I20040… 14-11 PRAC… GA    LLOYD <span style="color: #949494;">"</span>S<span style="color: #949494;">"</span>   GOOD… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1841207917 1456343961 I20040… 14-02 PRAC… GA    ERIC  <span style="color: #949494;">"</span>M<span style="color: #949494;">"</span>   KNAU… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1942275425 1658364039 I20040… 14-93 PRAC… GA    MICH… <span style="color: #949494;">"</span>K<span style="color: #949494;">"</span>   HAMM  <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1275645459 4789677840 I20040… 14-38 PRAC… GA    RAMS… <span style="color: #949494;">"</span>E<span style="color: #949494;">"</span>   JACK… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1073608899 9638164619 I20040… 14-66 PRAC… GA    ANNA… <span style="color: #949494;">""</span>    BHAT  <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1124147343 1850388026 I20040… 14-65 PRAC… GA    JAMES <span style="color: #949494;">"</span>M<span style="color: #949494;">"</span>   HINZ… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1336246149 7911996392 I20040… 14-16 PRAC… GA    AMY   <span style="color: #949494;">"</span>C<span style="color: #949494;">"</span>   BURG… <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1891773792 7113917816 I20040… 14-50 PRAC… GA    JANI… <span style="color: #949494;">"</span>J<span style="color: #949494;">"</span>   WILES <span style="color: #949494;">""</span>    9    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 90 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># enrollees(state = "GA", gender = "F")</span></span></span>
 <span class="r-in"><span></span></span>
