@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9083</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9084</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,17 +70,15 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">format_query_public</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"NPI"</span> <span class="op">=</span> <span class="st">"1417918293"</span>,</span></span>
-<span class="r-in"><span>       <span class="st">"PECOS_ASCT_CNTL_ID"</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     filter[fID1][path] filter[fID1][operator]    filter[fID1][value] </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  "NPI"                    "="           "1417918293" </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">format_query_public</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"NPI"</span> <span class="op">=</span> <span class="st">"1417918293"</span>, <span class="st">"PECOS"</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     filter[1][path] filter[1][operator]    filter[1][value] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               "NPI"                 "="        "1417918293" </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">format_query_public</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NPI"</span> <span class="op">=</span> <span class="st">"1417918293"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"PECOS_ASCT_CNTL_ID"</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     filter[fID1][path] filter[fID1][operator]    filter[fID1][value] </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  "NPI"                    "="           "1417918293" </span>
+<span class="r-in"><span><span class="fu">format_query_public</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>NPI <span class="op">=</span> <span class="st">"1417918293"</span>, PECOS <span class="op">=</span> <span class="st">"001132"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     filter[1][path] filter[1][operator]    filter[1][value]     filter[2][path] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               "NPI"                 "="        "1417918293"             "PECOS" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> filter[2][operator]    filter[2][value] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 "="            "001132" </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
