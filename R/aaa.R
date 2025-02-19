@@ -134,8 +134,7 @@ load_provider <- \() {
       )
   )
 
-  dataset |>
-    slt(-distribution) |>
+  slt(dataset, -distribution) |>
     add_vars(downloadURL = delist(
       get_elem(dataset$distribution, "downloadURL", DF.as.list = TRUE)
     ))
@@ -152,39 +151,31 @@ load_provider <- \() {
 #'
 #' @export
 load_openpayments <- \() {
-  # Data Dictionary: https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items?show-reference-ids=true
-  # All Schemas: https://openpaymentsdata.cms.gov/api/1/metastore/schemas
 
-  as_tbl(
-    fload(
-      "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids"
-    ) |>
+  dataset <- as_tbl(
+    fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
       mtt(
         modified        = as_date(modified),
         description     = sf_replace(description, "\n", ". "),
         description     = sf_remove(description, "\r. \r."),
-        theme           = delist(map(theme, \(x) get_elem(
-          as.list(x), "data"
-        ))),
-        year            = delist(map(keyword, \(x) get_elem(
-          as.list(x), "data"
-        ))),
+        theme           = delist(map(theme, \(x) get_elem(as.list(x), "data"))),
+        year            = delist(map(keyword, \(x) get_elem(as.list(x), "data"))),
         year            = sf_replace(year, "all years", "All", fix = TRUE),
-        identifier_year = delist(map(
-          keyword, \(x) get_elem(as.list(x), "identifier")
-        )),
-        identifier      = paste0(
-          "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
-          identifier,
-          "/0"
-        )
-      )
-  ) |>
-    unnest(distribution, names_sep = "_") |>
-    unnest_wider(distribution_data, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL`, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL_data`, names_sep = "_") |>
-    unnest_wider(`distribution_data_%Ref:downloadURL_data_1`, names_sep = "_") |>
+        identifier      = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0")))
+
+  describedby <- map(
+    get_elem(
+    get_elem(
+      dataset$distribution, "data", DF.as.list = TRUE),
+    "title|describedBy", regex = TRUE), \(x) x[not_null(names(x))])
+
+  join(
+    add_vars(dataset,
+             downloadURL = delist(get_elem(get_elem(dataset$distribution, "data", DF.as.list = TRUE), "downloadURL"))),
+    new_df(title = delist(get_elem(describedby, "title")),
+           describedBy = delist(get_elem(describedby, "describedBy"))),
+    on = "title",
+    verbose = 0) |>
     slt(
       year,
       theme,
@@ -193,9 +184,7 @@ load_openpayments <- \() {
       modified,
       temporal,
       identifier,
-      distribution = distribution_identifier,
-      downloadURL = distribution_data_downloadURL,
-      describedBy = distribution_data_describedBy
-    ) |>
+      downloadURL,
+      describedBy) |>
     roworder(-theme, -year, title)
 }

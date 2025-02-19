@@ -23,29 +23,16 @@ utils::globalVariables(c(
   # <load_public>
   "contactPoint",
   # <load_public>
+  # <load_openpayments>
   "describedBy",
   # <load_public>
   # <load_provider>
   # <load_openpayments>
   "description",
   # <load_provider>
-  # <load_openpayments>
   "distribution",
-  # <load_openpayments>
-  "distribution_data",
-  # <load_openpayments>
-  "distribution_data_%Ref:downloadURL",
-  # <load_openpayments>
-  "distribution_data_%Ref:downloadURL_data",
-  # <load_openpayments>
-  "distribution_data_%Ref:downloadURL_data_1",
-  # <load_openpayments>
-  "distribution_data_describedBy",
-  # <load_openpayments>
-  "distribution_data_downloadURL",
-  # <load_openpayments>
-  "distribution_identifier",
   # <load_public>
+  # <load_openpayments>
   # <get_resources>
   "downloadURL",
   # <get_resources>
