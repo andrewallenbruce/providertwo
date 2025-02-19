@@ -54,6 +54,7 @@ Collate:
     'import-standalone-types-check.R'
     'lookups.R'
     'perform_request.R'
+    'print.R'
     'providertwo-package.R'
     'public_Dataset_Distribution.R'
     'query.R'
