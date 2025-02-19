@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9082</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9083</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,21 +112,30 @@ provider provide services in said unit.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_parent <span class="op">=</span> <span class="st">"670055"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Facility Affiliation Data</span> <span style="color: #555555;">═══════════════════════════════</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Rows</span> 1,564,992 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Fields</span> 10 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Pages</span> 313 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Resources</span> <span style="color: #555555;">☰</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This is the facility affiliations data publicly reported</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the Provider Data Catalog.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-weight: bold;">Timespan</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2023-08-17 - 2025-02-13</span> <span style="color: #555555; font-weight: bold;">Released</span> <span style="color: #BB0000;">❯</span> <span style="color: #555555; font-weight: bold;">Modified</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> 9 results found.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 1 request will be made.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Not paging through the requests</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>last <span class="op">=</span> <span class="st">"CURRY"</span>, facility_type <span class="op">=</span> <span class="st">"Home health agency"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #BBBB00; font-weight: bold;">103,435</span> <span style="color: #00BBBB;">Results</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">52</span> <span style="color: #00BBBB;">Requests</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,000 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    npi    ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10030… 8527252766 BENHARASH          PEYMAN              <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 10030… 8527252766 BENHARASH          PEYMAN              <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 10030… 1153415187 LOHANO             JAIVANTI            <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 10030… 0547203192 HOPKINS            PATRICIA            T                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 10030… 8325269343 SABODASH           VALERIY             <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 10030… 8325269343 SABODASH           VALERIY             <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 10030… 8325269343 SABODASH           VALERIY             <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 10030… 1153480827 MOHLER             TROY                <span style="color: #BB0000;">NA</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 10030… 9638269988 VANDONGEN          DANIQUE             L                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 10030… 9638269988 VANDONGEN          DANIQUE             L                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,990 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_parent <span class="op">=</span> <span class="st">"670055"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #BBBB00; font-weight: bold;">9</span> <span style="color: #00BBBB;">Results</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">1</span> <span style="color: #00BBBB;">Request</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   npi     ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
@@ -144,132 +153,11 @@ provider provide services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"370781"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Facility Affiliation Data</span> <span style="color: #555555;">═══════════════════════════════</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Rows</span> 1,564,992 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Fields</span> 10 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Pages</span> 313 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Resources</span> <span style="color: #555555;">☰</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This is the facility affiliations data publicly reported</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the Provider Data Catalog.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-weight: bold;">Timespan</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2023-08-17 - 2025-02-13</span> <span style="color: #555555; font-weight: bold;">Released</span> <span style="color: #BB0000;">❯</span> <span style="color: #555555; font-weight: bold;">Modified</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> 17 results found.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 1 request will be made.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    npi    ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10236… 9032521372 SMITH              ALYSIA              MOTA                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 10432… 8123259256 BARLOW             JEFFERY             D                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 10535… 7618131160 SIZELOVE           AARON               S                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 11848… 2567785884 GLENN              JAMES               A                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 12452… 4082508833 MADRID             STEVE               M                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 12851… 4082948450 DECARVALHO         GABRIEL             <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 13169… 2769376508 BEAM               CHESTER             WRAY                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 14173… 0941531362 TRAN               MICHAEL             QUANG               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 14270… 7517858608 MCGARRY            THOMAS              <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 14874… 8426405796 RUSSENBERGER       NICHOLAS            <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 15684… 3870487739 SCHMIDT            DWAYNE              A                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 16290… 6103878764 MORRIS             JANA                NIKOLE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 16597… 3375853419 MIZE               ALYSSA              B                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 17109… 2163412982 COSTELLO           RICHARD             F                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 17408… 4880010669 SCRUGGS            DEANNA              LYNN                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 19220… 9032190095 ARMOR              JESS                F                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 19223… 1052633591 MORRISON           LYNNETTE            <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"331302"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Facility Affiliation Data</span> <span style="color: #555555;">═══════════════════════════════</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Rows</span> 1,564,992 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Fields</span> 10 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Pages</span> 313 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Resources</span> <span style="color: #555555;">☰</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This is the facility affiliations data publicly reported</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the Provider Data Catalog.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-weight: bold;">Timespan</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2023-08-17 - 2025-02-13</span> <span style="color: #555555; font-weight: bold;">Released</span> <span style="color: #BB0000;">❯</span> <span style="color: #555555; font-weight: bold;">Modified</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> 193 results found.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 1 request will be made.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 193 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    npi    ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10038… 4082693676 AFSAR KESHMIRI     ARMIN               <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 10038… 1759384035 GREENE             LAURA               A                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 10139… 5890719371 ACOSTAMADIEDO      JOSE                M                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 10432… 0345243655 FEDI               PAOLO               <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 10433… 4183764558 TRAMONTANO         ANTHONY             F                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 10436… 7214229350 FIORINI FURTADO    VANESSA             <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 10538… 8729362207 FARNSWORTH         MATTHEW             D                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 10634… 4284548819 MAKHOUL            NIDAL               <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 10635… 0941434435 BOLAND             ELENA               <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 10638… 1557630613 O'CONNOR           TERRENCE            <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 183 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"33Z302"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Facility Affiliation Data</span> <span style="color: #555555;">═══════════════════════════════</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Rows</span> 1,564,992 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Fields</span> 10 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Pages</span> 313 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Resources</span> <span style="color: #555555;">☰</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This is the facility affiliations data publicly reported</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the Provider Data Catalog.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-weight: bold;">Timespan</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2023-08-17 - 2025-02-13</span> <span style="color: #555555; font-weight: bold;">Released</span> <span style="color: #BB0000;">❯</span> <span style="color: #555555; font-weight: bold;">Modified</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> 3 results found.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 1 request will be made.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi     ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 139698… 8921259557 HALLORAN           MARY                K                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 153817… 0547299091 CHON               IL                  JUN                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 180189… 3577568724 DEMURO             ROB                 L                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1043245657"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Facility Affiliation Data</span> <span style="color: #555555;">═══════════════════════════════</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Rows</span> 1,564,992 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Fields</span> 10 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Pages</span> 313 <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">Resources</span> <span style="color: #555555;">☰</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This is the facility affiliations data publicly reported</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the Provider Data Catalog.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-weight: bold;">Timespan</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2023-08-17 - 2025-02-13</span> <span style="color: #555555; font-weight: bold;">Released</span> <span style="color: #BB0000;">❯</span> <span style="color: #555555; font-weight: bold;">Modified</span> <span style="color: #BB0000;">❯</span> <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data Dictionary | Landing Page | References</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> 3 results found.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 1 request will be made.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi     ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 104324… 7810891009 FUNG               MARK                K                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 104324… 7810891009 FUNG               MARK                K                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 104324… 7810891009 FUNG               MARK                K                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "370781")</span></span></span>
+<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "331302")</span></span></span>
+<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "33Z302")</span></span></span>
+<span class="r-in"><span><span class="co"># affiliations(npi = "1043245657")</span></span></span>
+<span class="r-in"><span><span class="co"># affiliations(last = "CURRY")</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
