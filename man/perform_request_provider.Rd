@@ -4,14 +4,14 @@
 \alias{perform_request_provider}
 \title{Perform Provider API request}
 \usage{
-perform_request_provider(url, query, limit)
+perform_request_provider(url, query, limit = 2000L)
 }
 \arguments{
 \item{url}{\verb{<url>} API identifier url}
 
 \item{query}{\verb{<chr>} vector of query parameters}
 
-\item{limit}{\verb{<int>} API rate limit}
+\item{limit}{\verb{<int>} API rate limit; default is 2000}
 }
 \value{
 \verb{<int>} Number of results

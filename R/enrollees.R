@@ -32,8 +32,6 @@
 #'    * `"M"` (Male)
 #'    * `"9"` (Unknown/Organization)
 #'
-#' @param limit `<int>` Maximum number of search results; default is `5000`
-#'
 #' @returns `<tibble>` of search results
 #'
 #' @examples
@@ -60,18 +58,15 @@ enrollees <- function(npi       = NULL,
                       middle    = NULL,
                       last      = NULL,
                       org       = NULL,
-                      gender    = NULL,
-                      limit     = 5000) {
-
-  check_limit_public(limit)
+                      gender    = NULL) {
 
   perform_request_public(
     url           = endpoint(public_Dataset("enrollees")),
-    query         = process_params(
-      arg_names   = fn_fmls_names(),
-      field_names = fields(public_Dataset("enrollees"))) |>
-      eval_bare() |>
-      compact()
+    query         = eval_bare(
+      process_params(arg_names = fn_fmls_names(),
+                     field_names = fields(
+                       public_Dataset("enrollees")))
+      )
     )
 
 }

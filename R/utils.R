@@ -60,6 +60,14 @@ offset_length <- function(n, limit, start = 0) {
 # Incorrect
 # seq_(from = start, to = ifelse(n %% limit == 0, n, sum(n, limit)), by = limit)
 
+#' @rdname offset
+#' @autoglobal
+#' @keywords internal
+#' @export
+seq_along0 <- function(x) {
+  seq_along(x) - 1
+}
+
 #' Flatten Column
 #' @param i `<list>` list to flatten
 #' @returns `<chr>` flattened list

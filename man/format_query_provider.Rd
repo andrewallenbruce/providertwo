@@ -21,13 +21,9 @@ format_query_provider(args, operator = "=")
 Format Provider API Queries
 }
 \examples{
-format_query_provider(
-  list("NPI" = "1417918293",
-       "PECOS_ASCT_CNTL_ID" = NULL))
+format_query_provider(list("NPI" = "1417918293", "PECOS" = NULL))
 
-format_query_provider(
-  c("NPI" = "1417918293",
-    "PECOS_ASCT_CNTL_ID" = NULL))
+format_query_provider(list(NPI = "1417918293", PECOS = "001132"))
 
 }
 \keyword{internal}

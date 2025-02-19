@@ -27,10 +27,7 @@
 #'                           sub-unit's primary hospital, should the
 #'                           provider provide services in said unit.
 #'
-#' @param limit `<int>` Maximum number of search results; default is `2000`
-#'
 #' @examples
-#' # Not paging through the requests
 #' affiliations(last = "CURRY", facility_type = "Home health agency")
 #'
 #' affiliations(ccn_parent = "670055")
@@ -51,10 +48,7 @@ affiliations <- function(npi           = NULL,
                          suffix        = NULL,
                          facility_type = NULL,
                          ccn_facility  = NULL,
-                         ccn_parent    = NULL,
-                         limit         = 2000) {
-
-  check_limit_provider(limit)
+                         ccn_parent    = NULL) {
 
   args <- list2(
     "npi"                                        = npi,
@@ -69,7 +63,6 @@ affiliations <- function(npi           = NULL,
 
   perform_request_provider(
     url   = endpoint(provider_Dataset("affiliations")),
-    query = args,
-    limit = limit)
+    query = args)
 
 }

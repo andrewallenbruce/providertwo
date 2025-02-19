@@ -13,8 +13,7 @@ affiliations(
   suffix = NULL,
   facility_type = NULL,
   ccn_facility = NULL,
-  ccn_parent = NULL,
-  limit = 2000
+  ccn_parent = NULL
 )
 }
 \arguments{
@@ -43,8 +42,6 @@ individual provider provides service.}
 \item{ccn_parent}{\verb{<int>} 6-digit CMS Certification Number (CCN) of a
 sub-unit's primary hospital, should the
 provider provide services in said unit.}
-
-\item{limit}{\verb{<int>} Maximum number of search results; default is \code{2000}}
 }
 \description{
 Facility affiliations data publicly reported in the Provider Data Catalog.
@@ -57,7 +54,6 @@ Facility affiliations data publicly reported in the Provider Data Catalog.
 }
 
 \examples{
-# Not paging through the requests
 affiliations(last = "CURRY", facility_type = "Home health agency")
 
 affiliations(ccn_parent = "670055")

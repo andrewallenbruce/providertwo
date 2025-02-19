@@ -21,13 +21,9 @@ format_query_public(args, operator = "=")
 Format Public API Queries
 }
 \examples{
-format_query_public(
-  list("NPI" = "1417918293",
-       "PECOS_ASCT_CNTL_ID" = NULL))
+format_query_public(list("NPI" = "1417918293", "PECOS" = NULL))
 
-format_query_public(
-  c("NPI" = "1417918293",
-    "PECOS_ASCT_CNTL_ID" = NULL))
+format_query_public(list(NPI = "1417918293", PECOS = "001132"))
 
 }
 \keyword{internal}

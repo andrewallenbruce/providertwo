@@ -73,13 +73,9 @@ endpoint <- function(x) {
 #' @returns `<list>` of formatted query `<exprs>`
 #'
 #' @examples
-#' format_query_public(
-#'   list("NPI" = "1417918293",
-#'        "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_public(list("NPI" = "1417918293", "PECOS" = NULL))
 #'
-#' format_query_public(
-#'   c("NPI" = "1417918293",
-#'     "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_public(list(NPI = "1417918293", PECOS = "001132"))
 #'
 #' @autoglobal
 #' @keywords internal
@@ -90,14 +86,14 @@ format_query_public <- function(args, operator = "=") {
 
   query <- glue(
     '
-  "filter[fID{fID}][path]" = "{PATH}",
-  "filter[fID{fID}][operator]" = "{OPERATOR}",
-  "filter[fID{fID}][value]" = "{VALUE}"
+  "filter[{i}][path]" = "{PATH}",
+  "filter[{i}][operator]" = "{OPERATOR}",
+  "filter[{i}][value]" = "{VALUE}"
   ',
-    fID      = seq_along(args),
-    PATH     = names(args),
-    OPERATOR = operator,
-    VALUE    = args) |>
+    i                 = seq_along(args),
+    PATH              = names(args),
+    OPERATOR          = operator,
+    VALUE             = args) |>
     glue_collapse(sep = ",\n")
 
   glue('c({query})') |>
@@ -117,13 +113,9 @@ format_query_public <- function(args, operator = "=") {
 #' @returns `<list>` of formatted query `<exprs>`
 #'
 #' @examples
-#' format_query_provider(
-#'   list("NPI" = "1417918293",
-#'        "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_provider(list("NPI" = "1417918293", "PECOS" = NULL))
 #'
-#' format_query_provider(
-#'   c("NPI" = "1417918293",
-#'     "PECOS_ASCT_CNTL_ID" = NULL))
+#' format_query_provider(list(NPI = "1417918293", PECOS = "001132"))
 #'
 #' @autoglobal
 #' @keywords internal
@@ -134,14 +126,14 @@ format_query_provider <- function(args, operator = "=") {
 
   query <- glue(
     '
-  "conditions[0][property]" = "{PROPERTY}",
-  "conditions[0][operator]" = "{OPERATOR}",
-  "conditions[0][value]" = "{VALUE}"
+  "conditions[{i}][property]" = "{PROPERTY}",
+  "conditions[{i}][operator]" = "{OPERATOR}",
+  "conditions[{i}][value]" = "{VALUE}"
   ',
-    # idx      = seq_along(args),
-    PROPERTY = names(args),
-    OPERATOR = operator,
-    VALUE    = args) |>
+    i                 = seq_along0(args),
+    PROPERTY          = names(args),
+    OPERATOR          = operator,
+    VALUE             = args) |>
     glue_collapse(sep = ",\n")
 
   glue('c({query})') |>

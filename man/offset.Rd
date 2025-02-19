@@ -4,11 +4,14 @@
 \alias{offset}
 \alias{offset_sequence}
 \alias{offset_length}
+\alias{seq_along0}
 \title{Generate API Request "Offset" Sequence}
 \usage{
 offset_sequence(n, limit, start = 0)
 
 offset_length(n, limit, start = 0)
+
+seq_along0(x)
 }
 \arguments{
 \item{n}{\verb{<int>} Number of results returned in an API request}
