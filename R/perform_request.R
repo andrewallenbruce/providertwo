@@ -50,15 +50,17 @@ perform_request_public <- function(url, query) {
   n <- query_nrows_public(req)
 
   if (n == 0) {
-    abort(
-      message        = c("!" = "0 results found."),
-      use_cli_format = TRUE,
-      call           = caller_env(),
-      class          = "abort_no_results"
-    )
+    cli::cli_abort(
+      message = c(
+        "x" = "{n} result{?s} found.",
+        " " = " "),
+      call = caller_env(),
+      class = "abort_no_results")
   }
 
   nreq <- offset_length(n, query$size) > 1
+
+  cli_n_results_requests(n, query$size)
 
   if (false(nreq)) {
     return(
@@ -94,20 +96,17 @@ perform_request_provider <- function(url, query, limit) {
 
 
   if (n == 0) {
-    abort(
-      message = c("x" = "0 results found."),
-      use_cli_format = TRUE,
+    cli::cli_abort(
+      message = c(
+        "x" = "{n} result{?s} found.",
+        " " = " "),
       call = caller_env(),
-      class = "abort_no_results"
-    )
+      class = "abort_no_results")
   }
 
   nreq <- offset_length(n, limit) > 1
 
-  cli::cli_inform(
-    c("i" = "{n} result{?s} found.",
-      "!" = "{offset_length(n, limit)} request{?s} will be made.",
-      " " = " "))
+  cli_n_results_requests(n, limit)
 
   if (false(nreq)) {
     return(
@@ -123,4 +122,33 @@ perform_request_provider <- function(url, query, limit) {
     )
   }
 
+}
+
+#' Inform number of results and requests
+#'
+#' @param n     `<int>` Number of results returned in an API request
+#'
+#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
+#'                      API will return per request.
+#' @returns cli message
+#' @autoglobal
+#' @keywords internal
+#' @export
+cli_n_results_requests <- function(n, limit) {
+
+  r   <- offset_length(n, limit)
+  res <- ifelse(n > 1, "Results", "Result")
+  req <- ifelse(r > 1, "Requests", "Request")
+
+  res <- cli::col_cyan(res)
+  req <- cli::col_cyan(req)
+
+  r <- cli::style_bold(cli::col_yellow(prettyNum(r, big.mark = ",")))
+  n <- cli::style_bold(cli::col_yellow(prettyNum(n, big.mark = ",")))
+  m <- cli::col_silver(cli::symbol$menu)
+
+
+  cli::cli_inform(
+    c("i" = "{n} {res} {m} {r} {req}",
+      " " = " "))
 }

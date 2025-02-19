@@ -30,16 +30,16 @@
 #' @param limit `<int>` Maximum number of search results; default is `2000`
 #'
 #' @examples
+#' # Not paging through the requests
+#' affiliations(last = "CURRY", facility_type = "Home health agency")
+#'
 #' affiliations(ccn_parent = "670055")
 #'
-#' affiliations(ccn_facility = "370781")
-#'
-#' affiliations(ccn_facility = "331302")
-#'
-#' affiliations(ccn_facility = "33Z302")
-#'
-#' affiliations(npi = "1043245657")
-#'
+#' # affiliations(ccn_facility = "370781")
+#' # affiliations(ccn_facility = "331302")
+#' # affiliations(ccn_facility = "33Z302")
+#' # affiliations(npi = "1043245657")
+#' # affiliations(last = "CURRY")
 #' @autoglobal
 #'
 #' @export
@@ -67,12 +67,8 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_parent)
 
-  x <- provider_Dataset("affiliations")
-  print(x)
-  cat("\n")
-
   perform_request_provider(
-    url   = x@identifier@url,
+    url   = endpoint(provider_Dataset("affiliations")),
     query = args,
     limit = limit)
 

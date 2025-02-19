@@ -65,22 +65,13 @@ enrollees <- function(npi       = NULL,
 
   check_limit_public(limit)
 
-  # args <- list2(
-  #   "NPI"                = npi,
-  #   "PECOS_ASCT_CNTL_ID" = pac,
-  #   "ENRLMT_ID"          = enid,
-  #   "PROVIDER_TYPE_CD"   = spec_code,
-  #   "PROVIDER_TYPE_DESC" = spec_desc,
-  #   "STATE_CD"           = state,
-  #   "FIRST_NAME"         = first,
-  #   "MDL_NAME"           = middle,
-  #   "LAST_NAME"          = last,
-  #   "ORG_NAME"           = org,
-  #   "GNDR_SW"            = gender)
-
-
   perform_request_public(
-    url   = endpoint(public_Dataset("enrollees")),
-    query = process_params(fn_fmls_names(), fields(public_Dataset("enrollees"))) |> eval_bare() |> compact())
+    url           = endpoint(public_Dataset("enrollees")),
+    query         = process_params(
+      arg_names   = fn_fmls_names(),
+      field_names = fields(public_Dataset("enrollees"))) |>
+      eval_bare() |>
+      compact()
+    )
 
 }
