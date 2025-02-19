@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9083 (2025-02-18)
+
+* added `cli_n_results_requests()`
+* switched `abort` conditions from `rlang` to `cli`
+* bug: `affiliations()` not processing multiple-call requests
+
+
 # providertwo 0.0.0.9082 (2025-02-18)
 
 * experimenting with `fn_fmls()` for queries
