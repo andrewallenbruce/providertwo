@@ -53,6 +53,7 @@ Collate:
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
     'lookups.R'
+    'nppes.R'
     'perform_request.R'
     'print.R'
     'providertwo-package.R'
