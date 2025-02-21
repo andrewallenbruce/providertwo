@@ -8,6 +8,7 @@
 #'
 #' # Not returning all results
 #' nppes_nlm("Valdosta")
+#' @source API Documentation: <https://clinicaltables.nlm.nih.gov/api/npi_idv/v3>
 #' @autoglobal
 #' @export
 nppes_nlm <- function(terms) {

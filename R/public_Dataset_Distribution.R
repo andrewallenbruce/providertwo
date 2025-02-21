@@ -108,9 +108,10 @@ public_Dataset <- function(dataset = "enrollees", fname = TRUE) {
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
-         as.list(sset(sbt(.api__public$distribution, sf_detect(title, dataset)), 1, j = "resourcesAPI"))
-         )
+  x <- c(
+    sbt(.api__public$dataset, sf_detect(title, dataset)),
+    sset(sbt(.api__public$resources, sf_detect(title, dataset)), 1, j = "resourcesAPI")
+    )
 
   Dataset(
     contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
@@ -153,8 +154,8 @@ public_Distribution <- function(dataset, fname = TRUE) {
 
   dataset <- if (fname) fname_to_dataset(dataset) else dataset
 
-  x <- c(as.list(sbt(.api__public$dataset, sf_detect(title, dataset))),
-         as.list(sset(sbt(.api__public$distribution, sf_detect(title, dataset)), 1, j = "resourcesAPI")),
+  x <- c(sbt(.api__public$dataset, sf_detect(title, dataset)),
+         sset(sbt(.api__public$resources, sf_detect(title, dataset)), 1, j = "resourcesAPI"),
          list(distribution = sbt(.api__public$distribution, sf_detect(title, dataset))))
 
   Distribution(

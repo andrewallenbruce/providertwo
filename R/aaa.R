@@ -9,6 +9,7 @@
 #'
 #' @export
 load_public <- \() {
+
   dataset <- as_tbl(
     fload("https://data.cms.gov/data.json", query = "/dataset") |>
       slt(
@@ -37,55 +38,17 @@ load_public <- \() {
   )
 
   distribution <- as_tbl(rowbind(get_elem(dataset, "distribution"), fill = TRUE)) |>
-    mtt(
-      modified    = as_date(modified),
-      format      = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
-      `@type`     = NULL,
-      description = NULL
-    ) |>
+    mtt(modified    = as_date(modified),
+        format      = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
+        `@type`     = NULL,
+        description = NULL) |>
     colorder(title)
 
   list(
-    dataset      = slt(
-      dataset,
-      title,
-      theme,
-      keyword,
-      description,
-      accrualPeriodicity,
-      contactPoint,
-      describedBy,
-      identifier,
-      modified,
-      landingPage,
-      temporal,
-      references
-    ),
-    distribution = join(
-      sbt(
-        distribution,
-        not_na(mediaType),
-        title,
-        mediaType,
-        downloadURL,
-        resourcesAPI,
-        modified,
-        temporal
-      ),
-      sbt(
-        distribution,
-        not_na(format),
-        title,
-        format,
-        accessURL,
-        resourcesAPI,
-        modified,
-        temporal
-      ),
-      on = c("title", "temporal", "resourcesAPI", "modified"),
-      verbose = 0,
-      overid  = 0
-    )
+    dataset = slt(dataset, title, theme, keyword, description, accrualPeriodicity, contactPoint, describedBy, identifier, modified, landingPage, temporal, references) |> uniq(),
+    download = sbt(distribution, not_na(mediaType), title, mediaType, downloadURL, modified, temporal) |> uniq(),
+    distribution = sbt(distribution, not_na(format), title, format, accessURL, modified, temporal) |> uniq(),
+    resources = slt(distribution, title, resourcesAPI, modified, temporal) |> uniq()
   )
 }
 

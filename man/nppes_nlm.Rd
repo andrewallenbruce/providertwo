@@ -3,6 +3,9 @@
 \name{nppes_nlm}
 \alias{nppes_nlm}
 \title{Search the NLM NPI Registry}
+\source{
+API Documentation: \url{https://clinicaltables.nlm.nih.gov/api/npi_idv/v3}
+}
 \usage{
 nppes_nlm(terms)
 }
