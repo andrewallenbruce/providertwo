@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9087 (2025-02-20)
+
+* work on print methods
+
+
 # providertwo 0.0.0.9086 (2025-02-19)
 
 * Quick draft for NLM's NPI Registry API
