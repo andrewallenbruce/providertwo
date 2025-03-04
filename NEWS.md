@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9089 (2025-03-04)
+
+* Added Open Payments group subsetters
+
+
 # providertwo 0.0.0.9088 (2025-03-04)
 
 * New Open Payments Catalog internal structure
