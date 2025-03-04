@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9088 (2025-03-04)
+
+* New Open Payments Catalog internal structure
+* New `open_dictionary()`
+* Removed `tidyr` from Suggests
+* Moved `RcppSimdJson` to Imports
+
+
 # providertwo 0.0.0.9087 (2025-02-20)
 
 * work on print methods
