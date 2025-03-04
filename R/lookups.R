@@ -170,4 +170,77 @@ bureau_code <- \(x = NULL) {
     get_pin("bureauCodes"),
     "bureauCode",
     x)
-  }
+}
+
+#' Open Payments Dictionary
+#'
+#' @examples
+#' open_dictionary()
+#'
+#' @returns `<tibble>` of search results
+#'
+#' @autoglobal
+#'
+#' @export
+open_dictionary <- function() {
+
+  x <- map(
+    get_elem(
+      get_elem(
+        as_tbl(
+          fload(
+            paste0(
+              "https://openpaymentsdata.cms.gov/",
+              "api/1/metastore/schemas/dataset/",
+              "items?show-reference-ids"
+            ))),
+        "data",
+        DF.as.list = TRUE),
+      "title|describedBy",
+      regex = TRUE),
+    function(x) x[not_null(names(x))]
+  )
+
+  x <- new_df(
+    name = delist(get_elem(x, "title")),
+    dictionary = delist(get_elem(x, "describedBy"))) |>
+    mtt(
+      year = as_int(stri_extract_all_regex(name, "[0-9]{4}")),
+      name = cheapr_if_else(
+        na(year),
+        name,
+        stri_extract_all_regex(
+          name,
+          "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)"
+        )),
+      year = cheapr_if_else(
+        na(year),
+        fmax(year),
+        year
+      )) |>
+    sbt(year == fmax(year), -year)
+
+  x <- x[["dictionary"]] |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    resps_data(\(resp) resp_body_string(resp)) |>
+    fparse(query = "/data")
+
+  funique(
+    new_tbl(
+      field = delist(
+        map(
+          get_elem(x, "fields"),
+          function(x)
+            get_elem(x, "name")
+        )),
+      description = delist(
+        map(
+          get_elem(x, "fields"),
+          function(x)
+            get_elem(x, "description"))
+      ) |> replace_fixed(c("\n", '"'), c(" ", ""))),
+    cols = "field",
+    sort = TRUE)
+}

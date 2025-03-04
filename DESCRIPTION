@@ -24,8 +24,7 @@ Imports:
     stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
     vctrs (>= 0.6.5),
-    cli,
-    tidyr
+    cli
 Suggests: 
     qs (>= 0.27.2),
     testthat (>= 3.2.3)
@@ -41,6 +40,7 @@ RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
     'affiliations.R'
+    'catalog_open_payments.R'
     'checks.R'
     'props.R'
     'classes.R'

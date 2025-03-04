@@ -28,9 +28,14 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <open_clean_temp>
+  # <open_clean_grouped>
+  # <catalog_open_payments>
   "description",
   # <load_provider>
   "distribution",
+  # <catalog_open_payments>
+  "downloadurl",
   # <load_public>
   # <load_openpayments>
   # <get_resources>
@@ -40,12 +45,14 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <catalog_open_payments>
   "identifier",
   # <load_provider>
   "issued",
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <catalog_open_payments>
   "keyword",
   # <load_public>
   "landingPage",
@@ -54,7 +61,10 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <catalog_open_payments>
   "modified",
+  # <open_dictionary>
+  "name",
   # <load_provider>
   "programCode",
   # <load_provider>
@@ -71,16 +81,24 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
+  # <catalog_open_payments>
   # <open_Dataset>
   "theme",
   # <load_public>
   # <load_openpayments>
+  # <open_clean_temp>
+  # <open_clean_grouped>
+  # <catalog_open_payments>
   # <open_Dataset>
   # <provider_Dataset>
   # <public_Dataset>
   # <public_Distribution>
   "title",
   # <load_openpayments>
+  # <open_clean_temp>
+  # <open_clean_grouped>
+  # <catalog_open_payments>
+  # <open_dictionary>
   # <open_Dataset>
   "year",
   NULL

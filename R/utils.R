@@ -119,5 +119,40 @@ as_datetime <- function(x) {
 
 }
 
-# ex_resource_url   <- "https://data.cms.gov/data-api/v1/dataset-resources/7dcf9ea6-ee2f-4bf1-8b5d-39c18b0e8541"
-# ex_identifier_url <- "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"
+#' Detect Regular Expression
+#' @param x `<chr>` vector to search
+#' @param p `<chr>` regular expression pattern
+#' @param n `<lgl>` negate
+#' @returns `<lgl>` logical vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+detect <- function(x, p, n = FALSE) {
+  stri_detect_regex(str     = x,
+                    pattern = p,
+                    negate  = n)
+}
+
+#' Subset by Regular Expression
+#' @param i `<data.frame>` to search
+#' @param x `<chr>` vector to detect
+#' @param p `<chr>` regular expression pattern
+#' @param n `<lgl>` negate
+#' @returns `<data.frame>` subsetted data.frame
+#' @autoglobal
+#' @keywords internal
+#' @export
+sbt_detect <- function(i, x, p, n = FALSE) {
+  sbt(i, detect(x = x, p = p, n = n))
+}
+
+#' Get List Element Named "data"
+#' @param x `<list>` list to get element from
+#' @returns `<list>` list with element
+#' @autoglobal
+#' @keywords internal
+#' @export
+get_data_elem <- function(x) {
+  delist(map(x, function(i)
+    get_elem(as.list(i), "data")))
+}
