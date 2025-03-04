@@ -12,7 +12,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Publisher.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/add_downloadurl.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/affiliations.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
@@ -20,7 +19,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_open_payments.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/cli_n_results_requests.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
@@ -70,9 +68,16 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_Dataset.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_add_downloadurl.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_catalog.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_grouped.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_temp.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_dictionary.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_general.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_grouped.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_ownership.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_profiles.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_research.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_uuid_url.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_public.html</loc></url>
