@@ -12,6 +12,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Identifier.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Publisher.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/add_downloadurl.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/affiliations.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
@@ -19,10 +20,12 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_open_payments.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/cli_n_results_requests.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/desplit.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/detect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/empty.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/endpoint.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/enrollees.html</loc></url>
@@ -35,6 +38,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/gelm.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_data_elem.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_nrows.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_pin.html</loc></url>
@@ -66,6 +70,10 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_Dataset.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_grouped.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_temp.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_dictionary.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_uuid_url.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/perform_request_provider.html</loc></url>
@@ -87,6 +95,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/req_perform_iterative_offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/resp_simple_json.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/roundup.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/sbt_detect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/search_in.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_at.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_c.html</loc></url>
