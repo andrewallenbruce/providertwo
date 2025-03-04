@@ -4,7 +4,7 @@
 #' @export
 #' @autoglobal
 #' @keywords internal
-add_downloadurl <- function(x) {
+open_add_downloadurl <- function(x) {
   add_vars(x, downloadurl = delist(get_elem(
     get_elem(x$distribution, "data", DF.as.list = TRUE),
     "downloadURL"
@@ -53,10 +53,10 @@ open_uuid_url <- function(x) {
 #' Load Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
 #' @examples
-#' catalog_open_payments()
+#' open_catalog()
 #' @autoglobal
 #' @export
-catalog_open_payments <- \() {
+open_catalog <- \() {
 
   x <- fload(
     paste0(
@@ -74,7 +74,7 @@ catalog_open_payments <- \() {
       title       = toTitleCase(title)
     )
 
-  x <- add_downloadurl(x) |>
+  x <- open_add_downloadurl(x) |>
     slt(year,
         theme,
         title,
@@ -90,5 +90,98 @@ catalog_open_payments <- \() {
     general   = open_clean_temp(x$`General Payments`),
     research  = open_clean_temp(x$`Research Payments`),
     ownership = open_clean_temp(x$`Ownership Payments`)
+  )
+}
+
+#' Load Open Payments Profile
+#' @param x `<list>` of Open Payments API catalog information
+#' @returns `<list>` of Open Payments API profile information
+#' @examples
+#' open_profiles(open_catalog())
+#' @autoglobal
+#' @export
+open_profiles <- function(x) {
+
+  s <- sbt(
+    x$summary,
+    detect(title, "^(National|State|Payments|Summary)", TRUE))
+
+  list(
+    modified = fmax(s$modified),
+    summary  = slt(s, -modified)
+  )
+}
+
+#' Load Open Payments Grouped
+#' @param x `<list>` of Open Payments API catalog information
+#' @returns `<list>` of Open Payments API grouped information
+#' @examples
+#' open_grouped(open_catalog())
+#' @autoglobal
+#' @export
+open_grouped <- function(x) {
+
+  s <- sbt(
+    x$summary,
+    detect(title, "^(National|State|Payments|Summary)"))
+
+  g <- slt(x$grouped, -modified) |> rsplit(~ title)
+
+  list(
+    modified                = fmax(c(s$modified, x$grouped$modified)),
+    summary                 = slt(s, -modified, -description),
+    recipient_nature        = g$`Payments Grouped by Covered Recipient and Nature of Payments`,
+    recipient_entity        = g$`Payments Grouped by Covered Recipient and Reporting Entities`,
+    entity_nature           = g$`Payments Grouped by Reporting Entities and Nature of Payments`,
+    entity_recipient_nature = g$`Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments`,
+    recipient_nature_state  = g$`State Payment Totals Grouped by Nature of Payment for all Years`
+  )
+}
+
+#' Load Open Payments General Data
+#' @param x `<list>` of Open Payments API catalog information
+#' @returns `<list>` of Open Payments API general data
+#' @examples
+#' open_general(open_catalog())
+#' @autoglobal
+#' @export
+open_general <- function(x) {
+  list(
+    modified    = fmax(x$general$modified),
+    title       = "General Payment Data",
+    description = "All general (non-research, non-ownership related) payments from the program year",
+    endpoints   = slt(x$general, -modified)
+  )
+}
+
+#' Load Open Payments Research Data
+#' @param x `<list>` of Open Payments API catalog information
+#' @returns `<list>` of Open Payments API research data
+#' @examples
+#' open_research(open_catalog())
+#' @autoglobal
+#' @export
+open_research <- function(x) {
+  list(
+    modified    = fmax(x$research$modified),
+    title       = "Research Payment Data",
+    description = "All research-related payments from the program year",
+    endpoints   = slt(x$research, -modified)
+  )
+}
+
+#' Load Open Payments Ownership Data
+#' @param x `<list>` of Open Payments API catalog information
+#' @returns `<list>` of Open Payments API ownership data
+#' @examples
+#' open_ownership(open_catalog())
+#' @autoglobal
+#' @export
+open_ownership <- function(x) {
+  list(
+    modified    = fmax(x$ownership$modified),
+    title       = "Ownership Payment Data",
+    description = "All ownership and investment payments from the program year",
+    endpoints   = slt(x$ownership, -modified)
   )
 }
