@@ -40,7 +40,9 @@ RoxygenNote: 7.3.2
 Collate: 
     'aaa.R'
     'affiliations.R'
+    'catalog_main.R'
     'catalog_open_payments.R'
+    'catalog_provider.R'
     'checks.R'
     'props.R'
     'classes.R'
@@ -57,7 +59,6 @@ Collate:
     'perform_request.R'
     'print.R'
     'providertwo-package.R'
-    'public_Dataset_Distribution.R'
     'query.R'
     'utils.R'
     'zzz.R'

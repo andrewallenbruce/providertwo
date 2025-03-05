@@ -25,6 +25,7 @@ Other classes:
 \code{\link{Contact}()},
 \code{\link{Dataset}()},
 \code{\link{Identifier}()},
-\code{\link{Resources}()}
+\code{\link{Resources}()},
+\code{\link{class_resources}()}
 }
 \concept{classes}

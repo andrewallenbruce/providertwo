@@ -20,6 +20,7 @@ Other classes:
 \code{\link{Contact}()},
 \code{\link{Dataset}()},
 \code{\link{Publisher}()},
-\code{\link{Resources}()}
+\code{\link{Resources}()},
+\code{\link{class_resources}()}
 }
 \concept{classes}

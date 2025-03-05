@@ -62,7 +62,7 @@ affiliations <- function(npi           = NULL,
     "facility_type_certification_number"         = ccn_parent)
 
   perform_request_provider(
-    url   = endpoint(provider_Dataset("affiliations")),
+    url   = endpoint(provider_dataset("affiliations")),
     query = args)
 
 }

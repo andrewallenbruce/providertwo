@@ -3,10 +3,10 @@
 utils::globalVariables(c(
   # <open_Dataset>
   ".api__openpay",
-  # <provider_Dataset>
+  # <provider_dataset>
   ".api__provider",
-  # <public_Dataset>
-  # <public_Distribution>
+  # <public_dataset>
+  # <public_temporal>
   ".api__public",
   # <load_provider>
   "@type",
@@ -20,6 +20,8 @@ utils::globalVariables(c(
   "archiveExclude",
   # <load_provider>
   "bureauCode",
+  # <catalog_provider>
+  "contact",
   # <load_public>
   "contactPoint",
   # <load_public>
@@ -32,10 +34,12 @@ utils::globalVariables(c(
   # <open_clean_grouped>
   # <open_catalog>
   # <open_grouped>
+  # <catalog_provider>
   "description",
   # <load_provider>
   "distribution",
   # <open_catalog>
+  # <catalog_provider>
   "downloadurl",
   # <load_public>
   # <load_openpayments>
@@ -47,15 +51,19 @@ utils::globalVariables(c(
   # <load_provider>
   # <load_openpayments>
   # <open_catalog>
+  # <catalog_provider>
   "identifier",
   # <load_provider>
+  # <catalog_provider>
   "issued",
   # <load_public>
   # <load_provider>
   # <load_openpayments>
   # <open_catalog>
+  # <catalog_provider>
   "keyword",
   # <load_public>
+  # <catalog_provider>
   "landingPage",
   # <load_public>
   "mediaType",
@@ -68,6 +76,7 @@ utils::globalVariables(c(
   # <open_general>
   # <open_research>
   # <open_ownership>
+  # <catalog_provider>
   "modified",
   # <open_dictionary>
   "name",
@@ -78,6 +87,7 @@ utils::globalVariables(c(
   # <load_public>
   "references",
   # <load_provider>
+  # <catalog_provider>
   "released",
   # <load_public>
   "resourcesAPI",
@@ -89,25 +99,27 @@ utils::globalVariables(c(
   # <load_openpayments>
   # <open_catalog>
   # <open_Dataset>
+  # <catalog_provider>
   "theme",
   # <load_public>
   # <load_openpayments>
+  # <public_dataset>
+  # <public_temporal>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_catalog>
   # <open_profiles>
   # <open_grouped>
   # <open_Dataset>
-  # <provider_Dataset>
-  # <public_Dataset>
-  # <public_Distribution>
+  # <provider_dataset>
+  # <catalog_provider>
   "title",
   # <load_openpayments>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_catalog>
-  # <open_dictionary>
   # <open_Dataset>
+  # <open_dictionary>
   "year",
   NULL
 ))

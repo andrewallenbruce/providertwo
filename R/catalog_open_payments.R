@@ -4,7 +4,7 @@
 #' @export
 #' @autoglobal
 #' @keywords internal
-open_add_downloadurl <- function(x) {
+open_add_dlurl <- function(x) {
   add_vars(x, downloadurl = delist(get_elem(
     get_elem(x$distribution, "data", DF.as.list = TRUE),
     "downloadURL"
@@ -74,7 +74,7 @@ open_catalog <- \() {
       title       = toTitleCase(title)
     )
 
-  x <- open_add_downloadurl(x) |>
+  x <- open_add_dlurl(x) |>
     slt(year,
         theme,
         title,
@@ -184,4 +184,46 @@ open_ownership <- function(x) {
     description = "All ownership and investment payments from the program year",
     endpoints   = slt(x$ownership, -modified)
   )
+}
+
+#' Load Open Payments API `Dataset`
+#'
+#' @param period `<chr>` dataset year
+#'
+#' @param group `<chr>` dataset group keyword
+#'
+#' @param dataset `<chr>` dataset title
+#'
+#' @returns `<Dataset>` object
+#'
+#' @examples
+#' open_Dataset(period = "All", group = "Summary", dataset = "Covered Recipient Profile Supplement")
+#'
+#' @autoglobal
+#'
+#' @export
+open_Dataset <- function(period = NULL, group = NULL, dataset = NULL) {
+
+
+  if (!exists(".api__openpay")) .api__openpay <<- load_openpayments()
+
+  if (not_null(period))   x <- sbt(.api__openpay, sf_detect(year, period))
+  if (not_null(group))    x <- sbt(.api__openpay, sf_detect(theme, group))
+  if (not_null(dataset))  x <- sbt(.api__openpay, sf_detect(title, dataset))
+
+  c(x)
+
+  # Dataset(
+  #   contact     = Contact("Open Payments", "mailto:openpayments@cms.hhs.gov"),
+  #   publisher   = Publisher(name = "openpaymentsdata.cms.gov"),
+  #   periodicity = "Annually [R/P1Y]",
+  #   identifier  = Identifier(x$identifier),
+  #   modified    = x$modified,
+  #   title       = x$title,
+  #   dictionary  = x$describedBy,
+  #   description = x$description,
+  #   landingpage = x$landingPage,
+  #   temporal    = x$temporal,
+  #   theme       = x$theme
+  # )
 }

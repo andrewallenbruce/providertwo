@@ -61,12 +61,12 @@ enrollees <- function(npi       = NULL,
                       gender    = NULL) {
 
   perform_request_public(
-    url           = endpoint(public_Dataset("enrollees")),
+    url           = endpoint(public_dataset("enrollees")),
     query         = eval_bare(
-      process_params(arg_names = fn_fmls_names(),
-                     field_names = fields(
-                       public_Dataset("enrollees")))
+      process_params(
+        arg_names   = fn_fmls_names(),
+        field_names = fields(
+          public_dataset("enrollees")))
       )
     )
-
 }

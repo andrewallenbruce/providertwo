@@ -22,6 +22,7 @@ Other classes:
 \code{\link{Dataset}()},
 \code{\link{Identifier}()},
 \code{\link{Publisher}()},
-\code{\link{Resources}()}
+\code{\link{Resources}()},
+\code{\link{class_resources}()}
 }
 \concept{classes}
