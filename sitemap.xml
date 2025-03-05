@@ -19,7 +19,9 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/class_resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/cli_n_results_requests.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/desplit.html</loc></url>
@@ -68,7 +70,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_Dataset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_add_downloadurl.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_add_dlurl.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_catalog.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_grouped.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_temp.html</loc></url>
@@ -88,7 +90,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Dataset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_Distribution.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/public_temporal.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_public.html</loc></url>
