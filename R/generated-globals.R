@@ -20,8 +20,6 @@ utils::globalVariables(c(
   "archiveExclude",
   # <load_provider>
   "bureauCode",
-  # <catalog_provider>
-  "contact",
   # <load_public>
   "contactPoint",
   # <load_public>
@@ -32,15 +30,10 @@ utils::globalVariables(c(
   # <load_openpayments>
   # <open_clean_temp>
   # <open_clean_grouped>
-  # <open_catalog>
   # <open_grouped>
-  # <catalog_provider>
   "description",
   # <load_provider>
   "distribution",
-  # <open_catalog>
-  # <catalog_provider>
-  "downloadurl",
   # <load_public>
   # <load_openpayments>
   # <get_resources>
@@ -50,33 +43,25 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
-  # <open_catalog>
-  # <catalog_provider>
   "identifier",
   # <load_provider>
-  # <catalog_provider>
   "issued",
   # <load_public>
   # <load_provider>
   # <load_openpayments>
-  # <open_catalog>
-  # <catalog_provider>
   "keyword",
   # <load_public>
-  # <catalog_provider>
   "landingPage",
   # <load_public>
   "mediaType",
   # <load_public>
   # <load_provider>
   # <load_openpayments>
-  # <open_catalog>
   # <open_profiles>
   # <open_grouped>
   # <open_general>
   # <open_research>
   # <open_ownership>
-  # <catalog_provider>
   "modified",
   # <open_dictionary>
   "name",
@@ -87,7 +72,6 @@ utils::globalVariables(c(
   # <load_public>
   "references",
   # <load_provider>
-  # <catalog_provider>
   "released",
   # <load_public>
   "resourcesAPI",
@@ -97,9 +81,7 @@ utils::globalVariables(c(
   # <load_public>
   # <load_provider>
   # <load_openpayments>
-  # <open_catalog>
   # <open_Dataset>
-  # <catalog_provider>
   "theme",
   # <load_public>
   # <load_openpayments>
@@ -107,17 +89,14 @@ utils::globalVariables(c(
   # <public_temporal>
   # <open_clean_temp>
   # <open_clean_grouped>
-  # <open_catalog>
   # <open_profiles>
   # <open_grouped>
   # <open_Dataset>
   # <provider_dataset>
-  # <catalog_provider>
   "title",
   # <load_openpayments>
   # <open_clean_temp>
   # <open_clean_grouped>
-  # <open_catalog>
   # <open_Dataset>
   # <open_dictionary>
   "year",
