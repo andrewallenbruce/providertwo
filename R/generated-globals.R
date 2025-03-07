@@ -63,8 +63,6 @@ utils::globalVariables(c(
   # <open_research>
   # <open_ownership>
   "modified",
-  # <open_dictionary>
-  "name",
   # <load_provider>
   "programCode",
   # <load_provider>
@@ -98,7 +96,6 @@ utils::globalVariables(c(
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_Dataset>
-  # <open_dictionary>
   "year",
   NULL
 ))

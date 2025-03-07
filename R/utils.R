@@ -119,6 +119,19 @@ as_datetime <- function(x) {
 
 }
 
+#' Parse openFDA date character vectors
+#' @param i `<chr>` vector to parse; format: "YYYY-MM-DD"
+#' @returns `<chr>` parsed ISOdate vector
+#' @autoglobal
+#' @keywords internal
+#' @export
+as_fda_date <- function(i) {
+  delist(map(i, function(x)
+    paste0(
+      sf_sub(x, 1, 4), "-", sf_sub(x, 5, 6), "-", sf_sub(x, 7, 8)
+    )))
+}
+
 #' Detect Regular Expression
 #' @param x `<chr>` vector to search
 #' @param p `<chr>` regular expression pattern
@@ -155,4 +168,28 @@ sbt_detect <- function(i, x, p, n = FALSE) {
 get_data_elem <- function(x) {
   delist(map(x, function(i)
     get_elem(as.list(i), "data")))
+}
+
+
+#' Get List Element
+#' @param x `<list>` list to get element from
+#' @param el `<chr>` element to get
+#' @returns `<list>` list with element
+#' @autoglobal
+#' @keywords internal
+#' @export
+delist_elem <- function(x, el) {
+  delist(get_elem(x, el, DF.as.list = TRUE))
+}
+
+#' Get List Element
+#' @param i `<list>` list to get element from
+#' @param el `<chr>` element to get
+#' @returns `<list>` list with element
+#' @autoglobal
+#' @keywords internal
+#' @export
+smush_elem <- function(i, el) {
+  map_chr(get_elem(i, el), function(x)
+    sf_smush(x, sep = ", "))
 }

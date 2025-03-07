@@ -8,6 +8,7 @@
 
   catalog_provider <<- memoise::memoise(catalog_provider)
   open_catalog     <<- memoise::memoise(open_catalog)
+  open_dictionary  <<- memoise::memoise(open_dictionary)
 
   S7::methods_register()
 }
