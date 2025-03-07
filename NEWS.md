@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9092 (2025-03-07)
+
+* added several new helpers
+
+
 # providertwo 0.0.0.9091 (2025-03-06)
 
 * Testing memoise
