@@ -16,6 +16,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_chr.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_datetime.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_fda_date.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_int.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/as_num.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
@@ -24,6 +25,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/class_resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/cli_n_results_requests.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist_elem.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/desplit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/detect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/empty.html</loc></url>
@@ -117,6 +119,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_smush.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_strsplit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/sf_sub.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/smush_elem.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/strsort.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/tidyup.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/true.html</loc></url>
