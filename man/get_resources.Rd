@@ -2,17 +2,17 @@
 % Please edit documentation in R/get_nrows_fields.R
 \name{get_resources}
 \alias{get_resources}
-\title{Request resources from catalog}
+\title{Get Resources}
 \usage{
 get_resources(url)
 }
 \arguments{
-\item{url}{\verb{<chr>} resources API URL}
+\item{url}{resourcesAPI url}
 }
 \value{
-\verb{<tibble>} Resource Files Data
+\verb{<tibble>} of Resource Files Data
 }
 \description{
-Request resources from catalog
+Get Resources
 }
 \keyword{internal}

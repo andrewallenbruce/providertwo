@@ -102,19 +102,33 @@ get_fields <- function(url) {
   }
 }
 
-#' Request resources from catalog
-#' @param url `<chr>` resources API URL
-#' @returns `<tibble>` Resource Files Data
+#' Get Resources
+#' @param url resourcesAPI url
+#' @returns `<tibble>` of Resource Files Data
 #' @autoglobal
 #' @keywords internal
 #' @export
 get_resources <- function(url) {
+
   if (not_na(url)) {
-    as_tbl(fload(url, query = "/data")) |>
-      mtt(fileSize = trimws(as_chr(parse_bytes(
-        as_chr(fileSize)
-      ))),
-      fileType = file_ext(downloadURL)) |>
-      colorder(downloadURL, pos = "end")
+
+  fload(url, query = "/data") |>
+    as_tbl() |>
+    fcompute(file        = name,
+             size        = roundup(fileSize / 1e6),
+             ext         = file_ext(downloadURL),
+             downloadurl = downloadURL) |>
+    roworder(ext, -size)
   }
 }
+
+# get_resources <- function(url) {
+#   if (not_na(url)) {
+#     as_tbl(fload(url, query = "/data")) |>
+#       mtt(fileSize = trimws(as_chr(parse_bytes(
+#         as_chr(fileSize)
+#       ))),
+#       fileType = file_ext(downloadURL)) |>
+#       colorder(downloadURL, pos = "end")
+#   }
+# }

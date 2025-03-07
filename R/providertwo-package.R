@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom collapse %==% mtt slt sbt colorder rowbind add_vars join get_elem roworder fmax rsplit funique
+#' @importFrom collapse %==% mtt slt sbt colorder rowbind add_vars join get_elem roworder fmax rsplit funique fcompute
 #' @importFrom cheapr cheapr_rev seq_ which_ sset cheapr_if_else new_df as_df cheapr_if_else
 #' @importFrom fastplyr as_tbl new_tbl
 #' @importFrom kit nswitch

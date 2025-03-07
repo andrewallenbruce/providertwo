@@ -79,18 +79,9 @@ Resources <- new_class(
   package    = "provider",
   properties = list(
     url      = new_property(class_character, default = NA_character_),
-    files    = new_property(
-      class_character |
-        class_list,
-      getter = function(self)
-        get_resources(self@url),
-      default = NA_character_
-    )
-  ),
-  validator  = function(self)
-    if (not_na(self@url))
-      if (length(self@url) != 1L)
-        "must be length 1"
+    files    = new_property(class_character | class_list,
+    getter = function(self) get_resources(self@url), default = NA_character_)),
+  validator  = function(self) if (length(self@url) != 1L) "must be length 1"
 )
 
 #' Dataset Class

@@ -39,6 +39,8 @@ utils::globalVariables(c(
   # <get_resources>
   "downloadURL",
   # <get_resources>
+  "ext",
+  # <get_resources>
   "fileSize",
   # <load_public>
   # <load_provider>
@@ -63,6 +65,8 @@ utils::globalVariables(c(
   # <open_research>
   # <open_ownership>
   "modified",
+  # <get_resources>
+  "name",
   # <load_provider>
   "programCode",
   # <load_provider>
@@ -73,6 +77,8 @@ utils::globalVariables(c(
   "released",
   # <load_public>
   "resourcesAPI",
+  # <get_resources>
+  "size",
   # <load_public>
   # <load_openpayments>
   "temporal",
