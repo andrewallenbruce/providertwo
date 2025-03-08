@@ -30,7 +30,7 @@ utils::globalVariables(c(
   # <load_openpayments>
   # <open_clean_temp>
   # <open_clean_grouped>
-  # <open_grouped>
+  # <open_grouped_summary>
   "description",
   # <load_provider>
   "distribution",
@@ -60,7 +60,8 @@ utils::globalVariables(c(
   # <load_provider>
   # <load_openpayments>
   # <open_profiles>
-  # <open_grouped>
+  # <open_grouped_summary>
+  # <open_grouped_yearly>
   # <open_general>
   # <open_research>
   # <open_ownership>
@@ -94,7 +95,7 @@ utils::globalVariables(c(
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_profiles>
-  # <open_grouped>
+  # <open_grouped_summary>
   # <open_dataset>
   # <provider_dataset>
   "title",

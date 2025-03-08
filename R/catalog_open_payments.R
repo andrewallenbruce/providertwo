@@ -1,3 +1,28 @@
+#' Get Field Names and Number of Rows from Open Payments Endpoint
+#' @param uuid `<chr>` Endpoint UUID
+#' @returns `<list>` of number of rows and field names
+#' @autoglobal
+#' @keywords internal
+#' @export
+open_nrows_fields <- function(uuid) {
+  x <- uuid |>
+    open_uuid_url() |>
+    request() |>
+    req_url_query(
+      schema  = "false",
+      keys    = "false",
+      results = "false",
+      count   = "true",
+      offset  = 0,
+      limit   = 1
+    ) |>
+    req_perform() |>
+    resp_simple_json()
+
+  list(rows = x$count, fields = x$query$properties)
+
+}
+
 #' Join Vector of Download URLs to Main Dataset
 #' @param x data.frame
 #' @returns data.frame
@@ -118,23 +143,33 @@ open_profiles <- function() {
        summary  = slt(s, -modified))
 }
 
-#' Load Open Payments Grouped
+#' Load Open Payments Grouped Summaries
 #' @returns `<list>` of Open Payments API grouped information
 #' @examples
-#' open_grouped()
+#' open_grouped_summary()
 #' @autoglobal
 #' @export
-open_grouped <- function() {
+open_grouped_summary <- function() {
   s <- subset_detect(open_catalog()$summary,
                      title,
                      "^(National|State|Payments|Summary)")
 
+  list(modified = fmax(s$modified),
+       summary = slt(s, -modified, -description))
+}
+
+#' Load Open Payments Grouped by Year
+#' @returns `<list>` of Open Payments API grouped information
+#' @examples
+#' open_grouped_yearly()
+#' @autoglobal
+#' @export
+open_grouped_yearly <- function() {
   g <- slt(open_catalog()$grouped, -modified) |>
-    rsplit(~ title)
+    rsplit( ~ title)
 
   list(
-    modified                = fmax(c(s$modified, open_catalog()$grouped$modified)),
-    summary                 = slt(s, -modified, -description),
+    modified                = fmax(open_catalog()$grouped$modified),
     recipient_nature        = g$`Payments Grouped by Covered Recipient and Nature of Payments`,
     recipient_entity        = g$`Payments Grouped by Covered Recipient and Reporting Entities`,
     entity_nature           = g$`Payments Grouped by Reporting Entities and Nature of Payments`,
@@ -150,11 +185,20 @@ open_grouped <- function() {
 #' @autoglobal
 #' @export
 open_general <- function() {
+
+  x <- open_catalog()$general
+
+  q <- open_nrows_fields(delist(ss(x, 1, 3)))
+
   list(
-    modified    = fmax(open_catalog()$general$modified),
     title       = "General Payment Data",
     description = "All general (non-research, non-ownership related) payments from the program year",
-    endpoints   = slt(open_catalog()$general, -modified)
+    modified    = fmax(x$modified),
+    years       = sort(x$year),
+    nrows       = q$rows,
+    nfields     = fnobs(q$fields),
+    endpoints   = slt(x, -modified),
+    fields      = q$fields
   )
 }
 
@@ -165,11 +209,20 @@ open_general <- function() {
 #' @autoglobal
 #' @export
 open_research <- function() {
+
+  x <- open_catalog()$research
+
+  q <- open_nrows_fields(delist(ss(x, 1, 3)))
+
   list(
-    modified    = fmax(open_catalog()$research$modified),
     title       = "Research Payment Data",
     description = "All research-related payments from the program year",
-    endpoints   = slt(open_catalog()$research, -modified)
+    modified    = fmax(x$modified),
+    years       = sort(x$year),
+    nrows       = q$rows,
+    nfields     = fnobs(q$fields),
+    endpoints   = slt(x, -modified),
+    fields      = q$fields
   )
 }
 
@@ -180,11 +233,20 @@ open_research <- function() {
 #' @autoglobal
 #' @export
 open_ownership <- function() {
+
+  x <- open_catalog()$research
+
+  q <- open_nrows_fields(delist(ss(x, 1, 3)))
+
   list(
-    modified    = fmax(open_catalog()$ownership$modified),
     title       = "Ownership Payment Data",
     description = "All ownership and investment payments from the program year",
-    endpoints   = slt(open_catalog()$ownership, -modified)
+    modified    = fmax(x$modified),
+    years       = sort(x$year),
+    nrows       = q$rows,
+    nfields     = fnobs(q$fields),
+    endpoints   = slt(x, -modified),
+    fields      = q$fields
   )
 }
 
