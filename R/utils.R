@@ -128,7 +128,11 @@ as_datetime <- function(x) {
 as_fda_date <- function(i) {
   delist(map(i, function(x)
     paste0(
-      sf_sub(x, 1, 4), "-", sf_sub(x, 5, 6), "-", sf_sub(x, 7, 8)
+      sf_sub(x, 1, 4),
+      "-",
+      sf_sub(x, 5, 6),
+      "-",
+      sf_sub(x, 7, 8)
     )))
 }
 
@@ -148,15 +152,18 @@ detect <- function(x, p, n = FALSE) {
 
 #' Subset by Regular Expression
 #' @param i `<data.frame>` to search
-#' @param x `<chr>` vector to detect
+#' @param j `<chr>` vector to detect
 #' @param p `<chr>` regular expression pattern
 #' @param n `<lgl>` negate
 #' @returns `<data.frame>` subsetted data.frame
 #' @autoglobal
 #' @keywords internal
 #' @export
-sbt_detect <- function(i, x, p, n = FALSE) {
-  sbt(i, detect(x = x, p = p, n = n))
+subset_detect <- function(i, j, p, n = FALSE) {
+  sbt(i,
+      detect(x = i[[ensym(j)]],
+             p = p,
+             n = n))
 }
 
 #' Get List Element Named "data"
