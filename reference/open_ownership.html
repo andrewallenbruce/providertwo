@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9095</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9096</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,26 +56,289 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_ownership</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-01-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Ownership Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $description</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "All ownership and investment payments from the program year"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2017 2018 2019 2020 2021 2022 2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nrows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1027926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $nfields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $endpoints</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 ac0bc85c-02e3-45d9-89e8-2ff43da85df7 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 37792388-800f-427a-9e02-b11601454eeb https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 b0c03b8d-06df-58f2-8ce2-4daeffee147e https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 a9a0bf48-6b96-4589-b4c2-3c5dcfbeaca2 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 0b5c9710-7edb-484e-abc8-39293849ccb2 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 de0087e0-101b-43c1-acdf-69986a4c166b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 f90c33d1-cfd8-4b15-8cf5-b3db2f214cdf https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 ec9521bf-9d97-4603-814c-f4132d34bc4f https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 fdc3c773-018a-412c-8a81-d7b8a13a037b https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 ce1d28dd-0094-5060-a036-580329439600 https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 9c248e7e-7c7f-478b-ab84-ce0919d72c1c https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 713a6016-1930-4a0c-b7c2-3e3de4f244c5 https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 7b82fb48-2bec-45f0-b40e-aed5f1d1eba0 https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 0e3977b9-a5d6-427e-bc02-480481edd6e0 https://download.cms.gov/openpayme…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "change_type"                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [2] "covered_recipient_type"                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [3] "noncovered_recipient_entity_name"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [4] "teaching_hospital_ccn"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [5] "teaching_hospital_id"                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] "teaching_hospital_name"                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] "covered_recipient_profile_id"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [8] "covered_recipient_npi"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [9] "covered_recipient_first_name"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "covered_recipient_middle_name"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] "covered_recipient_last_name"                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [12] "covered_recipient_name_suffix"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13] "recipient_primary_business_street_address_line1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [14] "recipient_primary_business_street_address_line2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [15] "recipient_city"                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] "recipient_state"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [17] "recipient_zip_code"                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [18] "recipient_country"                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "recipient_province"                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [20] "recipient_postal_code"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] "covered_recipient_primary_type_1"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [22] "covered_recipient_primary_type_2"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [23] "covered_recipient_primary_type_3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [24] "covered_recipient_primary_type_4"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] "covered_recipient_primary_type_5"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] "covered_recipient_primary_type_6"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [27] "covered_recipient_specialty_1"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "covered_recipient_specialty_2"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [29] "covered_recipient_specialty_3"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [30] "covered_recipient_specialty_4"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] "covered_recipient_specialty_5"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [32] "covered_recipient_specialty_6"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [33] "covered_recipient_license_state_code1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [34] "covered_recipient_license_state_code2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [35] "covered_recipient_license_state_code3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] "covered_recipient_license_state_code4"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "covered_recipient_license_state_code5"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [38] "principal_investigator_1_covered_recipient_type"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [39] "principal_investigator_1_profile_id"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [40] "principal_investigator_1_npi"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] "principal_investigator_1_first_name"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [42] "principal_investigator_1_middle_name"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] "principal_investigator_1_last_name"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [44] "principal_investigator_1_name_suffix"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [45] "principal_investigator_1_business_street_address_line1"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "principal_investigator_1_business_street_address_line2"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [47] "principal_investigator_1_city"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [48] "principal_investigator_1_state"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] "principal_investigator_1_zip_code"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [50] "principal_investigator_1_country"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] "principal_investigator_1_province"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [52] "principal_investigator_1_postal_code"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [53] "principal_investigator_1_primary_type_1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [54] "principal_investigator_1_primary_type_2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "principal_investigator_1_primary_type_3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56] "principal_investigator_1_primary_type_4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] "principal_investigator_1_primary_type_5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [58] "principal_investigator_1_primary_type_6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [59] "principal_investigator_1_specialty_1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [60] "principal_investigator_1_specialty_2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] "principal_investigator_1_specialty_3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [62] "principal_investigator_1_specialty_4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [63] "principal_investigator_1_specialty_5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "principal_investigator_1_specialty_6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [65] "principal_investigator_1_license_state_code1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] "principal_investigator_1_license_state_code2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] "principal_investigator_1_license_state_code3"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [68] "principal_investigator_1_license_state_code4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [69] "principal_investigator_1_license_state_code5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [70] "principal_investigator_2_covered_recipient_type"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] "principal_investigator_2_profile_id"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [72] "principal_investigator_2_npi"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "principal_investigator_2_first_name"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [74] "principal_investigator_2_middle_name"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [75] "principal_investigator_2_last_name"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] "principal_investigator_2_name_suffix"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [77] "principal_investigator_2_business_street_address_line1"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [78] "principal_investigator_2_business_street_address_line2"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79] "principal_investigator_2_city"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [80] "principal_investigator_2_state"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] "principal_investigator_2_zip_code"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "principal_investigator_2_country"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [83] "principal_investigator_2_province"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [84] "principal_investigator_2_postal_code"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] "principal_investigator_2_primary_type_1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] "principal_investigator_2_primary_type_2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [87] "principal_investigator_2_primary_type_3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [88] "principal_investigator_2_primary_type_4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [89] "principal_investigator_2_primary_type_5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [90] "principal_investigator_2_primary_type_6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "principal_investigator_2_specialty_1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [92] "principal_investigator_2_specialty_2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [93] "principal_investigator_2_specialty_3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [94] "principal_investigator_2_specialty_4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [95] "principal_investigator_2_specialty_5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] "principal_investigator_2_specialty_6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] "principal_investigator_2_license_state_code1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [98] "principal_investigator_2_license_state_code2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [99] "principal_investigator_2_license_state_code3"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "principal_investigator_2_license_state_code4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [101] "principal_investigator_2_license_state_code5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [102] "principal_investigator_3_covered_recipient_type"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [103] "principal_investigator_3_profile_id"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [104] "principal_investigator_3_npi"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [105] "principal_investigator_3_first_name"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [106] "principal_investigator_3_middle_name"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [107] "principal_investigator_3_last_name"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [108] "principal_investigator_3_name_suffix"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "principal_investigator_3_business_street_address_line1"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [110] "principal_investigator_3_business_street_address_line2"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [111] "principal_investigator_3_city"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [112] "principal_investigator_3_state"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [113] "principal_investigator_3_zip_code"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [114] "principal_investigator_3_country"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [115] "principal_investigator_3_province"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [116] "principal_investigator_3_postal_code"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [117] "principal_investigator_3_primary_type_1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "principal_investigator_3_primary_type_2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [119] "principal_investigator_3_primary_type_3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [120] "principal_investigator_3_primary_type_4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [121] "principal_investigator_3_primary_type_5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [122] "principal_investigator_3_primary_type_6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [123] "principal_investigator_3_specialty_1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [124] "principal_investigator_3_specialty_2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [125] "principal_investigator_3_specialty_3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [126] "principal_investigator_3_specialty_4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "principal_investigator_3_specialty_5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [128] "principal_investigator_3_specialty_6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [129] "principal_investigator_3_license_state_code1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [130] "principal_investigator_3_license_state_code2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [131] "principal_investigator_3_license_state_code3"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [132] "principal_investigator_3_license_state_code4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [133] "principal_investigator_3_license_state_code5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [134] "principal_investigator_4_covered_recipient_type"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [135] "principal_investigator_4_profile_id"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "principal_investigator_4_npi"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [137] "principal_investigator_4_first_name"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [138] "principal_investigator_4_middle_name"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [139] "principal_investigator_4_last_name"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [140] "principal_investigator_4_name_suffix"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [141] "principal_investigator_4_business_street_address_line1"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [142] "principal_investigator_4_business_street_address_line2"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [143] "principal_investigator_4_city"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [144] "principal_investigator_4_state"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "principal_investigator_4_zip_code"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [146] "principal_investigator_4_country"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [147] "principal_investigator_4_province"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [148] "principal_investigator_4_postal_code"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [149] "principal_investigator_4_primary_type_1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [150] "principal_investigator_4_primary_type_2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [151] "principal_investigator_4_primary_type_3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [152] "principal_investigator_4_primary_type_4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [153] "principal_investigator_4_primary_type_5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "principal_investigator_4_primary_type_6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [155] "principal_investigator_4_specialty_1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [156] "principal_investigator_4_specialty_2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [157] "principal_investigator_4_specialty_3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [158] "principal_investigator_4_specialty_4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [159] "principal_investigator_4_specialty_5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [160] "principal_investigator_4_specialty_6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [161] "principal_investigator_4_license_state_code1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [162] "principal_investigator_4_license_state_code2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "principal_investigator_4_license_state_code3"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [164] "principal_investigator_4_license_state_code4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [165] "principal_investigator_4_license_state_code5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [166] "principal_investigator_5_covered_recipient_type"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [167] "principal_investigator_5_profile_id"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [168] "principal_investigator_5_npi"                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [169] "principal_investigator_5_first_name"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [170] "principal_investigator_5_middle_name"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [171] "principal_investigator_5_last_name"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "principal_investigator_5_name_suffix"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [173] "principal_investigator_5_business_street_address_line1"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [174] "principal_investigator_5_business_street_address_line2"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [175] "principal_investigator_5_city"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [176] "principal_investigator_5_state"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [177] "principal_investigator_5_zip_code"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [178] "principal_investigator_5_country"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [179] "principal_investigator_5_province"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [180] "principal_investigator_5_postal_code"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "principal_investigator_5_primary_type_1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [182] "principal_investigator_5_primary_type_2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [183] "principal_investigator_5_primary_type_3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [184] "principal_investigator_5_primary_type_4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [185] "principal_investigator_5_primary_type_5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [186] "principal_investigator_5_primary_type_6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [187] "principal_investigator_5_specialty_1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [188] "principal_investigator_5_specialty_2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [189] "principal_investigator_5_specialty_3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "principal_investigator_5_specialty_4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [191] "principal_investigator_5_specialty_5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [192] "principal_investigator_5_specialty_6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [193] "principal_investigator_5_license_state_code1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [194] "principal_investigator_5_license_state_code2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [195] "principal_investigator_5_license_state_code3"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [196] "principal_investigator_5_license_state_code4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [197] "principal_investigator_5_license_state_code5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [198] "submitting_applicable_manufacturer_or_applicable_gpo_name"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "applicable_manufacturer_or_applicable_gpo_making_payment_id"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [200] "applicable_manufacturer_or_applicable_gpo_making_payment_name"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [201] "applicable_manufacturer_or_applicable_gpo_making_payment_state"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [202] "applicable_manufacturer_or_applicable_gpo_making_payment_country"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [203] "related_product_indicator"                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [204] "covered_or_noncovered_indicator_1"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [205] "indicate_drug_or_biological_or_device_or_medical_supply_1"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [206] "product_category_or_therapeutic_area_1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [207] "name_of_drug_or_biological_or_device_or_medical_supply_1"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "associated_drug_or_biological_ndc_1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [209] "associated_device_or_medical_supply_pdi_1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [210] "covered_or_noncovered_indicator_2"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [211] "indicate_drug_or_biological_or_device_or_medical_supply_2"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [212] "product_category_or_therapeutic_area_2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [213] "name_of_drug_or_biological_or_device_or_medical_supply_2"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [214] "associated_drug_or_biological_ndc_2"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [215] "associated_device_or_medical_supply_pdi_2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [216] "covered_or_noncovered_indicator_3"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "indicate_drug_or_biological_or_device_or_medical_supply_3"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [218] "product_category_or_therapeutic_area_3"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [219] "name_of_drug_or_biological_or_device_or_medical_supply_3"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [220] "associated_drug_or_biological_ndc_3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [221] "associated_device_or_medical_supply_pdi_3"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [222] "covered_or_noncovered_indicator_4"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [223] "indicate_drug_or_biological_or_device_or_medical_supply_4"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [224] "product_category_or_therapeutic_area_4"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [225] "name_of_drug_or_biological_or_device_or_medical_supply_4"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "associated_drug_or_biological_ndc_4"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [227] "associated_device_or_medical_supply_pdi_4"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [228] "covered_or_noncovered_indicator_5"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [229] "indicate_drug_or_biological_or_device_or_medical_supply_5"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [230] "product_category_or_therapeutic_area_5"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [231] "name_of_drug_or_biological_or_device_or_medical_supply_5"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [232] "associated_drug_or_biological_ndc_5"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [233] "associated_device_or_medical_supply_pdi_5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [234] "total_amount_of_payment_usdollars"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "date_of_payment"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [236] "form_of_payment_or_transfer_of_value"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [237] "expenditure_category1"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [238] "expenditure_category2"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [239] "expenditure_category3"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [240] "expenditure_category4"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [241] "expenditure_category5"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [242] "expenditure_category6"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [243] "preclinical_research_indicator"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "delay_in_publication_indicator"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [245] "name_of_study"                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [246] "dispute_status_for_publication"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [247] "record_id"                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [248] "program_year"                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [249] "payment_publication_date"                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [250] "clinicaltrials_gov_identifier"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [251] "research_information_link"                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [252] "context_of_research"                                             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
