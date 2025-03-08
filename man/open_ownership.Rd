@@ -4,10 +4,7 @@
 \alias{open_ownership}
 \title{Load Open Payments Ownership Data}
 \usage{
-open_ownership(x)
-}
-\arguments{
-\item{x}{\verb{<list>} of Open Payments API catalog information}
+open_ownership()
 }
 \value{
 \verb{<list>} of Open Payments API ownership data
@@ -16,5 +13,5 @@ open_ownership(x)
 Load Open Payments Ownership Data
 }
 \examples{
-open_ownership(open_catalog())
+open_ownership()
 }

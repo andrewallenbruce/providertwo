@@ -4,10 +4,7 @@
 \alias{open_general}
 \title{Load Open Payments General Data}
 \usage{
-open_general(x)
-}
-\arguments{
-\item{x}{\verb{<list>} of Open Payments API catalog information}
+open_general()
 }
 \value{
 \verb{<list>} of Open Payments API general data
@@ -16,5 +13,5 @@ open_general(x)
 Load Open Payments General Data
 }
 \examples{
-open_general(open_catalog())
+open_general()
 }

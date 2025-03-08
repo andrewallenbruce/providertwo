@@ -4,10 +4,7 @@
 \alias{open_research}
 \title{Load Open Payments Research Data}
 \usage{
-open_research(x)
-}
-\arguments{
-\item{x}{\verb{<list>} of Open Payments API catalog information}
+open_research()
 }
 \value{
 \verb{<list>} of Open Payments API research data
@@ -16,5 +13,5 @@ open_research(x)
 Load Open Payments Research Data
 }
 \examples{
-open_research(open_catalog())
+open_research()
 }

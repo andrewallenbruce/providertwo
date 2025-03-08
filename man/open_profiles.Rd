@@ -2,19 +2,16 @@
 % Please edit documentation in R/catalog_open_payments.R
 \name{open_profiles}
 \alias{open_profiles}
-\title{Load Open Payments Profile}
+\title{Load Open Payments Profile Sets}
 \usage{
-open_profiles(x)
-}
-\arguments{
-\item{x}{\verb{<list>} of Open Payments API catalog information}
+open_profiles()
 }
 \value{
 \verb{<list>} of Open Payments API profile information
 }
 \description{
-Load Open Payments Profile
+Load Open Payments Profile Sets
 }
 \examples{
-open_profiles(open_catalog())
+open_profiles()
 }

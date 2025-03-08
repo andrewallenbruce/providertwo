@@ -4,10 +4,7 @@
 \alias{open_grouped}
 \title{Load Open Payments Grouped}
 \usage{
-open_grouped(x)
-}
-\arguments{
-\item{x}{\verb{<list>} of Open Payments API catalog information}
+open_grouped()
 }
 \value{
 \verb{<list>} of Open Payments API grouped information
@@ -16,5 +13,5 @@ open_grouped(x)
 Load Open Payments Grouped
 }
 \examples{
-open_grouped(open_catalog())
+open_grouped()
 }

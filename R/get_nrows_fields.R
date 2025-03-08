@@ -121,14 +121,3 @@ get_resources <- function(url) {
     roworder(ext, -size)
   }
 }
-
-# get_resources <- function(url) {
-#   if (not_na(url)) {
-#     as_tbl(fload(url, query = "/data")) |>
-#       mtt(fileSize = trimws(as_chr(parse_bytes(
-#         as_chr(fileSize)
-#       ))),
-#       fileType = file_ext(downloadURL)) |>
-#       colorder(downloadURL, pos = "end")
-#   }
-# }
