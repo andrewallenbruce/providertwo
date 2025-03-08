@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9095 (2025-03-08)
+
+* Implement use of `subset_detect()`
+* Call `open_catalog()` from within subgroup functions
+
+
 # providertwo 0.0.0.9094 (2025-03-08)
 
 * Fixed `subset_detect()`
