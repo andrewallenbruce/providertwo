@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9096 (2025-03-08)
+
+* memoising backend ops
+
+
 # providertwo 0.0.0.9095 (2025-03-08)
 
 * Implement use of `subset_detect()`
