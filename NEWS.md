@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9094 (2025-03-08)
+
+* Fixed `subset_detect()`
+
+
 # providertwo 0.0.0.9093 (2025-03-07)
 
 * added `get_resources()` helper
