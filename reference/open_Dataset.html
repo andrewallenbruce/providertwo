@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9096</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9097</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Load Open Payments API <code>Dataset</code></h1>
-      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/catalog_open_payments.R" class="external-link"><code>R/catalog_open_payments.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/catalog_open.R" class="external-link"><code>R/catalog_open.R</code></a></small>
       <div class="d-none name"><code>open_Dataset.Rd</code></div>
     </div>
 
@@ -71,35 +71,20 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_dataset</span><span class="op">(</span>period  <span class="op">=</span> <span class="st">"All"</span>,</span></span>
-<span class="r-in"><span>             group   <span class="op">=</span> <span class="st">"Summary"</span>,</span></span>
-<span class="r-in"><span>             dataset <span class="op">=</span> <span class="st">"Covered Recipient Profile Supplement"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "All"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $theme</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Summary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Covered Recipient Profile Supplement"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The Covered Recipient Profile Supplement file contains information about physicians and non-physician practitioners who have been indicated as recipients of payments, other transfers of value, or ownership and investment interest in payment records, as well as physicians and non-physician practitioners who have been identified as principal investigators associated with research payment records published by Open Payments. This file contains only those physicians that have at least one published payment record in this cycle of the publication as of January 30, 2025. The criteria used by the Centers for Medicare &amp; Medicaid Services (CMS) to determine which payment records are eligible for publication is available in the Open Payments Methodology and Data Dictionary Document. This document can be found on the Resources page of the Open Payments website (https://www.cms.gov/OpenPayments/Resources). The Methodology and Data Dictionary Document also includes information on the data collection and reporting methodology, data fields included in the files, and any notes or special considerations that users should be aware of."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_dataset</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2017-01-01/2023-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $downloadURL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://download.cms.gov/openpayments/PHPRFL_P01302025_01212025/OP_CVRD_RCPNT_PRFL_SPLMTL_P01302025_01212025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $describedBy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/data-dictionary/items/80796264-d7e9-57cd-8133-2a2a14b1647b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                                    description    identifier downloadurl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Covered Recipient Profile Supplement     The Covered R… 23160558-… https://do…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Physician (Distinct) Profile Information This dataset … 6ed6ae76-… https://do…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Profile Information                      This dataset … f2ed17cc-… https://do…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Provider Profile ID Mapping Table        Maps secondar… d19e5be2-… https://do…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Reporting Entity Profile Information     This dataset … 1cf0c6c0-… https://do…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Teaching Hospital Profile Information    This dataset … 8219fcb3-… https://do…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

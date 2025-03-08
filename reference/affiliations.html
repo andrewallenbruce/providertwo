@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9096</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9097</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,51 +107,15 @@ provider provide services in said unit.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>last <span class="op">=</span> <span class="st">"CURRY"</span>, facility_type <span class="op">=</span> <span class="st">"Home health agency"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #BBBB00; font-weight: bold;">11</span> <span style="color: #00BBBB;">Results</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">1</span> <span style="color: #00BBBB;">Request</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 11 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    npi    ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10437… 5395079933 CURRY              SHAWN               J                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 11141… 2769612944 CURRY              SABRINA             M                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 11445… 8325332117 CURRY              MICHAEL             CODY                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 12055… 5193199271 CURRY              WILLIAM             G                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 14970… 4587969654 CURRY              STEPHANIE           SHARPERSON          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 15789… 1850520370 CURRY              SUSANNE             <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 15789… 1850520370 CURRY              SUSANNE             <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 15789… 1850520370 CURRY              SUSANNE             <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 16397… 8022460971 CURRY              MICHAELA            J                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 16593… 1355417460 CURRY              SARAH               D                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 18415… 3173708435 CURRY              RENE                CHRISTINE           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>last <span class="op">=</span> <span class="st">"CURRY"</span>, facility_type <span class="op">=</span> <span class="st">"Home health agency"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_parent <span class="op">=</span> <span class="st">"670055"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> <span style="color: #BBBB00; font-weight: bold;">7</span> <span style="color: #00BBBB;">Results</span> <span style="color: #555555;">☰</span> <span style="color: #BBBB00; font-weight: bold;">1</span> <span style="color: #00BBBB;">Request</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi     ind_pac_id provider_last_name provider_first_name provider_middle_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 108314… 3072883404 ASAMOA             JOSHUA              J                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 155859… 8921241142 ALFONSO            JOHN                D                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 167956… 3678519642 JAAFAR             SALEH               N                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 171011… 9739337122 AMARANENI          VIDYA               <span style="color: #BB0000;">NA</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 172006… 7012947229 JANES              WILLIAM             WARREN              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 174057… 0345473773 WEIKLE             GEOFF               R                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 191226… 5092036509 MANSOOR            SAAD                MD                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: suff &lt;chr&gt;, facility_type &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_affiliations_certification_number &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   facility_type_certification_number &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "370781")</span></span></span>
-<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "331302")</span></span></span>
-<span class="r-in"><span><span class="co"># affiliations(ccn_facility = "33Z302")</span></span></span>
-<span class="r-in"><span><span class="co"># affiliations(npi = "1043245657")</span></span></span>
-<span class="r-in"><span><span class="co"># affiliations(last = "CURRY")</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"370781"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"331302"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"33Z302"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1043245657"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>last <span class="op">=</span> <span class="st">"CURRY"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
