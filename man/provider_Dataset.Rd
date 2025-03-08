@@ -4,12 +4,10 @@
 \alias{provider_dataset}
 \title{Load Provider API \code{Dataset}}
 \usage{
-provider_dataset(dataset, fname = TRUE)
+provider_dataset(dataset)
 }
 \arguments{
 \item{dataset}{\verb{<chr>} dataset title}
-
-\item{fname}{\verb{<lgl>} Is \code{dataset} a function name?; default is \code{TRUE}}
 }
 \value{
 \verb{<Dataset>} object

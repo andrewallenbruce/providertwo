@@ -1,168 +1,173 @@
-#' @include props.R
-NULL
-
-#' Contact Class
-#' @param name `<chr>` Contact name
-#' @param email `<chr>` Contact email
-#' @returns `<S7_class>` Contact object
+#' `endpoint_current` Class
+#'
+#' @name endpoint_current
+#'
+#' @param title       `<chr>`  Endpoint title
+#' @param description `<chr>`  Endpoint description
+#' @param contact     `<chr>`  Endpoint contact information
+#' @param modified    `<Date>` Date Endpoint data was last modified
+#' @param identifier  `<chr>`  Endpoint uuid or url
+#' @param download    `<chr>`  Endpoint download url
+#'
+#' @returns `endpoint_current` object
 #' @family classes
 #' @autoglobal
 #' @export
-Contact <- new_class(
-  name       = "Contact",
-  package    = "provider",
+endpoint_current <- new_class(
+  name = "endpoint_current",
   properties = list(
-    name     = class_character,
-    email    = class_character),
-  validator  = function(self) {
-    if (length(self@name)  != 1L) "must be length 1"
-    if (length(self@email) != 1L) "must be length 1"
-  })
-
-#' Publisher Class
-#' @param type `<chr>` Publisher type; default is `org:Organization`
-#' @param name `<chr>` Publisher name; default is `Centers for Medicare & Medicaid Services`
-#' @returns `<S7_class>` Publisher object
-#' @family classes
-#' @autoglobal
-#' @export
-Publisher <- new_class(
-  name    = "Publisher",
-  package = "provider",
-  properties = list(
-    type = new_property(class_character, default = "org:Organization"),
-    name = new_property(class_character, default = "Centers for Medicare & Medicaid Services")
-  ),
-  validator = function(self) {
-    if (length(self@type) != 1L)
-      "must be length 1"
-    if (length(self@name) != 1L)
-      "must be length 1"
-  }
+    title       = class_character,
+    description = class_character,
+    contact     = class_character,
+    modified    = new_property(
+      class_character | class_Date,
+      setter = function(self, value) {
+        self@modified <- as_date(value)
+        self
+        }),
+    identifier  = class_character,
+    download    = class_character
+  )
 )
 
-#' Identifier Class
-#' @param url `<chr>` identifier url
-#' @returns `<S7_class>` Identifier object
+#' `main_resources` Class
+#'
+#' @name main_resources
+#'
+#' @param url `<chr>` default is `NA`
+#'
+#' @returns `main_resources` object
 #' @family classes
 #' @autoglobal
 #' @export
-Identifier <- new_class(
-  name       = "Identifier",
-  package    = "provider",
+main_resources <- new_class(
+  name       = "main_resources",
   properties = list(
     url      = class_character,
-    rows     = new_property(
-      class = class_integer,
-      getter = function(self)
-        get_nrows(self@url)
-    ),
-    fields   = new_property(
-      class = class_character,
-      getter = function(self)
-        get_fields(self@url)
+    files    = new_property(
+      class_list,
+      getter   = function(self)
+        fload(self@url, query = "/data") |>
+        as_df() |>
+        fcompute(
+          file         = name,
+          size         = roundup(fileSize / 1e6),
+          ext          = file_ext(downloadURL),
+          downloadurl  = downloadURL
+        ) |>
+        roworder(ext, -size)
     )
   ),
-  validator  = function(self)
+  validator = function(self)
     if (length(self@url) != 1L)
       "must be length 1"
 )
 
-#' Resources Class
-#' @param url `<chr>` `resourcesAPI` url; default is `NA`
-#' @returns `<S7_class>` Resources object
+#' `main_current` Class
+#'
+#' @name main_current
+#'
+#' @param title       `<chr>`  API endpoint title
+#' @param description `<chr>`  API endpoint description
+#' @param contact     `<chr>`  Contact information
+#' @param modified    `<Date>` Date data was last modified
+#' @param identifier  `<chr>`  Query url
+#' @param download    `<chr>`  Download url
+#'
+#' @param temporal    `<chr>`  Timespan covered by data
+#' @param periodicity `<chr>`  Update frequency
+#' @param resources   `<chr>`  Files available for download
+#' @param dictionary  `<chr>`  Link to data dictionary
+#' @param site        `<chr>`  Link to landing page
+#' @param references  `<chr>`  Link to references
+#'
+#' @returns `main_current` object
 #' @family classes
 #' @autoglobal
 #' @export
-Resources <- new_class(
-  name       = "Resources",
-  package    = "provider",
+main_current <- new_class(
+  parent = endpoint_current,
+  name   = "main_current",
   properties = list(
-    url      = new_property(class_character, default = NA_character_),
-    files    = new_property(class_character | class_list,
-    getter = function(self) get_resources(self@url), default = NA_character_)),
-  validator  = function(self) if (length(self@url) != 1L) "must be length 1"
-)
-
-#' Dataset Class
-#' @name Dataset
-#' @param type `<chr>` Schema type; default is `dcat:Dataset`
-#' @param access `<chr>` Dataset access level; default is `public`
-#' @param bureau `<chr>` Dataset bureau code; default is `009:38`
-#' @param program `<chr>` Dataset program code; default is `009:000`
-#' @param contact `<S7_class>` Dataset contact
-#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
-#' @param publisher `<S7_class>` Dataset publisher
-#' @param resources `<S7_class>` `data.frame` of available supplemental resource files; default is `NA`
-#' @param modified `<dbl> | <Date>` Date Dataset was last modified
-#' @param title `<chr>` Dataset title
-#' @param periodicity `<chr>` Dataset update frequency
-#' @param dictionary `<chr>` Hyperlink to Data dictionary
-#' @param description `<chr>` Dataset description
-#' @param keyword `<chr>` Hyperlink to API landing page
-#' @param landingpage `<chr>` Hyperlink to API landing page
-#' @param references `<chr>` Dataset references
-#' @param temporal `<chr>` Date range the Current dataset covers
-#' @param theme `<chr>` Dataset theme
-#' @returns `<S7_class>` Dataset object
-#' @family classes
-#' @autoglobal
-#' @export
-Dataset <- new_class(
-  name    = "Dataset",
-  package = "provider",
-  properties = list(
-    type        = new_property(class_character, default = "dcat:Dataset"),
-    access      = new_property(class_character, default = "public"),
-    bureau      = new_property(class_character, default = "009:38"),
-    program     = new_property(class_character, default = "009:000"),
-    contact     = Contact,
-    identifier  = Identifier,
-    publisher   = Publisher,
-    resources   = Resources,
-    modified    = double_Date,
-    title       = class_character,
-    periodicity = class_character,
-    dictionary  = class_character,
-    description = class_character,
-    keyword     = class_character,
-    landingpage = class_character,
-    references  = class_character,
     temporal    = class_character,
-    theme       = class_character
+    periodicity = class_character,
+    resources   = main_resources,
+    dictionary  = class_character,
+    site        = class_character,
+    references  = class_character
   )
 )
 
-#' Distribution Class
-#' @name Distribution
-#' @param type `<chr>` Schema type; default is `dcat:Distribution`
-#' @param access `<chr>` Dataset access level; default is `public`
-#' @param bureau `<chr>` Dataset bureau code; default is `009:38`
-#' @param program `<chr>` Dataset program code; default is `009:000`
-#' @param contact `<S7_class>` Dataset contact
-#' @param identifier `<S7_class>` dcat:Dataset url and nrows in dataset
-#' @param publisher `<S7_class>` Dataset publisher
-#' @param resources `<S7_class>` `data.frame` of available supplemental resource files; default is `NA`
-#' @param distributions `<S7_class>` `data.frame` of available distributions
-#' @param modified `<dbl> | <Date>` Date Dataset was last modified
-#' @param title `<chr>` Dataset title
-#' @param periodicity `<chr>` Dataset update frequency
-#' @param dictionary `<chr>` Hyperlink to Data dictionary
-#' @param description `<chr>` Dataset description
-#' @param keyword `<chr>` Hyperlink to API landing page
-#' @param landingpage `<chr>` Hyperlink to API landing page
-#' @param references `<chr>` Dataset references
-#' @param temporal `<chr>` Date range the Current dataset covers
-#' @param theme `<chr>` Dataset theme
-#' @returns `<S7_class>` Distribution object
+#' `provider_current` Class
+#'
+#' @name provider_current
+#'
+#' @param title       `<chr>` Endpoint title
+#' @param description `<chr>` Endpoint description
+#' @param contact     `<chr>` Endpoint contact information
+#' @param modified    `<Date>` Date Endpoint data was last modified
+#' @param identifier  `<chr>` Endpoint url
+#' @param download    `<chr>` Endpoint download url
+#'
+#' @param issued      `<Date>` Date Endpoint data was issued
+#' @param released    `<Date>` Date Endpoint data was released
+#' @param site        `<chr>` Hyperlink to API landing page
+#'
+#' @returns `provider_current` object
+#' @family classes
 #' @autoglobal
 #' @export
-Distribution <- new_class(
-  name           = "Distribution",
-  parent         = Dataset,
-  package        = "provider",
-  properties     = list(
-    type = new_property(class_character, default = "dcat:Distribution"),
-    distributions = class_list
+provider_current <- new_class(
+  parent = endpoint_current,
+  name   = "provider_current",
+  properties = list(
+    issued = new_property(
+      class_character | class_Date,
+      setter = function(self, value) {
+          self@issued <- as_date(value)
+          self
+        }),
+    released = new_property(
+      class_character | class_Date,
+      setter = function(self, value) {
+        self@released <- as_date(value)
+        self
+      }),
+    site = class_character,
+    dictionary  = new_property(
+      class_character,
+      getter = function(self) {
+        prov_uuid_dict(self@identifier)
+        })
+    )
+  )
+
+#' `endpoint_temporal` Class
+#'
+#' @name endpoint_temporal
+#'
+#' @param title `<chr>` Endpoint title
+#' @param description `<chr>` Endpoint description
+#' @param contact `<chr>` Endpoint contact information
+#' @param modified `<Date>` Date Endpoint data was last modified
+#' @param endpoints `<data.frame>` Endpoints data.frame
+#'
+#' @returns `endpoint_temporal` object
+#' @family classes
+#' @autoglobal
+#' @export
+endpoint_temporal <- new_class(
+  name = "endpoint_temporal",
+  properties = list(
+    title       = class_character,
+    description = class_character,
+    contact     = class_character,
+    modified    = new_property(
+      class_character | class_Date,
+      setter = function(self, value) {
+        self@modified <- as_date(value)
+        self
+      }),
+    endpoints = class_list
   )
 )

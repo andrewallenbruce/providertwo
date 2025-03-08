@@ -34,7 +34,7 @@
 #'
 #' @returns `<tibble>` of search results
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' enrollees(enid = "I20040309000221")
 #'
 #' enrollees(npi = "1417918293", spec_code = "14-41")
@@ -43,7 +43,7 @@
 #'
 #' enrollees(state = "GA", gender = "9")
 #'
-#' # enrollees(state = "GA", gender = "F")
+#' enrollees(state = "GA", gender = "F")
 #'
 #' @autoglobal
 #'
@@ -60,13 +60,13 @@ enrollees <- function(npi       = NULL,
                       org       = NULL,
                       gender    = NULL) {
 
-  perform_request_public(
-    url           = endpoint(public_dataset("enrollees")),
-    query         = eval_bare(
-      process_params(
-        arg_names   = fn_fmls_names(),
-        field_names = fields(
-          public_dataset("enrollees")))
-      )
-    )
+  # perform_request_public(
+  #   url           = endpoint(public_dataset("enrollees")),
+  #   query         = eval_bare(
+  #     process_params(
+  #       arg_names   = fn_fmls_names(),
+  #       field_names = fields(
+  #         public_dataset("enrollees")))
+  #     )
+  #   )
 }

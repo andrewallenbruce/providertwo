@@ -86,10 +86,10 @@ open_uuid_url <- function(x) {
 #' Load Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
 #' @examples
-#' open_catalog()
+#' catalog_open()
 #' @autoglobal
 #' @export
-open_catalog <- function() {
+catalog_open <- function() {
   x <- fload(
     paste0(
       "https://openpaymentsdata.cms.gov",
@@ -100,7 +100,9 @@ open_catalog <- function() {
     as_tbl() |>
     mtt(
       modified    = as_date(modified),
-      description = replace_fixed(description, c("\n", "\r. \r.", '"'), c(". ", "", "")),
+      description = replace_fixed(description,
+                                  c("\n", "\r. \r.", '"'),
+                                  c(". ", "", "")),
       theme       = get_data_elem(theme),
       year        = get_data_elem(keyword),
       year        = replace_fixed(year, c("all years"), c("All")),
@@ -134,7 +136,7 @@ open_catalog <- function() {
 #' @autoglobal
 #' @export
 open_profiles <- function() {
-  s <- subset_detect(open_catalog()$summary,
+  s <- subset_detect(catalog_open()$summary,
                      title,
                      "^(National|State|Payments|Summary)",
                      TRUE)
@@ -150,7 +152,7 @@ open_profiles <- function() {
 #' @autoglobal
 #' @export
 open_grouped_summary <- function() {
-  s <- subset_detect(open_catalog()$summary,
+  s <- subset_detect(catalog_open()$summary,
                      title,
                      "^(National|State|Payments|Summary)")
 
@@ -165,11 +167,11 @@ open_grouped_summary <- function() {
 #' @autoglobal
 #' @export
 open_grouped_yearly <- function() {
-  g <- slt(open_catalog()$grouped, -modified) |>
+  g <- slt(catalog_open()$grouped, -modified) |>
     rsplit( ~ title)
 
   list(
-    modified                = fmax(open_catalog()$grouped$modified),
+    modified                = fmax(catalog_open()$grouped$modified),
     recipient_nature        = g$`Payments Grouped by Covered Recipient and Nature of Payments`,
     recipient_entity        = g$`Payments Grouped by Covered Recipient and Reporting Entities`,
     entity_nature           = g$`Payments Grouped by Reporting Entities and Nature of Payments`,
@@ -186,7 +188,7 @@ open_grouped_yearly <- function() {
 #' @export
 open_general <- function() {
 
-  x <- open_catalog()$general
+  x <- catalog_open()$general
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 
@@ -210,7 +212,7 @@ open_general <- function() {
 #' @export
 open_research <- function() {
 
-  x <- open_catalog()$research
+  x <- catalog_open()$research
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 
@@ -234,7 +236,7 @@ open_research <- function() {
 #' @export
 open_ownership <- function() {
 
-  x <- open_catalog()$research
+  x <- catalog_open()$research
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 
@@ -256,25 +258,16 @@ open_ownership <- function() {
 #' @param dataset `<chr>` dataset title
 #' @returns `<Dataset>` object
 #' @examples
-#' open_dataset(period  = "All",
-#'              group   = "Summary",
-#'              dataset = "Covered Recipient Profile Supplement")
+#' open_dataset()
 #' @autoglobal
 #' @export
 open_dataset <- function(period  = NULL,
                          group   = NULL,
                          dataset = NULL) {
-  if (!exists(".api__openpay"))
-    .api__openpay <<- load_openpayments()
 
-  if (not_null(period))
-    x <- sbt(.api__openpay, sf_detect(year, period))
-  if (not_null(group))
-    x <- sbt(.api__openpay, sf_detect(theme, group))
-  if (not_null(dataset))
-    x <- sbt(.api__openpay, sf_detect(title, dataset))
+  open_profiles()
 
-  c(x)
+  # c(x)
 
   # Dataset(
   #   contact     = Contact("Open Payments", "mailto:openpayments@cms.hhs.gov"),

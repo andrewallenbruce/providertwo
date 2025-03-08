@@ -27,18 +27,15 @@
 #'                           sub-unit's primary hospital, should the
 #'                           provider provide services in said unit.
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' affiliations(last = "CURRY", facility_type = "Home health agency")
-#'
 #' affiliations(ccn_parent = "670055")
-#'
-#' # affiliations(ccn_facility = "370781")
-#' # affiliations(ccn_facility = "331302")
-#' # affiliations(ccn_facility = "33Z302")
-#' # affiliations(npi = "1043245657")
-#' # affiliations(last = "CURRY")
+#' affiliations(ccn_facility = "370781")
+#' affiliations(ccn_facility = "331302")
+#' affiliations(ccn_facility = "33Z302")
+#' affiliations(npi = "1043245657")
+#' affiliations(last = "CURRY")
 #' @autoglobal
-#'
 #' @export
 affiliations <- function(npi           = NULL,
                          pac           = NULL,
@@ -61,8 +58,8 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_parent)
 
-  perform_request_provider(
-    url   = endpoint(provider_dataset("affiliations")),
-    query = args)
+  # perform_request_provider(
+  #   url   = endpoint(provider_dataset("affiliations")),
+  #   query = args)
 
 }

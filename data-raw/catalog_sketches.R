@@ -1,3 +1,129 @@
+.onLoad <- function(libname, pkgname) {
+
+  # if (httr2::is_online()) {
+  #   .api__public   <<- load_public()
+  #   .api__provider <<- load_provider()
+  #   .api__openpay  <<- load_openpayments()
+  # }
+
+  catalog_provider <<- memoise::memoise(catalog_provider)
+  catalog_open     <<- memoise::memoise(catalog_open)
+  catalog_main     <<- memoise::memoise(catalog_main)
+  open_dictionary  <<- memoise::memoise(open_dictionary)
+
+  S7::methods_register()
+}
+
+# .onUnload <- function(libpath) {
+#   remove(
+#     list = c(
+#       ".api__public",
+#       ".api__provider",
+#       ".api__openpay"
+#       ),
+#     envir = .GlobalEnv)
+# }
+
+#' CMS Provider Catalog
+#'
+#' @returns `<tibble>` of Provider API catalog information
+#'
+#' @examples
+#' load_provider()
+#'
+#' @autoglobal
+#'
+#' @export
+load_provider <- \() {
+  dataset <- as_tbl(
+    fload(
+      "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items"
+    ) |>
+      slt(
+        -c(
+          `@type`,
+          accessLevel,
+          bureauCode,
+          programCode,
+          archiveExclude,
+          publisher
+        )
+      ) |>
+      mtt(
+        issued      = as_date(issued),
+        modified    = as_date(modified),
+        released    = as_date(released),
+        keyword     = flatten_column(keyword),
+        theme       = flatten_column(theme),
+        description = trimws(sf_remove(description, "\n")),
+        describedBy = paste0(
+          "https://data.cms.gov/provider-data/dataset/",
+          identifier,
+          "#data-dictionary"
+        ),
+        identifier  = paste0(
+          "https://data.cms.gov/provider-data/api/1/datastore/query/",
+          identifier,
+          "/0"
+        )
+      )
+  )
+
+  slt(dataset, -distribution) |>
+    add_vars(downloadURL = delist(
+      get_elem(dataset$distribution, "downloadURL", DF.as.list = TRUE)
+    ))
+}
+
+#' CMS Open Payments Catalog
+#'
+#' @returns `<tibble>` of Open Payments API catalog information
+#'
+#' @examples
+#' load_openpayments()
+#'
+#' @autoglobal
+#'
+#' @export
+load_openpayments <- \() {
+
+  dataset <- as_tbl(
+    fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
+      mtt(
+        modified        = as_date(modified),
+        description     = sf_replace(description, "\n", ". "),
+        description     = sf_remove(description, "\r. \r."),
+        theme           = delist(map(theme, \(x) get_elem(as.list(x), "data"))),
+        year            = delist(map(keyword, \(x) get_elem(as.list(x), "data"))),
+        year            = sf_replace(year, "all years", "All", fix = TRUE),
+        identifier      = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0")))
+
+  describedby <- map(
+    get_elem(
+      get_elem(
+        dataset$distribution, "data", DF.as.list = TRUE),
+      "title|describedBy", regex = TRUE), \(x) x[not_null(names(x))])
+
+  join(
+    add_vars(dataset,
+             downloadURL = delist(get_elem(get_elem(dataset$distribution, "data", DF.as.list = TRUE), "downloadURL"))),
+    new_df(title = delist(get_elem(describedby, "title")),
+           describedBy = delist(get_elem(describedby, "describedBy"))),
+    on = "title",
+    verbose = 0) |>
+    slt(
+      year,
+      theme,
+      title,
+      description,
+      modified,
+      temporal,
+      identifier,
+      downloadURL,
+      describedBy) |>
+    roworder(-theme, -year, title)
+}
+
 replace_open_columns  <- \(x) replace_fixed(x, c(":", "%", "@", "$", "properties_"), c("_", "", "", "", "pr_"))
 replace_open_desc     <- \(x) replace_fixed(x, c("\n", "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=\"https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3\">Microsoft Excel</a> supports. If you can't download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>"), c(". ", ""))
 

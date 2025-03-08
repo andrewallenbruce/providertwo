@@ -1,22 +1,13 @@
 #' Luhn Algorithm Check for NPIs
-#'
 #' @param x `<chr>` NPI
-#'
 #' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#'
 #' @examples
 #' luhn_check("1417918293")
-#'
 #' luhn_check("1234567890")
-#'
 #' luhn_check("1234567893")
-#'
 #' luhn_check("123456789")
-#'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
 luhn_check <- function(x) {
 
@@ -42,24 +33,16 @@ luhn_check <- function(x) {
   identical(test, x)
 }
 
-#' Luhn Algorithm Check for NPIs
-#'
+#' Vectorized Luhn Algorithm Check for NPIs
 #' @param x `<chr>` NPI
-#'
 #' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#'
 #' @examples
 #' check_luhn("1234567890")
-#'
 #' check_luhn(c("1417918293", "1234567890"))
-#'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
 check_luhn <- function(x) {
-
   if (length(x) > 1) {
     map_lgl(x, luhn_check)
   } else {
@@ -72,10 +55,8 @@ check_luhn <- function(x) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_limit_public <- \(limit) {
-  check_number_whole(limit,
-                     min = 1,
-                     max = 5000)
+check_limit_public <- function(limit) {
+  check_number_whole(limit, min = 1, max = 5000)
 }
 
 #' Check Provider API Limit
@@ -83,10 +64,8 @@ check_limit_public <- \(limit) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_limit_provider <- \(limit) {
-  check_number_whole(limit,
-                     min = 1,
-                     max = 2000)
+check_limit_provider <- function(limit) {
+  check_number_whole(limit, min = 1, max = 2000)
 }
 
 #' Check Open Payments API Limit
@@ -94,10 +73,8 @@ check_limit_provider <- \(limit) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_limit_open <- \(limit) {
-  check_number_whole(limit,
-                     min = 1,
-                     max = 2000)
+check_limit_open <- function(limit) {
+  check_number_whole(limit, min = 1, max = 500)
 }
 
 #' Check Function parameters are valid API fields
@@ -106,15 +83,11 @@ check_limit_open <- \(limit) {
 #' @returns Nothing if valid, aborts otherwise
 #' @autoglobal
 #' @noRd
-check_params_fields <- \(params, fields) {
-
+check_params_fields <- function(params, fields) {
   if (!any(params %in% fields)) {
-
     invalid_params <- setdiff(params, fields)
 
-    abort(
-      glue("Invalid Parameter(s): {invalid_params}")
-      )
+    abort(glue("Invalid Parameter(s): {invalid_params}"))
 
   }
 }

@@ -1,124 +1,104 @@
-#' Resources Class
-#' @param url `<chr>` resourcesAPI URL
-#' @returns `<S7_class>` class_resources object
-#' @family classes
+#' CMS Main Catalog
+#'
+#' @returns `<list>` of CMS Main API catalog information
+#'
+#' @examples
+#' catalog_main()
+#'
 #' @autoglobal
+#'
 #' @export
-class_resources <- new_class(
-  name       = "class_resources",
-  properties = list(
-    url      = class_character,
-    files    = new_property(
-      class  = class_list,
-      getter = function(self)
-        fload(self@url, query = "/data") |>
-        as_df() |>
-        fcompute(
-          file         = name,
-          size         = roundup(fileSize / 1e6),
-          ext          = file_ext(downloadURL),
-          downloadurl  = downloadURL) |>
-        roworder(ext, -size)
-    )
-  ),
-  validator = function(self)
-    if (length(self@url) != 1L) "must be length 1"
-)
+catalog_main <- \() {
 
-#' Load Public API `Dataset`
+  dataset <- as_tbl(
+    fload("https://data.cms.gov/data.json", query = "/dataset") |>
+      slt(
+        accrualPeriodicity,
+        contactPoint,
+        describedBy,
+        description,
+        distribution,
+        identifier,
+        keyword,
+        landingPage,
+        modified,
+        references,
+        temporal,
+        theme,
+        title
+      ) |>
+      mtt(
+        modified           = as_date(modified),
+        accrualPeriodicity = recode_iso8601(accrualPeriodicity),
+        keyword            = flatten_column(keyword),
+        theme              = flatten_column(theme),
+        description        = trimws(sf_remove(description, "\n")),
+        references         = delist(references)
+      )
+  )
+
+  distribution <- as_tbl(rowbind(get_elem(dataset, "distribution"), fill = TRUE)) |>
+    mtt(modified    = as_date(modified),
+        format      = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
+        `@type`     = NULL,
+        description = NULL) |>
+    colorder(title)
+
+  list(
+    dataset = slt(dataset, title, theme, keyword, description, accrualPeriodicity, contactPoint, describedBy, identifier, modified, landingPage, temporal, references) |> uniq(),
+    download = sbt(distribution, not_na(mediaType), title, mediaType, downloadURL, modified, temporal) |> uniq(),
+    distribution = sbt(distribution, not_na(format), title, format, accessURL, modified, temporal) |> uniq(),
+    resources = slt(distribution, title, resourcesAPI, modified, temporal) |> uniq()
+  )
+}
+
+#' Load Main API `Dataset`
 #'
 #' @param dataset `<chr>` dataset title
-#'
-#' @param fname `<lgl>` Is `dataset` a function name?; default is `TRUE`
 #'
 #' @returns `<Dataset>` object
 #'
 #' @examples
-#' public_dataset("enrollees")
+#' main_dataset("enrollees")
 #'
-#' public_dataset("hospitals")
+#' main_dataset("hospitals")
 #'
-#' public_dataset("reassignments")
+#' main_dataset("reassignments")
 #'
-#' public_dataset("opt_out")
+#' main_dataset("opt_out")
 #'
-#' public_dataset("laboratories")
+#' main_dataset("laboratories")
 #'
 #' @autoglobal
 #'
 #' @export
-public_dataset <- function(dataset = "enrollees", fname = TRUE) {
-
-  if (!exists(".api__public")) .api__public <<- load_public()
-
-  dataset <- if (fname) fname_to_dataset(dataset) else dataset
-
-  x <- c(
-    sbt(.api__public$dataset, sf_detect(title, dataset)),
-    sset(sbt(.api__public$resources, sf_detect(title, dataset)), 1, j = "resourcesAPI")
-  )
-
-  Dataset(
-    contact     = Contact(getElement(x$contactPoint[[1]], "fn"),
-                          getElement(x$contactPoint[[1]], "hasEmail")),
-    identifier  = Identifier(x$identifier),
-    resources   = Resources(x$resourcesAPI),
-    modified    = x$modified,
-    title       = x$title,
-    periodicity = x$accrualPeriodicity,
-    dictionary  = x$describedBy,
-    description = x$description,
-    keyword     = x$keyword,
-    landingpage = x$landingPage,
-    references  = x$references,
-    temporal    = x$temporal,
-    theme       = x$theme
-  )
-
+main_dataset <- function(dataset) {
+  c(subset_detect(
+    get_elem(catalog_main(), "dataset"),
+    title,
+    fname_to_dataset(dataset)
+  ))
 }
 
 #' Load Public API `Distribution`
 #'
 #' @param dataset `<chr>` dataset title
 #'
-#' @param fname `<lgl>` Is `dataset` a function name?; default is `TRUE`
-#'
 #' @returns `<Distribution>` object
 #'
 #' @examples
-#' public_temporal("utilization_provider")
+#' main_temporal("utilization_provider")
 #'
-#' public_temporal("quality_payment")
+#' main_temporal("quality_payment")
 #'
 #' @autoglobal
 #'
 #' @export
-public_temporal <- function(dataset, fname = TRUE) {
-
-  if (!exists(".api__public")) .api__public <<- load_public()
-
-  dataset <- if (fname) fname_to_dataset(dataset) else dataset
-
-  x <- c(sbt(.api__public$dataset, sf_detect(title, dataset)),
-         sset(sbt(.api__public$resources, sf_detect(title, dataset)), 1, j = "resourcesAPI"),
-         list(distribution = sbt(.api__public$distribution, sf_detect(title, dataset))))
-
-  Distribution(
-    contact       = Contact(getElement(x$contactPoint[[1]], "fn"),
-                            getElement(x$contactPoint[[1]], "hasEmail")),
-    identifier    = Identifier(x$identifier),
-    resources     = Resources(x$resourcesAPI),
-    modified      = x$modified,
-    title         = x$title,
-    periodicity   = x$accrualPeriodicity,
-    dictionary    = x$describedBy,
-    description   = x$description,
-    keyword       = x$keyword,
-    landingpage   = x$landingPage,
-    references    = x$references,
-    temporal      = x$temporal,
-    theme         = x$theme,
-    distributions = x$distribution
-  )
+main_temporal <- function(dataset) {
+  c(subset_detect(
+    get_elem(catalog_main(), "distribution"),
+    title,
+    fname_to_dataset(dataset)
+  ))
 
 }

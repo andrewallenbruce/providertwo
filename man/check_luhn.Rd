@@ -2,7 +2,7 @@
 % Please edit documentation in R/checks.R
 \name{check_luhn}
 \alias{check_luhn}
-\title{Luhn Algorithm Check for NPIs}
+\title{Vectorized Luhn Algorithm Check for NPIs}
 \usage{
 check_luhn(x)
 }
@@ -13,12 +13,10 @@ check_luhn(x)
 \verb{<lgl>} \code{TRUE} if valid NPI, \code{FALSE} otherwise
 }
 \description{
-Luhn Algorithm Check for NPIs
+Vectorized Luhn Algorithm Check for NPIs
 }
 \examples{
 check_luhn("1234567890")
-
 check_luhn(c("1417918293", "1234567890"))
-
 }
 \keyword{internal}

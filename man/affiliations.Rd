@@ -54,13 +54,13 @@ Facility affiliations data publicly reported in the Provider Data Catalog.
 }
 
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 affiliations(last = "CURRY", facility_type = "Home health agency")
-
 affiliations(ccn_parent = "670055")
-
-# affiliations(ccn_facility = "370781")
-# affiliations(ccn_facility = "331302")
-# affiliations(ccn_facility = "33Z302")
-# affiliations(npi = "1043245657")
-# affiliations(last = "CURRY")
+affiliations(ccn_facility = "370781")
+affiliations(ccn_facility = "331302")
+affiliations(ccn_facility = "33Z302")
+affiliations(npi = "1043245657")
+affiliations(last = "CURRY")
+\dontshow{\}) # examplesIf}
 }
