@@ -2,7 +2,9 @@
 % Please edit documentation in R/lookups.R
 \name{program_code}
 \alias{program_code}
-\title{Program Code}
+\title{Program Code
+Code for primary program related to a data asset, from the
+\href{https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv}{Federal Program Inventory}.}
 \source{
 \href{https://resources.data.gov/resources/dcat-us/#programCode}{DCAT Schema: Program Code}
 }
@@ -10,19 +12,19 @@
 program_code(x = NULL)
 }
 \arguments{
-\item{x}{\verb{<chr>}  The program code to search for, e.g., \code{"009:000"}; if
-\code{NULL} (the default), returns all program codes}
+\item{x}{\verb{<chr>}  The program code to search for, e.g., \code{"009:000"};
+if \code{NULL} (the default), returns all program codes}
 }
 \value{
 \verb{<tibble>} of search results
 }
 \description{
-Code for primary program related to a data asset, from the \href{https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv}{Federal Program Inventory}.
+Program Code
+Code for primary program related to a data asset, from the
+\href{https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv}{Federal Program Inventory}.
 }
 \examples{
 program_code("009:000")
-
 head(program_code())
-
 }
 \keyword{internal}

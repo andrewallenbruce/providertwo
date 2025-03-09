@@ -1,20 +1,16 @@
-#' `endpoint_current` Class
-#'
-#' @name endpoint_current
-#'
-#' @param title       `<chr>`  Endpoint title
-#' @param description `<chr>`  Endpoint description
-#' @param contact     `<chr>`  Endpoint contact information
-#' @param modified    `<Date>` Date Endpoint data was last modified
-#' @param identifier  `<chr>`  Endpoint uuid or url
-#' @param download    `<chr>`  Endpoint download url
-#'
-#' @returns `endpoint_current` object
-#' @family classes
+#' @title Current
+#' @name Current
+#' @param title `<chr>` dataset title
+#' @param description `<chr>` dataset description
+#' @param contact `<chr>` dataset contact
+#' @param modified `<chr>` dataset modified date
+#' @param identifier `<chr>` dataset identifier
+#' @param download `<chr>` dataset download URL
+#' @family base-classes
 #' @autoglobal
 #' @export
-endpoint_current <- new_class(
-  name = "endpoint_current",
+Current <- new_class(
+  name = "Current",
   properties = list(
     title       = class_character,
     description = class_character,
@@ -30,18 +26,14 @@ endpoint_current <- new_class(
   )
 )
 
-#' `main_resources` Class
-#'
-#' @name main_resources
-#'
-#' @param url `<chr>` default is `NA`
-#'
-#' @returns `main_resources` object
-#' @family classes
+#' @title ResourcesMain
+#' @rdname Current
+#' @param url `<chr>` dataset URL
+#' @family main-classes
 #' @autoglobal
 #' @export
-main_resources <- new_class(
-  name       = "main_resources",
+ResourcesMain <- new_class(
+  name       = "ResourcesMain",
   properties = list(
     url      = class_character,
     files    = new_property(
@@ -63,101 +55,89 @@ main_resources <- new_class(
       "must be length 1"
 )
 
-#' `main_current` Class
-#'
-#' @name main_current
-#'
-#' @param title       `<chr>`  API endpoint title
-#' @param description `<chr>`  API endpoint description
-#' @param contact     `<chr>`  Contact information
-#' @param modified    `<Date>` Date data was last modified
-#' @param identifier  `<chr>`  Query url
-#' @param download    `<chr>`  Download url
-#'
-#' @param temporal    `<chr>`  Timespan covered by data
-#' @param periodicity `<chr>`  Update frequency
-#' @param resources   `<chr>`  Files available for download
-#' @param dictionary  `<chr>`  Link to data dictionary
-#' @param site        `<chr>`  Link to landing page
-#' @param references  `<chr>`  Link to references
-#'
-#' @returns `main_current` object
-#' @family classes
+#' @title CurrentMain
+#' @rdname Current
+#' @param temporal `<chr>` dataset temporal
+#' @param periodicity `<chr>` dataset periodicity
+#' @param resources `<ResourcesMain>` dataset resources
+#' @param dictionary `<chr>` dataset dictionary
+#' @param site `<chr>` dataset site
+#' @param references `<chr>` dataset references
+#' @family main-classes
 #' @autoglobal
 #' @export
-main_current <- new_class(
-  parent = endpoint_current,
-  name   = "main_current",
+CurrentMain <- new_class(
+  parent = Current,
+  name   = "CurrentMain",
   properties = list(
     temporal    = class_character,
     periodicity = class_character,
-    resources   = main_resources,
+    resources   = ResourcesMain,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
   )
 )
 
-#' `provider_current` Class
-#'
-#' @name provider_current
-#'
-#' @param title       `<chr>` Endpoint title
-#' @param description `<chr>` Endpoint description
-#' @param contact     `<chr>` Endpoint contact information
-#' @param modified    `<Date>` Date Endpoint data was last modified
-#' @param identifier  `<chr>` Endpoint url
-#' @param download    `<chr>` Endpoint download url
-#'
-#' @param issued      `<Date>` Date Endpoint data was issued
-#' @param released    `<Date>` Date Endpoint data was released
-#' @param site        `<chr>` Hyperlink to API landing page
-#'
-#' @returns `provider_current` object
-#' @family classes
+#' @title CurrentProvider
+#' @rdname Current
+#' @param issued `<chr>` dataset issued date
+#' @param released `<chr>` dataset released date
+#' @param site `<chr>` dataset site
+#' @param dictionary `<chr>` dataset dictionary
+#' @family provider-classes
 #' @autoglobal
 #' @export
-provider_current <- new_class(
-  parent = endpoint_current,
-  name   = "provider_current",
+CurrentProvider <- new_class(
+  parent = Current,
+  name   = "CurrentProvider",
   properties = list(
     issued = new_property(
       class_character | class_Date,
       setter = function(self, value) {
           self@issued <- as_date(value)
-          self
-        }),
+          self }),
     released = new_property(
       class_character | class_Date,
       setter = function(self, value) {
         self@released <- as_date(value)
-        self
-      }),
+        self }),
     site = class_character,
     dictionary  = new_property(
       class_character,
       getter = function(self) {
-        prov_uuid_dict(self@identifier)
-        })
+        prov_uuid_dict(self@identifier) })
     )
   )
 
-#' `endpoint_temporal` Class
-#'
-#' @name endpoint_temporal
-#'
-#' @param title `<chr>` Endpoint title
-#' @param description `<chr>` Endpoint description
-#' @param contact `<chr>` Endpoint contact information
-#' @param modified `<Date>` Date Endpoint data was last modified
-#' @param endpoints `<data.frame>` Endpoints data.frame
-#'
-#' @returns `endpoint_temporal` object
-#' @family classes
+#' @title CurrentOpen
+#' @rdname Current
+#' @family open-classes
 #' @autoglobal
 #' @export
-endpoint_temporal <- new_class(
-  name = "endpoint_temporal",
+CurrentOpen <- new_class(
+  parent = Current,
+  name   = "CurrentOpen",
+  properties = list(
+    contact = new_property(
+      class_character,
+      default = "Open Payments (mailto:openpayments@cms.hhs.gov)"
+      )
+    )
+  )
+
+#' @title Temporal
+#' @name Temporal
+#' @param title `<chr>` dataset title
+#' @param description `<chr>` dataset description
+#' @param contact `<chr>` dataset contact
+#' @param modified `<chr>` dataset modified date
+#' @param endpoints `<list>` dataset endpoints
+#' @family base-classes
+#' @autoglobal
+#' @export
+Temporal <- new_class(
+  name = "Temporal",
   properties = list(
     title       = class_character,
     description = class_character,
@@ -170,4 +150,24 @@ endpoint_temporal <- new_class(
       }),
     endpoints = class_list
   )
+)
+
+#' @title TemporalMain
+#' @rdname Temporal
+#' @family main-classes
+#' @autoglobal
+#' @export
+TemporalMain <- new_class(
+  parent = Temporal,
+  name   = "TemporalMain"
+)
+
+#' @title TemporalOpen
+#' @rdname Temporal
+#' @family open-classes
+#' @autoglobal
+#' @export
+TemporalOpen <- new_class(
+  parent = Temporal,
+  name   = "TemporalOpen"
 )

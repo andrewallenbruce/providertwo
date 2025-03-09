@@ -95,19 +95,32 @@ catalog_open <- function() {
       "https://openpaymentsdata.cms.gov",
       "/api/1/metastore/schemas/dataset/",
       "items?show-reference-ids"
-    )
-  ) |>
+    )) |>
     as_tbl() |>
     mtt(
-      modified    = as_date(modified),
-      description = replace_fixed(description,
-                                  c("\n", "\r. \r.", '"'),
-                                  c(". ", "", "")),
-      theme       = get_data_elem(theme),
-      year        = get_data_elem(keyword),
-      year        = replace_fixed(year, c("all years"), c("All")),
-      year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
-      title       = toTitleCase(title)
+      modified = as_date(modified),
+      description = replace_fixed(
+        description,
+        c("\n", "\r. \r.",'"', paste0(
+        "<p><strong>NOTE: ",
+        "</strong>This is a very large file and, ",
+        "depending on your network characteristics and software, ",
+        "may take a long time to download or fail to download. ",
+        "Additionally, the number of rows in the file may be larger ",
+        "than the maximum rows your version of <a href=\"https://support.",
+        "microsoft.com/en-us/office/excel-specifications-and-limits-",
+        "1672b34d-7043-467e-8e27-269d656771c3\">Microsoft Excel</a> supports. ",
+        "If you can't download the file, we recommend engaging your IT support staff. ",
+        "If you are able to download the file but are unable to open it in MS Excel or ",
+        "get a message that the data has been truncated, we recommend trying alternative ",
+        "programs such as MS Access, Universal Viewer, Editpad or any other software your ",
+        "organization has available for large datasets.</p>")),
+        c(". ", "", "", "")),
+      theme = get_data_elem(theme),
+      year = get_data_elem(keyword),
+      year = replace_fixed(year, c("all years"), c("All")),
+      year = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
+      title = toTitleCase(title)
     )
 
   x <- open_add_dlurl(x) |>

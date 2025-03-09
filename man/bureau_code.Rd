@@ -2,7 +2,9 @@
 % Please edit documentation in R/lookups.R
 \name{bureau_code}
 \alias{bureau_code}
-\title{Bureau Code}
+\title{Bureau Code
+Combined Agency and Bureau Code, from the
+\href{https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf}{OMB Circular A-11, Appendix C (PDF)}}
 \source{
 \href{https://resources.data.gov/resources/dcat-us/#bureauCode}{DCAT Schema: Bureau Code}
 }
@@ -10,19 +12,19 @@
 bureau_code(x = NULL)
 }
 \arguments{
-\item{x}{\verb{<chr>} The bureau code to search for, e.g., \code{"38"}; if
-\code{NULL} (the default), returns all bureau codes}
+\item{x}{\verb{<chr>} The bureau code to search for, e.g., \code{"38"};
+if \code{NULL} (the default), returns all bureau codes}
 }
 \value{
 \verb{<tibble>} of search results
 }
 \description{
-Combined Agency and Bureau Code, from the \href{https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf}{OMB Circular A-11, Appendix C (PDF)}
+Bureau Code
+Combined Agency and Bureau Code, from the
+\href{https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf}{OMB Circular A-11, Appendix C (PDF)}
 }
 \examples{
 bureau_code("38")
-
 head(bureau_code())
-
 }
 \keyword{internal}

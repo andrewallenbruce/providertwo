@@ -1,4 +1,5 @@
 #' Public Catalog Dataset/Distribution Names
+#' @param x `<chr>` dataset title
 #' @autoglobal
 #' @noRd
 fname_to_dataset <- function(x) {
@@ -29,13 +30,9 @@ fname_to_dataset <- function(x) {
 }
 
 #' ISO 8601 Recurring Time Intervals
-#'
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
-#'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
-#'
 #' @returns `<chr>` vector of human-readable recurrence rule descriptions
-#'
 #' @examples
 #' accrualPeriodicity = c(
 #'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
@@ -45,7 +42,6 @@ fname_to_dataset <- function(x) {
 #'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 #'
 #' recode_iso8601(accrualPeriodicity)
-#'
 #' @section References:
 #'
 #'    * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -53,9 +49,7 @@ fname_to_dataset <- function(x) {
 #'    * [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
 #'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
 recode_iso8601 <- \(x) {
   nswitch(
@@ -86,6 +80,7 @@ recode_iso8601 <- \(x) {
 }
 
 #' Roxygenise ISO 8601 Recurring Time Intervals
+#' @param x `<chr>` vector of ISO8601 recurrence rules
 #' @autoglobal
 #' @noRd
 roxy8601 <- \(x) {
@@ -117,108 +112,74 @@ roxy8601 <- \(x) {
 }
 
 #' Program Code
-#'
-#' Code for primary program related to a data asset, from the [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
-#'
+#' Code for primary program related to a data asset, from the
+#' [Federal Program Inventory](https://resources.data.gov/schemas/dcat-us/v1.1/FederalProgramInventory_FY13_MachineReadable_091613.csv).
 #' @source [DCAT Schema: Program Code](https://resources.data.gov/resources/dcat-us/#programCode)
-#'
-#' @param x `<chr>`  The program code to search for, e.g., `"009:000"`; if
-#'   `NULL` (the default), returns all program codes
-#'
+#' @param x `<chr>`  The program code to search for, e.g., `"009:000"`;
+#'        if `NULL` (the default), returns all program codes
 #' @returns `<tibble>` of search results
-#'
 #' @examples
 #' program_code("009:000")
-#'
 #' head(program_code())
-#'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
-program_code <- \(x = NULL) {
-  search_in(
-    get_pin("programCodes"),
-    "programCodePODfmt",
-    x)
-  }
+program_code <- function(x = NULL) {
+  search_in(get_pin("programCodes"), "programCodePODfmt", x)
+}
 
 #' Bureau Code
-#'
-#' Combined Agency and Bureau Code, from the [OMB Circular A-11, Appendix C (PDF)](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
-#'
+#' Combined Agency and Bureau Code, from the
+#' [OMB Circular A-11, Appendix C (PDF)](https://obamawhitehouse.archives.gov/sites/default/files/omb/assets/a11_current_year/app_c.pdf)
 #' @source [DCAT Schema: Bureau Code](https://resources.data.gov/resources/dcat-us/#bureauCode)
-#'
-#' @param x `<chr>` The bureau code to search for, e.g., `"38"`; if
-#'   `NULL` (the default), returns all bureau codes
-#'
+#' @param x `<chr>` The bureau code to search for, e.g., `"38"`;
+#'          if `NULL` (the default), returns all bureau codes
 #' @returns `<tibble>` of search results
-#'
 #' @examples
 #' bureau_code("38")
-#'
 #' head(bureau_code())
-#'
 #' @autoglobal
-#'
 #' @keywords internal
-#'
 #' @export
-bureau_code <- \(x = NULL) {
-  search_in(
-    get_pin("bureauCodes"),
-    "bureauCode",
-    x)
+bureau_code <- function(x = NULL) {
+  search_in(get_pin("bureauCodes"), "bureauCode", x)
 }
 
 #' Open Payments Dictionary
-#'
 #' @examples
 #' open_dictionary()
-#'
 #' @returns `<tibble>` of search results
-#'
 #' @autoglobal
-#'
+#' @keywords internal
 #' @export
 open_dictionary <- function() {
+  x <- map(get_elem(
+    get_elem(as_tbl(fload(
+      paste0(
+        "https://openpaymentsdata.cms.gov/",
+        "api/1/metastore/schemas/dataset/",
+        "items?show-reference-ids"
+      )
+    )), "data", DF.as.list = TRUE),
+    "title|describedBy",
+    regex = TRUE
+  ), function(x)
+    x[not_null(names(x))])
 
-  x <- map(
-    get_elem(
-      get_elem(
-        as_tbl(
-          fload(
-            paste0(
-              "https://openpaymentsdata.cms.gov/",
-              "api/1/metastore/schemas/dataset/",
-              "items?show-reference-ids"
-            ))),
-        "data",
-        DF.as.list = TRUE),
-      "title|describedBy",
-      regex = TRUE),
-    function(x) x[not_null(names(x))]
-  )
 
-  x <- new_df(
-    name = delist(get_elem(x, "title")),
-    dictionary = delist(get_elem(x, "describedBy"))) |>
+  x <- new_df(name = delist(get_elem(x, "title")),
+              dictionary = delist(get_elem(x, "describedBy"))) |>
     mtt(
       year = as_int(stri_extract_all_regex(name, "[0-9]{4}")),
       name = cheapr_if_else(
         na(year),
         name,
-        stri_extract_all_regex(
-          name,
-          "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)"
-        )),
-      year = cheapr_if_else(
-        na(year),
-        fmax(year),
-        year
-      )) |>
+        stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")
+      ),
+      year = cheapr_if_else(na(year), fmax(year), year)
+    ) |>
     sbt(year == fmax(year), -year)
+
 
   x <- x[["dictionary"]] |>
     map(request) |>
@@ -227,20 +188,15 @@ open_dictionary <- function() {
     resps_data(\(resp) resp_body_string(resp)) |>
     fparse(query = "/data")
 
+
   funique(
     new_tbl(
-      field = delist(
-        map(
-          get_elem(x, "fields"),
-          function(x)
-            get_elem(x, "name")
-        )),
-      description = delist(
-        map(
-          get_elem(x, "fields"),
-          function(x)
-            get_elem(x, "description"))
-      ) |> replace_fixed(c("\n", '"'), c(" ", ""))),
+      field = delist(map(get_elem(x, "fields"), function(x)
+        get_elem(x, "name"))),
+      description = delist(map(get_elem(x, "fields"), function(x)
+        get_elem(x, "description"))) |> replace_fixed(c("\n", '"'), c(" ", ""))
+    ),
     cols = "field",
-    sort = TRUE)
+    sort = TRUE
+  )
 }

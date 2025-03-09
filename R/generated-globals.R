@@ -19,6 +19,7 @@ utils::globalVariables(c(
   # <open_ownership>
   "modified",
   # <get_resources>
+  # <open_dictionary>
   "name",
   # <get_resources>
   "size",
@@ -32,6 +33,7 @@ utils::globalVariables(c(
   "title",
   # <open_clean_temp>
   # <open_clean_grouped>
+  # <open_dictionary>
   "year",
   NULL
 ))

@@ -36,6 +36,5 @@ accrualPeriodicity = c(
   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 
 recode_iso8601(accrualPeriodicity)
-
 }
 \keyword{internal}

@@ -14,5 +14,5 @@ Open Payments Dictionary
 }
 \examples{
 open_dictionary()
-
 }
+\keyword{internal}

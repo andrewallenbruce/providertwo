@@ -111,7 +111,7 @@ provider_dataset <- function(dataset) {
     fname_to_dataset(dataset)
   ))
 
-  provider_current(
+  CurrentProvider(
     title       = x$title,
     description = x$description,
     contact     = x$contact,
