@@ -2,18 +2,18 @@
 % Please edit documentation in R/catalog_provider.R
 \name{provider_dataset}
 \alias{provider_dataset}
-\title{Load Provider API \code{Dataset}}
+\title{Load \code{CurrentProvider} API Endpoint}
 \usage{
-provider_dataset(dataset)
+provider_dataset(alias)
 }
 \arguments{
-\item{dataset}{\verb{<chr>} dataset title}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-\verb{<Dataset>} object
+\verb{<CurrentProvider>} object
 }
 \description{
-Load Provider API \code{Dataset}
+Load \code{CurrentProvider} API Endpoint
 }
 \examples{
 provider_dataset("affiliations")

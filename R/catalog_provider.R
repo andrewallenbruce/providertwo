@@ -89,11 +89,11 @@ prov_uuid_dict <- function(x) {
     x, "#data-dictionary")
 }
 
-#' Load Provider API `Dataset`
+#' Load `CurrentProvider` API Endpoint
 #'
-#' @param dataset `<chr>` dataset title
+#' @param alias `<chr>` endpoint alias
 #'
-#' @returns `<Dataset>` object
+#' @returns `<CurrentProvider>` object
 #'
 #' @examples
 #' provider_dataset("affiliations")
@@ -103,12 +103,12 @@ prov_uuid_dict <- function(x) {
 #' @autoglobal
 #'
 #' @export
-provider_dataset <- function(dataset) {
+provider_dataset <- function(alias) {
 
   x <- c(subset_detect(
     get_elem(catalog_provider(), "doctors_and_clinicians"),
     title,
-    fname_to_dataset(dataset)
+    alias_provider(alias)
   ))
 
   CurrentProvider(

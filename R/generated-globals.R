@@ -18,12 +18,12 @@ utils::globalVariables(c(
   # <open_research>
   # <open_ownership>
   "modified",
-  # <get_resources>
   # <open_dictionary>
+  # <get_resources>
   "name",
   # <get_resources>
   "size",
-  # <main_dataset>
+  # <main_current>
   # <main_temporal>
   # <open_clean_temp>
   # <open_clean_grouped>

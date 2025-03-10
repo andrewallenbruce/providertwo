@@ -4,10 +4,10 @@
 \alias{main_temporal}
 \title{Load Public API \code{Distribution}}
 \usage{
-main_temporal(dataset)
+main_temporal(alias)
 }
 \arguments{
-\item{dataset}{\verb{<chr>} dataset title}
+\item{alias}{\verb{<chr>} dataset title}
 }
 \value{
 \verb{<Distribution>} object
@@ -17,7 +17,5 @@ Load Public API \code{Distribution}
 }
 \examples{
 main_temporal("utilization_provider")
-
 main_temporal("quality_payment")
-
 }

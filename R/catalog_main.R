@@ -16,8 +16,7 @@ catalog_main <- \() {
     mtt(
       modified    = as_date(modified),
       periodicity = recode_iso8601(accrualPeriodicity),
-      keyword     = flatten_column(keyword),
-      theme       = flatten_column(theme),
+      references  = delist(references),
       description = replace_fixed(description,
         c("\n", "\r. \r.",'"', paste0(
           "<p><strong>NOTE: ",
@@ -32,33 +31,34 @@ catalog_main <- \() {
           "If you are able to download the file but are unable to open it in MS Excel or ",
           "get a message that the data has been truncated, we recommend trying alternative ",
           "programs such as MS Access, Universal Viewer, Editpad or any other software your ",
-          "organization has available for large datasets.</p>")),
-        c(". ", "", "", "")),
-      references = delist(references)) |>
-    slt(
-      periodicity,
-      contact = contactPoint,
-      dictionary = describedBy,
-      description,
-      distribution,
-      identifier,
-      keyword,
-      site = landingPage,
-      modified,
-      references,
-      temporal,
-      theme,
-      title
-    ) |>
+          "organization has available for large datasets.</p>")
+          ),
+        c(". ", "", "", "")
+        )) |>
     as_tbl()
 
-  # contact = as.character(
-  #   glue('{delist(get_elem(x$contactPoint, "fn"))} ',
-  #        '({delist(get_elem(x$contactPoint, "^has", regex = TRUE))})'))
+  x <- x |>
+    mtt(contact = as.character(
+      glue(
+        '{delist(get_elem(x$contactPoint, "fn"))} ',
+           '(',
+           '{delist(get_elem(x$contactPoint, "^has", regex = TRUE))}',
+           ')'
+        ))) |>
+    slt(
+      title,
+      description,
+      modified,
+      periodicity,
+      temporal,
+      contact,
+      dictionary = describedBy,
+      distribution,
+      identifier,
+      site = landingPage,
+      references)
 
-  d <- get_elem(x, "distribution") |>
-    rowbind(fill = TRUE) |>
-    as_tbl() |>
+  d <- get_elem(x, "distribution") |> rowbind(fill = TRUE) |> as_tbl() |>
     mtt(modified    = as_date(modified),
         format      = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
         `@type`     = NULL,
@@ -66,7 +66,7 @@ catalog_main <- \() {
     colorder(title)
 
   list(
-    dataset = slt(x, title, theme, keyword, description, periodicity, contact, dictionary, identifier, modified, site, temporal, references) |> uniq(),
+    dataset = slt(x, title, description, periodicity, contact, dictionary, identifier, modified, site, temporal, references) |> uniq(),
     download = sbt(d, not_na(mediaType), title, mediaType, downloadURL, modified, temporal) |> uniq(),
     distribution = sbt(d, not_na(format), title, format, accessURL, modified, temporal) |> uniq(),
     resources = slt(d, title, resourcesAPI, modified, temporal) |> uniq()
@@ -74,52 +74,38 @@ catalog_main <- \() {
 }
 
 #' Load Main API `Dataset`
-#'
-#' @param dataset `<chr>` dataset title
-#'
+#' @param alias `<chr>` endpoint alias
 #' @returns `<Dataset>` object
-#'
 #' @examples
-#' main_dataset("enrollees")
-#'
-#' main_dataset("hospitals")
-#'
-#' main_dataset("reassignments")
-#'
-#' main_dataset("opt_out")
-#'
-#' main_dataset("laboratories")
-#'
+#' main_current("enrollees")
+#' main_current("hospitals")
+#' main_current("reassignments")
+#' main_current("opt_out")
+#' main_current("laboratories")
 #' @autoglobal
-#'
 #' @export
-main_dataset <- function(dataset) {
+main_current <- function(alias) {
+
   c(subset_detect(
-    get_elem(catalog_main(), "dataset"),
+    catalog_main()$dataset,
     title,
-    fname_to_dataset(dataset)
+    alias_main_current(alias)
   ))
 }
 
 #' Load Public API `Distribution`
-#'
-#' @param dataset `<chr>` dataset title
-#'
+#' @param alias `<chr>` dataset title
 #' @returns `<Distribution>` object
-#'
 #' @examples
 #' main_temporal("utilization_provider")
-#'
 #' main_temporal("quality_payment")
-#'
 #' @autoglobal
-#'
 #' @export
-main_temporal <- function(dataset) {
+main_temporal <- function(alias) {
   c(subset_detect(
     get_elem(catalog_main(), "distribution"),
     title,
-    fname_to_dataset(dataset)
+    alias_main_temporal(alias)
   ))
 
 }
