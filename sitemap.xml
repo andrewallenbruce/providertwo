@@ -24,7 +24,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/delist_elem.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/desplit.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/detect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/empty.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/endpoint.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/enrollees.html</loc></url>
@@ -51,7 +50,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/is_complete_with_limit.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/list_pins.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/luhn_check.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_dataset.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_current.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temporal.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_na_if.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response_provider.html</loc></url>
@@ -82,6 +81,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_uuid_url.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_public.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/pdetect.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/perform_request_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/perform_request_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/print_list.html</loc></url>
