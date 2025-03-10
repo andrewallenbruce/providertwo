@@ -162,6 +162,16 @@ TemporalMain <- new_class(
   name   = "TemporalMain"
 )
 
+#' @title TemporalMainGroup
+#' @rdname Temporal
+#' @family main-classes
+#' @autoglobal
+#' @export
+TemporalMainGroup <- new_class(
+  parent = Temporal,
+  name   = "TemporalMainGroup"
+)
+
 #' @title TemporalOpen
 #' @rdname Temporal
 #' @family open-classes
@@ -170,4 +180,14 @@ TemporalMain <- new_class(
 TemporalOpen <- new_class(
   parent = Temporal,
   name   = "TemporalOpen"
+)
+
+#' @title TemporalOpenGroup
+#' @rdname Temporal
+#' @family open-classes
+#' @autoglobal
+#' @export
+TemporalOpenGroup <- new_class(
+  parent = Temporal,
+  name   = "TemporalOpenGroup"
 )

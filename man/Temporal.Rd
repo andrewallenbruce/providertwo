@@ -3,7 +3,9 @@
 \name{Temporal}
 \alias{Temporal}
 \alias{TemporalMain}
+\alias{TemporalMainGroup}
 \alias{TemporalOpen}
+\alias{TemporalOpenGroup}
 \title{Temporal}
 \usage{
 Temporal(
@@ -22,7 +24,23 @@ TemporalMain(
   endpoints = list()
 )
 
+TemporalMainGroup(
+  title = character(0),
+  description = character(0),
+  contact = character(0),
+  modified = character(0),
+  endpoints = list()
+)
+
 TemporalOpen(
+  title = character(0),
+  description = character(0),
+  contact = character(0),
+  modified = character(0),
+  endpoints = list()
+)
+
+TemporalOpenGroup(
   title = character(0),
   description = character(0),
   contact = character(0),
@@ -46,13 +64,23 @@ Temporal
 
 TemporalMain
 
+TemporalMainGroup
+
 TemporalOpen
+
+TemporalOpenGroup
 }
 \seealso{
 Other base-classes: 
 \code{\link{Current}()}
 
 Other main-classes: 
+\code{\link{Current}()}
+
+Other main-classes: 
+\code{\link{Current}()}
+
+Other open-classes: 
 \code{\link{Current}()}
 
 Other open-classes: 
