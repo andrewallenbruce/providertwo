@@ -100,6 +100,8 @@ prov_uuid_dict <- function(x) {
 #'
 #' provider_dataset("clinicians")
 #'
+#' provider_dataset("utilization")
+#'
 #' @autoglobal
 #'
 #' @export

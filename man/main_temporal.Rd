@@ -16,6 +16,14 @@ main_temporal(alias)
 Load Public API \code{Distribution}
 }
 \examples{
-main_temporal("utilization_provider")
 main_temporal("quality_payment")
+
+main_temporal("utilization_provider")
+main_temporal("utilization_provider")
+main_temporal("utilization_provider")
+
+main_temporal("prescribers_drug")
+main_temporal("prescribers_provider")
+main_temporal("prescribers_geography")
+
 }

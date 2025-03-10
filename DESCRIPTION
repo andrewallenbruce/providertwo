@@ -12,7 +12,7 @@ BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Imports: 
     cheapr (>= 1.0.1),
     cli,
-    collapse (>= 2.0.19),
+    collapse (>= 2.1.0),
     fastplyr (>= 0.5.1),
     fs (>= 1.6.5),
     glue (>= 1.8.0),

@@ -20,4 +20,6 @@ provider_dataset("affiliations")
 
 provider_dataset("clinicians")
 
+provider_dataset("utilization")
+
 }

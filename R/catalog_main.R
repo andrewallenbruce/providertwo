@@ -78,34 +78,47 @@ catalog_main <- \() {
 #' @returns `<Dataset>` object
 #' @examples
 #' main_current("enrollees")
-#' main_current("hospitals")
-#' main_current("reassignments")
 #' main_current("opt_out")
+#' main_current("order_refer")
+#' main_current("reassignments")
+#' main_current("hospitals")
 #' main_current("laboratories")
+#' main_current("crosswalk")
+#' main_current("rbcs")
+#' main_current("rhc")
+#' main_current("fqhc")
+#' main_current("home_health")
+#' main_current("hospice")
+#' main_current("snf")
+#' main_current("pending_nonphysicians")
+#' main_current("pending_physicians")
 #' @autoglobal
 #' @export
 main_current <- function(alias) {
-
-  c(subset_detect(
-    catalog_main()$dataset,
-    title,
-    alias_main_current(alias)
-  ))
+  catalog_main()$dataset |>
+    subset_detect(title, alias_main_current(alias)) |>
+    c()
 }
 
 #' Load Public API `Distribution`
 #' @param alias `<chr>` dataset title
 #' @returns `<Distribution>` object
 #' @examples
-#' main_temporal("utilization_provider")
 #' main_temporal("quality_payment")
+#'
+#' main_temporal("utilization_provider")
+#' main_temporal("utilization_provider")
+#' main_temporal("utilization_provider")
+#'
+#' main_temporal("prescribers_drug")
+#' main_temporal("prescribers_provider")
+#' main_temporal("prescribers_geography")
+#'
 #' @autoglobal
 #' @export
 main_temporal <- function(alias) {
-  c(subset_detect(
-    get_elem(catalog_main(), "distribution"),
-    title,
-    alias_main_temporal(alias)
-  ))
+  catalog_main()$distribution |>
+    subset_detect(title, alias_main_temporal(alias)) |>
+    c()
 
 }

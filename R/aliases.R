@@ -17,6 +17,11 @@ alias_main_current <- function(x) {
     "laboratories",          "Provider of Services File - Clinical Laboratories",
     "crosswalk",             "Medicare Provider and Supplier Taxonomy Crosswalk",
     "rbcs",                  "Restructured BETOS Classification System",
+    "rhc",                   "Rural Health Clinic Enrollments",
+    "fqhc",                  "Federally Qualified Health Center Enrollments",
+    "home_health",           "Home Health Agency Enrollments",
+    "hospice",               "Hospice Enrollments",
+    "snf",                   "Skilled Nursing Facility Enrollments",
     "pending_nonphysicians", "Pending Initial Logging and Tracking Non Physicians",
     "pending_physicians",    "Pending Initial Logging and Tracking Physicians",
     default = NA_character_,
@@ -31,6 +36,7 @@ alias_main_temporal <- function(x) {
     "prescribers_drug",      "Medicare Part D Prescribers - by Provider and Drug",
     "prescribers_provider",  "Medicare Part D Prescribers - by Provider",
     "prescribers_geography", "Medicare Part D Prescribers - by Geography and Drug",
+    "quality_payment",       "Quality Payment Program Experience",
     "utilization_service",   "Medicare Physician & Other Practitioners - by Provider and Service",
     "utilization_provider",  "Medicare Physician & Other Practitioners - by Provider$|Medicare Physician & Other Practitioners - by Provider : ", # "8889d81e-2ee7-448f-8713-f071038289b5",
     "utilization_geography", "Medicare Physician & Other Practitioners - by Geography and Service",
@@ -45,7 +51,7 @@ alias_provider <- function(x) {
     x,
     "affiliations", "Facility Affiliation Data",
     "clinicians",   "National Downloadable File",
-    "utilization", "Utilization Data",
+    "utilization",  "Utilization Data",
     default = NA_character_,
     nThread = 4L
   )
