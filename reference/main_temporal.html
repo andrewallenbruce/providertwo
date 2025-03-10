@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9099</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,40 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Quality Payment Program Experience : 2022-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Quality Payment Program Experience : 2022-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Quality Payment Program Experience : 2021-05-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Quality Payment Program Experience : 2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "Quality Payment Program Experience : 2019-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "Quality Payment Program Experience : 2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "Quality Payment Program Experience : 2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/7adb8b1b-b85c-4ed3-b314-064776e50180/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "https://data.cms.gov/data-api/v1/dataset/4cae2e39-693d-4699-ac23-2611b29c5da7/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "https://data.cms.gov/data-api/v1/dataset/d87865f9-70b6-41fb-be3a-db735c4a05d2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-05-08" "2024-05-08" "2023-06-12" "2023-05-11" "2023-05-11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "2023-04-26" "2023-05-11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "2017-01-01/2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
@@ -106,22 +139,253 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Medicare Physician &amp; Other Practitioners - by Provider : 2021-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Medicare Physician &amp; Other Practitioners - by Provider : 2020-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Medicare Physician &amp; Other Practitioners - by Provider : 2019-12-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Medicare Physician &amp; Other Practitioners - by Provider : 2018-12-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Medicare Physician &amp; Other Practitioners - by Provider : 2017-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Medicare Physician &amp; Other Practitioners - by Provider : 2016-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Medicare Physician &amp; Other Practitioners - by Provider : 2015-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Medicare Physician &amp; Other Practitioners - by Provider : 2014-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Medicare Physician &amp; Other Practitioners - by Provider : 2013-12-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "API"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://data.cms.gov/data-api/v1/dataset/8889d81e-2ee7-448f-8713-f071038289b5/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://data.cms.gov/data-api/v1/dataset/8568be52-dfc9-4fe0-b8d7-95838b3cd0c6/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://data.cms.gov/data-api/v1/dataset/1a3a5f39-09ac-48e2-b9bf-b371ac01c07e/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://data.cms.gov/data-api/v1/dataset/6c0feedd-12a5-401c-bd35-15fabcd6a334/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://data.cms.gov/data-api/v1/dataset/6859b742-ef67-4930-8262-03fb341001e2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://data.cms.gov/data-api/v1/dataset/1d2877f2-2d19-454b-aee6-b0e657f9ad28/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://data.cms.gov/data-api/v1/dataset/6a4c7840-eb12-400d-ae3f-e33137e4f420/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://data.cms.gov/data-api/v1/dataset/373bec8b-d766-4201-9d8b-8f6577ff5828/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://data.cms.gov/data-api/v1/dataset/686ce936-9324-4241-ac00-fdab3b0b83ea/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://data.cms.gov/data-api/v1/dataset/6a5a5529-9b34-48b7-a576-8dad0b07e87b/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://data.cms.gov/data-api/v1/dataset/20f32dd0-a755-43cd-80bf-091a9200d2d0/data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Date of length 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-07"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "2024-06-07" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "2024-06-04"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"utilization_provider"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Physician &amp; Other Practitioners - by Provider : 2022-12-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Medicare Physician &amp; Other Practitioners - by Provider : 2021-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Medicare Physician &amp; Other Practitioners - by Provider : 2020-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Medicare Physician &amp; Other Practitioners - by Provider : 2019-12-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Medicare Physician &amp; Other Practitioners - by Provider : 2018-12-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Medicare Physician &amp; Other Practitioners - by Provider : 2017-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Medicare Physician &amp; Other Practitioners - by Provider : 2016-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Medicare Physician &amp; Other Practitioners - by Provider : 2015-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Medicare Physician &amp; Other Practitioners - by Provider : 2014-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Medicare Physician &amp; Other Practitioners - by Provider : 2013-12-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://data.cms.gov/data-api/v1/dataset/8889d81e-2ee7-448f-8713-f071038289b5/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://data.cms.gov/data-api/v1/dataset/8568be52-dfc9-4fe0-b8d7-95838b3cd0c6/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://data.cms.gov/data-api/v1/dataset/1a3a5f39-09ac-48e2-b9bf-b371ac01c07e/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://data.cms.gov/data-api/v1/dataset/6c0feedd-12a5-401c-bd35-15fabcd6a334/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://data.cms.gov/data-api/v1/dataset/6859b742-ef67-4930-8262-03fb341001e2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://data.cms.gov/data-api/v1/dataset/1d2877f2-2d19-454b-aee6-b0e657f9ad28/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://data.cms.gov/data-api/v1/dataset/6a4c7840-eb12-400d-ae3f-e33137e4f420/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://data.cms.gov/data-api/v1/dataset/373bec8b-d766-4201-9d8b-8f6577ff5828/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://data.cms.gov/data-api/v1/dataset/686ce936-9324-4241-ac00-fdab3b0b83ea/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://data.cms.gov/data-api/v1/dataset/6a5a5529-9b34-48b7-a576-8dad0b07e87b/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://data.cms.gov/data-api/v1/dataset/20f32dd0-a755-43cd-80bf-091a9200d2d0/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-07"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "2024-06-07" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"prescribers_drug"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Part D Prescribers - by Provider and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Part D Prescribers - by Provider and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Medicare Part D Prescribers - by Provider and Drug : 2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Medicare Part D Prescribers - by Provider and Drug : 2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Medicare Part D Prescribers - by Provider and Drug : 2019-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Medicare Part D Prescribers - by Provider and Drug : 2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Medicare Part D Prescribers - by Provider and Drug : 2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Medicare Part D Prescribers - by Provider and Drug : 2016-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Medicare Part D Prescribers - by Provider and Drug : 2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Medicare Part D Prescribers - by Provider and Drug : 2014-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Medicare Part D Prescribers - by Provider and Drug : 2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://data.cms.gov/data-api/v1/dataset/9552739e-3d05-4c1b-8eff-ecabf391e2e5/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://data.cms.gov/data-api/v1/dataset/b101b457-ffa4-49bb-8fd9-27c1266086e2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://data.cms.gov/data-api/v1/dataset/f68114ed-f854-4ffc-9c6e-ed78b5e2f8d0/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://data.cms.gov/data-api/v1/dataset/7795fe20-e80e-435a-a9ed-d2d65e05feeb/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://data.cms.gov/data-api/v1/dataset/2a6705e6-7a1e-460c-ba22-35249a531918/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://data.cms.gov/data-api/v1/dataset/802fe556-311f-4962-8d75-d5f4ff405884/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://data.cms.gov/data-api/v1/dataset/05f108dd-76c4-49f4-9fdc-788d8f4251ec/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://data.cms.gov/data-api/v1/dataset/25106f9d-0eb8-4ba7-b237-486ee87d910a/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://data.cms.gov/data-api/v1/dataset/1d650894-8afe-4056-ba31-a85cb0e3cee6/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://data.cms.gov/data-api/v1/dataset/0779bc8d-18dd-40b8-9d61-7addc8b0daf1/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://data.cms.gov/data-api/v1/dataset/c6905d43-45de-470d-897c-9ed8e75e256d/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"prescribers_provider"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Part D Prescribers - by Provider and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Part D Prescribers - by Provider and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Medicare Part D Prescribers - by Provider and Drug : 2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Medicare Part D Prescribers - by Provider and Drug : 2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Medicare Part D Prescribers - by Provider and Drug : 2019-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Medicare Part D Prescribers - by Provider and Drug : 2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Medicare Part D Prescribers - by Provider and Drug : 2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Medicare Part D Prescribers - by Provider and Drug : 2016-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Medicare Part D Prescribers - by Provider and Drug : 2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Medicare Part D Prescribers - by Provider and Drug : 2014-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Medicare Part D Prescribers - by Provider and Drug : 2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "Medicare Part D Prescribers - by Provider : 2022-12-30"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Medicare Part D Prescribers - by Provider : 2022-12-30"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "Medicare Part D Prescribers - by Provider : 2021-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "Medicare Part D Prescribers - by Provider : 2020-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "Medicare Part D Prescribers - by Provider : 2019-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Medicare Part D Prescribers - by Provider : 2018-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "Medicare Part D Prescribers - by Provider : 2017-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "Medicare Part D Prescribers - by Provider : 2016-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "Medicare Part D Prescribers - by Provider : 2015-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "Medicare Part D Prescribers - by Provider : 2014-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "Medicare Part D Prescribers - by Provider : 2013-12-31"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "API"        "API-latest" "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://data.cms.gov/data-api/v1/dataset/9552739e-3d05-4c1b-8eff-ecabf391e2e5/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://data.cms.gov/data-api/v1/dataset/b101b457-ffa4-49bb-8fd9-27c1266086e2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://data.cms.gov/data-api/v1/dataset/f68114ed-f854-4ffc-9c6e-ed78b5e2f8d0/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://data.cms.gov/data-api/v1/dataset/7795fe20-e80e-435a-a9ed-d2d65e05feeb/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://data.cms.gov/data-api/v1/dataset/2a6705e6-7a1e-460c-ba22-35249a531918/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://data.cms.gov/data-api/v1/dataset/802fe556-311f-4962-8d75-d5f4ff405884/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://data.cms.gov/data-api/v1/dataset/05f108dd-76c4-49f4-9fdc-788d8f4251ec/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://data.cms.gov/data-api/v1/dataset/25106f9d-0eb8-4ba7-b237-486ee87d910a/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://data.cms.gov/data-api/v1/dataset/1d650894-8afe-4056-ba31-a85cb0e3cee6/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://data.cms.gov/data-api/v1/dataset/0779bc8d-18dd-40b8-9d61-7addc8b0daf1/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://data.cms.gov/data-api/v1/dataset/c6905d43-45de-470d-897c-9ed8e75e256d/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "https://data.cms.gov/data-api/v1/dataset/14d8e8a9-7e9b-4370-a044-bf97c46b4b44/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "https://data.cms.gov/data-api/v1/dataset/5b7298b5-4a3b-4517-86b0-2c9077c64a86/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "https://data.cms.gov/data-api/v1/dataset/c55024e4-4b4f-4106-b570-0cc05f173357/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "https://data.cms.gov/data-api/v1/dataset/eca92c9a-cc1b-4d6e-9742-7cf34ed6f1f4/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "https://data.cms.gov/data-api/v1/dataset/b6c4cbfd-0f23-4a38-8bc0-41a26fc71826/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "https://data.cms.gov/data-api/v1/dataset/d9bc3449-89ff-4d8f-aa18-6a65eb5890c4/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "https://data.cms.gov/data-api/v1/dataset/a850b96d-3a91-4833-8da8-7e5443139fee/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "https://data.cms.gov/data-api/v1/dataset/19f9331a-01d9-411b-a995-829d9e5dc570/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "https://data.cms.gov/data-api/v1/dataset/a993311d-d020-47e8-81e5-097d2fc26e11/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "https://data.cms.gov/data-api/v1/dataset/759dba06-95bf-46d6-a7c0-3834c4b86882/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "https://data.cms.gov/data-api/v1/dataset/6e8cdefe-5e6d-4b4b-9dc1-6dbc43ee3fb3/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "2024-06-04" "2024-06-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31" "2022-01-01/2022-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "2022-01-01/2022-12-31" "2021-01-01/2021-12-31" "2020-01-01/2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "2019-01-01/2019-12-31" "2018-01-01/2018-12-31" "2017-01-01/2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "2016-01-01/2016-12-31" "2015-01-01/2015-12-31" "2014-01-01/2014-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "2013-01-01/2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">main_temporal</span><span class="op">(</span><span class="st">"prescribers_geography"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Medicare Part D Prescribers - by Geography and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Medicare Part D Prescribers - by Geography and Drug : 2022-12-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Medicare Part D Prescribers - by Geography and Drug : 2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "Medicare Part D Prescribers - by Geography and Drug : 2020-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Medicare Part D Prescribers - by Geography and Drug : 2019-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "Medicare Part D Prescribers - by Geography and Drug : 2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Medicare Part D Prescribers - by Geography and Drug : 2017-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Medicare Part D Prescribers - by Geography and Drug : 2016-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Medicare Part D Prescribers - by Geography and Drug : 2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Medicare Part D Prescribers - by Geography and Drug : 2014-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Medicare Part D Prescribers - by Geography and Drug : 2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "API-latest" "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "API"        "API"        "API"        "API"        "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "API"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $accessURL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://data.cms.gov/data-api/v1/dataset/c8ea3f8e-3a09-4fea-86f2-8902fb4b0920/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://data.cms.gov/data-api/v1/dataset/1fc57194-a51d-4864-aee6-de0889488151/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://data.cms.gov/data-api/v1/dataset/7dda2a9d-034a-446a-b4b3-e1254e0127b2/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://data.cms.gov/data-api/v1/dataset/83891e77-99cf-4865-b60a-97703b916e09/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://data.cms.gov/data-api/v1/dataset/73a6335e-f16f-4c81-a84b-6b5a986e2bf8/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://data.cms.gov/data-api/v1/dataset/b083c9b6-b841-4676-8d0a-fb03ee1431a1/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://data.cms.gov/data-api/v1/dataset/7863e41c-3f6f-4889-93a8-be65e9f3d073/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://data.cms.gov/data-api/v1/dataset/c5b3c840-5eb2-4e4c-ac35-c30995dcb051/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://data.cms.gov/data-api/v1/dataset/73748d0b-2acb-420a-ac66-27d8e238fdc8/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://data.cms.gov/data-api/v1/dataset/63099eb4-6c9e-4fec-8c9e-b6b132f1b7f4/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://data.cms.gov/data-api/v1/dataset/9aec2a70-4ef2-438a-bc35-1747fe2492c9/data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2024-06-04" "2024-06-04" "2023-10-25" "2024-05-21" "2023-05-10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "2023-05-10" "2023-05-10" "2024-01-30" "2023-05-10" "2023-05-10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "2023-05-10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "2022-01-01/2022-12-31" "2022-01-01/2022-12-31" "2021-01-01/2021-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "2020-01-01/2020-12-31" "2019-01-01/2019-12-31" "2018-01-01/2018-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "2017-01-01/2017-12-31" "2016-01-01/2016-12-31" "2015-01-01/2015-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "2014-01-01/2014-12-31" "2013-01-01/2013-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
