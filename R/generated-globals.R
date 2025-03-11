@@ -39,6 +39,8 @@ utils::globalVariables(c(
   # <open_research>
   # <open_ownership>
   "modified",
+  # <catalog_main2>
+  "N",
   # <open_dictionary>
   # <get_resources>
   "name",

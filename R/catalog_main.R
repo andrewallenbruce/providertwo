@@ -129,13 +129,50 @@ catalog_main2 <- function() {
 
   d <- funique(sset(d, row_na_counts(d) < 4), cols = c("title", "year"))
 
-  list(
-    current = join(
-      slt(x, title, description, periodicity, contact, dictionary, identifier, modified, site, temporal, references),
-      sbt(d, format == "API-latest", -format, -accessURL, -modified, -temporal, -year),
-      on = "title", verbose = 0) |> roworder(title),
-    temporal = slt(d, year, title, identifier = accessURL, modified:resources) |> roworder(title, -year) |> uniq()
+  out <- sbt(fcount(d, title), N == 1) |> _[["title"]]
+
+  mn <- join(
+    slt(
+      x,
+      title,
+      description,
+      periodicity,
+      contact,
+      dictionary,
+      identifier,
+      modified,
+      site,
+      temporal,
+      references
+    ),
+    sbt(
+      d,
+      format == "API-latest",
+      -format,
+      -accessURL,
+      -modified,
+      -temporal,
+      -year
+    ),
+    on = "title",
+    verbose = 0
+  ) |> roworder(title)
+
+  tmp <- join(
+    sbt(d, !title %in% out) |>
+      slt(year, title, identifier = accessURL, modified:resources) |>
+      roworder(title, -year) |>
+      f_nest_by(.cols = "title") |>
+      f_ungroup(),
+    slt(mn, title, description, periodicity, contact, dictionary, site),
+    on = "title",
+    verbose = 0
   )
+
+  list(
+    current = mn,
+    temporal = tmp
+    )
 }
 
 #' Load Main API `Dataset`

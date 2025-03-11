@@ -2,9 +2,9 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom collapse %==% add_vars colorder fcompute fmax fnobs funique get_elem join mtt rowbind roworder rsplit sbt slt ss
-#' @importFrom cheapr as_df cheapr_if_else cheapr_rev new_df seq_ sset which_ lag_ row_na_counts
-#' @importFrom fastplyr as_tbl new_tbl
+#' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem join mtt rowbind roworder rsplit sbt slt ss
+#' @importFrom cheapr %!in_% as_df cheapr_if_else cheapr_rev new_df seq_ sset which_ lag_ row_na_counts
+#' @importFrom fastplyr as_tbl new_tbl f_nest_by f_ungroup
 #' @importFrom kit nswitch
 #' @importFrom tools file_ext toTitleCase
 #' @importFrom glue glue glue_collapse
