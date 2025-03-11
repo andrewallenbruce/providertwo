@@ -6,18 +6,22 @@ utils::globalVariables(c(
   # <catalog_main2>
   "accrualPeriodicity",
   # <catalog_main2>
+  # <catalog_open2>
   "contact",
   # <catalog_main2>
   "describedBy",
   # <catalog_main2>
   # <open_clean_temp>
   # <open_clean_grouped>
+  # <catalog_open2>
   # <open_grouped_summary>
   "description",
   # <catalog_main2>
   "dictionary",
   # <catalog_main2>
   "distribution",
+  # <catalog_open2>
+  "downloadurl",
   # <catalog_main2>
   # <get_resources>
   "downloadURL",
@@ -26,12 +30,16 @@ utils::globalVariables(c(
   # <get_resources>
   "fileSize",
   # <catalog_main2>
+  # <catalog_open2>
   "identifier",
+  # <catalog_open2>
+  "keyword",
   # <catalog_main2>
   "landingPage",
   # <catalog_main2>
   "mediaType",
   # <catalog_main2>
+  # <catalog_open2>
   # <open_profiles>
   # <open_grouped_summary>
   # <open_grouped_yearly>
@@ -58,12 +66,15 @@ utils::globalVariables(c(
   "size",
   # <catalog_main2>
   "temporal",
+  # <catalog_open2>
+  "theme",
   # <catalog_main2>
   # <main_current>
   # <main_temporal>
   # <main_temporal_group>
   # <open_clean_temp>
   # <open_clean_grouped>
+  # <catalog_open2>
   # <open_profiles>
   # <open_grouped_summary>
   # <provider_dataset>
@@ -71,6 +82,7 @@ utils::globalVariables(c(
   # <catalog_main2>
   # <open_clean_temp>
   # <open_clean_grouped>
+  # <catalog_open2>
   # <open_dictionary>
   "year",
   NULL
