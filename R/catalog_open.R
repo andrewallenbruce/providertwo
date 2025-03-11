@@ -5,6 +5,7 @@
 #' @keywords internal
 #' @export
 open_nrows_fields <- function(uuid) {
+
   x <- uuid |>
     open_uuid_url() |>
     request() |>

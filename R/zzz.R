@@ -5,4 +5,5 @@
   catalog_main     <<- memoise::memoise(catalog_main)
 
   S7::methods_register()
+
 }

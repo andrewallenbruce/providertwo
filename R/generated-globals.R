@@ -61,6 +61,7 @@ utils::globalVariables(c(
   # <catalog_main2>
   # <main_current>
   # <main_temporal>
+  # <main_temporal_group>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_profiles>

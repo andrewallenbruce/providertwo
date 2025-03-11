@@ -131,36 +131,14 @@ catalog_main2 <- function() {
 
   out <- sbt(fcount(d, title), N == 1) |> _[["title"]]
 
-  mn <- join(
-    slt(
-      x,
-      title,
-      description,
-      periodicity,
-      contact,
-      dictionary,
-      identifier,
-      modified,
-      site,
-      temporal,
-      references
-    ),
-    sbt(
-      d,
-      format == "API-latest",
-      -format,
-      -accessURL,
-      -modified,
-      -temporal,
-      -year
-    ),
-    on = "title",
-    verbose = 0
-  ) |> roworder(title)
+  mn <- join(slt(x, -distribution),
+             sbt(d, format == "API-latest", -format, -accessURL, -modified, -temporal, -year),
+             on = "title",
+             verbose = 0) |>
+    roworder(title)
 
   tmp <- join(
-    sbt(d, !title %in% out) |>
-      slt(year, title, identifier = accessURL, modified:resources) |>
+    sbt(d, !title %in% out, year, title, identifier = accessURL, modified:resources) |>
       roworder(title, -year) |>
       f_nest_by(.cols = "title") |>
       f_ungroup(),
@@ -169,10 +147,7 @@ catalog_main2 <- function() {
     verbose = 0
   )
 
-  list(
-    current = mn,
-    temporal = tmp
-    )
+  list(current = mn, temporal = tmp)
 }
 
 #' Load Main API `Dataset`
@@ -187,17 +162,10 @@ catalog_main2 <- function() {
 #' main_current("laboratories")
 #' main_current("crosswalk")
 #' main_current("rbcs")
-#' main_current("rhc")
-#' main_current("fqhc")
-#' main_current("home_health")
-#' main_current("hospice")
-#' main_current("snf")
-#' main_current("pending_nonphysicians")
-#' main_current("pending_physicians")
 #' @autoglobal
 #' @export
 main_current <- function(alias) {
-  catalog_main()$dataset |>
+  catalog_main2()$current |>
     subset_detect(title, alias_main_current(alias)) |>
     c()
 }
@@ -207,20 +175,25 @@ main_current <- function(alias) {
 #' @returns `<Distribution>` object
 #' @examples
 #' main_temporal("quality_payment")
-#'
-#' main_temporal("utilization_provider")
-#' main_temporal("utilization_provider")
-#' main_temporal("utilization_provider")
-#'
-#' main_temporal("prescribers_drug")
-#' main_temporal("prescribers_provider")
-#' main_temporal("prescribers_geography")
-#'
 #' @autoglobal
 #' @export
 main_temporal <- function(alias) {
-  catalog_main()$distribution |>
-    subset_detect(title, alias_main_temporal(alias)) |>
-    c()
+  catalog_main2()$temporal |>
+    subset_detect(title, alias_main_temporal(alias))
+}
 
+#' Load Public API `Distribution`
+#' @param alias `<chr>` dataset title
+#' @returns `<Distribution>` object
+#' @examples
+#' main_temporal_group("utilization")
+#' main_temporal_group("prescribers")
+#' main_temporal_group("suppliers")
+#' main_temporal_group("outpatient")
+#' main_temporal_group("inpatient")
+#' @autoglobal
+#' @export
+main_temporal_group <- function(alias) {
+  catalog_main2()$temporal |>
+    subset_detect(title, alias_main_temporal_group(alias))
 }

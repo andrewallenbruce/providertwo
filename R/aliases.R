@@ -9,21 +9,32 @@ NULL
 alias_main_current <- function(x) {
   nswitch(
     x,
-    "enrollees",             "Public Provider Enrollment",  # "Medicare Fee-For-Service  Public Provider Enrollment",
+    "enrollees",             "Public Provider Enrollment",
     "opt_out",               "Opt Out Affidavits",
     "order_refer",           "Order and Referring",
     "reassignments",         "Revalidation Reassignment List",
     "hospitals",             "Hospital Enrollments",
     "laboratories",          "Provider of Services File - Clinical Laboratories",
+    "facilities",            "Provider of Services File - Hospital & Non-Hospital Facilities",
     "crosswalk",             "Medicare Provider and Supplier Taxonomy Crosswalk",
     "rbcs",                  "Restructured BETOS Classification System",
-    "rhc",                   "Rural Health Clinic Enrollments",
-    "fqhc",                  "Federally Qualified Health Center Enrollments",
     "home_health",           "Home Health Agency Enrollments",
     "hospice",               "Hospice Enrollments",
+    "dialysis",              "Medicare Dialysis Facilities",
     "snf",                   "Skilled Nursing Facility Enrollments",
-    "pending_nonphysicians", "Pending Initial Logging and Tracking Non Physicians",
-    "pending_physicians",    "Pending Initial Logging and Tracking Physicians",
+    default = NA_character_,
+    nThread = 4L
+  )
+}
+
+#' @noRd
+alias_main_current_group <- function(x) {
+  nswitch(
+    x,
+    "hospitals", "Hospital",
+    "rhc",       "Rural Health Clinic",
+    "fqhc",      "Federally Qualified Health Center",
+    "pending",   "Pending Initial Logging and Tracking",
     default = NA_character_,
     nThread = 4L
   )
@@ -33,13 +44,21 @@ alias_main_current <- function(x) {
 alias_main_temporal <- function(x) {
   nswitch(
     x,
-    "prescribers_drug",      "Medicare Part D Prescribers - by Provider and Drug",
-    "prescribers_provider",  "Medicare Part D Prescribers - by Provider",
-    "prescribers_geography", "Medicare Part D Prescribers - by Geography and Drug",
-    "quality_payment",       "Quality Payment Program Experience",
-    "utilization_service",   "Medicare Physician & Other Practitioners - by Provider and Service",
-    "utilization_provider",  "Medicare Physician & Other Practitioners - by Provider$|Medicare Physician & Other Practitioners - by Provider : ", # "8889d81e-2ee7-448f-8713-f071038289b5",
-    "utilization_geography", "Medicare Physician & Other Practitioners - by Geography and Service",
+    "quality_payment",  "Quality Payment Program Experience",
+    default = NA_character_,
+    nThread = 4L
+  )
+}
+
+#' @noRd
+alias_main_temporal_group <- function(x) {
+  nswitch(
+    x,
+    "prescribers", "Medicare Part D Prescribers",
+    "utilization", "Medicare Physician & Other Practitioners",
+    "outpatient",  "Medicare Outpatient Hospitals",
+    "inpatient",   "Medicare Inpatient Hospitals",
+    "suppliers",   "Medicare Durable Medical Equipment, Devices & Supplies",
     default = NA_character_,
     nThread = 4L
   )
@@ -49,9 +68,14 @@ alias_main_temporal <- function(x) {
 alias_provider <- function(x) {
   nswitch(
     x,
-    "affiliations", "Facility Affiliation Data",
-    "clinicians",   "National Downloadable File",
-    "utilization",  "Utilization Data",
+    "affiliations",  "Facility Affiliation Data",
+    "clinicians",    "National Downloadable File",
+    "utilization",   "Utilization Data",
+    "group_mips",    "PY 2022 Group Public Reporting: MIPS Measures and Attestations",
+    "group_patient", "PY 2022 Group Public Reporting: Patient Experience",
+    "clin_mips",     "PY 2022 Clinician Public Reporting: MIPS Measures and Attestations",
+    "clin_overall",  "PY 2022 Clinician Public Reporting: Overall MIPS Performance",
+    "vgroup_mips",   "PY 2022 Virtual Group Public Reporting: MIPS Measures and Attestations",
     default = NA_character_,
     nThread = 4L
   )
@@ -61,8 +85,12 @@ alias_provider <- function(x) {
 alias_open_current <- function(x) {
   nswitch(
     x,
-    "affiliations", "Facility Affiliation Data",
-    "clinicians",   "National Downloadable File",
+    "profile_covr",   "Covered Recipient Profile Supplement",
+    "profile_phys",   "Physician (Distinct) Profile Information",
+    "profile_info",   "Profile Information",
+    "profile_map",    "Provider Profile ID Mapping Table",
+    "profile_entity", "Reporting Entity Profile Information",
+    "profile_teach",  "Teaching Hospital Profile Information",
     default = NA_character_,
     nThread = 4L
   )
