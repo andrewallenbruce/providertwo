@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9102 (2025-03-10)
+
+* main_catalog2() work
+
+
 # providertwo 0.0.0.9101 (2025-03-10)
 
 * refactoring main catalog
