@@ -47,6 +47,8 @@ utils::globalVariables(c(
   # <catalog_main2>
   "references",
   # <catalog_main2>
+  "resources",
+  # <catalog_main2>
   "resourcesAPI",
   # <catalog_main2>
   "site",
@@ -63,6 +65,7 @@ utils::globalVariables(c(
   # <open_grouped_summary>
   # <provider_dataset>
   "title",
+  # <catalog_main2>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <open_dictionary>

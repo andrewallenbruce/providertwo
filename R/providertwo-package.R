@@ -3,12 +3,12 @@
 
 ## usethis namespace: start
 #' @importFrom collapse %==% add_vars colorder fcompute fmax fnobs funique get_elem join mtt rowbind roworder rsplit sbt slt ss
-#' @importFrom cheapr as_df cheapr_if_else cheapr_rev new_df seq_ sset which_
+#' @importFrom cheapr as_df cheapr_if_else cheapr_rev new_df seq_ sset which_ lag_ row_na_counts
 #' @importFrom fastplyr as_tbl new_tbl
 #' @importFrom kit nswitch
 #' @importFrom tools file_ext toTitleCase
 #' @importFrom glue glue glue_collapse
-#' @importFrom stringi stri_detect_regex stri_replace_all_regex stri_extract_all_regex
+#' @importFrom stringi stri_detect_regex stri_replace_all_regex stri_extract_all_regex stri_trim
 #' @import httr2
 #' @import S7
 #' @import rlang
