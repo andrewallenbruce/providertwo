@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9105 (2025-03-11)
+
+* catalog_open2()
+
+
 # providertwo 0.0.0.9104 (2025-03-11)
 
 * aliases
