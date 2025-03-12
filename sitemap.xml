@@ -69,10 +69,10 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/nrows_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_Dataset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_add_dlurl.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_grouped.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_temp.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_current.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_dictionary.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_general.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_grouped_summary.html</loc></url>
@@ -90,6 +90,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/print_list.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/process_params.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/program_code.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_nrows_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_dict.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_url.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Dataset.html</loc></url>
