@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9107 (2025-03-12)
+
+* class refinement
+
+
 # providertwo 0.0.0.9106 (2025-03-11)
 
 * work on classes, aliases
