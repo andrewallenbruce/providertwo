@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9110 (2025-03-12)
+
+* trunk old catalog code
+
+
 # providertwo 0.0.0.9109 (2025-03-12)
 
 * open_temporal
