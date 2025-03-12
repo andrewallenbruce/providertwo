@@ -11,15 +11,17 @@ utils::globalVariables(c(
   # <catalog_main2>
   "describedBy",
   # <catalog_main2>
+  # <open_grouped_summary>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <catalog_open2>
-  # <open_grouped_summary>
   "description",
   # <catalog_main2>
   "dictionary",
   # <catalog_main2>
   "distribution",
+  # <open_temporal>
+  "download",
   # <catalog_open2>
   "downloadurl",
   # <catalog_main2>
@@ -31,6 +33,7 @@ utils::globalVariables(c(
   "fileSize",
   # <catalog_main2>
   # <catalog_open2>
+  # <open_temporal>
   "identifier",
   # <catalog_open2>
   "keyword",
@@ -39,13 +42,14 @@ utils::globalVariables(c(
   # <catalog_main2>
   "mediaType",
   # <catalog_main2>
-  # <catalog_open2>
   # <open_profiles>
   # <open_grouped_summary>
   # <open_grouped_yearly>
   # <open_general>
   # <open_research>
   # <open_ownership>
+  # <catalog_open2>
+  # <open_temporal>
   "modified",
   # <catalog_main2>
   "N",
@@ -72,18 +76,20 @@ utils::globalVariables(c(
   # <main_current>
   # <main_temporal>
   # <main_temporal_group>
+  # <open_profiles>
+  # <open_grouped_summary>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <catalog_open2>
   # <open_current>
-  # <open_profiles>
-  # <open_grouped_summary>
+  # <open_temporal>
   # <provider_current>
   "title",
   # <catalog_main2>
   # <open_clean_temp>
   # <open_clean_grouped>
   # <catalog_open2>
+  # <open_temporal>
   # <open_dictionary>
   "year",
   NULL

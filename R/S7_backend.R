@@ -120,19 +120,25 @@ CurrentOpen <- new_class(
 #' @param title `<chr>` dataset title
 #' @param description `<chr>` dataset description
 #' @param contact `<chr>` dataset contact
-#' @param modified `<chr>` dataset modified date
-#' @param endpoints `<list>` dataset endpoints
+#' @param rows `<int>` number of rows
+#' @param fields `<chr>` field names
+#' @param pages `<int>` number of pages
+#' @param years `<int>` years available
+#' @param endpoints `<data.frame>` endpoints
 #' @family base-classes
 #' @autoglobal
 #' @export
 Temporal <- new_class(
   name = "Temporal",
   properties = list(
-    title = class_character,
+    title       = class_character,
     description = class_character,
-    contact = class_character,
-    modified = class_character | class_Date,
-    endpoints = class_list
+    contact     = class_character,
+    rows        = class_integer,
+    fields      = class_character,
+    pages       = class_integer,
+    years       = class_integer,
+    endpoints   = class_list
   )
 )
 

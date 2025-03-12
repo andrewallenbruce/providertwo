@@ -12,7 +12,10 @@ Temporal(
   title = character(0),
   description = character(0),
   contact = character(0),
-  modified = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
+  years = integer(0),
   endpoints = list()
 )
 
@@ -20,7 +23,10 @@ TemporalMain(
   title = character(0),
   description = character(0),
   contact = character(0),
-  modified = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
+  years = integer(0),
   endpoints = list()
 )
 
@@ -28,7 +34,10 @@ TemporalMainGroup(
   title = character(0),
   description = character(0),
   contact = character(0),
-  modified = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
+  years = integer(0),
   endpoints = list()
 )
 
@@ -36,7 +45,10 @@ TemporalOpen(
   title = character(0),
   description = character(0),
   contact = character(0),
-  modified = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
+  years = integer(0),
   endpoints = list()
 )
 
@@ -44,7 +56,10 @@ TemporalOpenGroup(
   title = character(0),
   description = character(0),
   contact = character(0),
-  modified = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
+  years = integer(0),
   endpoints = list()
 )
 }
@@ -55,9 +70,15 @@ TemporalOpenGroup(
 
 \item{contact}{\verb{<chr>} dataset contact}
 
-\item{modified}{\verb{<chr>} dataset modified date}
+\item{rows}{\verb{<int>} number of rows}
 
-\item{endpoints}{\verb{<list>} dataset endpoints}
+\item{fields}{\verb{<chr>} field names}
+
+\item{pages}{\verb{<int>} number of pages}
+
+\item{years}{\verb{<int>} years available}
+
+\item{endpoints}{\verb{<data.frame>} endpoints}
 }
 \description{
 Temporal
