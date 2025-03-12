@@ -54,6 +54,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/list_pins.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/luhn_check.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_current.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_nrows_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temporal.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temporal_group.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_na_if.html</loc></url>
@@ -94,7 +95,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_nrows_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_dict.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_url.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_Dataset.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_current.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_provider.html</loc></url>
