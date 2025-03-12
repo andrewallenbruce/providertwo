@@ -85,12 +85,17 @@ alias_provider <- function(x) {
 alias_open_current <- function(x) {
   nswitch(
     x,
-    "profile_covr",   "Covered Recipient Profile Supplement",
-    "profile_phys",   "Physician (Distinct) Profile Information",
-    "profile_info",   "Profile Information",
-    "profile_map",    "Provider Profile ID Mapping Table",
-    "profile_entity", "Reporting Entity Profile Information",
-    "profile_teach",  "Teaching Hospital Profile Information",
+    "prof_cov",        "^Covered Recipient Profile Supplement",
+    "prof_phys",       "^Physician \\(Distinct\\) Profile Information",
+    "prof_info",       "^Profile Information",
+    "prof_map",        "^Provider Profile ID Mapping Table",
+    "prof_entity",     "^Reporting Entity Profile Information",
+    "prof_teach",      "^Teaching Hospital Profile Information",
+    "dashboard",       "^Summary Dashboard",
+    "pay_state_total", "^State Level Payment Total and Averages for all Years$",
+    "pay_state_group", "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
+    "pay_nat_group",   "^National Level Payment Total and Averages by Provider Specialty for all Years$",
+    "pay_nat_total",   "^National Level Payment Total and Averages for all Years$",
     default = NA_character_,
     nThread = 4L
   )

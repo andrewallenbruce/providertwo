@@ -75,6 +75,7 @@ utils::globalVariables(c(
   # <open_clean_temp>
   # <open_clean_grouped>
   # <catalog_open2>
+  # <open_current>
   # <open_profiles>
   # <open_grouped_summary>
   # <provider_dataset>

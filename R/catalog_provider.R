@@ -89,6 +89,32 @@ prov_uuid_dict <- function(x) {
     x, "#data-dictionary")
 }
 
+#' Get Field Names and Number of Rows from Provider Endpoint
+#' @param url `<chr>` Endpoint UUID
+#' @returns `<list>` of number of rows and field names
+#' @autoglobal
+#' @keywords internal
+#' @export
+prov_nrows_fields <- function(url) {
+
+  x <- url |>
+    prov_uuid_url() |>
+    request() |>
+    req_url_query(
+      schema  = "false",
+      keys    = "false",
+      results = "false",
+      count   = "true",
+      offset  = 0,
+      limit   = 1
+    ) |>
+    req_perform() |>
+    resp_simple_json()
+
+  list(rows = x$count, fields = x$query$properties)
+
+}
+
 #' Load `CurrentProvider` API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
@@ -97,31 +123,38 @@ prov_uuid_dict <- function(x) {
 #'
 #' @examples
 #' provider_dataset("affiliations")
-#'
 #' provider_dataset("clinicians")
-#'
 #' provider_dataset("utilization")
-#'
+#' provider_dataset("utilization")
+#' provider_dataset("group_mips")
+#' provider_dataset("group_patient")
+#' provider_dataset("clin_mips")
+#' provider_dataset("clin_overall")
+#' provider_dataset("vgroup_mips")
 #' @autoglobal
 #'
 #' @export
 provider_dataset <- function(alias) {
 
-  x <- c(subset_detect(
-    get_elem(catalog_provider(), "doctors_and_clinicians"),
-    title,
-    alias_provider(alias)
-  ))
+  x <- catalog_provider()$doctors_and_clinicians |>
+    subset_detect(
+      title,
+      alias_provider(alias)) |>
+    c()
+
+  q <- prov_nrows_fields(x$identifier)
 
   CurrentProvider(
     title       = x$title,
     description = x$description,
     contact     = x$contact,
     modified    = x$modified,
-    identifier  = prov_uuid_url(x$identifier),
+    identifier  = x$identifier,
     download    = x$downloadurl,
     issued      = x$issued,
     released    = x$released,
-    site        = x$site
+    site        = x$site,
+    rows        = q$rows,
+    fields      = q$fields
   )
 }

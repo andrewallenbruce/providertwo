@@ -181,6 +181,49 @@ catalog_open2 <- function() {
        temporal = sbt(x, year != "All", -theme) |> mtt(year = as_int(year), title = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |> roworder(title, -year))
 }
 
+#' Load `CurrentOpen` API Endpoint
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns `<CurrentOpen>` object
+#'
+#' @examples
+#' open_current("prof_cov")
+#' open_current("prof_phys")
+#' open_current("prof_info")
+#' open_current("prof_map")
+#' open_current("prof_entity")
+#' open_current("prof_teach")
+#' open_current("dashboard")
+#' open_current("pay_state_total")
+#' open_current("pay_state_group")
+#' open_current("pay_nat_group")
+#' open_current("pay_nat_total")
+#' @autoglobal
+#'
+#' @export
+open_current <- function(alias) {
+
+  x <- catalog_open2()$current |>
+    subset_detect(
+      title,
+      alias_open_current(alias)) |>
+    c()
+
+  q <- open_nrows_fields(x$identifier)
+
+  CurrentOpen(
+    title       = x$title,
+    description = x$description,
+    contact     = x$contact,
+    modified    = x$modified,
+    identifier  = x$identifier,
+    download    = x$download,
+    rows        = q$rows,
+    fields      = q$fields
+  )
+}
+
 #' Load Open Payments Profile Sets
 #' @returns `<list>` of Open Payments API profile information
 #' @examples
@@ -302,36 +345,4 @@ open_ownership <- function() {
     endpoints   = slt(x, -modified),
     fields      = q$fields
   )
-}
-
-#' Load Open Payments API `Dataset`
-#' @param period `<chr>` dataset year
-#' @param group `<chr>` dataset group keyword
-#' @param dataset `<chr>` dataset title
-#' @returns `<Dataset>` object
-#' @examples
-#' open_dataset()
-#' @autoglobal
-#' @export
-open_dataset <- function(period  = NULL,
-                         group   = NULL,
-                         dataset = NULL) {
-
-  open_profiles()
-
-  # c(x)
-
-  # Dataset(
-  #   contact     = Contact("Open Payments", "mailto:openpayments@cms.hhs.gov"),
-  #   publisher   = Publisher(name = "openpaymentsdata.cms.gov"),
-  #   periodicity = "Annually [R/P1Y]",
-  #   identifier  = Identifier(x$identifier),
-  #   modified    = x$modified,
-  #   title       = x$title,
-  #   dictionary  = x$describedBy,
-  #   description = x$description,
-  #   landingpage = x$landingPage,
-  #   temporal    = x$temporal,
-  #   theme       = x$theme
-  # )
 }

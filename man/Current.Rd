@@ -43,7 +43,9 @@ CurrentProvider(
   download = character(0),
   issued = character(0),
   released = character(0),
-  site = character(0)
+  site = character(0),
+  rows = integer(0),
+  fields = character(0)
 )
 
 CurrentOpen(
@@ -52,7 +54,9 @@ CurrentOpen(
   contact = character(0),
   modified = character(0),
   identifier = character(0),
-  download = character(0)
+  download = character(0),
+  rows = integer(0),
+  fields = character(0)
 )
 }
 \arguments{
@@ -85,6 +89,10 @@ CurrentOpen(
 \item{issued}{\verb{<chr>} dataset issued date}
 
 \item{released}{\verb{<chr>} dataset released date}
+
+\item{rows}{\verb{<int>} Number of rows}
+
+\item{fields}{\verb{<chr>} Field names}
 }
 \description{
 Current

@@ -17,9 +17,12 @@ Load \code{CurrentProvider} API Endpoint
 }
 \examples{
 provider_dataset("affiliations")
-
 provider_dataset("clinicians")
-
 provider_dataset("utilization")
-
+provider_dataset("utilization")
+provider_dataset("group_mips")
+provider_dataset("group_patient")
+provider_dataset("clin_mips")
+provider_dataset("clin_overall")
+provider_dataset("vgroup_mips")
 }

@@ -38,17 +38,16 @@ ResourcesMain <- new_class(
     url      = class_character,
     files    = new_property(
       class_list,
-      getter   = function(self)
+      getter   = function(self) {
         fload(self@url, query = "/data") |>
         as_df() |>
         fcompute(
           file         = name,
           size         = roundup(fileSize / 1e6),
           ext          = file_ext(downloadURL),
-          downloadurl  = downloadURL
-        ) |>
+          downloadurl  = downloadURL) |>
         roworder(ext, -size)
-    )
+    })
   ),
   validator = function(self)
     if (length(self@url) != 1L)
@@ -84,7 +83,9 @@ CurrentMain <- new_class(
 #' @param issued `<chr>` dataset issued date
 #' @param released `<chr>` dataset released date
 #' @param site `<chr>` dataset site
-#' @param dictionary `<chr>` dataset dictionary
+#' @param identifier `<chr>` dataset identifier
+#' @param rows `<int>` Number of rows
+#' @param fields `<chr>` Field names
 #' @family provider-classes
 #' @autoglobal
 #' @export
@@ -96,22 +97,34 @@ CurrentProvider <- new_class(
       class_character | class_Date,
       setter = function(self, value) {
           self@issued <- as_date(value)
-          self }),
+          self
+          }),
     released = new_property(
       class_character | class_Date,
       setter = function(self, value) {
         self@released <- as_date(value)
-        self }),
-    site = class_character,
-    dictionary  = new_property(
+        self
+        }),
+    identifier = new_property(
       class_character,
+      setter = function(self, value) {
+        self@identifier <- prov_uuid_url(value)
+        self
+      },
       getter = function(self) {
-        prov_uuid_dict(self@identifier) })
+        prov_uuid_url(self@identifier)
+      }
+      ),
+    site = class_character,
+    rows = class_integer,
+    fields = class_character
     )
   )
 
 #' @title CurrentOpen
 #' @rdname Current
+#' @param rows `<int>` Number of rows
+#' @param fields `<chr>` Field names
 #' @family open-classes
 #' @autoglobal
 #' @export
@@ -119,10 +132,18 @@ CurrentOpen <- new_class(
   parent = Current,
   name   = "CurrentOpen",
   properties = list(
-    contact = new_property(
+    identifier = new_property(
       class_character,
-      default = "Open Payments (mailto:openpayments@cms.hhs.gov)"
-      )
+      setter = function(self, value) {
+        self@identifier <- open_uuid_url(value)
+        self
+        },
+      getter = function(self) {
+        open_uuid_url(self@identifier)
+        }
+      ),
+    rows = class_integer,
+    fields = class_character
     )
   )
 
