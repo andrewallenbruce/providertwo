@@ -4,13 +4,13 @@
 \alias{prov_uuid_dict}
 \title{Convert Provider UUID to Data Dictionary Hyperlink}
 \usage{
-prov_uuid_dict(x)
+prov_uuid_dict(uuid)
 }
 \arguments{
-\item{x}{\verb{<chr>} UUID}
+\item{uuid}{\verb{<chr>} endpoint UUID}
 }
 \value{
-\verb{<chr>} URL
+\verb{<chr>} dictionary URL
 }
 \description{
 Convert Provider UUID to Data Dictionary Hyperlink

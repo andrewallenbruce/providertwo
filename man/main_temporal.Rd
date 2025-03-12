@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_main.R
 \name{main_temporal}
 \alias{main_temporal}
-\title{Load Public API \code{Distribution}}
+\title{Load \verb{<TemporalMain>} API Endpoint}
 \usage{
 main_temporal(alias)
 }
@@ -10,10 +10,10 @@ main_temporal(alias)
 \item{alias}{\verb{<chr>} dataset title}
 }
 \value{
-\verb{<Distribution>} object
+\verb{<TemporalMain>} object
 }
 \description{
-Load Public API \code{Distribution}
+Load \verb{<TemporalMain>} API Endpoint
 }
 \examples{
 main_temporal("quality_payment")

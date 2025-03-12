@@ -12,6 +12,4 @@ open_grouped_yearly()
 \description{
 Load Open Payments Grouped by Year
 }
-\examples{
-open_grouped_yearly()
-}
+\keyword{internal}

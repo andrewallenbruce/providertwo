@@ -14,5 +14,4 @@ CMS Provider Catalog
 }
 \examples{
 catalog_provider()
-
 }

@@ -12,6 +12,3 @@ open_research()
 \description{
 Load Open Payments Research Data
 }
-\examples{
-open_research()
-}

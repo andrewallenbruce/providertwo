@@ -12,6 +12,3 @@ open_ownership()
 \description{
 Load Open Payments Ownership Data
 }
-\examples{
-open_ownership()
-}

@@ -65,17 +65,22 @@ alias_main_temporal_group <- function(x) {
 }
 
 #' @noRd
-alias_provider <- function(x) {
+alias_provider_current <- function(x) {
   nswitch(
     x,
     "affiliations",  "Facility Affiliation Data",
     "clinicians",    "National Downloadable File",
     "utilization",   "Utilization Data",
-    "group_mips",    "PY 2022 Group Public Reporting: MIPS Measures and Attestations",
-    "group_patient", "PY 2022 Group Public Reporting: Patient Experience",
-    "clin_mips",     "PY 2022 Clinician Public Reporting: MIPS Measures and Attestations",
-    "clin_overall",  "PY 2022 Clinician Public Reporting: Overall MIPS Performance",
-    "vgroup_mips",   "PY 2022 Virtual Group Public Reporting: MIPS Measures and Attestations",
+    default = NA_character_,
+    nThread = 4L
+  )
+}
+
+#' @noRd
+alias_provider_current_group <- function(x) {
+  nswitch(
+    x,
+    "mips", "^PY 2022",
     default = NA_character_,
     nThread = 4L
   )

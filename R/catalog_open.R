@@ -1,6 +1,6 @@
 #' Get Field Names and Number of Rows from Open Payments Endpoint
-#' @param uuid `<chr>` Endpoint UUID
-#' @returns `<list>` of number of rows and field names
+#' @param uuid `<chr>` endpoint UUID
+#' @returns `<list>` number of rows and field names
 #' @autoglobal
 #' @keywords internal
 #' @export
@@ -27,11 +27,11 @@ open_nrows_fields <- function(uuid) {
 }
 
 #' Join Vector of Download URLs to Main Dataset
-#' @param x data.frame
-#' @returns data.frame
-#' @export
+#' @param x `<data.frame>`
+#' @returns `<data.frame>`
 #' @autoglobal
 #' @keywords internal
+#' @export
 open_add_dlurl <- function(x) {
   add_vars(
     x,
@@ -47,54 +47,26 @@ open_add_dlurl <- function(x) {
     )
 }
 
-#' Clean Open Payments Temporal Data
-#' @param x data.frame
-#' @returns data.frame
-#' @export
-#' @autoglobal
-#' @keywords internal
-open_clean_temp <- function(x) {
-  mtt(x, year = as_int(year)) |>
-    slt(-title, -description) |>
-    roworder(-year)
-}
-
-#' Clean Open Payments Grouped Data
-#' @param x data.frame
-#' @returns data.frame
-#' @export
-#' @autoglobal
-#' @keywords internal
-open_clean_grouped <- function(x) {
-  sbt(x, year != "All", -description) |>
-    mtt(year   = as_int(year),
-        title  = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |>
-    roworder(title, -year)
-}
-
 #' Convert Open Payments UUID to URL
-#' @param x `<chr>` UUID
-#' @returns `<chr>` URL
-#' @export
+#' @param uuid `<chr>` endpoint UUID
+#' @returns `<chr>` endpoint URL
 #' @autoglobal
 #' @keywords internal
-open_uuid_url <- function(x) {
+#' @export
+open_uuid_url <- function(uuid) {
   paste0(
     "https://openpaymentsdata.cms.gov/",
     "api/1/datastore/query/",
-    x,
+    uuid,
     "/0")
 }
 
-
-
-#' Load Open Payments Catalog
+#' Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
-#' @examples
-#' catalog_open2()
 #' @autoglobal
+#' @keywords internal
 #' @export
-catalog_open2 <- function() {
+catalog_open <- function() {
 
   x <- fload(paste0("https://openpaymentsdata.cms.gov",
                     "/api/1/metastore/schemas/dataset/",
@@ -128,12 +100,9 @@ catalog_open2 <- function() {
        temporal = sbt(x, year != "All", -theme) |> mtt(year = as_int(year), title = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |> roworder(title, -year))
 }
 
-#' Load `CurrentOpen` API Endpoint
-#'
+#' Load `<CurrentOpen>` API Endpoint
 #' @param alias `<chr>` endpoint alias
-#'
 #' @returns `<CurrentOpen>` object
-#'
 #' @examples
 #' open_current("prof_cov")
 #' open_current("prof_phys")
@@ -147,11 +116,10 @@ catalog_open2 <- function() {
 #' open_current("pay_nat_group")
 #' open_current("pay_nat_total")
 #' @autoglobal
-#'
 #' @export
 open_current <- function(alias) {
 
-  x <- catalog_open2()$current |>
+  x <- catalog_open()$current |>
     subset_detect(
       title,
       alias_open_current(alias)) |>
@@ -172,9 +140,9 @@ open_current <- function(alias) {
   )
 }
 
-#' Load `TemporalOpen` API Endpoint
+#' Load `<TemporalOpen>` API Endpoint
 #' @param alias `<chr>` dataset title
-#' @returns `<Distribution>` object
+#' @returns `<TemporalOpen>` object
 #' @examples
 #' open_temporal("general")
 #' open_temporal("ownership")
@@ -187,7 +155,8 @@ open_current <- function(alias) {
 #' @autoglobal
 #' @export
 open_temporal <- function(alias) {
-  x <- catalog_open2()$temporal |>
+
+  x <- catalog_open()$temporal |>
     subset_detect(
       title,
       alias_open_temporal(alias))

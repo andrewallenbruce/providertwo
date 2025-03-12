@@ -1,10 +1,34 @@
+#' Clean Open Payments Temporal Data
+#' @param x data.frame
+#' @returns data.frame
+#' @export
+#' @autoglobal
+#' @keywords internal
+open_clean_temp <- function(x) {
+  mtt(x, year = as_int(year)) |>
+    slt(-title, -description) |>
+    roworder(-year)
+}
+
+#' Clean Open Payments Grouped Data
+#' @param x data.frame
+#' @returns data.frame
+#' @export
+#' @autoglobal
+#' @keywords internal
+open_clean_grouped <- function(x) {
+  sbt(x, year != "All", -description) |>
+    mtt(year   = as_int(year),
+        title  = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |>
+    roworder(title, -year)
+}
+
 #' Load Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
-#' @examples
-#' catalog_open()
 #' @autoglobal
 #' @export
-catalog_open <- function() {
+#' @keywords internal
+catalog_open_ <- function() {
   x <- fload(
     paste0(
       "https://openpaymentsdata.cms.gov",
@@ -57,12 +81,11 @@ catalog_open <- function() {
 
 #' Load Open Payments Profile Sets
 #' @returns `<list>` of Open Payments API profile information
-#' @examples
-#' open_profiles()
 #' @autoglobal
 #' @export
+#' @keywords internal
 open_profiles <- function() {
-  s <- subset_detect(catalog_open()$summary,
+  s <- subset_detect(catalog_open_()$summary,
                      title,
                      "^(National|State|Payments|Summary)",
                      TRUE)
@@ -73,12 +96,11 @@ open_profiles <- function() {
 
 #' Load Open Payments Grouped Summaries
 #' @returns `<list>` of Open Payments API grouped information
-#' @examples
-#' open_grouped_summary()
 #' @autoglobal
 #' @export
+#' @keywords internal
 open_grouped_summary <- function() {
-  s <- subset_detect(catalog_open()$summary,
+  s <- subset_detect(catalog_open_()$summary,
                      title,
                      "^(National|State|Payments|Summary)")
 
@@ -88,16 +110,15 @@ open_grouped_summary <- function() {
 
 #' Load Open Payments Grouped by Year
 #' @returns `<list>` of Open Payments API grouped information
-#' @examples
-#' open_grouped_yearly()
 #' @autoglobal
 #' @export
+#' @keywords internal
 open_grouped_yearly <- function() {
-  g <- slt(catalog_open()$grouped, -modified) |>
+  g <- slt(catalog_open_()$grouped, -modified) |>
     rsplit( ~ title)
 
   list(
-    modified                = fmax(catalog_open()$grouped$modified),
+    modified                = fmax(catalog_open_()$grouped$modified),
     recipient_nature        = g$`Payments Grouped by Covered Recipient and Nature of Payments`,
     recipient_entity        = g$`Payments Grouped by Covered Recipient and Reporting Entities`,
     entity_nature           = g$`Payments Grouped by Reporting Entities and Nature of Payments`,
@@ -108,13 +129,12 @@ open_grouped_yearly <- function() {
 
 #' Load Open Payments General Data
 #' @returns `<list>` of Open Payments API general data
-#' @examples
-#' open_general()
 #' @autoglobal
 #' @export
+#' @keywords internal
 open_general <- function() {
 
-  x <- catalog_open()$general
+  x <- catalog_open_()$general
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 
@@ -132,13 +152,11 @@ open_general <- function() {
 
 #' Load Open Payments Research Data
 #' @returns `<list>` of Open Payments API research data
-#' @examples
-#' open_research()
 #' @autoglobal
 #' @export
 open_research <- function() {
 
-  x <- catalog_open()$research
+  x <- catalog_open_()$research
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 
@@ -156,13 +174,11 @@ open_research <- function() {
 
 #' Load Open Payments Ownership Data
 #' @returns `<list>` of Open Payments API ownership data
-#' @examples
-#' open_ownership()
 #' @autoglobal
 #' @export
 open_ownership <- function() {
 
-  x <- catalog_open()$research
+  x <- catalog_open_()$research
 
   q <- open_nrows_fields(delist(ss(x, 1, 3)))
 

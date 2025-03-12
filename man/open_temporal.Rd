@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_open.R
 \name{open_temporal}
 \alias{open_temporal}
-\title{Load \code{TemporalOpen} API Endpoint}
+\title{Load \verb{<TemporalOpen>} API Endpoint}
 \usage{
 open_temporal(alias)
 }
@@ -10,10 +10,10 @@ open_temporal(alias)
 \item{alias}{\verb{<chr>} dataset title}
 }
 \value{
-\verb{<Distribution>} object
+\verb{<TemporalOpen>} object
 }
 \description{
-Load \code{TemporalOpen} API Endpoint
+Load \verb{<TemporalOpen>} API Endpoint
 }
 \examples{
 open_temporal("general")

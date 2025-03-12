@@ -12,6 +12,4 @@ open_profiles()
 \description{
 Load Open Payments Profile Sets
 }
-\examples{
-open_profiles()
-}
+\keyword{internal}

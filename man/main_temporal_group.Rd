@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_main.R
 \name{main_temporal_group}
 \alias{main_temporal_group}
-\title{Load Public API \code{Distribution}}
+\title{Load \verb{<TemporalMainGroup>} API Endpoints}
 \usage{
 main_temporal_group(alias)
 }
@@ -10,10 +10,10 @@ main_temporal_group(alias)
 \item{alias}{\verb{<chr>} dataset title}
 }
 \value{
-\verb{<Distribution>} object
+\verb{<TemporalMainGroup>} object
 }
 \description{
-Load Public API \code{Distribution}
+Load \verb{<TemporalMainGroup>} API Endpoints
 }
 \examples{
 main_temporal_group("utilization")

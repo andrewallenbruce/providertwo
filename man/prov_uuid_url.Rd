@@ -4,13 +4,13 @@
 \alias{prov_uuid_url}
 \title{Convert Provider UUID to URL}
 \usage{
-prov_uuid_url(x)
+prov_uuid_url(uuid)
 }
 \arguments{
-\item{x}{\verb{<chr>} UUID}
+\item{uuid}{\verb{<chr>} endpoint UUID}
 }
 \value{
-\verb{<chr>} URL
+\verb{<chr>} endpoint URL
 }
 \description{
 Convert Provider UUID to URL

@@ -12,6 +12,4 @@ open_general()
 \description{
 Load Open Payments General Data
 }
-\examples{
-open_general()
-}
+\keyword{internal}

@@ -7,10 +7,10 @@
 main_nrows_fields(url)
 }
 \arguments{
-\item{url}{\verb{<chr>} Endpoint UUID}
+\item{url}{\verb{<chr>} endpoint URL}
 }
 \value{
-\verb{<list>} of number of rows and field names
+\verb{<list>} number of rows and field names
 }
 \description{
 Get Field Names and Number of Rows from Main Endpoint

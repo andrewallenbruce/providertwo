@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_main.R
 \name{main_current}
 \alias{main_current}
-\title{Load Main API \code{CurrentMain}}
+\title{Load \verb{<CurrentMain>} API Endpoint}
 \usage{
 main_current(alias)
 }
@@ -13,7 +13,7 @@ main_current(alias)
 \verb{<CurrentMain>} object
 }
 \description{
-Load Main API \code{CurrentMain}
+Load \verb{<CurrentMain>} API Endpoint
 }
 \examples{
 main_current("enrollees")

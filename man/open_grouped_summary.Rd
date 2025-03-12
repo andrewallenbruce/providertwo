@@ -12,6 +12,4 @@ open_grouped_summary()
 \description{
 Load Open Payments Grouped Summaries
 }
-\examples{
-open_grouped_summary()
-}
+\keyword{internal}

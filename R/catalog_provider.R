@@ -1,12 +1,8 @@
 #' CMS Provider Catalog
-#'
 #' @returns `<list>` of Provider API catalog information
-#'
 #' @examples
 #' catalog_provider()
-#'
 #' @autoglobal
-#'
 #' @export
 catalog_provider <- function() {
 
@@ -41,7 +37,7 @@ catalog_provider <- function() {
       released,
       identifier,
       contact,
-      downloadurl,
+      download = downloadurl,
       site = landingPage
     ) |>
     roworder(theme, title) |>
@@ -63,41 +59,41 @@ catalog_provider <- function() {
 }
 
 #' Convert Provider UUID to URL
-#' @param x `<chr>` UUID
-#' @returns `<chr>` URL
+#' @param uuid `<chr>` endpoint UUID
+#' @returns `<chr>` endpoint URL
 #' @export
 #' @autoglobal
 #' @keywords internal
-prov_uuid_url <- function(x) {
+prov_uuid_url <- function(uuid) {
   paste0(
     "https://data.cms.gov/",
     "provider-data/api/1/",
     "datastore/query/",
-    x, "/0")
+    uuid, "/0")
 }
 
 #' Convert Provider UUID to Data Dictionary Hyperlink
-#' @param x `<chr>` UUID
-#' @returns `<chr>` URL
+#' @param uuid `<chr>` endpoint UUID
+#' @returns `<chr>` dictionary URL
 #' @export
 #' @autoglobal
 #' @keywords internal
-prov_uuid_dict <- function(x) {
+prov_uuid_dict <- function(uuid) {
   paste0(
     "https://data.cms.gov/",
     "provider-data/dataset/",
-    x, "#data-dictionary")
+    uuid, "#data-dictionary")
 }
 
 #' Get Field Names and Number of Rows from Provider Endpoint
-#' @param url `<chr>` Endpoint UUID
-#' @returns `<list>` of number of rows and field names
+#' @param uuid `<chr>` endpoint UUID
+#' @returns `<list>` number of rows and field names
 #' @autoglobal
 #' @keywords internal
 #' @export
-prov_nrows_fields <- function(url) {
+prov_nrows_fields <- function(uuid) {
 
-  x <- url |>
+  x <- uuid |>
     prov_uuid_url() |>
     request() |>
     req_url_query(
@@ -117,7 +113,7 @@ prov_nrows_fields <- function(url) {
 
 }
 
-#' Load `CurrentProvider` API Endpoint
+#' Load `<CurrentProvider>` API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -127,11 +123,6 @@ prov_nrows_fields <- function(url) {
 #' provider_current("affiliations")
 #' provider_current("clinicians")
 #' provider_current("utilization")
-#' provider_current("group_mips")
-#' provider_current("group_patient")
-#' provider_current("clin_mips")
-#' provider_current("clin_overall")
-#' provider_current("vgroup_mips")
 #' @autoglobal
 #'
 #' @export
@@ -140,7 +131,7 @@ provider_current <- function(alias) {
   x <- catalog_provider()$doctors_and_clinicians |>
     subset_detect(
       title,
-      alias_provider(alias)) |>
+      alias_provider_current(alias)) |>
     c()
 
   q <- prov_nrows_fields(x$identifier)
@@ -151,7 +142,7 @@ provider_current <- function(alias) {
     contact     = x$contact,
     modified    = x$modified,
     uuid        = x$identifier,
-    download    = x$downloadurl,
+    download    = x$download,
     issued      = x$issued,
     released    = x$released,
     site        = x$site,
@@ -159,4 +150,19 @@ provider_current <- function(alias) {
     fields      = q$fields,
     pages       = q$pages
   )
+}
+
+#' Load `<CurrentProviderGroup>` API Endpoint
+#' @param alias `<chr>` endpoint alias
+#' @returns `<CurrentProviderGroup>` object
+#' @examples
+#' provider_current_group("mips")
+#' @autoglobal
+#' @export
+provider_current_group <- function(alias) {
+
+  catalog_provider()$doctors_and_clinicians |>
+    subset_detect(
+      title,
+      alias_provider_current_group(alias))
 }

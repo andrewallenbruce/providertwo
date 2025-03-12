@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_provider.R
 \name{provider_current}
 \alias{provider_current}
-\title{Load \code{CurrentProvider} API Endpoint}
+\title{Load \verb{<CurrentProvider>} API Endpoint}
 \usage{
 provider_current(alias)
 }
@@ -13,15 +13,10 @@ provider_current(alias)
 \verb{<CurrentProvider>} object
 }
 \description{
-Load \code{CurrentProvider} API Endpoint
+Load \verb{<CurrentProvider>} API Endpoint
 }
 \examples{
 provider_current("affiliations")
 provider_current("clinicians")
 provider_current("utilization")
-provider_current("group_mips")
-provider_current("group_patient")
-provider_current("clin_mips")
-provider_current("clin_overall")
-provider_current("vgroup_mips")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_open.R
 \name{open_current}
 \alias{open_current}
-\title{Load \code{CurrentOpen} API Endpoint}
+\title{Load \verb{<CurrentOpen>} API Endpoint}
 \usage{
 open_current(alias)
 }
@@ -13,7 +13,7 @@ open_current(alias)
 \verb{<CurrentOpen>} object
 }
 \description{
-Load \code{CurrentOpen} API Endpoint
+Load \verb{<CurrentOpen>} API Endpoint
 }
 \examples{
 open_current("prof_cov")

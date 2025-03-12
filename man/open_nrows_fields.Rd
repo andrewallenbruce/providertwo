@@ -7,10 +7,10 @@
 open_nrows_fields(uuid)
 }
 \arguments{
-\item{uuid}{\verb{<chr>} Endpoint UUID}
+\item{uuid}{\verb{<chr>} endpoint UUID}
 }
 \value{
-\verb{<list>} of number of rows and field names
+\verb{<list>} number of rows and field names
 }
 \description{
 Get Field Names and Number of Rows from Open Payments Endpoint

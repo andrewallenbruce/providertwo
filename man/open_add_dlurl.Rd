@@ -7,10 +7,10 @@
 open_add_dlurl(x)
 }
 \arguments{
-\item{x}{data.frame}
+\item{x}{\verb{<data.frame>}}
 }
 \value{
-data.frame
+\verb{<data.frame>}
 }
 \description{
 Join Vector of Download URLs to Main Dataset
