@@ -150,9 +150,36 @@ catalog_main2 <- function() {
   list(current = mn, temporal = tmp)
 }
 
-#' Load Main API `Dataset`
+#' Get Field Names and Number of Rows from Main Endpoint
+#' @param url `<chr>` Endpoint UUID
+#' @returns `<list>` of number of rows and field names
+#' @autoglobal
+#' @keywords internal
+#' @export
+main_nrows_fields <- function(url) {
+
+  x <- url |>
+    request() |>
+    req_url_query(
+      schema  = "false",
+      keys    = "false",
+      results = "true",
+      count   = "true",
+      offset  = 0,
+      size    = 1
+    ) |>
+    req_perform() |>
+    resp_simple_json()
+
+  list(rows   = x$meta$total_rows,
+       fields = x$meta$headers,
+       pages  = offset_length(x$meta$total_rows, 5000L))
+
+}
+
+#' Load Main API `CurrentMain`
 #' @param alias `<chr>` endpoint alias
-#' @returns `<Dataset>` object
+#' @returns `<CurrentMain>` object
 #' @examples
 #' main_current("enrollees")
 #' main_current("opt_out")
@@ -162,12 +189,40 @@ catalog_main2 <- function() {
 #' main_current("laboratories")
 #' main_current("crosswalk")
 #' main_current("rbcs")
+#' main_current("facilities")
+#' main_current("home_health")
+#' main_current("hospice")
+#' main_current("dialysis")
+#' main_current("snf")
 #' @autoglobal
 #' @export
 main_current <- function(alias) {
-  catalog_main2()$current |>
-    subset_detect(title, alias_main_current(alias)) |>
+
+  x <- catalog_main2()$current |>
+    subset_detect(
+      title,
+      alias_main_current(alias)) |>
     c()
+
+  q <- main_nrows_fields(x$identifier)
+
+  CurrentMain(
+    title       = x$title,
+    description = x$description,
+    contact     = x$contact,
+    modified    = x$modified,
+    periodicity = x$periodicity,
+    temporal    = x$temporal,
+    identifier  = x$identifier,
+    resources   = class_resources(x$resources),
+    rows        = q$rows,
+    fields      = q$fields,
+    pages       = q$pages,
+    download    = x$download,
+    dictionary  = x$dictionary,
+    site        = x$site,
+    references  = x$references
+  )
 }
 
 #' Load Public API `Distribution`

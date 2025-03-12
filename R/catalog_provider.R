@@ -124,19 +124,18 @@ prov_nrows_fields <- function(url) {
 #' @returns `<CurrentProvider>` object
 #'
 #' @examples
-#' provider_dataset("affiliations")
-#' provider_dataset("clinicians")
-#' provider_dataset("utilization")
-#' provider_dataset("utilization")
-#' provider_dataset("group_mips")
-#' provider_dataset("group_patient")
-#' provider_dataset("clin_mips")
-#' provider_dataset("clin_overall")
-#' provider_dataset("vgroup_mips")
+#' provider_current("affiliations")
+#' provider_current("clinicians")
+#' provider_current("utilization")
+#' provider_current("group_mips")
+#' provider_current("group_patient")
+#' provider_current("clin_mips")
+#' provider_current("clin_overall")
+#' provider_current("vgroup_mips")
 #' @autoglobal
 #'
 #' @export
-provider_dataset <- function(alias) {
+provider_current <- function(alias) {
 
   x <- catalog_provider()$doctors_and_clinicians |>
     subset_detect(

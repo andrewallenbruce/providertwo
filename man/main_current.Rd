@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_main.R
 \name{main_current}
 \alias{main_current}
-\title{Load Main API \code{Dataset}}
+\title{Load Main API \code{CurrentMain}}
 \usage{
 main_current(alias)
 }
@@ -10,10 +10,10 @@ main_current(alias)
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-\verb{<Dataset>} object
+\verb{<CurrentMain>} object
 }
 \description{
-Load Main API \code{Dataset}
+Load Main API \code{CurrentMain}
 }
 \examples{
 main_current("enrollees")
@@ -24,4 +24,9 @@ main_current("hospitals")
 main_current("laboratories")
 main_current("crosswalk")
 main_current("rbcs")
+main_current("facilities")
+main_current("home_health")
+main_current("hospice")
+main_current("dialysis")
+main_current("snf")
 }
