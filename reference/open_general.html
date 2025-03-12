@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9109</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9110</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,134 +53,6 @@
     <p><code>&lt;list&gt;</code> of Open Payments API general data</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_general</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "General Payment Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "All general (non-research, non-ownership related) payments from the program year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-01-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $years</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2017 2018 2019 2020 2021 2022 2023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $nrows</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 14607336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $nfields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 91</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $endpoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 fb3a65aa-c901-4a38-a813-b04b00dfa2a9 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 df01c2f8-dc1f-4e79-96cb-8208beaf143c https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 0380bbeb-aea1-58b6-b708-829f92a48202 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 a08c4b30-5cf3-4948-ad40-36f404619019 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 4e54dd6c-30f8-4f86-86a7-3c109a89528e https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 f003634c-c103-568f-876c-73017fa83be0 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 74e3a32c-e8f8-595c-899c-35f9bffa828f https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "change_type"                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "covered_recipient_type"                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "teaching_hospital_ccn"                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "teaching_hospital_id"                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "teaching_hospital_name"                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "covered_recipient_profile_id"                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "covered_recipient_npi"                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "covered_recipient_first_name"                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "covered_recipient_middle_name"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "covered_recipient_last_name"                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "covered_recipient_name_suffix"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "recipient_primary_business_street_address_line1"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "recipient_primary_business_street_address_line2"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "recipient_city"                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "recipient_state"                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "recipient_zip_code"                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "recipient_country"                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "recipient_province"                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "recipient_postal_code"                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "covered_recipient_primary_type_1"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "covered_recipient_primary_type_2"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "covered_recipient_primary_type_3"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "covered_recipient_primary_type_4"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "covered_recipient_primary_type_5"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "covered_recipient_primary_type_6"                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "covered_recipient_specialty_1"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "covered_recipient_specialty_2"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "covered_recipient_specialty_3"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "covered_recipient_specialty_4"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "covered_recipient_specialty_5"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "covered_recipient_specialty_6"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "covered_recipient_license_state_code1"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "covered_recipient_license_state_code2"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "covered_recipient_license_state_code3"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "covered_recipient_license_state_code4"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "covered_recipient_license_state_code5"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "submitting_applicable_manufacturer_or_applicable_gpo_name"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "applicable_manufacturer_or_applicable_gpo_making_payment_id"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "applicable_manufacturer_or_applicable_gpo_making_payment_name"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "applicable_manufacturer_or_applicable_gpo_making_payment_state"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "applicable_manufacturer_or_applicable_gpo_making_payment_country"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [42] "total_amount_of_payment_usdollars"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "date_of_payment"                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [44] "number_of_payments_included_in_total_amount"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "form_of_payment_or_transfer_of_value"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "nature_of_payment_or_transfer_of_value"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "city_of_travel"                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [48] "state_of_travel"                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "country_of_travel"                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [50] "physician_ownership_indicator"                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "third_party_payment_recipient_indicator"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "name_of_third_party_entity_receiving_payment_or_transfer_of_ccfc"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "charity_indicator"                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [54] "third_party_equals_covered_recipient_indicator"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "contextual_information"                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "delay_in_publication_indicator"                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "record_id"                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [58] "dispute_status_for_publication"                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "related_product_indicator"                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [60] "covered_or_noncovered_indicator_1"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "indicate_drug_or_biological_or_device_or_medical_supply_1"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [62] "product_category_or_therapeutic_area_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [63] "name_of_drug_or_biological_or_device_or_medical_supply_1"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [64] "associated_drug_or_biological_ndc_1"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [65] "associated_device_or_medical_supply_pdi_1"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [66] "covered_or_noncovered_indicator_2"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "indicate_drug_or_biological_or_device_or_medical_supply_2"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [68] "product_category_or_therapeutic_area_2"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [69] "name_of_drug_or_biological_or_device_or_medical_supply_2"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [70] "associated_drug_or_biological_ndc_2"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] "associated_device_or_medical_supply_pdi_2"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [72] "covered_or_noncovered_indicator_3"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [73] "indicate_drug_or_biological_or_device_or_medical_supply_3"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [74] "product_category_or_therapeutic_area_3"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [75] "name_of_drug_or_biological_or_device_or_medical_supply_3"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [76] "associated_drug_or_biological_ndc_3"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [77] "associated_device_or_medical_supply_pdi_3"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [78] "covered_or_noncovered_indicator_4"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [79] "indicate_drug_or_biological_or_device_or_medical_supply_4"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [80] "product_category_or_therapeutic_area_4"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [81] "name_of_drug_or_biological_or_device_or_medical_supply_4"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [82] "associated_drug_or_biological_ndc_4"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [83] "associated_device_or_medical_supply_pdi_4"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [84] "covered_or_noncovered_indicator_5"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [85] "indicate_drug_or_biological_or_device_or_medical_supply_5"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [86] "product_category_or_therapeutic_area_5"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [87] "name_of_drug_or_biological_or_device_or_medical_supply_5"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [88] "associated_drug_or_biological_ndc_5"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [89] "associated_device_or_medical_supply_pdi_5"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [90] "program_year"                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [91] "payment_publication_date"                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

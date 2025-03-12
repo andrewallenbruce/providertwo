@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9109</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9110</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,74 +53,6 @@
     <p><code>&lt;list&gt;</code> of Open Payments API grouped information</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_grouped_yearly</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $modified</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-01-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $recipient_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 4017acfa-0eeb-4b8a-b68c-3b41e779c4a2 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 686b765e-f4b7-4d35-a050-fb5af926dbbe https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 d35243be-55cb-5087-931e-a294e0e0917f https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 1fd2be47-cb72-435a-b2df-142f38e99a05 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 0ff0961f-8295-477c-8044-85b9a0753893 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 07c1e377-eb5b-4830-ad9b-61f04258036e https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 5aad28fa-9785-492e-9a92-8d7b595bc43b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $recipient_entity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 4fbf0094-3c7b-425a-aabe-5778052559ad https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 d2d87f39-b117-4ac8-9f36-a088fb22a25b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 7c9ebb83-8f88-5462-ab7d-1925b0113cfc https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 78ad9c8d-d7ae-4066-bf2d-a66e3c9d6e3b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 63c6fc23-1744-4040-babe-1af39a57c598 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 b6f534a9-ae05-4e78-9acf-c48b79fcee13 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 120f42a3-4f3c-48b2-bf32-4c852390c41a https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $entity_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 72008dab-0953-4226-a4cd-9f1872e8170d https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 cedcd327-4e5d-43f9-8eb1-c11850fa7c66 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 a2714020-f599-52b0-b12b-8f5b510e547a https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 7dfe6254-2aee-454f-9ea5-df611a9a7b55 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 7f3bcc65-6f34-42de-8e63-7611e0a6f67b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 76d91818-7015-4f94-a5b8-6f0dbf4fe206 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 8ab7b1de-c6da-4613-929e-5fbd27ea1032 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $entity_recipient_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 29c23b6a-dd1e-4d82-a606-8d792c7f229e https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 171e369a-6f25-49eb-aa36-37f0a497e5ca https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 f240c437-9d8a-5be7-95a5-8ce8e0d970bf https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 532df191-473f-4bcc-9056-a6260b9437b5 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 6c8251d4-3839-444b-810b-5bf035a23326 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 c1ce263b-0625-4ce6-9e81-62a7b3708f4b https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 d3d4880a-be30-48ca-9a9b-6d8828f9c852 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $recipient_nature_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year identifier                           downloadurl                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>023 f83aed3a-7504-4fca-aabb-ac0338c79688 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>022 c64c40af-23a5-4419-8b64-692684483664 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>021 7fad5b56-2cfe-52ab-ac4d-3200780287d4 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>020 7f3055b6-73d8-5aff-be15-55873552e2cd https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>019 37fba404-224d-5bad-9c62-527d9316e516 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>018 6dd14c90-a6bd-52f8-9629-4d27fc02096d https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>017 4013f179-6692-5ae8-8c51-ed7cc4b9bd17 https://download.cms.gov/openpayme…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
