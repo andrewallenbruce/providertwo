@@ -1,53 +1,54 @@
 #' @title Current
 #' @name Current
-#' @param title `<chr>` dataset title
-#' @param description `<chr>` dataset description
-#' @param contact `<chr>` dataset contact
-#' @param modified `<chr>` dataset modified date
-#' @param identifier `<chr>` dataset identifier
-#' @param download `<chr>` dataset download URL
-#' @family base-classes
+#' @param title `<chr>` title
+#' @param description `<chr>` description
+#' @param contact `<chr>` contact
+#' @param modified `<chr>` date last modified
+#' @param identifier `<chr>` uuid
+#' @param rows `<int>` number of rows
+#' @param fields `<chr>` field names
+#' @param pages `<int>` number of pages
+#' @param download `<chr>` download URL
+#' @family classes
 #' @autoglobal
 #' @export
 Current <- new_class(
-  name = "Current",
-  properties = list(
+  name          = "Current",
+  properties    = list(
     title       = class_character,
     description = class_character,
     contact     = class_character,
-    modified    = new_property(
-      class_character | class_Date,
-      setter = function(self, value) {
-        self@modified <- as_date(value)
-        self
-        }),
+    modified    = class_character | class_Date,
     identifier  = class_character,
+    rows        = class_integer,
+    fields      = class_character,
+    pages       = class_integer,
     download    = class_character
   )
 )
 
-#' @title ResourcesMain
-#' @rdname Current
+#' @title class_resources
 #' @param url `<chr>` dataset URL
-#' @family main-classes
+#' @family classes
 #' @autoglobal
 #' @export
-ResourcesMain <- new_class(
-  name       = "ResourcesMain",
+class_resources <- new_class(
+  name = "class_resources",
   properties = list(
-    url      = class_character,
-    files    = new_property(
+    url = class_character,
+    files = new_property(
       class_list,
-      getter   = function(self) {
+      getter = function(self) {
         fload(self@url, query = "/data") |>
-        as_df() |>
-        fcompute(
-          file         = name,
-          size         = roundup(fileSize / 1e6),
-          ext          = file_ext(downloadURL),
-          downloadurl  = downloadURL) |>
-        roworder(ext, -size)
-    })
+          fcompute(
+            file = name,
+            size = roundup(fileSize / 1e6),
+            ext = file_ext(downloadURL),
+            download = downloadURL
+          ) |>
+          roworder(ext, -size)
+      }
+    )
   ),
   validator = function(self)
     if (length(self@url) != 1L)
@@ -56,13 +57,13 @@ ResourcesMain <- new_class(
 
 #' @title CurrentMain
 #' @rdname Current
-#' @param temporal `<chr>` dataset temporal
-#' @param periodicity `<chr>` dataset periodicity
-#' @param resources `<ResourcesMain>` dataset resources
-#' @param dictionary `<chr>` dataset dictionary
-#' @param site `<chr>` dataset site
-#' @param references `<chr>` dataset references
-#' @family main-classes
+#' @param temporal `<chr>` temporal
+#' @param periodicity `<chr>` periodicity
+#' @param resources `<chr>` resources URL
+#' @param dictionary `<chr>` dictionary
+#' @param site `<chr>` landing site
+#' @param references `<chr>` references link
+#' @family classes
 #' @autoglobal
 #' @export
 CurrentMain <- new_class(
@@ -71,7 +72,7 @@ CurrentMain <- new_class(
   properties = list(
     temporal    = class_character,
     periodicity = class_character,
-    resources   = ResourcesMain,
+    resources   = class_resources,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
@@ -80,70 +81,37 @@ CurrentMain <- new_class(
 
 #' @title CurrentProvider
 #' @rdname Current
-#' @param issued `<chr>` dataset issued date
-#' @param released `<chr>` dataset released date
-#' @param site `<chr>` dataset site
-#' @param identifier `<chr>` dataset identifier
-#' @param rows `<int>` Number of rows
-#' @param fields `<chr>` Field names
-#' @family provider-classes
+#' @param issued `<chr>` date issued
+#' @param released `<chr>` date released
+#' @param uuid `<chr>` uuid
+#' @param site `<chr>` landing site
+#' @family classes
 #' @autoglobal
 #' @export
 CurrentProvider <- new_class(
   parent = Current,
-  name   = "CurrentProvider",
+  name = "CurrentProvider",
   properties = list(
-    issued = new_property(
-      class_character | class_Date,
-      setter = function(self, value) {
-          self@issued <- as_date(value)
-          self
-          }),
-    released = new_property(
-      class_character | class_Date,
-      setter = function(self, value) {
-        self@released <- as_date(value)
-        self
-        }),
-    identifier = new_property(
-      class_character,
-      setter = function(self, value) {
-        self@identifier <- prov_uuid_url(value)
-        self
-      },
-      getter = function(self) {
-        prov_uuid_url(self@identifier)
-      }
-      ),
-    site = class_character,
-    rows = class_integer,
-    fields = class_character
-    )
+    issued = class_character | class_Date,
+    released = class_character | class_Date,
+    uuid = class_character,
+    identifier = new_property(class_character, getter = function(self) prov_uuid_url(self@uuid)),
+    site = class_character
   )
+)
 
 #' @title CurrentOpen
 #' @rdname Current
-#' @param rows `<int>` Number of rows
-#' @param fields `<chr>` Field names
-#' @family open-classes
+#' @param uuid `<chr>` uuid
+#' @family classes
 #' @autoglobal
 #' @export
 CurrentOpen <- new_class(
   parent = Current,
   name   = "CurrentOpen",
   properties = list(
-    identifier = new_property(
-      class_character,
-      setter = function(self, value) {
-        self@identifier <- open_uuid_url(value)
-        self
-        },
-      getter = function(self) {
-        open_uuid_url(self@identifier)
-        }
-      ),
-    rows = class_integer,
-    fields = class_character
+    uuid = class_character,
+    identifier = new_property(class_character, getter = function(self) open_uuid_url(self@uuid))
     )
   )
 
@@ -160,15 +128,10 @@ CurrentOpen <- new_class(
 Temporal <- new_class(
   name = "Temporal",
   properties = list(
-    title       = class_character,
+    title = class_character,
     description = class_character,
-    contact     = class_character,
-    modified    = new_property(
-      class_character | class_Date,
-      setter = function(self, value) {
-        self@modified <- as_date(value)
-        self
-      }),
+    contact = class_character,
+    modified = class_character | class_Date,
     endpoints = class_list
   )
 )

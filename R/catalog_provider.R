@@ -111,7 +111,9 @@ prov_nrows_fields <- function(url) {
     req_perform() |>
     resp_simple_json()
 
-  list(rows = x$count, fields = x$query$properties)
+  list(rows   = x$count,
+       fields = x$query$properties,
+       pages  = offset_length(x$count, 2000L))
 
 }
 
@@ -149,12 +151,13 @@ provider_dataset <- function(alias) {
     description = x$description,
     contact     = x$contact,
     modified    = x$modified,
-    identifier  = x$identifier,
+    uuid        = x$identifier,
     download    = x$downloadurl,
     issued      = x$issued,
     released    = x$released,
     site        = x$site,
     rows        = q$rows,
-    fields      = q$fields
+    fields      = q$fields,
+    pages       = q$pages
   )
 }

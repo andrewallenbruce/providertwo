@@ -2,7 +2,6 @@
 % Please edit documentation in R/S7_backend.R
 \name{Current}
 \alias{Current}
-\alias{ResourcesMain}
 \alias{CurrentMain}
 \alias{CurrentProvider}
 \alias{CurrentOpen}
@@ -14,10 +13,11 @@ Current(
   contact = character(0),
   modified = character(0),
   identifier = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
   download = character(0)
 )
-
-ResourcesMain(url = character(0))
 
 CurrentMain(
   title = character(0),
@@ -25,10 +25,13 @@ CurrentMain(
   contact = character(0),
   modified = character(0),
   identifier = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
   download = character(0),
   temporal = character(0),
   periodicity = character(0),
-  resources = ResourcesMain(),
+  resources = class_resources(),
   dictionary = character(0),
   site = character(0),
   references = character(0)
@@ -40,12 +43,14 @@ CurrentProvider(
   contact = character(0),
   modified = character(0),
   identifier = character(0),
+  rows = integer(0),
+  fields = character(0),
+  pages = integer(0),
   download = character(0),
   issued = character(0),
   released = character(0),
-  site = character(0),
-  rows = integer(0),
-  fields = character(0)
+  uuid = character(0),
+  site = character(0)
 )
 
 CurrentOpen(
@@ -54,50 +59,52 @@ CurrentOpen(
   contact = character(0),
   modified = character(0),
   identifier = character(0),
-  download = character(0),
   rows = integer(0),
-  fields = character(0)
+  fields = character(0),
+  pages = integer(0),
+  download = character(0),
+  uuid = character(0)
 )
 }
 \arguments{
-\item{title}{\verb{<chr>} dataset title}
+\item{title}{\verb{<chr>} title}
 
-\item{description}{\verb{<chr>} dataset description}
+\item{description}{\verb{<chr>} description}
 
-\item{contact}{\verb{<chr>} dataset contact}
+\item{contact}{\verb{<chr>} contact}
 
-\item{modified}{\verb{<chr>} dataset modified date}
+\item{modified}{\verb{<chr>} date last modified}
 
-\item{identifier}{\verb{<chr>} dataset identifier}
+\item{identifier}{\verb{<chr>} uuid}
 
-\item{download}{\verb{<chr>} dataset download URL}
+\item{rows}{\verb{<int>} number of rows}
 
-\item{url}{\verb{<chr>} dataset URL}
+\item{fields}{\verb{<chr>} field names}
 
-\item{temporal}{\verb{<chr>} dataset temporal}
+\item{pages}{\verb{<int>} number of pages}
 
-\item{periodicity}{\verb{<chr>} dataset periodicity}
+\item{download}{\verb{<chr>} download URL}
 
-\item{resources}{\verb{<ResourcesMain>} dataset resources}
+\item{temporal}{\verb{<chr>} temporal}
 
-\item{dictionary}{\verb{<chr>} dataset dictionary}
+\item{periodicity}{\verb{<chr>} periodicity}
 
-\item{site}{\verb{<chr>} dataset site}
+\item{resources}{\verb{<chr>} resources URL}
 
-\item{references}{\verb{<chr>} dataset references}
+\item{dictionary}{\verb{<chr>} dictionary}
 
-\item{issued}{\verb{<chr>} dataset issued date}
+\item{site}{\verb{<chr>} landing site}
 
-\item{released}{\verb{<chr>} dataset released date}
+\item{references}{\verb{<chr>} references link}
 
-\item{rows}{\verb{<int>} Number of rows}
+\item{issued}{\verb{<chr>} date issued}
 
-\item{fields}{\verb{<chr>} Field names}
+\item{released}{\verb{<chr>} date released}
+
+\item{uuid}{\verb{<chr>} uuid}
 }
 \description{
 Current
-
-ResourcesMain
 
 CurrentMain
 
@@ -106,19 +113,16 @@ CurrentProvider
 CurrentOpen
 }
 \seealso{
-Other base-classes: 
-\code{\link{Temporal}()}
+Other classes: 
+\code{\link{class_resources}()}
 
-Other main-classes: 
-\code{\link{Temporal}()}
+Other classes: 
+\code{\link{class_resources}()}
 
-Other main-classes: 
-\code{\link{Temporal}()}
+Other classes: 
+\code{\link{class_resources}()}
 
-Other open-classes: 
-\code{\link{Temporal}()}
+Other classes: 
+\code{\link{class_resources}()}
 }
-\concept{base-classes}
-\concept{main-classes}
-\concept{open-classes}
-\concept{provider-classes}
+\concept{classes}

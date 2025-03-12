@@ -70,22 +70,6 @@ TemporalOpen
 
 TemporalOpenGroup
 }
-\seealso{
-Other base-classes: 
-\code{\link{Current}()}
-
-Other main-classes: 
-\code{\link{Current}()}
-
-Other main-classes: 
-\code{\link{Current}()}
-
-Other open-classes: 
-\code{\link{Current}()}
-
-Other open-classes: 
-\code{\link{Current}()}
-}
 \concept{base-classes}
 \concept{main-classes}
 \concept{open-classes}

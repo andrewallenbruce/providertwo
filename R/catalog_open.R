@@ -20,7 +20,9 @@ open_nrows_fields <- function(uuid) {
     req_perform() |>
     resp_simple_json()
 
-  list(rows = x$count, fields = x$query$properties)
+  list(rows   = x$count,
+       fields = x$query$properties,
+       pages  = offset_length(x$count, 500L))
 
 }
 
@@ -217,10 +219,11 @@ open_current <- function(alias) {
     description = x$description,
     contact     = x$contact,
     modified    = x$modified,
-    identifier  = x$identifier,
+    uuid        = x$identifier,
     download    = x$download,
     rows        = q$rows,
-    fields      = q$fields
+    fields      = q$fields,
+    pages       = q$pages
   )
 }
 
