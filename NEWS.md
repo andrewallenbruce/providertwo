@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9115 (2025-03-13)
+
+* Open classes
+* Build readme.Rmd
+
+
 # providertwo 0.0.0.9114 (2025-03-13)
 
 * main catalog
