@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9113 (2025-03-13)
+
+* Streamlining backend
+
+
 # providertwo 0.0.0.9112 (2025-03-13)
 
 * testing custom constructor
