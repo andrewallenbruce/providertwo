@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{CurrentMain}
 \alias{CurrentMain}
-\title{API Endpoint Current Object (Main)}
+\title{Main API Endpoint (Current)}
 \usage{
 CurrentMain(
   title = character(0),
@@ -16,7 +16,7 @@ CurrentMain(
   download = character(0),
   temporal = character(0),
   periodicity = character(0),
-  resources = class_resources(),
+  resources = Resources(),
   dictionary = character(0),
   site = character(0),
   references = character(0)
@@ -45,7 +45,7 @@ CurrentMain(
 
 \item{periodicity}{\verb{<chr>} frequency of updates}
 
-\item{resources}{\verb{<class_resources>} resources URL}
+\item{resources}{\verb{<Resources>} url}
 
 \item{dictionary}{\verb{<chr>} link to data dictionary}
 
@@ -57,5 +57,5 @@ CurrentMain(
 An S7 \verb{<CurrentMain>} object.
 }
 \description{
-API Endpoint Current Object (Main)
+Main API Endpoint (Current)
 }

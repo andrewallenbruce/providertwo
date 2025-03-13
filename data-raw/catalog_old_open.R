@@ -1,3 +1,13 @@
+#' Join Vector of Download URLs to Main Dataset
+#' @param x `<data.frame>`
+#' @returns `<data.frame>`
+#' @autoglobal
+#' @keywords internal
+#' @export
+open_add_dlurl <- function(x) {
+  add_vars(x, download = delist(get_elem(get_elem(x$distribution, "data", DF.as.list = TRUE), "downloadURL")))
+}
+
 #' Clean Open Payments Temporal Data
 #' @param x data.frame
 #' @returns data.frame

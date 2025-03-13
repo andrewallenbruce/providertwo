@@ -11,27 +11,16 @@ catalog_provider <- function() {
     "provider-data/api/1/",
     "metastore/schemas/dataset/items"))
 
-  x |>
-    mtt(
+  mtt(x,
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
-      theme       = flatten_column(theme),
-      description = trimws(sf_remove(description, "\n")),
+      group       = flatten_column(theme),
+      description = stri_trim(gsub("\n", "", description, perl = TRUE)),
       download    = delist_elem(x$distribution, "downloadURL"),
       contact     = reduce_contact(x$contactPoint)) |>
-    slt(
-      title,
-      theme,
-      description,
-      issued,
-      modified,
-      released,
-      identifier,
-      contact,
-      download,
-      site = landingPage) |>
-    roworder(theme, title) |>
+    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage) |>
+    roworder(group, title) |>
     as_tbl()
 }
 

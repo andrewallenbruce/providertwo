@@ -1,4 +1,4 @@
-#' API Endpoint Current Object
+#' API Current Endpoint Class
 #'
 #' @param title       `<chr>` title
 #' @param description `<chr>` description
@@ -30,17 +30,14 @@ Current <- new_class(
   )
 )
 
-#' API Endpoint Resources Object
-#'
+#' Main API Endpoint Resources
 #' @param url `<chr>` resources URL
-#'
-#' @returns An S7 `<class_resources>` object.
-#'
+#' @returns An S7 `<Resources>` object.
 #' @autoglobal
 #' @keywords internal
 #' @export
-class_resources <- new_class(
-  name = "class_resources",
+Resources <- new_class(
+  name = "Resources",
   properties = list(
     url = class_character,
     files = new_property(
@@ -62,13 +59,13 @@ class_resources <- new_class(
       "must be length 1"
 )
 
-#' API Endpoint Current Object (Main)
+#' Main API Endpoint (Current)
 #'
 #' @inheritParams Current
 #'
 #' @param temporal    `<chr>` timespan endpoint covers
 #' @param periodicity `<chr>` frequency of updates
-#' @param resources   `<class_resources>` resources URL
+#' @param resources   `<Resources>` url
 #' @param dictionary  `<chr>` link to data dictionary
 #' @param site        `<chr>` endpoint landing site
 #' @param references  `<chr>` link to references
@@ -83,7 +80,7 @@ CurrentMain <- new_class(
   properties = list(
     temporal    = class_character,
     periodicity = class_character,
-    resources   = class_resources,
+    resources   = Resources,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
@@ -110,6 +107,7 @@ CurrentProvider <- new_class(
   properties = list(
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
+    group      = class_character,
     uuid       = class_character,
     site       = class_character,
     identifier = new_property(
@@ -131,6 +129,7 @@ CurrentProvider <- new_class(
       S7_object(),
       title       = x$title,
       description = x$description,
+      group       = x$group,
       contact     = x$contact,
       modified    = x$modified,
       uuid        = x$identifier,
@@ -159,7 +158,10 @@ CurrentOpen <- new_class(
   name   = "CurrentOpen",
   properties = list(
     uuid       = class_character,
-    identifier = new_property(class_character, getter = function(self) open_uuid_url(self@uuid))
+    identifier = new_property(
+      class_character,
+      getter = function(self) open_url(self@uuid)
+      )
     )
   )
 

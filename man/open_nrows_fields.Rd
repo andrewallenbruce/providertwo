@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_open.R
 \name{open_nrows_fields}
 \alias{open_nrows_fields}
-\title{Get Field Names and Number of Rows from Open Payments Endpoint}
+\title{Open Payments Endpoint Fields, Rows, Pages}
 \usage{
 open_nrows_fields(uuid)
 }
@@ -13,6 +13,6 @@ open_nrows_fields(uuid)
 \verb{<list>} number of rows and field names
 }
 \description{
-Get Field Names and Number of Rows from Open Payments Endpoint
+Open Payments Endpoint Fields, Rows, Pages
 }
 \keyword{internal}

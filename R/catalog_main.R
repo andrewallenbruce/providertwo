@@ -36,7 +36,9 @@ catalog_main <- function() {
       distribution) |>
     as_tbl()
 
-  d <- get_elem(x, "distribution") |> rowbind(fill = TRUE) |> as_tbl() |>
+  d <- get_elem(x, "distribution") |>
+    rowbind(fill = TRUE) |>
+    as_tbl() |>
     mtt(
       modified     = as_date(modified),
       format       = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
@@ -139,7 +141,7 @@ main_current <- function(alias) {
     periodicity = x$periodicity,
     temporal    = x$temporal,
     identifier  = x$identifier,
-    resources   = class_resources(x$resources),
+    resources   = Resources(x$resources),
     rows        = q$rows,
     fields      = q$fields,
     pages       = q$pages,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{Current}
 \alias{Current}
-\title{API Endpoint Current Object}
+\title{API Current Endpoint Class}
 \usage{
 Current(
   title = character(0),
@@ -39,6 +39,6 @@ Current(
 An S7 \verb{<Current>} object.
 }
 \description{
-API Endpoint Current Object
+API Current Endpoint Class
 }
 \keyword{internal}

@@ -1,4 +1,4 @@
-#' Get Field Names and Number of Rows from Open Payments Endpoint
+#' Open Payments Endpoint Fields, Rows, Pages
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
@@ -6,8 +6,7 @@
 #' @export
 open_nrows_fields <- function(uuid) {
 
-  x <- uuid |>
-    open_uuid_url() |>
+  x <- open_url(uuid) |>
     request() |>
     req_url_query(
       schema  = "false",
@@ -15,8 +14,7 @@ open_nrows_fields <- function(uuid) {
       results = "false",
       count   = "true",
       offset  = 0,
-      limit   = 1
-    ) |>
+      limit   = 1) |>
     req_perform() |>
     resp_simple_json()
 
@@ -26,45 +24,17 @@ open_nrows_fields <- function(uuid) {
 
 }
 
-#' Join Vector of Download URLs to Main Dataset
-#' @param x `<data.frame>`
-#' @returns `<data.frame>`
-#' @autoglobal
-#' @keywords internal
-#' @export
-open_add_dlurl <- function(x) {
-  add_vars(
-    x,
-    downloadurl = delist(
-      get_elem(
-        get_elem(
-          x$distribution,
-          "data",
-          DF.as.list = TRUE),
-        "downloadURL"
-        )
-      )
-    )
-}
-
-#' Convert Open Payments UUID to URL
+#' Open Payments UUID to URL
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` endpoint URL
 #' @autoglobal
 #' @keywords internal
 #' @export
-open_uuid_url <- function(uuid) {
-  paste0(
-    "https://openpaymentsdata.cms.gov/",
-    "api/1/datastore/query/",
-    uuid,
-    "/0")
-}
+open_url <- function(uuid) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", uuid, "/0")
 
-#' Open Payments Catalog
+#' CMS Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
 #' @autoglobal
-#' @keywords internal
 #' @export
 catalog_open <- function() {
 
@@ -72,32 +42,27 @@ catalog_open <- function() {
                     "/api/1/metastore/schemas/dataset/",
                     "items?show-reference-ids"))
 
-  x <- x |> mtt(
+  x <- mtt(x,
       modified    = as_date(modified),
-      theme       = get_data_elem(theme),
       year        = get_data_elem(keyword),
       year        = replace_fixed(year, c("all years"), c("All")),
       year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
       title       = toTitleCase(title),
-      contact     = as.character(glue('{delist(get_elem(x$contactPoint, "fn"))} ({delist(get_elem(x$contactPoint, "^has", regex = TRUE))})')),
-      description = sf_remove(description, "[\"']"),
+      contact     = reduce_contact(x$contactPoint),
+      description = gsub("[\"']", "", description, perl = TRUE),
       description = gsub("\r\n", " ", description, perl = TRUE),
-      description = sf_remove(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$"),
+      description = gsub("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$", "", description, perl = TRUE),
       description = gsub("  ", " ", description, perl = TRUE),
-      description = stri_trim(description)) |>
-    open_add_dlurl() |>
-    slt(year,
-        theme,
-        title,
-        description,
-        modified,
-        identifier,
-        contact,
-        download = downloadurl) |>
+      description = stri_trim(description),
+      download    = delist(get_elem(get_elem(x$distribution, "data", DF.as.list = TRUE), "downloadURL"))) |>
+    slt(year, title, description, modified, identifier, contact, download) |>
     as_tbl()
 
-  list(current  = sbt(x, year == "All", -theme, -year) |> roworder(title),
-       temporal = sbt(x, year != "All", -theme) |> mtt(year = as_int(year), title = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |> roworder(title, -year))
+  list(current  = roworder(sbt(x, year == "All", -year), title),
+       temporal = sbt(x, year != "All") |>
+         mtt(year  = as_int(year),
+             title = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |>
+         roworder(title, -year))
 }
 
 #' Load `<CurrentOpen>` API Endpoint

@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_open.R
 \name{catalog_open}
 \alias{catalog_open}
-\title{Open Payments Catalog}
+\title{CMS Open Payments Catalog}
 \usage{
 catalog_open()
 }
@@ -10,6 +10,5 @@ catalog_open()
 \verb{<list>} of Open Payments API catalog information
 }
 \description{
-Open Payments Catalog
+CMS Open Payments Catalog
 }
-\keyword{internal}
