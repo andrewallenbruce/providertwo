@@ -90,54 +90,6 @@ main_nrows_fields <- function(url) {
 
 }
 
-#' Load `<CurrentMain>` API Endpoint
-#' @param alias `<chr>` endpoint alias
-#' @returns `<CurrentMain>` object
-#' @examples
-#' main_current("enrollees")
-#' main_current("opt_out")
-#' main_current("order_refer")
-#' main_current("reassignments")
-#' main_current("hospitals")
-#' main_current("laboratories")
-#' main_current("crosswalk")
-#' main_current("rbcs")
-#' main_current("facilities")
-#' main_current("home_health")
-#' main_current("hospice")
-#' main_current("dialysis")
-#' main_current("snf")
-#' @autoglobal
-#' @export
-main_current <- function(alias) {
-
-  x <- catalog_main()$current |>
-    subset_detect(
-      title,
-      alias_main_current(alias)) |>
-    c()
-
-  q <- main_nrows_fields(x$identifier)
-
-  CurrentMain(
-    title       = x$title,
-    description = x$description,
-    contact     = x$contact,
-    modified    = x$modified,
-    periodicity = x$periodicity,
-    temporal    = x$temporal,
-    identifier  = x$identifier,
-    resources   = Resources(x$resources),
-    rows        = q$rows,
-    fields      = q$fields,
-    pages       = q$pages,
-    download    = x$download,
-    dictionary  = x$dictionary,
-    site        = x$site,
-    references  = x$references
-  )
-}
-
 #' Load `<TemporalMain>` API Endpoint
 #' @param alias `<chr>` dataset title
 #' @returns `<TemporalMain>` object

@@ -18,10 +18,10 @@ utils::globalVariables(c(
   "name",
   # <get_resources>
   "size",
+  # <CurrentMain>
   # <CurrentProvider>
   # <CurrentOpen>
   # <TemporalOpen>
-  # <main_current>
   # <main_temporal>
   # <main_temporal_group>
   # <provider_current_group>

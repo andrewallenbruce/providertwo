@@ -4,58 +4,30 @@
 \alias{CurrentMain}
 \title{Main API Endpoint (Current)}
 \usage{
-CurrentMain(
-  title = character(0),
-  description = character(0),
-  contact = character(0),
-  modified = character(0),
-  identifier = character(0),
-  rows = integer(0),
-  pages = integer(0),
-  fields = character(0),
-  download = character(0),
-  temporal = character(0),
-  periodicity = character(0),
-  resources = Resources(),
-  dictionary = character(0),
-  site = character(0),
-  references = character(0)
-)
+CurrentMain(alias)
 }
 \arguments{
-\item{title}{\verb{<chr>} title}
-
-\item{description}{\verb{<chr>} description}
-
-\item{contact}{\verb{<chr>} contact name and email address}
-
-\item{modified}{\verb{<chr>} date last modified}
-
-\item{identifier}{\verb{<chr>} uuid}
-
-\item{rows}{\verb{<int>} number of rows}
-
-\item{pages}{\verb{<int>} number of pages}
-
-\item{fields}{\verb{<chr>} field names}
-
-\item{download}{\verb{<chr>} download URL}
-
-\item{temporal}{\verb{<chr>} timespan endpoint covers}
-
-\item{periodicity}{\verb{<chr>} frequency of updates}
-
-\item{resources}{\verb{<Resources>} url}
-
-\item{dictionary}{\verb{<chr>} link to data dictionary}
-
-\item{site}{\verb{<chr>} endpoint landing site}
-
-\item{references}{\verb{<chr>} link to references}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<CurrentMain>} object.
 }
 \description{
 Main API Endpoint (Current)
+}
+\examples{
+CurrentMain("enrollees")
+CurrentMain("opt_out")
+CurrentMain("order_refer")
+CurrentMain("reassignments")
+CurrentMain("hospitals")
+CurrentMain("laboratories")
+CurrentMain("crosswalk")
+CurrentMain("rbcs")
+CurrentMain("facilities")
+CurrentMain("home_health")
+CurrentMain("hospice")
+CurrentMain("dialysis")
+CurrentMain("snf")
+
 }

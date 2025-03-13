@@ -61,16 +61,24 @@ Resources <- new_class(
 
 #' Main API Endpoint (Current)
 #'
-#' @inheritParams Current
-#'
-#' @param temporal    `<chr>` timespan endpoint covers
-#' @param periodicity `<chr>` frequency of updates
-#' @param resources   `<Resources>` url
-#' @param dictionary  `<chr>` link to data dictionary
-#' @param site        `<chr>` endpoint landing site
-#' @param references  `<chr>` link to references
+#' @param alias `<chr>` endpoint alias
 #'
 #' @returns An S7 `<CurrentMain>` object.
+#'
+#' @examples
+#' CurrentMain("enrollees")
+#' CurrentMain("opt_out")
+#' CurrentMain("order_refer")
+#' CurrentMain("reassignments")
+#' CurrentMain("hospitals")
+#' CurrentMain("laboratories")
+#' CurrentMain("crosswalk")
+#' CurrentMain("rbcs")
+#' CurrentMain("facilities")
+#' CurrentMain("home_health")
+#' CurrentMain("hospice")
+#' CurrentMain("dialysis")
+#' CurrentMain("snf")
 #'
 #' @autoglobal
 #' @export
@@ -84,7 +92,35 @@ CurrentMain <- new_class(
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
-  )
+  ),
+  constructor = function(alias) {
+
+    x <- catalog_main()$current |>
+      subset_detect(
+        title,
+        alias_main_current(alias)) |>
+      c()
+
+    q <- main_nrows_fields(x$identifier)
+
+    new_object(
+      Current(),
+      title       = x$title,
+      description = x$description,
+      contact     = x$contact,
+      modified    = x$modified,
+      periodicity = x$periodicity,
+      temporal    = x$temporal,
+      identifier  = x$identifier,
+      resources   = Resources(x$resources),
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages,
+      download    = x$download,
+      dictionary  = x$dictionary,
+      site        = x$site,
+      references  = x$references)
+  }
 )
 
 #' Provider API Endpoint (Current)
@@ -143,7 +179,7 @@ CurrentProvider <- new_class(
   }
 )
 
-#' API Endpoint Current Object (Open Payments)
+#' Open Payments API Endpoint (Current)
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -228,7 +264,7 @@ Temporal <- new_class(
   )
 )
 
-#' Temporal Endpoint Object (Main)
+#' Main API Endpoint (Temporal)
 #'
 #' @inheritParams Temporal
 #'
@@ -241,7 +277,7 @@ TemporalMain <- new_class(
   name   = "TemporalMain"
 )
 
-#' Temporal Endpoint Object (Open Payments)
+#' Open Payments API Endpoint (Temporal)
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -285,7 +321,7 @@ TemporalOpen <- new_class(
   }
 )
 
-#' Temporal Group Object (Main)
+#' Main API Endpoint Group (Temporal)
 #'
 #' @inheritParams Temporal
 #'
@@ -298,7 +334,7 @@ TemporalMainGroup <- new_class(
   name   = "TemporalMainGroup"
 )
 
-#' Temporal Group Object (Open Payments)
+#' Open Payments API Endpoint Group (Temporal)
 #'
 #' @inheritParams Temporal
 #'

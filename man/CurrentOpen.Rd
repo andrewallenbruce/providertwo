@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{CurrentOpen}
 \alias{CurrentOpen}
-\title{API Endpoint Current Object (Open Payments)}
+\title{Open Payments API Endpoint (Current)}
 \usage{
 CurrentOpen(alias)
 }
@@ -13,7 +13,7 @@ CurrentOpen(alias)
 An S7 \verb{<CurrentOpen>} object.
 }
 \description{
-API Endpoint Current Object (Open Payments)
+Open Payments API Endpoint (Current)
 }
 \examples{
 CurrentOpen("prof_cov")

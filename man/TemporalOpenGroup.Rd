@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{TemporalOpenGroup}
 \alias{TemporalOpenGroup}
-\title{Temporal Group Object (Open Payments)}
+\title{Open Payments API Endpoint Group (Temporal)}
 \usage{
 TemporalOpenGroup(
   title = character(0),
@@ -36,5 +36,5 @@ TemporalOpenGroup(
 An S7 \verb{<TemporalOpenGroup>} object.
 }
 \description{
-Temporal Group Object (Open Payments)
+Open Payments API Endpoint Group (Temporal)
 }
