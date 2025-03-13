@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9114</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9115</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,62 +45,15 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CurrentOpen</span><span class="op">(</span></span>
-<span>  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  contact <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  modified <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  pages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  download <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  uuid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="va">alias</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> title</p></dd>
-
-
-<dt id="arg-description">description<a class="anchor" aria-label="anchor" href="#arg-description"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> description</p></dd>
-
-
-<dt id="arg-contact">contact<a class="anchor" aria-label="anchor" href="#arg-contact"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> contact name and email address</p></dd>
-
-
-<dt id="arg-modified">modified<a class="anchor" aria-label="anchor" href="#arg-modified"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> date last modified</p></dd>
-
-
-<dt id="arg-identifier">identifier<a class="anchor" aria-label="anchor" href="#arg-identifier"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> uuid</p></dd>
-
-
-<dt id="arg-rows">rows<a class="anchor" aria-label="anchor" href="#arg-rows"></a></dt>
-<dd><p><code>&lt;int&gt;</code> number of rows</p></dd>
-
-
-<dt id="arg-pages">pages<a class="anchor" aria-label="anchor" href="#arg-pages"></a></dt>
-<dd><p><code>&lt;int&gt;</code> number of pages</p></dd>
-
-
-<dt id="arg-fields">fields<a class="anchor" aria-label="anchor" href="#arg-fields"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> field names</p></dd>
-
-
-<dt id="arg-download">download<a class="anchor" aria-label="anchor" href="#arg-download"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> download URL</p></dd>
-
-
-<dt id="arg-uuid">uuid<a class="anchor" aria-label="anchor" href="#arg-uuid"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> uuid</p></dd>
+<dl><dt id="arg-alias">alias<a class="anchor" aria-label="anchor" href="#arg-alias"></a></dt>
+<dd><p><code>&lt;chr&gt;</code> endpoint alias</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -108,6 +61,143 @@
     <p>An S7 <code>&lt;CurrentOpen&gt;</code> object.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_cov"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Covered Recipient Profile Supplement"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Covered Recipient Profile Supplement file contains information about physicians and non-physician practitio"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1530412</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:32] "covered_recipient_profile_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/PHPRFL_P01302025_01212025/OP_CVRD_RCPNT_PRFL_SPLMTL_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "23160558-6742-54ff-8b9f-cac7d514ff4e"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_phys"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Physician (Distinct) Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/6ed6ae76-2999-49da-b0b2-d7df150ac754/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1528054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:33] "covered_recipient_profile_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PHYSN_NON_PHYSN_PRCTNR_PRFL_SRCH_P013"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "6ed6ae76-2999-49da-b0b2-d7df150ac754"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_info"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset provides profile information to display on payment search results."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/f2ed17cc-f045-4e25-9b28-75c72f0c7efe/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1534695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:20] "entity_id" "entity_provider_type" "entity_npi" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/all-entities-profile-search.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "f2ed17cc-f045-4e25-9b28-75c72f0c7efe"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_map"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Provider Profile ID Mapping Table"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Maps secondary/duplicate provider profile IDs to the primary ID in the Open Payments system. For multiple reaso"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/d19e5be2-5b8c-562c-af22-c243503bcfac/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:2] "primary_provider_profile_id" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PRVDR_PRFL_MAPPING_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "d19e5be2-5b8c-562c-af22-c243503bcfac"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_entity"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Reporting Entity Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/1cf0c6c0-c377-466e-b78f-037b442559f8/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:9] "amgpo_making_payment_id" "amgpo_making_payment_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_RPTG_ORG_PRFL_SRCH_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "1cf0c6c0-c377-466e-b78f-037b442559f8"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"prof_teach"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Teaching Hospital Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/8219fcb3-fb3d-4b51-9f65-be8a048c0608/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:12] "teaching_hospital_ccn" "teaching_hospital_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_TH_PRFL_SRCH_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "8219fcb3-fb3d-4b51-9f65-be8a048c0608"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"dashboard"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Summary Dashboard - all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Summary data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/e0d225fc-8230-401d-8fad-e2262fb22b4c/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:10] "dashboard_row_number" "data_metrics" "py_2017" "py_2018" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_DSHBRD_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "e0d225fc-8230-401d-8fad-e2262fb22b4c"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"pay_state_total"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "State Level Payment Total and Averages for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/02157882-0f43-473a-a777-c96eb5b1b623/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:28] "country_code" "country_name" "state_code" "state_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_STATE_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "02157882-0f43-473a-a777-c96eb5b1b623"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"pay_state_group"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Groups payment data by state, recipient type, and nature of payment."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/7c5144d9-1b2a-5039-a91a-cccb8ed7805c/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 16758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:28] "country_code" "country_name" "state_code" "state_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYRall_P01"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "7c5144d9-1b2a-5039-a91a-cccb8ed7805c"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"pay_nat_group"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "National Level Payment Total and Averages by Provider Specialty for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/04c3355f-955b-4620-b3a8-08020cc9c1f2/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:21] "payment_type" "recipient_type" "program_year" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SPLTY_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "04c3355f-955b-4620-b3a8-08020cc9c1f2"</span>
+<span class="r-in"><span><span class="fu">CurrentOpen</span><span class="op">(</span><span class="st">"pay_nat_total"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::CurrentOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "National Level Payment Total and Averages for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/aaaddc12-a3a7-4cc5-9c12-4a726317aa1c/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:18] "metric_level" "payment_type" "recipient_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTNL_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "aaaddc12-a3a7-4cc5-9c12-4a726317aa1c"</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9114</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9115</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,52 +45,15 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TemporalOpen</span><span class="op">(</span></span>
-<span>  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  contact <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  pages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
-<span>  endpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="va">alias</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> title</p></dd>
-
-
-<dt id="arg-description">description<a class="anchor" aria-label="anchor" href="#arg-description"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> description</p></dd>
-
-
-<dt id="arg-contact">contact<a class="anchor" aria-label="anchor" href="#arg-contact"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> contact name and email address</p></dd>
-
-
-<dt id="arg-rows">rows<a class="anchor" aria-label="anchor" href="#arg-rows"></a></dt>
-<dd><p><code>&lt;int&gt;</code> number of rows</p></dd>
-
-
-<dt id="arg-pages">pages<a class="anchor" aria-label="anchor" href="#arg-pages"></a></dt>
-<dd><p><code>&lt;int&gt;</code> number of pages</p></dd>
-
-
-<dt id="arg-fields">fields<a class="anchor" aria-label="anchor" href="#arg-fields"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> field names</p></dd>
-
-
-<dt id="arg-years">years<a class="anchor" aria-label="anchor" href="#arg-years"></a></dt>
-<dd><p><code>&lt;int&gt;</code> years available</p></dd>
-
-
-<dt id="arg-endpoints">endpoints<a class="anchor" aria-label="anchor" href="#arg-endpoints"></a></dt>
-<dd><p><code>&lt;data.frame&gt;</code> endpoints</p></dd>
+<dl><dt id="arg-alias">alias<a class="anchor" aria-label="anchor" href="#arg-alias"></a></dt>
+<dd><p><code>&lt;chr&gt;</code> endpoint alias</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -98,6 +61,123 @@
     <p>An S7 <code>&lt;TemporalOpen&gt;</code> object.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"general"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "General Payment Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "All general (non-research, non-ownership related) payments from the 2023 program year [January 1 – December 31, 2023]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 14607336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 29215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:91] "change_type" "covered_recipient_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "fb3a65aa-c901-4a38-a813-b04b00dfa2a9" "df01c2f8-dc1f-4e79-96cb-8208beaf143c" "0380bbeb-aea1-58b6-b708-829f92a48202" "a08c4b30-5cf3-4948-ad40-36f404619019" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_GNRL_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_GNRL_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_GNRL_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_GNRL_PGYR2020_P01302025_01212025.csv" ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"ownership"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Ownership Payment Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Ownership Payment Data - Detailed Dataset 2023 Reporting Year\nAll ownership and investment payments from the 2"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:30] "change_type" "physician_profile_id" "physician_npi" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "ac0bc85c-02e3-45d9-89e8-2ff43da85df7" "37792388-800f-427a-9e02-b11601454eeb" "b0c03b8d-06df-58f2-8ce2-4daeffee147e" "a9a0bf48-6b96-4589-b4c2-3c5dcfbeaca2" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2020_P01302025_01212025.csv" ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"research"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Research Payment Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Research Payment Data – Detailed Dataset 2023 Reporting Year\nAll research-related payments from the 2023 progr"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1027926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:252] "change_type" "covered_recipient_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "ec9521bf-9d97-4603-814c-f4132d34bc4f" "fdc3c773-018a-412c-8a81-d7b8a13a037b" "ce1d28dd-0094-5060-a036-580329439600" "9c248e7e-7c7f-478b-ab84-ce0919d72c1c" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_RSRCH_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_RSRCH_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_RSRCH_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_RSRCH_PGYR2020_P01302025_01212025.csv" ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"recipient_nature"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1184051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:10] "recipient_id" "recipient_type" "covered_recipient_npi" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "4017acfa-0eeb-4b8a-b68c-3b41e779c4a2" "686b765e-f4b7-4d35-a050-fb5af926dbbe" "d35243be-55cb-5087-931e-a294e0e0917f" "1fd2be47-cb72-435a-b2df-142f38e99a05" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2023_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2022_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2021_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2020_P0"| __truncated__ ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"recipient_entity"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Payments Grouped by Covered Recipient and Reporting Entities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4416875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 8834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:12] "recipient_id" "recipient_type" "covered_recipient_npi" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "4fbf0094-3c7b-425a-aabe-5778052559ad" "d2d87f39-b117-4ac8-9f36-a088fb22a25b" "7c9ebb83-8f88-5462-ab7d-1925b0113cfc" "78ad9c8d-d7ae-4066-bf2d-a66e3c9d6e3b" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2020_P01302025_01212025.csv" ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"entity_nature"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Payments Grouped by Reporting Entities and Nature of Payments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 6192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:5] "amgpo_id" "nature_of_payment_type_code" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "72008dab-0953-4226-a4cd-9f1872e8170d" "cedcd327-4e5d-43f9-8eb1-c11850fa7c66" "a2714020-f599-52b0-b12b-8f5b510e547a" "7dfe6254-2aee-454f-9ea5-df611a9a7b55" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2023"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2022"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2021"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2020"| __truncated__ ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"entity_recipient_nature"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4588015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 9177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:8] "amgpo_id" "recipient_id" "recipient_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "29c23b6a-dd1e-4d82-a606-8d792c7f229e" "171e369a-6f25-49eb-aa36-37f0a497e5ca" "f240c437-9d8a-5be7-95a5-8ce8e0d970bf" "532df191-473f-4bcc-9056-a6260b9437b5" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ ...</span>
+<span class="r-in"><span><span class="fu">TemporalOpen</span><span class="op">(</span><span class="st">"state_nature"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;providertwo::TemporalOpen&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "State Payment Totals Grouped by Nature of Payment for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Groups payment data by state, recipient type, and nature of payment."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Open Payments (mailto:openpayments@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 16758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:28] "country_code" "country_name" "state_code" "state_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "f83aed3a-7504-4fca-aabb-ac0338c79688" "c64c40af-23a5-4419-8b64-692684483664" "7fad5b56-2cfe-52ab-ac4d-3200780287d4" "7f3055b6-73d8-5aff-be15-55873552e2cd" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYR2023_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYR2022_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYR2021_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYR2020_P0"| __truncated__ ...</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
