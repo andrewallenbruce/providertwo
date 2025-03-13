@@ -9,6 +9,8 @@ License: MIT + file LICENSE
 URL: https://github.com/andrewallenbruce/providertwo,
     https://andrewallenbruce.github.io/providertwo/
 BugReports: https://github.com/andrewallenbruce/providertwo/issues
+Depends: 
+    R (>= 4.1.0)
 Imports: 
     cheapr (>= 1.0.1),
     cli,

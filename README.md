@@ -10,6 +10,8 @@
 
 ![GitHub R package
 version](https://img.shields.io/github/r-package/v/andrewallenbruce/providertwo?style=flat-square&logo=R&label=Package&color=%23192a38)
+[![minimal R
+version](https://img.shields.io/badge/R%20%3E%3D-4.1.0-red.svg)](https://cran.r-project.org/)
 [![Code
 size](https://img.shields.io/github/languages/code-size/andrewallenbruce/providertwo.svg)](https://github.com/andrewallenbruce/providertwo)
 [![Last
