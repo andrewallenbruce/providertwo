@@ -4,43 +4,28 @@
 \alias{CurrentOpen}
 \title{API Endpoint Current Object (Open Payments)}
 \usage{
-CurrentOpen(
-  title = character(0),
-  description = character(0),
-  contact = character(0),
-  modified = character(0),
-  identifier = character(0),
-  rows = integer(0),
-  pages = integer(0),
-  fields = character(0),
-  download = character(0),
-  uuid = character(0)
-)
+CurrentOpen(alias)
 }
 \arguments{
-\item{title}{\verb{<chr>} title}
-
-\item{description}{\verb{<chr>} description}
-
-\item{contact}{\verb{<chr>} contact name and email address}
-
-\item{modified}{\verb{<chr>} date last modified}
-
-\item{identifier}{\verb{<chr>} uuid}
-
-\item{rows}{\verb{<int>} number of rows}
-
-\item{pages}{\verb{<int>} number of pages}
-
-\item{fields}{\verb{<chr>} field names}
-
-\item{download}{\verb{<chr>} download URL}
-
-\item{uuid}{\verb{<chr>} uuid}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<CurrentOpen>} object.
 }
 \description{
 API Endpoint Current Object (Open Payments)
+}
+\examples{
+CurrentOpen("prof_cov")
+CurrentOpen("prof_phys")
+CurrentOpen("prof_info")
+CurrentOpen("prof_map")
+CurrentOpen("prof_entity")
+CurrentOpen("prof_teach")
+CurrentOpen("dashboard")
+CurrentOpen("pay_state_total")
+CurrentOpen("pay_state_group")
+CurrentOpen("pay_nat_group")
+CurrentOpen("pay_nat_total")
+
 }

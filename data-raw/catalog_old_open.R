@@ -1,3 +1,79 @@
+#' Load `<TemporalOpen>` API Endpoint
+#' @param alias `<chr>` dataset title
+#' @returns `<TemporalOpen>` object
+#' @examples
+#' open_temporal("general")
+#' open_temporal("ownership")
+#' open_temporal("research")
+#' open_temporal("recipient_nature")
+#' open_temporal("recipient_entity")
+#' open_temporal("entity_nature")
+#' open_temporal("entity_recipient_nature")
+#' open_temporal("state_nature")
+#' @autoglobal
+#' @export
+open_temporal <- function(alias) {
+
+  x <- catalog_open()$temporal |>
+    subset_detect(
+      title,
+      alias_open_temporal(alias))
+
+  q <- open_nrows_fields(x$identifier[1])
+
+  TemporalOpen(
+    title       = x$title[1],
+    description = x$description[1],
+    contact     = x$contact[1],
+    rows        = q$rows,
+    fields      = q$fields,
+    pages       = q$pages,
+    years       = x$year,
+    endpoints   = slt(x, year, modified, identifier, download)
+  )
+}
+
+#' Load `<CurrentOpen>` API Endpoint
+#' @param alias `<chr>` endpoint alias
+#' @returns `<CurrentOpen>` object
+#' @examples
+#' open_current("prof_cov")
+#' open_current("prof_phys")
+#' open_current("prof_info")
+#' open_current("prof_map")
+#' open_current("prof_entity")
+#' open_current("prof_teach")
+#' open_current("dashboard")
+#' open_current("pay_state_total")
+#' open_current("pay_state_group")
+#' open_current("pay_nat_group")
+#' open_current("pay_nat_total")
+#' @autoglobal
+#' @export
+open_current <- function(alias) {
+
+  x <- catalog_open()$current |>
+    subset_detect(
+      title,
+      alias_open_current(alias)) |>
+    c()
+
+  q <- open_nrows_fields(x$identifier)
+
+  CurrentOpen(
+    title       = x$title,
+    description = x$description,
+    contact     = x$contact,
+    modified    = x$modified,
+    uuid        = x$identifier,
+    download    = x$download,
+    rows        = q$rows,
+    fields      = q$fields,
+    pages       = q$pages
+  )
+}
+
+
 #' Join Vector of Download URLs to Main Dataset
 #' @param x `<data.frame>`
 #' @returns `<data.frame>`

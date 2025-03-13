@@ -126,7 +126,7 @@ CurrentProvider <- new_class(
     q <- prov_nrows_fields(x$identifier)
 
     new_object(
-      S7_object(),
+      Current(),
       title       = x$title,
       description = x$description,
       group       = x$group,
@@ -145,11 +145,22 @@ CurrentProvider <- new_class(
 
 #' API Endpoint Current Object (Open Payments)
 #'
-#' @inheritParams Current
-#'
-#' @param uuid `<chr>` uuid
+#' @param alias `<chr>` endpoint alias
 #'
 #' @returns An S7 `<CurrentOpen>` object.
+#'
+#' @examples
+#' CurrentOpen("prof_cov")
+#' CurrentOpen("prof_phys")
+#' CurrentOpen("prof_info")
+#' CurrentOpen("prof_map")
+#' CurrentOpen("prof_entity")
+#' CurrentOpen("prof_teach")
+#' CurrentOpen("dashboard")
+#' CurrentOpen("pay_state_total")
+#' CurrentOpen("pay_state_group")
+#' CurrentOpen("pay_nat_group")
+#' CurrentOpen("pay_nat_total")
 #'
 #' @autoglobal
 #' @export
@@ -162,7 +173,29 @@ CurrentOpen <- new_class(
       class_character,
       getter = function(self) open_url(self@uuid)
       )
-    )
+    ),
+  constructor = function(alias) {
+
+    x <- catalog_open()$current |>
+      subset_detect(
+        title,
+        alias_open_current(alias)) |>
+      c()
+
+    q <- open_nrows_fields(x$identifier)
+
+    new_object(
+      Current(),
+      title       = x$title,
+      description = x$description,
+      contact     = x$contact,
+      modified    = x$modified,
+      uuid        = x$identifier,
+      download    = x$download,
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages)
+    }
   )
 
 #' Temporal Endpoint Object
@@ -208,6 +241,50 @@ TemporalMain <- new_class(
   name   = "TemporalMain"
 )
 
+#' Temporal Endpoint Object (Open Payments)
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns An S7 `<TemporalOpen>` object.
+#'
+#' @examples
+#' TemporalOpen("general")
+#' TemporalOpen("ownership")
+#' TemporalOpen("research")
+#' TemporalOpen("recipient_nature")
+#' TemporalOpen("recipient_entity")
+#' TemporalOpen("entity_nature")
+#' TemporalOpen("entity_recipient_nature")
+#' TemporalOpen("state_nature")
+#'
+#' @autoglobal
+#' @export
+TemporalOpen <- new_class(
+  parent = Temporal,
+  name   = "TemporalOpen",
+  constructor = function(alias) {
+
+    x <- catalog_open()$temporal |>
+      subset_detect(
+        title,
+        alias_open_temporal(alias))
+
+    q <- open_nrows_fields(x$identifier[1])
+
+    new_object(
+      Temporal(),
+      title       = x$title[1],
+      description = x$description[1],
+      contact     = x$contact[1],
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages,
+      years       = x$year,
+      endpoints   = slt(x, year, modified, identifier, download)
+    )
+  }
+)
+
 #' Temporal Group Object (Main)
 #'
 #' @inheritParams Temporal
@@ -219,19 +296,6 @@ TemporalMain <- new_class(
 TemporalMainGroup <- new_class(
   parent = Temporal,
   name   = "TemporalMainGroup"
-)
-
-#' Temporal Endpoint Object (Open Payments)
-#'
-#' @inheritParams Temporal
-#'
-#' @returns An S7 `<TemporalOpen>` object.
-#'
-#' @autoglobal
-#' @export
-TemporalOpen <- new_class(
-  parent = Temporal,
-  name   = "TemporalOpen"
 )
 
 #' Temporal Group Object (Open Payments)

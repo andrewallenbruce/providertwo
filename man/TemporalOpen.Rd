@@ -4,37 +4,25 @@
 \alias{TemporalOpen}
 \title{Temporal Endpoint Object (Open Payments)}
 \usage{
-TemporalOpen(
-  title = character(0),
-  description = character(0),
-  contact = character(0),
-  rows = integer(0),
-  pages = integer(0),
-  fields = character(0),
-  years = integer(0),
-  endpoints = list()
-)
+TemporalOpen(alias)
 }
 \arguments{
-\item{title}{\verb{<chr>} title}
-
-\item{description}{\verb{<chr>} description}
-
-\item{contact}{\verb{<chr>} contact name and email address}
-
-\item{rows}{\verb{<int>} number of rows}
-
-\item{pages}{\verb{<int>} number of pages}
-
-\item{fields}{\verb{<chr>} field names}
-
-\item{years}{\verb{<int>} years available}
-
-\item{endpoints}{\verb{<data.frame>} endpoints}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<TemporalOpen>} object.
 }
 \description{
 Temporal Endpoint Object (Open Payments)
+}
+\examples{
+TemporalOpen("general")
+TemporalOpen("ownership")
+TemporalOpen("research")
+TemporalOpen("recipient_nature")
+TemporalOpen("recipient_entity")
+TemporalOpen("entity_nature")
+TemporalOpen("entity_recipient_nature")
+TemporalOpen("state_nature")
+
 }
