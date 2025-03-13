@@ -15,12 +15,12 @@ catalog_main <- function() {
   x <- mtt(x,
       modified    = as_date(modified),
       periodicity = recode_iso8601(accrualPeriodicity),
+      contact     = reduce_contact(x$contactPoint),
       references  = delist(references),
       title       = gsub("  ", " ", title, perl = TRUE),
-      contact     = as.character(glue('{delist(get_elem(x$contactPoint, "fn"))} ({delist(get_elem(x$contactPoint, "^has", regex = TRUE))})')),
-      description = sf_remove(description, "[\"']"),
-      description = sf_remove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
-      description = sf_remove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. $"),
+      description = gsub("[\"']", "", description, perl = TRUE),
+      description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
+      description = gsub("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. $", "", description, perl = TRUE),
       description = stri_trim(description)) |>
     slt(
       title,
@@ -39,42 +39,28 @@ catalog_main <- function() {
   d <- get_elem(x, "distribution") |>
     rowbind(fill = TRUE) |>
     as_tbl() |>
-    mtt(
-      modified     = as_date(modified),
-      format       = cheapr_if_else(not_na(description), paste0(format, "-", description), format),
-      `@type`      = NULL,
-      description  = NULL,
+    fcompute(
       year         = as_int(stri_extract_all_regex(title, "[0-9]{4}")),
       title        = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
+      format       = cheapr_if_else(not_na(description), description, format),
+      modified     = as_date(modified),
+      temporal     = temporal,
+      identifier   = accessURL,
       download     = lag_(downloadURL, n = -1L),
       filetype     = lag_(mediaType, n = -1L),
-      resources    = resourcesAPI,
-      resourcesAPI = NULL,
-      downloadURL  = NULL,
-      mediaType    = NULL) |>
+      resources    = resourcesAPI) |>
     colorder(title)
 
-  d <- funique(sset(d, row_na_counts(d) < 4), cols = c("title", "year"))
+  d <- sset(d, row_na_counts(d) < 4) |>
+    funique(cols = c("title", "year", "format")) |>
+    fcount(title, add = TRUE)
 
-  out <- sbt(fcount(d, title), N == 1) |> _[["title"]]
-
-  mn <- join(slt(x, -distribution),
-             sbt(d, format == "API-latest", -format, -accessURL, -modified, -temporal, -year),
-             on = "title",
-             verbose = 0) |>
-    roworder(title)
-
-  tmp <- join(
-    sbt(d, !title %in% out, year, title, identifier = accessURL, modified:resources) |>
-      roworder(title, -year) |>
-      f_nest_by(.cols = "title") |>
-      f_ungroup(),
-    slt(mn, title, description, periodicity, contact, dictionary, site),
-    on = "title",
-    verbose = 0
-  )
-
-  list(current = mn, temporal = tmp)
+  list_tidy(
+    current = roworder(join(slt(x, -distribution), sbt(d, format == "latest", -format, -identifier, -modified, -temporal), on = "title", verbose = 0), title),
+    temporal = join(roworder(d, title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
+                    slt(current, title, description, periodicity, contact, dictionary, site),
+                    on = "title",
+                    verbose = 0))
 }
 
 #' Get Field Names and Number of Rows from Main Endpoint
