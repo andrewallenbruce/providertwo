@@ -2,18 +2,17 @@
 % Please edit documentation in R/S7_backend.R
 \name{class_resources}
 \alias{class_resources}
-\title{class_resources}
+\title{API Endpoint Resources Object}
 \usage{
 class_resources(url = character(0))
 }
 \arguments{
-\item{url}{\verb{<chr>} dataset URL}
+\item{url}{\verb{<chr>} resources URL}
+}
+\value{
+An S7 \verb{<class_resources>} object.
 }
 \description{
-class_resources
+API Endpoint Resources Object
 }
-\seealso{
-Other classes: 
-\code{\link{Current}()}
-}
-\concept{classes}
+\keyword{internal}

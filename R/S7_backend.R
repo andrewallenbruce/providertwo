@@ -1,16 +1,19 @@
-#' @title Current
-#' @name Current
-#' @param title `<chr>` title
+#' API Endpoint Current Object
+#'
+#' @param title       `<chr>` title
 #' @param description `<chr>` description
-#' @param contact `<chr>` contact
-#' @param modified `<chr>` date last modified
-#' @param identifier `<chr>` uuid
-#' @param rows `<int>` number of rows
-#' @param fields `<chr>` field names
-#' @param pages `<int>` number of pages
-#' @param download `<chr>` download URL
-#' @family classes
+#' @param contact     `<chr>` contact name and email address
+#' @param modified    `<chr>` date last modified
+#' @param identifier  `<chr>` uuid
+#' @param rows        `<int>` number of rows
+#' @param fields      `<chr>` field names
+#' @param pages       `<int>` number of pages
+#' @param download    `<chr>` download URL
+#'
+#' @returns An S7 `<Current>` object.
+#'
 #' @autoglobal
+#' @keywords internal
 #' @export
 Current <- new_class(
   name          = "Current",
@@ -21,16 +24,20 @@ Current <- new_class(
     modified    = class_character | class_Date,
     identifier  = class_character,
     rows        = class_integer,
-    fields      = class_character,
     pages       = class_integer,
+    fields      = class_character,
     download    = class_character
   )
 )
 
-#' @title class_resources
-#' @param url `<chr>` dataset URL
-#' @family classes
+#' API Endpoint Resources Object
+#'
+#' @param url `<chr>` resources URL
+#'
+#' @returns An S7 `<class_resources>` object.
+#'
 #' @autoglobal
+#' @keywords internal
 #' @export
 class_resources <- new_class(
   name = "class_resources",
@@ -39,13 +46,13 @@ class_resources <- new_class(
     files = new_property(
       class_list,
       getter = function(self) {
-        fload(self@url, query = "/data") |>
+        fload(self@url,
+              query = "/data") |>
           fcompute(
             file = name,
             size = roundup(fileSize / 1e6),
             ext = file_ext(downloadURL),
-            download = downloadURL
-          ) |>
+            download = downloadURL) |>
           roworder(ext, -size)
       }
     )
@@ -55,15 +62,19 @@ class_resources <- new_class(
       "must be length 1"
 )
 
-#' @title CurrentMain
-#' @rdname Current
-#' @param temporal `<chr>` temporal
-#' @param periodicity `<chr>` periodicity
-#' @param resources `<chr>` resources URL
-#' @param dictionary `<chr>` dictionary
-#' @param site `<chr>` landing site
-#' @param references `<chr>` references link
-#' @family classes
+#' API Endpoint Current Object (Main)
+#'
+#' @inheritParams Current
+#'
+#' @param temporal    `<chr>` timespan endpoint covers
+#' @param periodicity `<chr>` frequency of updates
+#' @param resources   `<class_resources>` resources URL
+#' @param dictionary  `<chr>` link to data dictionary
+#' @param site        `<chr>` endpoint landing site
+#' @param references  `<chr>` link to references
+#'
+#' @returns An S7 `<CurrentMain>` object.
+#'
 #' @autoglobal
 #' @export
 CurrentMain <- new_class(
@@ -79,53 +90,63 @@ CurrentMain <- new_class(
   )
 )
 
-#' @title CurrentProvider
-#' @rdname Current
-#' @param issued `<chr>` date issued
+#' API Endpoint Current Object (Provider)
+#'
+#' @inheritParams Current
+#'
+#' @param issued   `<chr>` date issued
 #' @param released `<chr>` date released
-#' @param uuid `<chr>` uuid
-#' @param site `<chr>` landing site
-#' @family classes
+#' @param uuid     `<chr>` uuid
+#' @param site     `<chr>` endpoint landing site
+#'
+#' @returns An S7 `<CurrentProvider>` object.
+#'
 #' @autoglobal
 #' @export
 CurrentProvider <- new_class(
   parent = Current,
   name = "CurrentProvider",
   properties = list(
-    issued = class_character | class_Date,
-    released = class_character | class_Date,
-    uuid = class_character,
+    issued     = class_character | class_Date,
+    released   = class_character | class_Date,
+    uuid       = class_character,
     identifier = new_property(class_character, getter = function(self) prov_uuid_url(self@uuid)),
-    site = class_character
+    site       = class_character
   )
 )
 
-#' @title CurrentOpen
-#' @rdname Current
+#' API Endpoint Current Object (Open Payments)
+#'
+#' @inheritParams Current
+#'
 #' @param uuid `<chr>` uuid
-#' @family classes
+#'
+#' @returns An S7 `<CurrentOpen>` object.
+#'
 #' @autoglobal
 #' @export
 CurrentOpen <- new_class(
   parent = Current,
   name   = "CurrentOpen",
   properties = list(
-    uuid = class_character,
+    uuid       = class_character,
     identifier = new_property(class_character, getter = function(self) open_uuid_url(self@uuid))
     )
   )
 
-#' @title Temporal
-#' @name Temporal
-#' @param title `<chr>` dataset title
-#' @param description `<chr>` dataset description
-#' @param contact `<chr>` dataset contact
-#' @param rows `<int>` number of rows
-#' @param fields `<chr>` field names
-#' @param pages `<int>` number of pages
-#' @param years `<int>` years available
-#' @param endpoints `<data.frame>` endpoints
-#' @family base-classes
+#' Temporal Endpoint Object
+#'
+#' @param title       `<chr>` title
+#' @param description `<chr>` description
+#' @param contact     `<chr>` contact name and email address
+#' @param rows        `<int>` number of rows
+#' @param pages       `<int>` number of pages
+#' @param fields      `<chr>` field names
+#' @param years       `<int>` years available
+#' @param endpoints   `<data.frame>` endpoints
+#'
+#' @returns An S7 `<Temporal>` object.
+#'
 #' @autoglobal
 #' @export
 Temporal <- new_class(
@@ -135,16 +156,19 @@ Temporal <- new_class(
     description = class_character,
     contact     = class_character,
     rows        = class_integer,
-    fields      = class_character,
     pages       = class_integer,
+    fields      = class_character,
     years       = class_integer,
     endpoints   = class_list
   )
 )
 
-#' @title TemporalMain
-#' @rdname Temporal
-#' @family main-classes
+#' Temporal Endpoint Object (Main)
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalMain>` object.
+#'
 #' @autoglobal
 #' @export
 TemporalMain <- new_class(
@@ -152,9 +176,12 @@ TemporalMain <- new_class(
   name   = "TemporalMain"
 )
 
-#' @title TemporalMainGroup
-#' @rdname Temporal
-#' @family main-classes
+#' Temporal Group Object (Main)
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalMainGroup>` object.
+#'
 #' @autoglobal
 #' @export
 TemporalMainGroup <- new_class(
@@ -162,9 +189,12 @@ TemporalMainGroup <- new_class(
   name   = "TemporalMainGroup"
 )
 
-#' @title TemporalOpen
-#' @rdname Temporal
-#' @family open-classes
+#' Temporal Endpoint Object (Open Payments)
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalOpen>` object.
+#'
 #' @autoglobal
 #' @export
 TemporalOpen <- new_class(
@@ -172,9 +202,12 @@ TemporalOpen <- new_class(
   name   = "TemporalOpen"
 )
 
-#' @title TemporalOpenGroup
-#' @rdname Temporal
-#' @family open-classes
+#' Temporal Group Object (Open Payments)
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalOpenGroup>` object.
+#'
 #' @autoglobal
 #' @export
 TemporalOpenGroup <- new_class(
