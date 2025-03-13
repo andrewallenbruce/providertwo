@@ -25,7 +25,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/bureau_code.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_main.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_open.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_open_.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/class_resources.html</loc></url>
@@ -78,17 +77,9 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/null.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/offset.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_add_dlurl.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_grouped.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_clean_temp.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_current.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_dictionary.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_general.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_grouped_summary.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_grouped_yearly.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_nrows_fields.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_ownership.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_profiles.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_research.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_temporal.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_uuid_url.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/parse_json_response_provider.html</loc></url>
@@ -102,7 +93,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_nrows_fields.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_dict.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/prov_uuid_url.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_current.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/provider_current_group.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
@@ -110,6 +100,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query_nrows_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/random_string.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/recode_iso8601.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/reduce_contact.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/remove_all_na.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/remove_quotes.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/replace_fixed.html</loc></url>
