@@ -68,9 +68,9 @@ alias_main_temporal_group <- function(x) {
 alias_provider_current <- function(x) {
   nswitch(
     x,
-    "affiliations",  "Facility Affiliation Data",
-    "clinicians",    "National Downloadable File",
-    "utilization",   "Utilization Data",
+    "affiliations",  "^Facility Affiliation Data$",
+    "clinicians",    "^National Downloadable File$",
+    "utilization",   "^Utilization Data$",
     default = NA_character_,
     nThread = 4L
   )

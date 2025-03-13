@@ -6,28 +6,20 @@
 #' @export
 catalog_provider <- function() {
 
-  x <- fload(
-    paste0(
-      "https://data.cms.gov/",
-      "provider-data/api/1/",
-      "metastore/schemas/dataset/items"
-    )
-  ) |>
-    as_tbl() |>
+  x <- fload(paste0(
+    "https://data.cms.gov/",
+    "provider-data/api/1/",
+    "metastore/schemas/dataset/items"))
+
+  x |>
     mtt(
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
       theme       = flatten_column(theme),
-      description = trimws(sf_remove(description, "\n"))
-    )
-
-  add_vars(x,
-    downloadurl = delist(get_elem(
-      x$distribution, "downloadURL", DF.as.list = TRUE)),
-    contact = as.character(
-      glue('{delist(get_elem(x$contactPoint, "fn"))} ',
-           '({delist(get_elem(x$contactPoint, "^has", regex = TRUE))})'))) |>
+      description = trimws(sf_remove(description, "\n")),
+      download    = delist_elem(x$distribution, "downloadURL"),
+      contact     = reduce_contact(x$contactPoint)) |>
     slt(
       title,
       theme,
@@ -37,25 +29,10 @@ catalog_provider <- function() {
       released,
       identifier,
       contact,
-      download = downloadurl,
-      site = landingPage
-    ) |>
+      download,
+      site = landingPage) |>
     roworder(theme, title) |>
-    rsplit(~ theme) |>
-    set_names(
-      c(
-        "dialysis_facilities",
-        "doctors_and_clinicians",
-        "home_health_services",
-        "hospice_care",
-        "hospitals",
-        "inpatient_rehabilitation_facilities",
-        "long_term_care_hospitals",
-        "nursing_homes",
-        "physician_office_visit_costs",
-        "supplier_directory"
-      )
-    )
+    as_tbl()
 }
 
 #' Convert Provider UUID to URL
@@ -113,45 +90,6 @@ prov_nrows_fields <- function(uuid) {
 
 }
 
-#' Load `<CurrentProvider>` API Endpoint
-#'
-#' @param alias `<chr>` endpoint alias
-#'
-#' @returns `<CurrentProvider>` object
-#'
-#' @examples
-#' provider_current("affiliations")
-#' provider_current("clinicians")
-#' provider_current("utilization")
-#' @autoglobal
-#'
-#' @export
-provider_current <- function(alias) {
-
-  x <- catalog_provider()$doctors_and_clinicians |>
-    subset_detect(
-      title,
-      alias_provider_current(alias)) |>
-    c()
-
-  q <- prov_nrows_fields(x$identifier)
-
-  CurrentProvider(
-    title       = x$title,
-    description = x$description,
-    contact     = x$contact,
-    modified    = x$modified,
-    uuid        = x$identifier,
-    download    = x$download,
-    issued      = x$issued,
-    released    = x$released,
-    site        = x$site,
-    rows        = q$rows,
-    fields      = q$fields,
-    pages       = q$pages
-  )
-}
-
 #' Load `<CurrentProviderGroup>` API Endpoint
 #' @param alias `<chr>` endpoint alias
 #' @returns `<CurrentProviderGroup>` object
@@ -160,9 +98,7 @@ provider_current <- function(alias) {
 #' @autoglobal
 #' @export
 provider_current_group <- function(alias) {
-
-  catalog_provider()$doctors_and_clinicians |>
-    subset_detect(
-      title,
-      alias_provider_current_group(alias))
+  subset_detect(catalog_provider(),
+                title,
+                alias_provider_current_group(alias))
 }

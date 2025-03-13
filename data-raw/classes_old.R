@@ -1,3 +1,67 @@
+#' API Endpoint Current Object (Provider)
+#'
+#' @inheritParams Current
+#'
+#' @param issued   `<chr>` date issued
+#' @param released `<chr>` date released
+#' @param uuid     `<chr>` uuid
+#' @param site     `<chr>` endpoint landing site
+#'
+#' @returns An S7 `<CurrentProvider>` object.
+#'
+#' @autoglobal
+#' @export
+CurrentProvider <- new_class(
+  parent = Current,
+  name = "CurrentProvider",
+  properties = list(
+    issued     = class_character | class_Date,
+    released   = class_character | class_Date,
+    uuid       = class_character,
+    identifier = new_property(class_character, getter = function(self) prov_uuid_url(self@uuid)),
+    site       = class_character
+  )
+)
+
+#' Load `<CurrentProvider>` API Endpoint
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns `<CurrentProvider>` object
+#'
+#' @examples
+#' provider_current("affiliations")
+#' provider_current("clinicians")
+#' provider_current("utilization")
+#' @autoglobal
+#'
+#' @export
+provider_current <- function(alias) {
+
+  x <- catalog_provider()$doctors_and_clinicians |>
+    subset_detect(
+      title,
+      alias_provider_current(alias)) |>
+    c()
+
+  q <- prov_nrows_fields(x$identifier)
+
+  CurrentProvider(
+    title       = x$title,
+    description = x$description,
+    contact     = x$contact,
+    modified    = x$modified,
+    uuid        = x$identifier,
+    download    = x$download,
+    issued      = x$issued,
+    released    = x$released,
+    site        = x$site,
+    rows        = q$rows,
+    fields      = q$fields,
+    pages       = q$pages
+  )
+}
+
 #' @include props.R
 NULL
 

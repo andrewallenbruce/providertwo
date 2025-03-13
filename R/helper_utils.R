@@ -197,6 +197,19 @@ smush_elem <- function(i, el) {
     sf_smush(x, sep = ", "))
 }
 
+#' Concatenate Contact Point
+#' @param x `<list>` list to get element from
+#' @returns `<chr>` element
+#' @autoglobal
+#' @keywords internal
+#' @export
+reduce_contact <- function(x) {
+  x <- delist(get_elem(x, "^has", regex = TRUE)) |>
+    set_names(delist(get_elem(x, "fn")))
+
+  as.character(glue("{names(x)} ({x})"))
+}
+
 #' ISO 8601 Recurring Time Intervals
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules

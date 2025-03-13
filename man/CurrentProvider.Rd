@@ -2,54 +2,22 @@
 % Please edit documentation in R/S7_backend.R
 \name{CurrentProvider}
 \alias{CurrentProvider}
-\title{API Endpoint Current Object (Provider)}
+\title{Provider API Endpoint (Current)}
 \usage{
-CurrentProvider(
-  title = character(0),
-  description = character(0),
-  contact = character(0),
-  modified = character(0),
-  identifier = character(0),
-  rows = integer(0),
-  pages = integer(0),
-  fields = character(0),
-  download = character(0),
-  issued = character(0),
-  released = character(0),
-  uuid = character(0),
-  site = character(0)
-)
+CurrentProvider(alias)
 }
 \arguments{
-\item{title}{\verb{<chr>} title}
-
-\item{description}{\verb{<chr>} description}
-
-\item{contact}{\verb{<chr>} contact name and email address}
-
-\item{modified}{\verb{<chr>} date last modified}
-
-\item{identifier}{\verb{<chr>} uuid}
-
-\item{rows}{\verb{<int>} number of rows}
-
-\item{pages}{\verb{<int>} number of pages}
-
-\item{fields}{\verb{<chr>} field names}
-
-\item{download}{\verb{<chr>} download URL}
-
-\item{issued}{\verb{<chr>} date issued}
-
-\item{released}{\verb{<chr>} date released}
-
-\item{uuid}{\verb{<chr>} uuid}
-
-\item{site}{\verb{<chr>} endpoint landing site}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<CurrentProvider>} object.
 }
 \description{
-API Endpoint Current Object (Provider)
+Provider API Endpoint (Current)
+}
+\examples{
+CurrentProvider("affiliations")
+CurrentProvider("clinicians")
+CurrentProvider("utilization")
+
 }

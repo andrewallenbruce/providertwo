@@ -38,3 +38,4 @@ An S7 \verb{<Temporal>} object.
 \description{
 Temporal Endpoint Object
 }
+\keyword{internal}

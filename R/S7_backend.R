@@ -90,18 +90,19 @@ CurrentMain <- new_class(
   )
 )
 
-#' API Endpoint Current Object (Provider)
+#' Provider API Endpoint (Current)
 #'
-#' @inheritParams Current
-#'
-#' @param issued   `<chr>` date issued
-#' @param released `<chr>` date released
-#' @param uuid     `<chr>` uuid
-#' @param site     `<chr>` endpoint landing site
+#' @param alias `<chr>` endpoint alias
 #'
 #' @returns An S7 `<CurrentProvider>` object.
 #'
+#' @examples
+#' CurrentProvider("affiliations")
+#' CurrentProvider("clinicians")
+#' CurrentProvider("utilization")
+#'
 #' @autoglobal
+#'
 #' @export
 CurrentProvider <- new_class(
   parent = Current,
@@ -110,9 +111,37 @@ CurrentProvider <- new_class(
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
     uuid       = class_character,
-    identifier = new_property(class_character, getter = function(self) prov_uuid_url(self@uuid)),
-    site       = class_character
-  )
+    site       = class_character,
+    identifier = new_property(
+      class_character,
+      getter = function(self)
+        prov_uuid_url(self@uuid))
+    ),
+  constructor = function(alias) {
+
+    x <- subset_detect(
+      catalog_provider(),
+      title,
+      alias_provider_current(alias)) |>
+      c()
+
+    q <- prov_nrows_fields(x$identifier)
+
+    new_object(
+      S7_object(),
+      title       = x$title,
+      description = x$description,
+      contact     = x$contact,
+      modified    = x$modified,
+      uuid        = x$identifier,
+      download    = x$download,
+      issued      = x$issued,
+      released    = x$released,
+      site        = x$site,
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages)
+  }
 )
 
 #' API Endpoint Current Object (Open Payments)
@@ -148,6 +177,7 @@ CurrentOpen <- new_class(
 #' @returns An S7 `<Temporal>` object.
 #'
 #' @autoglobal
+#' @keywords internal
 #' @export
 Temporal <- new_class(
   name = "Temporal",
