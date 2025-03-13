@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9116 (2025-03-13)
+
+* CurrentMain class
+
+
 # providertwo 0.0.0.9115 (2025-03-13)
 
 * Open classes
