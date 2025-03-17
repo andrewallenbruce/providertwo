@@ -4,37 +4,18 @@
 \alias{TemporalMain}
 \title{Main API Endpoint (Temporal)}
 \usage{
-TemporalMain(
-  title = character(0),
-  description = character(0),
-  contact = character(0),
-  rows = integer(0),
-  pages = integer(0),
-  fields = character(0),
-  years = integer(0),
-  endpoints = list()
-)
+TemporalMain(alias)
 }
 \arguments{
-\item{title}{\verb{<chr>} title}
-
-\item{description}{\verb{<chr>} description}
-
-\item{contact}{\verb{<chr>} contact name and email address}
-
-\item{rows}{\verb{<int>} number of rows}
-
-\item{pages}{\verb{<int>} number of pages}
-
-\item{fields}{\verb{<chr>} field names}
-
-\item{years}{\verb{<int>} years available}
-
-\item{endpoints}{\verb{<data.frame>} endpoints}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<TemporalMain>} object.
 }
 \description{
 Main API Endpoint (Temporal)
+}
+\examples{
+TemporalMain("quality_payment")
+
 }

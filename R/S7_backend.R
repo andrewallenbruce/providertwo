@@ -266,15 +266,52 @@ Temporal <- new_class(
 
 #' Main API Endpoint (Temporal)
 #'
-#' @inheritParams Temporal
+#' @param alias `<chr>` endpoint alias
 #'
 #' @returns An S7 `<TemporalMain>` object.
+#'
+#' @examples
+#' TemporalMain("quality_payment")
 #'
 #' @autoglobal
 #' @export
 TemporalMain <- new_class(
-  parent = Temporal,
-  name   = "TemporalMain"
+  parent      = Temporal,
+  name        = "TemporalMain",
+  properties = list(
+    periodicity = class_character,
+    dictionary  = class_character,
+    site        = class_character),
+  constructor = function(alias) {
+
+    x <- catalog_main()$temporal |>
+      subset_detect(title, alias_main_temporal(alias))
+
+    dat <- sbt(get_elem(x, "data")[[1]], format != "latest")
+
+    q <- main_temporal_nrows_fields(dat$identifier[1])
+
+    new_object(
+      Temporal(),
+      title       = x$title,
+      description = x$description,
+      periodicity = x$periodicity,
+      dictionary  = x$dictionary,
+      site        = x$site,
+      contact     = x$contact,
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages,
+      years       = dat$year,
+      endpoints   = slt(dat,
+                        year,
+                        modified,
+                        identifier,
+                        download,
+                        filetype,
+                        resources)
+    )
+  }
 )
 
 #' Open Payments API Endpoint (Temporal)

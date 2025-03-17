@@ -1,29 +1,3 @@
-#' CMS Provider Catalog
-#' @returns `<list>` of Provider API catalog information
-#' @examples
-#' catalog_provider()
-#' @autoglobal
-#' @export
-catalog_provider <- function() {
-
-  x <- fload(paste0(
-    "https://data.cms.gov/",
-    "provider-data/api/1/",
-    "metastore/schemas/dataset/items"))
-
-  mtt(x,
-      issued      = as_date(issued),
-      modified    = as_date(modified),
-      released    = as_date(released),
-      group       = flatten_column(theme),
-      description = stri_trim(gsub("\n", "", description, perl = TRUE)),
-      download    = delist_elem(x$distribution, "downloadURL"),
-      contact     = reduce_contact(x$contactPoint)) |>
-    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage) |>
-    roworder(group, title) |>
-    as_tbl()
-}
-
 #' Convert Provider UUID to URL
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` endpoint URL
@@ -90,4 +64,30 @@ provider_current_group <- function(alias) {
   subset_detect(catalog_provider(),
                 title,
                 alias_provider_current_group(alias))
+}
+
+#' CMS Provider Catalog
+#' @returns `<list>` of Provider API catalog information
+#' @examples
+#' catalog_provider()
+#' @autoglobal
+#' @export
+catalog_provider <- function() {
+
+  x <- fload(paste0(
+    "https://data.cms.gov/",
+    "provider-data/api/1/",
+    "metastore/schemas/dataset/items"))
+
+  mtt(x,
+      issued      = as_date(issued),
+      modified    = as_date(modified),
+      released    = as_date(released),
+      group       = flatten_column(theme),
+      description = stri_trim(gsub("\n", "", description, perl = TRUE)),
+      download    = delist_elem(x$distribution, "downloadURL"),
+      contact     = reduce_contact(x$contactPoint)) |>
+    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage) |>
+    roworder(group, title) |>
+    as_tbl()
 }

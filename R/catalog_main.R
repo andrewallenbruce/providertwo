@@ -90,6 +90,23 @@ main_nrows_fields <- function(url) {
 
 }
 
+#' Get Field Names and Number of Rows from Main Endpoint
+#' @param url `<chr>` endpoint URL
+#' @returns `<list>` number of rows and field names
+#' @autoglobal
+#' @keywords internal
+#' @export
+main_temporal_nrows_fields <- function(url) {
+
+  perform_ <- \(x) resp_simple_json(req_perform(x))
+
+  list_tidy(
+    rows   = perform_(req_url_path_append(request(url), "stats")) |> _[["total_rows"]],
+    pages  = offset_length(rows, 5000L),
+    fields = names(perform_(request(url))))
+
+}
+
 #' Load `<TemporalMain>` API Endpoint
 #' @param alias `<chr>` dataset title
 #' @returns `<TemporalMain>` object
