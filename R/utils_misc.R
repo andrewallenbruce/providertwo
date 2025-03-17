@@ -210,6 +210,47 @@ reduce_contact <- function(x) {
   as.character(glue("{names(x)} ({x})"))
 }
 
+#' Check if a property is empty
+#' @param obj `<S7_object>` to check
+#' @param nm `<chr>` property name
+#' @returns `<lgl>` `TRUE` if empty, `FALSE` otherwise
+#' @autoglobal
+#' @keywords internal
+#' @export
+prop_empty <- function(obj, nm) {
+  check_is_S7(obj)
+  empty(prop(obj, nm))
+}
+
+#' Print a named list
+#'
+#' @param ls `<list>` to print
+#'
+#' @param prefix `<chr>` to prepend to each line
+#'
+#' @returns `<list>` invisibly
+#'
+#' @examples
+#' print_list(list(a = 1, b = 2, c = 3))
+#'
+#' @autoglobal
+#'
+#' @export
+print_list <- function(ls, prefix = "") {
+
+  if (length(ls) == 0) cat("<empty>\n")
+
+  ns <- names(ls)
+
+  if (length(ns) != length(ls)) stop("all elements must be named")
+
+  ls <- lapply(ls, as.character)
+
+  cat(sprintf("%s%s : %s", prefix, format(ns), ls), sep = "\n")
+
+  invisible(ls)
+}
+
 #' ISO 8601 Recurring Time Intervals
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules

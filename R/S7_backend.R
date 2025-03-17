@@ -32,11 +32,11 @@ Current <- new_class(
 
 #' Main API Endpoint Resources
 #' @param url `<chr>` resources URL
-#' @returns An S7 `<Resources>` object.
+#' @returns An S7 `<ResourcesMain>` object.
 #' @autoglobal
 #' @keywords internal
 #' @export
-Resources <- new_class(
+ResourcesMain <- new_class(
   name = "Resources",
   properties = list(
     url = class_character,
@@ -86,9 +86,14 @@ CurrentMain <- new_class(
   parent = Current,
   name   = "CurrentMain",
   properties = list(
-    temporal    = class_character,
+    temporal = new_property(
+      class_character,
+      getter = function(self) {
+        gsub("/", paste0(" ", cli::symbol$bullet, " "), self@temporal, perl = TRUE)
+      }
+    ),
     periodicity = class_character,
-    resources   = Resources,
+    resources   = ResourcesMain,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
@@ -112,7 +117,7 @@ CurrentMain <- new_class(
       periodicity = x$periodicity,
       temporal    = x$temporal,
       identifier  = x$identifier,
-      resources   = Resources(x$resources),
+      resources   = ResourcesMain(x$resources),
       rows        = q$rows,
       fields      = q$fields,
       pages       = q$pages,

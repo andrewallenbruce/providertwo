@@ -18,8 +18,8 @@ utils::globalVariables(c(
   # <TemporalMain>
   # <TemporalOpen>
   "modified",
-  # <open_dictionary>
   # <get_resources>
+  # <open_dictionary>
   "name",
   # <TemporalMain>
   "resources",
