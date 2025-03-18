@@ -23,7 +23,7 @@ utils::globalVariables(c(
   "name",
   # <TemporalMain>
   "resources",
-  # <main_temporal_nrows_fields>
+  # <main_temporal_dims>
   "rows",
   # <get_resources>
   "size",

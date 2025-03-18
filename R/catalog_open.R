@@ -4,7 +4,7 @@
 #' @autoglobal
 #' @keywords internal
 #' @export
-open_nrows_fields <- function(uuid) {
+open_dims <- function(uuid) {
 
   x <- open_url(uuid) |>
     request() |>
@@ -15,8 +15,7 @@ open_nrows_fields <- function(uuid) {
       count   = "true",
       offset  = 0,
       limit   = 1) |>
-    req_perform() |>
-    resp_simple_json()
+    perform_simple()
 
   list(rows   = x$count,
        fields = x$query$properties,

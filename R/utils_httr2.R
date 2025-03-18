@@ -12,6 +12,16 @@ resp_simple_json <- function(resp, ...) {
     ...)
 }
 
+#' Perform and Parse Simple JSON Response
+#' @param x `<httr2_request>` object
+#' @returns `<list>` Parsed JSON response
+#' @autoglobal
+#' @keywords internal
+#' @export
+perform_simple <- function(x) {
+  resp_simple_json(req_perform(x))
+}
+
 #' Helper for `iterate_with_offset`
 #' @param limit `<int>` API rate limit, i.e. the maximum number of results an
 #'                      API will return per request.

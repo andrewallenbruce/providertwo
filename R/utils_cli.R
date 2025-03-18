@@ -23,7 +23,7 @@ cli_fn <- list(
   ds = \(x) cli::cat_line(cli::ansi_strwrap(cli_pt$italic_cyan(x@description), width = 60, indent = 2, exdent = 2)),
   no = \(x) prettyNum(x@rows, ','),
   nf = \(x) length(x@fields),
-  nr = \(x) cheapr::unlisted_length(x@resources@files$file),
+  nr = \(x) unlisted_length(x@resources@files$file),
   tm = \(x) cli_pt$italic_yellow(x@temporal),
   pr = \(x) cli_pt$italic_yellow(x@periodicity),
   md = \(x) cli_pt$italic_yellow(x@modified),

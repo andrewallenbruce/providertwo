@@ -4,12 +4,12 @@
 #' @export
 #' @autoglobal
 #' @keywords internal
-prov_uuid_url <- function(uuid) {
-  paste0(
-    "https://data.cms.gov/",
-    "provider-data/api/1/",
-    "datastore/query/",
-    uuid, "/0")
+pro_url <- function(uuid) {
+  paste0("https://data.cms.gov/",
+         "provider-data/api/1/",
+         "datastore/query/",
+         uuid,
+         "/0")
 }
 
 #' Convert Provider UUID to Data Dictionary Hyperlink
@@ -18,11 +18,11 @@ prov_uuid_url <- function(uuid) {
 #' @export
 #' @autoglobal
 #' @keywords internal
-prov_uuid_dict <- function(uuid) {
-  paste0(
-    "https://data.cms.gov/",
-    "provider-data/dataset/",
-    uuid, "#data-dictionary")
+pro_dict <- function(uuid) {
+  paste0("https://data.cms.gov/",
+         "provider-data/dataset/",
+         uuid,
+         "#data-dictionary")
 }
 
 #' Get Field Names and Number of Rows from Provider Endpoint
@@ -31,10 +31,10 @@ prov_uuid_dict <- function(uuid) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-prov_nrows_fields <- function(uuid) {
+pro_dims <- function(uuid) {
 
   x <- uuid |>
-    prov_uuid_url() |>
+    pro_url() |>
     request() |>
     req_url_query(
       schema  = "false",
@@ -44,8 +44,7 @@ prov_nrows_fields <- function(uuid) {
       offset  = 0,
       limit   = 1
     ) |>
-    req_perform() |>
-    resp_simple_json()
+    perform_simple()
 
   list(rows   = x$count,
        fields = x$query$properties,
@@ -74,10 +73,13 @@ provider_current_group <- function(alias) {
 #' @export
 catalog_provider <- function() {
 
-  x <- fload(paste0(
-    "https://data.cms.gov/",
-    "provider-data/api/1/",
-    "metastore/schemas/dataset/items"))
+  x <- fload(
+    paste0(
+      "https://data.cms.gov/",
+      "provider-data/api/1/",
+      "metastore/schemas/dataset/items"
+    )
+  )
 
   mtt(x,
       issued      = as_date(issued),

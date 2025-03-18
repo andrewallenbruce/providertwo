@@ -89,7 +89,10 @@ CurrentMain <- new_class(
     temporal = new_property(
       class_character,
       getter = function(self) {
-        gsub("/", paste0(" ", cli::symbol$bullet, " "), self@temporal, perl = TRUE)
+        gsub("/",
+             paste0(" ", cli::symbol$bullet, " "),
+             self@temporal,
+             perl = TRUE)
       }
     ),
     periodicity = class_character,
@@ -106,7 +109,7 @@ CurrentMain <- new_class(
         alias_main_current(alias)) |>
       c()
 
-    q <- main_nrows_fields(x$identifier)
+    q <- main_dims(x$identifier)
 
     new_object(
       Current(),
@@ -153,8 +156,7 @@ CurrentProvider <- new_class(
     site       = class_character,
     identifier = new_property(
       class_character,
-      getter = function(self)
-        prov_uuid_url(self@uuid))
+      getter = function(self) pro_url(self@uuid))
     ),
   constructor = function(alias) {
 
@@ -164,7 +166,7 @@ CurrentProvider <- new_class(
       alias_provider_current(alias)) |>
       c()
 
-    q <- prov_nrows_fields(x$identifier)
+    q <- pro_dims(x$identifier)
 
     new_object(
       Current(),
@@ -223,7 +225,7 @@ CurrentOpen <- new_class(
         alias_open_current(alias)) |>
       c()
 
-    q <- open_nrows_fields(x$identifier)
+    q <- open_dims(x$identifier)
 
     new_object(
       Current(),
@@ -294,7 +296,7 @@ TemporalMain <- new_class(
 
     dat <- sbt(get_elem(x, "data")[[1]], format != "latest")
 
-    q <- main_temporal_nrows_fields(dat$identifier[1])
+    q <- main_temporal_dims(dat$identifier[1])
 
     new_object(
       Temporal(),
@@ -308,13 +310,7 @@ TemporalMain <- new_class(
       fields      = q$fields,
       pages       = q$pages,
       years       = dat$year,
-      endpoints   = slt(dat,
-                        year,
-                        modified,
-                        identifier,
-                        download,
-                        filetype,
-                        resources)
+      endpoints   = slt(dat, year, modified, identifier, download, filetype, resources)
     )
   }
 )
@@ -347,7 +343,7 @@ TemporalOpen <- new_class(
         title,
         alias_open_temporal(alias))
 
-    q <- open_nrows_fields(x$identifier[1])
+    q <- open_dims(x$identifier[1])
 
     new_object(
       Temporal(),

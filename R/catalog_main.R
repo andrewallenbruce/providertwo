@@ -69,7 +69,7 @@ catalog_main <- function() {
 #' @autoglobal
 #' @keywords internal
 #' @export
-main_nrows_fields <- function(url) {
+main_dims <- function(url) {
 
   x <- url |>
     request() |>
@@ -81,8 +81,7 @@ main_nrows_fields <- function(url) {
       offset  = 0,
       size    = 1
     ) |>
-    req_perform() |>
-    resp_simple_json()
+    perform_simple()
 
   list(rows   = x$meta$total_rows,
        fields = x$meta$headers,
@@ -96,14 +95,12 @@ main_nrows_fields <- function(url) {
 #' @autoglobal
 #' @keywords internal
 #' @export
-main_temporal_nrows_fields <- function(url) {
-
-  perform_ <- \(x) resp_simple_json(req_perform(x))
-
+main_temporal_dims <- function(url) {
   list_tidy(
-    rows   = perform_(req_url_path_append(request(url), "stats")) |> _[["total_rows"]],
+    rows   = perform_simple(req_url_path_append(request(url), "stats")) |> _[["total_rows"]],
     pages  = offset_length(rows, 5000L),
-    fields = names(perform_(request(url))))
+    fields = names(perform_simple(request(url)))
+  )
 
 }
 
