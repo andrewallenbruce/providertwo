@@ -12,3 +12,6 @@ catalog_open()
 \description{
 CMS Open Payments Catalog
 }
+\examples{
+catalog_open()
+}

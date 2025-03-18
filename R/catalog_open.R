@@ -34,6 +34,8 @@ open_url <- function(uuid) paste0("https://openpaymentsdata.cms.gov/api/1/datast
 
 #' CMS Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
+#' @examples
+#' catalog_open()
 #' @autoglobal
 #' @export
 catalog_open <- function() {
