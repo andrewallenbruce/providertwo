@@ -16,15 +16,14 @@ nppes_nlm <- function(terms) {
   req <- request("https://clinicaltables.nlm.nih.gov/api/npi_idv/v3/search?") |>
     req_url_query(
       terms   = terms,
-      maxList = 500,
-      count   = 500,
+      maxList = 500L,
+      count   = 500L,
       offset  = 0L,
       .space = "form"
     )
 
-  resp <- req_perform(req) |> resp_simple_json()
-
-  n <- resp[[1]]
+  resp <- perform_simple(req)
+  n    <- resp[[1]]
 
   if (n > 7500L) {
     cli::cli_abort(c(
@@ -37,9 +36,9 @@ nppes_nlm <- function(terms) {
     set_names(c("name", "npi", "specialty", "address")) |>
     as_tbl()
 
-  nreq <- offset_length(n, 500) > 1
+  nreq <- offset_length(n, 500L) > 1
 
-  cli_n_results_requests(n, 500)
+  cli_results(n, 500L)
 
   if (false(nreq)) {
 
@@ -51,9 +50,9 @@ nppes_nlm <- function(terms) {
       req,
       next_req        = iterate_with_offset(
         param_name    = "offset",
-        start         = 500,
-        offset        = 500,
-        resp_complete = is_complete_with_limit(500))) |>
+        start         = 500L,
+        offset        = 500L,
+        resp_complete = is_complete_with_limit(500L))) |>
       map(
         function(x) {
           x <- resp_simple_json(x)

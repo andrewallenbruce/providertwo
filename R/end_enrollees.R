@@ -26,24 +26,16 @@
 #'
 #' @param org `<chr>` Organizational provider's name
 #'
-#' @param gender `<chr>` Individual provider's gender:
-#'
-#'    * `"F"` (Female)
-#'    * `"M"` (Male)
-#'    * `"9"` (Unknown/Organization)
-#'
 #' @returns `<tibble>` of search results
 #'
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' enrollees(enid = "I20040309000221")
 #'
 #' enrollees(npi = "1417918293", spec_code = "14-41")
 #'
-#' enrollees(pac = "2860305554", gender = "9")
+#' enrollees(pac = "2860305554")
 #'
-#' enrollees(state = "GA", gender = "9")
-#'
-#' enrollees(state = "GA", gender = "F")
+#' enrollees(state = "GA")
 #'
 #' @autoglobal
 #'
@@ -57,8 +49,20 @@ enrollees <- function(npi       = NULL,
                       first     = NULL,
                       middle    = NULL,
                       last      = NULL,
-                      org       = NULL,
-                      gender    = NULL) {
+                      org       = NULL) {
+
+  list2(
+    "NPI" = npi,
+    "PECOS_ASCT_CNTL_ID" = pac,
+    "ENRLMT_ID" = enid,
+    "PROVIDER_TYPE_CD" = spec_code,
+    "PROVIDER_TYPE_DESC" = spec_desc,
+    "STATE_CD" = state,
+    "FIRST_NAME" = first,
+    "MDL_NAME" = middle,
+    "LAST_NAME" = last,
+    "ORG_NAME" = org
+  )
 
   # perform_request_public(
   #   url           = endpoint(public_dataset("enrollees")),

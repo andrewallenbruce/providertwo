@@ -4,10 +4,10 @@
 \alias{query_nrows_provider}
 \title{Request number of results from Provider Query}
 \usage{
-query_nrows_provider(request)
+query_nrows_provider(req)
 }
 \arguments{
-\item{request}{\verb{<httr_request>} API request}
+\item{req}{\verb{<httr_request>} API request}
 }
 \value{
 \verb{<int>} Number of results

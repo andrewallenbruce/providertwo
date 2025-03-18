@@ -15,6 +15,8 @@ utils::globalVariables(c(
   # <TemporalMain>
   # <TemporalOpen>
   "identifier",
+  # <perform_request_provider>
+  "limit",
   # <TemporalMain>
   # <TemporalOpen>
   "modified",

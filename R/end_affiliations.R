@@ -27,7 +27,7 @@
 #'                           sub-unit's primary hospital, should the
 #'                           provider provide services in said unit.
 #'
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' affiliations(last = "CURRY", facility_type = "Home health agency")
 #' affiliations(ccn_parent = "670055")
 #' affiliations(ccn_facility = "370781")
@@ -47,7 +47,7 @@ affiliations <- function(npi           = NULL,
                          ccn_facility  = NULL,
                          ccn_parent    = NULL) {
 
-  args <- list2(
+  list2(
     "npi"                                        = npi,
     "ind_pac_id"                                 = pac,
     "provider_last_name"                         = last,

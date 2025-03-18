@@ -4,14 +4,12 @@
 \alias{perform_request_public}
 \title{Perform Public API request}
 \usage{
-perform_request_public(url, query, limit = 5000L)
+perform_request_public(url, query)
 }
 \arguments{
 \item{url}{\verb{<url>} API identifier url}
 
 \item{query}{\verb{<chr>} vector of query parameters}
-
-\item{limit}{\verb{<int>} API rate limit; default is 5000}
 }
 \value{
 \verb{<int>} Number of results

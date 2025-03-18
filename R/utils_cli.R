@@ -1,3 +1,11 @@
+#' Format Number with Commas
+#' @param x `<int>` number to format
+#' @returns `<chr>` formatted number
+#' @autoglobal
+#' @keywords internal
+#' @export
+num <- function(x) prettyNum(x, big.mark = ",")
+
 #' @noRd
 cli_pt <- list_tidy(
   bold_yellow   = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
@@ -19,16 +27,41 @@ cli_pt <- list_tidy(
 
 #' @noRd
 cli_fn <- list(
-  tt = \(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), line = 2, line_col = "silver", width = 60)),
-  ds = \(x) cli::cat_line(cli::ansi_strwrap(cli_pt$italic_cyan(x@description), width = 60, indent = 2, exdent = 2)),
-  no = \(x) prettyNum(x@rows, ','),
-  nf = \(x) length(x@fields),
-  nr = \(x) unlisted_length(x@resources@files$file),
-  tm = \(x) cli_pt$italic_yellow(x@temporal),
-  pr = \(x) cli_pt$italic_yellow(x@periodicity),
-  md = \(x) cli_pt$italic_yellow(x@modified),
-  lk = \(prop, nm) cli::style_hyperlink(nm, prop)
+  title = \(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), line = 2, line_col = "silver", width = 60)),
+  desc = \(x) cli::cat_line(cli::ansi_strwrap(cli_pt$italic_cyan(x@description), width = 60, indent = 2, exdent = 2)),
+  nrows = \(x) num(x@rows),
+  nfields = \(x) length(x@fields),
+  nfiles = \(x) unlisted_length(x@resources@files$file),
+  temp = \(x) cli_pt$italic_yellow(x@temporal),
+  period = \(x) cli_pt$italic_yellow(x@periodicity),
+  mod = \(x) cli_pt$italic_yellow(x@modified),
+  link = \(prop, nm) cli::style_hyperlink(nm, prop)
 )
+
+#' Inform number of results and requests
+#'
+#' @param n     `<int>` Number of results returned in an API request
+#'
+#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
+#'                      API will return per request.
+#' @returns cli message
+#' @autoglobal
+#' @keywords internal
+#' @export
+cli_results <- function(n, limit) {
+
+  pg  <- offset_length(n, limit)
+  res <- ifelse(n > 1, cli::col_cyan("Results"), cli::col_cyan("Result"))
+  req <- ifelse(pg > 1, cli::col_cyan("Requests"), cli::col_cyan("Request"))
+
+  pg <- cli_pt$bold_yellow(num(pg))
+  n  <- cli_pt$bold_yellow(num(n))
+
+  cli::cli_inform(
+    c(" " = " ",
+      "i" = "{n} {res} {cli_pt$sym_menu} {pg} {req}",
+      " " = " "))
+}
 
 
 # x <- CurrentMain("enrollees")
