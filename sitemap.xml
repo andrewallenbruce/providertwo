@@ -10,8 +10,8 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/CurrentMain.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/CurrentOpen.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/CurrentProvider.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/Temporal.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/TemporalGroup.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/TemporalMain.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/TemporalMainGroup.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/TemporalOpen.html</loc></url>
@@ -45,8 +45,6 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/format_query_public.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/gelm.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_data_elem.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_fields.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_nrows.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_pin.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/get_resources.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/getelem.html</loc></url>
