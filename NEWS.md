@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9123 (2025-03-18)
+
+* renamed `Resources` class
+* `main_temp()` helper
+
+
 # providertwo 0.0.0.9122 (2025-03-18)
 
 * more cli work
