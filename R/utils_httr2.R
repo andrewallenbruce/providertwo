@@ -155,20 +155,6 @@ nrows_provider <- function(url) {
     _[["count"]]
 }
 
-#' Request total number of rows from catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @keywords internal
-#' @export
-get_nrows <- function(url) {
-  if (sf_detect(url, "provider-data|openpaymentsdata")) {
-    nrows_provider(url)
-  } else {
-    nrows_public(url)
-  }
-}
-
 #' Request field names from public catalog
 #' @param url `<chr>` API URL
 #' @returns `<chr>` Field names
@@ -208,20 +194,6 @@ fields_provider <- function(url) {
     resp_simple_json() |>
     _[["query"]] |>
     _[["properties"]]
-}
-
-#' Request field names from catalog
-#' @param url `<chr>` API URL
-#' @returns `<chr>` Field names
-#' @autoglobal
-#' @keywords internal
-#' @export
-get_fields <- function(url) {
-  if (sf_detect(url, "provider-data|openpaymentsdata")) {
-    fields_provider(url)
-  } else {
-    fields_public(url)
-  }
 }
 
 #' Get Resources

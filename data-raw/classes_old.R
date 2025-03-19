@@ -148,6 +148,35 @@ Resources <- new_class(
   validator  = function(self) if (length(self@url) != 1L) "must be length 1"
 )
 
+#' Main API Endpoint Resources
+#' @param url `<chr>` resources URL
+#' @returns An S7 `<Resources>` object.
+#' @autoglobal
+#' @keywords internal
+#' @export
+Resources <- new_class(
+  name = "Resources",
+  properties = list(
+    url = class_character,
+    files = new_property(
+      class_list,
+      getter = function(self) {
+        fload(self@url, query = "/data") |>
+          fcompute(
+            file = name,
+            size = roundup(fileSize / 1e6),
+            ext = file_ext(downloadURL),
+            download = downloadURL
+          ) |>
+          roworder(ext, -size)
+      }
+    )
+  ),
+  validator = function(self)
+    if (length(self@url) != 1L)
+      "must be length 1"
+)
+
 #' Dataset Class
 #' @name Dataset
 #' @param type `<chr>` Schema type; default is `dcat:Dataset`

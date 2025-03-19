@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{CurrentProvider}
 \alias{CurrentProvider}
-\title{Provider API Endpoint (Current)}
+\title{CurrentProvider API Endpoint}
 \usage{
 CurrentProvider(alias)
 }
@@ -13,7 +13,7 @@ CurrentProvider(alias)
 An S7 \verb{<CurrentProvider>} object.
 }
 \description{
-Provider API Endpoint (Current)
+CurrentProvider API Endpoint
 }
 \examples{
 CurrentProvider("affiliations")

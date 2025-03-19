@@ -30,35 +30,6 @@ Current <- new_class(
   )
 )
 
-#' Main API Endpoint Resources
-#' @param url `<chr>` resources URL
-#' @returns An S7 `<Resources>` object.
-#' @autoglobal
-#' @keywords internal
-#' @export
-Resources <- new_class(
-  name = "Resources",
-  properties = list(
-    url = class_character,
-    files = new_property(
-      class_list,
-      getter = function(self) {
-        fload(self@url, query = "/data") |>
-          fcompute(
-            file = name,
-            size = roundup(fileSize / 1e6),
-            ext = file_ext(downloadURL),
-            download = downloadURL
-          ) |>
-          roworder(ext, -size)
-      }
-    )
-  ),
-  validator = function(self)
-    if (length(self@url) != 1L)
-      "must be length 1"
-)
-
 #' Main API Endpoint (Current)
 #'
 #' @param alias `<chr>` endpoint alias
@@ -92,7 +63,7 @@ CurrentMain <- new_class(
         main_temp(self@temporal)
     ),
     periodicity = class_character,
-    resources   = Resources,
+    resources   = class_character,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
@@ -113,7 +84,7 @@ CurrentMain <- new_class(
       periodicity = x$periodicity,
       temporal    = x$temporal,
       identifier  = x$identifier,
-      resources   = Resources(x$resources),
+      resources   = x$resources,
       rows        = q$rows,
       fields      = q$fields,
       pages       = q$pages,
@@ -125,7 +96,20 @@ CurrentMain <- new_class(
   }
 )
 
-#' Provider API Endpoint (Current)
+list_resources <- new_generic("list_resources", "x")
+
+method(list_resources, CurrentMain) <- function(x) {
+  fload(x@resources, query = "/data") |>
+    fcompute(
+      file = name,
+      size = roundup(fileSize / 1e6),
+      ext = file_ext(downloadURL),
+      download = downloadURL
+    ) |>
+    roworder(ext, -size)
+}
+
+#' CurrentProvider API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -179,7 +163,7 @@ CurrentProvider <- new_class(
   }
 )
 
-#' Open Payments API Endpoint (Current)
+#' CurrentOpen Payments API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -286,7 +270,7 @@ TemporalMain <- new_class(
     x <- catalog_main()$temporal |>
       subset_detect(title, alias_main_temporal(alias))
 
-    dat <- sbt(get_elem(x, "data")[[1]], format != "latest")
+    dat <- get_elem(x, "data")[[1]]
 
     q <- main_temporal_dims(dat$identifier[1])
 
@@ -346,6 +330,28 @@ TemporalOpen <- new_class(
       endpoints   = slt(x, year, modified, identifier, download)
     )
   }
+)
+
+#' Main API Endpoint Group (Temporal)
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalGroup>` object.
+#'
+#' @autoglobal
+#' @export
+TemporalGroup <- new_class(
+  name = "TemporalGroup",
+  properties = list(
+    title       = class_character,
+    description = class_character,
+    contact     = class_character,
+    rows        = class_integer,
+    pages       = class_integer,
+    fields      = class_character,
+    years       = class_integer,
+    endpoints   = class_list
+  )
 )
 
 #' Main API Endpoint Group (Temporal)

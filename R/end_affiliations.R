@@ -47,7 +47,7 @@ affiliations <- function(npi           = NULL,
                          ccn_facility  = NULL,
                          ccn_parent    = NULL) {
 
-  list2(
+  args <- list2(
     "npi"                                        = npi,
     "ind_pac_id"                                 = pac,
     "provider_last_name"                         = last,
@@ -58,8 +58,12 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_parent)
 
-  # perform_request_provider(
-  #   url   = endpoint(provider_dataset("affiliations")),
-  #   query = args)
 
+    new_request(CurrentProvider(fnm(call_match()[1])))
+
+}
+
+#' @noRd
+fnm <- function(x) {
+  stringi::stri_sub(as_chr(x), to = -1)
 }

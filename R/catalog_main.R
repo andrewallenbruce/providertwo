@@ -17,6 +17,7 @@ catalog_main <- function() {
       periodicity = recode_iso8601(accrualPeriodicity),
       contact     = reduce_contact(x$contactPoint),
       references  = delist(references),
+      temporal    = main_temp(temporal),
       title       = gsub("  ", " ", title, perl = TRUE),
       description = gsub("[\"']", "", description, perl = TRUE),
       description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
@@ -40,15 +41,15 @@ catalog_main <- function() {
     rowbind(fill = TRUE) |>
     as_tbl() |>
     fcompute(
-      year         = as_int(stri_extract_all_regex(title, "[0-9]{4}")),
-      title        = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
-      format       = cheapr_if_else(not_na(description), description, format),
-      modified     = as_date(modified),
-      temporal     = temporal,
-      identifier   = accessURL,
-      download     = lag_(downloadURL, n = -1L),
-      filetype     = lag_(mediaType, n = -1L),
-      resources    = resourcesAPI) |>
+      year       = as_int(stri_extract_all_regex(title, "[0-9]{4}")),
+      title      = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
+      format     = cheapr_if_else(not_na(description), description, format),
+      modified   = as_date(modified),
+      temporal   = main_temp(temporal),
+      identifier = accessURL,
+      download   = lag_(downloadURL, n = -1L),
+      filetype   = lag_(mediaType, n = -1L),
+      resources  = resourcesAPI) |>
     colorder(title)
 
   d <- sset(d, row_na_counts(d) < 4) |>
@@ -56,11 +57,27 @@ catalog_main <- function() {
     fcount(title, add = TRUE)
 
   list_tidy(
-    current = roworder(join(slt(x, -distribution), sbt(d, format == "latest", -format, -identifier, -modified, -temporal), on = "title", verbose = 0), title),
-    temporal = join(roworder(d, title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
-                    slt(current, title, description, periodicity, contact, dictionary, site),
-                    on = "title",
-                    verbose = 0))
+    current = roworder(join(
+      slt(x, -distribution),
+      sbt(d, format == "latest", -format, -identifier, -modified, -temporal),
+      on = "title",
+      verbose = 0
+    ), title),
+    temporal = join(
+      roworder(sbt(d, format != "latest", -format), title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
+      slt(
+        current,
+        title,
+        description,
+        periodicity,
+        contact,
+        dictionary,
+        site
+      ),
+      on = "title",
+      verbose = 0
+    )
+  )
 }
 
 #' Get Field Names and Number of Rows from Main Endpoint
