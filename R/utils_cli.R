@@ -1,41 +1,38 @@
-#' Format Number with Commas
-#' @param x `<int>` number to format
-#' @returns `<chr>` formatted number
-#' @autoglobal
-#' @keywords internal
-#' @export
-num <- function(x) prettyNum(x, big.mark = ",")
+CLI <- list_tidy(
 
-#' @noRd
-cli_pt <- list_tidy(
-  bold_yellow   = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
-  bold_grey     = cli::combine_ansi_styles(cli::style_bold, cli::col_grey),
-  italic_yellow = cli::combine_ansi_styles(cli::style_italic, cli::col_yellow),
-  italic_cyan   = cli::combine_ansi_styles(cli::style_italic, cli::col_cyan),
+    # styles
+    bold_yell = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
+    bold_grey = cli::combine_ansi_styles(cli::style_bold, cli::col_grey),
+    ital_yell = cli::combine_ansi_styles(cli::style_italic, cli::col_yellow),
+    ital_cyan = cli::combine_ansi_styles(cli::style_italic, cli::col_cyan),
 
-  sym_menu      = cli::col_silver(cli::symbol$menu),
-  sym_point     = cli::col_red(cli::symbol$pointer),
+    # symbols
+    sym_mn = cli::col_silver(cli::symbol$menu),
+    sym_pt = cli::col_red(cli::symbol$pointer),
 
-  txt_row       = bold_yellow("Rows"),
-  txt_field     = bold_yellow("Fields"),
-  txt_page      = bold_yellow("Pages"),
-  txt_file      = bold_yellow("Resources"),
-  txt_mod       = bold_grey("Modified"),
-  txt_span      = bold_grey("Timespan"),
-  txt_period    = bold_grey("Periodcity")
-)
+    # text
+    txt_rw   = bold_yell("Rows"),
+    txt_fl   = bold_yell("Fields"),
+    txt_pg   = bold_yell("Pages"),
+    txt_rs   = bold_yell("Resources"),
+    txt_mod  = bold_grey("Modified"),
+    txt_span = bold_grey("Timespan"),
+    txt_per  = bold_grey("Periodcity"),
+    txt_res  = cli::col_cyan("Result(s)"),
+    txt_req  = cli::col_cyan("Request(s)"),
 
-#' @noRd
-cli_fn <- list(
-  title = \(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), line = 2, line_col = "silver", width = 60)),
-  desc = \(x) cli::cat_line(cli::ansi_strwrap(cli_pt$italic_cyan(x@description), width = 60, indent = 2, exdent = 2)),
-  nrows = \(x) num(x@rows),
-  nfields = \(x) length(x@fields),
-  nfiles = \(x) unlisted_length(x@resources@files$file),
-  temp = \(x) cli_pt$italic_yellow(x@temporal),
-  period = \(x) cli_pt$italic_yellow(x@periodicity),
-  mod = \(x) cli_pt$italic_yellow(x@modified),
-  link = \(prop, nm) cli::style_hyperlink(nm, prop)
+    # functions
+    num     = function(x) prettyNum(x, big.mark = ","),
+    title   = function(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), width = 50, line = 2, line_col = "silver")),
+    desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 50, indent = 2, exdent = 2)),
+    nrows   = function(x) num(x@rows),
+    nfields = function(x) num(length(x@fields)),
+    npages  = function(x) num(x@pages),
+    nfiles  = function(x) unlisted_length(x@resources@files$file),
+    temp    = function(x) ital_yellow(x@temporal),
+    period  = function(x) ital_yellow(x@periodicity),
+    mod     = function(x) ital_yellow(x@modified),
+    link    = function(x, nm) cli::style_hyperlink(nm, x)
 )
 
 #' Inform number of results and requests
@@ -50,28 +47,13 @@ cli_fn <- list(
 #' @export
 cli_results <- function(n, limit) {
 
-  pg  <- offset_length(n, limit)
-  res <- ifelse(n > 1, cli::col_cyan("Results"), cli::col_cyan("Result"))
-  req <- ifelse(pg > 1, cli::col_cyan("Requests"), cli::col_cyan("Request"))
-
-  pg <- cli_pt$bold_yellow(num(pg))
-  n  <- cli_pt$bold_yellow(num(n))
+  # pg <- CLI$bold_yell(CLI$num(offset_length(n, limit)))
+  # n  <- CLI$bold_yell(CLI$num(n))
 
   cli::cli_inform(
-    c(" " = " ",
-      "i" = "{n} {res} {cli_pt$sym_menu} {pg} {req}",
-      " " = " "))
+    c(
+      " " = "{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} {CLI$sym_mn} {CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}",
+      " " = " "
+      )
+    )
 }
-
-
-# x <- CurrentMain("enrollees")
-# cli_pt$sym_menu
-# cli_pt$sym_point
-#
-# cli_fn$tt(x)
-# cli_fn$ds(x)
-#
-# cli_fn$no(x)
-# cli_fn$nf(x)
-# cli_fn$nr(x)
-# cli_fn$tm(x)

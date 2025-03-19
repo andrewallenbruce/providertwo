@@ -40,3 +40,28 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
+Collate: 
+    'S7_backend.R'
+    'S7_print.R'
+    'S7_props.R'
+    'aliases.R'
+    'catalog_main.R'
+    'catalog_open.R'
+    'catalog_provider.R'
+    'end_affiliations.R'
+    'end_enrollees.R'
+    'end_nppes.R'
+    'generated-globals.R'
+    'httr2_perform_request.R'
+    'import-standalone-helpers.R'
+    'import-standalone-obj-type.R'
+    'import-standalone-purrr.R'
+    'import-standalone-types-check.R'
+    'providertwo-package.R'
+    'query.R'
+    'utils_checks.R'
+    'utils_cli.R'
+    'utils_httr2.R'
+    'utils_misc.R'
+    'utils_ref.R'
+    'zzz.R'

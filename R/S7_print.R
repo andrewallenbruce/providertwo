@@ -1,43 +1,24 @@
-#' #' @include classes.R
-#' NULL
-#'
-#' print  <- S7::new_external_generic("base", "print", "x")
-#' format <- S7::new_external_generic("base", "format", "x")
-#'
-#'
-#' cli_bold_yellow   <- cli::combine_ansi_styles(cli::style_bold, cli::col_yellow)
-#' cli_italic_yellow <- cli::combine_ansi_styles(cli::style_italic, cli::col_yellow)
-#' cli_bold_grey     <- cli::combine_ansi_styles(cli::style_bold, cli::col_grey)
-#' cli_italic_cyan   <- cli::combine_ansi_styles(cli::style_italic, cli::col_cyan)
-#'
-#'
-#'
-#' #' @noRd
-#' cli_dim <- \(x) {
-#'   rows   <- cli_bold_yellow("Rows")
-#'   fields <- cli_bold_yellow("Fields")
-#'   pages  <- cli_bold_yellow("Pages")
-#'   files  <- cli_bold_yellow("Resources")
-#'
-#'   s <- cli::col_silver(cli::symbol$menu)
-#'   n <- prettyNum(prop(prop(x, "identifier"), "rows"), ',')
-#'   f <- length(prop(prop(x, "identifier"), "fields"))
-#'   o <- offset_length(prop(prop(x, "identifier"), "rows"), limit = 5000)
-#'   r <- nrow(prop(prop(x, "resources"), "files"))
-#'
-#'   cli::cat_line(
-#'     cli::cli_text(
-#'       c(
-#'         "{s} {rows} {n} ",
-#'         "{s} {fields} {f} ",
-#'         "{s} {pages} {o} ",
-#'         if (empty(prop(x, "periodicity"))) "{s} {files} 0 " else "{s} {files} {r} ",
-#'         "{s}")
-#'       )
-#'     )
-#' }
-#'
-#' #' @noRd
+#' @include S7_backend.R
+NULL
+
+print <- S7::new_external_generic("base", "print", "x")
+
+#' @noRd
+cli_dim <- function(x) {
+
+  cli::cli_ul(
+      c(
+        "{CLI$sym_mn} {CLI$txt_rw} {CLI$nrows(x)}",
+        "{CLI$sym_mn} {CLI$txt_pg} {CLI$npages(x)}",
+        "{CLI$sym_mn} {CLI$txt_fl} {CLI$nfields(x)}",
+        if (!prop_exists(x, "resources")) NULL else "{CLI$sym_mn} {CLI$txt_rs} {CLI$nfiles(x)}",
+        if (!prop_exists(x, "periodicity")) NULL else "{CLI$sym_mn} {CLI$txt_per} {CLI$period(x)}"
+        )
+      )
+}
+
+
+#' @noRd
 #' cli_temporal <- \(x) {
 #'
 #'   mod    <- cli_bold_grey("Modified")
