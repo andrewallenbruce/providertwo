@@ -32,24 +32,24 @@ Current <- new_class(
 
 #' Main API Endpoint Resources
 #' @param url `<chr>` resources URL
-#' @returns An S7 `<ResourcesMain>` object.
+#' @returns An S7 `<Resources>` object.
 #' @autoglobal
 #' @keywords internal
 #' @export
-ResourcesMain <- new_class(
+Resources <- new_class(
   name = "Resources",
   properties = list(
     url = class_character,
     files = new_property(
       class_list,
       getter = function(self) {
-        fload(self@url,
-              query = "/data") |>
+        fload(self@url, query = "/data") |>
           fcompute(
             file = name,
             size = roundup(fileSize / 1e6),
             ext = file_ext(downloadURL),
-            download = downloadURL) |>
+            download = downloadURL
+          ) |>
           roworder(ext, -size)
       }
     )
@@ -88,25 +88,18 @@ CurrentMain <- new_class(
   properties = list(
     temporal = new_property(
       class_character,
-      getter = function(self) {
-        gsub("/",
-             paste0(" ", cli::symbol$bullet, " "),
-             self@temporal,
-             perl = TRUE)
-      }
+      getter = function(self)
+        main_temp(self@temporal)
     ),
     periodicity = class_character,
-    resources   = ResourcesMain,
+    resources   = Resources,
     dictionary  = class_character,
     site        = class_character,
     references  = class_character
   ),
   constructor = function(alias) {
-
     x <- catalog_main()$current |>
-      subset_detect(
-        title,
-        alias_main_current(alias)) |>
+      subset_detect(title, alias_main_current(alias)) |>
       c()
 
     q <- main_dims(x$identifier)
@@ -120,14 +113,15 @@ CurrentMain <- new_class(
       periodicity = x$periodicity,
       temporal    = x$temporal,
       identifier  = x$identifier,
-      resources   = ResourcesMain(x$resources),
+      resources   = Resources(x$resources),
       rows        = q$rows,
       fields      = q$fields,
       pages       = q$pages,
       download    = x$download,
       dictionary  = x$dictionary,
       site        = x$site,
-      references  = x$references)
+      references  = x$references
+    )
   }
 )
 
@@ -156,14 +150,12 @@ CurrentProvider <- new_class(
     site       = class_character,
     identifier = new_property(
       class_character,
-      getter = function(self) pro_url(self@uuid))
-    ),
+      getter = function(self)
+        pro_url(self@uuid)
+    )
+  ),
   constructor = function(alias) {
-
-    x <- subset_detect(
-      catalog_provider(),
-      title,
-      alias_provider_current(alias)) |>
+    x <- subset_detect(catalog_provider(), title, alias_provider_current(alias)) |>
       c()
 
     q <- pro_dims(x$identifier)
@@ -182,7 +174,8 @@ CurrentProvider <- new_class(
       site        = x$site,
       rows        = q$rows,
       fields      = q$fields,
-      pages       = q$pages)
+      pages       = q$pages
+    )
   }
 )
 
@@ -214,15 +207,13 @@ CurrentOpen <- new_class(
     uuid       = class_character,
     identifier = new_property(
       class_character,
-      getter = function(self) open_url(self@uuid)
-      )
-    ),
+      getter = function(self)
+        open_url(self@uuid)
+    )
+  ),
   constructor = function(alias) {
-
     x <- catalog_open()$current |>
-      subset_detect(
-        title,
-        alias_open_current(alias)) |>
+      subset_detect(title, alias_open_current(alias)) |>
       c()
 
     q <- open_dims(x$identifier)
@@ -237,9 +228,10 @@ CurrentOpen <- new_class(
       download    = x$download,
       rows        = q$rows,
       fields      = q$fields,
-      pages       = q$pages)
-    }
-  )
+      pages       = q$pages
+    )
+  }
+)
 
 #' Temporal Endpoint Object
 #'
@@ -288,9 +280,9 @@ TemporalMain <- new_class(
   properties = list(
     periodicity = class_character,
     dictionary  = class_character,
-    site        = class_character),
+    site        = class_character
+  ),
   constructor = function(alias) {
-
     x <- catalog_main()$temporal |>
       subset_detect(title, alias_main_temporal(alias))
 
@@ -337,11 +329,8 @@ TemporalOpen <- new_class(
   parent = Temporal,
   name   = "TemporalOpen",
   constructor = function(alias) {
-
     x <- catalog_open()$temporal |>
-      subset_detect(
-        title,
-        alias_open_temporal(alias))
+      subset_detect(title, alias_open_temporal(alias))
 
     q <- open_dims(x$identifier[1])
 

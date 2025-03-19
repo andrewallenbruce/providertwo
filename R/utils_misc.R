@@ -251,6 +251,16 @@ print_list <- function(ls, prefix = "") {
   invisible(ls)
 }
 
+#' Format temporal string
+#' @param x `<chr>` string to format
+#' @returns `<chr>` formatted string
+#' @autoglobal
+#' @keywords internal
+#' @export
+main_temp <- function(x) {
+  gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
+}
+
 #' ISO 8601 Recurring Time Intervals
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules

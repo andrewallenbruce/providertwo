@@ -47,9 +47,6 @@ CLI <- list_tidy(
 #' @export
 cli_results <- function(n, limit) {
 
-  # pg <- CLI$bold_yell(CLI$num(offset_length(n, limit)))
-  # n  <- CLI$bold_yell(CLI$num(n))
-
   cli::cli_inform(
     c(
       " " = "{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} {CLI$sym_mn} {CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}",
