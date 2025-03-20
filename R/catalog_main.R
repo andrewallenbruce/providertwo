@@ -53,8 +53,8 @@ catalog_main <- function() {
     colorder(title)
 
   d <- sset(d, row_na_counts(d) < 4) |>
-    funique(cols = c("title", "year", "format")) |>
-    fcount(title, add = TRUE)
+    funique(cols = c("title", "year", "format"))
+    # fcount(title, add = TRUE)
 
   list_tidy(
     current = roworder(join(
@@ -64,7 +64,11 @@ catalog_main <- function() {
       verbose = 0
     ), title),
     temporal = join(
-      roworder(sbt(d, format != "latest", -format), title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
+      roworder(
+        sbt(d, format != "latest", -format),
+        title, -year) |>
+        f_nest_by(.cols = "title") |>
+        f_ungroup(),
       slt(
         current,
         title,
@@ -149,8 +153,24 @@ main_temporal <- function(alias) {
 #' @export
 main_temporal_group <- function(alias) {
 
-  catalog_main()$temporal |>
-    subset_detect(
-      title,
-      alias_main_temporal_group(alias))
+  x <- subset_detect(
+    catalog_main()$temporal,
+    title,
+    alias_main_temporal_group(alias)) |>
+    mtt(
+      set   = stri_extract_first_regex(title, "(?<=-\\s).*$"),
+      title = stri_extract_first_regex(title, "^.*(?=\\s-)"))
+
+  clean_names <- \(x) gsub(" ", "_", tolower(x), perl = TRUE)
+  set_clean   <- \(i, x) set_names(i, clean_names(x))
+
+  list_tidy(
+    title       = x$title[1],
+    periodicity = x$periodicity[1],
+    contact     = x$contact[1],
+    description = set_clean(x$description, x$set),
+    dictionary  = set_clean(x$dictionary, x$set),
+    site        = set_clean(x$site, x$set),
+    !!!set_clean(as.list(x$data), x$set)
+  )
 }

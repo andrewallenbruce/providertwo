@@ -195,24 +195,3 @@ fields_provider <- function(url) {
     _[["query"]] |>
     _[["properties"]]
 }
-
-#' Get Resources
-#' @param url resourcesAPI url
-#' @returns `<tibble>` of Resource Files Data
-#' @autoglobal
-#' @keywords internal
-#' @export
-get_resources <- function(url) {
-
-  if (not_na(url)) {
-
-    fload(url, query = "/data") |>
-      as_tbl() |>
-      fcompute(file        = name,
-               size        = roundup(fileSize / 1e6),
-               ext         = file_ext(downloadURL),
-               downloadurl = downloadURL) |>
-      roworder(ext, -size)
-  }
-}
-
