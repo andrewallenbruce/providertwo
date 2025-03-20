@@ -1,10 +1,3 @@
-#' @title Endpoint Aliases
-#' @name alias
-#' @param x `<chr>` alias for endpoint title
-#' @autoglobal
-#' @noRd
-NULL
-
 #' @noRd
 alias_main_current <- function(x) {
   nswitch(

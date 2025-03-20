@@ -152,25 +152,53 @@ main_temporal <- function(alias) {
 #' @autoglobal
 #' @export
 main_temporal_group <- function(alias) {
-
-  x <- subset_detect(
-    catalog_main()$temporal,
-    title,
-    alias_main_temporal_group(alias)) |>
+  x <- subset_detect(catalog_main()$temporal,
+                     title,
+                     alias_main_temporal_group(alias)) |>
     mtt(
-      set   = stri_extract_first_regex(title, "(?<=-\\s).*$"),
-      title = stri_extract_first_regex(title, "^.*(?=\\s-)"))
+      group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
+      title = stri_extract_first_regex(title, "^.*(?=\\s-)")
+    ) |>
+    colorder(title, group)
 
-  clean_names <- \(x) gsub(" ", "_", tolower(x), perl = TRUE)
-  set_clean   <- \(i, x) set_names(i, clean_names(x))
 
-  list_tidy(
+
+  x2 <- map2(
+    x$data,
+    x$group,
+    \(x, y)
+    mtt(x, group = clean_names(y)) |>
+      slt(year, group, identifier, resources)
+  ) |>
+    rowbind() |>
+    join(slt(x, -data, -title, -periodicity, -contact),
+         on = "group",
+         verbose = 0) |>
+    rsplit( ~ group)
+
+  template <- glue(
+    "
+  {group} = list(
+    meta      = c(
+      desc    = x2${group}$description[1],
+      dict    = x2${group}$dictionary[1],
+      site    = x2${group}$site[1]),
+    endpoints = slt(x2${group}, -description, -dictionary, -site))
+  ",
+    group = x$group
+  ) |>
+    glue_collapse(sep = ",\n")
+
+  glue(
+    "
+  list(
     title       = x$title[1],
     periodicity = x$periodicity[1],
     contact     = x$contact[1],
-    description = set_clean(x$description, x$set),
-    dictionary  = set_clean(x$dictionary, x$set),
-    site        = set_clean(x$site, x$set),
-    !!!set_clean(as.list(x$data), x$set)
+  {template}
   )
+  "
+  ) |>
+    parse_expr() |>
+    eval_bare()
 }

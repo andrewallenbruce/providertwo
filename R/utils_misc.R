@@ -261,6 +261,23 @@ main_temp <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
 }
 
+#' Clean column names
+#' @param x `<chr>` column name
+#' @returns `<chr>` cleaned column name
+#' @autoglobal
+#' @keywords internal
+#' @export
+clean_names <- function(x) gsub(" ", "_", tolower(x), perl = TRUE)
+
+#' Set clean column names
+#' @param i `<chr>` vector to be named
+#' @param x `<chr>` vector of column names
+#' @returns `<chr>` vector with clean column names
+#' @autoglobal
+#' @keywords internal
+#' @export
+set_clean <- function(i, x) set_names(i, clean_names(x))
+
 #' ISO 8601 Recurring Time Intervals
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules
