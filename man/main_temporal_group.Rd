@@ -4,7 +4,7 @@
 \alias{main_temporal_group}
 \title{Load \verb{<TemporalMainGroup>} API Endpoints}
 \usage{
-main_temporal_group(alias)
+main_temporal_group(alias = "utilization")
 }
 \arguments{
 \item{alias}{\verb{<chr>} dataset title}

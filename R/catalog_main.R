@@ -151,42 +151,39 @@ main_temporal <- function(alias) {
 #' main_temporal_group("inpatient")
 #' @autoglobal
 #' @export
-main_temporal_group <- function(alias) {
-  x <- subset_detect(catalog_main()$temporal,
-                     title,
-                     alias_main_temporal_group(alias)) |>
-    mtt(
-      group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
-      title = stri_extract_first_regex(title, "^.*(?=\\s-)")
-    ) |>
+main_temporal_group <- function(alias = "utilization") {
+  x <- subset_detect(catalog_main()$temporal, title, alias_main_temporal_group(alias)) |>
+    mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
+        title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
     colorder(title, group)
 
-
-
-  x2 <- map2(
-    x$data,
-    x$group,
-    \(x, y)
+  x2 <- map2(x$data,  x$group, \(x, y)
     mtt(x, group = clean_names(y)) |>
-      slt(year, group, identifier, resources)
-  ) |>
+      slt(year, group, identifier, resources)) |>
     rowbind() |>
     join(slt(x, -data, -title, -periodicity, -contact),
          on = "group",
-         verbose = 0) |>
-    rsplit( ~ group)
+         verbose = 0)
+
+  q <- map(sbt(x2, year == fmax(year)) |>
+      _[["identifier"]], \(x)
+    main_temporal_dims(x)) |>
+    set_names(funique(x2$group))
+
+  x2 <- rsplit(x2, ~ group)
 
   template <- glue(
     "
   {group} = list(
-    meta      = c(
-      desc    = x2${group}$description[1],
-      dict    = x2${group}$dictionary[1],
-      site    = x2${group}$site[1]),
-    endpoints = slt(x2${group}, -description, -dictionary, -site))
+  description = x2${group}$description[1],
+  dictionary  = x2${group}$dictionary[1],
+  site        = x2${group}$site[1],
+  rows        = q${group}$rows,
+  pages       = q${group}$pages,
+  fields      = q${group}$fields,
+  endpoints   = slt(x2${group}, -description, -dictionary, -site))
   ",
-    group = x$group
-  ) |>
+    group = x$group) |>
     glue_collapse(sep = ",\n")
 
   glue(
