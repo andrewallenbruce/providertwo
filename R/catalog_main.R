@@ -149,10 +149,12 @@ main_temporal_group <- function(alias) {
          on = "group",
          verbose = 0)
 
+  groups <- funique(x2$group)
+
   q <- map(sbt(x2, year == fmax(year)) |>
       _[["identifier"]], \(x)
     main_temporal_dims(x)) |>
-    set_names(funique(x2$group))
+    set_names(groups)
 
   x2 <- rsplit(x2, ~ group)
 
@@ -176,6 +178,7 @@ main_temporal_group <- function(alias) {
     title       = x$title[1],
     periodicity = x$periodicity[1],
     contact     = x$contact[1],
+    groups      = groups,
   {template}
   )
   "

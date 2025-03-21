@@ -332,27 +332,60 @@ TemporalGroup <- new_class(
   name = "TemporalGroup",
   properties = list(
     title       = class_character,
-    description = class_character,
     contact     = class_character,
-    rows        = class_integer,
-    pages       = class_integer,
-    fields      = class_character,
-    years       = class_integer,
     endpoints   = class_list
   )
 )
 
-#' Main API Endpoint Group (Temporal)
+#' Main API Endpoint Temporal Group
 #'
-#' @inheritParams Temporal
+#' @param alias `<chr>` endpoint alias
 #'
 #' @returns An S7 `<TemporalMainGroup>` object.
+#'
+#' @examples
+#' TemporalMainGroup("utilization")
+#' TemporalMainGroup("prescribers")
+#' TemporalMainGroup("suppliers")
+#' TemporalMainGroup("outpatient")
+#' TemporalMainGroup("inpatient")
 #'
 #' @autoglobal
 #' @export
 TemporalMainGroup <- new_class(
-  parent = Temporal,
-  name   = "TemporalMainGroup"
+  parent = TemporalGroup,
+  name   = "TemporalMainGroup",
+  properties = list(
+    periodicity = class_character
+  ),
+  constructor = function(alias) {
+    x <- main_temporal_group(alias)
+
+    template <- glue(
+      "
+      {group} = list(
+        description = x${group}$description,
+        dictionary  = x${group}$dictionary,
+        site        = x${group}$site,
+        rows        = x${group}$rows,
+        pages       = x${group}$pages,
+        fields      = x${group}$fields,
+        endpoints   = x${group}$endpoints
+        )
+      ",
+      group = x$groups) |>
+      glue_collapse(sep = ",\n")
+
+    new_object(
+      TemporalGroup(),
+      title        = x$title,
+      contact      = x$contact,
+      periodicity  = x$periodicity,
+      endpoints    = glue("list({template})") |>
+        parse_expr() |>
+        eval_bare()
+    )
+  }
 )
 
 #' Open Payments API Endpoint Group (Temporal)
