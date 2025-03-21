@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{TemporalGroup}
 \alias{TemporalGroup}
-\title{Main API Endpoint Group (Temporal)}
+\title{Temporal Group Endpoint}
 \usage{
 TemporalGroup(title = character(0), contact = character(0), endpoints = list())
 }
@@ -17,6 +17,6 @@ TemporalGroup(title = character(0), contact = character(0), endpoints = list())
 An S7 \verb{<TemporalGroup>} object.
 }
 \description{
-Main API Endpoint Group (Temporal)
+Temporal Group Endpoint
 }
 \keyword{internal}

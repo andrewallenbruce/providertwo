@@ -5,7 +5,7 @@ new_request <- new_generic("new_request", "x")
 
 method(new_request, CurrentMain) <- function(x) {
   request(x@identifier) |>
-    req_url_query(offset = 0L, size   = 5000L)
+    req_url_query(offset = 0L, size = 5000L)
 }
 
 method(new_request, CurrentProvider) <- function(x) {

@@ -149,6 +149,7 @@ main_temporal_group <- function(alias) {
          on = "group",
          verbose = 0)
 
+  years  <- funique(x2$year)
   groups <- funique(x2$group)
 
   q <- map(sbt(x2, year == fmax(year)) |>
@@ -178,6 +179,7 @@ main_temporal_group <- function(alias) {
     title       = x$title[1],
     periodicity = x$periodicity[1],
     contact     = x$contact[1],
+    years       = years,
     groups      = groups,
   {template}
   )

@@ -319,7 +319,7 @@ TemporalOpen <- new_class(
   }
 )
 
-#' Main API Endpoint Group (Temporal)
+#' Temporal Group Endpoint
 #'
 #' @inheritParams Temporal
 #'
@@ -356,9 +356,11 @@ TemporalMainGroup <- new_class(
   parent = TemporalGroup,
   name   = "TemporalMainGroup",
   properties = list(
-    periodicity = class_character
+    periodicity = class_character,
+    years       = class_integer
   ),
   constructor = function(alias) {
+
     x <- main_temporal_group(alias)
 
     template <- glue(
@@ -381,6 +383,7 @@ TemporalMainGroup <- new_class(
       title        = x$title,
       contact      = x$contact,
       periodicity  = x$periodicity,
+      years        = x$years,
       endpoints    = glue("list({template})") |>
         parse_expr() |>
         eval_bare()
@@ -388,7 +391,7 @@ TemporalMainGroup <- new_class(
   }
 )
 
-#' Open Payments API Endpoint Group (Temporal)
+#' Open Payments API Endpoint Temporal Group
 #'
 #' @inheritParams Temporal
 #'
