@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9131 (2025-03-21)
+
+* Added years property to TemporalMainGroup
+
+
 # providertwo 0.0.0.9130 (2025-03-21)
 
 * TemporalMainGroup first draft
