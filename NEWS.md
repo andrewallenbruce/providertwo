@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9128 (2025-03-20)
+
+* main_temporal_group
+
+
 # providertwo 0.0.0.9127 (2025-03-20)
 
 * main_temporal_group rework
