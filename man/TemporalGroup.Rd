@@ -38,3 +38,4 @@ An S7 \verb{<TemporalGroup>} object.
 \description{
 Main API Endpoint Group (Temporal)
 }
+\keyword{internal}

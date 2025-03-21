@@ -35,7 +35,6 @@ utils::globalVariables(c(
   # <CurrentOpen>
   # <TemporalMain>
   # <TemporalOpen>
-  # <main_temporal>
   # <main_temporal_group>
   # <provider_current_group>
   "title",

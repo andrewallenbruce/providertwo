@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{CurrentMain}
 \alias{CurrentMain}
-\title{Main API Endpoint (Current)}
+\title{CurrentMain API Endpoint}
 \usage{
 CurrentMain(alias)
 }
@@ -13,7 +13,7 @@ CurrentMain(alias)
 An S7 \verb{<CurrentMain>} object.
 }
 \description{
-Main API Endpoint (Current)
+CurrentMain API Endpoint
 }
 \examples{
 CurrentMain("enrollees")

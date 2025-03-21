@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{TemporalMain}
 \alias{TemporalMain}
-\title{Main API Endpoint (Temporal)}
+\title{TemporalMain API Endpoint}
 \usage{
 TemporalMain(alias)
 }
@@ -13,7 +13,7 @@ TemporalMain(alias)
 An S7 \verb{<TemporalMain>} object.
 }
 \description{
-Main API Endpoint (Temporal)
+TemporalMain API Endpoint
 }
 \examples{
 TemporalMain("quality_payment")

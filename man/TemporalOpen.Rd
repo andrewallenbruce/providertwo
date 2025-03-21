@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_backend.R
 \name{TemporalOpen}
 \alias{TemporalOpen}
-\title{Open Payments API Endpoint (Temporal)}
+\title{Temporal Open Payments API Endpoint}
 \usage{
 TemporalOpen(alias)
 }
@@ -13,7 +13,7 @@ TemporalOpen(alias)
 An S7 \verb{<TemporalOpen>} object.
 }
 \description{
-Open Payments API Endpoint (Temporal)
+Temporal Open Payments API Endpoint
 }
 \examples{
 TemporalOpen("general")

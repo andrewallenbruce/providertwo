@@ -30,7 +30,7 @@ Current <- new_class(
   )
 )
 
-#' Main API Endpoint (Current)
+#' CurrentMain API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -95,30 +95,6 @@ CurrentMain <- new_class(
     )
   }
 )
-
-list_resources <- new_generic("list_resources", "x")
-
-method(list_resources, class_character) <- function(x) {
-  fload(x, query = "/data") |>
-    fcompute(
-      file = name,
-      size = roundup(fileSize / 1e6),
-      ext = file_ext(downloadURL),
-      download = downloadURL
-    ) |>
-    roworder(ext, -size)
-}
-
-method(list_resources, CurrentMain) <- function(x) {
-  fload(x@resources, query = "/data") |>
-    fcompute(
-      file = name,
-      size = roundup(fileSize / 1e6),
-      ext = file_ext(downloadURL),
-      download = downloadURL
-    ) |>
-    roworder(ext, -size)
-}
 
 #' CurrentProvider API Endpoint
 #'
@@ -258,7 +234,7 @@ Temporal <- new_class(
   )
 )
 
-#' Main API Endpoint (Temporal)
+#' TemporalMain API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -302,7 +278,7 @@ TemporalMain <- new_class(
   }
 )
 
-#' Open Payments API Endpoint (Temporal)
+#' Temporal Open Payments API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
@@ -350,6 +326,7 @@ TemporalOpen <- new_class(
 #' @returns An S7 `<TemporalGroup>` object.
 #'
 #' @autoglobal
+#' @keywords internal
 #' @export
 TemporalGroup <- new_class(
   name = "TemporalGroup",

@@ -54,7 +54,6 @@ catalog_main <- function() {
 
   d <- sset(d, row_na_counts(d) < 4) |>
     funique(cols = c("title", "year", "format"))
-    # fcount(title, add = TRUE)
 
   list_tidy(
     current = roworder(join(
@@ -125,21 +124,6 @@ main_temporal_dims <- function(url) {
 
 }
 
-#' Load `<TemporalMain>` API Endpoint
-#' @param alias `<chr>` dataset title
-#' @returns `<TemporalMain>` object
-#' @examples
-#' main_temporal("quality_payment")
-#' @autoglobal
-#' @export
-main_temporal <- function(alias) {
-
-  catalog_main()$temporal |>
-    subset_detect(
-      title,
-      alias_main_temporal(alias))
-}
-
 #' Load `<TemporalMainGroup>` API Endpoints
 #' @param alias `<chr>` dataset title
 #' @returns `<TemporalMainGroup>` object
@@ -151,7 +135,7 @@ main_temporal <- function(alias) {
 #' main_temporal_group("inpatient")
 #' @autoglobal
 #' @export
-main_temporal_group <- function(alias = "utilization") {
+main_temporal_group <- function(alias) {
   x <- subset_detect(catalog_main()$temporal, title, alias_main_temporal_group(alias)) |>
     mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
         title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
