@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9132</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9133</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">accrualPeriodicity</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
+<span class="r-in"><span><span class="va">accrualPeriodicity</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"R/PT1S"</span>,   <span class="st">"R/PT1H"</span>,  <span class="st">"R/P1D"</span>, <span class="st">"R/P3.5D"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"R/P0.33W"</span>, <span class="st">"R/P0.5W"</span>, <span class="st">"R/P1W"</span>, <span class="st">"R/P2W"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"R/P0.33M"</span>, <span class="st">"R/P0.5M"</span>, <span class="st">"R/P1M"</span>, <span class="st">"R/P2M"</span>,</span></span>
@@ -83,16 +84,7 @@
 <span class="r-in"><span>  <span class="st">"R/P2Y"</span>,    <span class="st">"R/P3Y"</span>,   <span class="st">"R/P4Y"</span>, <span class="st">"R/P10Y"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">recode_iso8601</span><span class="op">(</span><span class="va">accrualPeriodicity</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Continuously [R/PT1S]"          "Hourly [R/PT1H]"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Daily [R/P1D]"                  "Twice a Week [R/P3.5D]"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Three Times a Week [R/P0.33W]"  "Twice a Week [R/P0.5W]"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Weekly [R/P1W]"                 "Biweekly [R/P2W]"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Three Times a Month [R/P0.33M]" "Biweekly [R/P0.5M]"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "Monthly [R/P1M]"                "Bimonthly [R/P2M]"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Quarterly [R/P3M]"              "Triannually [R/P4M]"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "Biannually [R/P6M]"             "Annually [R/P1Y]"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Biennially [R/P2Y]"             "Triennially [R/P3Y]"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "Quadrennially [R/P4Y]"          "Decennially [R/P10Y]"          </span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
