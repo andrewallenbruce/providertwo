@@ -11,7 +11,7 @@
 #'                  integer sequence is returned, beginning at `start` and of
 #'                  length equal to `n / limit`.
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' offset_sequence(100, 10)
 #' offset_length(100, 10)
 #'
@@ -57,9 +57,6 @@ offset_length <- function(n, limit, start = 0) {
   length(seq_(from = start, to = n, by = limit))
 }
 
-# Incorrect
-# seq_(from = start, to = ifelse(n %% limit == 0, n, sum(n, limit)), by = limit)
-
 #' @rdname offset
 #' @autoglobal
 #' @keywords internal
@@ -101,7 +98,7 @@ map_na_if <- function(x) {
 #' Parse datetime character vectors
 #' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
 #' @returns `<chr>` parsed ISOdatetime vector
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' as_datetime("2024-07-29T20:37:53")
 #' @seealso [clock::date_time_parse_RFC_3339()]
 #' @autoglobal
@@ -230,10 +227,12 @@ prop_empty <- function(obj, nm) {
 #'
 #' @returns `<list>` invisibly
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' print_list(list(a = 1, b = 2, c = 3))
 #'
 #' @autoglobal
+#'
+#' @keywords internal
 #'
 #' @export
 print_list <- function(ls, prefix = "") {
@@ -282,7 +281,7 @@ set_clean <- function(i, x) set_names(i, clean_names(x))
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules
 #' @returns `<chr>` vector of human-readable recurrence rule descriptions
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' accrualPeriodicity = c(
 #'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
 #'   "R/P0.33W", "R/P0.5W", "R/P1W", "R/P2W",

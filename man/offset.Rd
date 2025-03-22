@@ -30,6 +30,7 @@ length equal to \code{n / limit}.
 Generate API Request "Offset" Sequence
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 offset_sequence(100, 10)
 offset_length(100, 10)
 
@@ -41,6 +42,6 @@ offset_length(47984, 5000)
 
 offset_sequence(147984, 2000)
 offset_length(147984, 2000)
-
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

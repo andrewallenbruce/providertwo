@@ -140,7 +140,7 @@ CurrentProvider <- new_class(
     x <- subset_detect(
       catalogs()$pro,
       title,
-      alias_provider_current("affiliations")) |>
+      alias_provider_current(alias)) |>
       c()
 
     q <- pro_dims(x$identifier)
@@ -200,7 +200,7 @@ CurrentOpen <- new_class(
     x <- subset_detect(
       catalogs()$open$current,
       title,
-      alias_open_current("prof_cov")) |>
+      alias_open_current(alias)) |>
       c()
 
     q <- open_dims(x$identifier)
@@ -273,7 +273,7 @@ TemporalMain <- new_class(
     x <- subset_detect(
       catalogs()$main$temporal,
       title,
-      alias_main_temporal("quality_payment"))
+      alias_main_temporal(alias))
 
     dat <- get_elem(x, "data")[[1]]
 
@@ -311,7 +311,6 @@ TemporalMain <- new_class(
 #' TemporalOpen("entity_nature")
 #' TemporalOpen("entity_recipient_nature")
 #' TemporalOpen("state_nature")
-#'
 #' @autoglobal
 #' @export
 TemporalOpen <- new_class(

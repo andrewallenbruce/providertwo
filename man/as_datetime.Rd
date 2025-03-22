@@ -16,7 +16,9 @@ as_datetime(x)
 Parse datetime character vectors
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 as_datetime("2024-07-29T20:37:53")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[clock:date-time-parse]{clock::date_time_parse_RFC_3339()}}

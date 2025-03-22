@@ -60,8 +60,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_provider>
   "modified",
-  # <open_dictionary>
-  "name",
   # <catalog_main>
   # <main_temp_group>
   "periodicity",
@@ -95,7 +93,6 @@ utils::globalVariables(c(
   # <catalog_main>
   # <main_temp_group>
   # <catalog_open>
-  # <open_dictionary>
   "year",
   NULL
 ))

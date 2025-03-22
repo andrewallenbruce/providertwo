@@ -5,7 +5,7 @@
 #' @param x `<chr>`  The program code to search for, e.g., `"009:000"`;
 #'        if `NULL` (the default), returns all program codes
 #' @returns `<tibble>` of search results
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' program_code("009:000")
 #' head(program_code())
 #' @autoglobal
@@ -22,7 +22,7 @@ program_code <- function(x = NULL) {
 #' @param x `<chr>` The bureau code to search for, e.g., `"38"`;
 #'          if `NULL` (the default), returns all bureau codes
 #' @returns `<tibble>` of search results
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' bureau_code("38")
 #' head(bureau_code())
 #' @autoglobal
@@ -33,7 +33,7 @@ bureau_code <- function(x = NULL) {
 }
 
 #' Open Payments Dictionary
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' open_dictionary()
 #' @returns `<tibble>` of search results
 #' @autoglobal

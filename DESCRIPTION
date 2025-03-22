@@ -64,5 +64,4 @@ Collate:
     'utils_cli.R'
     'utils_httr2.R'
     'utils_misc.R'
-    'utils_ref.R'
     'zzz.R'

@@ -28,6 +28,7 @@ ISO 8601 Recurring Time Intervals
 }
 
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 accrualPeriodicity = c(
   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
   "R/P0.33W", "R/P0.5W", "R/P1W", "R/P2W",
@@ -36,5 +37,6 @@ accrualPeriodicity = c(
   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 
 recode_iso8601(accrualPeriodicity)
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

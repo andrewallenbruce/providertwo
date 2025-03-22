@@ -24,5 +24,4 @@ TemporalOpen("recipient_entity")
 TemporalOpen("entity_nature")
 TemporalOpen("entity_recipient_nature")
 TemporalOpen("state_nature")
-
 }

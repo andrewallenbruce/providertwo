@@ -18,6 +18,8 @@ print_list(ls, prefix = "")
 Print a named list
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 print_list(list(a = 1, b = 2, c = 3))
-
+\dontshow{\}) # examplesIf}
 }
+\keyword{internal}
