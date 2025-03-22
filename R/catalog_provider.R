@@ -1,9 +1,9 @@
 #' Convert Provider UUID to URL
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` endpoint URL
-#' @export
 #' @autoglobal
 #' @keywords internal
+#' @export
 pro_url <- function(uuid) {
   paste0("https://data.cms.gov/",
          "provider-data/api/1/",
@@ -15,9 +15,9 @@ pro_url <- function(uuid) {
 #' Convert Provider UUID to Data Dictionary Hyperlink
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` dictionary URL
-#' @export
 #' @autoglobal
 #' @keywords internal
+#' @export
 pro_dict <- function(uuid) {
   paste0("https://data.cms.gov/",
          "provider-data/dataset/",
@@ -60,16 +60,19 @@ pro_dims <- function(uuid) {
 #' @autoglobal
 #' @export
 provider_current_group <- function(alias) {
-  subset_detect(catalog_provider(),
-                title,
-                alias_provider_current_group(alias))
+
+  subset_detect(
+    catalogs()$pro,
+    title,
+    alias_provider_current_group(alias))
 }
 
 #' CMS Provider Catalog
 #' @returns `<list>` of Provider API catalog information
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' catalog_provider()
 #' @autoglobal
+#' @keywords internal
 #' @export
 catalog_provider <- function() {
 

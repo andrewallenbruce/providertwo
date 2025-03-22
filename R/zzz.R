@@ -1,9 +1,21 @@
 .onLoad <- function(libname, pkgname) {
 
-  catalog_provider <<- memoise::memoise(catalog_provider)
-  catalog_open     <<- memoise::memoise(catalog_open)
-  catalog_main     <<- memoise::memoise(catalog_main)
+  catalogs        <<- memoise::memoise(catalogs)
+  CurrentMain     <<- memoise::memoise(CurrentMain)
+  CurrentOpen     <<- memoise::memoise(CurrentOpen)
+  CurrentProvider <<- memoise::memoise(CurrentProvider)
 
   S7::methods_register()
 
 }
+
+# .onUnload <- function(libpath) {
+#
+#   remove(
+#     list = c("CATALOG"),
+#     envir = .GlobalEnv
+#   )
+#
+# }
+
+

@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalog_main.R
 \name{main_dims}
 \alias{main_dims}
-\title{Get Field Names and Number of Rows from Main Endpoint}
+\title{Get Dimensions of Current Main Endpoint}
 \usage{
 main_dims(url)
 }
@@ -13,6 +13,6 @@ main_dims(url)
 \verb{<list>} number of rows and field names
 }
 \description{
-Get Field Names and Number of Rows from Main Endpoint
+Get Dimensions of Current Main Endpoint
 }
 \keyword{internal}

@@ -1,12 +1,9 @@
 #' CMS Main Catalog
-#'
 #' @returns `<list>` of CMS Main API catalog information
-#'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' catalog_main()
-#'
 #' @autoglobal
-#'
+#' @keywords internal
 #' @export
 catalog_main <- function() {
 
@@ -37,9 +34,7 @@ catalog_main <- function() {
       distribution) |>
     as_tbl()
 
-  d <- get_elem(x, "distribution") |>
-    rowbind(fill = TRUE) |>
-    as_tbl() |>
+  d <- rowbind(x$distribution, fill = TRUE) |>
     fcompute(
       year       = as_int(stri_extract_all_regex(title, "[0-9]{4}")),
       title      = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
@@ -50,7 +45,8 @@ catalog_main <- function() {
       download   = lag_(downloadURL, n = -1L),
       filetype   = lag_(mediaType, n = -1L),
       resources  = resourcesAPI) |>
-    colorder(title)
+    colorder(title) |>
+    as_tbl()
 
   d <- sset(d, row_na_counts(d) < 4) |>
     funique(cols = c("title", "year", "format"))
@@ -83,7 +79,7 @@ catalog_main <- function() {
   )
 }
 
-#' Get Field Names and Number of Rows from Main Endpoint
+#' Get Dimensions of Current Main Endpoint
 #' @param url `<chr>` endpoint URL
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
@@ -109,34 +105,36 @@ main_dims <- function(url) {
 
 }
 
-#' Get Field Names and Number of Rows from Main Endpoint
+#' Get Dimensions of Temporal Main Endpoint
 #' @param url `<chr>` endpoint URL
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
 #' @keywords internal
 #' @export
-main_temporal_dims <- function(url) {
+main_temp_dims <- function(url) {
   list_tidy(
-    rows   = perform_simple(req_url_path_append(request(url), "stats")) |> _[["total_rows"]],
-    pages  = offset_length(rows, 5000L),
-    fields = names(perform_simple(request(url)))
+    rows   = request(url) |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
+    fields = request(url) |> perform_simple() |> names(),
+    pages  = offset_length(rows, 5000L)
   )
-
 }
 
-#' Load `<TemporalMainGroup>` API Endpoints
-#' @param alias `<chr>` dataset title
-#' @returns `<TemporalMainGroup>` object
-#' @examples
-#' main_temporal_group("utilization")
-#' main_temporal_group("prescribers")
-#' main_temporal_group("suppliers")
-#' main_temporal_group("outpatient")
-#' main_temporal_group("inpatient")
+#' Load Temporal Main Endpoint Group
+#' @param alias `<chr>` dataset title alias
+#' @returns `<list>` of a group of temporal main endpoints
+#' @examplesIf rlang::is_interactive()
+#' main_temp_group("utilization")
+#' main_temp_group("prescribers")
+#' main_temp_group("suppliers")
+#' main_temp_group("outpatient")
+#' main_temp_group("inpatient")
 #' @autoglobal
 #' @export
-main_temporal_group <- function(alias) {
-  x <- subset_detect(catalog_main()$temporal, title, alias_main_temporal_group(alias)) |>
+main_temp_group <- function(alias) {
+  x <- subset_detect(
+    catalogs()$main$temporal,
+    title,
+    alias_main_temporal_group(alias)) |>
     mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
         title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
     colorder(title, group)
@@ -154,7 +152,7 @@ main_temporal_group <- function(alias) {
 
   q <- map(sbt(x2, year == fmax(year)) |>
       _[["identifier"]], \(x)
-    main_temporal_dims(x)) |>
+    main_temp_dims(x)) |>
     set_names(groups)
 
   x2 <- rsplit(x2, ~ group)

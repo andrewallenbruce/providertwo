@@ -1,3 +1,16 @@
+#' API Catalogs
+#' @returns `<list>` of API catalogs
+#' @autoglobal
+#' @keywords internal
+#' @export
+catalogs <- function() {
+  list(
+    main = catalog_main(),
+    pro  = catalog_provider(),
+    open = catalog_open()
+  )
+}
+
 #' API Current Endpoint Class
 #'
 #' @param title       `<chr>` title
@@ -57,11 +70,7 @@ CurrentMain <- new_class(
   parent = Current,
   name   = "CurrentMain",
   properties = list(
-    temporal = new_property(
-      class_character,
-      getter = function(self)
-        main_temp(self@temporal)
-    ),
+    temporal    = class_character,
     periodicity = class_character,
     resources   = class_character,
     dictionary  = class_character,
@@ -69,8 +78,10 @@ CurrentMain <- new_class(
     references  = class_character
   ),
   constructor = function(alias) {
-    x <- catalog_main()$current |>
-      subset_detect(title, alias_main_current(alias)) |>
+    x <- subset_detect(
+      catalogs()$main$current,
+      title,
+      alias_main_current(alias)) |>
       c()
 
     q <- main_dims(x$identifier)
@@ -126,7 +137,10 @@ CurrentProvider <- new_class(
     )
   ),
   constructor = function(alias) {
-    x <- subset_detect(catalog_provider(), title, alias_provider_current(alias)) |>
+    x <- subset_detect(
+      catalogs()$pro,
+      title,
+      alias_provider_current("affiliations")) |>
       c()
 
     q <- pro_dims(x$identifier)
@@ -183,8 +197,10 @@ CurrentOpen <- new_class(
     )
   ),
   constructor = function(alias) {
-    x <- catalog_open()$current |>
-      subset_detect(title, alias_open_current(alias)) |>
+    x <- subset_detect(
+      catalogs()$open$current,
+      title,
+      alias_open_current("prof_cov")) |>
       c()
 
     q <- open_dims(x$identifier)
@@ -254,12 +270,14 @@ TemporalMain <- new_class(
     site        = class_character
   ),
   constructor = function(alias) {
-    x <- catalog_main()$temporal |>
-      subset_detect(title, alias_main_temporal(alias))
+    x <- subset_detect(
+      catalogs()$main$temporal,
+      title,
+      alias_main_temporal("quality_payment"))
 
     dat <- get_elem(x, "data")[[1]]
 
-    q <- main_temporal_dims(dat$identifier[1])
+    q <- main_temp_dims(dat$identifier[1])
 
     new_object(
       Temporal(),
@@ -300,8 +318,10 @@ TemporalOpen <- new_class(
   parent = Temporal,
   name   = "TemporalOpen",
   constructor = function(alias) {
-    x <- catalog_open()$temporal |>
-      subset_detect(title, alias_open_temporal(alias))
+    x <- subset_detect(
+        catalogs()$open$temporal,
+        title,
+        alias_open_temporal(alias))
 
     q <- open_dims(x$identifier[1])
 
@@ -353,15 +373,16 @@ TemporalGroup <- new_class(
 #' @autoglobal
 #' @export
 TemporalMainGroup <- new_class(
-  parent = TemporalGroup,
-  name   = "TemporalMainGroup",
+  parent  = TemporalGroup,
+  name    = "TemporalMainGroup",
+  package = NULL,
   properties = list(
     periodicity = class_character,
     years       = class_integer
   ),
   constructor = function(alias) {
 
-    x <- main_temporal_group(alias)
+    x <- main_temp_group(alias)
 
     template <- glue(
       "
@@ -400,6 +421,7 @@ TemporalMainGroup <- new_class(
 #' @autoglobal
 #' @export
 TemporalOpenGroup <- new_class(
-  parent = Temporal,
-  name   = "TemporalOpenGroup"
+  parent  = Temporal,
+  name    = "TemporalOpenGroup",
+  package = NULL
 )

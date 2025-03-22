@@ -13,5 +13,8 @@ catalog_open()
 CMS Open Payments Catalog
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 catalog_open()
+\dontshow{\}) # examplesIf}
 }
+\keyword{internal}

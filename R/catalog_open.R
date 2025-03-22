@@ -33,15 +33,14 @@ open_url <- function(uuid) paste0("https://openpaymentsdata.cms.gov/api/1/datast
 
 #' CMS Open Payments Catalog
 #' @returns `<list>` of Open Payments API catalog information
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' catalog_open()
 #' @autoglobal
+#' @keywords internal
 #' @export
 catalog_open <- function() {
 
-  x <- fload(paste0("https://openpaymentsdata.cms.gov",
-                    "/api/1/metastore/schemas/dataset/",
-                    "items?show-reference-ids"))
+  x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
   x <- mtt(x,
       modified    = as_date(modified),
