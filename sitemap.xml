@@ -27,6 +27,7 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_main.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_open.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalog_provider.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/catalogs.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/check_luhn.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/clean_names.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/cli_results.html</loc></url>
@@ -58,8 +59,8 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/luhn_check.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_dims.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temp.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temporal_dims.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temporal_group.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temp_dims.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/main_temp_group.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_na_if.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response_provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/map_parse_json_response_public.html</loc></url>
