@@ -3,6 +3,20 @@ NULL
 
 new_request <- new_generic("new_request", "x")
 
+#' @name new_request
+#' @title Create a new request by class
+#'
+#' @param x An object of class `CurrentMain`.
+#'
+#' @returns A new request.
+#'
+#' @examples
+#' x <- CurrentMain("enrollees")
+#' new_request(x)
+#'
+#' @method new_request CurrentMain
+#' @autoglobal
+#' @export
 method(new_request, CurrentMain) <- function(x) {
   request(x@identifier) |>
     req_url_query(offset = 0L, size = 5000L)
@@ -12,7 +26,7 @@ method(new_request, CurrentProvider) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       schema = "false",
-      keys   = "false",
+      keys   = "true",
       rowIds = "false",
       offset = 0L,
       limit  = 2000L
@@ -23,7 +37,7 @@ method(new_request, CurrentOpen) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       schema = "false",
-      keys   = "false",
+      keys   = "true",
       offset = 0L,
       limit  = 500L
     )
