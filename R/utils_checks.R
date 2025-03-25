@@ -70,13 +70,25 @@ assert_digits <- function(x, call = rlang::caller_env()) {
 }
 
 #' @noRd
-assert_nchars <- function(x, n, call = rlang::caller_env()) {
+assert_nchars <- function(x, n, xname, call = rlang::caller_env()) {
   if (any(nchar(as_chr(x)) != n)) {
     invalid <- x[which_(nchar(as_chr(x)) != n)]
     cli::cli_abort(
       c(
-        "Invalid {.arg npi} entered: {.val {invalid}}",
-        "x" = "{.arg npi} must be {n} characters long"),
+        "Invalid {.arg {xname}} entered: {.val {invalid}}",
+        "x" = "{.arg {xname}} must be {n} characters long"),
+      call = call
+    )
+  }
+}
+
+#' @noRd
+assert_choices <- function(x, choices, xname, call = rlang::caller_env()) {
+  if (any(!x %in% choices)) {
+    invalid <- x[which_(x %in% choices, invert = TRUE)]
+    cli::cli_abort(
+      c(
+        "Invalid {.arg {xname}} entered: {.val {invalid}}"),
       call = call
     )
   }

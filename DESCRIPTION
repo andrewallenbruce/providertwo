@@ -41,9 +41,9 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Collate: 
+    'S7_args.R'
     'S7_backend.R'
     'S7_print.R'
-    'S7_props.R'
     'aliases.R'
     'catalog_main.R'
     'catalog_open.R'
@@ -57,7 +57,8 @@ Collate:
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
-    'new_request.R'
+    'method_list_resources.R'
+    'method_new_request.R'
     'providertwo-package.R'
     'query.R'
     'utils_checks.R'
