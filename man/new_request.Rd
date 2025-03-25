@@ -3,17 +3,22 @@
 \name{new_request}
 \alias{new_request}
 \title{Create a new request by class}
+\usage{
+new_request(x, ...)
+}
 \arguments{
-\item{x}{An object of class \code{CurrentMain}.}
+\item{x}{An object of class \code{ProviderCurrent}, \code{MainCurrent}, or \code{OpenCurrent}}
+
+\item{...}{Additional arguments?}
 }
 \value{
-A new request.
+A new request
 }
 \description{
 Create a new request by class
 }
 \examples{
-x <- CurrentMain("enrollees")
-new_request(x)
+MainCurrent("enrollees") |> new_request()
+ProviderCurrent("affiliations") |> new_request()
 
 }

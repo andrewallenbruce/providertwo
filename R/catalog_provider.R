@@ -2,8 +2,7 @@
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` endpoint URL
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 pro_url <- function(uuid) {
   paste0("https://data.cms.gov/",
          "provider-data/api/1/",
@@ -16,8 +15,7 @@ pro_url <- function(uuid) {
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` dictionary URL
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 pro_dict <- function(uuid) {
   paste0("https://data.cms.gov/",
          "provider-data/dataset/",
@@ -29,8 +27,7 @@ pro_dict <- function(uuid) {
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 pro_dims <- function(uuid) {
 
   x <- uuid |>

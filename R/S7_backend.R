@@ -29,7 +29,8 @@ catalogs <- function() {
 #' @keywords internal
 #' @export
 Current <- new_class(
-  name          = "Current",
+  name = "Current",
+  package = NULL,
   properties    = list(
     title       = class_character,
     description = class_character,
@@ -43,32 +44,34 @@ Current <- new_class(
   )
 )
 
-#' CurrentMain API Endpoint
+#' Current Main API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<CurrentMain>` object.
+#' @returns An S7 `<MainCurrent>` object.
 #'
 #' @examples
-#' CurrentMain("enrollees")
-#' CurrentMain("opt_out")
-#' CurrentMain("order_refer")
-#' CurrentMain("reassignments")
-#' CurrentMain("hospitals")
-#' CurrentMain("laboratories")
-#' CurrentMain("crosswalk")
-#' CurrentMain("rbcs")
-#' CurrentMain("facilities")
-#' CurrentMain("home_health")
-#' CurrentMain("hospice")
-#' CurrentMain("dialysis")
-#' CurrentMain("snf")
+#' MainCurrent("enrollees")
+#' MainCurrent("opt_out")
+#' MainCurrent("order_refer")
+#' MainCurrent("reassignments")
+#' MainCurrent("hospitals")
+#' MainCurrent("laboratories")
+#' MainCurrent("crosswalk")
+#' MainCurrent("rbcs")
+#' MainCurrent("facilities")
+#' MainCurrent("home_health")
+#' MainCurrent("hospice")
+#' MainCurrent("dialysis")
+#' MainCurrent("snf")
 #'
 #' @autoglobal
+#' @rdname backend
 #' @export
-CurrentMain <- new_class(
+MainCurrent <- new_class(
   parent = Current,
-  name   = "CurrentMain",
+  name = "MainCurrent",
+  package = NULL,
   properties = list(
     temporal    = class_character,
     periodicity = class_character,
@@ -107,23 +110,24 @@ CurrentMain <- new_class(
   }
 )
 
-#' CurrentProvider API Endpoint
+#' Current Provider API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<CurrentProvider>` object.
+#' @returns An S7 `<ProviderCurrent>` object.
 #'
 #' @examples
-#' CurrentProvider("affiliations")
-#' CurrentProvider("clinicians")
-#' CurrentProvider("utilization")
+#' ProviderCurrent("affiliations")
+#' ProviderCurrent("clinicians")
+#' ProviderCurrent("utilization")
 #'
 #' @autoglobal
-#'
+#' @rdname backend
 #' @export
-CurrentProvider <- new_class(
+ProviderCurrent <- new_class(
   parent = Current,
-  name = "CurrentProvider",
+  name = "ProviderCurrent",
+  package = NULL,
   properties = list(
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
@@ -132,8 +136,8 @@ CurrentProvider <- new_class(
     site       = class_character,
     identifier = new_property(
       class_character,
-      getter = function(self)
-        pro_url(self@uuid)
+      getter = function(self) pro_url(self@uuid),
+      setter = NULL
     )
   ),
   constructor = function(alias) {
@@ -164,30 +168,32 @@ CurrentProvider <- new_class(
   }
 )
 
-#' CurrentOpen Payments API Endpoint
+#' Current Open Payments API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<CurrentOpen>` object.
+#' @returns An S7 `<OpenCurrent>` object.
 #'
 #' @examples
-#' CurrentOpen("prof_cov")
-#' CurrentOpen("prof_phys")
-#' CurrentOpen("prof_info")
-#' CurrentOpen("prof_map")
-#' CurrentOpen("prof_entity")
-#' CurrentOpen("prof_teach")
-#' CurrentOpen("dashboard")
-#' CurrentOpen("pay_state_total")
-#' CurrentOpen("pay_state_group")
-#' CurrentOpen("pay_nat_group")
-#' CurrentOpen("pay_nat_total")
+#' OpenCurrent("prof_cov")
+#' OpenCurrent("prof_phys")
+#' OpenCurrent("prof_info")
+#' OpenCurrent("prof_map")
+#' OpenCurrent("prof_entity")
+#' OpenCurrent("prof_teach")
+#' OpenCurrent("dashboard")
+#' OpenCurrent("pay_state_total")
+#' OpenCurrent("pay_state_group")
+#' OpenCurrent("pay_nat_group")
+#' OpenCurrent("pay_nat_total")
 #'
 #' @autoglobal
+#' @rdname backend
 #' @export
-CurrentOpen <- new_class(
+OpenCurrent <- new_class(
   parent = Current,
-  name   = "CurrentOpen",
+  name = "OpenCurrent",
+  package = NULL,
   properties = list(
     uuid       = class_character,
     identifier = new_property(
@@ -238,6 +244,7 @@ CurrentOpen <- new_class(
 #' @export
 Temporal <- new_class(
   name = "Temporal",
+  package = NULL,
   properties = list(
     title       = class_character,
     description = class_character,
@@ -254,16 +261,18 @@ Temporal <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<TemporalMain>` object.
+#' @returns An S7 `<MainTemporal>` object.
 #'
 #' @examples
-#' TemporalMain("quality_payment")
+#' MainTemporal("quality_payment")
 #'
 #' @autoglobal
+#' @rdname backend
 #' @export
-TemporalMain <- new_class(
-  parent      = Temporal,
-  name        = "TemporalMain",
+MainTemporal <- new_class(
+  parent = Temporal,
+  name = "MainTemporal",
+  package = NULL,
   properties = list(
     periodicity = class_character,
     dictionary  = class_character,
@@ -300,22 +309,24 @@ TemporalMain <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<TemporalOpen>` object.
+#' @returns An S7 `<OpenTemporal>` object.
 #'
 #' @examples
-#' TemporalOpen("general")
-#' TemporalOpen("ownership")
-#' TemporalOpen("research")
-#' TemporalOpen("recipient_nature")
-#' TemporalOpen("recipient_entity")
-#' TemporalOpen("entity_nature")
-#' TemporalOpen("entity_recipient_nature")
-#' TemporalOpen("state_nature")
+#' OpenTemporal("general")
+#' OpenTemporal("ownership")
+#' OpenTemporal("research")
+#' OpenTemporal("recipient_nature")
+#' OpenTemporal("recipient_entity")
+#' OpenTemporal("entity_nature")
+#' OpenTemporal("entity_recipient_nature")
+#' OpenTemporal("state_nature")
 #' @autoglobal
+#' @rdname backend
 #' @export
-TemporalOpen <- new_class(
+OpenTemporal <- new_class(
   parent = Temporal,
-  name   = "TemporalOpen",
+  name = "OpenTemporal",
+  package = NULL,
   constructor = function(alias) {
     x <- subset_detect(
         catalogs()$open$temporal,
@@ -349,6 +360,7 @@ TemporalOpen <- new_class(
 #' @export
 TemporalGroup <- new_class(
   name = "TemporalGroup",
+  package = NULL,
   properties = list(
     title       = class_character,
     contact     = class_character,
@@ -360,20 +372,21 @@ TemporalGroup <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<TemporalMainGroup>` object.
+#' @returns An S7 `<MainTemporalGroup>` object.
 #'
 #' @examples
-#' TemporalMainGroup("utilization")
-#' TemporalMainGroup("prescribers")
-#' TemporalMainGroup("suppliers")
-#' TemporalMainGroup("outpatient")
-#' TemporalMainGroup("inpatient")
+#' MainTemporalGroup("utilization")
+#' MainTemporalGroup("prescribers")
+#' MainTemporalGroup("suppliers")
+#' MainTemporalGroup("outpatient")
+#' MainTemporalGroup("inpatient")
 #'
 #' @autoglobal
+#' @rdname backend
 #' @export
-TemporalMainGroup <- new_class(
+MainTemporalGroup <- new_class(
   parent  = TemporalGroup,
-  name    = "TemporalMainGroup",
+  name    = "MainTemporalGroup",
   package = NULL,
   properties = list(
     periodicity = class_character,
@@ -418,9 +431,10 @@ TemporalMainGroup <- new_class(
 #' @returns An S7 `<TemporalOpenGroup>` object.
 #'
 #' @autoglobal
+#' @rdname backend
 #' @export
-TemporalOpenGroup <- new_class(
+OpenTemporalGroup <- new_class(
   parent  = Temporal,
-  name    = "TemporalOpenGroup",
+  name    = "OpenTemporalGroup",
   package = NULL
 )

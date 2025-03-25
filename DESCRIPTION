@@ -13,7 +13,7 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     cheapr (>= 1.0.1),
-    cli,
+    cli (>= 3.6.4),
     collapse (>= 2.1.0),
     fastplyr (>= 0.5.1),
     fs (>= 1.6.5),

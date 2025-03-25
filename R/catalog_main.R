@@ -83,8 +83,7 @@ catalog_main <- function() {
 #' @param url `<chr>` endpoint URL
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 main_dims <- function(url) {
 
   x <- url |>
@@ -109,8 +108,7 @@ main_dims <- function(url) {
 #' @param url `<chr>` endpoint URL
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 main_temp_dims <- function(url) {
   list_tidy(
     rows   = request(url) |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
@@ -129,7 +127,7 @@ main_temp_dims <- function(url) {
 #' main_temp_group("outpatient")
 #' main_temp_group("inpatient")
 #' @autoglobal
-#' @export
+#' @noRd
 main_temp_group <- function(alias) {
   x <- subset_detect(
     catalogs()$main$temporal,

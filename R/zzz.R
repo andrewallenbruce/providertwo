@@ -1,9 +1,9 @@
 .onLoad <- function(libname, pkgname) {
 
   catalogs        <<- memoise::memoise(catalogs)
-  CurrentMain     <<- memoise::memoise(CurrentMain)
-  CurrentOpen     <<- memoise::memoise(CurrentOpen)
-  CurrentProvider <<- memoise::memoise(CurrentProvider)
+  MainCurrent     <<- memoise::memoise(MainCurrent)
+  OpenCurrent     <<- memoise::memoise(OpenCurrent)
+  ProviderCurrent <<- memoise::memoise(ProviderCurrent)
 
   S7::methods_register()
 

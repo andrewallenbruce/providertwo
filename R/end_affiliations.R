@@ -59,7 +59,7 @@ affiliations <- function(npi           = NULL,
     "facility_type_certification_number"         = ccn_parent)
 
 
-    new_request(CurrentProvider(fnm(call_match()[1])))
+    # new_request(CurrentProvider(fnm(call_match()[1])))
 
 }
 

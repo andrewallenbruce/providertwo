@@ -79,8 +79,7 @@ flatten_column <- function(i) {
 #' @param x `<list>` list to handle
 #' @returns `<list>` list with NAs handled
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 handle_na <- function(x) {
   remove_all_na(map_if(x, is.character, function(x) na_if(x, y = "")))
 }
@@ -102,8 +101,7 @@ map_na_if <- function(x) {
 #' as_datetime("2024-07-29T20:37:53")
 #' @seealso [clock::date_time_parse_RFC_3339()]
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 as_datetime <- function(x) {
 
   ISOdatetime(
@@ -120,8 +118,7 @@ as_datetime <- function(x) {
 #' @param i `<chr>` vector to parse; format: "YYYY-MM-DD"
 #' @returns `<chr>` parsed ISOdate vector
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 as_fda_date <- function(i) {
   delist(map(i, function(x)
     paste0(
@@ -139,8 +136,7 @@ as_fda_date <- function(i) {
 #' @param n `<lgl>` negate
 #' @returns `<lgl>` logical vector
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 pdetect <- function(x, p, n = FALSE) {
   stri_detect_regex(str     = x,
                     pattern = p,

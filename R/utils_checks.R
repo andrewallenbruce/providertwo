@@ -1,19 +1,18 @@
 #' Luhn Algorithm Check for NPIs
 #' @param x `<chr>` NPI
 #' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' luhn_check("1417918293")
 #' luhn_check("1234567890")
 #' luhn_check("1234567893")
 #' luhn_check("123456789")
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 luhn_check <- function(x) {
 
   idx <- c(1, 3, 5, 7, 9)
 
-  id <- as_int(cheapr_rev(desplit(x)[1:9]))
+  id <- as_int(cheapr_rev(strsplit(delist(as_chr(x)), "")[[1]][1:9]))
 
   id[idx] <- id[idx] * 2
 
@@ -23,12 +22,7 @@ luhn_check <- function(x) {
 
   ck <- (ceiling(id / 10) * 10) - id
 
-  test <- sf_smush(
-    sf_c(
-      sf_sub(x, start = 1, stop = 9),
-      as_chr(ck)
-      )
-    )
+  test <- paste0(substr(x, 1, 9), as_chr(ck))
 
   identical(test, x)
 }
@@ -36,12 +30,11 @@ luhn_check <- function(x) {
 #' Vectorized Luhn Algorithm Check for NPIs
 #' @param x `<chr>` NPI
 #' @returns `<lgl>` `TRUE` if valid NPI, `FALSE` otherwise
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' check_luhn("1234567890")
 #' check_luhn(c("1417918293", "1234567890"))
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 check_luhn <- function(x) {
   if (length(x) > 1) {
     map_lgl(x, luhn_check)
@@ -50,31 +43,43 @@ check_luhn <- function(x) {
   }
 }
 
-#' Check Public API Limit
-#' @param limit `<int>` API limit
-#' @returns Nothing if valid, aborts otherwise
-#' @autoglobal
 #' @noRd
-check_limit_public <- function(limit) {
-  check_number_whole(limit, min = 1, max = 5000)
+assert_luhn <- function(x, call = rlang::caller_env()) {
+  if (any(!check_luhn(x))) {
+    invalid <- x[which_(check_luhn(x), invert = TRUE)]
+    cli::cli_abort(
+      c(
+        "Invalid {.arg npi} entered: {.val {invalid}}",
+        "x" = "{.arg npi} must pass Luhn algorithm"),
+      call = call
+      )
+  }
 }
 
-#' Check Provider API Limit
-#' @param limit `<int>` API limit
-#' @returns Nothing if valid, aborts otherwise
-#' @autoglobal
 #' @noRd
-check_limit_provider <- function(limit) {
-  check_number_whole(limit, min = 1, max = 2000)
+assert_digits <- function(x, call = rlang::caller_env()) {
+  if (any(!grepl("^[0-9]{10}$", x = as_chr(x), perl = TRUE))) {
+    invalid <- x[which_(grepl('^[0-9]{10}$', x = as_chr(x), perl = TRUE), invert = TRUE)]
+    cli::cli_abort(
+      c(
+        "Invalid {.arg npi} entered: {.val {invalid}}",
+        "x" = "{.arg npi} must be all digits"),
+      call = call
+    )
+  }
 }
 
-#' Check Open Payments API Limit
-#' @param limit `<int>` API limit
-#' @returns Nothing if valid, aborts otherwise
-#' @autoglobal
 #' @noRd
-check_limit_open <- function(limit) {
-  check_number_whole(limit, min = 1, max = 500)
+assert_nchars <- function(x, n, call = rlang::caller_env()) {
+  if (any(nchar(as_chr(x)) != n)) {
+    invalid <- x[which_(nchar(as_chr(x)) != n)]
+    cli::cli_abort(
+      c(
+        "Invalid {.arg npi} entered: {.val {invalid}}",
+        "x" = "{.arg npi} must be {n} characters long"),
+      call = call
+    )
+  }
 }
 
 #' Check Function parameters are valid API fields

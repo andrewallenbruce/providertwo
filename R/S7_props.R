@@ -1,49 +1,70 @@
-null_numeric    <- new_union(NULL, class_numeric)
-null_integer    <- new_union(NULL, class_integer)
-null_character  <- new_union(NULL, class_character)
-null_char_int   <- new_union(NULL, class_character, class_integer)
-null_list       <- new_union(NULL, class_list)
-null_data.frame <- new_union(NULL, class_data.frame)
-null_dbl_Date   <- new_union(NULL, class_double, class_Date)
-double_Date     <- new_union(class_double, class_Date)
+#' `npi` argument class
+#'
+#' @param input `<chr>` npi
+#'
+#' @returns An S7 `<arg_npi>` object.
+#'
+#' @examples
+#' arg_npi("1225701881")
+#'
+#' kind <- c(
+#' 1225701881,
+#' 1174270805,
+#' 1235702796,
+#' 1962116806,
+#' 1013647569,
+#' 1306500665,
+#' 1982296737,
+#' 1083295638,
+#' 1841967825,
+#' 1891390084,
+#' 1275117269,
+#' 1992338701,
+#' 1891355863,
+#' 1548743511,
+#' 1023473279,
+#' 1861857013,
+#' 1689182859,
+#' 1982059275)
+#'
+#' arg_npi(kind)
+#'
+#' @autoglobal
+#' @rdname args
+#' @export
+arg_npi <- new_class(
+  name    = "arg_npi",
+  package = NULL,
+  properties = list(
+    input = new_property(
+      class = NULL | class_character | class_numeric,
+      setter = function(self, value) {
+        self@input <- as_chr(value)
+        self},
+      getter = function(self) { as_chr(self@input) })),
+      validator = function(self) {
+        if (not_null(self@input)) {
+          assert_nchars(self@input, 10)
+          assert_digits(self@input)
+          assert_luhn(self@input)
+          }
+        }
+  )
 
-props_npi <- new_property(
-  class = null_character,
-  validator = function(value) {
-    if (not_null(value)) {
-      if (!is_character(value)) "`npi` must be a character vector"
-      if (any(sf_chars(value) != 10L)) "`npi` must be 10 characters long"
-      if (any(sf_ndetect(value, "^[0-9]{1,10}$"))) "`npi` must be all digits"
-      if (any(!check_luhn(value))) "`npi` must pass Luhn algorithm"
-      if (any(!sf_sub(value, 1, 1) %in% c("1", "2"))) "`npi` must start with 1 or 2"
-    }
-  }
-)
-
-props_state <- new_property(
-  class = null_character,
-  validator = function(value) {
-    if (not_null(value)) {
-      if (!is_character(value)) "`state` must be a character vector"
-      if (any(sf_chars(value) != 2L)) "`state` must be 2 characters long"
-      if (any(!value %in% state.abb)) {
-        paste(
-          "Invalid state(s) entered:",
-          paste0(
-            value[
-              which_(value %in% state.abb, invert = TRUE)],
-            collapse = ", "))
-      }
-    }
-  }
-)
-
-# class_arg <- new_class(
-#   name = "class_arg",
-#   properties = list(
-#     input = class_any,
-#     field = class_character
-#     )
+# props_state <- new_property(
+#   class = null_character,
+#   validator = function(value) {
+#     if (not_null(value)) {
+#       if (!is_character(value)) "`state` must be a character vector"
+#       if (any(sf_chars(value) != 2L)) "`state` must be 2 characters long"
+#       if (any(!value %in% state.abb)) {
+#         paste(
+#           "Invalid state(s) entered:",
+#           paste0(
+#             value[
+#               which_(value %in% state.abb, invert = TRUE)],
+#             collapse = ", "))
+#       }
+#     }
+#   }
 # )
-#
-# class_arg(input = .npi, field = "NPI")

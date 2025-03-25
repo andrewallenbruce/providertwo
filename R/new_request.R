@@ -1,28 +1,30 @@
 #' @include S7_backend.R
 NULL
 
-new_request <- new_generic("new_request", "x")
-
 #' @name new_request
+#'
 #' @title Create a new request by class
 #'
-#' @param x An object of class `CurrentMain`.
+#' @param x An object of class `ProviderCurrent`, `MainCurrent`, or `OpenCurrent`
 #'
-#' @returns A new request.
+#' @param ... Additional arguments?
+#'
+#' @returns A new request
 #'
 #' @examples
-#' x <- CurrentMain("enrollees")
-#' new_request(x)
+#' MainCurrent("enrollees") |> new_request()
+#' ProviderCurrent("affiliations") |> new_request()
 #'
-#' @method new_request CurrentMain
 #' @autoglobal
 #' @export
-method(new_request, CurrentMain) <- function(x) {
+new_request <- new_generic("new_request", "x")
+
+method(new_request, MainCurrent) <- function(x) {
   request(x@identifier) |>
     req_url_query(offset = 0L, size = 5000L)
 }
 
-method(new_request, CurrentProvider) <- function(x) {
+method(new_request, ProviderCurrent) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       schema = "false",
@@ -33,7 +35,7 @@ method(new_request, CurrentProvider) <- function(x) {
     )
 }
 
-method(new_request, CurrentOpen) <- function(x) {
+method(new_request, OpenCurrent) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       schema = "false",
@@ -43,10 +45,25 @@ method(new_request, CurrentOpen) <- function(x) {
     )
 }
 
+#' @name list_resources
+#'
+#' @title List resources from a `MainCurrent` or `class_character` object
+#'
+#' @param x An object of class `MainCurrent` or `class_character`
+#'
+#' @param ... Additional arguments?
+#'
+#' @returns A list of API resources
+#'
+#' @examples
+#' MainCurrent("enrollees") |> list_resources()
+#'
+#' @autoglobal
+#' @export
 list_resources <- new_generic("list_resources", "x")
 
-method(list_resources, class_character) <- function(x) {
-  fload(x, query = "/data") |>
+method(list_resources, MainCurrent) <- function(x) {
+  fload(x@resources, query = "/data") |>
     fcompute(
       file = name,
       size = roundup(fileSize / 1e6),
@@ -56,8 +73,8 @@ method(list_resources, class_character) <- function(x) {
     roworder(ext, -size)
 }
 
-method(list_resources, CurrentMain) <- function(x) {
-  fload(x@resources, query = "/data") |>
+method(list_resources, class_character) <- function(x) {
+  fload(x, query = "/data") |>
     fcompute(
       file = name,
       size = roundup(fileSize / 1e6),

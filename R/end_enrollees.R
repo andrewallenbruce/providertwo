@@ -52,16 +52,16 @@ enrollees <- function(npi       = NULL,
                       org       = NULL) {
 
   list2(
-    "NPI" = npi,
+    "NPI"                = npi,
     "PECOS_ASCT_CNTL_ID" = pac,
-    "ENRLMT_ID" = enid,
-    "PROVIDER_TYPE_CD" = spec_code,
+    "ENRLMT_ID"          = enid,
+    "PROVIDER_TYPE_CD"   = spec_code,
     "PROVIDER_TYPE_DESC" = spec_desc,
-    "STATE_CD" = state,
-    "FIRST_NAME" = first,
-    "MDL_NAME" = middle,
-    "LAST_NAME" = last,
-    "ORG_NAME" = org
+    "STATE_CD"           = state,
+    "FIRST_NAME"         = first,
+    "MDL_NAME"           = middle,
+    "LAST_NAME"          = last,
+    "ORG_NAME"           = org
   )
 
   # perform_request_public(

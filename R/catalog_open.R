@@ -2,8 +2,7 @@
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<list>` number of rows and field names
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 open_dims <- function(uuid) {
 
   x <- open_url(uuid) |>
@@ -27,8 +26,7 @@ open_dims <- function(uuid) {
 #' @param uuid `<chr>` endpoint UUID
 #' @returns `<chr>` endpoint URL
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 open_url <- function(uuid) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", uuid, "/0")
 
 #' CMS Open Payments Catalog
