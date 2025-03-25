@@ -131,7 +131,7 @@ ProviderCurrent <- new_class(
   properties = list(
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
-    group      = class_character,
+    # group      = class_character,
     uuid       = class_character,
     site       = class_character,
     identifier = new_property(
@@ -153,7 +153,7 @@ ProviderCurrent <- new_class(
       Current(),
       title       = x$title,
       description = x$description,
-      group       = x$group,
+      # group       = x$group,
       contact     = x$contact,
       modified    = x$modified,
       uuid        = x$identifier,

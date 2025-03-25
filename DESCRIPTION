@@ -62,7 +62,6 @@ Collate:
     'providertwo-package.R'
     'query.R'
     'utils_checks.R'
-    'utils_cli.R'
     'utils_httr2.R'
     'utils_misc.R'
     'zzz.R'
