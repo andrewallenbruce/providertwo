@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9136 (2025-03-25)
+
+* renamed classes, new npi arg class
+
+
 # providertwo 0.0.0.9135 (2025-03-24)
 
 - Same as previous version.
