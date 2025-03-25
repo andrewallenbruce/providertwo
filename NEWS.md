@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9139 (2025-03-25)
+
+* print methods
+
+
 # providertwo 0.0.0.9138 (2025-03-25)
 
 * state arg
