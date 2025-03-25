@@ -1,3 +1,4 @@
+#' @noRd
 CLI <- list_tidy(
 
     # styles
@@ -14,25 +15,24 @@ CLI <- list_tidy(
     txt_rw   = bold_yell("Rows"),
     txt_fl   = bold_yell("Fields"),
     txt_pg   = bold_yell("Pages"),
-    txt_rs   = bold_yell("Resources"),
     txt_mod  = bold_grey("Modified"),
     txt_span = bold_grey("Timespan"),
-    txt_per  = bold_grey("Periodcity"),
+    txt_per  = bold_grey("Periodicity"),
     txt_res  = cli::col_cyan("Result(s)"),
     txt_req  = cli::col_cyan("Request(s)"),
 
     # functions
     num     = function(x) prettyNum(x, big.mark = ","),
-    title   = function(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), width = 50, line = 2, line_col = "silver")),
-    desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 50, indent = 2, exdent = 2)),
     nrows   = function(x) num(x@rows),
     nfields = function(x) num(length(x@fields)),
     npages  = function(x) num(x@pages),
-    nfiles  = function(x) unlisted_length(x@resources@files$file),
-    temp    = function(x) ital_yellow(x@temporal),
-    period  = function(x) ital_yellow(x@periodicity),
-    mod     = function(x) ital_yellow(x@modified),
-    link    = function(x, nm) cli::style_hyperlink(nm, x)
+    temp    = function(x) ital_yell(x@temporal),
+    period  = function(x) ital_yell(x@periodicity),
+    mod     = function(x) ital_yell(x@modified),
+    link    = function(x, nm) cli::style_hyperlink(nm, x),
+    title   = function(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), width = nchar(x@title) + 10, line = 2, line_col = "silver")),
+    desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 50, indent = 2, exdent = 2)),
+    dim     = function(x) cli::cli_ul(c("{txt_rw} {nrows(x)}", "{txt_pg} {npages(x)}", "{txt_fl} {nfields(x)}"))
 )
 
 #' Inform number of results and requests
@@ -43,13 +43,12 @@ CLI <- list_tidy(
 #'                      API will return per request.
 #' @returns cli message
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 cli_results <- function(n, limit) {
 
   cli::cli_inform(
     c(
-      " " = "{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} {CLI$sym_mn} {CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}",
+      "*" = "{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} {CLI$sym_mn} {CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}",
       " " = " "
       )
     )
