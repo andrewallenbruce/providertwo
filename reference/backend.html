@@ -19,7 +19,7 @@ Open Payments API Endpoint Temporal Group"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9136</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9137</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,226 +141,297 @@ Open Payments API Endpoint Temporal Group"></head><body>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"enrollees"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Medicare Fee-For-Service Public Provider Enrollment dataset includes information on providers who are activ"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-03-18"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2945846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 590</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:10] "NPI" "PECOS_ASCT_CNTL_ID" "ENRLMT_ID" "PROVIDER_TYPE_CD" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/3a6ec647-ed73-4c4e-849b-2d631e6b496f/PPEF_Enrollment_Extract_2025.02.03.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/2457ea29-fc82-48b0-86ec-3b0755de7515"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-fee-for-service-pu"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/fee-for-service-public-provider-enrollment-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Medicare Fee-For-Service Public Provider Enrollment</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Medicare Fee-For-Service Public Provider</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Enrollment dataset includes information on</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">providers who are actively approved to bill</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Medicare or have completed the 855O at the time</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">the data was pulled from the Provider</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Enrollment, Chain, and Ownership System</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">(PECOS). The release of this provider</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">enrollment data is not related to other</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">provider information releases such as Physician</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Compare or Data Transparency.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 2,945,846</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 590</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-03-18</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2023-01-01 • 2024-12-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Quarterly [R/P3M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"opt_out"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Opt Out Affidavits"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Opt Out Affidavits dataset provides information on providers who have decided not to participate in Medicar"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-03-24"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/9887a515-7552-4693-bf58-735c77af46d7/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 49923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:13] "First Name" "Last Name" "NPI" "Specialty" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/8cdbaa34-846c-4a84-9952-5a41cf00cb4d/Opt_Out_List_February.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-04-01 • 2025-02-28"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/9887a515-7552-4693-bf58-735c77af46d7"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/opt-out-affidavits-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/opt-out-affidavits"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/opt-out-affidavits-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Opt Out Affidavits</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Opt Out Affidavits dataset provides</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">information on providers who have decided not</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">to participate in Medicare. It contains</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">providers NPI, specialty, address, and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">effective dates.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 49,923</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 10</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-03-24</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2023-04-01 • 2025-02-28</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Monthly [R/P1M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"order_refer"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Order and Referring"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Order and Referring dataset provides information on all physicians and non-physician practitioners, by thei"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-03-24"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/c99b5865-1119-4436-bb80-c5af2773ea1f/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1938384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 388</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:8] "NPI" "LAST_NAME" "FIRST_NAME" "PARTB" "DME" "HHA" "PMD" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/6a838d42-b858-4f60-8f8f-30576ecd7100/OrderReferring_20250324.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-05-21 • 2025-03-22"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Twice a Week [R/P3.5D]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/c99b5865-1119-4436-bb80-c5af2773ea1f"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/order-and-referring-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/order-and-referring"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/order-and-referring-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Order and Referring</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Order and Referring dataset provides</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">information on all physicians and non-physician</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">practitioners, by their National Provider</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Identifier (NPI), who are of a type/specialty</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">that is legally eligible to order and refer in</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">the Medicare program and who have current</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">enrollment records in Medicare.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 1,938,384</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 388</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-03-24</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2023-05-21 • 2025-03-22</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Twice a Week [R/P3.5D]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"reassignments"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Revalidation Reassignment List"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Revalidation Reassignment List dataset provides information on reassignments of providers who are due for revalidation."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-03-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/20f51cff-4137-4f3a-b6b7-bfc9ad57983b/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 3682027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:16] "Group PAC ID" "Group Enrollment ID" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-02/693a548a-d960-4ea7-b17e-3422e1e20a75/revalidation_group_reassi"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2022-02-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/20f51cff-4137-4f3a-b6b7-bfc9ad57983b"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/revalidation-reassignments-list-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/revalidation-reassignment-list"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/additional-information-on-revalidation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Revalidation Reassignment List</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Revalidation Reassignment List dataset</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">provides information on reassignments of</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">providers who are due for revalidation.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 3,682,027</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 737</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-03-17</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2022-02-01 • 2025-03-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Monthly [R/P1M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"hospitals"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Hospital Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 9272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:39] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/0ef8ef0d-bf93-4b00-a542-a4e2853947cc/Hospital_Enrollments_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2022-11-01 • 2025-01-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f6f6505c-e8b0-4d57-b258-e2b94133aaf2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Hospital Enrollments</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Hospital Enrollments dataset provides</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">enrollment information of all Hospitals</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">currently enrolled in Medicare. This data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">includes information on the Hospitals sub-group</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">type, legal business name, doing business as</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">name, organization type and address.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 9,272</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-15</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2022-11-01 • 2025-01-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Monthly [R/P1M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"laboratories"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Provider of Services File - Clinical Laboratories"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Provider of Services (POS) Clinical Laboratories (CLIA) data provides information on CLIA demographics and "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "QIESData - CCSQ (mailto:QIESData@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/d3eb38ac-d8e9-40d3-b7b7-6205d3d1dc16/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 653223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 131</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:103] "PRVDR_CTGRY_SBTYP_CD" "PRVDR_CTGRY_CD" "CHOW_CNT" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/f16b0884-32a4-427f-b679-b48d3ef3146f/clia_data_Q4%202024.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2011-10-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/d3eb38ac-d8e9-40d3-b7b7-6205d3d1dc16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/50eacc07-7930-4e62-97e3-e04a2dc1e2a3/P.QWB.POSQ.CLIA.LAYOUT.MAR23.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-clinical-laboratories"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/provider-of-services-file-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Provider of Services File - Clinical Laboratories</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Provider of Services (POS) Clinical</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Laboratories (CLIA) data provides information</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">on CLIA demographics and types of testing</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">services the facility provides. In this file</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">you will find provider number, name, address</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">and characteristics of the participating</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">institution providers.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 653,223</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 131</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-16</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2011-10-01 • 2024-12-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Quarterly [R/P3M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"crosswalk"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Medicare Provider and Supplier Taxonomy Crosswalk"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Medicare Provider and Supplier Taxonomy Crosswalk dataset lists the providers and suppliers eligible to enr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/113eb0bc-0c9a-4d91-9f93-3f6b28c0bf6b/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:4] "MEDICARE SPECIALTY CODE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/7b0ea92d-2f70-424e-bec4-3fd35dc9a597/Medicare_Provider_and_Sup"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2021-07-01 • 2025-06-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Biannually [R/P6M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/113eb0bc-0c9a-4d91-9f93-3f6b28c0bf6b"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/medicare-provider-and-supplier-taxonomy-crosswalk-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/medicare-provider-and-suppl"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/medicare-provider-and-supplier-taxonomy-crosswalk-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Medicare Provider and Supplier Taxonomy Crosswalk</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Medicare Provider and Supplier Taxonomy</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Crosswalk dataset lists the providers and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">suppliers eligible to enroll in Medicare</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">programs with the proper healthcare provider</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">taxonomy code. This data includes the Medicare</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">speciality codes, if available,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">provider/supplier type description, taxonomy</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">code, and the taxonomy description.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 561</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-17</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2021-07-01 • 2025-06-30</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Biannually [R/P6M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"rbcs"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Restructured BETOS Classification System"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Restructured BETOS Classification System (RBCS) dataset is a taxonomy that allows researchers to group heal"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "PDAG Data Products - OEDA (mailto:PDAG_Data_Products@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2024-10-22"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/e3db6e56-149f-49ce-b374-40aecda2357b/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 18077</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:14] "HCPCS_Cd" "RBCS_ID" "RBCS_Cat" "RBCS_Cat_Desc" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2024-10/30b74146-c5ce-47e0-8ae2-ad1204c81906/2024%20RBCS%20Taxonomy_CSV.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2024-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/e3db6e56-149f-49ce-b374-40aecda2357b"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/resources/rbcs-data-dictionary-2024"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/provider-service-classifications/restructured-betos-cl"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2024-10/2024%20RBCS%20Final%20Report.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Restructured BETOS Classification System</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Restructured BETOS Classification System</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">(RBCS) dataset is a taxonomy that allows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">researchers to group healthcare service codes</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">for Medicare Part B services (i.e., HCPCS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">codes) into clinically meaningful categories</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">and subcategories. It is based on the original</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Berenson-Eggers Type of Service (BETOS)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">classification created in the 1980s, and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">includes notable updates such as Part B</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">non-physician services. The RBCS will undergo</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">annual updates by a technical expert panel of</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">researchers and clinicians.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 18,077</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2024-10-22</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2024-01-01 • 2024-12-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Annually [R/P1Y]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"facilities"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Provider of Services File - Hospital &amp; Non-Hospital Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Please be advised that as of Q4 2023 there is a new Provider of Service file (POS) that contains the provider a"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "QIESData - CCSQ (mailto:QIESData@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/8ba0f9b4-9493-4aa0-9f82-44ea9468d1b5/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 115647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:473] "PRVDR_CTGRY_SBTYP_CD" "PRVDR_CTGRY_CD" "CHOW_CNT" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/b5fb8b31-8e6e-41d0-8d73-8da1e2185ee2/PQWB.POSQ.OTHER.DATA.DEC24.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2011-10-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/8ba0f9b4-9493-4aa0-9f82-44ea9468d1b5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/0ca58d5d-7914-4532-b22d-41741d3e6151/P.QWB.POSQ.OTHER.LAYOUT.MAR23.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-hospital"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/resources/provider-of-services-file-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Provider of Services File - Hospital &amp; Non-Hospital Facilities</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Please be advised that as of Q4 2023 there is a</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">new Provider of Service file (POS) that</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">contains the provider and certification details</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">for Home Health Agencies (HHAs), Hospices, and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Ambulatory Surgical Centers (ASCs). Data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">contained in this file are extracted from the</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Internet Quality Improvement and Evaluation</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">System (iQIES) environment and will be updated</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">quarterly along with the other two POS files.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Provider of Services File - Hospital &amp;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Non-Hospital Facilities data provide critical</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">resources for other federal regulator</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">requirements as well as supports the ongoing</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">quality &amp; research efforts sponsored by CMS. In</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">this file you will find provider certification,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">termination, accreditation, ownership, name,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">location and other characteristics organized by</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">CMS Certification Number.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 115,647</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 24</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2011-10-01 • 2024-12-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Quarterly [R/P3M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"home_health"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Home Health Agency Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Home Health Agency (HHA) Enrollments dataset provides enrollment information on all HHAs currently enrolled"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/15f64ab4-3172-4a27-b589-ebd67a6d28aa/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 11708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:22] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/c133f82f-5635-47d3-b85f-364b379a322a/HHA_Enrollments_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-04-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/15f64ab4-3172-4a27-b589-ebd67a6d28aa"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/home-health-agency-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Home Health Agency Enrollments</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Home Health Agency (HHA) Enrollments</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">dataset provides enrollment information on all</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">HHAs currently enrolled in Medicare. This data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">includes information on the HHAs legal business</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">name, doing business as name, organization type</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">and address.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 11,708</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-15</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2023-04-01 • 2025-03-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Quarterly [R/P3M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"hospice"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Hospice Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Hospice Enrollments dataset provides enrollment information of all hospices currently enrolled in Medicare."| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/25704213-e833-4b8b-9dbc-58dd17149209/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 6603</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:20] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/afd62e57-8a99-4c49-a0b5-358a25ce39dd/Hospice_Enrollments_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2023-04-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/25704213-e833-4b8b-9dbc-58dd17149209"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-03/f736ce50-3d6b-4ee2-802f-2e5424ae71ac/Hospice_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospice-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2023-03/f193e9ef-9fd7-4de3-9a27-0d5281cf80a9/Hospice_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Hospice Enrollments</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Hospice Enrollments dataset provides</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">enrollment information of all hospices</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">currently enrolled in Medicare. This data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">includes information on the hospices legal</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">business name, doing business as name,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">organization type and address.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 6,603</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-15</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2023-04-01 • 2025-03-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Quarterly [R/P3M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Medicare Dialysis Facilities data provides information on clinical and patient measures for Medicare-certif"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "ESRD Questions - CCSQ (mailto:ESRDQuestions@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2024-02-29"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 11679243</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:14] "state" "CCN" "Provider_Name" "city" "Ownership_Type" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2024-02/b2c2658d-e19d-48db-8b3b-9d343a4d395f/dfr_facility_socrata_fy2024.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2009-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f8610e87-ba25-43a3-a49e-927dbc8701ae"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024%20Data%20Dictionary.xlsx"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024_DFR_Guide%20and%20Methodology.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Medicare Dialysis Facilities</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Medicare Dialysis Facilities data provides</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">information on clinical and patient measures</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">for Medicare-certified ESRD facilities, also</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">known as dialysis facilities. It contains data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">on patient characteristics, treatment patterns,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">hospitalization, mortality, and transplantation</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">patterns in Medicare-certified dialysis</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">facilities.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 11,679,243</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 2,336</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2024-02-29</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2009-01-01 • 2024-12-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Annually [R/P1Y]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"snf"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;MainCurrent&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Skilled Nursing Facility Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Skilled Nursing Facility (SNF) Enrollments dataset provides enrollment information of all SNF s currently e"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-03-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://data.cms.gov/data-api/v1/dataset/5f2c306f-3b1c-42cd-b037-187b2ce22126/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 14462</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:23] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/9ef2f127-250d-4809-8f72-99762554a08d/SNF_Enrollments_2025.02.28.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : chr "2022-09-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/5f2c306f-3b1c-42cd-b037-187b2ce22126"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/SNF_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ references : chr "https://data.cms.gov/sites/default/files/2024-12/1ea55414-f441-4694-a13c-6400d4e28ef6/SNF_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">══</span> <span style="font-weight: bold;">Skilled Nursing Facility Enrollments</span> <span style="color: #555555;">══════</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Skilled Nursing Facility (SNF) Enrollments</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">dataset provides enrollment information of all</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">SNF s currently enrolled in Medicare. This data</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">includes information on the SNFs legal business</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">name, doing business as name, organization type</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">and address.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   On November 17, 2023, CMS published in the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Federal Register a final rule titled, “Medicare</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   and Medicaid Programs; Disclosures of Ownership</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   and Additional Disclosable Parties Information</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   for Skilled Nursing Facilities and Nursing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Facilities; Medicare Providers’ and Suppliers’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Disclosure of Private Equity Companies and Real</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estate Investment Trusts” (88 FR 80141). This</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   final rule implements parts of section 1124(c)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   of the Act which requires SNFs to disclose</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   detailed information about their ownership and</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   management as well as additional data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   regarding: (1) other parties with which the SNF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   is associated; and (2) the ownership structures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   of these other parties.  Refer to Medicare</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Enrollment for Providers &amp; Suppliers for more</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   information on the Skilled Nursing Facility</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   disclosure requirements.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Section 6101(b) of the Affordable Care Act</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   states that no later than 1 year after final</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   regulations promulgated under section 1124(c)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   of the Act are published in the Federal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Register, the Secretary shall make the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   information reported available to the public.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    On November 21, 2024 CMS updated this dataset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   to include this reported information.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Rows 14,462</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Pages 3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-03-17</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Timespan ❯ <span style="color: #BBBB00; font-style: italic;">2022-09-01 • 2025-03-31</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Periodicity ❯ <span style="color: #BBBB00; font-style: italic;">Monthly [R/P1M]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ProviderCurrent</span><span class="op">(</span><span class="st">"affiliations"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;ProviderCurrent&gt;</span>
