@@ -24,7 +24,7 @@ luhn_check <- function(x) {
 
   test <- paste0(substr(x, 1, 9), as_chr(ck))
 
-  identical(test, x)
+  identical(test, as_chr(x))
 }
 
 #' Vectorized Luhn Algorithm Check for NPIs
@@ -33,6 +33,7 @@ luhn_check <- function(x) {
 #' @examplesIf rlang::is_interactive()
 #' check_luhn("1234567890")
 #' check_luhn(c("1417918293", "1234567890"))
+#' check_luhn(npi_ex)
 #' @autoglobal
 #' @noRd
 check_luhn <- function(x) {
@@ -45,7 +46,7 @@ check_luhn <- function(x) {
 
 #' @noRd
 assert_luhn <- function(x, call = rlang::caller_env()) {
-  if (all(not_null(x))) {
+  # if (all(not_null(x))) {
     if (any(!check_luhn(x))) {
       invalid <- x[which_(check_luhn(x), invert = TRUE)]
       cli::cli_abort(
@@ -53,7 +54,7 @@ assert_luhn <- function(x, call = rlang::caller_env()) {
         call = call
       )
     }
-  }
+  # }
 }
 
 #' @noRd
