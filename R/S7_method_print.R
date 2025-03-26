@@ -66,8 +66,8 @@ print <- S7::new_external_generic("base", "print", "x")
 
 
 S7::method(print, MainCurrent) <- function(x) {
-  cli::cli_h1("CMS Main API")
   CLI$title(x)
+  cli::cli_h3("CMS Main API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()
@@ -95,8 +95,8 @@ S7::method(print, MainCurrent) <- function(x) {
 }
 
 S7::method(print, ProviderCurrent) <- function(x) {
-  cli::cli_h1("CMS Provider API")
   CLI$title(x)
+  cli::cli_h3("CMS Provider API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()
@@ -123,8 +123,8 @@ S7::method(print, ProviderCurrent) <- function(x) {
 }
 
 S7::method(print, OpenCurrent) <- function(x) {
-  cli::cli_h1("CMS Open Payments API")
   CLI$title(x)
+  cli::cli_h3("CMS Open Payments API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()
@@ -133,3 +133,8 @@ S7::method(print, OpenCurrent) <- function(x) {
   cli::cli_bullets(c("*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}"))
   invisible(x)
 }
+
+# https://openpaymentsdata.cms.gov/
+# https://www.cms.gov/OpenPayments/Resources
+# https://openpaymentsdata.cms.gov/about/glossary
+# https://www.cms.gov/openpayments/downloads/openpaymentsdatadictionary.pdf

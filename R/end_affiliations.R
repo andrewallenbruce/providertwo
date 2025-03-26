@@ -7,7 +7,7 @@
 #'
 #' @param npi `<chr>` 10-digit Individual NPI
 #' @param pac `<chr>` 10-digit PECOS Associate Control (PAC) ID
-#' @param first,middle,last,suffix `<chr>` Individual provider's name(s)
+#' @param first_name,middle_name,last_name,suffix `<chr>` Individual provider's name(s)
 #' @param facility_type `<chr>` Type of facility, one of the following:
 #'
 #'    * `Hospital` (`hp`)
@@ -23,47 +23,62 @@
 #'                             facility or unit within hospital where an
 #'                             individual provider provides service.
 #'
-#' @param ccn_parent `<int>` 6-digit CMS Certification Number (CCN) of a
+#' @param ccn_primary `<int>` 6-digit CMS Certification Number (CCN) of a
 #'                           sub-unit's primary hospital, should the
 #'                           provider provide services in said unit.
 #'
 #' @examples
-#' affiliations(last = "CURRY", facility_type = "Home health agency")
-#' affiliations(ccn_parent = "670055")
+#' affiliations(last_name = "CURRY", facility_type = "Home health agency")
+#' affiliations(ccn_primary = "670055")
 #' affiliations(ccn_facility = "370781")
 #' affiliations(ccn_facility = "331302")
 #' affiliations(ccn_facility = "33Z302")
 #' affiliations(npi = "1043245657")
-#' affiliations(last = "CURRY")
+#' affiliations(last_name = "CURRY")
 #' @autoglobal
 #' @export
-affiliations <- function(npi           = NULL,
-                         pac           = NULL,
-                         first         = NULL,
-                         middle        = NULL,
-                         last          = NULL,
-                         suffix        = NULL,
+affiliations <- function(npi = NULL,
+                         pac = NULL,
+                         last_name = NULL,
+                         first_name = NULL,
+                         middle_name = NULL,
+                         suffix = NULL,
                          facility_type = NULL,
-                         ccn_facility  = NULL,
-                         ccn_parent    = NULL) {
+                         ccn_facility = NULL,
+                         ccn_primary = NULL) {
 
   args <- list2(
-    "npi"                                        = npi,
+    "npi"                                        = arg_npi(npi),
     "ind_pac_id"                                 = pac,
-    "provider_last_name"                         = last,
-    "provider_first_name"                        = first,
-    "provider_middle_name"                       = middle,
+    "provider_last_name"                         = last_name,
+    "provider_first_name"                        = first_name,
+    "provider_middle_name"                       = middle_name,
     "suff"                                       = suffix,
     "facility_type"                              = facility_type,
     "facility_affiliations_certification_number" = ccn_facility,
-    "facility_type_certification_number"         = ccn_parent)
+    "facility_type_certification_number"         = ccn_primary)
 
+  x <- ProviderCurrent("affiliations")
 
-    # new_request(CurrentProvider(fnm(call_match()[1])))
+  list(
+    args = args,
+    request = new_request(x)
+  )
 
 }
 
+# npi           = 1043245657
+# pac           = NULL
+# first         = NULL
+# middle        = NULL
+# last          = NULL
+# suffix        = NULL
+# facility_type = NULL
+# ccn_facility  = NULL
+# ccn_parent    = NULL
+
 #' @noRd
 fnm <- function(x) {
+  # new_request(CurrentProvider(fnm(call_match()[1])))
   stringi::stri_sub(as_chr(x), to = -1)
 }

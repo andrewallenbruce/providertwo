@@ -45,14 +45,14 @@ check_luhn <- function(x) {
 
 #' @noRd
 assert_luhn <- function(x, call = rlang::caller_env()) {
-  if (any(!check_luhn(x))) {
-    invalid <- x[which_(check_luhn(x), invert = TRUE)]
-    cli::cli_abort(
-      c(
-        "Invalid {.arg npi} entered: {.val {invalid}}",
-        "x" = "{.arg npi} must pass Luhn algorithm"),
-      call = call
+  if (all(not_null(x))) {
+    if (any(!check_luhn(x))) {
+      invalid <- x[which_(check_luhn(x), invert = TRUE)]
+      cli::cli_abort(
+        c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must pass Luhn algorithm"),
+        call = call
       )
+    }
   }
 }
 

@@ -29,28 +29,9 @@ arg_npi(1225701881)
 
 try(arg_npi(122570188))
 
-kind <- c(
-1225701881,
-1174270805,
-1235702796,
-1962116806,
-1013647569,
-1306500665,
-1982296737,
-1083295638,
-1841967825,
-1891390084,
-1275117269,
-1992338701,
-1891355863,
-1548743511,
-1023473279,
-1861857013,
-1689182859,
-1982059275)
+arg_npi(npi_ex)
 
-arg_npi(kind)
-
+arg_npi(NULL)
 arg_state("CA")
 
 try(arg_state("C"))
@@ -59,5 +40,13 @@ try(arg_state("AA"))
 
 # Allow duplicates?
 arg_state(c("CA", "CA"))
+
+arg_state(state.abb[1])
+
+arg_state(state.abb)
+
+arg_state(c(NULL, NULL))
+
+try(arg_state(NA_character_))
 
 }

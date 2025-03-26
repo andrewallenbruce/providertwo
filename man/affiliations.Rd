@@ -7,13 +7,13 @@
 affiliations(
   npi = NULL,
   pac = NULL,
-  first = NULL,
-  middle = NULL,
-  last = NULL,
+  last_name = NULL,
+  first_name = NULL,
+  middle_name = NULL,
   suffix = NULL,
   facility_type = NULL,
   ccn_facility = NULL,
-  ccn_parent = NULL
+  ccn_primary = NULL
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ affiliations(
 
 \item{pac}{\verb{<chr>} 10-digit PECOS Associate Control (PAC) ID}
 
-\item{first, middle, last, suffix}{\verb{<chr>} Individual provider's name(s)}
+\item{first_name, middle_name, last_name, suffix}{\verb{<chr>} Individual provider's name(s)}
 
 \item{facility_type}{\verb{<chr>} Type of facility, one of the following:
 \itemize{
@@ -39,7 +39,7 @@ affiliations(
 facility or unit within hospital where an
 individual provider provides service.}
 
-\item{ccn_parent}{\verb{<int>} 6-digit CMS Certification Number (CCN) of a
+\item{ccn_primary}{\verb{<int>} 6-digit CMS Certification Number (CCN) of a
 sub-unit's primary hospital, should the
 provider provide services in said unit.}
 }
@@ -54,11 +54,11 @@ Facility affiliations data publicly reported in the Provider Data Catalog.
 }
 
 \examples{
-affiliations(last = "CURRY", facility_type = "Home health agency")
-affiliations(ccn_parent = "670055")
+affiliations(last_name = "CURRY", facility_type = "Home health agency")
+affiliations(ccn_primary = "670055")
 affiliations(ccn_facility = "370781")
 affiliations(ccn_facility = "331302")
 affiliations(ccn_facility = "33Z302")
 affiliations(npi = "1043245657")
-affiliations(last = "CURRY")
+affiliations(last_name = "CURRY")
 }

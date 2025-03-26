@@ -64,6 +64,8 @@ enrollees <- function(npi       = NULL,
     "ORG_NAME"           = org
   )
 
+}
+
   # perform_request_public(
   #   url           = endpoint(public_dataset("enrollees")),
   #   query         = eval_bare(
@@ -73,4 +75,3 @@ enrollees <- function(npi       = NULL,
   #         public_dataset("enrollees")))
   #     )
   #   )
-}
