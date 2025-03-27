@@ -1,13 +1,8 @@
 #' @name list_resources
-#'
 #' @title List resources from a `MainCurrent` or `class_character` object
-#'
 #' @param x An object of class `MainCurrent` or `class_character`
-#'
 #' @param ... Additional arguments?
-#'
 #' @returns A list of API resources
-#'
 #' @examples
 #' MainCurrent("enrollees") |> list_resources()
 #'

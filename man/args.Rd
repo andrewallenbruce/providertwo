@@ -24,14 +24,14 @@ An S7 \verb{<arg_state>} object.
 }
 \examples{
 arg_npi("1225701881")
-
 arg_npi(1225701881)
+arg_npi(npi_ex)
+arg_npi(NULL)
+arg_npi(NA_character_)
 
 try(arg_npi(122570188))
-
-arg_npi(npi_ex)
-
-arg_npi(NULL)
+try(arg_npi("12257O1881"))
+try(arg_npi(1225701882))
 arg_state("CA")
 
 try(arg_state("C"))
@@ -47,6 +47,6 @@ arg_state(state.abb)
 
 arg_state(c(NULL, NULL))
 
-try(arg_state(NA_character_))
+arg_state(NA_character_)
 
 }

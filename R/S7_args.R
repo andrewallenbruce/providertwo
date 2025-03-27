@@ -12,14 +12,14 @@ npi_ex <- c(1225701881, 1174270805, 1235702796, 1962116806, 1013647569, 13065006
 #'
 #' @examples
 #' arg_npi("1225701881")
-#'
 #' arg_npi(1225701881)
+#' arg_npi(npi_ex)
+#' arg_npi(NULL)
+#' arg_npi(NA_character_)
 #'
 #' try(arg_npi(122570188))
-#'
-#' arg_npi(npi_ex)
-#'
-#' arg_npi(NULL)
+#' try(arg_npi("12257O1881"))
+#' try(arg_npi(1225701882))
 #' @autoglobal
 #' @rdname args
 #' @export
@@ -28,13 +28,13 @@ arg_npi <- new_class(
   package = NULL,
   properties = list(
     x = new_property(
-      class = NULL | class_character | class_numeric,
+      class = NULL | class_character,
       setter = function(self, value) {
-        self@x <- as_chr(value)
+        self@x <- as_chr(value[which_not_na(value)])
         self
       },
       getter = function(self) {
-        as_chr(self@x)
+        as_chr(self@x[which_not_na(self@x)])
       }
     ),
     op = new_property(
@@ -74,7 +74,7 @@ arg_npi <- new_class(
 #'
 #' arg_state(c(NULL, NULL))
 #'
-#' try(arg_state(NA_character_))
+#' arg_state(NA_character_)
 #'
 #' @autoglobal
 #' @rdname args
@@ -83,7 +83,16 @@ arg_state <- new_class(
   name    = "arg_state",
   package = NULL,
   properties = list(
-    x = new_property(class = NULL | class_character),
+    x = new_property(
+      class = NULL | class_character,
+      setter = function(self, value) {
+        self@x <- as_chr(value[which_not_na(value)])
+        self
+      },
+      getter = function(self) {
+        as_chr(self@x[which_not_na(self@x)])
+      }
+    ),
     op = new_property(
       class = class_character,
       default = "=",
@@ -91,7 +100,7 @@ arg_state <- new_class(
         if (length(self@x) > 1) "IN" else "=")
   ),
   validator = function(self) {
-    if (not_null(self@x)) {
+    if (not_null(self@x) && length(self@x) > 0) {
       assert_nchars(self@x, 2L, "state")
       assert_choices(self@x, state.abb, "state")
     }
