@@ -9,7 +9,7 @@ state argument class"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9141</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9142</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,26 +73,35 @@ state argument class"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr "1225701881"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="fl">1225701881</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr "1225701881"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
+<span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="va">npi_ex</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr [1:18] "1225701881" "1174270805" "1235702796" "1962116806" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "IN"</span>
+<span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
+<span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="cn">NA_character_</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">arg_npi</span><span class="op">(</span><span class="fl">122570188</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in validator(object) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Invalid `npi` entered: <span style="color: #0000BB;">"122570188"</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `npi` must be 10 characters long</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="va">npi_ex</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr [1:18] "1225701881" "1174270805" "1235702796" "1962116806" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "IN"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">arg_npi</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_npi&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">arg_npi</span><span class="op">(</span><span class="st">"12257O1881"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in validator(object) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Invalid `npi` entered: <span style="color: #0000BB;">"12257O1881"</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `npi` must be all digits</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">arg_npi</span><span class="op">(</span><span class="fl">1225701882</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in validator(object) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Invalid `npi` entered: <span style="color: #0000BB;">"1225701882"</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `npi` must pass Luhn algorithm</span>
 <span class="r-in"><span><span class="fu">arg_state</span><span class="op">(</span><span class="st">"CA"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_state&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr "CA"</span>
@@ -123,12 +132,13 @@ state argument class"></head><body>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">arg_state</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_state&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">arg_state</span><span class="op">(</span><span class="cn">NA_character_</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in if (any(nchar(as_chr(x)) != n)) { : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missing value where TRUE/FALSE needed</span>
+<span class="r-in"><span><span class="fu">arg_state</span><span class="op">(</span><span class="cn">NA_character_</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;arg_state&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ x : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ op: chr "="</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
