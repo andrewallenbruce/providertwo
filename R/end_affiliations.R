@@ -2,12 +2,12 @@
 #'
 #' Facility affiliations data publicly reported in the Provider Data Catalog.
 #'
-#' @section Accrual Periodicity:
+#' @section Periodicity:
 #'    * `r roxy8601("R/P1M")`
 #'
 #' @param npi `<chr>` 10-digit Individual NPI
 #' @param pac `<chr>` 10-digit PECOS Associate Control (PAC) ID
-#' @param first_name,middle_name,last_name,suffix `<chr>` Individual provider's name(s)
+#' @param first_name,middle_name,last_name,suffix `<chr>` Individual provider's name
 #' @param facility_type `<chr>` Type of facility, one of the following:
 #'
 #'    * `Hospital` (`hp`)
@@ -24,8 +24,8 @@
 #'                             individual provider provides service.
 #'
 #' @param ccn_primary `<int>` 6-digit CMS Certification Number (CCN) of a
-#'                           sub-unit's primary hospital, should the
-#'                           provider provide services in said unit.
+#'                            sub-unit's primary hospital, should the
+#'                            provider provide services in said unit.
 #'
 #' @examples
 #' affiliations(last_name = "CURRY", facility_type = "Home health agency")

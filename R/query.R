@@ -37,30 +37,6 @@ eval_params <- function(args, fields) {
     compact()
 }
 
-#' Retrieve Fields
-#'
-#' @param x `<S7_class>` Dataset
-#' @returns `<chr>` vector of API field names
-#'
-#' @autoglobal
-#' @keywords internal
-#' @export
-fields <- function(x) {
-  prop(prop(x, "identifier"), "fields")
-}
-
-#' Retrieve Identifier URL
-#'
-#' @param x `<S7_class>` Dataset
-#' @returns `<chr>` Identifier URL
-#'
-#' @autoglobal
-#' @keywords internal
-#' @export
-endpoint <- function(x) {
-  prop(prop(x, "identifier"), "url")
-}
-
 #' Format Public API Queries
 #'
 #' @param args named `<list>` or vector of `<chr>` arguments
@@ -78,7 +54,6 @@ endpoint <- function(x) {
 #' format_query_public(list(NPI = "1417918293", PECOS = "001132"))
 #'
 #' @autoglobal
-#' @keywords internal
 #' @export
 format_query_public <- function(args, operator = "=") {
 
@@ -118,7 +93,6 @@ format_query_public <- function(args, operator = "=") {
 #' format_query_provider(list(NPI = "1417918293", PECOS = "001132"))
 #'
 #' @autoglobal
-#' @keywords internal
 #' @export
 format_query_provider <- function(args, operator = "=") {
 
@@ -144,125 +118,82 @@ format_query_provider <- function(args, operator = "=") {
 #' Query Formatting Helpers
 #'
 #' @name query-helpers
-#'
-#' @param x `<chr>` function argument input
-#'
-#' @returns `<list>` of function argument and operator
-#'
-#' @examples
+#' @param x      `<chr>`  input
+#' @param equals `<lgl>`  append "="; default is `FALSE`
+#' @param negate `<lgl>`  prepend "NOT"; default is `FALSE`
+#' @returns      `<list>` of query parameters
+#' @examplesIf rlang::is_interactive()
 #' greater_than(1)
-#'
 #' starts_with("foo")
-#'
 #' is_in(state.abb[10:15])
 NULL
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-greater_than <- \(x) {
-  list(path      = NA_character_,
-       operator  = ">",
-       value     = x)
+#' @rdname query-helpers
+greater_than <- function(x, equals = FALSE) {
+  list(field    = character(0L),
+       operator = if (equals) ">=" else ">",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-greater_equal <- \(x) {
-  list(path      = NA_character_,
-       operator  = ">=",
-       value     = x)
+#' @rdname query-helpers
+less_than <- function(x, equals = FALSE) {
+  list(field    = character(0L),
+       operator = if (equals) "<=" else "<",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-less_than <- \(x) {
-  list(path      = NA_character_,
-       operator  = "<",
-       value     = x)
+#' @rdname query-helpers
+starts_with <- function(x) {
+  list(field    = character(0L),
+       operator = "STARTS_WITH",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-less_equal <- \(x) {
-  list(path      = NA_character_,
-       operator  = "<=",
-       value     = x)
+#' @rdname query-helpers
+ends_with <- function(x) {
+  list(field    = character(0L),
+       operator = "ENDS_WITH",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-starts_with <- \(x) {
-  list(path      = NA_character_,
-       operator  = "STARTS_WITH",
-       value     = x)
+#' @rdname query-helpers
+contains <- function(x) {
+  list(field    = character(0L),
+       operator = "CONTAINS",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-ends_with <- \(x) {
-  list(path      = NA_character_,
-       operator  = "ENDS_WITH",
-       value     = x)
+#' @rdname query-helpers
+between <- function(x, negate = FALSE) {
+  list(field    = character(0L),
+       operator = if (negate) "NOT BETWEEN" else "BETWEEN",
+       input    = as_character(x))
 }
 
-#' @rdname query-helpers
 #' @autoglobal
 #' @keywords internal
 #' @export
-includes <- \(x) {
-  list(path      = NA_character_,
-       operator  = "CONTAINS",
-       value     = x)
-}
-
 #' @rdname query-helpers
-#' @autoglobal
-#' @keywords internal
-#' @export
-inside <- \(x) {
-  list(path      = NA_character_,
-       operator  = "BETWEEN",
-       value     = x)
-}
-
-#' @rdname query-helpers
-#' @autoglobal
-#' @keywords internal
-#' @export
-outside <- \(x) {
-  list(path      = NA_character_,
-       operator  = "NOT BETWEEN",
-       value     = x)
-}
-
-#' @rdname query-helpers
-#' @autoglobal
-#' @keywords internal
-#' @export
-is_in <- \(x) {
-  list(path      = NA_character_,
-       operator  = "IN",
-       value     = x)
-}
-
-#' @rdname query-helpers
-#' @autoglobal
-#' @keywords internal
-#' @export
-not_in <- \(x) {
-  list(path      = NA_character_,
-       operator  = "NOT IN",
-       value     = x)
+is_in <- function(x, negate = FALSE) {
+  list(field    = character(0L),
+       operator = if (negate) "NOT IN" else "IN",
+       input    = as_character(x))
 }

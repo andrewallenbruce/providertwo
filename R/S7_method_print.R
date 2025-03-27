@@ -39,7 +39,7 @@ CLI <- list_tidy(
   rls     = function(x) ital_yell(x@released),
   link    = function(x, nm) cli::style_hyperlink(nm, x),
   title   = function(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), width = nchar(x@title) + 10, line = 2, line_col = "silver")),
-  desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 50, indent = 2, exdent = 2)),
+  desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 45, indent = 2, exdent = 2)),
   dim     = function(x) cli::cli_ul(c("{txt_rw} {nrows(x)}", "{txt_pg} {npages(x)}", "{txt_fl} {nfields(x)}"))
 )
 
@@ -56,7 +56,9 @@ cli_results <- function(n, limit) {
 
   cli::cli_inform(
     c(
-      "*" = "{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} {CLI$sym_mn} {CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}",
+      ">" = paste0("{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} ",
+                   "{CLI$sym_mn} ",
+                   "{CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}"),
       " " = " "
     )
   )
@@ -64,10 +66,8 @@ cli_results <- function(n, limit) {
 
 print <- S7::new_external_generic("base", "print", "x")
 
-
 S7::method(print, MainCurrent) <- function(x) {
   CLI$title(x)
-  # cli::cli_h3("CMS Main API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()
@@ -96,7 +96,6 @@ S7::method(print, MainCurrent) <- function(x) {
 
 S7::method(print, ProviderCurrent) <- function(x) {
   CLI$title(x)
-  # cli::cli_h3("CMS Provider API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()
@@ -105,8 +104,8 @@ S7::method(print, ProviderCurrent) <- function(x) {
 
   cli::cli_bullets(
     c(
-      "*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}",
       "*" = "{CLI$txt_iss} {CLI$sym_pt} {CLI$iss(x)}",
+      "*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}",
       "*" = "{CLI$txt_rls} {CLI$sym_pt} {CLI$rls(x)}"
     )
   )
@@ -124,7 +123,6 @@ S7::method(print, ProviderCurrent) <- function(x) {
 
 S7::method(print, OpenCurrent) <- function(x) {
   CLI$title(x)
-  # cli::cli_h3("CMS Open Payments API")
   cli::cat_line()
   CLI$desc(x)
   cli::cat_line()

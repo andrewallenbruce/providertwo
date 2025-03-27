@@ -3,54 +3,47 @@
 \name{query-helpers}
 \alias{query-helpers}
 \alias{greater_than}
-\alias{greater_equal}
 \alias{less_than}
-\alias{less_equal}
 \alias{starts_with}
 \alias{ends_with}
-\alias{includes}
-\alias{inside}
-\alias{outside}
+\alias{contains}
+\alias{between}
 \alias{is_in}
-\alias{not_in}
 \title{Query Formatting Helpers}
 \usage{
-greater_than(x)
+greater_than(x, equals = FALSE)
 
-greater_equal(x)
-
-less_than(x)
-
-less_equal(x)
+less_than(x, equals = FALSE)
 
 starts_with(x)
 
 ends_with(x)
 
-includes(x)
+contains(x)
 
-inside(x)
+between(x, negate = FALSE)
 
-outside(x)
-
-is_in(x)
-
-not_in(x)
+is_in(x, negate = FALSE)
 }
 \arguments{
-\item{x}{\verb{<chr>} function argument input}
+\item{x}{\verb{<chr>}  input}
+
+\item{equals}{\verb{<lgl>}  append "="; default is \code{FALSE}}
+
+\item{negate}{\verb{<lgl>}  prepend "NOT"; default is \code{FALSE}}
 }
 \value{
-\verb{<list>} of function argument and operator
+\if{html}{\out{<div class="sourceCode">}}\preformatted{ `<list>` of query parameters
+}\if{html}{\out{</div>}}
 }
 \description{
 Query Formatting Helpers
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 greater_than(1)
-
 starts_with("foo")
-
 is_in(state.abb[10:15])
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

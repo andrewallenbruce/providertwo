@@ -8,13 +8,13 @@ enrollees(
   npi = NULL,
   pac = NULL,
   enid = NULL,
-  spec_code = NULL,
-  spec_desc = NULL,
+  specialty_code = NULL,
+  specialty_desc = NULL,
   state = NULL,
-  first = NULL,
-  middle = NULL,
-  last = NULL,
-  org = NULL
+  first_name = NULL,
+  middle_name = NULL,
+  last_name = NULL,
+  org_name = NULL
 )
 }
 \arguments{
@@ -24,15 +24,15 @@ enrollees(
 
 \item{enid}{\verb{<chr>} 15-digit Medicare Enrollment ID}
 
-\item{spec_code}{\verb{<chr>} Enrollment specialty code}
+\item{specialty_code}{\verb{<chr>} Enrollment specialty code}
 
-\item{spec_desc}{\verb{<chr>} Enrollment specialty description}
+\item{specialty_desc}{\verb{<chr>} Enrollment specialty description}
 
 \item{state}{\verb{<chr>} Enrollment state abbreviation}
 
-\item{first, middle, last}{\verb{<chr>} Individual provider's name(s)}
+\item{first_name, middle_name, last_name}{\verb{<chr>} Individual provider's name}
 
-\item{org}{\verb{<chr>} Organizational provider's name}
+\item{org_name}{\verb{<chr>} Organizational provider's name}
 }
 \value{
 \verb{<tibble>} of search results
@@ -41,7 +41,7 @@ enrollees(
 Individual & Organizational Enrollment-level Data
 on Providers Actively Approved to Bill Medicare.
 }
-\section{Accrual Periodicity}{
+\section{Periodicity}{
 
 \itemize{
 \item Quarterly (R/P3M)
@@ -58,11 +58,7 @@ on Providers Actively Approved to Bill Medicare.
 
 \examples{
 enrollees(enid = "I20040309000221")
-
-enrollees(npi = "1417918293", spec_code = "14-41")
-
+enrollees(npi = "1417918293", specialty_code = "14-41")
 enrollees(pac = "2860305554")
-
 enrollees(state = "GA")
-
 }

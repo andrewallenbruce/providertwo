@@ -21,7 +21,7 @@ affiliations(
 
 \item{pac}{\verb{<chr>} 10-digit PECOS Associate Control (PAC) ID}
 
-\item{first_name, middle_name, last_name, suffix}{\verb{<chr>} Individual provider's name(s)}
+\item{first_name, middle_name, last_name, suffix}{\verb{<chr>} Individual provider's name}
 
 \item{facility_type}{\verb{<chr>} Type of facility, one of the following:
 \itemize{
@@ -46,7 +46,7 @@ provider provide services in said unit.}
 \description{
 Facility affiliations data publicly reported in the Provider Data Catalog.
 }
-\section{Accrual Periodicity}{
+\section{Periodicity}{
 
 \itemize{
 \item Monthly (R/P1M)

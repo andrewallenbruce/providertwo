@@ -26,4 +26,3 @@ format_query_public(list("NPI" = "1417918293", "PECOS" = NULL))
 format_query_public(list(NPI = "1417918293", PECOS = "001132"))
 
 }
-\keyword{internal}

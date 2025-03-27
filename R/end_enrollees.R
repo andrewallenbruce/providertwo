@@ -3,7 +3,7 @@
 #' Individual & Organizational Enrollment-level Data
 #' on Providers Actively Approved to Bill Medicare.
 #'
-#' @section Accrual Periodicity:
+#' @section Periodicity:
 #'    * `r roxy8601("R/P3M")`
 #'
 #' @section Links:
@@ -11,67 +11,58 @@
 #'    * [Enrollment Data Dictionary](https://data.cms.gov/resources/medicare-fee-for-service-public-provider-enrollment-data-dictionary)
 #'
 #' @param npi `<chr>` 10-digit Individual NPI
-#'
 #' @param pac `<chr>` 10-digit PECOS Associate Control (PAC) ID
-#'
 #' @param enid `<chr>` 15-digit Medicare Enrollment ID
-#'
-#' @param spec_code `<chr>` Enrollment specialty code
-#'
-#' @param spec_desc `<chr>` Enrollment specialty description
-#'
+#' @param specialty_code `<chr>` Enrollment specialty code
+#' @param specialty_desc `<chr>` Enrollment specialty description
 #' @param state `<chr>` Enrollment state abbreviation
-#'
-#' @param first,middle,last `<chr>` Individual provider's name(s)
-#'
-#' @param org `<chr>` Organizational provider's name
+#' @param first_name,middle_name,last_name `<chr>` Individual provider's name
+#' @param org_name `<chr>` Organizational provider's name
 #'
 #' @returns `<tibble>` of search results
 #'
 #' @examples
 #' enrollees(enid = "I20040309000221")
-#'
-#' enrollees(npi = "1417918293", spec_code = "14-41")
-#'
+#' enrollees(npi = "1417918293", specialty_code = "14-41")
 #' enrollees(pac = "2860305554")
-#'
 #' enrollees(state = "GA")
-#'
 #' @autoglobal
 #'
 #' @export
-enrollees <- function(npi       = NULL,
-                      pac       = NULL,
-                      enid      = NULL,
-                      spec_code = NULL,
-                      spec_desc = NULL,
-                      state     = NULL,
-                      first     = NULL,
-                      middle    = NULL,
-                      last      = NULL,
-                      org       = NULL) {
+enrollees <- function(npi = NULL,
+                      pac = NULL,
+                      enid = NULL,
+                      specialty_code = NULL,
+                      specialty_desc = NULL,
+                      state = NULL,
+                      first_name = NULL,
+                      middle_name = NULL,
+                      last_name = NULL,
+                      org_name = NULL) {
 
-  list2(
-    "NPI"                = npi,
+  args <- list2(
+    "NPI"                = arg_npi(npi),
     "PECOS_ASCT_CNTL_ID" = pac,
     "ENRLMT_ID"          = enid,
-    "PROVIDER_TYPE_CD"   = spec_code,
-    "PROVIDER_TYPE_DESC" = spec_desc,
-    "STATE_CD"           = state,
-    "FIRST_NAME"         = first,
-    "MDL_NAME"           = middle,
-    "LAST_NAME"          = last,
-    "ORG_NAME"           = org
+    "PROVIDER_TYPE_CD"   = specialty_code,
+    "PROVIDER_TYPE_DESC" = specialty_desc,
+    "STATE_CD"           = arg_state(state),
+    "FIRST_NAME"         = first_name,
+    "MDL_NAME"           = middle_name,
+    "LAST_NAME"          = last_name,
+    "ORG_NAME"           = org_name
+  )
+
+  x <- MainCurrent("enrollees")
+
+  list(
+    args = args,
+    request = new_request(x)
   )
 
 }
 
-  # perform_request_public(
-  #   url           = endpoint(public_dataset("enrollees")),
-  #   query         = eval_bare(
-  #     process_params(
-  #       arg_names   = fn_fmls_names(),
-  #       field_names = fields(
-  #         public_dataset("enrollees")))
-  #     )
-  #   )
+# perform_request_public(
+#   url   = endpoint(public_dataset("enrollees")),
+#   query = eval_bare(process_params(arg_names = fn_fmls_names(),
+#                                    field_names = fields(public_dataset("enrollees")))))
