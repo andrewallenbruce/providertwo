@@ -2,45 +2,49 @@
 NULL
 
 #' @noRd
-CLI <- list_tidy(
-
+sty <- fastplyr::list_tidy(
   # styles
-  bold_yell = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
-  bold_grey = cli::combine_ansi_styles(cli::style_bold, cli::col_grey),
-  ital_yell = cli::combine_ansi_styles(cli::style_italic, cli::col_yellow),
-  ital_cyan = cli::combine_ansi_styles(cli::style_italic, cli::col_cyan),
+  bdy   = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
+  bdg   = cli::combine_ansi_styles(cli::style_bold, cli::col_grey),
+  ity   = cli::combine_ansi_styles(cli::style_italic, cli::col_yellow),
+  itc   = cli::combine_ansi_styles(cli::style_italic, cli::col_cyan),
 
   # symbols
-  sym_mn = cli::col_silver(cli::symbol$menu),
-  sym_pt = cli::col_red(cli::symbol$pointer),
+  bars  = cli::col_silver(cli::symbol$menu),
+  arrow = cli::col_red(cli::symbol$pointer)
+)
 
+#' @noRd
+txt <- fastplyr::list_tidy(
   # text
-  txt_rw   = bold_yell("Rows"),
-  txt_fl   = bold_yell("Fields"),
-  txt_pg   = bold_yell("Pages"),
-  txt_mod  = bold_grey("Modified"),
-  txt_iss  = bold_grey("Issued"),
-  txt_rls  = bold_grey("Released"),
-  txt_span = bold_grey("Timespan"),
-  txt_per  = bold_grey("Periodicity"),
-  txt_res  = cli::col_cyan("Result(s)"),
-  txt_req  = cli::col_cyan("Request(s)"),
-  txt_cnt  = cli::col_cyan("Contact:"),
+  Rows        = sty$bdy("Rows"),
+  Fields      = sty$bdy("Fields"),
+  Pages       = sty$bdy("Pages"),
+  Modified    = sty$bdg("Modified"),
+  Issued      = sty$bdg("Issued"),
+  Released    = sty$bdg("Released"),
+  Timespan    = sty$bdg("Timespan"),
+  Periodicity = sty$bdg("Periodicity"),
+  Result      = cli::col_cyan("Results"),
+  Request     = cli::col_cyan("Requests")
+)
 
+#' @noRd
+fmt <- fastplyr::list_tidy(
   # functions
-  num     = function(x) prettyNum(x, big.mark = ","),
-  nrows   = function(x) num(x@rows),
-  nfields = function(x) num(length(x@fields)),
-  npages  = function(x) num(x@pages),
-  temp    = function(x) ital_yell(x@temporal),
-  period  = function(x) ital_yell(x@periodicity),
-  mod     = function(x) ital_yell(x@modified),
-  iss     = function(x) ital_yell(x@issued),
-  rls     = function(x) ital_yell(x@released),
-  link    = function(x, nm) cli::style_hyperlink(nm, x),
-  title   = function(x) cli::cat_print(cli::rule(left = cli::style_bold(x@title), width = nchar(x@title) + 10, line = 2, line_col = "silver")),
-  desc    = function(x) cli::cat_line(cli::ansi_strwrap(ital_cyan(x@description), width = 45, indent = 2, exdent = 2)),
-  dim     = function(x) cli::cli_ul(c("{txt_rw} {nrows(x)}", "{txt_pg} {npages(x)}", "{txt_fl} {nfields(x)}"))
+  num      = \(x) prettyNum(x, big.mark = ","),
+  rows     = \(x) num(x@rows),
+  fields   = \(x) num(length(x@fields)),
+  pages    = \(x) num(x@pages),
+  temporal = \(x) sty$ity(x@temporal),
+  period   = \(x) sty$ity(x@periodicity),
+  modified = \(x) sty$ity(x@modified),
+  issued   = \(x) sty$ity(x@issued),
+  released = \(x) sty$ity(x@released),
+  hyper    = \(x, nm) cli::style_hyperlink(nm, x),
+  title    = \(x) cli::cat_print(cli::rule(left = x@title, width = nchar(x@title) + 6, line = 1, line_col = "silver")),
+  desc     = \(x) cli::cat_line(cli::ansi_strwrap(sty$itc(x@description), width = 45, indent = 2, exdent = 2)),
+  dims     = \(x) cli::cli_ul(c("{txt$Rows} {rows(x)}", "{txt$Pages} {pages(x)}", "{txt$Fields} {fields(x)}"))
 )
 
 #' Inform number of results and requests
@@ -54,85 +58,96 @@ CLI <- list_tidy(
 #' @noRd
 cli_results <- function(n, limit) {
 
-  cli::cli_inform(
-    c(
-      ">" = paste0("{CLI$bold_yell(CLI$num(n))} {CLI$txt_res} ",
-                   "{CLI$sym_mn} ",
-                   "{CLI$bold_yell(CLI$num(offset_length(n, limit)))} {CLI$txt_req}"),
-      " " = " "
-    )
-  )
+  msg <- paste(
+    sty$bdy(fmt$num(n)),
+    txt$Result,
+    sty$bars,
+    sty$bdy(fmt$num(offset_length(n, limit))),
+    txt$Request)
+
+  cli::cli_inform(c(">" = "{msg}", " " = " "))
 }
 
 print <- S7::new_external_generic("base", "print", "x")
 
 S7::method(print, MainCurrent) <- function(x) {
-  CLI$title(x)
+  fmt$title(x)
   cli::cat_line()
-  CLI$desc(x)
+  fmt$desc(x)
   cli::cat_line()
-  CLI$dim(x)
+  fmt$dims(x)
   cli::cat_line()
 
-  cli::cli_bullets(
-         c(
-           "*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}",
-           "*" = "{CLI$txt_span} {CLI$sym_pt} {CLI$temp(x)}",
-           "*" = "{CLI$txt_per} {CLI$sym_pt} {CLI$period(x)}"
-           )
-         )
+  dates <- c(
+    "*" = "{txt$Modified} {sty$arrow} {fmt$modified(x)}",
+    "*" = "{txt$Timespan} {sty$arrow} {fmt$temporal(x)}",
+    "*" = "{txt$Periodicity} {sty$arrow} {fmt$period(x)}")
+
+  cli::cli_bullets(dates)
 
   if (rlang::is_interactive()) {
     cli::cat_line()
-    cli::cli_bullets(
-      c("i" = paste(
-        CLI$link(x@site, "Site"),
-        CLI$link(x@dictionary, "Dictionary"),
-        CLI$link(x@references, "References"),
-        sep = " | ")))
+
+    links <- c("i" = paste(
+      fmt$hyper(x@site, "Site"),
+      fmt$hyper(x@dictionary, "Dictionary"),
+      fmt$hyper(x@references, "References"),
+      sep = " | "))
+
+    cli::cli_bullets(links)
     }
   invisible(x)
 }
 
 S7::method(print, ProviderCurrent) <- function(x) {
-  CLI$title(x)
+  fmt$title(x)
   cli::cat_line()
-  CLI$desc(x)
+  fmt$desc(x)
   cli::cat_line()
-  CLI$dim(x)
+  fmt$dims(x)
   cli::cat_line()
 
-  cli::cli_bullets(
-    c(
-      "*" = "{CLI$txt_iss} {CLI$sym_pt} {CLI$iss(x)}",
-      "*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}",
-      "*" = "{CLI$txt_rls} {CLI$sym_pt} {CLI$rls(x)}"
-    )
-  )
+  dates <- c(
+    "*" = "{txt$Issued} {sty$arrow} {fmt$issued(x)}",
+    "*" = "{txt$Modified} {sty$arrow} {fmt$modified(x)}",
+    "*" = "{txt$Released} {sty$arrow} {fmt$released(x)}")
+
+  cli::cli_bullets(dates)
 
   if (rlang::is_interactive()) {
+
     cli::cat_line()
-    cli::cli_bullets(
-      c("i" = paste(
-        CLI$link(x@site, "Site"),
-        CLI$link(pro_dict(x@uuid), "Dictionary"),
-        sep = " | ")))
+
+    links <- c("i" = paste(fmt$hyper(x@site, "Site"), fmt$hyper(pro_dict(x@uuid), "Dictionary"), sep = " | "))
+
+    cli::cli_bullets(links)
   }
   invisible(x)
 }
 
 S7::method(print, OpenCurrent) <- function(x) {
-  CLI$title(x)
+  fmt$title(x)
   cli::cat_line()
-  CLI$desc(x)
+  fmt$desc(x)
   cli::cat_line()
-  CLI$dim(x)
+  fmt$dims(x)
   cli::cat_line()
-  cli::cli_bullets(c("*" = "{CLI$txt_mod} {CLI$sym_pt} {CLI$mod(x)}"))
+
+  cli::cli_bullets(c("*" = "{txt$Modified} {sty$arrow} {fmt$modified(x)}"))
+
+  if (rlang::is_interactive()) {
+
+    cli::cat_line()
+
+    links <- c(
+      "i" = paste(
+        fmt$hyper("https://openpaymentsdata.cms.gov", "Site"),
+        fmt$hyper("https://openpaymentsdata.cms.gov/about/glossary", "Glossary"),
+        fmt$hyper("https://www.cms.gov/openpayments/downloads/openpaymentsdatadictionary.pdf", "Dictionary"),
+        sep = " | "))
+
+    cli::cli_bullets(links)
+  }
+
   invisible(x)
 }
-
-# https://openpaymentsdata.cms.gov/
-# https://www.cms.gov/OpenPayments/Resources
-# https://openpaymentsdata.cms.gov/about/glossary
-# https://www.cms.gov/openpayments/downloads/openpaymentsdatadictionary.pdf
