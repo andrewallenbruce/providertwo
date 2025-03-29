@@ -1,6 +1,8 @@
 .onLoad <- function(libname, pkgname) {
 
-  catalogs        <<- memoise::memoise(catalogs)
+  rlang::run_on_load()
+
+  # catalogs        <<- memoise::memoise(catalogs)
   MainCurrent     <<- memoise::memoise(MainCurrent)
   OpenCurrent     <<- memoise::memoise(OpenCurrent)
   ProviderCurrent <<- memoise::memoise(ProviderCurrent)

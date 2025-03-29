@@ -1,12 +1,18 @@
+rlang::on_load(
+  catalog <<- list(
+    main = catalog_main(),
+    prov = catalog_provider(),
+    open = catalog_open()
+  ))
+
 #' API Catalogs
 #' @returns `<list>` of API catalogs
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 catalogs <- function() {
   list(
     main = catalog_main(),
-    pro  = catalog_provider(),
+    prov  = catalog_provider(),
     open = catalog_open()
   )
 }
@@ -66,7 +72,7 @@ Current <- new_class(
 #' MainCurrent("snf")
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Main
 #' @export
 MainCurrent <- new_class(
   parent = Current,
@@ -81,11 +87,13 @@ MainCurrent <- new_class(
     references  = class_character
   ),
   constructor = function(alias) {
-    x <- subset_detect(
-      catalogs()$main$current,
+
+    if (!exists("catalog")) catalog <- catalogs()
+
+    x <- c(subset_detect(
+      catalog$main$current,
       title,
-      alias_main_current(alias)) |>
-      c()
+      alias_main_current(alias)))
 
     q <- main_dims(x$identifier)
 
@@ -122,7 +130,7 @@ MainCurrent <- new_class(
 #' ProviderCurrent("utilization")
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Provider
 #' @export
 ProviderCurrent <- new_class(
   parent = Current,
@@ -131,7 +139,6 @@ ProviderCurrent <- new_class(
   properties = list(
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
-    # group      = class_character,
     uuid       = class_character,
     site       = class_character,
     identifier = new_property(
@@ -141,11 +148,13 @@ ProviderCurrent <- new_class(
     )
   ),
   constructor = function(alias) {
-    x <- subset_detect(
-      catalogs()$pro,
+
+    if (!exists("catalog")) catalog <- catalogs()
+
+    x <- c(subset_detect(
+      catalog$prov,
       title,
-      alias_provider_current(alias)) |>
-      c()
+      alias_provider_current(alias)))
 
     q <- pro_dims(x$identifier)
 
@@ -153,7 +162,6 @@ ProviderCurrent <- new_class(
       Current(),
       title       = x$title,
       description = x$description,
-      # group       = x$group,
       contact     = x$contact,
       modified    = x$modified,
       uuid        = x$identifier,
@@ -188,7 +196,7 @@ ProviderCurrent <- new_class(
 #' OpenCurrent("pay_nat_total")
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Open
 #' @export
 OpenCurrent <- new_class(
   parent = Current,
@@ -203,11 +211,13 @@ OpenCurrent <- new_class(
     )
   ),
   constructor = function(alias) {
-    x <- subset_detect(
-      catalogs()$open$current,
+
+    if (!exists("catalog")) catalog <- catalogs()
+
+    x <- c(subset_detect(
+      catalog$open$current,
       title,
-      alias_open_current(alias)) |>
-      c()
+      alias_open_current(alias)))
 
     q <- open_dims(x$identifier)
 
@@ -267,7 +277,7 @@ Temporal <- new_class(
 #' MainTemporal("quality_payment")
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Main
 #' @export
 MainTemporal <- new_class(
   parent = Temporal,
@@ -279,8 +289,11 @@ MainTemporal <- new_class(
     site        = class_character
   ),
   constructor = function(alias) {
+
+    if (!exists("catalog")) catalog <- catalogs()
+
     x <- subset_detect(
-      catalogs()$main$temporal,
+      catalog$main$temporal,
       title,
       alias_main_temporal(alias))
 
@@ -321,15 +334,18 @@ MainTemporal <- new_class(
 #' OpenTemporal("entity_recipient_nature")
 #' OpenTemporal("state_nature")
 #' @autoglobal
-#' @rdname backend
+#' @rdname Open
 #' @export
 OpenTemporal <- new_class(
   parent = Temporal,
   name = "OpenTemporal",
   package = NULL,
   constructor = function(alias) {
+
+    if (!exists("catalog")) catalog <- catalogs()
+
     x <- subset_detect(
-        catalogs()$open$temporal,
+        catalog$open$temporal,
         title,
         alias_open_temporal(alias))
 
@@ -382,7 +398,7 @@ TemporalGroup <- new_class(
 #' MainTemporalGroup("inpatient")
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Main
 #' @export
 MainTemporalGroup <- new_class(
   parent  = TemporalGroup,
@@ -393,6 +409,8 @@ MainTemporalGroup <- new_class(
     years       = class_integer
   ),
   constructor = function(alias) {
+
+    # if (!exists("catalog")) catalog <- catalogs()
 
     x <- main_temp_group(alias)
 
@@ -431,7 +449,7 @@ MainTemporalGroup <- new_class(
 #' @returns An S7 `<TemporalOpenGroup>` object.
 #'
 #' @autoglobal
-#' @rdname backend
+#' @rdname Open
 #' @export
 OpenTemporalGroup <- new_class(
   parent  = Temporal,

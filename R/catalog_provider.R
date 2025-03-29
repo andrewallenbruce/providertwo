@@ -58,8 +58,10 @@ pro_dims <- function(uuid) {
 #' @export
 provider_current_group <- function(alias) {
 
+  if (!exists("catalog")) catalog <- catalogs()
+
   subset_detect(
-    catalogs()$pro,
+    catalog$prov,
     title,
     alias_provider_current_group(alias))
 }

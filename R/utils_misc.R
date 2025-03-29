@@ -5,8 +5,6 @@
 #' @param limit `<int>` API rate limit, i.e. the maximum number of results an
 #'                      API will return per request.
 #'
-#' @param start `<int>` Offset start; either `0` (default) or `limit`
-#'
 #' @returns `<int>` If `n <= limit`, simply returns `n`. If `n > limit`, an
 #'                  integer sequence is returned, beginning at `start` and of
 #'                  length equal to `n / limit`.
@@ -14,55 +12,60 @@
 #' @examplesIf rlang::is_interactive()
 #' offset_sequence(100, 10)
 #' offset_length(100, 10)
+#' offset_size(100, 10)
 #'
 #' offset_sequence(10, 100)
 #' offset_length(10, 100)
+#' offset_size(10, 100)
 #'
 #' offset_sequence(47984, 5000)
 #' offset_length(47984, 5000)
+#' offset_size(47984, 5000)
 #'
 #' offset_sequence(147984, 2000)
 #' offset_length(147984, 2000)
+#' offset_size(147984, 2000)
 #'
 #' @name offset
 NULL
 
 #' @rdname offset
 #' @autoglobal
-#' @keywords internal
 #' @export
-offset_sequence <- function(n, limit, start = 0) {
+offset_sequence <- function(n, limit) {
 
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
-  check_number_whole(start, min = 0)
 
   if (n <= limit) return(n)
 
-  seq_(from = start, to = n, by = limit)
+  seq_(from = 0, to = n, by = limit)
 }
 
 #' @rdname offset
 #' @autoglobal
-#' @keywords internal
 #' @export
-offset_length <- function(n, limit, start = 0) {
+offset_length <- function(n, limit) {
 
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
-  check_number_whole(start, min = 0)
 
   if (n <= limit) return(1L)
 
-  length(seq_(from = start, to = n, by = limit))
+  length(seq_(from = 0, to = n, by = limit))
 }
 
 #' @rdname offset
 #' @autoglobal
-#' @keywords internal
 #' @export
-seq_along0 <- function(x) {
-  seq_along(x) - 1
+offset_size <- function(n, limit) {
+
+  check_number_whole(n, min = 0)
+  check_number_whole(limit, min = 1)
+
+  # if (n <= limit) return(1L)
+
+  seq_size(from = 0L, to = n, by = limit)
 }
 
 #' Flatten Column

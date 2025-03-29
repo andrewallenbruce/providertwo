@@ -4,22 +4,20 @@
 \alias{offset}
 \alias{offset_sequence}
 \alias{offset_length}
-\alias{seq_along0}
+\alias{offset_size}
 \title{Generate API Request "Offset" Sequence}
 \usage{
-offset_sequence(n, limit, start = 0)
+offset_sequence(n, limit)
 
-offset_length(n, limit, start = 0)
+offset_length(n, limit)
 
-seq_along0(x)
+offset_size(n, limit)
 }
 \arguments{
 \item{n}{\verb{<int>} Number of results returned in an API request}
 
 \item{limit}{\verb{<int>} API rate limit, i.e. the maximum number of results an
 API will return per request.}
-
-\item{start}{\verb{<int>} Offset start; either \code{0} (default) or \code{limit}}
 }
 \value{
 \verb{<int>} If \code{n <= limit}, simply returns \code{n}. If \code{n > limit}, an
@@ -33,15 +31,18 @@ Generate API Request "Offset" Sequence
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 offset_sequence(100, 10)
 offset_length(100, 10)
+offset_size(100, 10)
 
 offset_sequence(10, 100)
 offset_length(10, 100)
+offset_size(10, 100)
 
 offset_sequence(47984, 5000)
 offset_length(47984, 5000)
+offset_size(47984, 5000)
 
 offset_sequence(147984, 2000)
 offset_length(147984, 2000)
+offset_size(147984, 2000)
 \dontshow{\}) # examplesIf}
 }
-\keyword{internal}

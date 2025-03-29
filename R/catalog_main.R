@@ -130,8 +130,11 @@ main_temp_dims <- function(url) {
 #' @autoglobal
 #' @noRd
 main_temp_group <- function(alias) {
+
+  if (!exists("catalog")) catalog <- catalogs()
+
   x <- subset_detect(
-    catalogs()$main$temporal,
+    catalog$main$temporal,
     title,
     alias_main_temporal_group(alias)) |>
     mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),

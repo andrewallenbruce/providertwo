@@ -1,3 +1,14 @@
+#' `seq_along()` Starting at 0
+#'
+#' @param x `<chr>`  input
+#' @autoglobal
+#' @keywords internal
+#' @export
+#' @rdname query-helpers
+seq_along0 <- function(x) {
+  seq_along(x) - 1
+}
+
 #' Process Query Parameters
 #'
 #' @param arg_names `<chr>` vector of argument names
@@ -7,6 +18,7 @@
 #' @autoglobal
 #' @keywords internal
 #' @export
+#' @rdname query-helpers
 process_params <- function(arg_names, field_names) {
 
   nms <- set_names(arg_names, field_names)
@@ -30,6 +42,7 @@ process_params <- function(arg_names, field_names) {
 #' @autoglobal
 #' @keywords internal
 #' @export
+#' @rdname query-helpers
 eval_params <- function(args, fields) {
 
   process_params(args, fields) |>
@@ -55,6 +68,7 @@ eval_params <- function(args, fields) {
 #'
 #' @autoglobal
 #' @export
+#' @rdname query-helpers
 format_query_public <- function(args, operator = "=") {
 
   args  <- discard(args, null)
@@ -94,6 +108,7 @@ format_query_public <- function(args, operator = "=") {
 #'
 #' @autoglobal
 #' @export
+#' @rdname query-helpers
 format_query_provider <- function(args, operator = "=") {
 
   args  <- discard(args, null)
