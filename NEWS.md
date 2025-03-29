@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9145 (2025-03-28)
+
+* `offset_size()`
+
+
 # providertwo 0.0.0.9144 (2025-03-28)
 
 * tinkering with print method
