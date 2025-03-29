@@ -19,7 +19,7 @@ API will return per request.}
 \value{
 \verb{<int>} If \code{n <= limit}, simply returns \code{n}. If \code{n > limit}, an
 integer sequence is returned, beginning at \code{0} and of
-length equal to \code{celing(n / limit)}.
+length equal to \code{ceiling(n / limit)}.
 }
 \description{
 Generate API Request "Offset" Sequence

@@ -7,7 +7,7 @@
 #'
 #' @returns `<int>` If `n <= limit`, simply returns `n`. If `n > limit`, an
 #'                  integer sequence is returned, beginning at `0` and of
-#'                  length equal to `celing(n / limit)`.
+#'                  length equal to `ceiling(n / limit)`.
 #'
 #' @examples
 #' offset_seq(100, 10)

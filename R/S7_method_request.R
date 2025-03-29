@@ -14,6 +14,7 @@ NULL
 #' @examples
 #' MainCurrent("enrollees") |> new_request()
 #' ProviderCurrent("affiliations") |> new_request()
+#' OpenCurrent("dashboard") |> new_request()
 #'
 #' @autoglobal
 #' @export
@@ -27,20 +28,27 @@ method(new_request, MainCurrent) <- function(x) {
 method(new_request, ProviderCurrent) <- function(x) {
   request(x@identifier) |>
     req_url_query(
-      schema = "false",
-      keys   = "true",
-      rowIds = "false",
-      offset = 0L,
-      limit  = 2000L
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      limit   = 2000L,
+      offset  = 0L,
+      results = "true",
+      rowIds  = "false",
+      schema  = "false"
     )
 }
 
 method(new_request, OpenCurrent) <- function(x) {
   request(x@identifier) |>
     req_url_query(
-      schema = "false",
-      keys   = "true",
-      offset = 0L,
-      limit  = 500L
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      limit   = 500L,
+      offset  = 0L,
+      results = "true",
+      rowIds  = "false",
+      schema  = "false"
     )
 }

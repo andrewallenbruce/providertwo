@@ -38,8 +38,12 @@ enrollees(
 \verb{<tibble>} of search results
 }
 \description{
-Individual & Organizational Enrollment-level Data
-on Providers Actively Approved to Bill Medicare.
+Information on a point in time snapshot of enrollment level data for
+providers actively enrolled in Medicare.
+}
+\details{
+Individual & organizational enrollment-level data on providers actively
+approved to bill Medicare.
 }
 \section{Periodicity}{
 

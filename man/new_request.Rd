@@ -20,5 +20,6 @@ Create a new request by class
 \examples{
 MainCurrent("enrollees") |> new_request()
 ProviderCurrent("affiliations") |> new_request()
+OpenCurrent("dashboard") |> new_request()
 
 }

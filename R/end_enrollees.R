@@ -1,7 +1,10 @@
 #' Medicare Provider Enrollees
 #'
-#' Individual & Organizational Enrollment-level Data
-#' on Providers Actively Approved to Bill Medicare.
+#' Information on a point in time snapshot of enrollment level data for
+#' providers actively enrolled in Medicare.
+#'
+#' Individual & organizational enrollment-level data on providers actively
+#' approved to bill Medicare.
 #'
 #' @section Periodicity:
 #'    * `r roxy8601("R/P3M")`
@@ -29,16 +32,16 @@
 #' @autoglobal
 #'
 #' @export
-enrollees <- function(npi = NULL,
-                      pac = NULL,
-                      enid = NULL,
+enrollees <- function(npi            = NULL,
+                      pac            = NULL,
+                      enid           = NULL,
                       specialty_code = NULL,
                       specialty_desc = NULL,
-                      state = NULL,
-                      first_name = NULL,
-                      middle_name = NULL,
-                      last_name = NULL,
-                      org_name = NULL) {
+                      state          = NULL,
+                      first_name     = NULL,
+                      middle_name    = NULL,
+                      last_name      = NULL,
+                      org_name       = NULL) {
 
   args <- list2(
     "NPI"                = arg_npi(npi),
