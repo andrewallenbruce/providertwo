@@ -8,6 +8,8 @@ resp_simple_json(resp, ...)
 }
 \arguments{
 \item{resp}{\verb{<httr2_response>} object}
+
+\item{...}{Additional arguments}
 }
 \value{
 \verb{<list>} Parsed JSON response

@@ -2,17 +2,17 @@
 % Please edit documentation in R/utils_httr2.R
 \name{map_parse_json_response_provider}
 \alias{map_parse_json_response_provider}
-\title{Mapped Parse JSON response}
+\title{Parse JSON response}
 \usage{
-map_parse_json_response_provider(response)
+map_parse_json_response_provider(resp)
 }
 \arguments{
-\item{response}{\verb{<httr_response>} API response}
+\item{resp}{\verb{<httr_response>} object}
 }
 \value{
-\verb{<tibble>} Parsed JSON response as tibble
+\verb{<tibble>}  Parsed JSON response
 }
 \description{
-Mapped Parse JSON response
+Parse JSON response
 }
 \keyword{internal}

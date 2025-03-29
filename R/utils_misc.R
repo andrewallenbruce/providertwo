@@ -6,10 +6,10 @@
 #'                      API will return per request.
 #'
 #' @returns `<int>` If `n <= limit`, simply returns `n`. If `n > limit`, an
-#'                  integer sequence is returned, beginning at `start` and of
+#'                  integer sequence is returned, beginning at `0` and of
 #'                  length equal to `n / limit`.
 #'
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' offset_sequence(100, 10)
 #' offset_length(100, 10)
 #' offset_size(100, 10)
@@ -63,7 +63,7 @@ offset_size <- function(n, limit) {
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
 
-  # if (n <= limit) return(1L)
+  if (n <= limit) return(1L)
 
   seq_size(from = 0L, to = n, by = limit)
 }

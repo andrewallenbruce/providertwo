@@ -2,7 +2,7 @@
 
   rlang::run_on_load()
 
-  # catalogs        <<- memoise::memoise(catalogs)
+  catalogs        <<- memoise::memoise(catalogs)
   MainCurrent     <<- memoise::memoise(MainCurrent)
   OpenCurrent     <<- memoise::memoise(OpenCurrent)
   ProviderCurrent <<- memoise::memoise(ProviderCurrent)

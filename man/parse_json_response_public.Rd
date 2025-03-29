@@ -4,13 +4,13 @@
 \alias{parse_json_response_public}
 \title{Parse JSON response}
 \usage{
-parse_json_response_public(response)
+parse_json_response_public(resp)
 }
 \arguments{
-\item{response}{\verb{<httr_response>} API response}
+\item{resp}{\verb{<httr_response>} object}
 }
 \value{
-\verb{<tibble>} Parsed JSON response as tibble
+\verb{<tibble>} Parsed JSON response
 }
 \description{
 Parse JSON response

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_httr2.R
 \name{nrows_provider}
 \alias{nrows_provider}
-\title{Request number of results from provider catalog}
+\title{Request number of results}
 \usage{
 nrows_provider(url)
 }
@@ -13,6 +13,6 @@ nrows_provider(url)
 \verb{<int>} Number of results
 }
 \description{
-Request number of results from provider catalog
+Request number of results
 }
 \keyword{internal}

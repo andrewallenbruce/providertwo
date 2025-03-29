@@ -4,7 +4,7 @@
 \alias{nppes_nlm}
 \title{Search the NLM NPI Registry}
 \source{
-API Documentation: \url{https://clinicaltables.nlm.nih.gov/api/npi_idv/v3}
+\href{https://clinicaltables.nlm.nih.gov/api/npi_idv/v3}{API Documentation}
 }
 \usage{
 nppes_nlm(terms)
@@ -25,4 +25,5 @@ nppes_nlm("Dentist Valdosta")
 
 # Not returning all results
 nppes_nlm("Valdosta")
+
 }

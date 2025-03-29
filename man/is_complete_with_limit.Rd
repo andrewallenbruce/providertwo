@@ -7,8 +7,7 @@
 is_complete_with_limit(limit)
 }
 \arguments{
-\item{limit}{\verb{<int>} API rate limit, i.e. the maximum number of results an
-API will return per request.}
+\item{limit}{\verb{<int>}  API rate limit}
 }
 \value{
 \verb{<function>} Function to check if API request is complete

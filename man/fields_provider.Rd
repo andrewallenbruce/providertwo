@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_httr2.R
 \name{fields_provider}
 \alias{fields_provider}
-\title{Request field names from provider catalog}
+\title{Request field names}
 \usage{
 fields_provider(url)
 }
@@ -13,6 +13,6 @@ fields_provider(url)
 \verb{<chr>} Field names
 }
 \description{
-Request field names from provider catalog
+Request field names
 }
 \keyword{internal}

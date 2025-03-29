@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_httr2.R
 \name{req_perform_iterative_offset}
 \alias{req_perform_iterative_offset}
-\title{Perform Iterative API request with Offset}
+\title{Perform Iterative Request with Offset}
 \usage{
 req_perform_iterative_offset(req, limit)
 }
@@ -16,6 +16,6 @@ API will return per request.}
 list of \verb{<httr2_response>}s
 }
 \description{
-Perform Iterative API request with Offset
+Perform Iterative Request with Offset
 }
 \keyword{internal}

@@ -2,17 +2,19 @@
 % Please edit documentation in R/utils_httr2.R
 \name{perform_simple}
 \alias{perform_simple}
-\title{Perform and Parse Simple JSON Response}
+\title{Perform Request and Parse Simple JSON Response}
 \usage{
-perform_simple(x)
+perform_simple(req, ...)
 }
 \arguments{
-\item{x}{\verb{<httr2_request>} object}
+\item{req}{\verb{<httr2_request>} object}
+
+\item{...}{Additional arguments}
 }
 \value{
 \verb{<list>} Parsed JSON response
 }
 \description{
-Perform and Parse Simple JSON Response
+Perform Request and Parse Simple JSON Response
 }
 \keyword{internal}

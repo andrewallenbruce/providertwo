@@ -21,14 +21,13 @@ API will return per request.}
 }
 \value{
 \verb{<int>} If \code{n <= limit}, simply returns \code{n}. If \code{n > limit}, an
-integer sequence is returned, beginning at \code{start} and of
+integer sequence is returned, beginning at \code{0} and of
 length equal to \code{n / limit}.
 }
 \description{
 Generate API Request "Offset" Sequence
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 offset_sequence(100, 10)
 offset_length(100, 10)
 offset_size(100, 10)
@@ -44,5 +43,5 @@ offset_size(47984, 5000)
 offset_sequence(147984, 2000)
 offset_length(147984, 2000)
 offset_size(147984, 2000)
-\dontshow{\}) # examplesIf}
+
 }

@@ -4,13 +4,13 @@
 \alias{map_parse_json_response_public}
 \title{Mapped Parse JSON response}
 \usage{
-map_parse_json_response_public(response)
+map_parse_json_response_public(resp)
 }
 \arguments{
-\item{response}{\verb{<httr_response>} API response}
+\item{resp}{\verb{<httr_response>} object}
 }
 \value{
-\verb{<tibble>} Parsed JSON response as tibble
+\verb{<tibble>} Parsed JSON response
 }
 \description{
 Mapped Parse JSON response

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_httr2.R
 \name{nrows_public}
 \alias{nrows_public}
-\title{Request number of results from public catalog}
+\title{Request number of results}
 \usage{
 nrows_public(url)
 }
@@ -13,6 +13,6 @@ nrows_public(url)
 \verb{<int>} Number of results
 }
 \description{
-Request number of results from public catalog
+Request number of results
 }
 \keyword{internal}

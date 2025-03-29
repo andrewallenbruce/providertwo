@@ -65,7 +65,7 @@ cli_results <- function(n, limit) {
     sty$bdy(fmt$num(offset_length(n, limit))),
     txt$Request)
 
-  cli::cli_inform(c(">" = "{msg}", " " = " "))
+  cli::cli_inform(c(">" = "{msg}"))
 }
 
 print <- S7::new_external_generic("base", "print", "x")

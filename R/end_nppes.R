@@ -1,6 +1,9 @@
 #' Search the NLM NPI Registry
+#'
 #' @param terms `<chr>` Search terms, separated by spaces
+#'
 #' @returns `<tibble>` of search results
+#'
 #' @examples
 #' nppes_nlm("john bethesda")
 #'
@@ -8,7 +11,9 @@
 #'
 #' # Not returning all results
 #' nppes_nlm("Valdosta")
-#' @source API Documentation: <https://clinicaltables.nlm.nih.gov/api/npi_idv/v3>
+#'
+#' @source [API Documentation](https://clinicaltables.nlm.nih.gov/api/npi_idv/v3)
+#'
 #' @autoglobal
 #' @export
 nppes_nlm <- function(terms) {
@@ -36,14 +41,12 @@ nppes_nlm <- function(terms) {
     set_names(c("name", "npi", "specialty", "address")) |>
     as_tbl()
 
-  nreq <- offset_length(n, 500L) > 1
+  nreq <- offset_size(n, 500L) > 1
 
   cli_results(n, 500L)
 
   if (false(nreq)) {
-
     return(results)
-
     } else {
 
       results2 <- req_perform_iterative(

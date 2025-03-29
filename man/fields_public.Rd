@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_httr2.R
 \name{fields_public}
 \alias{fields_public}
-\title{Request field names from public catalog}
+\title{Request field names}
 \usage{
 fields_public(url)
 }
@@ -13,6 +13,6 @@ fields_public(url)
 \verb{<chr>} Field names
 }
 \description{
-Request field names from public catalog
+Request field names
 }
 \keyword{internal}
