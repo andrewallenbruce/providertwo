@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9148 (2025-03-29)
+
+* request methods
+
+
 # providertwo 0.0.0.9147 (2025-03-29)
 
 * unexported many helpers
