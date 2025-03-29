@@ -101,7 +101,7 @@ main_dims <- function(url) {
 
   list(rows   = x$meta$total_rows,
        fields = x$meta$headers,
-       pages  = offset_length(x$meta$total_rows, 5000L))
+       pages  = offset_size(x$meta$total_rows, 5000L))
 
 }
 
@@ -114,7 +114,7 @@ main_temp_dims <- function(url) {
   list_tidy(
     rows   = request(url) |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
     fields = request(url) |> perform_simple() |> names(),
-    pages  = offset_length(rows, 5000L)
+    pages  = offset_size(rows, 5000L)
   )
 }
 

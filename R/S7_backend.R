@@ -12,7 +12,7 @@ rlang::on_load(
 catalogs <- function() {
   list(
     main = catalog_main(),
-    prov  = catalog_provider(),
+    prov = catalog_provider(),
     open = catalog_open()
   )
 }

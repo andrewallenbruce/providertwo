@@ -62,7 +62,7 @@ cli_results <- function(n, limit) {
     sty$bdy(fmt$num(n)),
     txt$Result,
     sty$bars,
-    sty$bdy(fmt$num(offset_length(n, limit))),
+    sty$bdy(fmt$num(offset_size(n, limit))),
     txt$Request)
 
   cli::cli_inform(c(">" = "{msg}"))

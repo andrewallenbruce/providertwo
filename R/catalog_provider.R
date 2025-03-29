@@ -45,7 +45,7 @@ pro_dims <- function(uuid) {
 
   list(rows   = x$count,
        fields = x$query$properties,
-       pages  = offset_length(x$count, 2000L))
+       pages  = offset_size(x$count, 2000L))
 
 }
 

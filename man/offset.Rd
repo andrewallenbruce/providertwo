@@ -2,14 +2,11 @@
 % Please edit documentation in R/utils_misc.R
 \name{offset}
 \alias{offset}
-\alias{offset_sequence}
-\alias{offset_length}
+\alias{offset_seq}
 \alias{offset_size}
 \title{Generate API Request "Offset" Sequence}
 \usage{
-offset_sequence(n, limit)
-
-offset_length(n, limit)
+offset_seq(n, limit)
 
 offset_size(n, limit)
 }
@@ -22,26 +19,21 @@ API will return per request.}
 \value{
 \verb{<int>} If \code{n <= limit}, simply returns \code{n}. If \code{n > limit}, an
 integer sequence is returned, beginning at \code{0} and of
-length equal to \code{n / limit}.
+length equal to \code{celing(n / limit)}.
 }
 \description{
 Generate API Request "Offset" Sequence
 }
 \examples{
-offset_sequence(100, 10)
-offset_length(100, 10)
+offset_seq(100, 10)
 offset_size(100, 10)
 
-offset_sequence(10, 100)
-offset_length(10, 100)
+offset_seq(10, 100)
 offset_size(10, 100)
 
-offset_sequence(47984, 5000)
-offset_length(47984, 5000)
+offset_seq(47984, 5000)
 offset_size(47984, 5000)
 
-offset_sequence(147984, 2000)
-offset_length(147984, 2000)
+offset_seq(147984, 2000)
 offset_size(147984, 2000)
-
 }

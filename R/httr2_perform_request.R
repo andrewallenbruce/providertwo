@@ -55,7 +55,7 @@ perform_request_public <- function(url, query) {
     )
   }
 
-  nreq <- offset_length(n, 5000L) > 1
+  nreq <- offset_size(n, 5000L) > 1
 
   cli_results(n, 5000L)
 
@@ -100,7 +100,7 @@ perform_request_provider <- function(url, query) {
       class = "abort_no_results")
   }
 
-  nreq <- offset_length(n, 2000L) > 1
+  nreq <- offset_size(n, 2000L) > 1
 
   cli_results(n, 2000L)
 

@@ -7,52 +7,34 @@
 #'
 #' @returns `<int>` If `n <= limit`, simply returns `n`. If `n > limit`, an
 #'                  integer sequence is returned, beginning at `0` and of
-#'                  length equal to `n / limit`.
+#'                  length equal to `celing(n / limit)`.
 #'
 #' @examples
-#' offset_sequence(100, 10)
-#' offset_length(100, 10)
+#' offset_seq(100, 10)
 #' offset_size(100, 10)
 #'
-#' offset_sequence(10, 100)
-#' offset_length(10, 100)
+#' offset_seq(10, 100)
 #' offset_size(10, 100)
 #'
-#' offset_sequence(47984, 5000)
-#' offset_length(47984, 5000)
+#' offset_seq(47984, 5000)
 #' offset_size(47984, 5000)
 #'
-#' offset_sequence(147984, 2000)
-#' offset_length(147984, 2000)
+#' offset_seq(147984, 2000)
 #' offset_size(147984, 2000)
-#'
 #' @name offset
 NULL
 
 #' @rdname offset
 #' @autoglobal
 #' @export
-offset_sequence <- function(n, limit) {
+offset_seq <- function(n, limit) {
 
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
 
   if (n <= limit) return(n)
 
-  seq_(from = 0, to = n, by = limit)
-}
-
-#' @rdname offset
-#' @autoglobal
-#' @export
-offset_length <- function(n, limit) {
-
-  check_number_whole(n, min = 0)
-  check_number_whole(limit, min = 1)
-
-  if (n <= limit) return(1L)
-
-  length(seq_(from = 0, to = n, by = limit))
+  seq_(from = 0L, to = n, by = limit)
 }
 
 #' @rdname offset
@@ -68,76 +50,91 @@ offset_size <- function(n, limit) {
   seq_size(from = 0L, to = n, by = limit)
 }
 
-#' Flatten Column
-#' @param i `<list>` list to flatten
-#' @returns `<chr>` flattened list
+#' Flatten List Column
+#'
+#' @param i `<list>` list column
+#'
+#' @returns `<chr>` comma separated vector
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 flatten_column <- function(i) {
-  map_chr(i, function(x) paste0(delist(x), collapse = ", "))
+  map_chr(i, function(x)
+    paste0(delist(x), collapse = ", "))
 }
 
 #' Handle NAs
-#' @param x `<list>` list to handle
-#' @returns `<list>` list with NAs handled
+#'
+#' @param x `<data.frame>`
+#'
+#' @returns `<data.frame>`
+#'
 #' @autoglobal
 #' @noRd
 handle_na <- function(x) {
-  remove_all_na(map_if(x, is.character, function(x) na_if(x, y = "")))
+  remove_all_na(map_if(x, is.character, function(x)
+    na_if(x, y = "")))
 }
 
 #' Vectorized `na_if`
+#'
 #' @param x `<list>` list to handle
+#'
 #' @returns `<list>` list with NAs handled
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 map_na_if <- function(x) {
-  map_if(x, is.character, function(x) na_if(x, y = ""))
+  map_if(x, is.character, function(x)
+    na_if(x, y = ""))
 }
 
-#' Parse datetime character vectors
+#' Parse datetime
+#'
 #' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
+#'
 #' @returns `<chr>` parsed ISOdatetime vector
+#'
 #' @examplesIf rlang::is_interactive()
 #' as_datetime("2024-07-29T20:37:53")
+#'
 #' @seealso [clock::date_time_parse_RFC_3339()]
 #' @autoglobal
 #' @noRd
 as_datetime <- function(x) {
-
   ISOdatetime(
-    sf_sub(x, 1, 4),
-    sf_sub(x, 6, 7),
-    sf_sub(x, 9, 10),
-    sf_sub(x, 12, 13),
-    sf_sub(x, 15, 16),
-    sf_sub(x, 18, 19))
-
+    substr(x, 1, 4),
+    substr(x, 6, 7),
+    substr(x, 9, 10),
+    substr(x, 12, 13),
+    substr(x, 15, 16),
+    substr(x, 18, 19)
+  )
 }
 
 #' Parse `openFDA` date character vectors
+#'
 #' @param i `<chr>` vector to parse; format: "YYYY-MM-DD"
+#'
 #' @returns `<chr>` parsed ISOdate vector
+#'
 #' @autoglobal
 #' @noRd
 as_fda_date <- function(i) {
   delist(map(i, function(x)
     paste0(
-      sf_sub(x, 1, 4),
-      "-",
-      sf_sub(x, 5, 6),
-      "-",
-      sf_sub(x, 7, 8)
+      substr(x, 1, 4), substr(x, 5, 6), substr(x, 7, 8), collapse = "-"
     )))
 }
 
-#' Detect Regular Expression
+#' Detect by Regex
+#'
 #' @param x `<chr>` vector to search
 #' @param p `<chr>` regular expression pattern
 #' @param n `<lgl>` negate
+#'
 #' @returns `<lgl>` logical vector
+#'
 #' @autoglobal
 #' @noRd
 pdetect <- function(x, p, n = FALSE) {
@@ -146,59 +143,69 @@ pdetect <- function(x, p, n = FALSE) {
                     negate  = n)
 }
 
-#' Subset by Regular Expression
+#' Subset by Regex
+#'
 #' @param i `<data.frame>` to search
 #' @param j `<chr>` vector to detect
 #' @param p `<chr>` regular expression pattern
 #' @param n `<lgl>` negate
+#'
 #' @returns `<data.frame>` subsetted data.frame
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 subset_detect <- function(i, j, p, n = FALSE) {
   sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n))
 }
 
 #' Get List Element Named "data"
+#'
 #' @param x `<list>` list to get element from
+#'
 #' @returns `<list>` list with element
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 get_data_elem <- function(x) {
   delist(map(x, function(i)
     get_elem(as.list(i), "data")))
 }
 
 #' Get List Element
+#'
 #' @param x `<list>` list to get element from
 #' @param el `<chr>` element to get
+#'
 #' @returns `<list>` list with element
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 delist_elem <- function(x, el) {
   delist(get_elem(x, el, DF.as.list = TRUE))
 }
 
 #' Get List Element
+#'
 #' @param i `<list>` list to get element from
 #' @param el `<chr>` element to get
+#'
 #' @returns `<list>` list with element
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 smush_elem <- function(i, el) {
   map_chr(get_elem(i, el), function(x)
     sf_smush(x, sep = ", "))
 }
 
-#' Concatenate Contact Point
-#' @param x `<list>` list to get element from
-#' @returns `<chr>` element
+#' Concatenate `contactPoint` column
+#'
+#' @param x `<list>` `contactPoint` column
+#'
+#' @returns `<chr>` vector
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 reduce_contact <- function(x) {
   x <- delist(get_elem(x, "^has", regex = TRUE)) |>
     set_names(delist(get_elem(x, "fn")))
@@ -207,12 +214,14 @@ reduce_contact <- function(x) {
 }
 
 #' Check if a property is empty
+#'
 #' @param obj `<S7_object>` to check
 #' @param nm `<chr>` property name
+#'
 #' @returns `<lgl>` `TRUE` if empty, `FALSE` otherwise
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 prop_empty <- function(obj, nm) {
   check_is_S7(obj)
   empty(prop(obj, nm))
@@ -220,8 +229,7 @@ prop_empty <- function(obj, nm) {
 
 #' Print a named list
 #'
-#' @param ls `<list>` to print
-#'
+#' @param ls     `<list>` to print
 #' @param prefix `<chr>` to prepend to each line
 #'
 #' @returns `<list>` invisibly
@@ -230,10 +238,7 @@ prop_empty <- function(obj, nm) {
 #' print_list(list(a = 1, b = 2, c = 3))
 #'
 #' @autoglobal
-#'
-#' @keywords internal
-#'
-#' @export
+#' @noRd
 print_list <- function(ls, prefix = "") {
 
   if (length(ls) == 0) cat("<empty>\n")
@@ -250,36 +255,51 @@ print_list <- function(ls, prefix = "") {
 }
 
 #' Format temporal string
+#'
 #' @param x `<chr>` string to format
+#'
 #' @returns `<chr>` formatted string
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 main_temp <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
 }
 
 #' Clean column names
+#'
 #' @param x `<chr>` column name
+#'
 #' @returns `<chr>` cleaned column name
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
-clean_names <- function(x) gsub(" ", "_", tolower(x), perl = TRUE)
+#' @noRd
+clean_names <- function(x) {
+  gsub(" ", "_", tolower(x), perl = TRUE)
+  }
 
 #' Set clean column names
+#'
 #' @param i `<chr>` vector to be named
+#'
 #' @param x `<chr>` vector of column names
+#'
 #' @returns `<chr>` vector with clean column names
+#'
 #' @autoglobal
-#' @keywords internal
-#' @export
-set_clean <- function(i, x) set_names(i, clean_names(x))
+#' @noRd
+set_clean <- function(i, x) {
+  set_names(i, clean_names(x))
+}
 
 #' ISO 8601 Recurring Time Intervals
+#'
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
+#'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
+#'
 #' @returns `<chr>` vector of human-readable recurrence rule descriptions
+#'
 #' @examplesIf rlang::is_interactive()
 #' accrualPeriodicity = c(
 #'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
@@ -289,15 +309,15 @@ set_clean <- function(i, x) set_names(i, clean_names(x))
 #'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 #'
 #' recode_iso8601(accrualPeriodicity)
+#'
 #' @section References:
 #'
-#'    * [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-#'    * [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
-#'    * [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
+#' - [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+#' - [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
+#' - [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
 #'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 recode_iso8601 <- function(x) {
   nswitch(
     x,
@@ -327,7 +347,9 @@ recode_iso8601 <- function(x) {
 }
 
 #' Roxygenise ISO 8601 Recurring Time Intervals
+#'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
+#'
 #' @autoglobal
 #' @noRd
 roxy8601 <- function(x) {
