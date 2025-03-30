@@ -89,19 +89,15 @@ main_dims <- function(url) {
 
   x <- url |>
     request() |>
-    req_url_query(
-      schema  = "false",
-      keys    = "false",
-      results = "true",
-      count   = "true",
-      offset  = 0,
-      size    = 1
-    ) |>
-    perform_simple()
+    req_url_query(offset = 0L, size = 5000L) |>
+    perform_simple() |>
+    _[["meta"]]
 
-  list(rows   = x$meta$total_rows,
-       fields = x$meta$headers,
-       pages  = offset_size(x$meta$total_rows, 5000L))
+  list_tidy(
+    rows   = x$total_rows,
+    fields = x$headers,
+    pages  = offset_size(rows, 5000L)
+  )
 
 }
 
@@ -133,12 +129,11 @@ main_temp_group <- function(alias) {
 
   if (!exists("catalog")) catalog <- catalogs()
 
-  x <- subset_detect(
-    catalog$main$temporal,
-    title,
-    alias_main_temporal_group(alias)) |>
-    mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
-        title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
+  x <- select_alias(catalog$main$temporal, alias_main_temporal_group(alias)) |>
+    mtt(
+      group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
+      title = stri_extract_first_regex(title, "^.*(?=\\s-)")
+    ) |>
     colorder(title, group)
 
   x2 <- map2(x$data,  x$group, \(x, y)

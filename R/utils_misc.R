@@ -158,6 +158,13 @@ subset_detect <- function(i, j, p, n = FALSE) {
   sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n))
 }
 
+#' Select by Alias
+#' @autoglobal
+#' @noRd
+select_alias <- function(x, alias) {
+  subset_detect(x, title, alias)
+}
+
 #' Get List Element Named "data"
 #'
 #' @param x `<list>` list to get element from

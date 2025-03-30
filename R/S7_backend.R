@@ -90,9 +90,8 @@ MainCurrent <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- c(subset_detect(
+    x <- c(select_alias(
       catalog$main$current,
-      title,
       alias_main_current(alias)))
 
     q <- main_dims(x$identifier)
@@ -151,9 +150,8 @@ ProviderCurrent <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- c(subset_detect(
+    x <- c(select_alias(
       catalog$prov,
-      title,
       alias_provider_current(alias)))
 
     q <- pro_dims(x$identifier)
@@ -214,10 +212,7 @@ OpenCurrent <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- c(subset_detect(
-      catalog$open$current,
-      title,
-      alias_open_current(alias)))
+    x <- c(select_alias(catalog$open$current, alias_open_current(alias)))
 
     q <- open_dims(x$identifier)
 
@@ -292,10 +287,7 @@ MainTemporal <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- subset_detect(
-      catalog$main$temporal,
-      title,
-      alias_main_temporal(alias))
+    x <- select_alias(catalog$main$temporal, alias_main_temporal(alias))
 
     dat <- get_elem(x, "data")[[1]]
 
@@ -344,10 +336,7 @@ OpenTemporal <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- subset_detect(
-        catalog$open$temporal,
-        title,
-        alias_open_temporal(alias))
+    x <- select_alias(catalog$open$temporal, alias_open_temporal(alias))
 
     q <- open_dims(x$identifier[1])
 
@@ -410,8 +399,6 @@ MainTemporalGroup <- new_class(
   ),
   constructor = function(alias) {
 
-    # if (!exists("catalog")) catalog <- catalogs()
-
     x <- main_temp_group(alias)
 
     template <- glue(
@@ -446,7 +433,7 @@ MainTemporalGroup <- new_class(
 #'
 #' @inheritParams Temporal
 #'
-#' @returns An S7 `<TemporalOpenGroup>` object.
+#' @returns An S7 `<OpenTemporalGroup>` object.
 #'
 #' @autoglobal
 #' @rdname Open

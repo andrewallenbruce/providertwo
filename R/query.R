@@ -212,3 +212,56 @@ is_in <- function(x, negate = FALSE) {
        operator = if (negate) "NOT IN" else "IN",
        input    = as_character(x))
 }
+
+# query_in_main <- function(args,
+#                           operator = c("IN", "NOT IN")) {
+#
+#   operator <- match.arg(operator)
+#   args     <- args[cheapr::which_(cheapr::lengths_(args, names = TRUE) > 1)]
+#
+#   glue::as_glue(
+#     c(
+#       glue::glue(
+#         "filter[{seq_along(args)}][condition][path]={names(args)}
+#          filter[{seq_along(args)}][condition][operator]={operator}"
+#       ),
+#       glue::glue(
+#         "filter[{seq_along(args)}][condition][value]",
+#         "[{seq_along(delist(args))}]={delist(args)}"
+#       )
+#     )
+#   )
+# }
+#
+# query_in_main(args = list(NPI = npi_ex))
+#
+# query_in_pro <- function(args,
+#                          operator = c("IN", "NOT IN")) {
+#
+#   operator <- match.arg(operator)
+#   args     <- args[cheapr::which_(cheapr::lengths_(args, names = TRUE) > 1)]
+#
+#   glue::as_glue(
+#     c(
+#       glue::glue(
+#         "conditions[{seq_along0(args)}][property]={names(args)},\n",
+#         "conditions[{seq_along0(args)}][operator]={operator}"
+#       ),
+#       glue::glue(
+#         "conditions[{seq_along0(args)}][value]",
+#         "[{seq_along(delist(args))}]={delist(args)}"
+#       )
+#     )
+#   )
+# }
+#
+#
+# query_in_pro(args = list(NPI = npi_ex)) |>
+#   glue_collapse(sep = ",\n") |>
+#   c() |>
+#   parse_expr() |>
+#   eval_bare()
+#
+# glue('c({query})') |>
+#   parse_expr() |>
+#   eval_bare()

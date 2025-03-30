@@ -72,6 +72,7 @@ utils::globalVariables(c(
   "resources",
   # <catalog_main>
   "resourcesAPI",
+  # <main_dims>
   # <main_temp_dims>
   "rows",
   # <catalog_main>
@@ -80,13 +81,12 @@ utils::globalVariables(c(
   "temporal",
   # <catalog_provider>
   "theme",
-  # <MainTemporal>
-  # <OpenTemporal>
   # <catalog_main>
   # <main_temp_group>
   # <catalog_open>
   # <provider_current_group>
   # <catalog_provider>
+  # <select_alias>
   "title",
   # <MainTemporal>
   # <OpenTemporal>

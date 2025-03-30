@@ -45,7 +45,7 @@ An S7 \verb{<OpenCurrent>} object.
 
 An S7 \verb{<OpenTemporal>} object.
 
-An S7 \verb{<TemporalOpenGroup>} object.
+An S7 \verb{<OpenTemporalGroup>} object.
 }
 \description{
 Current Open Payments API Endpoint

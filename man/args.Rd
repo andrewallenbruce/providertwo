@@ -25,7 +25,7 @@ An S7 \verb{<arg_state>} object.
 \examples{
 arg_npi("1225701881")
 arg_npi(1225701881)
-arg_npi(npi_ex)
+arg_npi(npi_ex$k)
 arg_npi(NULL)
 arg_npi(NA_character_)
 
