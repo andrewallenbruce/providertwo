@@ -12,9 +12,9 @@ catalog_main <- function() {
   x <- mtt(x,
       modified    = as_date(modified),
       periodicity = recode_iso8601(accrualPeriodicity),
-      contact     = reduce_contact(x$contactPoint),
+      contact     = fmt_contact(x$contactPoint),
       references  = delist(references),
-      temporal    = main_temp(temporal),
+      temporal    = fmt_temp(temporal),
       title       = gsub("  ", " ", title, perl = TRUE),
       description = gsub("[\"']", "", description, perl = TRUE),
       description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
@@ -41,7 +41,7 @@ catalog_main <- function() {
       title      = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
       format     = cheapr_if_else(not_na(description), description, format),
       modified   = as_date(modified),
-      temporal   = main_temp(temporal),
+      temporal   = fmt_temp(temporal),
       identifier = accessURL,
       download   = lag_(downloadURL, n = -1L),
       filetype   = lag_(mediaType, n = -1L),
@@ -49,35 +49,17 @@ catalog_main <- function() {
     colorder(title) |>
     as_tbl()
 
-  d <- sset(d, row_na_counts(d) < 4) |>
-    funique(cols = c("title", "year", "format"))
+  d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
   list_tidy(
-    current = roworder(join(
+    current = join_on_title(
       slt(x, -distribution),
-      sbt(d, format == "latest", -format, -identifier, -modified, -temporal),
-      on = "title",
-      verbose = 0
-    ), title),
-    temporal = join(
-      roworder(
-        sbt(d, format != "latest", -format),
-        title, -year) |>
-        f_nest_by(.cols = "title") |>
-        f_ungroup(),
-      slt(
-        current,
-        title,
-        description,
-        periodicity,
-        contact,
-        dictionary,
-        site
-      ),
-      on = "title",
-      verbose = 0
+      sbt(d, format == "latest", -format, -identifier, -modified, -temporal)) |>
+      roworder(title),
+    temporal = join_on_title(
+      sbt(d, format != "latest", -format) |> roworder(title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
+      slt(current, title, description, periodicity, contact, dictionary, site))
     )
-  )
 }
 
 #' Get Dimensions of Current Main Endpoint
@@ -89,7 +71,7 @@ main_dims <- function(url) {
 
   x <- url |>
     request() |>
-    req_url_query(offset = 0L, size = 5000L) |>
+    req_url_query(offset = 0L, size = 1L) |>
     perform_simple() |>
     _[["meta"]]
 
@@ -109,7 +91,7 @@ main_dims <- function(url) {
 main_temp_dims <- function(url) {
   list_tidy(
     rows   = request(url) |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
-    fields = request(url) |> perform_simple() |> names(),
+    fields = request(url) |> req_url_query(offset = 0L, size = 1L) |> perform_simple() |> names(),
     pages  = offset_size(rows, 5000L)
   )
 }

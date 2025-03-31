@@ -3,14 +3,14 @@
 \name{OpenCurrent}
 \alias{OpenCurrent}
 \alias{OpenTemporal}
-\alias{OpenTemporalGroup}
+\alias{openTempGroup}
 \title{Current Open Payments API Endpoint}
 \usage{
 OpenCurrent(alias)
 
 OpenTemporal(alias)
 
-OpenTemporalGroup(
+openTempGroup(
   title = character(0),
   description = character(0),
   contact = character(0),
@@ -45,7 +45,7 @@ An S7 \verb{<OpenCurrent>} object.
 
 An S7 \verb{<OpenTemporal>} object.
 
-An S7 \verb{<OpenTemporalGroup>} object.
+An S7 \verb{<openTempGroup>} object.
 }
 \description{
 Current Open Payments API Endpoint

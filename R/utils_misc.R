@@ -213,11 +213,26 @@ smush_elem <- function(i, el) {
 #'
 #' @autoglobal
 #' @noRd
-reduce_contact <- function(x) {
+fmt_contact <- function(x) {
   x <- delist(get_elem(x, "^has", regex = TRUE)) |>
     set_names(delist(get_elem(x, "fn")))
 
   as.character(glue("{names(x)} ({x})"))
+}
+
+#' Join on Title
+#' @param a `<data.frame>` The result will inherit the attributes of this object
+#' @param b `<data.frame>` to join with `a`
+#' @returns `<data.frame>` joined table
+#' @autoglobal
+#' @noRd
+join_on_title <- function(a, b) {
+  join(
+    x = a,
+    y = b,
+    on = "title",
+    verbose = 0
+  )
 }
 
 #' Check if a property is empty
@@ -269,7 +284,7 @@ print_list <- function(ls, prefix = "") {
 #'
 #' @autoglobal
 #' @noRd
-main_temp <- function(x) {
+fmt_temp <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
 }
 

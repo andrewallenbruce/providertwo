@@ -1,22 +1,3 @@
-rlang::on_load(
-  catalog <<- list(
-    main = catalog_main(),
-    prov = catalog_provider(),
-    open = catalog_open()
-  ))
-
-#' API Catalogs
-#' @returns `<list>` of API catalogs
-#' @autoglobal
-#' @noRd
-catalogs <- function() {
-  list(
-    main = catalog_main(),
-    prov = catalog_provider(),
-    open = catalog_open()
-  )
-}
-
 #' API Current Endpoint Class
 #'
 #' @param title       `<chr>` title
@@ -433,13 +414,13 @@ MainTemporalGroup <- new_class(
 #'
 #' @inheritParams Temporal
 #'
-#' @returns An S7 `<OpenTemporalGroup>` object.
+#' @returns An S7 `<openTempGroup>` object.
 #'
 #' @autoglobal
 #' @rdname Open
 #' @export
-OpenTemporalGroup <- new_class(
+openTempGroup <- new_class(
   parent  = Temporal,
-  name    = "OpenTemporalGroup",
+  name    = "openTempGroup",
   package = NULL
 )
