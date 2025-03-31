@@ -13,14 +13,12 @@ MainTemporal(alias)
 
 MainTemporalGroup(alias)
 
-list_resources(x, ...)
+list_resources(x)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 
-\item{x}{An object of class \code{MainCurrent} or \code{class_character}}
-
-\item{...}{Additional arguments?}
+\item{x}{Object of class \code{MainCurrent} or \code{MainTemporal}}
 }
 \value{
 An S7 \verb{<MainCurrent>} object.
