@@ -24,7 +24,7 @@ alias_main <- function(x) {
 alias_main_group <- function(x) {
   nswitch(
     x,
-    "hospitals", "Hospital",
+    "hospitals", "^Hospital",
     "rhc",       "Rural Health Clinic",
     "fqhc",      "Federally Qualified Health Center",
     "pending",   "Pending Initial Logging and Tracking",

@@ -1,4 +1,3 @@
-
 #' @noRd
 pro_url <- \(x) paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", x, "/0")
 

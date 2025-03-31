@@ -62,8 +62,26 @@ catalog_main <- function() {
     )
 }
 
-#' Load Temporal Main Endpoint Group
-#' @param alias `<chr>` dataset title alias
+#' Main Endpoint Group
+#' @param alias `<chr>` title alias
+#' @returns `<list>` of a group of main endpoints
+#' @examplesIf rlang::is_interactive()
+#' main_group("hospitals")
+#' main_group("rhc")
+#' main_group("fqhc")
+#' main_group("pending")
+#' @autoglobal
+#' @noRd
+main_group <- function(alias) {
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$main$current, alias_main_group(alias)) |>
+    slt(-filetype)
+}
+
+#' Temporal Main Endpoint Group
+#' @param alias `<chr>` title alias
 #' @returns `<list>` of a group of temporal main endpoints
 #' @examplesIf rlang::is_interactive()
 #' main_temp_group("utilization")

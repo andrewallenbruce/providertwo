@@ -25,19 +25,20 @@ utils::globalVariables(c(
   # <catalog_main>
   "distribution",
   # <mainTemp>
-  # <OpenTemporal>
+  # <openTemp>
   # <catalog_open>
   # <catalog_provider>
   "download",
   # <catalog_main>
   "downloadURL",
   # <mainTemp>
+  # <main_group>
   "filetype",
   # <main_temp_group>
   # <catalog_provider>
   "group",
   # <mainTemp>
-  # <OpenTemporal>
+  # <openTemp>
   # <catalog_main>
   # <main_temp_group>
   # <catalog_open>
@@ -55,7 +56,7 @@ utils::globalVariables(c(
   # <catalog_main>
   "mediaType",
   # <mainTemp>
-  # <OpenTemporal>
+  # <openTemp>
   # <catalog_main>
   # <catalog_open>
   # <catalog_provider>
@@ -90,7 +91,7 @@ utils::globalVariables(c(
   # <select_alias>
   "title",
   # <mainTemp>
-  # <OpenTemporal>
+  # <openTemp>
   # <catalog_main>
   # <main_temp_group>
   # <catalog_open>

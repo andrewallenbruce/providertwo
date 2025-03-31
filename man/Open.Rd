@@ -2,13 +2,13 @@
 % Please edit documentation in R/S7_backend.R
 \name{OpenCurrent}
 \alias{OpenCurrent}
-\alias{OpenTemporal}
+\alias{openTemp}
 \alias{openTempGroup}
 \title{Current Open Payments API Endpoint}
 \usage{
 OpenCurrent(alias)
 
-OpenTemporal(alias)
+openTemp(alias)
 
 openTempGroup(
   title = character(0),
@@ -43,7 +43,7 @@ openTempGroup(
 \value{
 An S7 \verb{<OpenCurrent>} object.
 
-An S7 \verb{<OpenTemporal>} object.
+An S7 \verb{<openTemp>} object.
 
 An S7 \verb{<openTempGroup>} object.
 }
@@ -67,12 +67,12 @@ OpenCurrent("pay_state_group")
 OpenCurrent("pay_nat_group")
 OpenCurrent("pay_nat_total")
 
-OpenTemporal("general")
-OpenTemporal("ownership")
-OpenTemporal("research")
-OpenTemporal("recipient_nature")
-OpenTemporal("recipient_entity")
-OpenTemporal("entity_nature")
-OpenTemporal("entity_recipient_nature")
-OpenTemporal("state_nature")
+openTemp("general")
+openTemp("ownership")
+openTemp("research")
+openTemp("recipient_nature")
+openTemp("recipient_entity")
+openTemp("entity_nature")
+openTemp("entity_recipient_nature")
+openTemp("state_nature")
 }

@@ -60,7 +60,6 @@ mainTempGroup("prescribers")
 mainTempGroup("suppliers")
 mainTempGroup("outpatient")
 mainTempGroup("inpatient")
-
 MainCurrent("enrollees") |> list_resources()
 mainTemp("quality_payment") |> list_resources()
 

@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
-dims_main <- function(url) {
-  x <- url |>
+dims_main <- function(x) {
+  x <- x |>
     request() |>
     req_url_query(offset = 0L, size = 1L) |>
     perform_simple() |>
@@ -16,7 +16,7 @@ dims_main <- function(url) {
 
 #' @autoglobal
 #' @noRd
-dims_main_temp <- function(url) {
+dims_main_temp <- function(x) {
 
   get_rows <- \(x) {
     request(x) |>
@@ -33,16 +33,16 @@ dims_main_temp <- function(url) {
     }
 
   list_tidy(
-    rows   = get_rows(url),
-    fields = get_fields(url),
+    rows   = get_rows(x),
+    fields = get_fields(x),
     pages  = offset_size(rows, 5000L)
   )
 }
 
 #' @autoglobal
 #' @noRd
-dims_pro <- function(uuid) {
-  x <- uuid |>
+dims_pro <- function(x) {
+  x <- x |>
     pro_url() |>
     request() |>
     req_url_query(
@@ -64,8 +64,9 @@ dims_pro <- function(uuid) {
 
 #' @autoglobal
 #' @noRd
-dims_open <- function(uuid) {
-  x <- open_url(uuid) |>
+dims_open <- function(x) {
+  x <- x |>
+    open_url() |>
     request() |>
     req_url_query(
       schema  = "false",
@@ -80,6 +81,6 @@ dims_open <- function(uuid) {
   list_tidy(
     rows   = x$count,
     fields = x$query$properties,
-    pages  = offset_size(rows, 5000L)
+    pages  = offset_size(rows, 500L)
   )
 }

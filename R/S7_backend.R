@@ -310,23 +310,23 @@ mainTemp <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<OpenTemporal>` object.
+#' @returns An S7 `<openTemp>` object.
 #'
 #' @examples
-#' OpenTemporal("general")
-#' OpenTemporal("ownership")
-#' OpenTemporal("research")
-#' OpenTemporal("recipient_nature")
-#' OpenTemporal("recipient_entity")
-#' OpenTemporal("entity_nature")
-#' OpenTemporal("entity_recipient_nature")
-#' OpenTemporal("state_nature")
+#' openTemp("general")
+#' openTemp("ownership")
+#' openTemp("research")
+#' openTemp("recipient_nature")
+#' openTemp("recipient_entity")
+#' openTemp("entity_nature")
+#' openTemp("entity_recipient_nature")
+#' openTemp("state_nature")
 #' @autoglobal
 #' @rdname Open
 #' @export
-OpenTemporal <- new_class(
+openTemp <- new_class(
   parent = Temporal,
-  name = "OpenTemporal",
+  name = "openTemp",
   package = NULL,
   constructor = function(alias) {
 
@@ -381,7 +381,6 @@ TemporalGroup <- new_class(
 #' mainTempGroup("suppliers")
 #' mainTempGroup("outpatient")
 #' mainTempGroup("inpatient")
-#'
 #' @autoglobal
 #' @rdname Main
 #' @export
