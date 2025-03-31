@@ -13,7 +13,7 @@ List resources"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9150</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9151</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@ List resources"></head><body>
 <span></span>
 <span><span class="fu">MainTemporalGroup</span><span class="op">(</span><span class="va">alias</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">list_resources</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">list_resources</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -72,11 +72,7 @@ List resources"></head><body>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An object of class <code>MainCurrent</code> or <code>class_character</code></p></dd>
-
-
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments?</p></dd>
+<dd><p>Object of class <code>MainCurrent</code> or <code>MainTemporal</code></p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -583,23 +579,23 @@ List resources"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:10] 2022 2021 2020 2019 2018 2017 2016 2015 2014 2013</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">MainCurrent</span><span class="op">(</span><span class="st">"enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_resources</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   file                                                       size ext   download</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Medicare FFS Public Provider Enrollment Q4 2024          312.   csv   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Reassignment Sub-File 2024 Q4                            112.   csv   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Address Sub-File 2024 Q4                                  43.1  csv   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Secondary Specialty Sub-File 2024 Q4                      28.3  csv   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Medicare Fee-For-Service Public Provider Enrollment Dat…   0.56 pdf   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Medicare FFS  Public Provider Enrollment Methodology       0.36 pdf   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Medicare Fee-For-Service Public Provider Enrollment Fac…   0.03 pdf   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    year file                                                 size ext   download</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>024 Medicare FFS Public Provider Enrollment Q4         312.   csv   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">2</span>024 Reassignment Sub-File Q4                           112.   csv   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>024 Address Sub-File Q4                                 43.1  csv   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>024 Secondary Specialty Sub-File Q4                     28.3  csv   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">2</span>024 Medicare Fee-For-Service Public Provider Enrollme…   0.56 pdf   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>024 Medicare FFS  Public Provider Enrollment Methodol…   0.36 pdf   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">2</span>024 Medicare Fee-For-Service Public Provider Enrollme…   0.03 pdf   https:/…</span>
 <span class="r-in"><span><span class="fu">MainTemporal</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_resources</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year file                                                size ext   download</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>022 QPP Experience                                    437.   csv   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>022 2022 Quality Payment Program Experience Report D…   0.72 pdf   https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>022 2022 Quality Payment Program Experience Report M…   0.37 pdf   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>022 Quality Payment Program Experience Report Data D…   0.72 pdf   https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>022 Quality Payment Program Experience Report Method…   0.37 pdf   https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>021 QPP Experience                                    264.   csv   https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>021 QPP Experience Data Dictionary (Current)            0.43 pdf   https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>021 QPP Experience Methodology (Current)                0.32 pdf   https:/…</span>
