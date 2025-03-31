@@ -50,8 +50,8 @@ dims_pro <- function(x) {
       keys    = "false",
       results = "false",
       count   = "true",
-      offset  = 0,
-      limit   = 1
+      offset  = 0L,
+      limit   = 1L
     ) |>
     perform_simple()
 
@@ -73,8 +73,8 @@ dims_open <- function(x) {
       keys    = "false",
       results = "false",
       count   = "true",
-      offset  = 0,
-      limit   = 1
+      offset  = 0L,
+      limit   = 1L
     ) |>
     perform_simple()
 

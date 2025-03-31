@@ -25,7 +25,7 @@ catalog_provider <- function() {
       group       = flatten_column(theme),
       description = stri_trim(gsub("\n", "", description, perl = TRUE)),
       download    = delist_elem(x$distribution, "downloadURL"),
-      contact     = fmt_contact(x$contactPoint)) |>
+      contact     = fmt_contactpoint(x$contactPoint)) |>
     slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage) |>
     roworder(group, title) |>
     as_tbl()

@@ -213,7 +213,7 @@ smush_elem <- function(i, el) {
 #'
 #' @autoglobal
 #' @noRd
-fmt_contact <- function(x) {
+fmt_contactpoint <- function(x) {
   x <- delist(get_elem(x, "^has", regex = TRUE)) |>
     set_names(delist(get_elem(x, "fn")))
 
@@ -284,7 +284,7 @@ print_list <- function(ls, prefix = "") {
 #'
 #' @autoglobal
 #' @noRd
-fmt_temp <- function(x) {
+fmt_temporal <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
 }
 
@@ -330,7 +330,7 @@ set_clean <- function(i, x) {
 #'   "R/P3M",    "R/P4M",   "R/P6M", "R/P1Y",
 #'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
 #'
-#' recode_iso8601(accrualPeriodicity)
+#' fmt_periodicity(accrualPeriodicity)
 #'
 #' @section References:
 #'
@@ -340,7 +340,7 @@ set_clean <- function(i, x) {
 #'
 #' @autoglobal
 #' @noRd
-recode_iso8601 <- function(x) {
+fmt_periodicity <- function(x) {
   nswitch(
     x,
     "R/P10Y",   "Decennially [R/P10Y]",
