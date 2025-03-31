@@ -1,5 +1,5 @@
 #' @noRd
-alias_main_current <- function(x) {
+alias_main <- function(x) {
   nswitch(
     x,
     "enrollees",             "Public Provider Enrollment",
@@ -21,7 +21,7 @@ alias_main_current <- function(x) {
 }
 
 #' @noRd
-alias_main_current_group <- function(x) {
+alias_main_group <- function(x) {
   nswitch(
     x,
     "hospitals", "Hospital",
@@ -34,7 +34,7 @@ alias_main_current_group <- function(x) {
 }
 
 #' @noRd
-alias_main_temporal <- function(x) {
+alias_main_temp <- function(x) {
   nswitch(
     x,
     "quality_payment",  "Quality Payment Program Experience",
@@ -44,7 +44,7 @@ alias_main_temporal <- function(x) {
 }
 
 #' @noRd
-alias_main_temporal_group <- function(x) {
+alias_main_temp_group <- function(x) {
   nswitch(
     x,
     "prescribers", "Medicare Part D Prescribers",
@@ -58,7 +58,7 @@ alias_main_temporal_group <- function(x) {
 }
 
 #' @noRd
-alias_provider_current <- function(x) {
+alias_pro <- function(x) {
   nswitch(
     x,
     "affiliations",  "^Facility Affiliation Data$",
@@ -70,7 +70,7 @@ alias_provider_current <- function(x) {
 }
 
 #' @noRd
-alias_provider_current_group <- function(x) {
+alias_pro_group <- function(x) {
   nswitch(
     x,
     "mips", "^PY 2022",
@@ -80,7 +80,7 @@ alias_provider_current_group <- function(x) {
 }
 
 #' @noRd
-alias_open_current <- function(x) {
+alias_open <- function(x) {
   nswitch(
     x,
     "prof_cov",        "^Covered Recipient Profile Supplement",
@@ -100,7 +100,7 @@ alias_open_current <- function(x) {
 }
 
 #' @noRd
-alias_open_temporal <- function(x) {
+alias_open_temp <- function(x) {
   nswitch(
     x,
     "general",                 "^General Payment Data$",

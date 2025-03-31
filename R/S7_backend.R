@@ -73,9 +73,9 @@ MainCurrent <- new_class(
 
     x <- c(select_alias(
       catalog$main$current,
-      alias_main_current(alias)))
+      alias_main(alias)))
 
-    q <- main_dims(x$identifier)
+    q <- dims_main(x$identifier)
 
     new_object(
       Current(),
@@ -131,11 +131,9 @@ ProviderCurrent <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- c(select_alias(
-      catalog$prov,
-      alias_provider_current(alias)))
+    x <- c(select_alias(catalog$pro, alias_pro(alias)))
 
-    q <- pro_dims(x$identifier)
+    q <- dims_pro(x$identifier)
 
     new_object(
       Current(),
@@ -154,6 +152,23 @@ ProviderCurrent <- new_class(
     )
   }
 )
+
+#' Provider API Group Endpoint
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns `<data.frame>`
+#'
+#' @examples
+#' pro_group("mips")
+#' @autoglobal
+#' @export
+pro_group <- function(alias) {
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$pro, alias_pro_group(alias))
+}
 
 #' Current Open Payments API Endpoint
 #'
@@ -193,9 +208,9 @@ OpenCurrent <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- c(select_alias(catalog$open$current, alias_open_current(alias)))
+    x <- c(select_alias(catalog$open$current, alias_open(alias)))
 
-    q <- open_dims(x$identifier)
+    q <- dims_open(x$identifier)
 
     new_object(
       Current(),
@@ -243,21 +258,21 @@ Temporal <- new_class(
   )
 )
 
-#' TemporalMain API Endpoint
+#' Temporal Main API Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<MainTemporal>` object.
+#' @returns An S7 `<mainTemp>` object.
 #'
 #' @examples
-#' MainTemporal("quality_payment")
+#' mainTemp("quality_payment")
 #'
 #' @autoglobal
 #' @rdname Main
 #' @export
-MainTemporal <- new_class(
+mainTemp <- new_class(
   parent = Temporal,
-  name = "MainTemporal",
+  name = "mainTemp",
   package = NULL,
   properties = list(
     periodicity = class_character,
@@ -268,11 +283,11 @@ MainTemporal <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- select_alias(catalog$main$temporal, alias_main_temporal(alias))
+    x <- select_alias(catalog$main$temporal, alias_main_temp(alias))
 
     dat <- get_elem(x, "data")[[1]]
 
-    q <- main_temp_dims(dat$identifier[1])
+    q <- dims_main_temp(dat$identifier[1])
 
     new_object(
       Temporal(),
@@ -317,9 +332,9 @@ OpenTemporal <- new_class(
 
     if (!exists("catalog")) catalog <- catalogs()
 
-    x <- select_alias(catalog$open$temporal, alias_open_temporal(alias))
+    x <- select_alias(catalog$open$temporal, alias_open_temp(alias))
 
-    q <- open_dims(x$identifier[1])
+    q <- dims_open(x$identifier[1])
 
     new_object(
       Temporal(),
@@ -358,21 +373,21 @@ TemporalGroup <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<MainTemporalGroup>` object.
+#' @returns An S7 `<mainTempGroup>` object.
 #'
 #' @examples
-#' MainTemporalGroup("utilization")
-#' MainTemporalGroup("prescribers")
-#' MainTemporalGroup("suppliers")
-#' MainTemporalGroup("outpatient")
-#' MainTemporalGroup("inpatient")
+#' mainTempGroup("utilization")
+#' mainTempGroup("prescribers")
+#' mainTempGroup("suppliers")
+#' mainTempGroup("outpatient")
+#' mainTempGroup("inpatient")
 #'
 #' @autoglobal
 #' @rdname Main
 #' @export
-MainTemporalGroup <- new_class(
+mainTempGroup <- new_class(
   parent  = TemporalGroup,
-  name    = "MainTemporalGroup",
+  name    = "mainTempGroup",
   package = NULL,
   properties = list(
     periodicity = class_character,

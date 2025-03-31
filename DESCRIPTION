@@ -41,16 +41,17 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Collate: 
+    '00catalogs.R'
     'S7_args.R'
     'S7_backend.R'
     'S7_method_print.R'
     'S7_method_request.R'
     'S7_method_resources.R'
-    'aaa_catalogs.R'
     'aliases.R'
     'catalog_main.R'
     'catalog_open.R'
     'catalog_provider.R'
+    'dims.R'
     'end_affiliations.R'
     'end_enrollees.R'
     'end_nppes.R'

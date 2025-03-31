@@ -1,38 +1,13 @@
-#' Open Payments Endpoint Fields, Rows, Pages
-#' @param uuid `<chr>` endpoint UUID
-#' @returns `<list>` number of rows and field names
-#' @autoglobal
 #' @noRd
-open_dims <- function(uuid) {
-
-  x <- open_url(uuid) |>
-    request() |>
-    req_url_query(
-      schema  = "false",
-      keys    = "false",
-      results = "false",
-      count   = "true",
-      offset  = 0,
-      limit   = 1) |>
-    perform_simple()
-
-  list(rows   = x$count,
-       fields = x$query$properties,
-       pages  = offset_size(x$count, 500L))
-
-}
-
-#' Open Payments UUID to URL
-#' @param uuid `<chr>` endpoint UUID
-#' @returns `<chr>` endpoint URL
-#' @autoglobal
-#' @noRd
-open_url <- function(uuid) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", uuid, "/0")
+open_url <- function(x) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", x, "/0")
 
 #' CMS Open Payments Catalog
+#'
 #' @returns `<list>` of Open Payments API catalog information
+#'
 #' @examplesIf rlang::is_interactive()
 #' catalog_open()
+#'
 #' @autoglobal
 #' @keywords internal
 #' @export

@@ -1,7 +1,7 @@
 rlang::on_load(
   catalog <<- list(
     main = catalog_main(),
-    prov = catalog_provider(),
+    pro  = catalog_provider(),
     open = catalog_open()
   ))
 
@@ -12,7 +12,7 @@ rlang::on_load(
 catalogs <- function() {
   list(
     main = catalog_main(),
-    prov = catalog_provider(),
+    pro  = catalog_provider(),
     open = catalog_open()
   )
 }

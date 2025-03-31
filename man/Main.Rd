@@ -2,37 +2,37 @@
 % Please edit documentation in R/S7_backend.R, R/S7_method_resources.R
 \name{MainCurrent}
 \alias{MainCurrent}
-\alias{MainTemporal}
-\alias{MainTemporalGroup}
+\alias{mainTemp}
+\alias{mainTempGroup}
 \alias{list_resources}
 \title{Current Main API Endpoint}
 \usage{
 MainCurrent(alias)
 
-MainTemporal(alias)
+mainTemp(alias)
 
-MainTemporalGroup(alias)
+mainTempGroup(alias)
 
 list_resources(x)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 
-\item{x}{Object of class \code{MainCurrent} or \code{MainTemporal}}
+\item{x}{Object of class \code{MainCurrent} or \code{mainTemp}}
 }
 \value{
 An S7 \verb{<MainCurrent>} object.
 
-An S7 \verb{<MainTemporal>} object.
+An S7 \verb{<mainTemp>} object.
 
-An S7 \verb{<MainTemporalGroup>} object.
+An S7 \verb{<mainTempGroup>} object.
 
 A list of API resources
 }
 \description{
 Current Main API Endpoint
 
-TemporalMain API Endpoint
+Temporal Main API Endpoint
 
 Main API Endpoint Temporal Group
 
@@ -53,15 +53,15 @@ MainCurrent("hospice")
 MainCurrent("dialysis")
 MainCurrent("snf")
 
-MainTemporal("quality_payment")
+mainTemp("quality_payment")
 
-MainTemporalGroup("utilization")
-MainTemporalGroup("prescribers")
-MainTemporalGroup("suppliers")
-MainTemporalGroup("outpatient")
-MainTemporalGroup("inpatient")
+mainTempGroup("utilization")
+mainTempGroup("prescribers")
+mainTempGroup("suppliers")
+mainTempGroup("outpatient")
+mainTempGroup("inpatient")
 
 MainCurrent("enrollees") |> list_resources()
-MainTemporal("quality_payment") |> list_resources()
+mainTemp("quality_payment") |> list_resources()
 
 }

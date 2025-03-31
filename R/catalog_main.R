@@ -62,40 +62,6 @@ catalog_main <- function() {
     )
 }
 
-#' Get Dimensions of Current Main Endpoint
-#' @param url `<chr>` endpoint URL
-#' @returns `<list>` number of rows and field names
-#' @autoglobal
-#' @noRd
-main_dims <- function(url) {
-
-  x <- url |>
-    request() |>
-    req_url_query(offset = 0L, size = 1L) |>
-    perform_simple() |>
-    _[["meta"]]
-
-  list_tidy(
-    rows   = x$total_rows,
-    fields = x$headers,
-    pages  = offset_size(rows, 5000L)
-  )
-
-}
-
-#' Get Dimensions of Temporal Main Endpoint
-#' @param url `<chr>` endpoint URL
-#' @returns `<list>` number of rows and field names
-#' @autoglobal
-#' @noRd
-main_temp_dims <- function(url) {
-  list_tidy(
-    rows   = request(url) |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
-    fields = request(url) |> req_url_query(offset = 0L, size = 1L) |> perform_simple() |> names(),
-    pages  = offset_size(rows, 5000L)
-  )
-}
-
 #' Load Temporal Main Endpoint Group
 #' @param alias `<chr>` dataset title alias
 #' @returns `<list>` of a group of temporal main endpoints
@@ -111,7 +77,7 @@ main_temp_group <- function(alias) {
 
   if (!exists("catalog")) catalog <- catalogs()
 
-  x <- select_alias(catalog$main$temporal, alias_main_temporal_group(alias)) |>
+  x <- select_alias(catalog$main$temporal, alias_main_temp_group(alias)) |>
     mtt(
       group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
       title = stri_extract_first_regex(title, "^.*(?=\\s-)")
@@ -131,7 +97,7 @@ main_temp_group <- function(alias) {
 
   q <- map(sbt(x2, year == fmax(year)) |>
       _[["identifier"]], \(x)
-    main_temp_dims(x)) |>
+    dims_main_temp(x)) |>
     set_names(groups)
 
   x2 <- rsplit(x2, ~ group)

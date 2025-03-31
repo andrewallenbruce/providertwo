@@ -24,19 +24,19 @@ utils::globalVariables(c(
   "dictionary",
   # <catalog_main>
   "distribution",
-  # <MainTemporal>
+  # <mainTemp>
   # <OpenTemporal>
   # <catalog_open>
   # <catalog_provider>
   "download",
   # <catalog_main>
   "downloadURL",
-  # <MainTemporal>
+  # <mainTemp>
   "filetype",
   # <main_temp_group>
   # <catalog_provider>
   "group",
-  # <MainTemporal>
+  # <mainTemp>
   # <OpenTemporal>
   # <catalog_main>
   # <main_temp_group>
@@ -54,7 +54,7 @@ utils::globalVariables(c(
   "limit",
   # <catalog_main>
   "mediaType",
-  # <MainTemporal>
+  # <mainTemp>
   # <OpenTemporal>
   # <catalog_main>
   # <catalog_open>
@@ -67,13 +67,15 @@ utils::globalVariables(c(
   "references",
   # <catalog_provider>
   "released",
-  # <MainTemporal>
+  # <mainTemp>
   # <main_temp_group>
   "resources",
   # <catalog_main>
   "resourcesAPI",
-  # <main_dims>
-  # <main_temp_dims>
+  # <dims_main>
+  # <dims_main_temp>
+  # <dims_pro>
+  # <dims_open>
   "rows",
   # <catalog_main>
   "site",
@@ -84,11 +86,10 @@ utils::globalVariables(c(
   # <catalog_main>
   # <main_temp_group>
   # <catalog_open>
-  # <provider_current_group>
   # <catalog_provider>
   # <select_alias>
   "title",
-  # <MainTemporal>
+  # <mainTemp>
   # <OpenTemporal>
   # <catalog_main>
   # <main_temp_group>
