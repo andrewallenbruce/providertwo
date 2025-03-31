@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9151 (2025-03-30)
+
+* list_resources methods
+
+
 # providertwo 0.0.0.9150 (2025-03-30)
 
 * list_resources method for MainTemporal
