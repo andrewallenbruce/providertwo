@@ -50,8 +50,7 @@ Current <- new_class(
 #' MainCurrent("home_health")
 #' MainCurrent("hospice")
 #' MainCurrent("dialysis")
-#' MainCurrent("snf")
-#'
+#' MainCurrent("skilled_nursing")
 #' @autoglobal
 #' @rdname Main
 #' @export
@@ -102,19 +101,18 @@ MainCurrent <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<ProviderCurrent>` object.
+#' @returns An S7 `<proCurr>` object.
 #'
 #' @examples
-#' ProviderCurrent("affiliations")
-#' ProviderCurrent("clinicians")
-#' ProviderCurrent("utilization")
-#'
+#' proCurr("affiliations")
+#' proCurr("clinicians")
+#' proCurr("utilization")
 #' @autoglobal
 #' @rdname Provider
 #' @export
-ProviderCurrent <- new_class(
+proCurr <- new_class(
   parent = Current,
-  name = "ProviderCurrent",
+  name = "proCurr",
   package = NULL,
   properties = list(
     issued     = class_character | class_Date,
@@ -174,27 +172,26 @@ pro_group <- function(alias) {
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<OpenCurrent>` object.
+#' @returns An S7 `<openCurr>` object.
 #'
 #' @examples
-#' OpenCurrent("prof_cov")
-#' OpenCurrent("prof_phys")
-#' OpenCurrent("prof_info")
-#' OpenCurrent("prof_map")
-#' OpenCurrent("prof_entity")
-#' OpenCurrent("prof_teach")
-#' OpenCurrent("dashboard")
-#' OpenCurrent("pay_state_total")
-#' OpenCurrent("pay_state_group")
-#' OpenCurrent("pay_nat_group")
-#' OpenCurrent("pay_nat_total")
-#'
+#' openCurr("prof_cov")
+#' openCurr("prof_phys")
+#' openCurr("prof_info")
+#' openCurr("prof_map")
+#' openCurr("prof_entity")
+#' openCurr("prof_teach")
+#' openCurr("dashboard")
+#' openCurr("pay_state_total")
+#' openCurr("pay_state_group")
+#' openCurr("pay_nat_group")
+#' openCurr("pay_nat_total")
 #' @autoglobal
 #' @rdname Open
 #' @export
-OpenCurrent <- new_class(
+openCurr <- new_class(
   parent = Current,
-  name = "OpenCurrent",
+  name = "openCurr",
   package = NULL,
   properties = list(
     uuid       = class_character,
@@ -266,7 +263,6 @@ Temporal <- new_class(
 #'
 #' @examples
 #' mainTemp("quality_payment")
-#'
 #' @autoglobal
 #' @rdname Main
 #' @export

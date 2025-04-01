@@ -5,7 +5,7 @@ NULL
 #'
 #' @title Create a new request by class
 #'
-#' @param x An object of class `ProviderCurrent`, `MainCurrent`, or `OpenCurrent`
+#' @param x An object of class `proCurr`, `MainCurrent`, or `openCurr`
 #'
 #' @param ... Additional arguments?
 #'
@@ -13,8 +13,8 @@ NULL
 #'
 #' @examples
 #' MainCurrent("enrollees") |> new_request()
-#' ProviderCurrent("affiliations") |> new_request()
-#' OpenCurrent("dashboard") |> new_request()
+#' proCurr("affiliations") |> new_request()
+#' openCurr("dashboard") |> new_request()
 #'
 #' @autoglobal
 #' @export
@@ -25,7 +25,7 @@ method(new_request, MainCurrent) <- function(x) {
     req_url_query(offset = 0L, size = 5000L)
 }
 
-method(new_request, ProviderCurrent) <- function(x) {
+method(new_request, proCurr) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       count   = "false",
@@ -39,7 +39,7 @@ method(new_request, ProviderCurrent) <- function(x) {
     )
 }
 
-method(new_request, OpenCurrent) <- function(x) {
+method(new_request, openCurr) <- function(x) {
   request(x@identifier) |>
     req_url_query(
       count   = "false",

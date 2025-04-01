@@ -14,7 +14,7 @@ alias_main <- function(x) {
     "home_health",           "Home Health Agency Enrollments",
     "hospice",               "Hospice Enrollments",
     "dialysis",              "Medicare Dialysis Facilities",
-    "snf",                   "Skilled Nursing Facility Enrollments",
+    "skilled_nursing",       "Skilled Nursing Facility Enrollments",
     default = NA_character_,
     nThread = 4L
   )

@@ -58,7 +58,7 @@ affiliations <- function(npi = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  x <- ProviderCurrent("affiliations")
+  x <- proCurr("affiliations")
 
   list(
     args = args,
@@ -77,8 +77,7 @@ affiliations <- function(npi = NULL,
 # ccn_facility  = NULL
 # ccn_parent    = NULL
 
-#' @noRd
-fnm <- function(x) {
+# fnm <- function(x) {
   # new_request(CurrentProvider(fnm(call_match()[1])))
-  stringi::stri_sub(as_chr(x), to = -1)
-}
+  # stringi::stri_sub(as_chr(x), to = -1)
+# }

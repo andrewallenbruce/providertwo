@@ -35,14 +35,24 @@ method(list_resources, MainCurrent) <- function(x) {
 }
 
 method(list_resources, mainTemp) <- function(x) {
-  map(x@endpoints$resources, function(x)
-    list_resources(x)) |>
+
+  resp_list <- map(
+    x@endpoints$resources,
+    request) |>
+    req_perform_parallel(on_error = "continue")
+
+  map(resps_successes(resp_list), function(x) {
+    resp_body_string(x) |>
+      fparse(query = "/data") |>
+      fcompute(
+        year     = as_int(stri_extract_all_regex(name, "[0-9]{4}")),
+        file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+        size     = roundup(fileSize / 1e6),
+        ext      = file_ext(downloadURL),
+        download = downloadURL) |>
+      f_fill(year)
+      }) |>
     rowbind() |>
     roworder(-year, ext, -size) |>
     as_tbl()
 }
-
-
-
-
-

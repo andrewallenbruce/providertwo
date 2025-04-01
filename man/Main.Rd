@@ -51,10 +51,8 @@ MainCurrent("facilities")
 MainCurrent("home_health")
 MainCurrent("hospice")
 MainCurrent("dialysis")
-MainCurrent("snf")
-
+MainCurrent("skilled_nursing")
 mainTemp("quality_payment")
-
 mainTempGroup("utilization")
 mainTempGroup("prescribers")
 mainTempGroup("suppliers")

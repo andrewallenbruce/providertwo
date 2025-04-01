@@ -2,10 +2,10 @@
 
   rlang::run_on_load()
 
-  catalogs        <<- memoise::memoise(catalogs)
-  MainCurrent     <<- memoise::memoise(MainCurrent)
-  OpenCurrent     <<- memoise::memoise(OpenCurrent)
-  ProviderCurrent <<- memoise::memoise(ProviderCurrent)
+  catalogs <<- memoise::memoise(catalogs)
+  MainCurrent <<- memoise::memoise(MainCurrent)
+  openCurr <<- memoise::memoise(openCurr)
+  proCurr <<- memoise::memoise(proCurr)
 
   S7::methods_register()
 
