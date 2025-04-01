@@ -68,11 +68,7 @@ MainCurrent <- new_class(
   ),
   constructor = function(alias) {
 
-    if (!exists("catalog")) catalog <- catalogs()
-
-    x <- c(select_alias(
-      catalog$main$current,
-      alias_main(alias)))
+    x <- main_current(alias)
 
     q <- dims_main(x$identifier)
 

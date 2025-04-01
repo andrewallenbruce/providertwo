@@ -20,6 +20,7 @@ catalog_main <- function() {
       description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
       description = gsub("^ATTENTION USERS\\n\\n\\nSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information.\\n\\n.+\\n\\nFor more information on the opt-out process, see Manage Your Enrollment.+or view the FAQ section below.\\n\\n.+\\n\\n", "", description, perl = TRUE),
       description = gsub("\\n\\n.+\\n\\nOn November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", "", description, perl = TRUE),
+      description = gsub("\\n\\n.+\\n\\n", " ", description, perl = TRUE),
       description = stri_trim(description)) |>
     slt(
       title,
@@ -60,24 +61,6 @@ catalog_main <- function() {
       sbt(d, format != "latest", -format) |> roworder(title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
       slt(current, title, description, periodicity, contact, dictionary, site))
     )
-}
-
-#' Main Endpoint Group
-#' @param alias `<chr>` title alias
-#' @returns `<list>` of a group of main endpoints
-#' @examplesIf rlang::is_interactive()
-#' main_group("hospitals")
-#' main_group("rhc")
-#' main_group("fqhc")
-#' main_group("pending")
-#' @autoglobal
-#' @noRd
-main_group <- function(alias) {
-
-  if (!exists("catalog")) catalog <- catalogs()
-
-  select_alias(catalog$main$current, alias_main_group(alias)) |>
-    slt(-filetype)
 }
 
 #' Temporal Main Endpoint Group

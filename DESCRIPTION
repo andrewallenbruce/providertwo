@@ -56,7 +56,6 @@ Collate:
     'end_enrollees.R'
     'end_nppes.R'
     'generated-globals.R'
-    'httr2_perform_request.R'
     'import-standalone-helpers.R'
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'

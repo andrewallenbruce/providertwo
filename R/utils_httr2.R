@@ -1,51 +1,25 @@
-#' Parse Simple JSON Response
-#'
-#' @param resp       `<httr2_response>` object
-#' @param ...        Additional arguments
-#' @returns `<list>` Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 resp_simple_json <- function(resp, ...) {
   resp_body_json(resp, simplifyVector = TRUE, check_type = FALSE, ...)
 }
 
-#' Perform Request and Parse Simple JSON Response
-#'
-#' @param req        `<httr2_request>` object
-#' @param ...        Additional arguments
-#' @returns `<list>` Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 perform_simple <- function(req, ...) {
-  req_perform(req, ...) |>
-    resp_simple_json()
+  req_perform(req) |>
+    resp_simple_json(...)
 }
 
-#' Helper for `iterate_with_offset`
-#'
-#' @param limit `<int>`  API rate limit
-#' @returns `<function>` Function to check if API request is complete
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 is_complete_with_limit <- function(limit) {
   function(resp)
     length(resp_body_json(resp)$data) < limit
 }
 
-#' Perform Iterative Request with Offset
-#'
-#' @param req `<httr2_request>` object
-#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
-#'                      API will return per request.
-#' @returns list of `<httr2_response>`s
-#' @keywords internal
-#' @export
+#' @autoglobal
+#' @noRd
 req_perform_iterative_offset <- function(req, limit) {
   # TODO: allow switching between different API limits?
   check_number_whole(limit, min = 1, max = 5000)
@@ -61,91 +35,47 @@ req_perform_iterative_offset <- function(req, limit) {
   )
 }
 
-#' Parse JSON response
-#'
-#' @param resp `<httr_response>` object
-#'
-#' @returns `<tibble>` Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 parse_json_response_public <- function(resp) {
   resp_body_string(resp) |>
     fparse(query = "/data") |>
     as_tbl()
 }
 
-#' Parse JSON response
-#'
-#' @param resp `<httr_response>` object
-#'
-#' @returns `<tibble>`  Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 parse_json_response_provider <- function(resp) {
   resp_body_string(resp) |>
     fparse(query = "/results") |>
     as_tbl()
 }
 
-#' Mapped Parse JSON response
-#'
-#' @param resp `<httr_response>` object
-#'
-#' @returns `<tibble>` Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 map_parse_json_response_public <- function(resp) {
   map(resp, function(x)
     parse_json_response_public(x)) |>
     rowbind()
 }
 
-#' Parse JSON response
-#'
-#' @param resp `<httr_response>` object
-#'
-#' @returns `<tibble>`  Parsed JSON response
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 map_parse_json_response_provider <- function(resp) {
   map(resp, function(x)
     parse_json_response_provider(x)) |>
     rowbind()
 }
 
-#' Clean JSON response
-#'
-#' @param x `<data.frame>` tibble of API response
-#'
-#' @param names `<chr>` vector of column names
-#'
-#' @returns `<tibble>` Parsed JSON response as tibble
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 tidyup <- function(x, names) {
   set_names(x, names(names)) |>
     map_na_if()
 }
 
-#' Request number of results
-#'
-#' @param url `<chr>` API URL
-#'
-#' @returns `<int>` Number of results
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 nrows_public <- function(url) {
 
   request(url) |>
@@ -156,15 +86,8 @@ nrows_public <- function(url) {
     _[["found_rows"]]
 }
 
-#' Request number of results
-#'
-#' @param url `<chr>` API URL
-#'
-#' @returns `<int>` Number of results
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 nrows_provider <- function(url) {
   request(url) |>
     req_url_query(
@@ -178,15 +101,8 @@ nrows_provider <- function(url) {
     _[["count"]]
 }
 
-#' Request field names
-#'
-#' @param url `<chr>` API URL
-#'
-#' @returns `<chr>` Field names
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 fields_public <- function(url) {
 
   request(url) |>
@@ -200,15 +116,8 @@ fields_public <- function(url) {
 
 }
 
-#' Request field names
-#'
-#' @param url `<chr>` API URL
-#'
-#' @returns `<chr>` Field names
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 fields_provider <- function(url) {
 
   request(url) |>
@@ -223,4 +132,107 @@ fields_provider <- function(url) {
     resp_simple_json() |>
     _[["query"]] |>
     _[["properties"]]
+}
+
+#' @autoglobal
+#' @noRd
+query_nrows_public <- function(req) {
+
+  req_url_path_append(req, "stats") |>
+    perform_simple() |>
+    _[["data"]] |>
+    _[["found_rows"]]
+
+}
+
+#' @autoglobal
+#' @noRd
+query_nrows_provider <- function(req) {
+
+  req_url_query(
+    req,
+    limit   = 1,
+    offset  = 0,
+    count   = "true",
+    results = "false",
+    schema  = "false") |>
+    perform_simple() |>
+    _[["count"]]
+}
+
+#' @autoglobal
+#' @noRd
+perform_request_public <- function(url, query) {
+
+  req <- url |>
+    request() |>
+    req_url_query(
+      !!!format_query_public(query),
+      size = 5000L)
+
+  n <- query_nrows_public(req)
+
+  if (n == 0) {
+    cli_abort(
+      c("x" = "No results found.",
+        " " = " "),
+      call = caller_env())
+  }
+
+  nreq <- offset_size(n, 5000L) > 1
+
+  cli_results(n, 5000L)
+
+  if (false(nreq)) {
+    return(
+      req_perform(req) |>
+        parse_json_response_public() |>
+        tidyup(names = query)
+    )
+  } else {
+    return(
+      req_perform_iterative_offset(req, 5000L) |>
+        map_parse_json_response_public() |>
+        tidyup(names = query)
+    )
+  }
+
+}
+
+#' @autoglobal
+#' @noRd
+perform_request_provider <- function(url, query) {
+
+  req <- url |>
+    request() |>
+    req_url_query(
+      !!!format_query_provider(query),
+      limit = 2000L)
+
+  n <- query_nrows_provider(req)
+
+  if (n == 0) {
+    cli_abort(
+      c("x" = "No results found.",
+        " " = " "),
+      call = caller_env())
+  }
+
+  nreq <- offset_size(n, 2000L) > 1
+
+  cli_results(n, 2000L)
+
+  if (false(nreq)) {
+    return(
+      req_perform(req) |>
+        parse_json_response_provider() |>
+        tidyup(names = query)
+    )
+  } else {
+    return(
+      req_perform_iterative_offset(req, limit) |>
+        map_parse_json_response_provider() |>
+        tidyup(names = query)
+    )
+  }
 }

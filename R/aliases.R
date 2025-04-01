@@ -1,6 +1,22 @@
+#' @examplesIf rlang::is_interactive()
+#' main_current("enrollees")
+#' main_current("opt_out")
+#' main_current("order_refer")
+#' main_current("reassignments")
+#' main_current("hospitals")
+#' main_current("laboratories")
+#' main_current("crosswalk")
+#' main_current("rbcs")
+#' main_current("facilities")
+#' main_current("home_health")
+#' main_current("hospice")
+#' main_current("dialysis")
+#' main_current("skilled_nursing")
+#' @autoglobal
 #' @noRd
-alias_main <- function(x) {
-  nswitch(
+main_current <- function(x, call = caller_env()) {
+
+  x <- nswitch(
     x,
     "enrollees",             "Public Provider Enrollment",
     "opt_out",               "Opt Out Affidavits",
@@ -18,11 +34,24 @@ alias_main <- function(x) {
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$main$current, x) |> c()
 }
 
+#' @examplesIf rlang::is_interactive()
+#' main_group("hospitals")
+#' main_group("rhc")
+#' main_group("fqhc")
+#' main_group("pending")
+#' @autoglobal
 #' @noRd
-alias_main_group <- function(x) {
-  nswitch(
+main_group <- function(x, call = caller_env()) {
+
+  x <- nswitch(
     x,
     "hospitals", "^Hospital",
     "rhc",       "Rural Health Clinic",
@@ -31,6 +60,12 @@ alias_main_group <- function(x) {
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$main$current, x) |> slt(-filetype)
 }
 
 #' @noRd
