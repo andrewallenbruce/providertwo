@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9156 (2025-03-31)
+
+* parallelized `list_resources()` for multiple-request calls
+
+
 # providertwo 0.0.0.9155 (2025-03-31)
 
 * renamed helpers to more standard names
