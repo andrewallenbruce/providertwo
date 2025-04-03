@@ -28,54 +28,68 @@
 #'                            provider provide services in said unit.
 #'
 #' @examples
-#' affiliations(last_name = "CURRY", facility_type = "Home health agency")
-#' affiliations(ccn_primary = "670055")
-#' affiliations(ccn_facility = "370781")
-#' affiliations(ccn_facility = "331302")
-#' affiliations(ccn_facility = "33Z302")
-#' affiliations(npi = "1043245657")
-#' affiliations(last_name = "CURRY")
+#' affiliations(facility_type = "Home health agency")
+#' # affiliations(last_name = "CURRY")
+#' # affiliations(ccn_primary = "670055")
+#' # affiliations(ccn_facility = "370781")
+#' # affiliations(ccn_facility = "331302")
+#' # affiliations(ccn_facility = "33Z302")
+#' # affiliations(npi = "1043245657")
 #' @autoglobal
 #' @export
-affiliations <- function(npi = NULL,
-                         pac = NULL,
-                         last_name = NULL,
-                         first_name = NULL,
-                         middle_name = NULL,
-                         suffix = NULL,
+affiliations <- function(npi           = NULL,
+                         pac           = NULL,
+                         last_name     = NULL,
+                         first_name    = NULL,
+                         middle_name   = NULL,
+                         suffix        = NULL,
                          facility_type = NULL,
-                         ccn_facility = NULL,
-                         ccn_primary = NULL) {
+                         ccn_facility  = NULL,
+                         ccn_primary   = NULL) {
 
-  args <- list2(
-    "npi"                                        = arg_npi(npi),
-    "ind_pac_id"                                 = pac,
-    "provider_last_name"                         = last_name,
-    "provider_first_name"                        = first_name,
-    "provider_middle_name"                       = middle_name,
-    "suff"                                       = suffix,
-    "facility_type"                              = facility_type,
-    "facility_affiliations_certification_number" = ccn_facility,
-    "facility_type_certification_number"         = ccn_primary)
+  # args <- list2(
+  #   "npi"                                        = arg_npi(npi),
+  #   "ind_pac_id"                                 = pac,
+  #   "provider_last_name"                         = last_name,
+  #   "provider_first_name"                        = first_name,
+  #   "provider_middle_name"                       = middle_name,
+  #   "suff"                                       = suffix,
+  #   "facility_type"                              = facility_type,
+  #   "facility_affiliations_certification_number" = ccn_facility,
+  #   "facility_type_certification_number"         = ccn_primary)
+  #
+  # list(
+  #   args = args,
+  #   request = proMain("affiliations") |> new_request()
+  # )
 
-  list(
-    args = args,
-    request = proMain("affiliations") |> new_request()
-  )
-
+  proMain("affiliations") |>
+    new_request() |>
+    req_perform() |>
+    resp_simple_json() |>
+    _[["results"]] |>
+    map_na_if() |>
+    as_tbl()
 }
 
-# npi           = 1043245657
-# pac           = NULL
-# first         = NULL
-# middle        = NULL
-# last          = NULL
-# suffix        = NULL
-# facility_type = NULL
-# ccn_facility  = NULL
-# ccn_parent    = NULL
+#' @noRd
+clinicians <- function() {
+  proMain("clinicians") |>
+    new_request() |>
+    req_perform() |>
+    resp_simple_json() |>
+    _[["results"]] |>
+    map_na_if() |>
+    as_tbl()
+}
 
-# fnm <- function(x) {
-  # new_request(CurrentProvider(fnm(call_match()[1])))
-  # stringi::stri_sub(as_chr(x), to = -1)
-# }
+#' @noRd
+utilization <- function() {
+  proMain("utilization") |>
+    new_request() |>
+    req_perform() |>
+    resp_simple_json() |>
+    _[["results"]] |>
+    map_na_if() |>
+    as_tbl()
+}

@@ -54,11 +54,11 @@ Facility affiliations data publicly reported in the Provider Data Catalog.
 }
 
 \examples{
-affiliations(last_name = "CURRY", facility_type = "Home health agency")
-affiliations(ccn_primary = "670055")
-affiliations(ccn_facility = "370781")
-affiliations(ccn_facility = "331302")
-affiliations(ccn_facility = "33Z302")
-affiliations(npi = "1043245657")
-affiliations(last_name = "CURRY")
+affiliations(facility_type = "Home health agency")
+# affiliations(last_name = "CURRY")
+# affiliations(ccn_primary = "670055")
+# affiliations(ccn_facility = "370781")
+# affiliations(ccn_facility = "331302")
+# affiliations(ccn_facility = "33Z302")
+# affiliations(npi = "1043245657")
 }

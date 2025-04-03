@@ -33,6 +33,16 @@ process_params <- function(arg_names, field_names) {
     )
 }
 
+# perform_request_public(
+#   url   = endpoint(public_dataset("enrollees")),
+#   query = eval_bare(process_params(arg_names = fn_fmls_names(),
+#                                    field_names = fields(public_dataset("enrollees")))))
+
+# fnm <- function(x) {
+# new_request(CurrentProvider(fnm(call_match()[1])))
+# stringi::stri_sub(as_chr(x), to = -1)
+# }
+
 #' Evaluate Query Parameters
 #'
 #' @param args `<list>` of query parameters

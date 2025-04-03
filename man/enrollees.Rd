@@ -62,7 +62,7 @@ approved to bill Medicare.
 
 \examples{
 enrollees(enid = "I20040309000221")
-enrollees(npi = "1417918293", specialty_code = "14-41")
-enrollees(pac = "2860305554")
-enrollees(state = "GA")
+# enrollees(npi = "1417918293", specialty_code = "14-41")
+# enrollees(pac = "2860305554")
+# enrollees(state = "GA")
 }

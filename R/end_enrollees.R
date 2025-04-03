@@ -26,9 +26,9 @@
 #'
 #' @examples
 #' enrollees(enid = "I20040309000221")
-#' enrollees(npi = "1417918293", specialty_code = "14-41")
-#' enrollees(pac = "2860305554")
-#' enrollees(state = "GA")
+#' # enrollees(npi = "1417918293", specialty_code = "14-41")
+#' # enrollees(pac = "2860305554")
+#' # enrollees(state = "GA")
 #' @autoglobal
 #' @export
 enrollees <- function(npi            = NULL,
@@ -42,27 +42,32 @@ enrollees <- function(npi            = NULL,
                       last_name      = NULL,
                       org_name       = NULL) {
 
-  args <- list2(
-    "NPI"                = arg_npi(npi),
-    "PECOS_ASCT_CNTL_ID" = pac,
-    "ENRLMT_ID"          = enid,
-    "PROVIDER_TYPE_CD"   = specialty_code,
-    "PROVIDER_TYPE_DESC" = specialty_desc,
-    "STATE_CD"           = arg_state(state),
-    "FIRST_NAME"         = first_name,
-    "MDL_NAME"           = middle_name,
-    "LAST_NAME"          = last_name,
-    "ORG_NAME"           = org_name
-  )
+  # args <- list2(
+  #   "NPI"                = arg_npi(npi),
+  #   "PECOS_ASCT_CNTL_ID" = pac,
+  #   "ENRLMT_ID"          = enid,
+  #   "PROVIDER_TYPE_CD"   = specialty_code,
+  #   "PROVIDER_TYPE_DESC" = specialty_desc,
+  #   "STATE_CD"           = arg_state(state),
+  #   "FIRST_NAME"         = first_name,
+  #   "MDL_NAME"           = middle_name,
+  #   "LAST_NAME"          = last_name,
+  #   "ORG_NAME"           = org_name
+  # )
+  #
+  # list(
+  #   args = args,
+  #   request = careMain("enrollees") |> new_request()
+  # )
 
-  list(
-    args = args,
-    request = careMain("enrollees") |> new_request()
-  )
+  x <- careMain("enrollees") |>
+    new_request() |>
+    req_perform() |>
+    resp_simple_json()
+
+  set_names(
+    as_tbl(x$data),
+    x$meta$headers) |>
+    map_na_if()
 
 }
-
-# perform_request_public(
-#   url   = endpoint(public_dataset("enrollees")),
-#   query = eval_bare(process_params(arg_names = fn_fmls_names(),
-#                                    field_names = fields(public_dataset("enrollees")))))
