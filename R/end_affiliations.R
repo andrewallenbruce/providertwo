@@ -58,7 +58,7 @@ affiliations <- function(npi = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  x <- proCurr("affiliations")
+  x <- proMain("affiliations")
 
   list(
     args = args,

@@ -36,9 +36,7 @@ method(list_resources, MainCurrent) <- function(x) {
 
 method(list_resources, careTemp) <- function(x) {
 
-  resp_list <- map(
-    x@endpoints$resources,
-    request) |>
+  resp_list <- map(x@endpoints$resources, request) |>
     req_perform_parallel(on_error = "continue")
 
   map(resps_successes(resp_list), function(x) {

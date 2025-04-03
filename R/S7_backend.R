@@ -97,18 +97,18 @@ MainCurrent <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<proCurr>` object.
+#' @returns An S7 `<proMain>` object.
 #'
 #' @examples
-#' proCurr("affiliations")
-#' proCurr("clinicians")
-#' proCurr("utilization")
+#' proMain("affiliations")
+#' proMain("clinicians")
+#' proMain("utilization")
 #' @autoglobal
 #' @rdname Provider
 #' @export
-proCurr <- new_class(
+proMain <- new_class(
   parent = Current,
-  name = "proCurr",
+  name = "proMain",
   package = NULL,
   properties = list(
     issued     = class_character | class_Date,
@@ -153,23 +153,23 @@ proCurr <- new_class(
 #' @returns An S7 `<openCurr>` object.
 #'
 #' @examples
-#' openCurr("prof_cov")
-#' openCurr("prof_phys")
-#' openCurr("prof_info")
-#' openCurr("prof_map")
-#' openCurr("prof_entity")
-#' openCurr("prof_teach")
-#' openCurr("dashboard")
-#' openCurr("pay_state_total")
-#' openCurr("pay_state_group")
-#' openCurr("pay_nat_group")
-#' openCurr("pay_nat_total")
+#' openMain("prof_cov")
+#' openMain("prof_phys")
+#' openMain("prof_info")
+#' openMain("prof_map")
+#' openMain("prof_entity")
+#' openMain("prof_teach")
+#' openMain("dashboard")
+#' openMain("pay_state_total")
+#' openMain("pay_state_group")
+#' openMain("pay_nat_group")
+#' openMain("pay_nat_total")
 #' @autoglobal
 #' @rdname Open
 #' @export
-openCurr <- new_class(
+openMain <- new_class(
   parent = Current,
-  name = "openCurr",
+  name = "openMain",
   package = NULL,
   properties = list(
     uuid       = class_character,
@@ -181,10 +181,7 @@ openCurr <- new_class(
   ),
   constructor = function(alias) {
 
-    if (!exists("catalog")) catalog <- catalogs()
-
-    x <- c(select_alias(catalog$open$current, alias_open(alias)))
-
+    x <- open_main(alias)
     q <- dims_open(x$identifier)
 
     new_object(

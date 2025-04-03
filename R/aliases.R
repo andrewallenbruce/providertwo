@@ -212,10 +212,23 @@ pro_group <- function(x) {
   select_alias(catalog$pro, x)
 }
 
+#' @examplesIf rlang::is_interactive()
+#' open_main("prof_cov")
+#' open_main("prof_phys")
+#' open_main("prof_info")
+#' open_main("prof_map")
+#' open_main("prof_entity")
+#' open_main("prof_teach")
+#' open_main("dashboard")
+#' open_main("pay_state_total")
+#' open_main("pay_state_group")
+#' open_main("pay_nat_group")
+#' open_main("pay_nat_total")
 #' @autoglobal
 #' @noRd
-alias_open <- function(x) {
-  nswitch(
+open_main <- function(x) {
+
+  x <- nswitch(
     x,
     "prof_cov",        "^Covered Recipient Profile Supplement",
     "prof_phys",       "^Physician \\(Distinct\\) Profile Information",
@@ -231,6 +244,12 @@ alias_open <- function(x) {
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$open$current, x) |> c()
 }
 
 #' @noRd

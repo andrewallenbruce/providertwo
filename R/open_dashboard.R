@@ -1,46 +1,42 @@
-#' Open Dashboard Response Class
-#'
-#' @param response `<openRespDash>` object returned from the API call to the dashboard.
-#'
-#' @returns An S7 `<openRespDash>` object.
-#'
-#' @examples
-#' open_dashboard()
 #' @autoglobal
-#' @name OpenResp
-#' @export
-
-#' @autoglobal
-#' @rdname OpenResp
-#' @export
-openRespDash <- new_class(
-  name = "openRespDash",
-  package = NULL,
+#' @noRd
+openDashboard <- new_class(
+  name       = "openDashboard",
+  package    = NULL,
   properties = list(response = class_list)
 )
 
+#' Open Payments Summary Dashboard
+#' @returns A `<tibble>`
+#' @examples
+#' open_dashboard()
 #' @autoglobal
-#' @rdname OpenResp
 #' @export
 open_dashboard <- function() {
-  openRespDash(
-    response = openCurr("dashboard") |>
-      prop("identifier") |>
-      request() |>
-      req_url_query(
-        schema  = "false",
-        keys    = "true",
-        results = "true",
-        count   = "true",
-        offset  = 0L,
-        limit   = 500L
-      ) |>
+  openDashboard(
+    response = openMain("dashboard") |>
+      new_request() |>
       req_perform() |>
       resp_body_string() |>
       fparse() |>
       _[["results"]]
-  )
+  ) |>
+    tidyup()
 }
+
+#' @autoglobal
+#' @noRd
+tidyup <- new_generic("tidyup", "x", function(x) {
+  S7_dispatch()
+})
+
+method(tidyup, openDashboard) <- function(x) {
+  prop(x, "response") |>
+    slt(-dashboard_row_number) |>
+    as_tbl()
+}
+
+# x <- open_dashboard()
 
 # x |>
 #   fastplyr::f_arrange(data_metrics, dashboard_row_number) |>

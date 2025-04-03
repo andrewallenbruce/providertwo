@@ -7,7 +7,7 @@
 new_request(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{proCurr}, \code{MainCurrent}, or \code{openCurr}}
+\item{x}{An object of class \code{proMain}, \code{MainCurrent}, or \code{openMain}}
 
 \item{...}{Additional arguments?}
 }
@@ -19,7 +19,7 @@ Create a new request by class
 }
 \examples{
 MainCurrent("enrollees") |> new_request()
-proCurr("affiliations") |> new_request()
-openCurr("dashboard") |> new_request()
+proMain("affiliations") |> new_request()
+openMain("dashboard") |> new_request()
 
 }

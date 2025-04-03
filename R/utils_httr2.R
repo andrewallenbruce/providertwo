@@ -69,7 +69,7 @@ map_parse_json_response_provider <- function(resp) {
 
 #' @autoglobal
 #' @noRd
-tidyup <- function(x, names) {
+tidyup2 <- function(x, names) {
   set_names(x, names(names)) |>
     map_na_if()
 }
@@ -187,13 +187,13 @@ perform_request_public <- function(url, query) {
     return(
       req_perform(req) |>
         parse_json_response_public() |>
-        tidyup(names = query)
+        tidyup2(names = query)
     )
   } else {
     return(
       req_perform_iterative_offset(req, 5000L) |>
         map_parse_json_response_public() |>
-        tidyup(names = query)
+        tidyup2(names = query)
     )
   }
 
@@ -226,13 +226,13 @@ perform_request_provider <- function(url, query) {
     return(
       req_perform(req) |>
         parse_json_response_provider() |>
-        tidyup(names = query)
+        tidyup2(names = query)
     )
   } else {
     return(
       req_perform_iterative_offset(req, limit) |>
         map_parse_json_response_provider() |>
-        tidyup(names = query)
+        tidyup2(names = query)
     )
   }
 }

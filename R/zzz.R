@@ -4,8 +4,8 @@
 
   catalogs <<- memoise::memoise(catalogs)
   MainCurrent <<- memoise::memoise(MainCurrent)
-  openCurr <<- memoise::memoise(openCurr)
-  proCurr <<- memoise::memoise(proCurr)
+  openMain <<- memoise::memoise(openMain)
+  proMain <<- memoise::memoise(proMain)
 
   S7::methods_register()
 

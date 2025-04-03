@@ -99,7 +99,7 @@ S7::method(print, MainCurrent) <- function(x) {
   invisible(x)
 }
 
-S7::method(print, proCurr) <- function(x) {
+S7::method(print, proMain) <- function(x) {
   fmt$title(x)
   cli::cat_line()
   fmt$desc(x)
@@ -125,7 +125,7 @@ S7::method(print, proCurr) <- function(x) {
   invisible(x)
 }
 
-S7::method(print, openCurr) <- function(x) {
+S7::method(print, openMain) <- function(x) {
   fmt$title(x)
   cli::cat_line()
   fmt$desc(x)
