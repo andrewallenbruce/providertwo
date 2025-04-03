@@ -8,9 +8,7 @@
 #' @examples
 #' careMain("enrollees") |> list_resources()
 #' careTemp("quality_payment") |> list_resources()
-#'
 #' @autoglobal
-#' @rdname Main
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()

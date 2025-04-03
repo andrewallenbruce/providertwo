@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-dims_main <- function(x) {
+dims_care <- function(x) {
   x <- x |>
     request() |>
     req_url_query(offset = 0L, size = 1L) |>
@@ -16,7 +16,7 @@ dims_main <- function(x) {
 
 #' @autoglobal
 #' @noRd
-dims_main_temp <- function(x) {
+dims_care_temp <- function(x) {
 
   get_rows <- \(x) {
     request(x) |>

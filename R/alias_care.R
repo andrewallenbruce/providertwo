@@ -130,9 +130,9 @@ care_temp_group <- function(x) {
   years  <- funique(x2$year)
   groups <- funique(x2$group)
 
-  q <- map(sbt(x2, year == fmax(year)) |>
-             _[["identifier"]], \(x)
-           dims_main_temp(x)) |>
+  q <- map(
+    sbt(x2, year == fmax(year)) |> _[["identifier"]],
+    function(x) dims_care_temp(x)) |>
     set_names(groups)
 
   x2 <- rsplit(x2, ~ group)

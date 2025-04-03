@@ -69,7 +69,7 @@ careMain <- new_class(
   constructor = function(alias) {
 
     x <- care_main(alias)
-    q <- dims_main(x$identifier)
+    q <- dims_care(x$identifier)
 
     new_object(
       Current(),
@@ -253,7 +253,7 @@ careTemp <- new_class(
 
     x   <- care_temp(alias)
     dat <- get_elem(x, "data")[[1]]
-    q   <- dims_main_temp(dat$identifier[1])
+    q   <- dims_care_temp(dat$identifier[1])
 
     new_object(
       Temporal(),

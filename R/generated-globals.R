@@ -73,8 +73,8 @@ utils::globalVariables(c(
   "resources",
   # <catalog_main>
   "resourcesAPI",
-  # <dims_main>
-  # <dims_main_temp>
+  # <dims_care>
+  # <dims_care_temp>
   # <dims_pro>
   # <dims_open>
   "rows",
