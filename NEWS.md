@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9161 (2025-04-03)
+
+* tidyup generic
+
+
 # providertwo 0.0.0.9160 (2025-04-02)
 
 * unexport offset
