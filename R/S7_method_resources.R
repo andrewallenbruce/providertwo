@@ -1,3 +1,6 @@
+#' @include S7_care.R
+NULL
+
 #' @name list_resources
 #' @title List resources
 #'

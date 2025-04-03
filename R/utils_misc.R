@@ -51,6 +51,15 @@ offset_size <- function(n, limit) {
   seq_size(from = 0L, to = n, by = limit)
 }
 
+#' @noRd
+pro_url <- \(x) paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", x, "/0")
+
+#' @noRd
+pro_dict <- \(x) paste0("https://data.cms.gov/provider-data/dataset/", x, "#data-dictionary")
+
+#' @noRd
+open_url <- \(x) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", x, "/0")
+
 #' Flatten List Column
 #'
 #' @param i `<list>` list column

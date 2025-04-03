@@ -17,9 +17,9 @@ pro_main <- function(x) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$pro, x)
+  select_alias(.catalog$pro, x)
 
 }
 
@@ -37,7 +37,7 @@ pro_group <- function(x) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$pro, x)
+  select_alias(.catalog$pro, x)
 }

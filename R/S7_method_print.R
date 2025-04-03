@@ -1,4 +1,5 @@
 #' @include S7_backend.R
+#' @include S7_care.R
 NULL
 
 #' @noRd

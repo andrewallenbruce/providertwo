@@ -33,20 +33,20 @@ open_main <- function(x) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$open$current, x) |> c()
+  select_alias(.catalog$open$main, x) |> c()
 }
 
 #' @examplesIf rlang::is_interactive()
 #' open_temp("general")
 #' open_temp("ownership")
 #' open_temp("research")
-#' open_temp("recipient_nature")
-#' open_temp("recipient_entity")
-#' open_temp("entity_nature")
-#' open_temp("entity_recipient_nature")
-#' open_temp("state_nature")
+#' # open_temp("recipient_nature")
+#' # open_temp("recipient_entity")
+#' # open_temp("entity_nature")
+#' # open_temp("entity_recipient_nature")
+#' # open_temp("state_nature")
 #' @noRd
 open_temp <- function(x) {
 
@@ -55,18 +55,37 @@ open_temp <- function(x) {
     "general",                 "^General Payment Data$",
     "ownership",               "^Ownership Payment Data$",
     "research",                "^Research Payment Data$",
-    "recipient_nature",        "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    "recipient_entity",        "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    "entity_nature",           "^Payments Grouped by Reporting Entities and Nature of Payments$",
-    "entity_recipient_nature", "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
-    "state_nature",            "^State Payment Totals Grouped by Nature of Payment for all Years$",
+    # "recipient_nature",        "^Payments Grouped by Covered Recipient and Nature of Payments$",
+    # "recipient_entity",        "^Payments Grouped by Covered Recipient and Reporting Entities$",
+    # "entity_nature",           "^Payments Grouped by Reporting Entities and Nature of Payments$",
+    # "entity_recipient_nature", "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
+    # "state_nature",            "^State Payment Totals Grouped by Nature of Payment for all Years$",
     default = NA_character_,
     nThread = 4L
   )
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$open$temporal, x)
+  select_alias(.catalog$open$temp, x)
+}
+
+#' @examplesIf rlang::is_interactive()
+#' open_temp_group("grouped_payments")
+#' @noRd
+open_temp_group <- function(x = "grouped_payments") {
+
+  x <- nswitch(
+    x,
+    "grouped_payments", "^Payments Grouped by|^State Payment Totals",
+    default = NA_character_,
+    nThread = 4L
+  )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) .catalog <- catalogs()
+
+  select_alias(.catalog$open$temp, x)
 }

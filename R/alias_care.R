@@ -37,9 +37,10 @@ care_main <- function(x, call = caller_env()) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$care$main, x) |> c()
+  select_alias(.catalog$care$main, x) |> c()
+
 }
 
 #' @examplesIf rlang::is_interactive()
@@ -63,9 +64,9 @@ care_group <- function(x, call = caller_env()) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$care$main, x) |> slt(-filetype)
+  select_alias(.catalog$care$main, x) |> slt(-filetype)
 }
 
 #' @examplesIf rlang::is_interactive()
@@ -83,9 +84,9 @@ care_temp <- function(x) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(catalog$care$temp, x)
+  select_alias(.catalog$care$temp, x)
 
 }
 
@@ -112,9 +113,9 @@ care_temp_group <- function(x) {
 
   if (na(x)) cli_abort("x" = "No matches found.", call = call)
 
-  if (!exists("catalog")) catalog <- catalogs()
+  if (!exists("catalog")) .catalog <- catalogs()
 
-  x <- select_alias(catalog$care$temp, x) |>
+  x <- select_alias(.catalog$care$temp, x) |>
     mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
         title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
     colorder(title, group)
@@ -132,7 +133,9 @@ care_temp_group <- function(x) {
 
   q <- map(
     sbt(x2, year == fmax(year)) |> _[["identifier"]],
-    function(x) dims_care_temp(x)) |>
+    function(x)
+      # TODO parallelize
+      dims_care_temp(x)) |>
     set_names(groups)
 
   x2 <- rsplit(x2, ~ group)
