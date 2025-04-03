@@ -24,8 +24,8 @@ utils::globalVariables(c(
   "distribution",
   # <catalog_pro>
   # <catalog_open>
-  # <openTemp>
   # <careTemp>
+  # <openTemp>
   "download",
   # <catalog_care>
   "downloadURL",
@@ -38,8 +38,8 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
-  # <openTemp>
   # <careTemp>
+  # <openTemp>
   # <care_temp_group>
   "identifier",
   # <catalog_pro>
@@ -58,8 +58,8 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
-  # <openTemp>
   # <careTemp>
+  # <openTemp>
   "modified",
   # <catalog_care>
   # <care_temp_group>
@@ -92,8 +92,8 @@ utils::globalVariables(c(
   "title",
   # <catalog_care>
   # <catalog_open>
-  # <openTemp>
   # <careTemp>
+  # <openTemp>
   # <care_temp_group>
   "year",
   NULL

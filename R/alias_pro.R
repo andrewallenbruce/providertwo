@@ -19,7 +19,7 @@ pro_main <- function(x) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(.catalog$pro, x)
+  select_alias(.catalog$pro, x) |> c()
 
 }
 

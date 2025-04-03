@@ -43,8 +43,9 @@ RoxygenNote: 7.3.2
 Collate: 
     '00-catalogs.R'
     'S7_args.R'
-    'S7_backend.R'
     'S7_care.R'
+    'S7_open.R'
+    'S7_pro.R'
     'S7_method_print.R'
     'S7_method_request.R'
     'S7_method_resources.R'

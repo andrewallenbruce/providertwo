@@ -1,5 +1,6 @@
-#' @include S7_backend.R
 #' @include S7_care.R
+#' @include S7_pro.R
+#' @include S7_open.R
 NULL
 
 #' @name new_request

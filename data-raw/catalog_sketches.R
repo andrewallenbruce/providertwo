@@ -1,3 +1,89 @@
+#' API Current Endpoint Class
+#'
+#' @param title       `<chr>` title
+#' @param description `<chr>` description
+#' @param contact     `<chr>` contact name and email address
+#' @param modified    `<chr>` date last modified
+#' @param identifier  `<chr>` uuid
+#' @param rows        `<int>` number of rows
+#' @param fields      `<chr>` field names
+#' @param pages       `<int>` number of pages
+#' @param download    `<chr>` download URL
+#'
+#' @returns An S7 `<Current>` object.
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+Current <- new_class(
+  name = "Current",
+  package = NULL,
+  properties    = list(
+    title       = class_character,
+    description = class_character,
+    contact     = class_character,
+    modified    = class_character | class_Date,
+    identifier  = class_character,
+    rows        = class_integer,
+    pages       = class_integer,
+    fields      = class_character,
+    download    = class_character
+  )
+)
+
+#' Temporal Endpoint Object
+#'
+#' @param title       `<chr>` title
+#' @param description `<chr>` description
+#' @param contact     `<chr>` contact name and email address
+#' @param rows        `<int>` number of rows
+#' @param pages       `<int>` number of pages
+#' @param fields      `<chr>` field names
+#' @param years       `<int>` years available
+#' @param endpoints   `<data.frame>` endpoints
+#'
+#' @returns An S7 `<Temporal>` object.
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+Temporal <- new_class(
+  name = "Temporal",
+  package = NULL,
+  properties = list(
+    title       = class_character,
+    description = class_character,
+    contact     = class_character,
+    rows        = class_integer,
+    pages       = class_integer,
+    fields      = class_character,
+    years       = class_integer,
+    endpoints   = class_list
+  )
+)
+
+
+
+#' Temporal Group Endpoint
+#'
+#' @inheritParams Temporal
+#'
+#' @returns An S7 `<TemporalGroup>` object.
+#'
+#' @autoglobal
+#' @keywords internal
+#' @export
+TemporalGroup <- new_class(
+  name = "TemporalGroup",
+  package = NULL,
+  properties = list(
+    title       = class_character,
+    contact     = class_character,
+    endpoints   = class_list
+  )
+)
+
+
 #' CMS Main Catalog
 #'
 #' @returns `<list>` of CMS Main API catalog information
