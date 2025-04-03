@@ -38,23 +38,23 @@ Current <- new_class(
 #' @returns An S7 `<MainCurrent>` object.
 #'
 #' @examples
-#' MainCurrent("enrollees")
-#' MainCurrent("opt_out")
-#' MainCurrent("order_refer")
-#' MainCurrent("reassignments")
-#' MainCurrent("hospitals")
-#' MainCurrent("laboratories")
-#' MainCurrent("crosswalk")
-#' MainCurrent("rbcs")
-#' MainCurrent("facilities")
-#' MainCurrent("home_health")
-#' MainCurrent("hospice")
-#' MainCurrent("dialysis")
-#' MainCurrent("skilled_nursing")
+#' careMain("enrollees")
+#' careMain("opt_out")
+#' careMain("order_refer")
+#' careMain("reassignments")
+#' careMain("hospitals")
+#' careMain("laboratories")
+#' careMain("crosswalk")
+#' careMain("rbcs")
+#' careMain("facilities")
+#' careMain("home_health")
+#' careMain("hospice")
+#' careMain("dialysis")
+#' careMain("skilled_nursing")
 #' @autoglobal
 #' @rdname Main
 #' @export
-MainCurrent <- new_class(
+careMain <- new_class(
   parent = Current,
   name = "MainCurrent",
   package = NULL,
@@ -69,7 +69,6 @@ MainCurrent <- new_class(
   constructor = function(alias) {
 
     x <- care_main(alias)
-
     q <- dims_main(x$identifier)
 
     new_object(
@@ -297,10 +296,7 @@ openTemp <- new_class(
   package = NULL,
   constructor = function(alias) {
 
-    if (!exists("catalog")) catalog <- catalogs()
-
-    x <- select_alias(catalog$open$temporal, alias_open_temp(alias))
-
+    x <- open_temp(alias)
     q <- dims_open(x$identifier[1])
 
     new_object(

@@ -3,9 +3,9 @@
   rlang::run_on_load()
 
   catalogs <<- memoise::memoise(catalogs)
-  MainCurrent <<- memoise::memoise(MainCurrent)
+  careMain <<- memoise::memoise(careMain)
   openMain <<- memoise::memoise(openMain)
-  proMain <<- memoise::memoise(proMain)
+  proMain  <<- memoise::memoise(proMain)
 
   S7::methods_register()
 

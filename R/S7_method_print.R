@@ -70,7 +70,7 @@ cli_results <- function(n, limit) {
 
 print <- S7::new_external_generic("base", "print", "x")
 
-S7::method(print, MainCurrent) <- function(x) {
+S7::method(print, careMain) <- function(x) {
   fmt$title(x)
   cli::cat_line()
   fmt$desc(x)

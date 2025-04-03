@@ -5,22 +5,22 @@ NULL
 #'
 #' @title Create a new request by class
 #'
-#' @param x An object of class `proMain`, `MainCurrent`, or `openMain`
-#'
-#' @param ... Additional arguments?
+#' @param x An object of class `proMain`, `careMain`, or `openMain`
 #'
 #' @returns A new request
 #'
 #' @examples
-#' MainCurrent("enrollees") |> new_request()
+#' careMain("enrollees") |> new_request()
 #' proMain("affiliations") |> new_request()
 #' openMain("dashboard") |> new_request()
 #'
 #' @autoglobal
 #' @export
-new_request <- new_generic("new_request", "x")
+new_request <- new_generic("new_request", "x", function(x) {
+  S7_dispatch()
+})
 
-method(new_request, MainCurrent) <- function(x) {
+method(new_request, careMain) <- function(x) {
   request(x@identifier) |>
     req_url_query(offset = 0L, size = 5000L)
 }

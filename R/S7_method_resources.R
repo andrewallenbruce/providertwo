@@ -1,12 +1,12 @@
 #' @name list_resources
 #' @title List resources
 #'
-#' @param x Object of class `MainCurrent` or `careTemp`
+#' @param x Object of class `careMain` or `careTemp`
 #'
 #' @returns A list of API resources
 #'
 #' @examples
-#' MainCurrent("enrollees") |> list_resources()
+#' careMain("enrollees") |> list_resources()
 #' careTemp("quality_payment") |> list_resources()
 #'
 #' @autoglobal
@@ -28,8 +28,9 @@ method(list_resources, class_character) <- function(x) {
     f_fill(year)
 }
 
-method(list_resources, MainCurrent) <- function(x) {
-  list_resources(x@resources) |>
+method(list_resources, careMain) <- function(x) {
+  prop(x, "resources") |>
+    list_resources() |>
     roworder(-year, ext, -size) |>
     as_tbl()
 }

@@ -4,12 +4,10 @@
 \alias{new_request}
 \title{Create a new request by class}
 \usage{
-new_request(x, ...)
+new_request(x)
 }
 \arguments{
-\item{x}{An object of class \code{proMain}, \code{MainCurrent}, or \code{openMain}}
-
-\item{...}{Additional arguments?}
+\item{x}{An object of class \code{proMain}, \code{careMain}, or \code{openMain}}
 }
 \value{
 A new request
@@ -18,7 +16,7 @@ A new request
 Create a new request by class
 }
 \examples{
-MainCurrent("enrollees") |> new_request()
+careMain("enrollees") |> new_request()
 proMain("affiliations") |> new_request()
 openMain("dashboard") |> new_request()
 

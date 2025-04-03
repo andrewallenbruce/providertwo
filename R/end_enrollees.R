@@ -30,7 +30,6 @@
 #' enrollees(pac = "2860305554")
 #' enrollees(state = "GA")
 #' @autoglobal
-#'
 #' @export
 enrollees <- function(npi            = NULL,
                       pac            = NULL,
@@ -56,7 +55,7 @@ enrollees <- function(npi            = NULL,
     "ORG_NAME"           = org_name
   )
 
-  x <- MainCurrent("enrollees")
+  x <- careMain("enrollees")
 
   list(
     args = args,
