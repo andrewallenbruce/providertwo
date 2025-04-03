@@ -1,13 +1,13 @@
 #' @name list_resources
 #' @title List resources
 #'
-#' @param x Object of class `MainCurrent` or `mainTemp`
+#' @param x Object of class `MainCurrent` or `careTemp`
 #'
 #' @returns A list of API resources
 #'
 #' @examples
 #' MainCurrent("enrollees") |> list_resources()
-#' mainTemp("quality_payment") |> list_resources()
+#' careTemp("quality_payment") |> list_resources()
 #'
 #' @autoglobal
 #' @rdname Main
@@ -34,7 +34,7 @@ method(list_resources, MainCurrent) <- function(x) {
     as_tbl()
 }
 
-method(list_resources, mainTemp) <- function(x) {
+method(list_resources, careTemp) <- function(x) {
 
   resp_list <- map(
     x@endpoints$resources,

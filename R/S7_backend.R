@@ -68,7 +68,7 @@ MainCurrent <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- main_current(alias)
+    x <- care_main(alias)
 
     q <- dims_main(x$identifier)
 
@@ -123,10 +123,7 @@ proCurr <- new_class(
   ),
   constructor = function(alias) {
 
-    if (!exists("catalog")) catalog <- catalogs()
-
-    x <- c(select_alias(catalog$pro, alias_pro(alias)))
-
+    x <- pro_main(alias)
     q <- dims_pro(x$identifier)
 
     new_object(
@@ -147,22 +144,7 @@ proCurr <- new_class(
   }
 )
 
-#' Provider API Group Endpoint
-#'
-#' @param alias `<chr>` endpoint alias
-#'
-#' @returns `<data.frame>`
-#'
-#' @examples
-#' pro_group("mips")
-#' @autoglobal
-#' @export
-pro_group <- function(alias) {
 
-  if (!exists("catalog")) catalog <- catalogs()
-
-  select_alias(catalog$pro, alias_pro_group(alias))
-}
 
 #' Current Open Payments API Endpoint
 #'
@@ -251,20 +233,20 @@ Temporal <- new_class(
   )
 )
 
-#' Temporal Main API Endpoint
+#' Medicare Temporal Endpoint
 #'
-#' @param alias `<chr>` endpoint alias
+#' @param alias `<chr>` title alias
 #'
-#' @returns An S7 `<mainTemp>` object.
+#' @returns An S7 `<careTemp>` object.
 #'
 #' @examples
-#' mainTemp("quality_payment")
+#' careTemp("quality_payment")
 #' @autoglobal
 #' @rdname Main
 #' @export
-mainTemp <- new_class(
+careTemp <- new_class(
   parent = Temporal,
-  name = "mainTemp",
+  name = "careTemp",
   package = NULL,
   properties = list(
     periodicity = class_character,
@@ -273,13 +255,9 @@ mainTemp <- new_class(
   ),
   constructor = function(alias) {
 
-    if (!exists("catalog")) catalog <- catalogs()
-
-    x <- select_alias(catalog$main$temporal, alias_main_temp(alias))
-
+    x   <- care_temp(alias)
     dat <- get_elem(x, "data")[[1]]
-
-    q <- dims_main_temp(dat$identifier[1])
+    q   <- dims_main_temp(dat$identifier[1])
 
     new_object(
       Temporal(),
@@ -361,24 +339,24 @@ TemporalGroup <- new_class(
   )
 )
 
-#' Main API Endpoint Temporal Group
+#' Medicare Temporal Group
 #'
-#' @param alias `<chr>` endpoint alias
+#' @param alias `<chr>` title alias
 #'
-#' @returns An S7 `<mainTempGroup>` object.
+#' @returns An S7 `<careTempGroup>` object.
 #'
 #' @examples
-#' mainTempGroup("utilization")
-#' mainTempGroup("prescribers")
-#' mainTempGroup("suppliers")
-#' mainTempGroup("outpatient")
-#' mainTempGroup("inpatient")
+#' careTempGroup("utilization")
+#' careTempGroup("prescribers")
+#' careTempGroup("suppliers")
+#' careTempGroup("outpatient")
+#' careTempGroup("inpatient")
 #' @autoglobal
-#' @rdname Main
+#' @rdname Care
 #' @export
-mainTempGroup <- new_class(
+careTempGroup <- new_class(
   parent  = TemporalGroup,
-  name    = "mainTempGroup",
+  name    = "careTempGroup",
   package = NULL,
   properties = list(
     periodicity = class_character,
@@ -386,7 +364,7 @@ mainTempGroup <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- main_temp_group(alias)
+    x <- care_temp_group(alias)
 
     template <- glue(
       "

@@ -1,20 +1,20 @@
 #' @examplesIf rlang::is_interactive()
-#' main_current("enrollees")
-#' main_current("opt_out")
-#' main_current("order_refer")
-#' main_current("reassignments")
-#' main_current("hospitals")
-#' main_current("laboratories")
-#' main_current("crosswalk")
-#' main_current("rbcs")
-#' main_current("facilities")
-#' main_current("home_health")
-#' main_current("hospice")
-#' main_current("dialysis")
-#' main_current("skilled_nursing")
+#' care_main("enrollees")
+#' care_main("opt_out")
+#' care_main("order_refer")
+#' care_main("reassignments")
+#' care_main("hospitals")
+#' care_main("laboratories")
+#' care_main("crosswalk")
+#' care_main("rbcs")
+#' care_main("facilities")
+#' care_main("home_health")
+#' care_main("hospice")
+#' care_main("dialysis")
+#' care_main("skilled_nursing")
 #' @autoglobal
 #' @noRd
-main_current <- function(x, call = caller_env()) {
+care_main <- function(x, call = caller_env()) {
 
   x <- nswitch(
     x,
@@ -43,13 +43,13 @@ main_current <- function(x, call = caller_env()) {
 }
 
 #' @examplesIf rlang::is_interactive()
-#' main_group("hospitals")
-#' main_group("rhc")
-#' main_group("fqhc")
-#' main_group("pending")
+#' care_group("hospitals")
+#' care_group("rhc")
+#' care_group("fqhc")
+#' care_group("pending")
 #' @autoglobal
 #' @noRd
-main_group <- function(x, call = caller_env()) {
+care_group <- function(x, call = caller_env()) {
 
   x <- nswitch(
     x,
@@ -68,19 +68,38 @@ main_group <- function(x, call = caller_env()) {
   select_alias(catalog$main$current, x) |> slt(-filetype)
 }
 
+#' @examplesIf rlang::is_interactive()
+#' care_temp("quality_payment")
+#' @autoglobal
 #' @noRd
-alias_main_temp <- function(x) {
-  nswitch(
+care_temp <- function(x) {
+
+  x <- nswitch(
     x,
     "quality_payment",  "Quality Payment Program Experience",
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$main$temporal, x)
+
 }
 
+#' @examplesIf rlang::is_interactive()
+#' care_temp_group("utilization")
+#' care_temp_group("prescribers")
+#' care_temp_group("suppliers")
+#' care_temp_group("outpatient")
+#' care_temp_group("inpatient")
+#' @autoglobal
 #' @noRd
-alias_main_temp_group <- function(x) {
-  nswitch(
+care_temp_group <- function(x) {
+
+  x <- nswitch(
     x,
     "prescribers", "Medicare Part D Prescribers",
     "utilization", "Medicare Physician & Other Practitioners",
@@ -90,11 +109,74 @@ alias_main_temp_group <- function(x) {
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  x <- select_alias(catalog$main$temporal, x) |>
+    mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
+        title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
+    colorder(title, group)
+
+  x2 <- map2(x$data,  x$group, function(x, y)
+             mtt(x, group = clean_names(y)) |>
+               slt(year, group, identifier, resources)) |>
+    rowbind() |>
+    join(slt(x, -data, -title, -periodicity, -contact),
+         on = "group",
+         verbose = 0)
+
+  years  <- funique(x2$year)
+  groups <- funique(x2$group)
+
+  q <- map(sbt(x2, year == fmax(year)) |>
+             _[["identifier"]], \(x)
+           dims_main_temp(x)) |>
+    set_names(groups)
+
+  x2 <- rsplit(x2, ~ group)
+
+  template <- glue(
+    "
+  {group} = list(
+  description = x2${group}$description[1],
+  dictionary  = x2${group}$dictionary[1],
+  site        = x2${group}$site[1],
+  rows        = q${group}$rows,
+  pages       = q${group}$pages,
+  fields      = q${group}$fields,
+  endpoints   = slt(x2${group}, -description, -dictionary, -site))
+  ",
+    group = x$group) |>
+    glue_collapse(sep = ",\n")
+
+  glue(
+    "
+  list(
+    title       = x$title[1],
+    periodicity = x$periodicity[1],
+    contact     = x$contact[1],
+    years       = years,
+    groups      = groups,
+  {template}
+  )
+  "
+  ) |>
+    parse_expr() |>
+    eval_bare()
+
 }
 
+#' @examplesIf rlang::is_interactive()
+#' pro_main("affiliations")
+#' pro_main("clinicians")
+#' pro_main("utilization")
+#' @autoglobal
 #' @noRd
-alias_pro <- function(x) {
-  nswitch(
+pro_main <- function(x) {
+
+  x <- nswitch(
     x,
     "affiliations",  "^Facility Affiliation Data$",
     "clinicians",    "^National Downloadable File$",
@@ -102,18 +184,35 @@ alias_pro <- function(x) {
     default = NA_character_,
     nThread = 4L
   )
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$pro, x)
+
 }
 
+#' @examplesIf rlang::is_interactive()
+#' pro_group("mips")
+#' @autoglobal
 #' @noRd
-alias_pro_group <- function(x) {
-  nswitch(
+pro_group <- function(x) {
+
+  x <- nswitch(
     x,
     "mips", "^PY 2022",
     default = NA_character_,
-    nThread = 4L
-  )
+    nThread = 4L)
+
+  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+
+  if (!exists("catalog")) catalog <- catalogs()
+
+  select_alias(catalog$pro, x)
 }
 
+#' @autoglobal
 #' @noRd
 alias_open <- function(x) {
   nswitch(

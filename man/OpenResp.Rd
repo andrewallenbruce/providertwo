@@ -11,7 +11,7 @@ openRespDash(response = list())
 open_dashboard()
 }
 \arguments{
-\item{response}{\verb{<list>} or \verb{<openRespDash>} object returned from the API call to the dashboard.}
+\item{response}{\verb{<openRespDash>} object returned from the API call to the dashboard.}
 }
 \value{
 An S7 \verb{<openRespDash>} object.

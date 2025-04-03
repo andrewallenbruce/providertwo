@@ -5,14 +5,14 @@ utils::globalVariables(c(
   "accessURL",
   # <catalog_main>
   "accrualPeriodicity",
+  # <care_temp_group>
   # <catalog_main>
-  # <main_temp_group>
   # <catalog_open>
   # <catalog_provider>
   "contact",
   # <catalog_main>
   "current",
-  # <main_temp_group>
+  # <care_temp_group>
   "data",
   # <catalog_main>
   "describedBy",
@@ -24,23 +24,23 @@ utils::globalVariables(c(
   "dictionary",
   # <catalog_main>
   "distribution",
-  # <mainTemp>
+  # <careTemp>
   # <openTemp>
   # <catalog_open>
   # <catalog_provider>
   "download",
   # <catalog_main>
   "downloadURL",
-  # <mainTemp>
-  # <main_group>
+  # <careTemp>
+  # <care_group>
   "filetype",
-  # <main_temp_group>
+  # <care_temp_group>
   # <catalog_provider>
   "group",
-  # <mainTemp>
+  # <careTemp>
   # <openTemp>
+  # <care_temp_group>
   # <catalog_main>
-  # <main_temp_group>
   # <catalog_open>
   # <catalog_provider>
   "identifier",
@@ -55,21 +55,21 @@ utils::globalVariables(c(
   "limit",
   # <catalog_main>
   "mediaType",
-  # <mainTemp>
+  # <careTemp>
   # <openTemp>
   # <catalog_main>
   # <catalog_open>
   # <catalog_provider>
   "modified",
+  # <care_temp_group>
   # <catalog_main>
-  # <main_temp_group>
   "periodicity",
   # <catalog_main>
   "references",
   # <catalog_provider>
   "released",
-  # <mainTemp>
-  # <main_temp_group>
+  # <careTemp>
+  # <care_temp_group>
   "resources",
   # <catalog_main>
   "resourcesAPI",
@@ -84,16 +84,16 @@ utils::globalVariables(c(
   "temporal",
   # <catalog_provider>
   "theme",
+  # <care_temp_group>
   # <catalog_main>
-  # <main_temp_group>
   # <catalog_open>
   # <catalog_provider>
   # <select_alias>
   "title",
-  # <mainTemp>
+  # <careTemp>
   # <openTemp>
+  # <care_temp_group>
   # <catalog_main>
-  # <main_temp_group>
   # <catalog_open>
   "year",
   NULL

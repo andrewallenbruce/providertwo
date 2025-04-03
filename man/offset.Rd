@@ -2,14 +2,7 @@
 % Please edit documentation in R/utils_misc.R
 \name{offset}
 \alias{offset}
-\alias{offset_seq}
-\alias{offset_size}
 \title{Generate API Request "Offset" Sequence}
-\usage{
-offset_seq(n, limit)
-
-offset_size(n, limit)
-}
 \arguments{
 \item{n}{\verb{<int>} Number of results returned in an API request}
 

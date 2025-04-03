@@ -26,7 +26,7 @@ NULL
 
 #' @rdname offset
 #' @autoglobal
-#' @export
+#' @noRd
 offset_seq <- function(n, limit) {
 
   check_number_whole(n, min = 0)
@@ -39,7 +39,7 @@ offset_seq <- function(n, limit) {
 
 #' @rdname offset
 #' @autoglobal
-#' @export
+#' @noRd
 offset_size <- function(n, limit) {
 
   check_number_whole(n, min = 0)

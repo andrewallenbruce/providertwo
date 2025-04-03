@@ -2,39 +2,32 @@
 % Please edit documentation in R/S7_backend.R, R/S7_method_resources.R
 \name{MainCurrent}
 \alias{MainCurrent}
-\alias{mainTemp}
-\alias{mainTempGroup}
+\alias{careTemp}
 \alias{list_resources}
 \title{Current Main API Endpoint}
 \usage{
 MainCurrent(alias)
 
-mainTemp(alias)
-
-mainTempGroup(alias)
+careTemp(alias)
 
 list_resources(x)
 }
 \arguments{
-\item{alias}{\verb{<chr>} endpoint alias}
+\item{alias}{\verb{<chr>} title alias}
 
-\item{x}{Object of class \code{MainCurrent} or \code{mainTemp}}
+\item{x}{Object of class \code{MainCurrent} or \code{careTemp}}
 }
 \value{
 An S7 \verb{<MainCurrent>} object.
 
-An S7 \verb{<mainTemp>} object.
-
-An S7 \verb{<mainTempGroup>} object.
+An S7 \verb{<careTemp>} object.
 
 A list of API resources
 }
 \description{
 Current Main API Endpoint
 
-Temporal Main API Endpoint
-
-Main API Endpoint Temporal Group
+Medicare Temporal Endpoint
 
 List resources
 }
@@ -52,13 +45,8 @@ MainCurrent("home_health")
 MainCurrent("hospice")
 MainCurrent("dialysis")
 MainCurrent("skilled_nursing")
-mainTemp("quality_payment")
-mainTempGroup("utilization")
-mainTempGroup("prescribers")
-mainTempGroup("suppliers")
-mainTempGroup("outpatient")
-mainTempGroup("inpatient")
+careTemp("quality_payment")
 MainCurrent("enrollees") |> list_resources()
-mainTemp("quality_payment") |> list_resources()
+careTemp("quality_payment") |> list_resources()
 
 }

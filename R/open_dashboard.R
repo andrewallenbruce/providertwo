@@ -1,6 +1,6 @@
 #' Open Dashboard Response Class
 #'
-#' @param response `<list>` or `<openRespDash>` object returned from the API call to the dashboard.
+#' @param response `<openRespDash>` object returned from the API call to the dashboard.
 #'
 #' @returns An S7 `<openRespDash>` object.
 #'
