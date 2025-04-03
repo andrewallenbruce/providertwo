@@ -37,7 +37,6 @@ method(tidyup, openDashboard) <- function(x) {
 }
 
 # x <- open_dashboard()
-
 # x |>
 #   fastplyr::f_arrange(data_metrics, dashboard_row_number) |>
 #   fcompute(

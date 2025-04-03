@@ -58,11 +58,9 @@ affiliations <- function(npi = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  x <- proMain("affiliations")
-
   list(
     args = args,
-    request = new_request(x)
+    request = proMain("affiliations") |> new_request()
   )
 
 }

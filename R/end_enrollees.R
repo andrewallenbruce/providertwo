@@ -55,11 +55,9 @@ enrollees <- function(npi            = NULL,
     "ORG_NAME"           = org_name
   )
 
-  x <- careMain("enrollees")
-
   list(
     args = args,
-    request = new_request(x)
+    request = careMain("enrollees") |> new_request()
   )
 
 }

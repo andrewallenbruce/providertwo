@@ -35,7 +35,7 @@ Current <- new_class(
 #'
 #' @param alias `<chr>` endpoint alias
 #'
-#' @returns An S7 `<MainCurrent>` object.
+#' @returns An S7 `<careMain>` object.
 #'
 #' @examples
 #' careMain("enrollees")
@@ -52,11 +52,11 @@ Current <- new_class(
 #' careMain("dialysis")
 #' careMain("skilled_nursing")
 #' @autoglobal
-#' @rdname Main
+#' @rdname Care
 #' @export
 careMain <- new_class(
   parent = Current,
-  name = "MainCurrent",
+  name = "careMain",
   package = NULL,
   properties = list(
     temporal    = class_character,
@@ -238,7 +238,7 @@ Temporal <- new_class(
 #' @examples
 #' careTemp("quality_payment")
 #' @autoglobal
-#' @rdname Main
+#' @rdname Care
 #' @export
 careTemp <- new_class(
   parent = Temporal,

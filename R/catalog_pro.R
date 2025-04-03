@@ -4,17 +4,9 @@ pro_url <- \(x) paste0("https://data.cms.gov/provider-data/api/1/datastore/query
 #' @noRd
 pro_dict <- \(x) paste0("https://data.cms.gov/provider-data/dataset/", x, "#data-dictionary")
 
-#' CMS Provider Catalog
-#'
-#' @returns `<list>` of Provider API catalog information
-#'
-#' @examplesIf rlang::is_interactive()
-#' catalog_provider()
-#'
 #' @autoglobal
-#' @keywords internal
-#' @export
-catalog_provider <- function() {
+#' @noRd
+catalog_pro <- function() {
 
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 

@@ -1,11 +1,6 @@
-#' CMS Main Catalog
-#' @returns `<list>` of CMS Main API catalog information
-#' @examplesIf rlang::is_interactive()
-#' catalog_main()
 #' @autoglobal
-#' @keywords internal
-#' @export
-catalog_main <- function() {
+#' @noRd
+catalog_care <- function() {
 
   x <- fload("https://data.cms.gov/data.json", query = "/dataset")
 
@@ -53,12 +48,12 @@ catalog_main <- function() {
   d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
   list_tidy(
-    current = join_on_title(
+    main = join_on_title(
       slt(x, -distribution),
       sbt(d, format == "latest", -format, -identifier, -modified, -temporal)) |>
       roworder(title),
-    temporal = join_on_title(
+    temp = join_on_title(
       sbt(d, format != "latest", -format) |> roworder(title, -year) |> f_nest_by(.cols = "title") |> f_ungroup(),
-      slt(current, title, description, periodicity, contact, dictionary, site))
+      slt(main, title, description, periodicity, contact, dictionary, site))
     )
 }
