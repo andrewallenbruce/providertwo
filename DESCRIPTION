@@ -60,6 +60,7 @@ Collate:
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
+    'open_dashboard.R'
     'providertwo-package.R'
     'query.R'
     'utils_checks.R'
