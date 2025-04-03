@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9160 (2025-04-02)
+
+* unexport offset
+
+
 # providertwo 0.0.0.9159 (2025-04-02)
 
 * class renaming
