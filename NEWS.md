@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9158 (2025-04-02)
+
+* `open_dashboard()`
+
+
 # providertwo 0.0.0.9157 (2025-04-01)
 
 * aliases -> lookups
