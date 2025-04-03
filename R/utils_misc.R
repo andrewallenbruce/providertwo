@@ -22,6 +22,7 @@
 #' offset_seq(147984, 2000)
 #' offset_size(147984, 2000)
 #' @name offset
+#' @noRd
 NULL
 
 #' @rdname offset
