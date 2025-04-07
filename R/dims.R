@@ -84,3 +84,29 @@ dims_open <- function(x) {
     pages  = offset_size(rows, 500L)
   )
 }
+
+#' @autoglobal
+#' @noRd
+dims_caid <- function(uuid) {
+
+  x <- uuid |>
+    caid_url() |>
+    request() |>
+    req_url_query(
+      schema  = "false",
+      keys    = "false",
+      results = "true",
+      count   = "true",
+      format  = "json",
+      rowIds  = "false",
+      limit   = 1,
+      offset  = 0
+    ) |>
+    perform_simple()
+
+  list_tidy(
+    rows   = x$count,
+    fields = x$query$properties,
+    pages  = offset_size(rows, 8000L))
+
+}

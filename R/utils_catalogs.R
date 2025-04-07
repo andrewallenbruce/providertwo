@@ -121,6 +121,9 @@ pro_dict <- function(x) paste0("https://data.cms.gov/provider-data/dataset/", x,
 #' @noRd
 open_url <- function(x) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", x, "/0")
 
+#' @noRd
+caid_url <- function(x) paste0("https://data.medicaid.gov/api/1/datastore/query/", x, "/0")
+
 #' Parse datetime
 #'
 #' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"

@@ -4,10 +4,12 @@ utils::globalVariables(c(
   # <catalog_care>
   "accessURL",
   # <catalog_care>
+  # <catalog_caid>
   "accrualPeriodicity",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <catalog_caid>
   # <care_temp_group>
   "contact",
   # <care_temp_group>
@@ -17,10 +19,12 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <catalog_caid>
   "description",
   # <catalog_care>
   "dictionary",
   # <catalog_care>
+  # <catalog_caid>
   "distribution",
   # <catalog_pro>
   # <catalog_open>
@@ -33,18 +37,22 @@ utils::globalVariables(c(
   # <care_group>
   "filetype",
   # <catalog_pro>
+  # <catalog_caid>
   # <care_temp_group>
   "group",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <catalog_caid>
   # <careTemp>
   # <openTemp>
   # <care_temp_group>
   "identifier",
   # <catalog_pro>
+  # <catalog_caid>
   "issued",
   # <catalog_open>
+  # <catalog_caid>
   "keyword",
   # <catalog_care>
   # <catalog_pro>
@@ -58,13 +66,18 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <catalog_caid>
   # <careTemp>
   # <openTemp>
   "modified",
+  # <catalog_caid>
+  "N",
   # <catalog_care>
+  # <catalog_caid>
   # <care_temp_group>
   "periodicity",
   # <catalog_care>
+  # <catalog_caid>
   "references",
   # <catalog_pro>
   "released",
@@ -77,16 +90,20 @@ utils::globalVariables(c(
   # <dims_care_temp>
   # <dims_pro>
   # <dims_open>
+  # <dims_caid>
   "rows",
   # <catalog_care>
   "site",
   # <catalog_care>
+  # <catalog_caid>
   "temporal",
   # <catalog_pro>
+  # <catalog_caid>
   "theme",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <catalog_caid>
   # <care_temp_group>
   # <select_alias>
   "title",

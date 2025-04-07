@@ -77,6 +77,8 @@ catalog_pro <- function() {
     as_tbl()
 }
 
+# "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
+
 #' @autoglobal
 #' @noRd
 catalog_open <- function() {
