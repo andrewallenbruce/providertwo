@@ -2,7 +2,6 @@
 #' @noRd
 Pro <- new_class(name = "Pro", package = NULL)
 
-
 #' Provider Endpoint
 #'
 #' @param alias `<chr>` endpoint alias
