@@ -35,7 +35,7 @@ care_main <- function(x, call = caller_env()) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -62,7 +62,7 @@ care_group <- function(x, call = caller_env()) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -82,7 +82,7 @@ care_temp <- function(x) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -111,7 +111,7 @@ care_temp_group <- function(x) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 

@@ -148,16 +148,14 @@ as_datetime <- function(x) {
 }
 
 #' Parse `openFDA` date character vectors
-#'
-#' @param i `<chr>` vector to parse; format: "YYYY-MM-DD"
-#'
-#' @returns `<chr>` parsed ISOdate vector
-#'
 #' @autoglobal
 #' @noRd
 as_fda_date <- function(i) {
   delist(map(i, function(x)
     paste0(
-      substr(x, 1, 4), substr(x, 5, 6), substr(x, 7, 8), collapse = "-"
+      substr(x, 1, 4),
+      substr(x, 5, 6),
+      substr(x, 7, 8),
+      collapse = "-"
     )))
 }

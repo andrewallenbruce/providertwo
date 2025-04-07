@@ -15,7 +15,7 @@ pro_main <- function(x) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -35,7 +35,7 @@ pro_group <- function(x) {
     default = NA_character_,
     nThread = 4L)
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 

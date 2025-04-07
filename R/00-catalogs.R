@@ -106,13 +106,6 @@ catalog_open <- function() {
   )
 }
 
-rlang::on_load(
-  .catalog <<- list(
-    care = catalog_care(),
-    pro  = catalog_pro(),
-    open = catalog_open()
-  ))
-
 #' @autoglobal
 #' @noRd
 catalogs <- function() {
@@ -122,3 +115,5 @@ catalogs <- function() {
     open = catalog_open()
   )
 }
+
+rlang::on_load(.catalog <<- catalogs())

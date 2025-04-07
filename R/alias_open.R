@@ -31,7 +31,7 @@ open_main <- function(x) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -64,7 +64,7 @@ open_temp <- function(x) {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -83,7 +83,7 @@ open_temp_group <- function(x = "grouped_payments") {
     nThread = 4L
   )
 
-  if (na(x)) cli_abort("x" = "No matches found.", call = call)
+  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
