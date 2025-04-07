@@ -27,7 +27,8 @@ perform_parallel <- function(x) {
   resps_successes(resp_list) |>
     map(parse_string) |>
     rowbind() |>
-    map_na_if()
+    map_na_if() |>
+    as_tbl()
 }
 
 #' @autoglobal
@@ -65,14 +66,15 @@ catalog_caid <- function() {
 
   keys <- new_df(title = x$title, keyword = make_join_col(x, keyword))
 
-  refs <- new_df(title = x$title,
-                 references = na_if(flatten_column(x$references), "NA")) |>
-    sbt(not_na(references) & stringi::stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
-    mtt(references = stringi::stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
+  refs <- new_df(
+    title = x$title,
+    references = na_if(flatten_column(x$references), "NA")) |>
+    sbt(not_na(references) & stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
+    mtt(references = stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
 
   d <- rowbind(x$distribution, fill = TRUE)
 
-  tvec <- vctrs::vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE)))
+  tvec <- vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE)))
 
   download <- new_tbl(title = tvec, download = delist(get_elem(d$data, "downloadURL"))) |> fcount(title, add = TRUE)
 

@@ -67,6 +67,7 @@ Collate:
     'open_dashboard.R'
     'providertwo-package.R'
     'query.R'
+    'quick_look.R'
     'utils_catalogs.R'
     'utils_checks.R'
     'utils_cleaning.R'

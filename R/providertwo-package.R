@@ -8,7 +8,7 @@
 #' @importFrom kit nswitch
 #' @importFrom tools file_ext toTitleCase
 #' @importFrom glue glue glue_collapse
-#' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex stri_extract_first_regex stri_replace_all_regex stri_trim
+#' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex stri_extract_first_regex stri_replace_all_fixed stri_replace_all_regex stri_trim
 #' @import httr2
 #' @import S7
 #' @import cheapr
