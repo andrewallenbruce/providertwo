@@ -18,27 +18,11 @@ dict_title <- \(x) {
 
 #' @autoglobal
 #' @noRd
-perform_parallel <- function(x) {
-  resp_list <- map(x, request) |>
-    req_perform_parallel(on_error = "continue")
-
-  parse_string <- \(x) fparse(resp_body_string(x), query = "/data")
-
-  resps_successes(resp_list) |>
-    map(parse_string) |>
-    rowbind() |>
-    map_na_if() |>
-    as_tbl()
-}
-
-#' @autoglobal
-#' @noRd
 catalog_caid <- function() {
 
   x <- fload("https://data.medicaid.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
   x <- x |>
-    as_tbl() |>
     mtt(
       modified    = as_date(modified),
       issued      = as_date(issued),
@@ -58,29 +42,24 @@ catalog_caid <- function() {
       distribution,
       temporal,
       references
-    )
+    ) |>
+    as_tbl()
 
-  groups <- new_df(title = x$title,
-                   group = make_join_col(x, theme)) |>
-    sbt(not_na(group) & group != "Uncategorized")
+  grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
 
   keys <- new_df(title = x$title, keyword = make_join_col(x, keyword))
 
-  refs <- new_df(
-    title = x$title,
-    references = na_if(flatten_column(x$references), "NA")) |>
-    sbt(not_na(references) & stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
-    mtt(references = stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
+  refs <- new_df(title = x$title, references = flatten_column(x$references) |> na_if("NA")) |>
+          sbt(not_na(references) & stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
+          mtt(references = stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
 
   d <- rowbind(x$distribution, fill = TRUE)
 
-  tvec <- vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE)))
-
-  download <- new_tbl(title = tvec, download = delist(get_elem(d$data, "downloadURL"))) |> fcount(title, add = TRUE)
+  dwns <- new_tbl(title = vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE))), download = delist(get_elem(d$data, "downloadURL"))) |> fcount(title, add = TRUE)
 
   list(
-    sets       = reduce(list(slt(x, -theme, -keyword, -references, -distribution), groups, keys, refs, sbt(download, N == 1, -N)), join_on_title),
-    download   = funique(sbt(download, N > 1), cols = "download"),
+    main       = reduce(list(slt(x, -theme, -keyword, -references, -distribution), grps, keys, refs, sbt(dwns, N == 1, -N)), join_on_title),
+    download   = funique(sbt(dwns, N > 1), cols = "download"),
     dictionary = new_tbl(url = funique(delist(get_elem(d$data, "describedBy")))) # |>
       # mtt(identifier = stringi::stri_extract(url, regex = "(?:[0-9a-fA-F]){8}-?(?:[0-9a-fA-F]){4}-?(?:[0-9a-fA-F]){4}-?(?:[0-9a-fA-F]){4}-?(?:[0-9a-fA-F]){12}")) |>
       # mtt(title = map_chr(url, \(x) dict_title(x))) |>

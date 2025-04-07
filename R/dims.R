@@ -41,6 +41,31 @@ dims_care_temp <- function(x) {
 
 #' @autoglobal
 #' @noRd
+dims_care_temp_group <- function(x, g) {
+
+  reqs <- map(x, \(x) request(x) |> req_url_query(offset = 0L, size = 1L))
+
+  fields_ <- req_perform_parallel(reqs, on_error = "continue") |>
+    map(\(x) resp_simple_json(x) |> names()) |>
+    set_names(g)
+
+  rows_ <- map(reqs, \(x) req_url_path_append(x, "stats")) |>
+    req_perform_parallel(on_error = "continue") |>
+    map(\(x) resp_simple_json(x) |> _[["total_rows"]]) |>
+    set_names(g)
+
+  pages_ <- map(rows_, \(x) offset_size(x, 5000L)) |>
+    set_names(g)
+
+  list(
+    rows   = rows_,
+    fields = fields_,
+    pages  = pages_
+  )
+}
+
+#' @autoglobal
+#' @noRd
 dims_pro <- function(x) {
   x <- x |>
     pro_url() |>

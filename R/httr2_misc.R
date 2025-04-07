@@ -35,6 +35,21 @@ req_perform_iterative_offset <- function(req, limit) {
   )
 }
 
+#' @autoglobal
+#' @noRd
+perform_parallel <- function(x) {
+  resp_list <- map(x, request) |>
+    req_perform_parallel(on_error = "continue")
+
+  parse_string <- \(x) fparse(resp_body_string(x), query = "/data")
+
+  resps_successes(resp_list) |>
+    map(parse_string) |>
+    rowbind() |>
+    map_na_if() |>
+    as_tbl()
+}
+
 #' Generate API Request "Offset" Sequence
 #'
 #' @param n `<int>` Number of results returned in an API request

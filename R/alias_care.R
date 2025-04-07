@@ -121,22 +121,16 @@ care_temp_group <- function(x) {
     colorder(title, group)
 
   x2 <- map2(x$data,  x$group, function(x, y)
-    mtt(x, group = clean_names(y)) |>
-      slt(year, group, identifier, resources)) |>
+    mtt(x, group = clean_names(y)) |> slt(year, group, identifier, resources)) |>
     rowbind() |>
-    join(slt(x, -data, -title, -periodicity, -contact),
-         on = "group",
-         verbose = 0)
+    join(slt(x, -data, -title, -periodicity, -contact), on = "group", verbose = 0)
 
   years  <- funique(x2$year)
   groups <- funique(x2$group)
 
-  q <- map(
-    sbt(x2, year == fmax(year)) |> _[["identifier"]],
-    function(x)
-      # TODO parallelize
-      dims_care_temp(x)) |>
-    set_names(groups)
+  q <- dims_care_temp_group(x = sbt(x2, year == fmax(year)) |> _[["identifier"]], g = groups)
+
+  # q <- map(sbt(x2, year == fmax(year)) |> _[["identifier"]], \(x) dims_care_temp(x)) |> set_names(groups)
 
   x2 <- rsplit(x2, ~ group)
 
@@ -146,9 +140,9 @@ care_temp_group <- function(x) {
   description = x2${group}$description[1],
   dictionary  = x2${group}$dictionary[1],
   site        = x2${group}$site[1],
-  rows        = q${group}$rows,
-  pages       = q${group}$pages,
-  fields      = q${group}$fields,
+  rows        = q$rows${group},
+  pages       = q$pages${group},
+  fields      = q$fields${group},
   endpoints   = slt(x2${group}, -description, -dictionary, -site))
   ",
     group = x$group) |>
