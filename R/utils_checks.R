@@ -1,34 +1,26 @@
-#' @examplesIf rlang::is_interactive()
-#' luhn_check("1417918293")
-#' luhn_check("1234567890")
-#' luhn_check("1234567893")
-#' luhn_check("123456789")
+# luhn_check("1417918293")
+# luhn_check("1234567890")
+# luhn_check("1234567893")
+# luhn_check("123456789")
 #' @autoglobal
 #' @noRd
 luhn_check <- function(x) {
-  idx <- c(1, 3, 5, 7, 9)
 
-  id <- as.integer(cheapr_rev(strsplit(delist(as.character(
-    x
-  )), "")[[1]][1:9]))
+  i <- c(1L, 3L, 5L, 7L, 9L)
+  d <- cheapr_rev(as.integer(strsplit(delist(as.character(x)), "")[[1]][1:9]))
 
-  id[idx] <- id[idx] * 2
+  d[i] <- d[i] * 2L
+  d[i] <- ifelse(d[i] > 9L, d[i] - 9L, d[i])
 
-  id[idx] <- ifelse(id[idx] > 9, id[idx] - 9, id[idx])
+  d <- sum(d) + 24L
+  d <- (ceiling(d / 10) * 10) - d
 
-  id <- sum(id) + 24
-
-  ck <- (ceiling(id / 10) * 10) - id
-
-  test <- paste0(substr(x, 1, 9), as.character(ck))
-
-  identical(test, as.character(x))
+  identical(paste0(substr(x, 1, 9), d), x)
 }
 
-#' @examplesIf rlang::is_interactive()
-#' check_luhn("1234567890")
-#' check_luhn(c("1417918293", "1234567890"))
-#' check_luhn(npi_ex)
+# check_luhn("1234567890")
+# check_luhn(c("1417918293", "1234567890"))
+# check_luhn(npi_ex)
 #' @autoglobal
 #' @noRd
 check_luhn <- function(x) {
@@ -39,6 +31,7 @@ check_luhn <- function(x) {
   }
 }
 
+#' @autoglobal
 #' @noRd
 assert_luhn <- function(x, call = caller_env()) {
   if (any(!check_luhn(x))) {
@@ -50,6 +43,7 @@ assert_luhn <- function(x, call = caller_env()) {
   }
 }
 
+#' @autoglobal
 #' @noRd
 assert_digits <- function(x, call = caller_env()) {
   if (any(!grepl("^[0-9]{10}$", x = as.character(x), perl = TRUE))) {
@@ -61,6 +55,7 @@ assert_digits <- function(x, call = caller_env()) {
   }
 }
 
+#' @autoglobal
 #' @noRd
 assert_nchars <- function(x, n, xname, call = caller_env()) {
   if (any(nchar(as.character(x)) != n)) {
@@ -72,6 +67,7 @@ assert_nchars <- function(x, n, xname, call = caller_env()) {
   }
 }
 
+#' @autoglobal
 #' @noRd
 assert_choices <- function(x, choices, xname, call = caller_env()) {
   if (any(!x %in% choices)) {
@@ -80,13 +76,11 @@ assert_choices <- function(x, choices, xname, call = caller_env()) {
   }
 }
 
-#' @autoglobal
-#' @noRd
-check_params_fields <- function(params, fields) {
-  if (!any(params %in% fields)) {
-    invalid_params <- setdiff(params, fields)
-
-    abort(glue("Invalid Parameter(s): {invalid_params}"))
-
-  }
-}
+# check_params_fields <- function(params, fields) {
+#   if (!any(params %in% fields)) {
+#     invalid_params <- setdiff(params, fields)
+#
+#     abort(glue("Invalid Parameter(s): {invalid_params}"))
+#
+#   }
+# }

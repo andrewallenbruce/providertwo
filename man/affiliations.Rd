@@ -25,23 +25,21 @@ affiliations(
 
 \item{facility_type}{\verb{<chr>} Type of facility, one of the following:
 \itemize{
-\item \code{Hospital} (\code{hp})
-\item \verb{Long-term care hospital} (\code{ltch})
-\item \verb{Nursing home} (\code{nh})
-\item \verb{Inpatient rehabilitation facility} (\code{irf})
-\item \verb{Home health agency} (\code{hha})
-\item \verb{Skilled nursing facility} (\code{snf})
-\item \code{Hospice} (\code{hs})
-\item \verb{Dialysis facility} (\code{df})
+\item \code{"Hospital"}
+\item \code{"Long-term care hospital"}
+\item \code{"Nursing home"}
+\item \code{"Inpatient rehabilitation facility"}
+\item \code{"Home health agency"}
+\item \code{"Skilled nursing facility"}
+\item \code{"Hospice"}
+\item \code{"Dialysis facility"}
 }}
 
 \item{ccn_facility}{\verb{<chr>} 6-digit CMS Certification Number (CCN) of
-facility or unit within hospital where an
-individual provider provides service.}
+facility or unit within hospital where an individual provider provides service.}
 
 \item{ccn_primary}{\verb{<int>} 6-digit CMS Certification Number (CCN) of a
-sub-unit's primary hospital, should the
-provider provide services in said unit.}
+sub-unit's primary hospital, should the provider provide services in said unit.}
 }
 \description{
 Facility affiliations data publicly reported in the Provider Data Catalog.
@@ -61,4 +59,5 @@ affiliations(facility_type = "Home health agency")
 # affiliations(ccn_facility = "331302")
 # affiliations(ccn_facility = "33Z302")
 # affiliations(npi = "1043245657")
+
 }

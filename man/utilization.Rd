@@ -2,13 +2,42 @@
 % Please edit documentation in R/end_affiliations.R
 \name{utilization}
 \alias{utilization}
-\title{Utilization}
+\title{PDC Utilization}
 \usage{
-utilization()
+utilization(
+  npi = NULL,
+  pac = NULL,
+  last_name = NULL,
+  first_name = NULL,
+  middle_name = NULL,
+  suffix = NULL,
+  procedure = NULL,
+  count = NULL,
+  percentile = NULL
+)
+}
+\arguments{
+\item{npi}{\verb{<chr>} 10-digit Individual NPI}
+
+\item{pac}{\verb{<chr>} 10-digit PECOS Associate Control (PAC) ID}
+
+\item{first_name, middle_name, last_name, suffix}{\verb{<chr>} Individual provider's name}
+
+\item{procedure}{\verb{<chr>} Procedure category}
+
+\item{count}{\verb{<int>} Number of procedures performed}
+
+\item{percentile}{\verb{<int>} Percentile of procedures performed}
 }
 \description{
-Utilization
+The Doctors and Clinicians utilization
+data file reports volume information for
+procedures of interest on clinician
+profile pages and in the provider data
+catalog (PDC) to inform patients and
+caregivers about clinicians' experience.
 }
 \examples{
 utilization()
+
 }

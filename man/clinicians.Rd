@@ -7,7 +7,12 @@
 clinicians()
 }
 \description{
-Clinicians
+The Doctors and Clinicians utilization
+data file reports volume information for
+procedures of interest on clinician
+profile pages and in the provider data
+catalog (PDC) to inform patients and
+caregivers about clinicians' experience.
 }
 \examples{
 clinicians()
