@@ -6,12 +6,11 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/authors.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/index.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/news/index.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Open.html</loc></url>
-<url><loc>https://andrewallenbruce.github.io/providertwo/reference/Provider.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/affiliations.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/arguments.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/careMain.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/careTemp.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/careTempGroup.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/clinicians.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/enrollees.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/index.html</loc></url>
@@ -19,7 +18,10 @@
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/new_request.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/npi_ex.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/nppes_nlm.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/openMain.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/openTemp.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/open_dashboard.html</loc></url>
+<url><loc>https://andrewallenbruce.github.io/providertwo/reference/proMain.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/providertwo-package.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/query-helpers.html</loc></url>
 <url><loc>https://andrewallenbruce.github.io/providertwo/reference/utilization.html</loc></url>
