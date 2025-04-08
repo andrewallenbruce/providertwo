@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9179 (2025-04-08)
+
+* fmt_int (closes #5)
+
+
 # providertwo 0.0.0.9178 (2025-04-08)
 
 * open_summary
