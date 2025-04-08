@@ -25,7 +25,6 @@ Imports:
     stringi (>= 1.8.4),
     vctrs (>= 0.6.5)
 Suggests: 
-    qs (>= 0.27.2),
     testthat (>= 3.2.3)
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
@@ -59,7 +58,7 @@ Collate:
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
-    'open_dashboard.R'
+    'open_summary.R'
     'providertwo-package.R'
     'query.R'
     'quick_look.R'

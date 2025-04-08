@@ -32,12 +32,10 @@ utils::globalVariables(c(
   "distribution",
   # <catalog_pro>
   # <catalog_open>
-  # <careTemp>
   # <openTemp>
   "download",
   # <catalog_care>
   "downloadURL",
-  # <careTemp>
   # <care_group>
   "filetype",
   # <catalog_pro>
@@ -48,13 +46,14 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <careTemp>
   # <openTemp>
   # <care_temp_group>
   "identifier",
   # <catalog_pro>
   # <catalog_caid>
   "issued",
+  # <catalog_caid>
+  "key",
   # <catalog_open>
   # <catalog_caid>
   "keyword",
@@ -71,21 +70,19 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <careTemp>
   # <openTemp>
   "modified",
-  # <catalog_caid>
-  "N",
   # <catalog_care>
   # <catalog_caid>
   # <care_temp_group>
   "periodicity",
+  # <catalog_caid>
+  "reference",
   # <catalog_care>
   # <catalog_caid>
   "references",
   # <catalog_pro>
   "released",
-  # <careTemp>
   # <care_temp_group>
   "resources",
   # <catalog_care>
@@ -121,7 +118,6 @@ utils::globalVariables(c(
   "title",
   # <catalog_care>
   # <catalog_open>
-  # <careTemp>
   # <openTemp>
   # <care_temp_group>
   "year",

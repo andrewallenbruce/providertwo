@@ -28,7 +28,6 @@ method(tidyup, openDashboard) <- function(x) {
 
 method(tidyup, openNational) <- function(x) {
   prop(x, "response") |>
-    # slt(-dashboard_row_number) |>
     as_tbl()
 }
 
