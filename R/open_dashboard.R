@@ -8,6 +8,14 @@ openDashboard <- new_class(
 
 #' @autoglobal
 #' @noRd
+openNational <- new_class(
+  name       = "openNational",
+  package    = NULL,
+  properties = list(response = class_list)
+)
+
+#' @autoglobal
+#' @noRd
 tidyup <- new_generic("tidyup", "x", function(x) {
   S7_dispatch()
 })
@@ -18,11 +26,21 @@ method(tidyup, openDashboard) <- function(x) {
     as_tbl()
 }
 
+method(tidyup, openNational) <- function(x) {
+  prop(x, "response") |>
+    # slt(-dashboard_row_number) |>
+    as_tbl()
+}
+
 #' Open Payments Summary Dashboard
+#'
 #' @returns A `<tibble>`
+#'
 #' @examples
 #' open_dashboard()
+#'
 #' @autoglobal
+#' @rdname open_summary
 #' @export
 open_dashboard <- function() {
   openDashboard(
@@ -36,49 +54,24 @@ open_dashboard <- function() {
     tidyup()
 }
 
-
-
-# x <- open_dashboard()
-# x |>
-#   fastplyr::f_arrange(data_metrics, dashboard_row_number) |>
-#   fcompute(
-#     id = collapse::groupid(dashboard_row_number),
-#     grp = collapse::groupid(data_metrics),
-#     metric = data_metrics
-#   ) |>
-#   print(n = Inf)
-
-#   x |>
-#     # fastplyr::f_arrange(data_metrics, dashboard_row_number)
-#     fcompute(
-#       id = collapse::groupid(dashboard_row_number),
-#       metric = data_metrics) |>
-#     print(n = Inf)
-# }
-#
-# dashboard |>
-#   as_tbl() |>
-#   f_select(Data_Metrics, Total) |>
-#   f_arrange(-Total) |>
-#   print(n = Inf)
-#
-# dashboard |>
-#   as_tbl() |>
-#   f_select(Data_Metrics, Total) |>
-#   f_arrange(-Total) |>
-#   print(n = Inf)
-#
-# dash <- dashboard |>
-#   as_tbl() |>
-#   slt(-Dashboard_Row_Number) |>
-#   pivot(ids = 1) |>
-#   roworder(Data_Metrics) |>
-#   mtt(year = delist(stri_extract_all_regex(variable, "[0-9]{4}")))
-#
-# dash |>
-#   sbt(na(year), metrics = Data_Metrics, amount = value)
-#
-# dash |>
-#   sbt(not_na(year), year, metrics = Data_Metrics, amount = value) |>
-#   mtt(year = as_int(year)) |>
-#   rsplit(~ metrics)
+#' Open Payments National Overall Total and Averages
+#'
+#' @returns A `<tibble>`
+#'
+#' @examples
+#' open_national()
+#'
+#' @autoglobal
+#' @rdname open_summary
+#' @export
+open_national <- function() {
+  openNational(
+    response = openMain("national_total") |>
+      new_request() |>
+      req_perform() |>
+      resp_body_string() |>
+      fparse() |>
+      _[["results"]]
+  ) |>
+    tidyup()
+}

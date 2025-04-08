@@ -2,16 +2,26 @@
 % Please edit documentation in R/open_dashboard.R
 \name{open_dashboard}
 \alias{open_dashboard}
+\alias{open_national}
 \title{Open Payments Summary Dashboard}
 \usage{
 open_dashboard()
+
+open_national()
 }
 \value{
+A \verb{<tibble>}
+
 A \verb{<tibble>}
 }
 \description{
 Open Payments Summary Dashboard
+
+Open Payments National Overall Total and Averages
 }
 \examples{
 open_dashboard()
+
+open_national()
+
 }
