@@ -2,7 +2,6 @@
 #' @noRd
 quick_look_pro <- function(x) {
   x |>
-    pro_url() |>
     request() |>
     req_url_query(
       count   = "false",
@@ -22,23 +21,29 @@ quick_look_pro <- function(x) {
 
 #' @autoglobal
 #' @noRd
-quick_look_care <- function(x) {
+quick_care <- function(x) {
+
   x <- x |>
     request() |>
-    req_url_query(offset = 0L, size = 5000L) |>
+    req_url_query(
+      offset = 0L,
+      size   = 5000L) |>
     perform_simple()
 
-  set_names(x$data, x$meta$headers) |>
-    map_na_if() |>
-    as_tbl()
+  set_names(
+    as_tbl(x$data),
+    clean_names(x$meta$headers)) |>
+    map_na_if()
 }
 
 #' @autoglobal
 #' @noRd
-quick_look_care_temp <- function(x) {
+quick_care_temp <- function(x) {
   x |>
     request() |>
-    req_url_query(offset = 0L, size = 5000L) |>
+    req_url_query(
+      offset = 0L,
+      size   = 5000L) |>
     perform_simple() |>
     map_na_if() |>
     as_tbl()
@@ -46,9 +51,8 @@ quick_look_care_temp <- function(x) {
 
 #' @autoglobal
 #' @noRd
-quick_look_open <- function(x) {
+quick_open <- function(x) {
   x |>
-    open_url() |>
     request() |>
     req_url_query(
       count   = "false",
@@ -64,5 +68,25 @@ quick_look_open <- function(x) {
     _[["results"]] |>
     map_na_if() |>
     as_tbl()
+}
 
+#' @autoglobal
+#' @noRd
+quick_open_temp <- function(x) {
+  x |>
+    open_url() |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      limit   = 500L,
+      offset  = 0L,
+      results = "true",
+      rowIds  = "false",
+      schema  = "false") |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    as_tbl()
 }

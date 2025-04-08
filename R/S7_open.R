@@ -69,9 +69,9 @@ openMain <- new_class(
 #' @returns An S7 `<openTemp>` object.
 #'
 #' @examples
-#' openTemp("general") |> str()
-#' openTemp("ownership") |> str()
-#' openTemp("research") |> str()
+#' openTemp("general")
+#' openTemp("ownership")
+#' openTemp("research")
 #' @autoglobal
 #' @rdname openTemp
 #' @export
@@ -86,8 +86,7 @@ openTemp <- new_class(
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
-    endpoints   = class_list
-  ),
+    endpoints   = class_list),
   constructor = function(alias) {
 
     x <- open_temp(alias)
