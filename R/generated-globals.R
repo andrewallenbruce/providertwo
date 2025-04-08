@@ -6,6 +6,10 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_caid>
   "accrualPeriodicity",
+  # <clinicians>
+  "add1",
+  # <clinicians>
+  "add2",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -92,6 +96,14 @@ utils::globalVariables(c(
   # <dims_open>
   # <dims_caid>
   "rows",
+  # <clinicians>
+  "sec_spec_1",
+  # <clinicians>
+  "sec_spec_2",
+  # <clinicians>
+  "sec_spec_3",
+  # <clinicians>
+  "sec_spec_4",
   # <catalog_care>
   "site",
   # <catalog_care>

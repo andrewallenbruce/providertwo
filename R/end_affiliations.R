@@ -65,31 +65,101 @@ affiliations <- function(npi           = NULL,
 
   proMain("affiliations") |>
     new_request() |>
-    req_perform() |>
-    resp_simple_json() |>
+    perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
+    rnm(pro_names$affiliations) |>
     as_tbl()
 }
 
-#' @noRd
+#' Clinicians
+#' @examples
+#' clinicians()
+#' @autoglobal
+#' @export
 clinicians <- function() {
   proMain("clinicians") |>
     new_request() |>
-    req_perform() |>
-    resp_simple_json() |>
+    perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
+    rnm(pro_names$clinicians) |>
+    mtt(address = paste(add1, add2)) |>
+    slt(-add1, -add2, -sec_spec_1, -sec_spec_2, -sec_spec_3, -sec_spec_4) |>
+    as_tbl()
+}
+
+#' Utilization
+#' @examples
+#' utilization()
+#' @autoglobal
+#' @export
+utilization <- function() {
+  proMain("utilization") |>
+    new_request() |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    rnm(pro_names$utilization) |>
     as_tbl()
 }
 
 #' @noRd
-utilization <- function() {
-  proMain("utilization") |>
-    new_request() |>
-    req_perform() |>
-    resp_simple_json() |>
-    _[["results"]] |>
-    map_na_if() |>
-    as_tbl()
-}
+pro_names <- list(
+  affiliations = c(
+    # "npi",
+    "ind_pac_id"                                 = "pac",
+    "provider_last_name"                         = "last_name",
+    "provider_first_name"                        = "first_name",
+    "provider_middle_name"                       = "middle_name",
+    # "suff"                                       = "suffix",
+    # "facility_type",
+    "facility_affiliations_certification_number" = "ccn_facility",
+    "facility_type_certification_number"         = "ccn_primary"
+  ),
+  clinicians = c(
+    # "npi",
+    "ind_pac_id"           = "pac",
+    "ind_enrl_id"          = "enid",
+    "provider_last_name"   = "last_name",
+    "provider_first_name"  = "first_name",
+    "provider_middle_name" = "middle_name",
+    # "suff"                 = "suffix",
+    "gndr"                 = "gender",
+    # "cred",
+    # "med_sch",
+    "grd_yr"               = "grad_year",
+    "pri_spec"             = "spec_prim",
+    "sec_spec_all"         = "spec_sec",
+    # "sec_spec_1",
+    # "sec_spec_2",
+    # "sec_spec_3",
+    # "sec_spec_4",
+    "telehlth"             = "telehealth",
+    # "facility_name",
+    "org_pac_id"           = "pac_org",
+    "num_org_mem"          = "org_n_memb",
+    "adr_ln_1"             = "add1",
+    "adr_ln_2"             = "add2",
+    "ln_2_sprs"            = "add_sprs",
+    "citytown"             = "city",
+    "state"                = "state",
+    "zip_code"             = "zip",
+    "telephone_number"     = "phone",
+    "ind_assgn"            = "asn_ind",
+    "grp_assgn"            = "asn_grp",
+    "adrs_id"              = "add_id"
+  ),
+  utilization = c(
+    # "npi",
+    "ind_pac_id"           = "pac",
+    "provider_last_name"   = "last_name",
+    "provider_first_name"  = "first_name",
+    "provider_middle_name" = "middle_name",
+    # "suff"                 = "suffix",
+    # "procedure_category"   = "procedure",
+    # "count",
+    # "percentile",
+    "profile_display_indicator" = "prof_disp"
+  )
+)
