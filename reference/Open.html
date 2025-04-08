@@ -9,7 +9,7 @@ Open Payments Temporal Endpoint"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9172</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9173</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -225,7 +225,7 @@ Open Payments Temporal Endpoint"></head><body>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • Fields 18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
-<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"general"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"general"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openTemp&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "General Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "All general (non-research, non-ownership related) payments from the 2023 program year [January 1 – December 31, 2023]"</span>
@@ -233,13 +233,12 @@ Open Payments Temporal Endpoint"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 14607336</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 29215</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:91] "change_type" "covered_recipient_type" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "fb3a65aa-c901-4a38-a813-b04b00dfa2a9" "df01c2f8-dc1f-4e79-96cb-8208beaf143c" "0380bbeb-aea1-58b6-b708-829f92a48202" "a08c4b30-5cf3-4948-ad40-36f404619019" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_GNRL_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_GNRL_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_GNRL_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_GNRL_PGYR2020_P01302025_01212025.csv" ...</span>
-<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"ownership"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"ownership"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openTemp&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Ownership Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Ownership Payment Data - Detailed Dataset 2023 Reporting Year\nAll ownership and investment payments from the 2"| __truncated__</span>
@@ -247,13 +246,12 @@ Open Payments Temporal Endpoint"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4013</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:30] "change_type" "physician_profile_id" "physician_npi" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "ac0bc85c-02e3-45d9-89e8-2ff43da85df7" "37792388-800f-427a-9e02-b11601454eeb" "b0c03b8d-06df-58f2-8ce2-4daeffee147e" "a9a0bf48-6b96-4589-b4c2-3c5dcfbeaca2" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2020_P01302025_01212025.csv" ...</span>
-<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"research"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">openTemp</span><span class="op">(</span><span class="st">"research"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openTemp&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Research Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Research Payment Data – Detailed Dataset 2023 Reporting Year\nAll research-related payments from the 2023 progr"| __truncated__</span>
@@ -261,7 +259,6 @@ Open Payments Temporal Endpoint"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1027926</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 2056</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:252] "change_type" "covered_recipient_type" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ years      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [7 × 4] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:7], format: "2025-01-30" "2025-01-30" ...</span>
