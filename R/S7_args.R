@@ -1,8 +1,10 @@
-#' `npi` argument class
+#' @name arguments
 #'
-#' @param x `<chr>` vector of npis
+#' @title Argument Classes
 #'
-#' @returns An S7 `<arg_npi>` object.
+#' @param x `<chr>` input vector
+#'
+#' @returns An S7 `<arg>` object.
 #'
 #' @examples
 #' arg_npi("1225701881")
@@ -14,8 +16,21 @@
 #' try(arg_npi(122570188))
 #' try(arg_npi("12257O1881"))
 #' try(arg_npi(1225701882))
+#'
+#' arg_state("CA")
+#' arg_state(state.abb[1])
+#' arg_state(state.abb)
+#' arg_state(NA_character_)
+#' arg_state(c(NULL, NULL))
+#'
+#' # Allow duplicates?
+#' arg_state(c("CA", "CA"))
+#' try(arg_state("C"))
+#' try(arg_state("AA"))
+NULL
+
 #' @autoglobal
-#' @rdname args
+#' @rdname arguments
 #' @export
 arg_npi <- new_class(
   name    = "arg_npi",
@@ -24,11 +39,11 @@ arg_npi <- new_class(
     x = new_property(
       class = NULL | class_character,
       setter = function(self, value) {
-        self@x <- as_chr(value[which_not_na(value)])
+        self@x <- as.character(value[which_not_na(value)])
         self
       },
       getter = function(self) {
-        as_chr(self@x[which_not_na(self@x)])
+        as.character(self@x[which_not_na(self@x)])
       }
     ),
     op = new_property(
@@ -46,32 +61,8 @@ arg_npi <- new_class(
   }
 )
 
-#' `state` argument class
-#'
-#' @param x `<chr>` vector of state abbreviations
-#'
-#' @returns An S7 `<arg_state>` object.
-#'
-#' @examples
-#' arg_state("CA")
-#'
-#' try(arg_state("C"))
-#'
-#' try(arg_state("AA"))
-#'
-#' # Allow duplicates?
-#' arg_state(c("CA", "CA"))
-#'
-#' arg_state(state.abb[1])
-#'
-#' arg_state(state.abb)
-#'
-#' arg_state(c(NULL, NULL))
-#'
-#' arg_state(NA_character_)
-#'
 #' @autoglobal
-#' @rdname args
+#' @rdname arguments
 #' @export
 arg_state <- new_class(
   name    = "arg_state",
@@ -80,11 +71,11 @@ arg_state <- new_class(
     x = new_property(
       class = NULL | class_character,
       setter = function(self, value) {
-        self@x <- as_chr(value[which_not_na(value)])
+        self@x <- as.character(value[which_not_na(value)])
         self
       },
       getter = function(self) {
-        as_chr(self@x[which_not_na(self@x)])
+        as.character(self@x[which_not_na(self@x)])
       }
     ),
     op = new_property(
@@ -103,6 +94,7 @@ arg_state <- new_class(
 
 #' @name npi_ex
 #' @title Example NPIs
+#' @autoglobal
 #' @keywords internal
 #' @export
 npi_ex <- list(

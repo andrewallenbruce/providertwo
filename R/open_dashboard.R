@@ -6,6 +6,18 @@ openDashboard <- new_class(
   properties = list(response = class_list)
 )
 
+#' @autoglobal
+#' @noRd
+tidyup <- new_generic("tidyup", "x", function(x) {
+  S7_dispatch()
+})
+
+method(tidyup, openDashboard) <- function(x) {
+  prop(x, "response") |>
+    slt(-dashboard_row_number) |>
+    as_tbl()
+}
+
 #' Open Payments Summary Dashboard
 #' @returns A `<tibble>`
 #' @examples
@@ -24,17 +36,7 @@ open_dashboard <- function() {
     tidyup()
 }
 
-#' @autoglobal
-#' @noRd
-tidyup <- new_generic("tidyup", "x", function(x) {
-  S7_dispatch()
-})
 
-method(tidyup, openDashboard) <- function(x) {
-  prop(x, "response") |>
-    slt(-dashboard_row_number) |>
-    as_tbl()
-}
 
 # x <- open_dashboard()
 # x |>

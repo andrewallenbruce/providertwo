@@ -160,7 +160,7 @@ NULL
 greater_than <- function(x, equals = FALSE) {
   list(field    = character(0L),
        operator = if (equals) ">=" else ">",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 #' @autoglobal
@@ -170,7 +170,7 @@ greater_than <- function(x, equals = FALSE) {
 less_than <- function(x, equals = FALSE) {
   list(field    = character(0L),
        operator = if (equals) "<=" else "<",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 #' @autoglobal
@@ -180,7 +180,7 @@ less_than <- function(x, equals = FALSE) {
 starts_with <- function(x) {
   list(field    = character(0L),
        operator = "STARTS_WITH",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 #' @autoglobal
@@ -190,7 +190,7 @@ starts_with <- function(x) {
 ends_with <- function(x) {
   list(field    = character(0L),
        operator = "ENDS_WITH",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 #' @autoglobal
@@ -210,7 +210,7 @@ contains <- function(x) {
 between <- function(x, negate = FALSE) {
   list(field    = character(0L),
        operator = if (negate) "NOT BETWEEN" else "BETWEEN",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 #' @autoglobal
@@ -220,7 +220,7 @@ between <- function(x, negate = FALSE) {
 is_in <- function(x, negate = FALSE) {
   list(field    = character(0L),
        operator = if (negate) "NOT IN" else "IN",
-       input    = as_character(x))
+       input    = as.character(x))
 }
 
 # query_in_main <- function(args,

@@ -16,16 +16,13 @@ Imports:
     cli (>= 3.6.4),
     collapse (>= 2.1.0),
     fastplyr (>= 0.5.1),
-    fs (>= 1.6.5),
     glue (>= 1.8.0),
     httr2 (>= 1.1.1),
     kit (>= 0.0.19),
     memoise (>= 2.0.1),
-    pins (>= 1.4.0),
     RcppSimdJson (>= 0.1.13),
     rlang (>= 1.1.5),
     S7 (>= 0.2.0),
-    stringfish (>= 0.16.0),
     stringi (>= 1.8.4),
     vctrs (>= 0.6.5)
 Suggests: 
@@ -60,7 +57,6 @@ Collate:
     'generated-globals.R'
     'httr2_misc.R'
     'httr2_old.R'
-    'import-standalone-helpers.R'
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'

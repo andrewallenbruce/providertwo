@@ -20,7 +20,7 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 method(list_resources, class_character) <- function(x) {
   fload(x, query = "/data") |>
     fcompute(
-      year     = as_int(stri_extract_all_regex(name, "[0-9]{4}")),
+      year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
       file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
       size     = roundup(fileSize / 1e6),
       ext      = file_ext(downloadURL),
@@ -45,7 +45,7 @@ method(list_resources, careTemp) <- function(x) {
     resp_body_string(x) |>
       fparse(query = "/data") |>
       fcompute(
-        year     = as_int(stri_extract_all_regex(name, "[0-9]{4}")),
+        year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
         file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
         size     = roundup(fileSize / 1e6),
         ext      = file_ext(downloadURL),

@@ -1,11 +1,3 @@
-#' Detect by Regex
-#'
-#' @param x `<chr>` vector to search
-#' @param p `<chr>` regular expression pattern
-#' @param n `<lgl>` negate
-#'
-#' @returns `<lgl>` logical vector
-#'
 #' @autoglobal
 #' @noRd
 pdetect <- function(x, p, n = FALSE) {
@@ -14,35 +6,18 @@ pdetect <- function(x, p, n = FALSE) {
                     negate  = n)
 }
 
-#' Subset by Regex
-#'
-#' @param i `<data.frame>` to search
-#' @param j `<chr>` vector to detect
-#' @param p `<chr>` regular expression pattern
-#' @param n `<lgl>` negate
-#'
-#' @returns `<data.frame>` subsetted data.frame
-#'
 #' @autoglobal
 #' @noRd
 subset_detect <- function(i, j, p, n = FALSE) {
   sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n))
 }
 
-#' Select by Alias
 #' @autoglobal
 #' @noRd
 select_alias <- function(x, alias) {
   subset_detect(x, title, alias)
 }
 
-#' Check if a property is empty
-#'
-#' @param obj `<S7_object>` to check
-#' @param nm `<chr>` property name
-#'
-#' @returns `<lgl>` `TRUE` if empty, `FALSE` otherwise
-#'
 #' @autoglobal
 #' @noRd
 prop_empty <- function(obj, nm) {
@@ -50,29 +25,68 @@ prop_empty <- function(obj, nm) {
   empty(prop(obj, nm))
 }
 
-#' Print a named list
-#'
-#' @param ls     `<list>` to print
-#' @param prefix `<chr>` to prepend to each line
-#'
-#' @returns `<list>` invisibly
-#'
-#' @examplesIf rlang::is_interactive()
-#' print_list(list(a = 1, b = 2, c = 3))
-#'
 #' @autoglobal
 #' @noRd
 print_list <- function(ls, prefix = "") {
-
   if (length(ls) == 0) cat("<empty>\n")
 
-  ns <- names(ls)
-
-  if (length(ns) != length(ls)) stop("all elements must be named")
+  if (length(names(ls)) != length(ls)) stop("all elements must be named")
 
   ls <- lapply(ls, as.character)
 
-  cat(sprintf("%s%s : %s", prefix, format(ns), ls), sep = "\n")
+  cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
 
   invisible(ls)
+}
+
+#' @noRd
+empty <- function(x) vec_is_empty(x)
+
+#' @autoglobal
+#' @noRd
+if_empty_null <- function(x) if (empty(x)) NULL else x
+
+#' @autoglobal
+#' @noRd
+na_if <- function(x, y = "") {
+  vctrs::vec_slice(x, vec_in(x, y, needles_arg = "x", haystack_arg = "y")) <- NA
+  x
+}
+
+#' @noRd
+yank <- function(x) x[[1]]
+
+#' @noRd
+na <- function(x) is_na(x)
+
+#' @noRd
+not_na <- function(x) !is_na(x)
+
+#' @noRd
+delist <- function(x) unlist(x, use.names = FALSE)
+
+#' @noRd
+null <- function(x) is.null(x)
+
+#' @noRd
+not_null <- function(x) !is.null(x)
+
+#' @noRd
+true <- function(x) isTRUE(x)
+
+#' @noRd
+false <- function(x) isFALSE(x)
+
+#' @noRd
+as_date <- function(x, ..., fmt = "%Y-%m-%d") as.Date(x, ..., format = fmt)
+
+#' @autoglobal
+#' @noRd
+roundup <- function(x, d = 2) {
+  d  <- 10^d
+  z  <- abs(x) * d
+  z  <- z + 0.5 + sqrt(.Machine[["double.eps"]])
+  z  <- trunc(z)
+  z  <- z / d
+  z * sign(x)
 }

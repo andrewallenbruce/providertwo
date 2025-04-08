@@ -4,7 +4,7 @@
 NULL
 
 #' @noRd
-sty <- fastplyr::list_tidy(
+sty <- list_tidy(
   # styles
   bdy   = cli::combine_ansi_styles(cli::style_bold, cli::col_yellow),
   bdg   = cli::combine_ansi_styles(cli::style_bold, cli::col_grey),
@@ -17,7 +17,7 @@ sty <- fastplyr::list_tidy(
 )
 
 #' @noRd
-txt <- fastplyr::list_tidy(
+txt <- list_tidy(
   # text
   Rows        = sty$bdy("Rows"),
   Fields      = sty$bdy("Fields"),
@@ -32,7 +32,7 @@ txt <- fastplyr::list_tidy(
 )
 
 #' @noRd
-fmt <- fastplyr::list_tidy(
+fmt <- list_tidy(
   # functions
   num      = \(x) prettyNum(x, big.mark = ","),
   rows     = \(x) num(x@rows),
@@ -67,7 +67,7 @@ cli_results <- function(n, limit) {
     sty$bdy(fmt$num(offset_size(n, limit))),
     txt$Request)
 
-  cli::cli_inform(c(">" = "{msg}"))
+  cli_inform(c(">" = "{msg}"))
 }
 
 print <- S7::new_external_generic("base", "print", "x")
@@ -150,6 +150,5 @@ S7::method(print, openMain) <- function(x) {
 
     cli::cli_bullets(links)
   }
-
   invisible(x)
 }

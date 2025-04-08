@@ -62,12 +62,10 @@ enrollees <- function(npi            = NULL,
 
   x <- careMain("enrollees") |>
     new_request() |>
-    req_perform() |>
-    resp_simple_json()
+    perform_simple()
 
-  set_names(
-    as_tbl(x$data),
-    x$meta$headers) |>
+  as_tbl(x$data) |>
+    set_names(x$meta$headers) |>
     map_na_if()
 
 }

@@ -4,11 +4,9 @@ flatten_column <- function(i) {
   map_chr(i, function(x) paste0(delist(x), collapse = ", "))
 }
 
-#' @autoglobal
-#' @noRd
-handle_na <- function(x) {
-  remove_all_na(map_if(x, is.character, function(x) na_if(x, y = "")))
-}
+# handle_na <- function(x) {
+#   remove_all_na(map_if(x, is.character, function(x) na_if(x, y = "")))
+# }
 
 #' @autoglobal
 #' @noRd

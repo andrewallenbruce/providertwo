@@ -40,11 +40,9 @@ tidyup2 <- function(x, names) {
 #' @autoglobal
 #' @noRd
 nrows_public <- function(url) {
-
   request(url) |>
     req_url_path_append("stats") |>
-    req_perform() |>
-    resp_simple_json() |>
+    perform_simple() |>
     _[["data"]] |>
     _[["found_rows"]]
 }
@@ -58,22 +56,18 @@ nrows_provider <- function(url) {
       offset  = 0,
       count   = "true",
       results = "false",
-      schema  = "false") |>
-    req_perform() |>
-    resp_simple_json() |>
+      schema  = "false"
+    ) |>
+    perform_simple() |>
     _[["count"]]
 }
 
 #' @autoglobal
 #' @noRd
 fields_public <- function(url) {
-
   request(url) |>
-    req_url_query(
-      size   = 1,
-      offset = 0) |>
-    req_perform() |>
-    resp_simple_json() |>
+    req_url_query(size   = 1, offset = 0) |>
+    perform_simple() |>
     _[["meta"]] |>
     _[["headers"]]
 
@@ -82,7 +76,6 @@ fields_public <- function(url) {
 #' @autoglobal
 #' @noRd
 fields_provider <- function(url) {
-
   request(url) |>
     req_url_query(
       limit   = 1,
@@ -100,7 +93,6 @@ fields_provider <- function(url) {
 #' @autoglobal
 #' @noRd
 query_nrows_public <- function(req) {
-
   req_url_path_append(req, "stats") |>
     perform_simple() |>
     _[["data"]] |>
@@ -111,14 +103,14 @@ query_nrows_public <- function(req) {
 #' @autoglobal
 #' @noRd
 query_nrows_provider <- function(req) {
-
   req_url_query(
     req,
     limit   = 1,
     offset  = 0,
     count   = "true",
     results = "false",
-    schema  = "false") |>
+    schema  = "false"
+  ) |>
     perform_simple() |>
     _[["count"]]
 }

@@ -23,7 +23,7 @@ Care <- new_class(name = "Care", package = NULL)
 #' careMain("dialysis")
 #' careMain("skilled_nursing")
 #' @autoglobal
-#' @rdname Care
+#' @rdname careMain
 #' @export
 careMain <- new_class(
   parent = Care,
@@ -83,7 +83,7 @@ careMain <- new_class(
 #' @examples
 #' careTemp("quality_payment")
 #' @autoglobal
-#' @rdname Care
+#' @rdname careTemp
 #' @export
 careTemp <- new_class(
   parent = Care,
@@ -138,7 +138,7 @@ careTemp <- new_class(
 #' careTempGroup("outpatient")
 #' careTempGroup("inpatient")
 #' @autoglobal
-#' @rdname Care
+#' @rdname careTemp
 #' @export
 careTempGroup <- new_class(
   parent  = Care,

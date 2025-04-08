@@ -9,9 +9,9 @@ Pro <- new_class(name = "Pro", package = NULL)
 #' @returns An S7 `<proMain>` object.
 #'
 #' @examples
-#' proMain("affiliations")
-#' proMain("clinicians")
-#' proMain("utilization")
+#' proMain("affiliations") |> str()
+#' proMain("clinicians") |> str()
+#' proMain("utilization") |> str()
 #' @autoglobal
 #' @rdname Provider
 #' @export
@@ -51,7 +51,6 @@ proMain <- new_class(
       description = x$description,
       contact     = x$contact,
       uuid        = x$identifier,
-      # identifier  = x$identifier,
       download    = x$download,
       issued      = x$issued,
       modified    = x$modified,

@@ -3,7 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem join mtt rowbind roworder rsplit sbt slt ss
-#' @importFrom vctrs vec_rep_each
+#' @importFrom vctrs vec_rep_each vec_is_empty vec_slice vec_in
 #' @importFrom fastplyr as_tbl f_fill f_nest_by f_ungroup list_tidy new_tbl
 #' @importFrom kit nswitch
 #' @importFrom tools file_ext toTitleCase

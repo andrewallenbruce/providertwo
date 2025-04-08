@@ -28,12 +28,14 @@ nppes_nlm <- function(terms) {
     )
 
   resp <- perform_simple(req)
-  n    <- resp[[1]]
+  n    <- yank(resp)
+  # n <- resp[[1]]
 
   if (n > 7500L) {
-    cli::cli_abort(c(
-      "Your search returned {.strong {.val {n}}} results.",
-      "x" = "The NLM API limit is {.strong {.emph 7,500}}."))
+    cli_abort(
+      c("Your search returned {.strong {.val {n}}} results.",
+        "x" = "The NLM API limit is {.strong {.emph 7,500}}.")
+    )
   }
 
   results <- resp[[4]] |>
@@ -46,7 +48,9 @@ nppes_nlm <- function(terms) {
   cli_results(n, 500L)
 
   if (false(nreq)) {
+
     return(results)
+
     } else {
 
       results2 <- req_perform_iterative(

@@ -16,7 +16,7 @@ An S7 \verb{<proMain>} object.
 Provider Endpoint
 }
 \examples{
-proMain("affiliations")
-proMain("clinicians")
-proMain("utilization")
+proMain("affiliations") |> str()
+proMain("clinicians") |> str()
+proMain("utilization") |> str()
 }

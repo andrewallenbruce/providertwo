@@ -55,7 +55,6 @@ openMain <- new_class(
       contact     = x$contact,
       modified    = x$modified,
       uuid        = x$identifier,
-      # identifier  = x$identifier,
       download    = x$download,
       rows        = q$rows,
       fields      = q$fields,
@@ -71,9 +70,9 @@ openMain <- new_class(
 #' @returns An S7 `<openTemp>` object.
 #'
 #' @examples
-#' openTemp("general")
-#' openTemp("ownership")
-#' openTemp("research")
+#' openTemp("general") |> str()
+#' openTemp("ownership") |> str()
+#' openTemp("research") |> str()
 #' @autoglobal
 #' @rdname Open
 #' @export
@@ -88,7 +87,6 @@ openTemp <- new_class(
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
-    years       = class_integer,
     endpoints   = class_list
   ),
   constructor = function(alias) {
@@ -104,7 +102,6 @@ openTemp <- new_class(
       rows        = q$rows,
       fields      = q$fields,
       pages       = q$pages,
-      years       = x$year,
       endpoints   = slt(x, year, modified, identifier, download)
     )
   }
