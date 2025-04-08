@@ -5,7 +5,6 @@
 #' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem join mtt rnm rowbind roworder rsplit sbt slt ss
 #' @importFrom vctrs vec_rep_each vec_is_empty vec_slice vec_in
 #' @importFrom fastplyr as_tbl f_fill f_nest_by f_ungroup list_tidy new_tbl
-#' @importFrom kit nswitch
 #' @importFrom tools file_ext toTitleCase
 #' @importFrom glue glue glue_collapse
 #' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex stri_extract_first_regex stri_replace_all_fixed stri_replace_all_regex stri_trim

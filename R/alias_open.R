@@ -1,91 +1,74 @@
-#' @examplesIf rlang::is_interactive()
-#' open_main("prof_cov")
-#' open_main("prof_phys")
-#' open_main("prof_info")
-#' open_main("prof_map")
-#' open_main("prof_entity")
-#' open_main("prof_teach")
-#' open_main("dashboard")
-#' open_main("pay_state_total")
-#' open_main("pay_state_group")
-#' open_main("pay_nat_group")
-#' open_main("pay_nat_total")
+# open_main("profile_covered")
+# open_main("profile_physician")
+# open_main("profile_information")
+# open_main("profile_mapping")
+# open_main("profile_entity")
+# open_main("profile_teaching")
+# open_main("dashboard")
+# open_main("state_total")
+# open_main("state_group")
+# open_main("national_group")
+# open_main("national_total")
 #' @autoglobal
 #' @noRd
-open_main <- function(x) {
-
-  x <- nswitch(
+open_main <- function(x, call = caller_env()) {
+  x <- switch(
     x,
-    "prof_cov",        "^Covered Recipient Profile Supplement",
-    "prof_phys",       "^Physician \\(Distinct\\) Profile Information",
-    "prof_info",       "^Profile Information",
-    "prof_map",        "^Provider Profile ID Mapping Table",
-    "prof_entity",     "^Reporting Entity Profile Information",
-    "prof_teach",      "^Teaching Hospital Profile Information",
-    "dashboard",       "^Summary Dashboard",
-    "pay_state_total", "^State Level Payment Total and Averages for all Years$",
-    "pay_state_group", "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
-    "pay_nat_group",   "^National Level Payment Total and Averages by Provider Specialty for all Years$",
-    "pay_nat_total",   "^National Level Payment Total and Averages for all Years$",
-    default = NA_character_,
-    nThread = 4L
+    profile_covered      = "^Covered Recipient Profile Supplement",
+    profile_physician    = "^Physician \\(Distinct\\) Profile Information",
+    profile_information  = "^Profile Information",
+    profile_mapping      = "^Provider Profile ID Mapping Table",
+    profile_entity       = "^Reporting Entity Profile Information",
+    profile_teaching     = "^Teaching Hospital Profile Information",
+    dashboard            = "^Summary Dashboard",
+    state_total          = "^State Level Payment Total and Averages for all Years$",
+    state_group          = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
+    national_group       = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
+    national_total       = "^National Level Payment Total and Averages for all Years$",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   select_alias(.catalog$open$main, x) |> c()
 }
 
-#' @examplesIf rlang::is_interactive()
-#' open_temp("general")
-#' open_temp("ownership")
-#' open_temp("research")
-#' # open_temp("recipient_nature")
-#' # open_temp("recipient_entity")
-#' # open_temp("entity_nature")
-#' # open_temp("entity_recipient_nature")
-#' # open_temp("state_nature")
+# open_temp("general")
+# open_temp("ownership")
+# open_temp("research")
 #' @noRd
-open_temp <- function(x) {
-
-  x <- nswitch(
+open_temp <- function(x, call = caller_env()) {
+  x <- switch(
     x,
-    "general",                 "^General Payment Data$",
-    "ownership",               "^Ownership Payment Data$",
-    "research",                "^Research Payment Data$",
-    # "recipient_nature",        "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    # "recipient_entity",        "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    # "entity_nature",           "^Payments Grouped by Reporting Entities and Nature of Payments$",
-    # "entity_recipient_nature", "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
-    # "state_nature",            "^State Payment Totals Grouped by Nature of Payment for all Years$",
-    default = NA_character_,
-    nThread = 4L
-  )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    general   = "^General Payment Data$",
+    ownership = "^Ownership Payment Data$",
+    research  = "^Research Payment Data$",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   select_alias(.catalog$open$temp, x)
 }
 
-#' @examplesIf rlang::is_interactive()
-#' open_temp_group("grouped_payments")
+# open_temp_group("grouped_payments")
 #' @noRd
-open_temp_group <- function(x = "grouped_payments") {
-
-  x <- nswitch(
+open_temp_group <- function(x, call = caller_env()) {
+  x <- switch(
     x,
-    "grouped_payments", "^Payments Grouped by|^State Payment Totals",
-    default = NA_character_,
-    nThread = 4L
-  )
+    "grouped_payments" = "^Payments Grouped by",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
-
-  if (!exists("catalog")) .catalog <- catalogs()
+  if (!exists("catalog"))
+    .catalog <- catalogs()
 
   select_alias(.catalog$open$temp, x)
 }
+
+# "recipient_nature",        "^Payments Grouped by Covered Recipient and Nature of Payments$",
+# "recipient_entity",        "^Payments Grouped by Covered Recipient and Reporting Entities$",
+# "entity_nature",           "^Payments Grouped by Reporting Entities and Nature of Payments$",
+# "entity_recipient_nature", "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
+## open_temp("recipient_nature")
+## open_temp("recipient_entity")
+## open_temp("entity_nature")
+## open_temp("entity_recipient_nature")

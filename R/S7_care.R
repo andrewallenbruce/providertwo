@@ -26,9 +26,9 @@ Care <- new_class(name = "Care", package = NULL)
 #' @rdname careMain
 #' @export
 careMain <- new_class(
-  parent = Care,
-  name = "careMain",
-  package = NULL,
+  parent     = Care,
+  name       = "careMain",
+  package    = NULL,
   properties = list(
     # common
     title       = class_character,
@@ -86,9 +86,9 @@ careMain <- new_class(
 #' @rdname careTemp
 #' @export
 careTemp <- new_class(
-  parent = Care,
-  name = "careTemp",
-  package = NULL,
+  parent     = Care,
+  name       = "careTemp",
+  package    = NULL,
   properties = list(
     # common
     title       = class_character,
@@ -132,18 +132,18 @@ careTemp <- new_class(
 #' @returns An S7 `<careTempGroup>` object.
 #'
 #' @examples
-#' careTempGroup("utilization")
+#' careTempGroup("inpatient")
+#' careTempGroup("outpatient")
 #' careTempGroup("prescribers")
 #' careTempGroup("suppliers")
-#' careTempGroup("outpatient")
-#' careTempGroup("inpatient")
+#' careTempGroup("utilization")
 #' @autoglobal
-#' @rdname careTemp
+#' @rdname careTempGroup
 #' @export
 careTempGroup <- new_class(
-  parent  = Care,
-  name    = "careTempGroup",
-  package = NULL,
+  parent     = Care,
+  name       = "careTempGroup",
+  package    = NULL,
   properties = list(
     # common
     title       = class_character,

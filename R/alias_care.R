@@ -1,41 +1,36 @@
-#' @examplesIf rlang::is_interactive()
-#' care_main("enrollees")
-#' care_main("opt_out")
-#' care_main("order_refer")
-#' care_main("reassignments")
-#' care_main("hospitals")
-#' care_main("laboratories")
-#' care_main("crosswalk")
-#' care_main("rbcs")
-#' care_main("facilities")
-#' care_main("home_health")
-#' care_main("hospice")
-#' care_main("dialysis")
-#' care_main("skilled_nursing")
+# care_main("enrollees")
+# care_main("opt_out")
+# care_main("order_refer")
+# care_main("reassignments")
+# care_main("hospitals")
+# care_main("laboratories")
+# care_main("crosswalk")
+# care_main("rbcs")
+# care_main("facilities")
+# care_main("home_health")
+# care_main("hospice")
+# care_main("dialysis")
+# care_main("skilled_nursing")
 #' @autoglobal
 #' @noRd
 care_main <- function(x, call = caller_env()) {
 
-  x <- nswitch(
+  x <- switch(
     x,
-    "enrollees",             "Public Provider Enrollment",
-    "opt_out",               "Opt Out Affidavits",
-    "order_refer",           "Order and Referring",
-    "reassignments",         "Revalidation Reassignment List",
-    "hospitals",             "Hospital Enrollments",
-    "laboratories",          "Provider of Services File - Clinical Laboratories",
-    "facilities",            "Provider of Services File - Hospital & Non-Hospital Facilities",
-    "crosswalk",             "Medicare Provider and Supplier Taxonomy Crosswalk",
-    "rbcs",                  "Restructured BETOS Classification System",
-    "home_health",           "Home Health Agency Enrollments",
-    "hospice",               "Hospice Enrollments",
-    "dialysis",              "Medicare Dialysis Facilities",
-    "skilled_nursing",       "Skilled Nursing Facility Enrollments",
-    default = NA_character_,
-    nThread = 4L
-  )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    crosswalk       = "Medicare Provider and Supplier Taxonomy Crosswalk",
+    dialysis        = "Medicare Dialysis Facilities",
+    enrollees       = "Public Provider Enrollment",
+    facilities      = "Provider of Services File - Hospital & Non-Hospital Facilities",
+    home_health     = "Home Health Agency Enrollments",
+    hospice         = "Hospice Enrollments",
+    hospitals       = "Hospital Enrollments",
+    laboratories    = "Provider of Services File - Clinical Laboratories",
+    opt_out         = "Opt Out Affidavits",
+    order_refer     = "Order and Referring",
+    rbcs            = "Restructured BETOS Classification System",
+    reassignments   = "Revalidation Reassignment List",
+    skilled_nursing = "Skilled Nursing Facility Enrollments",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -43,46 +38,36 @@ care_main <- function(x, call = caller_env()) {
 
 }
 
-#' @examplesIf rlang::is_interactive()
-#' care_group("hospitals")
-#' care_group("rhc")
-#' care_group("fqhc")
-#' care_group("pending")
+# care_group("hospitals")
+# care_group("rhc")
+# care_group("fqhc")
+# care_group("pending")
 #' @autoglobal
 #' @noRd
 care_group <- function(x, call = caller_env()) {
 
-  x <- nswitch(
+  x <- switch(
     x,
-    "hospitals", "^Hospital",
-    "rhc",       "Rural Health Clinic",
-    "fqhc",      "Federally Qualified Health Center",
-    "pending",   "Pending Initial Logging and Tracking",
-    default = NA_character_,
-    nThread = 4L
-  )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    hospitals       = "^Hospital",
+    rhc             = "Rural Health Clinic",
+    fqhc            = "Federally Qualified Health Center",
+    pending         = "Pending Initial Logging and Tracking",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   select_alias(.catalog$care$main, x) |> slt(-filetype)
 }
 
-#' @examplesIf rlang::is_interactive()
-#' care_temp("quality_payment")
+# care_temp("quality_payment")
 #' @autoglobal
 #' @noRd
-care_temp <- function(x) {
+care_temp <- function(x, call = caller_env()) {
 
-  x <- nswitch(
+  x <- switch(
     x,
-    "quality_payment",  "Quality Payment Program Experience",
-    default = NA_character_,
-    nThread = 4L
-  )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    quality_payment = "Quality Payment Program Experience",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -90,47 +75,46 @@ care_temp <- function(x) {
 
 }
 
-#' @examplesIf rlang::is_interactive()
-#' care_temp_group("utilization")
-#' care_temp_group("prescribers")
-#' care_temp_group("suppliers")
-#' care_temp_group("outpatient")
-#' care_temp_group("inpatient")
+# care_temp_group("inpatient")
+# care_temp_group("outpatient")
+# care_temp_group("prescribers")
+# care_temp_group("suppliers")
+# care_temp_group("utilization")
 #' @autoglobal
 #' @noRd
-care_temp_group <- function(x) {
+care_temp_group <- function(x, call = caller_env()) {
 
-  x <- nswitch(
+  x <- switch(
     x,
-    "prescribers", "Medicare Part D Prescribers",
-    "utilization", "Medicare Physician & Other Practitioners",
-    "outpatient",  "Medicare Outpatient Hospitals",
-    "inpatient",   "Medicare Inpatient Hospitals",
-    "suppliers",   "Medicare Durable Medical Equipment, Devices & Supplies",
-    default = NA_character_,
-    nThread = 4L
-  )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    inpatient       = "Medicare Inpatient Hospitals",
+    outpatient      = "Medicare Outpatient Hospitals",
+    prescribers     = "Medicare Part D Prescribers",
+    suppliers       = "Medicare Durable Medical Equipment, Devices & Supplies",
+    utilization     = "Medicare Physician & Other Practitioners",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   x <- select_alias(.catalog$care$temp, x) |>
-    mtt(group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")),
-        title = stri_extract_first_regex(title, "^.*(?=\\s-)")) |>
-    colorder(title, group)
+    mtt(group = stri_extract_first_regex(title, "(?<=-\\s).*$") |> clean_names(),
+        title = stri_extract_first_regex(title, "^.*(?=\\s-)"))
 
-  x2 <- map2(x$data,  x$group, function(x, y)
-    mtt(x, group = clean_names(y)) |> slt(year, group, identifier, resources)) |>
+  x2 <- map2(x$data,  x$group, function(x, y) {
+    mtt(x, group = clean_names(y)) |>
+      slt(year, group, identifier, resources)
+    }) |>
     rowbind() |>
-    join(slt(x, -data, -title, -periodicity, -contact), on = "group", verbose = 0)
+    join(
+      slt(x, -data, -title, -periodicity, -contact),
+      on = "group",
+      verbose = 0)
 
   years  <- funique(x2$year)
   groups <- funique(x2$group)
 
-  q <- dims_care_temp_group(x = sbt(x2, year == fmax(year)) |> _[["identifier"]], g = groups)
-
-  # q <- map(sbt(x2, year == fmax(year)) |> _[["identifier"]], \(x) dims_care_temp(x)) |> set_names(groups)
+  q <- dims_care_temp_group(
+    x = sbt(x2, year == fmax(year)) |> _[["identifier"]],
+    g = groups)
 
   x2 <- rsplit(x2, ~ group)
 
@@ -162,5 +146,4 @@ care_temp_group <- function(x) {
   ) |>
     parse_expr() |>
     eval_bare()
-
 }

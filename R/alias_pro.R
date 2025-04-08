@@ -1,21 +1,16 @@
-#' @examplesIf rlang::is_interactive()
-#' pro_main("affiliations")
-#' pro_main("clinicians")
-#' pro_main("utilization")
+# pro_main("affiliations")
+# pro_main("clinicians")
+# pro_main("utilization")
 #' @autoglobal
 #' @noRd
-pro_main <- function(x) {
-
-  x <- nswitch(
+pro_main <- function(x, call = caller_env()) {
+  x <- switch(
     x,
-    "affiliations",  "^Facility Affiliation Data$",
-    "clinicians",    "^National Downloadable File$",
-    "utilization",   "^Utilization Data$",
-    default = NA_character_,
-    nThread = 4L
+    affiliations = "^Facility Affiliation Data$",
+    clinicians   = "^National Downloadable File$",
+    utilization  = "^Utilization Data$",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -23,19 +18,15 @@ pro_main <- function(x) {
 
 }
 
-#' @examplesIf rlang::is_interactive()
-#' pro_group("mips")
+# pro_group("mips")
 #' @autoglobal
 #' @noRd
 pro_group <- function(x) {
-
-  x <- nswitch(
+  x <- switch(
     x,
-    "mips", "^PY 2022",
-    default = NA_character_,
-    nThread = 4L)
-
-  if (na(x)) cli_abort(c("x" = "No matches found."), call = call)
+    mips            = "^PY 2022",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 
   if (!exists("catalog")) .catalog <- catalogs()
 

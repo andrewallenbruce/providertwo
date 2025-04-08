@@ -13,12 +13,12 @@ Pro <- new_class(name = "Pro", package = NULL)
 #' proMain("clinicians") |> str()
 #' proMain("utilization") |> str()
 #' @autoglobal
-#' @rdname Provider
+#' @rdname proMain
 #' @export
 proMain <- new_class(
-  parent = Pro,
-  name = "proMain",
-  package = NULL,
+  parent     = Pro,
+  name       = "proMain",
+  package    = NULL,
   properties = list(
     # common
     title       = class_character,

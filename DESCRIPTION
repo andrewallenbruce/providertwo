@@ -18,7 +18,6 @@ Imports:
     fastplyr (>= 0.5.1),
     glue (>= 1.8.0),
     httr2 (>= 1.1.1),
-    kit (>= 0.0.19),
     memoise (>= 2.0.1),
     RcppSimdJson (>= 0.1.13),
     rlang (>= 1.1.5),

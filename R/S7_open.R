@@ -9,24 +9,23 @@ Open <- new_class(name = "Open", package = NULL)
 #' @returns An S7 `<openMain>` object.
 #'
 #' @examples
-#' openMain("prof_cov")
-#' openMain("prof_phys")
-#' openMain("prof_info")
-#' openMain("prof_map")
-#' openMain("prof_entity")
-#' openMain("prof_teach")
-#' openMain("dashboard")
-#' openMain("pay_state_total")
-#' openMain("pay_state_group")
-#' openMain("pay_nat_group")
-#' openMain("pay_nat_total")
+#' openMain("profile_covered")
+#' openMain("profile_physician")
+#' openMain("profile_information")
+#' openMain("profile_mapping")
+#' openMain("profile_entity")
+#' openMain("profile_teaching")
+#' openMain("state_total")
+#' openMain("state_group")
+#' openMain("national_group")
+#' openMain("national_total")
 #' @autoglobal
-#' @rdname Open
+#' @rdname openMain
 #' @export
 openMain <- new_class(
-  parent = Open,
-  name = "openMain",
-  package = NULL,
+  parent     = Open,
+  name       = "openMain",
+  package    = NULL,
   properties = list(
     title       = class_character,
     description = class_character,
@@ -74,12 +73,12 @@ openMain <- new_class(
 #' openTemp("ownership") |> str()
 #' openTemp("research") |> str()
 #' @autoglobal
-#' @rdname Open
+#' @rdname openTemp
 #' @export
 openTemp <- new_class(
-  parent = Open,
-  name = "openTemp",
-  package = NULL,
+  parent     = Open,
+  name       = "openTemp",
+  package    = NULL,
   properties = list(
     title       = class_character,
     description = class_character,
@@ -105,23 +104,4 @@ openTemp <- new_class(
       endpoints   = slt(x, year, modified, identifier, download)
     )
   }
-)
-
-#' Group of Open Payments Temporal Endpoints
-#' @autoglobal
-#' @noRd
-openTempGroup <- new_class(
-  parent  = Open,
-  name    = "openTempGroup",
-  package = NULL,
-  properties = list(
-    title       = class_character,
-    description = class_character,
-    contact     = class_character,
-    rows        = class_integer,
-    pages       = class_integer,
-    fields      = class_character,
-    years       = class_integer,
-    endpoints   = class_list
-  )
 )

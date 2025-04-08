@@ -2,31 +2,19 @@
 % Please edit documentation in R/S7_care.R
 \name{careTemp}
 \alias{careTemp}
-\alias{careTempGroup}
 \title{Medicare Temporal Endpoint}
 \usage{
 careTemp(alias)
-
-careTempGroup(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} title alias}
 }
 \value{
 An S7 \verb{<careTemp>} object.
-
-An S7 \verb{<careTempGroup>} object.
 }
 \description{
 Medicare Temporal Endpoint
-
-Group of Medicare Temporal Endpoints
 }
 \examples{
 careTemp("quality_payment")
-careTempGroup("utilization")
-careTempGroup("prescribers")
-careTempGroup("suppliers")
-careTempGroup("outpatient")
-careTempGroup("inpatient")
 }
