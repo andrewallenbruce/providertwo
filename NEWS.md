@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9177 (2025-04-08)
+
+* quick_lookup fns
+
+
 # providertwo 0.0.0.9176 (2025-04-08)
 
 * removed `kit` as a dependency
