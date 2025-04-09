@@ -118,6 +118,7 @@ utils::globalVariables(c(
   "title",
   # <catalog_care>
   # <catalog_open>
+  # <catalog_caid>
   # <openTemp>
   # <care_temp_group>
   "year",

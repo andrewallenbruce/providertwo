@@ -73,7 +73,8 @@ fmt_periodicity <- function(x) {
     "R/P1D"    ~ "Daily [R/P1D]",
     "R/PT1H"   ~ "Hourly [R/PT1H]",
     "R/PT1S"   ~ "Continuously [R/PT1S]",
-    .default   = "Unknown periodicity")
+    .default = x
+    )
 }
 
 #' @autoglobal
@@ -101,7 +102,8 @@ roxy8601 <- function(x) {
     "R/P1D"    ~ "Daily (R/P1D)",
     "R/PT1H"   ~ "Hourly (R/PT1H)",
     "R/PT1S"   ~ "Continuously (R/PT1S)",
-    .default   = "Unknown periodicity")
+    .default   = "Unknown"
+    )
 }
 
 #' @noRd

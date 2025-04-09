@@ -116,7 +116,8 @@ catalogs <- function() {
   list(
     care = catalog_care(),
     pro  = catalog_pro(),
-    open = catalog_open()
+    open = catalog_open(),
+    caid = catalog_caid()
   )
 }
 
