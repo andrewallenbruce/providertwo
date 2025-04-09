@@ -18,23 +18,25 @@ dims_care <- function(x) {
 #' @noRd
 dims_care_temp <- function(x) {
 
-  get_rows <- \(x) {
-    request(x) |>
-      req_url_path_append("stats") |>
-      perform_simple() |>
-      _[["total_rows"]]
-    }
+  x <- request(x) |> req_url_query(offset = 0L, size = 1L)
 
-  get_fields <- \(x) {
-    request(x) |>
-      req_url_query(offset = 0L, size = 1L) |>
-      perform_simple() |>
-      names()
-    }
+  # get_rows <- \(x) {
+  #   request(x) |>
+  #     req_url_path_append(x, "stats") |>
+  #     perform_simple() |>
+  #     _[["total_rows"]]
+  #   }
+  #
+  # get_fields <- \(x) {
+  #   request(x) |>
+  #     req_url_query(offset = 0L, size = 1L) |>
+  #     perform_simple() |>
+  #     names()
+  #   }
 
   list_tidy(
-    rows   = get_rows(x),
-    fields = get_fields(x),
+    rows   = x |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
+    fields = x |> perform_simple() |> names(),
     pages  = offset_size(rows, 5000L)
   )
 }
@@ -45,22 +47,18 @@ dims_care_temp_group <- function(x, g) {
 
   reqs <- map(x, \(x) request(x) |> req_url_query(offset = 0L, size = 1L))
 
-  fields_ <- req_perform_parallel(reqs, on_error = "continue") |>
-    map(\(x) resp_simple_json(x) |> names()) |>
-    set_names(g)
+  FLD <- req_perform_parallel(reqs, on_error = "continue") |>
+        map(\(x) names(resp_simple_json(x)))
 
-  rows_ <- map(reqs, \(x) req_url_path_append(x, "stats")) |>
-    req_perform_parallel(on_error = "continue") |>
-    map(\(x) resp_simple_json(x) |> _[["total_rows"]]) |>
-    set_names(g)
+  reqs <- map(reqs, \(x) req_url_path_append(x, "stats"))
 
-  pages_ <- map(rows_, \(x) offset_size(x, 5000L)) |>
-    set_names(g)
+  ROW <- req_perform_parallel(reqs, on_error = "continue") |>
+        map(\(x) resp_simple_json(x) |> _[["total_rows"]])
 
   list(
-    rows   = rows_,
-    fields = fields_,
-    pages  = pages_
+    rows   = set_names(ROW, g),
+    fields = set_names(FLD, g),
+    pages  = map(ROW, \(x) offset_size(x, 5000L)) |> set_names(g)
   )
 }
 
@@ -75,6 +73,8 @@ dims_pro <- function(x) {
       keys    = "false",
       results = "false",
       count   = "true",
+      format  = "json",
+      rowIds  = "false",
       offset  = 0L,
       limit   = 1L
     ) |>
@@ -98,6 +98,8 @@ dims_open <- function(x) {
       keys    = "false",
       results = "false",
       count   = "true",
+      format  = "json",
+      rowIds  = "false",
       offset  = 0L,
       limit   = 1L
     ) |>
@@ -112,20 +114,20 @@ dims_open <- function(x) {
 
 #' @autoglobal
 #' @noRd
-dims_caid <- function(uuid) {
+dims_caid <- function(x) {
 
-  x <- uuid |>
+  x <- x |>
     caid_url() |>
     request() |>
     req_url_query(
       schema  = "false",
       keys    = "false",
-      results = "true",
+      results = "false",
       count   = "true",
       format  = "json",
       rowIds  = "false",
-      limit   = 1,
-      offset  = 0
+      offset  = 0L,
+      limit   = 1L
     ) |>
     perform_simple()
 

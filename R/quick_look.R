@@ -1,22 +1,7 @@
 #' @autoglobal
 #' @noRd
-quick_look_pro <- function(x) {
-  x |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      limit   = 2000L,
-      offset  = 0L,
-      results = "true",
-      rowIds  = "false",
-      schema  = "false"
-    ) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    as_tbl()
+cclean <- function(x) {
+  gsub("\\(|\\)", "", gsub(" |-", "_", tolower(x)))
 }
 
 #' @autoglobal
@@ -36,9 +21,11 @@ quick_care <- function(x) {
     map_na_if()
 }
 
+# quick_care_temp(careTemp("quality_payment")@endpoints$identifier[1])
 #' @autoglobal
 #' @noRd
 quick_care_temp <- function(x) {
+
   x |>
     request() |>
     req_url_query(
@@ -46,9 +33,34 @@ quick_care_temp <- function(x) {
       size   = 5000L) |>
     perform_simple() |>
     map_na_if() |>
+    rnm(cclean) |>
     as_tbl()
 }
 
+# quick_pro(proMain("clinicians")@identifier)
+#' @autoglobal
+#' @noRd
+quick_pro <- function(x) {
+  x |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      offset  = 0L,
+      limit   = 2000L
+    ) |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    rnm(cclean) |>
+    as_tbl()
+}
+
+# quick_open(openMain("profile_covered")@identifier) |> str()
 #' @autoglobal
 #' @noRd
 quick_open <- function(x) {
@@ -58,18 +70,20 @@ quick_open <- function(x) {
       count   = "false",
       format  = "json",
       keys    = "true",
-      limit   = 500L,
-      offset  = 0L,
       results = "true",
       rowIds  = "false",
-      schema  = "false"
+      schema  = "false",
+      offset  = 0L,
+      limit   = 500L
     ) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
+    rnm(cclean) |>
     as_tbl()
 }
 
+# quick_open_temp(prop(openTemp("ownership"), "endpoints")$identifier[1])
 #' @autoglobal
 #' @noRd
 quick_open_temp <- function(x) {
@@ -80,13 +94,36 @@ quick_open_temp <- function(x) {
       count   = "false",
       format  = "json",
       keys    = "true",
-      limit   = 500L,
-      offset  = 0L,
       results = "true",
       rowIds  = "false",
-      schema  = "false") |>
+      schema  = "false",
+      offset  = 0L,
+      limit   = 500L
+      ) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
+    rnm(cclean) |>
+    as_tbl()
+}
+
+quick_caid <- function(x) {
+  x |>
+    caid_url() |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      offset  = 0L,
+      limit   = 8000L
+    ) |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    rnm(cclean) |>
     as_tbl()
 }
