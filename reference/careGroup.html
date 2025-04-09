@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9184</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9185</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,49 +63,184 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"pending"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"home_health"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Pending Initial Logging and Tracking Non Physicians"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Home Health Agency All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ home_health_agency_all_owners :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 102925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Home Health Agency (HHA) All Owners dataset provides ownership information on all HHAs currently enrolled i"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-04-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/fc009b2d-7846-44b1-b4a1-692f0c143879/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_All_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/home-health-agency-all-owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/a0443d0f-247e-481e-8d62-cdd0621238d4/HHA_All_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/fc009b2d-7846-44b1-b4a1-692f0c143879"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ home_health_agency_cost_report:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 10564</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:201] "rpt_rec_num" "Provider CCN" "HHA Name" "Street Address" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Home Health Agency Provider Cost Report dataset provides select measures from the home health agency annual"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2024-10-25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2020-01-01 • 2022-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "PDAG Data Products - OEDA (mailto:PDAG_Data_Products@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/4999da74-1d8d-4a6f-934e-2d7ea470cc63/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/home-health-agency-cost-report-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-compliance/cost-report/home-health-agency-cost-report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/home-health-agency-cost-report-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2024-10/19db07e2-b626-480a-8554-8cb2ea64f5df/CostReporthha_Final_22.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/4999da74-1d8d-4a6f-934e-2d7ea470cc63"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ home_health_agency_enrollments:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 11708</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:22] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" "PROVIDER TYPE TEXT" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Home Health Agency (HHA) Enrollments dataset provides enrollment information on all HHAs currently enrolled"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-04-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/15f64ab4-3172-4a27-b589-ebd67a6d28aa/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_Enrollments_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/home-health-agency-enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/HHA_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/c133f82f-5635-47d3-b85f-364b379a322a/HHA_Enrollments_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/15f64ab4-3172-4a27-b589-ebd67a6d28aa"</span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"hospice"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Hospice All Owners"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ non_physicians:List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 5847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospice_all_owners :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 71905</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The  Hospice All Owners dataset provides ownership information on all hospices currently enrolled in Medicare. "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-04-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/e983965e-1603-4cb8-82b5-c40090e380d1/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospice_All_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospice-all-owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2023-03/f193e9ef-9fd7-4de3-9a27-0d5281cf80a9/Hospice_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/662c8886-9074-4669-bbfb-3807ba85b484/Hospice_All_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/e983965e-1603-4cb8-82b5-c40090e380d1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospice_enrollments:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 6603</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:3] "NPI" "LAST_NAME" "FIRST_NAME"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:20] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" "PROVIDER TYPE TEXT" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Pending Initial Logging and Tracking (L &amp; T) Non Physicians dataset provides a list of pending applications"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-21"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Twice a Week [R/P3.5D]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-05-21 • 2025-01-18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospice Enrollments dataset provides enrollment information of all hospices currently enrolled in Medicare."| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-04-01 • 2025-03-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/261b83b6-b89f-43ad-ae7b-0d419a3bc24b/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/pending-initial-logging-and"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/25704213-e833-4b8b-9dbc-58dd17149209/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-03/f736ce50-3d6b-4ee2-802f-2e5424ae71ac/Hospice_Enrollments_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospice-enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2023-03/f193e9ef-9fd7-4de3-9a27-0d5281cf80a9/Hospice_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e394d10f-d2ae-4156-95b6-3d99c7a0f830/PendingInitialLandTsNonPh"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/261b83b6-b89f-43ad-ae7b-0d419a3bc24b"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ physicians    :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 3350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/afd62e57-8a99-4c49-a0b5-358a25ce39dd/Hospice_Enrollments_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/25704213-e833-4b8b-9dbc-58dd17149209"</span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"hospitals"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Hospital All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_all_owners                             :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 148305</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital All Owners Information dataset provides information on all owners of the hospitals. This data incl"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-11-01 • 2025-01-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_All_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/d20ffa23-37f1-40ca-8ecd-03413f021acb/Hospital_All_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/029c119f-f79c-49be-9100-344d31d10344"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_change_of_ownership                    :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 707</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:3] "NPI" "LAST_NAME" "FIRST_NAME"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:23] "ENROLLMENT ID - BUYER" "ENROLLMENT STATE - BUYER" "PROVIDER TYPE CODE - BUYER" "PROVIDER TYPE TEXT - BUYER" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Pending Initial Logging and Tracking (L &amp; T) Physicians dataset provides a list of pending applications tha"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-21"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Twice a Week [R/P3.5D]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-05-21 • 2025-01-18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Change of Ownership (CHOW) dataset provides information on the hospital ownership changes that occ"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-01-01 • 2024-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/6bd6b1dd-208c-4f9c-88b8-b15fec6db548/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/pending-initial-logging-and"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/Hospital_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/2e9ddac3-eb7e-4805-a3e0-9c52152af37a/Hospital_CHOW_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/c04031db-54ce-461c-85d1-d2613d71f167"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_change_of_ownership___owner_information:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 20909</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Change of Ownership (CHOW) - Owner Information dataset provides information on individual and orga"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-01-01 • 2024-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e42d8d95-39eb-43a4-86ca-de774b00c7ca/Hospital_CHOW_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/60625dc8-b621-45f0-9423-077fd133b13e"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_enrollments                            :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 9272</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:39] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" "PROVIDER TYPE TEXT" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-11-01 • 2025-01-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/fb10c137-60ec-4328-9af5-b6fc3b55b937/PendingInitialLandTsPhysi"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/6bd6b1dd-208c-4f9c-88b8-b15fec6db548"</span>
-<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"rhc"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/0ef8ef0d-bf93-4b00-a542-a4e2853947cc/Hospital_Enrollments_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f6f6505c-e8b0-4d57-b258-e2b94133aaf2"</span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"rural_health"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Rural Health Clinic All Owners"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
@@ -189,82 +324,200 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/472db45d-c7ce-4b0b-8251-0470e625e521/FQHC_Enrollments_2025.01.02.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/4bcae866-3411-439a-b762-90a6187c194b"</span>
-<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"hospitals"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"pending"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Hospital All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Pending Initial Logging and Tracking Non Physicians"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_all_owners                             :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 148305</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ non_physicians:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 5847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:3] "NPI" "LAST_NAME" "FIRST_NAME"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital All Owners Information dataset provides information on all owners of the hospitals. This data incl"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-11-01 • 2025-01-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Pending Initial Logging and Tracking (L &amp; T) Non Physicians dataset provides a list of pending applications"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Twice a Week [R/P3.5D]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-05-21 • 2025-01-18"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_All_Owners_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/261b83b6-b89f-43ad-ae7b-0d419a3bc24b/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/pending-initial-logging-and"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-methodology"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/d20ffa23-37f1-40ca-8ecd-03413f021acb/Hospital_All_Owners_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/029c119f-f79c-49be-9100-344d31d10344"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_change_of_ownership                    :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 707</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e394d10f-d2ae-4156-95b6-3d99c7a0f830/PendingInitialLandTsNonPh"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/261b83b6-b89f-43ad-ae7b-0d419a3bc24b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ physicians    :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 3350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:3] "NPI" "LAST_NAME" "FIRST_NAME"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Pending Initial Logging and Tracking (L &amp; T) Physicians dataset provides a list of pending applications tha"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Twice a Week [R/P3.5D]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2023-05-21 • 2025-01-18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/6bd6b1dd-208c-4f9c-88b8-b15fec6db548/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/pending-initial-logging-and"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/pending-initial-logging-and-tracking-physician-and-non-physicians-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/fb10c137-60ec-4328-9af5-b6fc3b55b937/PendingInitialLandTsPhysi"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/6bd6b1dd-208c-4f9c-88b8-b15fec6db548"</span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"reassignment"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Revalidation Clinic Group Practice Reassignment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ revalidation_clinic_group_practice_reassignment:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 3490044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:15] "Group PAC ID" "Group Enrollment ID" "Group Legal Business Name" "Group State Code" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Revalidation Clinic Group Practice Reassignment dataset provides information between the physician and the "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-01-01 • 2025-04-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/e1f1fa9a-d6b4-417e-948a-c72dead8a41c/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/revalidation-clinic-group-practice-reassignment-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/revalidation-clinic-group-p"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/additional-information-on-revalidation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-03/f8e7bd82-2f79-4738-a927-58f3fd147ccd/revalidation_clinic_group"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/e1f1fa9a-d6b4-417e-948a-c72dead8a41c"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ revalidation_due_date_list                     :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 2820803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:13] "Enrollment ID" "National Provider Identifier" "First Name" "Last Name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Revalidation Due Date List dataset contains revalidation due dates for Medicare providers who are due to re"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-02-01 • 2025-04-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/3746498e-874d-45d8-9c69-68603cafea60/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/revalidation-due-date-list-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/revalidation-due-date-list"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/additional-information-on-revalidation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-03/e9c149be-aa7b-42cf-92a3-6b7675753153/revalidation_base.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/3746498e-874d-45d8-9c69-68603cafea60"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ revalidation_reassignment_list                 :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 3658408</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:16] "Group PAC ID" "Group Enrollment ID" "Group Legal Business Name" "Group State Code" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Revalidation Reassignment List dataset provides information on reassignments of providers who are due for revalidation."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-02-01 • 2025-04-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/20f51cff-4137-4f3a-b6b7-bfc9ad57983b/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/resources/revalidation-reassignments-list-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/revalidation-reassignment-list"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/additional-information-on-revalidation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-03/d9204531-f293-4b1e-be25-7ae88b6f0a77/revalidation_group_reassi"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/20f51cff-4137-4f3a-b6b7-bfc9ad57983b"</span>
+<span class="r-in"><span><span class="fu">careGroup</span><span class="op">(</span><span class="st">"skilled_nursing"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careGroup&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Skilled Nursing Facility All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ temporal   : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups     :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ skilled_nursing_facility_all_owners                             :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 153849</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:40] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Skilled Nursing Facility (SNF) All Owners dataset provides information on all owners of SNFs currently enro"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-03-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-09-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/afe44b85-cc6d-40d7-b5df-00ae8910d1d2/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-12/7a976b38-70d9-4332-a913-446c89641840/SNF_All_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-all-owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-12/1ea55414-f441-4694-a13c-6400d4e28ef6/SNF_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-03/a69c8f0b-beef-4838-abac-91bee6f51392/SNF_All_Owners_2025.02.28.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/afe44b85-cc6d-40d7-b5df-00ae8910d1d2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ skilled_nursing_facility_change_of_ownership                    :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 4698</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:23] "ENROLLMENT ID - BUYER" "ENROLLMENT STATE - BUYER" "PROVIDER TYPE CODE - BUYER" "PROVIDER TYPE TEXT - BUYER" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Change of Ownership (CHOW) dataset provides information on the hospital ownership changes that occ"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Skilled Nursing Facility (SNF) Change of Ownership (CHOW) dataset provides information on the SNF ownership"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-01-01 • 2024-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/Hospital_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/f557a6ed-95b3-4a22-8433-4175db2dec1c/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/SNF_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-change-of-ownership"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/SNF_CHOW_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/2e9ddac3-eb7e-4805-a3e0-9c52152af37a/Hospital_CHOW_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/c04031db-54ce-461c-85d1-d2613d71f167"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_change_of_ownership___owner_information:List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 20909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/7c721fd1-d17f-431c-a9d2-aab269919d21/SNF_CHOW_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f557a6ed-95b3-4a22-8433-4175db2dec1c"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ skilled_nursing_facility_change_of_ownership___owner_information:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 101711</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:34] "ENROLLMENT ID" "ASSOCIATE ID" "ORGANIZATION NAME" "ASSOCIATE ID - OWNER" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Change of Ownership (CHOW) - Owner Information dataset provides information on individual and orga"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Skilled Nursing Facility (SNF) Change of Ownership (CHOW) - Owner Information dataset provides information "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Quarterly [R/P3M]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-01-01 • 2024-12-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Owners_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/a4358712-e910-4eaf-8f24-5e90ba3cf8d0/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/SNF_CHOW_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-change-of"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/SNF_CHOW_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e42d8d95-39eb-43a4-86ca-de774b00c7ca/Hospital_CHOW_Owners_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/60625dc8-b621-45f0-9423-077fd133b13e"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_enrollments                            :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 9272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:39] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" "PROVIDER TYPE TEXT" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/ba5a5dd5-f2b1-4047-a80a-9da9ec038312/SNF_CHOW_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/a4358712-e910-4eaf-8f24-5e90ba3cf8d0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ skilled_nursing_facility_cost_report                            :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 14960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:122] "rpt_rec_num" "Provider CCN" "Facility Name" "Street Address" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Skilled Nursing Facility (SNF) Cost Report dataset is a public use file that provides select measures from "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2024-11-25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2011-01-01 • 2022-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "PDAG Data Products - OEDA (mailto:PDAG_Data_Products@cms.hhs.gov)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/a69d3df7-3f66-4a0d-b5b8-0d66049bd565/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-12/Skilled%20Nursing%20Facility%20Cost%20Report%20Data%20Dictionary_508.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-compliance/cost-report/skilled-nursing-facility-cost-report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/resources/skilled-nursing-facility-cost-report-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2024-10/94119bf8-a863-421d-acfa-ec4cc0b9e96b/CostReportsnf_Final_22.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/a69d3df7-3f66-4a0d-b5b8-0d66049bd565"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ skilled_nursing_facility_enrollments                            :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ rows     : int 14462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ pages    : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ fields   : chr [1:23] "ENROLLMENT ID" "ENROLLMENT STATE" "PROVIDER TYPE CODE" "PROVIDER TYPE TEXT" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ endpoints: tibble [1 × 12] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ description: chr "The Skilled Nursing Facility (SNF) Enrollments dataset provides enrollment information of all SNF s currently e"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ modified   : Date[1:1], format: "2025-03-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-11-01 • 2025-01-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ temporal   : chr "2022-09-01 • 2025-03-31"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ contact    : chr "Provider Enrollment Data Requests - CPI (mailto:ProviderEnrollmentDataRequests@cms.hhs.gov)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ identifier : chr "https://data.cms.gov/data-api/v1/dataset/5f2c306f-3b1c-42cd-b037-187b2ce22126/data-viewer"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/SNF_Enrollments_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/skilled-nursing-facility-enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ references : chr "https://data.cms.gov/sites/default/files/2024-12/1ea55414-f441-4694-a13c-6400d4e28ef6/SNF_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ year       : int 2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-01/0ef8ef0d-bf93-4b00-a542-a4e2853947cc/Hospital_Enrollments_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f6f6505c-e8b0-4d57-b258-e2b94133aaf2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ download   : chr "https://data.cms.gov/sites/default/files/2025-03/9ef2f127-250d-4809-8f72-99762554a08d/SNF_Enrollments_2025.02.28.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  .. ..$ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/5f2c306f-3b1c-42cd-b037-187b2ce22126"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
