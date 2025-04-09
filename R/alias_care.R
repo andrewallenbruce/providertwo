@@ -2,7 +2,7 @@
 # care_main("opt_out")
 # care_main("order_refer")
 # care_main("reassignments")
-# care_main("hospitals")
+# #care_main("hospitals")
 # care_main("laboratories")
 # care_main("crosswalk")
 # care_main("rbcs")
@@ -23,7 +23,7 @@ care_main <- function(x, call = caller_env()) {
     facilities      = "Provider of Services File - Hospital & Non-Hospital Facilities",
     home_health     = "Home Health Agency Enrollments",
     hospice         = "Hospice Enrollments",
-    hospitals       = "Hospital Enrollments",
+    # hospitals       = "Hospital Enrollments",
     laboratories    = "Provider of Services File - Clinical Laboratories",
     opt_out         = "Opt Out Affidavits",
     order_refer     = "Order and Referring",
@@ -48,7 +48,7 @@ care_group <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    hospitals       = "^Hospital",
+    hospitals       = "^Hospital [ACE]",
     rhc             = "Rural Health Clinic",
     fqhc            = "Federally Qualified Health Center",
     pending         = "Pending Initial Logging and Tracking",

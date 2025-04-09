@@ -20,16 +20,13 @@ proMain <- new_class(
   name       = "proMain",
   package    = NULL,
   properties = list(
-    # common
     title       = class_character,
     description = class_character,
-    # contact     = class_character,
     modified    = class_character | class_Date,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
     download    = class_character,
-    # unique
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
     uuid       = class_character,
@@ -49,7 +46,6 @@ proMain <- new_class(
       Pro(),
       title       = x$title,
       description = x$description,
-      # contact     = x$contact,
       uuid        = x$identifier,
       download    = x$download,
       issued      = x$issued,

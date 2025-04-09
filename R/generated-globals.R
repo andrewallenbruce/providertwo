@@ -87,7 +87,6 @@ utils::globalVariables(c(
   "resources",
   # <catalog_care>
   "resourcesAPI",
-  # <dims_care>
   # <dims_care_temp>
   # <dims_pro>
   # <dims_open>

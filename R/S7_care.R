@@ -13,7 +13,7 @@ Care <- new_class(name = "Care", package = NULL)
 #' careMain("opt_out")
 #' careMain("order_refer")
 #' careMain("reassignments")
-#' careMain("hospitals")
+#' # careMain("hospitals")
 #' careMain("laboratories")
 #' careMain("crosswalk")
 #' careMain("rbcs")
@@ -30,17 +30,14 @@ careMain <- new_class(
   name       = "careMain",
   package    = NULL,
   properties = list(
-    # common
     title       = class_character,
     description = class_character,
-    # contact     = class_character,
     modified    = class_character | class_Date,
     identifier  = class_character,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
     download    = class_character,
-    # unique
     temporal    = class_character,
     periodicity = class_character,
     resources   = class_character,
@@ -57,7 +54,6 @@ careMain <- new_class(
       Care(),
       title       = x$title,
       description = x$description,
-      # contact     = x$contact,
       modified    = x$modified,
       periodicity = x$periodicity,
       temporal    = x$temporal,
@@ -70,6 +66,64 @@ careMain <- new_class(
       dictionary  = x$dictionary,
       site        = x$site,
       references  = x$references
+    )
+  }
+)
+
+#' Medicare Endpoint Group
+#'
+#' @param alias `<chr>` title alias
+#'
+#' @returns An S7 `<careGroup>` object.
+#'
+#' @examples
+#' careGroup("pending")
+#' careGroup("rhc")
+#' careGroup("fqhc")
+#' careGroup("hospitals")
+#' @autoglobal
+#' @rdname careGroup
+#' @export
+careGroup <- new_class(
+  parent     = Care,
+  name       = "careGroup",
+  package    = NULL,
+  properties = list(
+    title       = NULL | class_character,
+    description = NULL | class_character,
+    modified    = NULL | class_character | class_Date,
+    periodicity = NULL | class_character,
+    temporal    = NULL | class_character,
+    groups      = class_list
+  ),
+  constructor = function(alias) {
+
+    x <- care_group(alias)
+
+    q <- map(x$identifier, dims_care) |>
+      set_names(gsub("^pending_initial_logging_and_tracking_", "", cclean(x$title), perl = TRUE))
+
+    i <- rsplit(x, ~ title) |>
+      set_names(gsub("^pending_initial_logging_and_tracking_", "", cclean(x$title), perl = TRUE))
+
+    template <- glue(
+      "
+      {group} = list(
+        rows      = q${group}$rows,
+        pages     = q${group}$pages,
+        fields    = q${group}$fields,
+        endpoints = i${group}
+        )
+      ",
+      group = names(q)) |>
+      glue_collapse(sep = ",\n")
+
+    new_object(
+      Care(),
+      title  = x$title[1],
+      groups = glue("list({template})") |>
+        parse_expr() |>
+        eval_bare()
     )
   }
 )
@@ -90,14 +144,11 @@ careTemp <- new_class(
   name       = "careTemp",
   package    = NULL,
   properties = list(
-    # common
     title       = class_character,
     description = class_character,
-    # contact     = class_character,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
-    # unique
     periodicity = class_character,
     dictionary  = class_character,
     site        = class_character,
@@ -105,15 +156,14 @@ careTemp <- new_class(
   ),
   constructor = function(alias) {
 
-    x   <- care_temp(alias)
+    x <- care_temp(alias)
     d <- get_elem(x, "data")[[1]]
-    q   <- dims_care_temp(d$identifier[1])
+    q <- dims_care_temp(d$identifier[1])
 
     new_object(
       Care(),
       title       = x$title,
       description = x$description,
-      # contact     = x$contact,
       rows        = q$rows,
       pages       = q$pages,
       fields      = q$fields,
@@ -145,10 +195,7 @@ careTempGroup <- new_class(
   name       = "careTempGroup",
   package    = NULL,
   properties = list(
-    # common
     title       = class_character,
-    # contact     = class_character,
-    # unique
     periodicity = class_character,
     years       = class_integer,
     groups      = class_list
@@ -175,7 +222,6 @@ careTempGroup <- new_class(
     new_object(
       Care(),
       title        = x$title,
-      # contact      = x$contact,
       periodicity  = x$periodicity,
       years        = x$years,
       groups       = glue("list({template})") |>

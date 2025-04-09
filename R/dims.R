@@ -10,7 +10,7 @@ dims_care <- function(x) {
   list_tidy(
     rows   = x$total_rows,
     fields = x$headers,
-    pages  = offset_size(rows, 5000L)
+    pages  = offset_size(x$total_rows, 5000L)
   )
 }
 
@@ -18,21 +18,11 @@ dims_care <- function(x) {
 #' @noRd
 dims_care_temp <- function(x) {
 
-  x <- request(x) |> req_url_query(offset = 0L, size = 1L)
-
-  # get_rows <- \(x) {
-  #   request(x) |>
-  #     req_url_path_append(x, "stats") |>
-  #     perform_simple() |>
-  #     _[["total_rows"]]
-  #   }
-  #
-  # get_fields <- \(x) {
-  #   request(x) |>
-  #     req_url_query(offset = 0L, size = 1L) |>
-  #     perform_simple() |>
-  #     names()
-  #   }
+  x <- x |>
+    request() |>
+    req_url_query(
+      offset = 0L,
+      size   = 1L)
 
   list_tidy(
     rows   = x |> req_url_path_append("stats") |> perform_simple() |> _[["total_rows"]],
@@ -45,7 +35,9 @@ dims_care_temp <- function(x) {
 #' @noRd
 dims_care_temp_group <- function(x, g) {
 
-  reqs <- map(x, \(x) request(x) |> req_url_query(offset = 0L, size = 1L))
+  reqs <- map(x, \(x) request(x) |>
+                req_url_query(offset = 0L,
+                              size = 1L))
 
   FLD <- req_perform_parallel(reqs, on_error = "continue") |>
         map(\(x) names(resp_simple_json(x)))
