@@ -33,7 +33,7 @@ careMain <- new_class(
     # common
     title       = class_character,
     description = class_character,
-    contact     = class_character,
+    # contact     = class_character,
     modified    = class_character | class_Date,
     identifier  = class_character,
     rows        = class_integer,
@@ -57,7 +57,7 @@ careMain <- new_class(
       Care(),
       title       = x$title,
       description = x$description,
-      contact     = x$contact,
+      # contact     = x$contact,
       modified    = x$modified,
       periodicity = x$periodicity,
       temporal    = x$temporal,
@@ -93,34 +93,34 @@ careTemp <- new_class(
     # common
     title       = class_character,
     description = class_character,
-    contact     = class_character,
+    # contact     = class_character,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
-    endpoints   = class_list,
     # unique
     periodicity = class_character,
     dictionary  = class_character,
-    site        = class_character
+    site        = class_character,
+    endpoints   = class_list
   ),
   constructor = function(alias) {
 
     x   <- care_temp(alias)
-    dat <- get_elem(x, "data")[[1]]
-    q   <- dims_care_temp(dat$identifier[1])
+    d <- get_elem(x, "data")[[1]]
+    q   <- dims_care_temp(d$identifier[1])
 
     new_object(
       Care(),
       title       = x$title,
       description = x$description,
+      # contact     = x$contact,
+      rows        = q$rows,
+      pages       = q$pages,
+      fields      = q$fields,
       periodicity = x$periodicity,
       dictionary  = x$dictionary,
       site        = x$site,
-      contact     = x$contact,
-      rows        = q$rows,
-      fields      = q$fields,
-      pages       = q$pages,
-      endpoints   = slt(dat, year, modified, identifier, download, filetype, resources)
+      endpoints   = slt(d, year, modified, identifier, download, resources)
     )
   }
 )
@@ -147,11 +147,11 @@ careTempGroup <- new_class(
   properties = list(
     # common
     title       = class_character,
-    contact     = class_character,
-    groups      = class_list,
+    # contact     = class_character,
     # unique
     periodicity = class_character,
-    years       = class_integer
+    years       = class_integer,
+    groups      = class_list
   ),
   constructor = function(alias) {
 
@@ -175,7 +175,7 @@ careTempGroup <- new_class(
     new_object(
       Care(),
       title        = x$title,
-      contact      = x$contact,
+      # contact      = x$contact,
       periodicity  = x$periodicity,
       years        = x$years,
       groups       = glue("list({template})") |>

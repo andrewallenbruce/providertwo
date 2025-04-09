@@ -23,7 +23,7 @@ proMain <- new_class(
     # common
     title       = class_character,
     description = class_character,
-    contact     = class_character,
+    # contact     = class_character,
     modified    = class_character | class_Date,
     rows        = class_integer,
     pages       = class_integer,
@@ -49,7 +49,7 @@ proMain <- new_class(
       Pro(),
       title       = x$title,
       description = x$description,
-      contact     = x$contact,
+      # contact     = x$contact,
       uuid        = x$identifier,
       download    = x$download,
       issued      = x$issued,
