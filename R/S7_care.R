@@ -9,19 +9,19 @@ Care <- new_class(name = "Care", package = NULL)
 #' @returns An S7 `<careMain>` object.
 #'
 #' @examples
+#' careMain("contact")
+#' careMain("crosswalk")
+#' careMain("dialysis")
 #' careMain("enrollees")
+#' careMain("facilities")
+#' careMain("hospice_acute")
+#' careMain("IQIES")
+#' careMain("laboratories")
+#' careMain("long_term")
 #' careMain("opt_out")
 #' careMain("order_refer")
-#' careMain("reassignments")
-#' # careMain("hospitals")
-#' careMain("laboratories")
-#' careMain("crosswalk")
 #' careMain("rbcs")
-#' careMain("facilities")
-#' careMain("home_health")
-#' careMain("hospice")
-#' careMain("dialysis")
-#' careMain("skilled_nursing")
+#' careMain("transparency")
 #' @autoglobal
 #' @rdname careMain
 #' @export
@@ -77,10 +77,14 @@ careMain <- new_class(
 #' @returns An S7 `<careGroup>` object.
 #'
 #' @examples
-#' careGroup("pending")
-#' careGroup("rhc")
-#' careGroup("fqhc")
+#' careGroup("home_health")
+#' careGroup("hospice")
 #' careGroup("hospitals")
+#' careGroup("rural_health")
+#' careGroup("fqhc")
+#' careGroup("pending")
+#' careGroup("reassignment")
+#' careGroup("skilled_nursing")
 #' @autoglobal
 #' @rdname careGroup
 #' @export
@@ -184,9 +188,10 @@ careTemp <- new_class(
 #' @examples
 #' careTempGroup("inpatient")
 #' careTempGroup("outpatient")
-#' careTempGroup("prescribers")
-#' careTempGroup("suppliers")
 #' careTempGroup("utilization")
+#' careTempGroup("suppliers")
+#' careTempGroup("prescribers")
+#' careTempGroup("staffing")
 #' @autoglobal
 #' @rdname careTempGroup
 #' @export

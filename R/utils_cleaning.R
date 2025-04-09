@@ -31,7 +31,7 @@ smush_elem <- function(i, el) {
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
-  gsub(" ", "_", tolower(x), perl = TRUE)
+  gsub("\\s|-", "_", tolower(x), perl = TRUE)
 }
 
 #' @autoglobal

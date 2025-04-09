@@ -16,17 +16,17 @@ An S7 \verb{<careMain>} object.
 Medicare Endpoint
 }
 \examples{
+careMain("contact")
+careMain("crosswalk")
+careMain("dialysis")
 careMain("enrollees")
+careMain("facilities")
+careMain("hospice_acute")
+careMain("IQIES")
+careMain("laboratories")
+careMain("long_term")
 careMain("opt_out")
 careMain("order_refer")
-careMain("reassignments")
-# careMain("hospitals")
-careMain("laboratories")
-careMain("crosswalk")
 careMain("rbcs")
-careMain("facilities")
-careMain("home_health")
-careMain("hospice")
-careMain("dialysis")
-careMain("skilled_nursing")
+careMain("transparency")
 }

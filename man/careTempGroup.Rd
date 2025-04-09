@@ -18,7 +18,8 @@ Group of Medicare Temporal Endpoints
 \examples{
 careTempGroup("inpatient")
 careTempGroup("outpatient")
-careTempGroup("prescribers")
-careTempGroup("suppliers")
 careTempGroup("utilization")
+careTempGroup("suppliers")
+careTempGroup("prescribers")
+careTempGroup("staffing")
 }

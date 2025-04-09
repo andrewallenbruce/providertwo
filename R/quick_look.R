@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
 cclean <- function(x) {
-  gsub("\\(|\\)", "", gsub(" |-", "_", tolower(x)))
+  gsub("\\(|\\)", "", clean_names(x))
 }
 
 #' @autoglobal
