@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9188 (2025-04-10)
+
+* npi endpoints work
+
+
 # providertwo 0.0.0.9187 (2025-04-10)
 
 * npi_nlm, npi_nppes work
