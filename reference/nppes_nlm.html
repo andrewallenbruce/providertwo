@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9185</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9186</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,9 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">nppes_nlm</span><span class="op">(</span><span class="st">"john bethesda"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="color: #BBBB00; font-weight: bold;">135</span> Results ☰ <span style="color: #BBBB00; font-weight: bold;">1</span> Requests</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[nlm]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 135 RWS <span style="color: #0000BB;">[1 PG]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 135 RWS <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 135 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name            npi        specialty                                  address</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
@@ -85,7 +87,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 125 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">nppes_nlm</span><span class="op">(</span><span class="st">"Dentist Valdosta"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="color: #BBBB00; font-weight: bold;">56</span> Results ☰ <span style="color: #BBBB00; font-weight: bold;">1</span> Requests</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[nlm]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 56 RWS <span style="color: #0000BB;">[1 PG]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 56 RWS <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name                npi        specialty address                             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               </span>
@@ -103,7 +107,9 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Not returning all results</span></span></span>
 <span class="r-in"><span><span class="fu">nppes_nlm</span><span class="op">(</span><span class="st">"Valdosta"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → <span style="color: #BBBB00; font-weight: bold;">1,687</span> Results ☰ <span style="color: #BBBB00; font-weight: bold;">4</span> Requests</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[nlm]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1687 RWS <span style="color: #0000BB;">[4 PGS]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1687 RWS <span style="color: #0000BB;">[4 PGS]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,000 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name                    npi        specialty                          address</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
