@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9187</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9188</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="va">terms</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="va">terms</span>, npi <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,6 +58,10 @@
 
 
 <dl><dt id="arg-terms">terms<a class="anchor" aria-label="anchor" href="#arg-terms"></a></dt>
+<dd><p><code>&lt;chr&gt;</code> Search terms, separated by spaces</p></dd>
+
+
+<dt id="arg-npi">npi<a class="anchor" aria-label="anchor" href="#arg-npi"></a></dt>
 <dd><p><code>&lt;chr&gt;</code> Search terms, separated by spaces</p></dd>
 
 </dl></div>
@@ -130,6 +134,26 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> REED, TAYLER            1063067940 Psychologist, Clinical        3256 N VALD…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> COWART, STEVEN          1700146107 Physician/General Surgery     3527 N VALD…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,677 more rows</span></span>
+<span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Atlanta"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BBBB00;">!</span> <span style="color: #0000BB; font-weight: bold;">10000</span> Results Found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Returning API limit of <span style="color: #0000BB;">[7500]</span>.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 7500 RWS <span style="color: #0000BB;">[16 PGS]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 7500 RWS <span style="color: #0000BB;">[16 PGS]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7,500 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    full_name         npi        specialty                           full_address</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> BENJAMIN, ATLANTA 1326776444 Chiropractic                        2567 W GOLF…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ADKINS, ATLANTA   1356023022 Technician                          224 MILL ST…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> WILLIAMS, ATLANTA 1023670940 Registered Nurse                    240 BUCKTAI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> MAYTON, ATLANTA   1326679895 Licensed Vocational Nurse           1313 LAFAYE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> HUFF, ATLANTA     1851157887 Counselor                           446 MORGAN …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ROLOFF, ATLANTA   1073242244 Dentist                             13000 TECHN…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> MACKLIN, ATLANTA  1083207948 Registered Dietitian or Nutrition … 2115 STEPHE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> MCCRAVEY, ATLANTA 1538777081 Nurse Practitioner                  2166 E BROA…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> BLACK, ATLANTA    1992516892 Specialist/Technologist             5716 S ARRO…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> MORELIK, ATLANTA  1407621188 Case Manager/Care Coordinator       60 W SUNBRI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,490 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
