@@ -64,7 +64,6 @@ Collate:
     'quick_look.R'
     'utils_catalogs.R'
     'utils_checks.R'
-    'utils_cleaning.R'
     'utils_fmt.R'
     'utils_misc.R'
     'zzz.R'

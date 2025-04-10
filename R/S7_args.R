@@ -37,7 +37,7 @@ arg_npi <- new_class(
   package = NULL,
   properties = list(
     x = new_property(
-      class = NULL | class_character,
+      class = new_union(NULL, class_character),
       setter = function(self, value) {
         self@x <- as.character(value[which_not_na(value)])
         self
@@ -69,7 +69,7 @@ arg_state <- new_class(
   package = NULL,
   properties = list(
     x = new_property(
-      class = NULL | class_character,
+      class = new_union(NULL, class_character),
       setter = function(self, value) {
         self@x <- as.character(value[which_not_na(value)])
         self
