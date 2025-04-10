@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9186 (2025-04-09)
+
+* simplifying cli impl
+
+
 # providertwo 0.0.0.9185 (2025-04-09)
 
 * reworking aliases
