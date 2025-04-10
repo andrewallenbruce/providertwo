@@ -9,10 +9,12 @@
 \href{https://clinicaltables.nlm.nih.gov/apidoc/npi_org/v3/doc.html}{API Documentation: Organizations}
 }
 \usage{
-npi_nlm(terms)
+npi_nlm(terms, npi = NULL)
 }
 \arguments{
 \item{terms}{\verb{<chr>} Search terms, separated by spaces}
+
+\item{npi}{\verb{<chr>} Search terms, separated by spaces}
 }
 \value{
 \verb{<tibble>} of search results
@@ -25,4 +27,5 @@ npi_nlm("john bethesda")
 npi_nlm("Wiregrass Georgia")
 npi_nlm("Dentist Valdosta")
 npi_nlm("Valdosta")
+npi_nlm("Atlanta")
 }

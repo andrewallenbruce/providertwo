@@ -51,5 +51,5 @@ npi_nppes(
 Search the NPPES NPI Registry
 }
 \examples{
-#npi_nppes(npi = npi_ex$v)
+# npi_nppes(npi = npi_ex$k)
 }
