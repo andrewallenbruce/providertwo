@@ -49,27 +49,6 @@ fmt <- list_tidy(
   dims     = \(x) cli::cli_ul(c("{txt$Rows} {rows(x)}", "{txt$Pages} {pages(x)}", "{txt$Fields} {fields(x)}"))
 )
 
-#' Inform number of results and requests
-#'
-#' @param n     `<int>` Number of results returned in an API request
-#'
-#' @param limit `<int>` API rate limit, i.e. the maximum number of results an
-#'                      API will return per request.
-#' @returns cli message
-#' @autoglobal
-#' @noRd
-cli_results <- function(n, limit) {
-
-  msg <- paste(
-    sty$bdy(fmt$num(n)),
-    txt$Result,
-    sty$bars,
-    sty$bdy(fmt$num(offset_size(n, limit))),
-    txt$Request)
-
-  cli_inform(c(">" = "{msg}"))
-}
-
 print <- S7::new_external_generic("base", "print", "x")
 
 S7::method(print, careMain) <- function(x) {

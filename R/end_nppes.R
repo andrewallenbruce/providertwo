@@ -45,7 +45,7 @@ nppes_nlm <- function(terms) {
 
   nreq <- offset_size(n, 500L) > 1
 
-  cli_results(n, 500L)
+  cli_results(n, 500L, "NPPES", "nlm")
 
   if (false(nreq)) {
 

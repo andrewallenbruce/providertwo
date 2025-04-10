@@ -228,10 +228,8 @@ careTempGroup <- new_class(
       Care(),
       title        = x$title,
       periodicity  = x$periodicity,
-      years        = x$years,
-      groups       = glue("list({template})") |>
-        parse_expr() |>
-        eval_bare()
+      years        = order(x$years),
+      groups       = glue("list({template})") |> parse_expr() |> eval_bare()
     )
   }
 )

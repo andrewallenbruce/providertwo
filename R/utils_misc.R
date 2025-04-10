@@ -25,20 +25,6 @@ prop_empty <- function(obj, nm) {
   empty(prop(obj, nm))
 }
 
-#' @autoglobal
-#' @noRd
-print_list <- function(ls, prefix = "") {
-  if (length(ls) == 0) cat("<empty>\n")
-
-  if (length(names(ls)) != length(ls)) stop("all elements must be named")
-
-  ls <- lapply(ls, as.character)
-
-  cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
-
-  invisible(ls)
-}
-
 #' @noRd
 empty <- function(x) vec_is_empty(x)
 
@@ -89,12 +75,4 @@ roundup <- function(x, d = 2) {
   z  <- trunc(z)
   z  <- z / d
   z * sign(x)
-}
-
-#' @autoglobal
-#' @noRd
-fmt_int <- function(x) {
-  if (x >= 1e6) return(paste0(round(x / 1e6, 1), "M"))
-  if (x >= 1e3) return(paste0(round(x / 1e3, 0), "K"))
-  as.character(x)
 }
