@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem join mtt rnm rowbind roworder rsplit sbt slt ss
+#' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem join mtt rnm rowbind roworder rsplit sbt slt ss vlengths
 #' @importFrom vctrs vec_rep_each vec_is_empty vec_slice vec_in
 #' @importFrom fastplyr as_tbl f_fill f_nest_by f_ungroup list_tidy new_tbl
 #' @importFrom tools file_ext toTitleCase

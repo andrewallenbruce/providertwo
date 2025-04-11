@@ -27,6 +27,7 @@ nlm_url <- function(api) {
 #' @source [API Documentation: Individuals](https://clinicaltables.nlm.nih.gov/apidoc/npi_idv/v3/doc.html)
 #' @source [API Documentation: Organizations](https://clinicaltables.nlm.nih.gov/apidoc/npi_org/v3/doc.html)
 #' @autoglobal
+#' @rdname nppes
 #' @export
 npi_nlm <- function(terms, npi = NULL) {
 
@@ -72,12 +73,13 @@ npi_nlm <- function(terms, npi = NULL) {
 #' @param state `<chr>` State
 #' @param zip `<chr>` Zip code
 #' @param country `<chr>` Country code
-#'
 #' @returns `<tibble>` of search results
 #' @examples
-#' # npi_nppes(npi = npi_ex$k)
+#' npi_nppes(npi = npi_ex$k[1:2]) |> str()
+#' npi_nppes(npi = npi_ex$k[1]) |> str()
 #' @source [API Documentation](https://npiregistry.cms.hhs.gov/api-page)
 #' @autoglobal
+#' @rdname nppes
 #' @export
 npi_nppes <- function(npi            = NULL,
                       entity         = NULL,
@@ -108,11 +110,11 @@ npi_nppes <- function(npi            = NULL,
 
   nppes_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200"
 
-  if (any(collapse::vlengths(args) > 1)) {
+  if (any(vlengths(args) > 1)) {
 
-    nppes_url <- request(nppes_url) |> req_url_query(!!!args[collapse::vlengths(args) == 1]) |> _[["url"]]
+    nppes_url <- request(nppes_url) |> req_url_query(!!!args[vlengths(args) == 1]) |> _[["url"]]
 
-    margs     <- args[collapse::vlengths(args) > 1]
+    margs     <- args[vlengths(args) > 1]
 
     reqs      <- map(glue("{nppes_url}&") + glue("{names(margs)}={delist(margs)}"), request)
 
@@ -134,17 +136,20 @@ npi_nppes <- function(npi            = NULL,
       taxonomies        = null_to_na(yank(x[[1]]$taxonomies)),
       identifiers       = null_to_na(yank(x[[1]]$identifiers)),
       other_names       = null_to_na(yank(x[[1]]$other_names)),
-      endpoints         = null_to_na(yank(x[[1]]$endpoints))
-    )
-      return(as_df(res))
-    }
+      endpoints         = null_to_na(yank(x[[1]]$endpoints)))
 
-  x <- nppes_url |>
-    request() |>
-    req_url_query(!!!args) |>
-    perform_simple() |>
-    _[["results"]] |>
-    as_tbl()
+      return(as_df(res))
+
+  } else {
+
+    nppes_url |>
+      request() |>
+      req_url_query(!!!args) |>
+      perform_simple() |>
+      _[["results"]] |>
+      as_tbl()
+
+    }
 }
 
 #' @autoglobal
