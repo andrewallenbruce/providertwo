@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9190 (2025-04-11)
+
+* `open_national()` tidyup method
+
+
 # providertwo 0.0.0.9189 (2025-04-11)
 
 * nppes
