@@ -9,7 +9,7 @@ Search the NPPES NPI Registry"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9190</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9191</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -213,8 +213,7 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> BLACK, ATLANTA    1992516892 Specialist/Technologist             5716 S ARRO…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> MORELIK, ATLANTA  1407621188 Case Manager/Care Coordinator       60 W SUNBRI…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,490 more rows</span></span>
-<span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in list_combine(npi = yank_index_name(x, number), entity = convert_entity(yank_index_name(x,     enumeration_type)), date_created = convert_epoch(yank_index_name(x,     created_epoch)), last_updated = convert_epoch(yank_index_name(x,     last_updated_epoch)), yank(x[[1]]$basic), address, practiceLocations = null_to_na(yank(x[[1]]$practiceLocations)),     taxonomies = null_to_na(yank(x[[1]]$taxonomies)), identifiers = null_to_na(yank(x[[1]]$identifiers)),     other_names = null_to_na(yank(x[[1]]$other_names)), endpoints = null_to_na(yank(x[[1]]$endpoints))):</span> could not find function "list_combine"</span>
+<span class="r-in"><span><span class="co">#npi_nppes(npi = npi_ex$k[1:2]) |&gt; str()</span></span></span>
 <span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> tibble [1 × 11] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_epoch     : chr "1627585585000"</span>
