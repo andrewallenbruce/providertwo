@@ -1,6 +1,6 @@
 Package: providertwo
 Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9190
+Version: 0.0.0.9191
 Authors@R: 
     person(c("Andrew", "Allen"), "Bruce", , "andrewallenbruce@gmail.com", role = c("aut", "cre", "cph"))
 Maintainer: Andrew Allen Bruce <andrewallenbruce@gmail.com>
