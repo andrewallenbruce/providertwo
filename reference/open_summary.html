@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9192</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9193</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $count$record</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 320 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    year  type  entity                     status   amount</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    year  type  entity                     status    count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ALL   All   <span style="color: #BB0000;">NA</span>                         <span style="color: #BB0000;">NA</span>     84<span style="text-decoration: underline;">035</span>057</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ALL   All   Physician                  <span style="color: #BB0000;">NA</span>     65<span style="text-decoration: underline;">341</span>949</span>
@@ -93,42 +93,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dollar</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                       metric</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                            Payment Records</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                         Payment Records - General Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                              Payment Records - General Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                            Payment Records - General Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                        Payment Records - Research Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                    Payment Records - Research Payments - Covered Recipient</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                Payment Records - Research Payments - Non-Covered Recipient</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   Payment Records - Research Payments - Physician or Non-Covered Recipient</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Payment Records - Research Payments - Non-Physician Practitioner or Non-Covered Recipient</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                            Payment Records - Research Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                          Payment Records - Research Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                             Payment Records to Physicians</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                          Payment Records to Physicians - General Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                               Payment Records to Physicians - General Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                             Payment Records to Physicians - General Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                         Payment Records to Physicians - Research Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                              Payment Records to Physicians - Research Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                            Payment Records to Physicians - Research Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                           Payment Records to Physicians - Ownership Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                            Payment Records to Non-Physician Practitioners</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                         Payment Records to Non-Physician Practitioners - General Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22              Payment Records to Non-Physician Practitioners - General Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23            Payment Records to Non-Physician Practitioners - General Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                        Payment Records to Non-Physician Practitioners - Research Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25             Payment Records to Non-Physician Practitioners - Research Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26           Payment Records to Non-Physician Practitioners - Research Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                                     Payment Records to Teaching Hospitals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                  Payment Records to Teaching Hospitals - General Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                       Payment Records to Teaching Hospitals - General Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                     Payment Records to Teaching Hospitals - General Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                 Payment Records to Teaching Hospitals - Research Payments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                      Payment Records to Teaching Hospitals - Research Payments - Disputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                    Payment Records to Teaching Hospitals - Research Payments - Undisputed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                        Payment Records - Research Payments - Non-Covered Recipient Entity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                    Payment Records - Research Payments - Non-Covered Recipient Individual</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          py_2017        py_2018        py_2019        py_2020        py_2021</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  9983443884.20 10988256091.29 11879437810.02 10051904838.51 12467447334.16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  2964700222.32  3119803936.32  3711163078.70  2186720794.51  3254780104.85</span>
@@ -201,49 +165,79 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 33  1632957009.06  1506092418.34 10786331253.84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 34  6120240114.34  6491463753.23 37302735630.09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35      466093.45      849618.30    15190496.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                       metric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                            Payment Records</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                         Payment Records - General Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                              Payment Records - General Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                            Payment Records - General Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                        Payment Records - Research Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                    Payment Records - Research Payments - Covered Recipient</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                Payment Records - Research Payments - Non-Covered Recipient</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                   Payment Records - Research Payments - Physician or Non-Covered Recipient</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Payment Records - Research Payments - Non-Physician Practitioner or Non-Covered Recipient</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                            Payment Records - Research Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                          Payment Records - Research Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                             Payment Records to Physicians</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                          Payment Records to Physicians - General Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                               Payment Records to Physicians - General Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                             Payment Records to Physicians - General Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                         Payment Records to Physicians - Research Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                              Payment Records to Physicians - Research Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                            Payment Records to Physicians - Research Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                           Payment Records to Physicians - Ownership Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                            Payment Records to Non-Physician Practitioners</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                         Payment Records to Non-Physician Practitioners - General Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22              Payment Records to Non-Physician Practitioners - General Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23            Payment Records to Non-Physician Practitioners - General Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                        Payment Records to Non-Physician Practitioners - Research Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25             Payment Records to Non-Physician Practitioners - Research Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26           Payment Records to Non-Physician Practitioners - Research Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                                     Payment Records to Teaching Hospitals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                  Payment Records to Teaching Hospitals - General Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                       Payment Records to Teaching Hospitals - General Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                     Payment Records to Teaching Hospitals - General Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                 Payment Records to Teaching Hospitals - Research Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                      Payment Records to Teaching Hospitals - Research Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                    Payment Records to Teaching Hospitals - Research Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                        Payment Records - Research Payments - Non-Covered Recipient Entity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                    Payment Records - Research Payments - Non-Covered Recipient Individual</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $invest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                          metric      py_2017      py_2018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            Ownership Payments 268224163.55 542424630.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  Ownership Payments- Disputed     23232.00     64837.50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                Ownership Payments- Undisputed 268200931.55 542359793.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            to Physicians - Ownership Payments 268224163.55 542424630.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 to Physicians - Ownership Payments - Disputed     23232.00     64837.50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        py_2019      py_2020      py_2021      py_2022      py_2023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 526403105.28 420228142.68 416271283.34 287661921.26 218848111.81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         0.00         0.00         0.00         0.00     11600.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 526403105.28 420228142.68 416271283.34 287661921.26 218836511.81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 526403105.28 420228142.68 416271283.34 287661921.26 218848111.81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         0.00         0.00         0.00         0.00     11600.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2680061358.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      99669.50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2679961689.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 2680061358.56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      99669.50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        py_2017      py_2018      py_2019      py_2020      py_2021      py_2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 268224163.55 542424630.64 526403105.28 420228142.68 416271283.34 287661921.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     23232.00     64837.50         0.00         0.00         0.00         0.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 268200931.55 542359793.14 526403105.28 420228142.68 416271283.34 287661921.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 268224163.55 542424630.64 526403105.28 420228142.68 416271283.34 287661921.26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     23232.00     64837.50         0.00         0.00         0.00         0.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        py_2023         total                                        metric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 218848111.81 2680061358.56                            Ownership Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     11600.00      99669.50                  Ownership Payments- Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 218836511.81 2679961689.06                Ownership Payments- Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 218848111.81 2680061358.56            to Physicians - Ownership Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     11600.00      99669.50 to Physicians - Ownership Payments - Disputed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                            metric       py_2017       py_2018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              Ownership Payments 1073242791.31 1649375557.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   Ownership Payments - Disputed   27902592.00     265936.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 Ownership Payments - Undisputed 1045340199.31 1649109621.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4               to Physician - Ownership Payments 1073242791.31 1649375557.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   to Physicians - Ownership Payments - Disputed   27902592.00     265936.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 to Physicians - Ownership Payments - Undisputed 1045340199.31 1649109621.92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         py_2019       py_2020       py_2021       py_2022       py_2023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1621023068.27 1383815859.42 1548506879.01 1149881794.14 1339780245.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          0.00          0.00          0.00      99992.65     160592.65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1621023068.27 1383815859.42 1548506879.01 1149781801.49 1339619652.59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1621023068.27 1383815859.42 1548506879.01 1149881794.14 1339780245.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          0.00          0.00          0.00      99992.65     160592.65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1621023068.27 1383815859.42 1548506879.01 1149781801.49 1339619652.59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1339780245.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     160592.65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1339619652.59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1339780245.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     160592.65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1339619652.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         py_2017       py_2018       py_2019       py_2020       py_2021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1073242791.31 1649375557.92 1621023068.27 1383815859.42 1548506879.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   27902592.00     265936.00          0.00          0.00          0.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1045340199.31 1649109621.92 1621023068.27 1383815859.42 1548506879.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1073242791.31 1649375557.92 1621023068.27 1383815859.42 1548506879.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   27902592.00     265936.00          0.00          0.00          0.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1045340199.31 1649109621.92 1621023068.27 1383815859.42 1548506879.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         py_2022       py_2023         total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1149881794.14 1339780245.24 1339780245.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      99992.65     160592.65     160592.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1149781801.49 1339619652.59 1339619652.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1149881794.14 1339780245.24 1339780245.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      99992.65     160592.65     160592.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1149781801.49 1339619652.59 1339619652.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                            metric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              Ownership Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   Ownership Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 Ownership Payments - Undisputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4               to Physician - Ownership Payments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   to Physicians - Ownership Payments - Disputed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 to Physicians - Ownership Payments - Undisputed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">open_national</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 10</span></span>
