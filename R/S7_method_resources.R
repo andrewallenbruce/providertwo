@@ -17,6 +17,20 @@ list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
+#' @noRd
+#' @autoglobal
+st_extract <- function(string, pattern, perl = TRUE, ...) {
+  regmatches(
+    x = string,
+    m = gregexec(
+      pattern = pattern,
+      text = string,
+      perl = perl,
+      ...)
+    ) |>
+    unlist(use.names = FALSE)
+}
+
 method(list_resources, class_character) <- function(x) {
   fload(x, query = "/data") |>
     fcompute(
@@ -38,21 +52,21 @@ method(list_resources, careMain) <- function(x) {
 
 method(list_resources, careTemp) <- function(x) {
 
-  resp_list <- map(x@endpoints$resources, request) |>
-    req_perform_parallel(on_error = "continue")
-
-  map(resps_successes(resp_list), function(x) {
-    resp_body_string(x) |>
-      fparse(query = "/data") |>
-      fcompute(
-        year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-        file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
-        size     = roundup(fileSize / 1e6),
-        ext      = file_ext(downloadURL),
-        download = downloadURL) |>
-      f_fill(year)
-      }) |>
-    rowbind() |>
+  prop(x, "endpoints") |>
+    _[["resources"]] |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    resps_data(\(resp) resp_body_string(resp) |>
+                 fparse(query = "/data")) |>
+    fcompute(
+      year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
+      file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+      size     = roundup(fileSize / 1e6),
+      ext      = file_ext(downloadURL),
+      download = downloadURL
+    ) |>
+    f_fill(year) |>
     roworder(-year, ext, -size) |>
     as_tbl()
 }
