@@ -15,10 +15,6 @@ A \verb{<tibble>}
 }
 \description{
 Open Payments Summaries
-
-Open Payments Dashboard
-
-Open Payments National Overall Total and Averages
 }
 \examples{
 open_dashboard()

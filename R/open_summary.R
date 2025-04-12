@@ -29,44 +29,84 @@ method(tidyup, openDashboard) <- function(x) {
       grepl("^Total Number of", metric, perl = TRUE) ~ "count",
       grepl("^Total Dollar Amount of", metric, perl = TRUE) ~ "dollar",
       grepl("^Total Dollar Amount Invested", metric, perl = TRUE) ~ "invest",
-      grepl("^Total value of interest", metric, perl = TRUE) ~ "value"
-    )) |>
-    rsplit( ~ type)
+      grepl("^Total value of interest", metric, perl = TRUE) ~ "value")) |>
+    rsplit(~ type)
 
-  x$count <- x$count |>
-    mtt(
-      metric = stri_replace_first_regex(metric, "^Total Number of ", ""),
-      metric = stri_replace_first_regex(metric, "^all ", ""),
-      type = cheapr_if_else(
-        grepl("^Payment Records", metric, perl = TRUE),
-        "record",
-        "entity"
-      )
-    ) |>
-    rsplit( ~ type)
+  x$count <-  mtt(
+    x$count,
+    metric = gsub("^Total Number of ", "", metric, perl = TRUE),
+    metric = gsub("^all ", "", metric, perl = TRUE),
+    type   = cheapr_if_else(grepl("^Payment Records", metric, perl = TRUE), "record", "entity")) |>
+    rsplit(~ type)
 
-  x$invest <- x$invest |>
-    mtt(
-      metric = stri_replace_first_regex(
-        metric,
-        "^Total Dollar Amount Invested of all Payment Records ",
-        ""
-      ),
-      metric = stri_replace_first_regex(metric, "^-\\s", "")
-    )
+  x$count$entity <- x$count$entity |>
+    rnm(`2017` = py_2017,
+        `2018` = py_2018,
+        `2019` = py_2019,
+        `2020` = py_2020,
+        `2021` = py_2021,
+        `2022` = py_2022,
+        `2023` = py_2023,
+        ALL = total) |>
+    mtt(metric = gsub("Companies Making Payments \\(AM/GPO Making Payment\\)", "Companies [AM/GPO] Making Payments", metric, perl = TRUE),
+        metric = gsub("Physician Covered Recipients with associated payment records", "Physicians with Payment Records", metric, perl = TRUE),
+        metric = gsub("Non-Physician Practitioner Covered Recipients with associated payment records", "NPPs with Payment Records", metric, perl = TRUE),
+        metric = gsub("Teaching Hospitals with associated payment records", "Teaching Hospitals with Payment Records", metric, perl = TRUE)) |>
+    pivot(ids = "metric",
+          names = list("year", "count")) |>
+    roworder(metric, -year) |>
+    colorder(year) |>
+    mtt(count = as.integer(count)) |>
+    as_tbl()
 
-  x$value <- x$value |>
-    mtt(
-      metric = stri_replace_first_regex(metric, "^Total value of interest of all Payment Records ", ""),
-      metric = stri_replace_first_regex(metric, "^-\\s", "")
-    )
+  x$count$record <- x$count$record |>
+    rnm(`2017` = py_2017,
+        `2018` = py_2018,
+        `2019` = py_2019,
+        `2020` = py_2020,
+        `2021` = py_2021,
+        `2022` = py_2022,
+        `2023` = py_2023,
+        ALL = total) |>
+    mtt(type = case(
+      grepl("General Payments", metric, perl = TRUE) ~ "General",
+      grepl("Research Payments", metric, perl = TRUE) ~ "Research",
+      grepl("Ownership Payments", metric, perl = TRUE) ~ "Ownership",
+      .default = "All"),
+      status = case(
+        grepl("Disputed", metric, perl = TRUE) ~ "Disputed",
+        grepl("Undisputed", metric, perl = TRUE) ~ "Undisputed"),
+      entity = case(
+        grepl("- Covered Recipient", metric, perl = TRUE) ~ "Covered Recipient",
+        grepl("- Non-Covered Recipient", metric, perl = TRUE) ~ "Non-Covered Recipient",
+        grepl("- Physician or Non-Covered Recipient", metric, perl = TRUE) ~ "Physician or Non-Covered Recipient",
+        grepl("- Non-Physician Practitioner or Non-Covered Recipient", metric, perl = TRUE) ~ "Non-Physician Practitioner or Non-Covered Recipient",
+        grepl(" to Physicians", metric, perl = TRUE) ~ "Physician",
+        grepl(" to Non-Physician Practitioners", metric, perl = TRUE) ~ "Non-Physician Practitioner",
+        grepl(" to Teaching Hospitals", metric, perl = TRUE) ~ "Teaching Hospital",
+        grepl(" - Non-Covered Recipient Entity", metric, perl = TRUE) ~ "Non-Covered Recipient Entity",
+        grepl(" - Non-Covered Recipient Individual", metric, perl = TRUE) ~ "Non-Covered Recipient Individual"),
+      metric = NULL) |>
+    pivot(ids = c("type", "status", "entity"), names = list("year", "amount")) |>
+    roworder(type, -year) |>
+    colorder(year, type, entity) |>
+    mtt(amount = as.integer(amount)) |>
+    as_tbl()
 
-  x$dollar <- x$dollar |>
-    mtt(
-      metric = stri_replace_first_regex(metric, "^Total Dollar Amount of ", ""),
-      metric = stri_replace_first_regex(metric, "^all ", "")
-    )
+  x$invest <- mtt(
+    x$invest,
+    metric = gsub("^Total Dollar Amount Invested of all Payment Records ", "", metric, perl = TRUE),
+    metric = gsub("^-\\s", "", metric, perl = TRUE))
 
+  x$value <- mtt(
+    x$value,
+    metric = gsub("^Total value of interest of all Payment Records ", "", metric, perl = TRUE),
+    metric = gsub("^-\\s", "", metric, perl = TRUE))
+
+  x$dollar <- mtt(
+    x$dollar,
+    metric = gsub("^Total Dollar Amount of ", "", metric, perl = TRUE),
+    metric = gsub("^all ", "", metric, perl = TRUE))
   x
 }
 
@@ -122,8 +162,6 @@ method(tidyup, openNational) <- function(x) {
 #' open_national()
 NULL
 
-#' @name open_dashboard
-#' @title Open Payments Dashboard
 #' @autoglobal
 #' @export
 #' @rdname open_summary
@@ -139,8 +177,6 @@ open_dashboard <- function() {
     tidyup()
 }
 
-#' @name open_national
-#' @title Open Payments National Overall Total and Averages
 #' @autoglobal
 #' @export
 #' @rdname open_summary
