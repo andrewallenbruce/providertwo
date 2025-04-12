@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9192 (2025-04-12)
+
+* open_dashboard
+
+
 # providertwo 0.0.0.9191 (2025-04-11)
 
 * open_dashboard, nppes
