@@ -17,20 +17,6 @@ list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
-#' @noRd
-#' @autoglobal
-st_extract <- function(string, pattern, perl = TRUE, ...) {
-  regmatches(
-    x = string,
-    m = gregexec(
-      pattern = pattern,
-      text = string,
-      perl = perl,
-      ...)
-    ) |>
-    unlist(use.names = FALSE)
-}
-
 method(list_resources, class_character) <- function(x) {
   fload(x, query = "/data") |>
     fcompute(

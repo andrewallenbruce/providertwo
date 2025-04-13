@@ -87,3 +87,17 @@ open_dictionary <- function() {
     sort = TRUE
   )
 }
+
+#' @noRd
+#' @autoglobal
+st_extract <- function(string, pattern, perl = TRUE, ...) {
+  regmatches(
+    x = string,
+    m = gregexec(
+      pattern = pattern,
+      text = string,
+      perl = perl,
+      ...)
+  ) |>
+    unlist(use.names = FALSE)
+}

@@ -84,6 +84,8 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <openTemp>
   "modified",
+  # <open_dictionary>
+  "name",
   # <npi_nppes>
   # <format_results>
   "number",
@@ -135,6 +137,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <openTemp>
   # <care_temp_group>
+  # <open_dictionary>
   "year",
   NULL
 ))

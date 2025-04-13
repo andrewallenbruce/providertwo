@@ -205,14 +205,12 @@ method(tidyup, openNational) <- function(x) {
 }
 
 #' Open Payments Summaries
-#'
 #' @name open_summary
-#'
 #' @returns A `<tibble>`
-#'
 #' @examples
 #' open_dashboard()
 #' open_national()
+#' open_dictionary()
 NULL
 
 #' @autoglobal
@@ -243,4 +241,56 @@ open_national <- function() {
       _[["results"]]
   ) |>
     tidyup()
+}
+
+#' @autoglobal
+#' @export
+#' @rdname open_summary
+open_dictionary <- function() {
+
+  x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
+  x <- get_elem(x, "data", DF.as.list = TRUE)
+  x <- get_elem(x, "title|describedBy$", regex = TRUE)
+  x <- map(x, \(x) x[not_null(names(x))])
+  x <- new_df(name = delist(get_elem(x, "title")), dictionary = delist(get_elem(x, "describedBy"))) |>
+    mtt(year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
+        name = cheapr_if_else(na(year), name, stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")),
+        year = cheapr_if_else(na(year), fmax(year), year)) |>
+    sbt(year == fmax(year), -year)
+
+  get_dict  <- \(x) perform_simple(request(x)) |> _[["data"]] |> _[["fields"]]
+  research  <- get_dict(x$dictionary[[1]])
+  ownership <- get_dict(x$dictionary[[2]])
+  general   <- get_dict(x$dictionary[[3]])
+  covered   <- get_dict(x$dictionary[[4]])
+
+  list(
+    `Research Payment Data` = new_tbl(
+      field       = research$name,
+      description = research$description,
+      type        = research$type,
+      maxlength   = research$constraints$maxLength,
+      pattern     = research$constraints$pattern,
+      max         = research$constraints$maximum),
+    `Ownership Payment Data` = new_tbl(
+      field       = ownership$name,
+      description = ownership$description,
+      type        = ownership$type,
+      maxlength   = ownership$constraints$maxLength,
+      pattern     = ownership$constraints$pattern,
+      max         = ownership$constraints$maximum),
+    `General Payment Data` = new_tbl(
+      field       = general$name,
+      description = general$description,
+      type        = general$type,
+      maxlength   = general$constraints$maxLength,
+      pattern     = general$constraints$pattern,
+      max         = general$constraints$maximum),
+    `Covered Recipient Profile Supplement` = new_tbl(
+      field       = covered$name,
+      description = covered$description,
+      type        = covered$type,
+      maxlength   = covered$constraints$maxLength,
+      pattern     = covered$constraints$pattern,
+      max         = covered$constraints$maximum))
 }
