@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9194 (2025-04-12)
+
+* open_dictionary()
+
+
 # providertwo 0.0.0.9193 (2025-04-12)
 
 * list_resources parallel touch up
