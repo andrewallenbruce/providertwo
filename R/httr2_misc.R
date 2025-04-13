@@ -13,6 +13,15 @@ perform_simple <- function(req, ...) {
 
 #' @autoglobal
 #' @noRd
+perform_simple_request <- function(x, ...) {
+  x |>
+    request() |>
+    req_perform() |>
+    resp_simple_json(...)
+}
+
+#' @autoglobal
+#' @noRd
 is_complete_with_limit <- function(limit) {
   function(resp)
     length(resp_body_json(resp)$data) < limit

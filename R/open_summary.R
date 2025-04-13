@@ -258,7 +258,7 @@ open_dictionary <- function() {
         year = cheapr_if_else(na(year), fmax(year), year)) |>
     sbt(year == fmax(year), -year)
 
-  get_dict  <- \(x) perform_simple(request(x)) |> _[["data"]] |> _[["fields"]]
+  get_dict  <- \(x) perform_simple_request(x) |> _[["data"]] |> _[["fields"]]
   research  <- get_dict(x$dictionary[[1]])
   ownership <- get_dict(x$dictionary[[2]])
   general   <- get_dict(x$dictionary[[3]])
