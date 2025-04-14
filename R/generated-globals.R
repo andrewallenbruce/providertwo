@@ -10,9 +10,6 @@ utils::globalVariables(c(
   "add1",
   # <clinicians>
   "add2",
-  # <npi_nppes>
-  # <format_results>
-  "address_1",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -20,7 +17,7 @@ utils::globalVariables(c(
   # <care_temp_group>
   "contact",
   # <npi_nppes>
-  # <format_results>
+  # <.nppes_multi_npi>
   "created_epoch",
   # <care_temp_group>
   "data",
@@ -42,9 +39,6 @@ utils::globalVariables(c(
   "download",
   # <catalog_care>
   "downloadURL",
-  # <npi_nppes>
-  # <format_results>
-  "enumeration_type",
   # <care_group>
   "filetype",
   # <catalog_pro>
@@ -70,7 +64,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   "landingPage",
   # <npi_nppes>
-  # <format_results>
+  # <.nppes_multi_npi>
   "last_updated_epoch",
   # <perform_request_provider>
   "limit",
@@ -86,9 +80,6 @@ utils::globalVariables(c(
   "modified",
   # <open_dictionary>
   "name",
-  # <npi_nppes>
-  # <format_results>
-  "number",
   # <catalog_care>
   # <catalog_caid>
   # <care_temp_group>

@@ -69,6 +69,6 @@ npi_nlm("Wiregrass Georgia")
 npi_nlm("Dentist Valdosta")
 npi_nlm("Valdosta")
 npi_nlm("Atlanta")
-#npi_nppes(npi = npi_ex$k[1:2]) |> str()
+npi_nppes(npi = npi_ex$k[1:2]) |> str()
 npi_nppes(npi = npi_ex$k[1]) |> str()
 }

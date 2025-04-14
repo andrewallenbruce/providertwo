@@ -75,7 +75,7 @@ npi_nlm <- function(terms, npi = NULL) {
 #' @param country `<chr>` Country code
 #' @returns `<tibble>` of search results
 #' @examples
-#' #npi_nppes(npi = npi_ex$k[1:2]) |> str()
+#' npi_nppes(npi = npi_ex$k[1:2]) |> str()
 #' npi_nppes(npi = npi_ex$k[1]) |> str()
 #' @source [API Documentation](https://npiregistry.cms.hhs.gov/api-page)
 #' @autoglobal
@@ -105,75 +105,53 @@ npi_nppes <- function(npi            = NULL,
     state                = state,
     postal_code          = zip,
     country_code         = country,
-    skip                 = 0L) |>
-    compact()
+    skip                 = 0L)
 
-  nppes_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200"
+  if (length(args$number) > 1) return(.nppes_multi_npi(args$number))
 
-  if (any(vlengths(args) > 1)) {
-
-    nppes_url <- request(nppes_url) |> req_url_query(!!!args[vlengths(args) == 1]) |> _[["url"]]
-
-    margs     <- args[vlengths(args) > 1]
-
-    reqs      <- map(glue("{nppes_url}&") + glue("{names(margs)}={delist(margs)}"), request)
-
-    resp_list <- req_perform_parallel(reqs, on_error = "continue")
-
-    x <- map(resp_list, \(x) resp_body_string(x) |> fparse() |> _[["results"]])
-
-    address <- rsplit(yank(x[[1]]$addresses), ~ address_purpose)
-    address <- join(rnm(address$LOCATION, address_location = address_1), rnm(address$MAILING, address_mailing = address_1), overid = 2, verbose = 0)
-    taxonomies <- set_names(null_to_na(yank(x[[1]]$taxonomies)), c("taxonomy_code", "taxonomy_group", "taxonomy_desc", "taxonomy_state", "taxonomy_license", "taxonomy_primary"))
-    identifiers <- set_names(null_to_na(yank(x[[1]]$identifiers)), c("identifiers_code", "identifiers_desc", "identifiers_issuer", "identifiers_id", "identifiers_state"))
-
-    res <- c(
-      npi               = yank_index_name(x, number),
-      entity            = convert_entity(yank_index_name(x, enumeration_type)),
-      date_created      = convert_epoch(yank_index_name(x, created_epoch)),
-      last_updated      = convert_epoch(yank_index_name(x, last_updated_epoch)),
-      practiceLocations = null_to_na(yank(x[[1]]$practiceLocations)),
-      other_names       = null_to_na(yank(x[[1]]$other_names)),
-      endpoints         = null_to_na(yank(x[[1]]$endpoints)),
-      inject(c(!!!x[[1]]$basic, !!!address, !!!taxonomies, !!!identifiers))
+    # address <- rsplit(yank(x[[1]]$addresses), ~ address_purpose)
+    # address <- join(rnm(address$LOCATION, address_location = address_1), rnm(address$MAILING, address_mailing = address_1), overid = 2, verbose = 0)
+    # taxonomies <- set_names(null_to_na(yank(x[[1]]$taxonomies)), c("taxonomy_code", "taxonomy_group", "taxonomy_desc", "taxonomy_state", "taxonomy_license", "taxonomy_primary"))
+    # identifiers <- set_names(null_to_na(yank(x[[1]]$identifiers)), c("identifiers_code", "identifiers_desc", "identifiers_issuer", "identifiers_id", "identifiers_state"))
+    #
+    # res <- c(
+    #   npi               = yank_index_name(x, number),
+    #   entity            = convert_entity(yank_index_name(x, enumeration_type)),
+    #   date_created      = convert_epoch(yank_index_name(x, created_epoch)),
+    #   last_updated      = convert_epoch(yank_index_name(x, last_updated_epoch)),
+    #   practiceLocations = null_to_na(yank(x[[1]]$practiceLocations)),
+    #   other_names       = null_to_na(yank(x[[1]]$other_names)),
+    #   endpoints         = null_to_na(yank(x[[1]]$endpoints)),
+    #   inject(c(!!!x[[1]]$basic, !!!address, !!!taxonomies, !!!identifiers))
       # list(identifiers = identifiers)
-      ) |>
-      as_tbl()
+      # ) |>
+      # as_tbl()
+      #
+      # return(res)
 
-      return(res)
 
-  } else {
 
-    nppes_url |>
+    args <- compact(args)
+
+    "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200" |>
       request() |>
       req_url_query(!!!args) |>
       perform_simple() |>
       _[["results"]] |>
+      slt(-created_epoch, -last_updated_epoch) |>
       as_tbl()
-
-    }
 }
 
 #' @autoglobal
 #' @noRd
-format_results <- \(x) {
+.nppes_multi_npi <- function(npi_vec) {
 
-  address <- rsplit(yank(x[[1]]$addresses), ~ address_purpose)
-  address <- join(rnm(address$LOCATION, address_location = address_1), rnm(address$MAILING, address_mailing = address_1), overid = 2, verbose = 0)
-
-  list_combine(
-    npi = yank_index_name(x, number),
-    entity = convert_entity(yank_index_name(x, enumeration_type)),
-    date_created = convert_epoch(yank_index_name(x, created_epoch)),
-    last_updated = convert_epoch(yank_index_name(x, last_updated_epoch)),
-    yank(x[[1]]$basic),
-    address,
-    practiceLocations = null_to_na(yank(x[[1]]$practiceLocations)),
-    taxonomies = null_to_na(yank(x[[1]]$taxonomies)),
-    identifiers = null_to_na(yank(x[[1]]$identifiers)),
-    other_names = null_to_na(yank(x[[1]]$other_names)),
-    endpoints = null_to_na(yank(x[[1]]$endpoints))
-  ) |>
-    as_df()
+  ("https://npiregistry.cms.hhs.gov/api/?version=2.1&" + glue("number={delist(npi_vec)}")) |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    resps_data(\(resp) resp_body_string(resp) |> fparse() |> _[["results"]]) |>
+    slt(-created_epoch, -last_updated_epoch) |>
+    as_tbl()
 
 }
