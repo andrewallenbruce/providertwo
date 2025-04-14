@@ -9,7 +9,7 @@ Search the NPPES NPI Registry"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9195</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9196</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -213,14 +213,11 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> BLACK, ATLANTA    1992516892 Specialist/Technologist             5716 S ARRO…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> MORELIK, ATLANTA  1407621188 Case Manager/Care Coordinator       60 W SUNBRI…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,490 more rows</span></span>
-<span class="r-in"><span><span class="co">#npi_nppes(npi = npi_ex$k[1:2]) |&gt; str()</span></span></span>
-<span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [1 × 11] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ created_epoch     : chr "1627585585000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ enumeration_type  : chr "NPI-2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ last_updated_epoch: chr "1707768606000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ number            : chr "1225701881"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ addresses         :List of 1</span>
+<span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [2 × 9] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ enumeration_type : chr [1:2] "NPI-2" "NPI-2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ number           : chr [1:2] "1225701881" "1174270805"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ addresses        :List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
@@ -231,9 +228,89 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "MI" "MI"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "480341753" "480341753"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "866-658-8214" "866-658-8214"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ practiceLocations :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_purpose : chr [1:2] "LOCATION" "MAILING"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_type    : chr [1:2] "DOM" "DOM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_1       : chr [1:2] "1414 WALNUT ST" "333 S DESPLAINES ST STE 201"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ city            : chr [1:2] "PHILADELPHIA" "CHICAGO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "PA" "IL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "191023824" "606615514"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "855-563-2639" "855-563-2639"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ practiceLocations:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ basic            :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name                    : chr "VIOS FERTILITY INSTITUTE MICHIGAN PLLC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organizational_subpart               : chr "NO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ enumeration_date                     : chr "2021-07-29"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_updated                         : chr "2024-02-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ certification_date                   : chr "2024-02-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ status                               : chr "A"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_first_name       : chr "KATRINA"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_last_name        : chr "MARSHALL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_telephone_number : chr "7734359036"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_title_or_position: chr "Dir Ins Cred &amp; Payor Contracts"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name                    : chr "PEACH STATE MEDICAL PRACTICE, PC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organizational_subpart               : chr "NO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ enumeration_date                     : chr "2022-03-02"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_updated                         : chr "2024-05-20"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ certification_date                   : chr "2024-05-20"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ status                               : chr "A"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_first_name       : chr "FAHIMEH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_last_name        : chr "SASAN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_telephone_number : chr "8555632639"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_title_or_position: chr "Founding OBGYN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_name_prefix      : chr "Dr."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_credential       : chr "DO"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ taxonomies       :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  6 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr "207VE0102X"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr "193400000X - Multiple Single Specialty Group"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ desc          : chr "Obstetrics &amp; Gynecology, Reproductive Endocrinology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  6 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr [1:2] "207VE0102X" "207VG0400X"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr [1:2] "193200000X - Multi-Specialty Group" "193200000X - Multi-Specialty Group"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ desc          : chr [1:2] "Obstetrics &amp; Gynecology, Reproductive Endocrinology" "Obstetrics &amp; Gynecology, Gynecology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi [1:2] NA NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi [1:2] NA NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi [1:2] TRUE FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifiers      :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ endpoints        :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ other_names      :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  3 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name: chr "KINDBODY OF PA MEDICAL PRACTICE, PC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ type             : chr "Doing Business As"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code             : chr "3"</span>
+<span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [1 × 9] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ enumeration_type : chr "NPI-2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ number           : chr "1225701881"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ addresses        :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_purpose : chr [1:2] "LOCATION" "MAILING"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_type    : chr [1:2] "DOM" "DOM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_1       : chr [1:2] "26400 W 12 MILE RD STE 140" "26400 W 12 MILE RD STE 140"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ city            : chr [1:2] "SOUTHFIELD" "SOUTHFIELD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "MI" "MI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "480341753" "480341753"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "866-658-8214" "866-658-8214"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ practiceLocations:List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ basic             :'data.frame':	1 obs. of  10 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ basic            :'data.frame':	1 obs. of  10 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ organization_name                    : chr "VIOS FERTILITY INSTITUTE MICHIGAN PLLC"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ organizational_subpart               : chr "NO"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ enumeration_date                     : chr "2021-07-29"</span>
@@ -244,7 +321,7 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_last_name        : chr "MARSHALL"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_telephone_number : chr "7734359036"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_title_or_position: chr "Dir Ins Cred &amp; Payor Contracts"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ taxonomies        :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ taxonomies       :List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  6 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr "207VE0102X"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr "193400000X - Multiple Single Specialty Group"</span>
@@ -252,11 +329,11 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifiers       :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifiers      :List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ endpoints         :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ endpoints        :List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ other_names       :List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ other_names      :List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
 </code></pre></div>
     </div>
