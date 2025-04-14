@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9196 (2025-04-14)
+
+* nppes fix
+
+
 # providertwo 0.0.0.9195 (2025-04-13)
 
 * open_dictionary
