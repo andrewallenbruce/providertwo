@@ -105,10 +105,10 @@ careGroup <- new_class(
     x <- care_group(alias)
 
     q <- map(x$identifier, dims_care) |>
-      set_names(gsub("^pending_initial_logging_and_tracking_", "", cclean(x$title), perl = TRUE))
+      set_clean(gsub("^pending_initial_logging_and_tracking_", "", x$title, perl = TRUE))
 
     i <- rsplit(x, ~ title) |>
-      set_names(gsub("^pending_initial_logging_and_tracking_", "", cclean(x$title), perl = TRUE))
+      set_clean(gsub("^pending_initial_logging_and_tracking_", "", x$title, perl = TRUE))
 
     template <- glue(
       "

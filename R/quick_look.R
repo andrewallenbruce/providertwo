@@ -1,47 +1,38 @@
+# quick_care("enrollees")
 #' @autoglobal
 #' @noRd
-cclean <- function(x) {
-  gsub("\\(|\\)", "", clean_names(x))
-}
-
-#' @autoglobal
-#' @noRd
-quick_care <- function(x) {
-
-  x <- x |>
+quick_care <- function(x, offset = 0L) {
+  x <- careMain(alias = x) |>
+    prop("identifier") |>
     request() |>
-    req_url_query(
-      offset = 0L,
-      size   = 5000L) |>
+    req_url_query(offset = offset, size = 5000L) |>
     perform_simple()
 
-  set_names(
-    as_tbl(x$data),
-    clean_names(x$meta$headers)) |>
+  set_clean(as_tbl(x$data), x$meta$headers) |>
     map_na_if()
 }
 
-# quick_care_temp(careTemp("quality_payment")@endpoints$identifier[1])
+# quick_care_temp("quality_payment")
 #' @autoglobal
 #' @noRd
-quick_care_temp <- function(x) {
-
-  x |>
+quick_care_temp <- function(x, offset = 0L) {
+  careTemp(alias = x) |>
+    prop("endpoints") |>
+    _[["identifier"]][1] |>
     request() |>
-    req_url_query(
-      offset = 0L,
-      size   = 5000L) |>
+    req_url_query(offset = offset, size = 5000L) |>
     perform_simple() |>
     map_na_if() |>
-    rnm(cclean) |>
+    rnm(clean_names) |>
     as_tbl()
 }
 
-# quick_pro(proMain("clinicians")@identifier)
+# quick_pro("clinicians")
 #' @autoglobal
 #' @noRd
-quick_pro <- function(x) {
-  x |>
+quick_pro <- function(x, offset = 0L) {
+  proMain(alias = x) |>
+    prop("identifier") |>
     request() |>
     req_url_query(
       count   = "false",
@@ -50,21 +41,22 @@ quick_pro <- function(x) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = 0L,
+      offset  = offset,
       limit   = 2000L
     ) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(cclean) |>
+    rnm(clean_names) |>
     as_tbl()
 }
 
-# quick_open(openMain("profile_covered")@identifier) |> str()
+# quick_open("profile_covered")
 #' @autoglobal
 #' @noRd
-quick_open <- function(x) {
-  x |>
+quick_open <- function(x, offset = 0L) {
+  openMain(alias = x) |>
+    prop("identifier") |>
     request() |>
     req_url_query(
       count   = "false",
@@ -73,22 +65,24 @@ quick_open <- function(x) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = 0L,
+      offset  = offset,
       limit   = 500L
     ) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(cclean) |>
+    rnm(clean_names) |>
     as_tbl()
 }
 
-# quick_open_temp(prop(openTemp("ownership"), "endpoints")$identifier[1])
+# quick_open_temp("ownership")
 #' @autoglobal
 #' @noRd
-quick_open_temp <- function(x) {
-  x |>
-    open_url() |>
+quick_open_temp <- function(x, offset = 0L) {
+  openTemp(alias = x) |>
+    prop("endpoints") |>
+    _[["identifier"]][1] |>
+    open_url() |> # TODO remove url generation functions
     request() |>
     req_url_query(
       count   = "false",
@@ -97,19 +91,19 @@ quick_open_temp <- function(x) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = 0L,
+      offset  = offset,
       limit   = 500L
-      ) |>
+    ) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(cclean) |>
+    rnm(clean_names) |>
     as_tbl()
 }
 
 quick_caid <- function(x) {
   x |>
-    caid_url() |>
+    caid_url() |> # TODO remove url generation functions
     request() |>
     req_url_query(
       count   = "false",
@@ -124,6 +118,6 @@ quick_caid <- function(x) {
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(cclean) |>
+    rnm(clean_names) |>
     as_tbl()
 }

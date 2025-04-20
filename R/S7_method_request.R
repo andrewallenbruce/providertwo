@@ -14,7 +14,6 @@ NULL
 #' @examples
 #' careMain("enrollees") |> new_request()
 #' proMain("affiliations") |> new_request()
-#' openMain("dashboard") |> new_request()
 #'
 #' @autoglobal
 #' @export
