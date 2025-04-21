@@ -2,8 +2,8 @@
 
   catalogs      <<- memoise::memoise(catalogs)
   careMain      <<- memoise::memoise(careMain)
+  careGroup     <<- memoise::memoise(careGroup)
   careTemp      <<- memoise::memoise(careTemp)
-  careTempGroup <<- memoise::memoise(careTempGroup)
   openMain      <<- memoise::memoise(openMain)
   proMain       <<- memoise::memoise(proMain)
 

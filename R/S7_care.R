@@ -183,17 +183,13 @@ careTemp <- new_class(
   }
 )
 
-
 #' Medicare Endpoint Group
-#'
 #' @param alias `<chr>` title alias
-#'
 #' @returns An S7 `<careGroup>` object.
-#'
-#' @examplesIf interactive()
+#' @examples
 #' careGroup("home_health")
 #' careGroup("hospice")
-#' careGroup("hospitals")
+#' careGroup("hospital")
 #' careGroup("rural_health")
 #' careGroup("fqhc")
 #' careGroup("pending")
@@ -206,42 +202,15 @@ careGroup <- new_class(
   parent     = Care,
   name       = "careGroup",
   package    = NULL,
-  properties = list(
-    title       = NULL | class_character,
-    description = NULL | class_character,
-    modified    = NULL | class_character | class_Date,
-    periodicity = NULL | class_character,
-    temporal    = NULL | class_character,
-    groups      = class_list
-  ),
+  properties = list(group = class_character, members = class_list),
   constructor = function(alias) {
 
     x <- care_group(alias)
 
-    q <- map(x$identifier, dims_care) |>
-      set_clean(gsub("^pending_initial_logging_and_tracking_", "", x$title, perl = TRUE))
-
-    i <- rsplit(x, ~ title) |>
-      set_clean(gsub("^pending_initial_logging_and_tracking_", "", x$title, perl = TRUE))
-
-    template <- glue(
-      "
-      {group} = list(
-        rows      = q${group}$rows,
-        pages     = q${group}$pages,
-        fields    = q${group}$fields,
-        endpoints = i${group}
-        )
-      ",
-      group = names(q)) |>
-      glue_collapse(sep = ",\n")
-
     new_object(
       Care(),
-      title  = x$title[1],
-      groups = glue("list({template})") |>
-        parse_expr() |>
-        eval_bare()
+      group  = x$group,
+      members = map(x$alias, careMain) |> set_names(x$alias)
     )
   }
 )

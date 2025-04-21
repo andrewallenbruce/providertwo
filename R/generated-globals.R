@@ -49,8 +49,6 @@ utils::globalVariables(c(
   "ext",
   # <.tidy_resources>
   "fileSize",
-  # <care_group>
-  "filetype",
   # <catalog_pro>
   # <catalog_caid>
   # <care_temp_group>

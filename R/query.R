@@ -111,6 +111,7 @@ eval_params <- function(args, fields) {
 #' greater_than(1)
 #' starts_with("foo")
 #' is_in(state.abb[10:15])
+#' @noRd
 NULL
 
 #' @autoglobal

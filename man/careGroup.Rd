@@ -16,14 +16,12 @@ An S7 \verb{<careGroup>} object.
 Medicare Endpoint Group
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 careGroup("home_health")
 careGroup("hospice")
-careGroup("hospitals")
+careGroup("hospital")
 careGroup("rural_health")
 careGroup("fqhc")
 careGroup("pending")
 careGroup("reassignment")
 careGroup("skilled_nursing")
-\dontshow{\}) # examplesIf}
 }

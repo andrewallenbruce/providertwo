@@ -32,6 +32,31 @@ care_main <- function(x, call = caller_env()) {
     order_refer     = "Order and Referring",
     rbcs            = "Restructured BETOS Classification System",
     transparency    = "Hospital Price Transparency Enforcement Activities and Outcomes",
+
+    home_health_agency_all_owners                       = "^Home Health Agency All Owners$",
+    home_health_agency_cost_report                      = "^Home Health Agency Cost Report$",
+    home_health_agency_enrollments                      = "^Home Health Agency Enrollments$",
+    hospice_all_owners                                  = "^Hospice All Owners$",
+    hospice_enrollments                                 = "^Hospice Enrollments$",
+    hospital_all_owners                                 = "^Hospital All Owners$",
+    hospital_change_of_ownership                        = "^Hospital Change of Ownership$",
+    hospital_change_of_ownership_owner_information      = "^Hospital Change of Ownership - Owner Information$",
+    hospital_enrollments                                = "^Hospital Enrollments$",
+    rural_health_clinic_all_owners                      = "^Rural Health Clinic All Owners$",
+    rural_health_clinic_enrollments                     = "^Rural Health Clinic Enrollments$",
+    federally_qualified_health_center_all_owners        = "^Federally Qualified Health Center All Owners$",
+    federally_qualified_health_center_enrollments       = "^Federally Qualified Health Center Enrollments$",
+    pending_initial_logging_and_tracking_non_physicians = "^Pending Initial Logging and Tracking Non Physicians$",
+    pending_initial_logging_and_tracking_physicians     = "^Pending Initial Logging and Tracking Physicians$",
+    revalidation_clinic_group_practice_reassignment     = "^Revalidation Clinic Group Practice Reassignment$",
+    revalidation_due_date_list                          = "^Revalidation Due Date List$",
+    revalidation_reassignment_list                      = "^Revalidation Reassignment List$",
+    skilled_nursing_facility_all_owners                 = "^Skilled Nursing Facility All Owners$",
+    skilled_nursing_facility_change_of_ownership        = "^Skilled Nursing Facility Change of Ownership$",
+    skilled_nursing_facility_change_of_ownership_owner_information = "^Skilled Nursing Facility Change of Ownership - Owner Information$",
+    skilled_nursing_facility_cost_report                = "^Skilled Nursing Facility Cost Report$",
+    skilled_nursing_facility_enrollments                = "^Skilled Nursing Facility Enrollments$",
+
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
@@ -71,7 +96,7 @@ care_temp <- function(x, call = caller_env()) {
 
 # care_group("home_health")
 # care_group("hospice")
-# care_group("hospitals")
+# care_group("hospital")
 # care_group("rural_health")
 # care_group("fqhc")
 # care_group("pending")
@@ -82,22 +107,41 @@ care_temp <- function(x, call = caller_env()) {
 #' @noRd
 care_group <- function(x, call = caller_env()) {
 
-  x <- switch(
+  # program_stats   = "^CMS Program Statistics",
+  switch(
     x,
-    home_health     = "^Home Health Agency",
-    hospice         = "^Hospice",
-    hospitals       = "^Hospital [ACE]",
-    rural_health    = "Rural Health Clinic",
-    fqhc            = "Federally Qualified Health Center",
-    pending         = "^Pending Initial",
-    # program_stats   = "^CMS Program Statistics",
-    reassignment    = "^Revalidation",
-    skilled_nursing = "^Skilled Nursing Facility",
+    home_health     = list(group = "Home Health Agency",
+                           alias = c("home_health_agency_all_owners",
+                                     "home_health_agency_cost_report",
+                                     "home_health_agency_enrollments")),
+    hospice         = list(group = "Hospice",
+                           alias = c("hospice_all_owners",
+                                     "hospice_enrollments")),
+    hospital        = list(group = "Hospitals",
+                           alias = c("hospital_all_owners",
+                                     "hospital_change_of_ownership",
+                                     "hospital_change_of_ownership_owner_information",
+                                     "hospital_enrollments")),
+    rural_health    = list(group = "Rural Health Clinic",
+                           alias = c("rural_health_clinic_all_owners",
+                                     "rural_health_clinic_enrollments")),
+    fqhc            = list(group = "Federally Qualified Health Center",
+                           alias = c("federally_qualified_health_center_all_owners",
+                                     "federally_qualified_health_center_enrollments")),
+    pending         = list(group = "Pending Initial Logging and Tracking",
+                           alias = c("pending_initial_logging_and_tracking_non_physicians",
+                                     "pending_initial_logging_and_tracking_physicians")),
+    reassignment    = list(group = "Revalidation Reassignment",
+                           alias = c("revalidation_clinic_group_practice_reassignment",
+                                     "revalidation_due_date_list",
+                                     "revalidation_reassignment_list")),
+    skilled_nursing = list(group = "Skilled Nursing Facility",
+                           alias = c("skilled_nursing_facility_all_owners",
+                                     "skilled_nursing_facility_change_of_ownership",
+                                     "skilled_nursing_facility_change_of_ownership_owner_information",
+                                     "skilled_nursing_facility_cost_report",
+                                     "skilled_nursing_facility_enrollments")),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
-
-  if (!exists("catalog")) .catalog <- catalogs()
-
-  select_alias(.catalog$care$main, x) |> slt(-filetype)
 }
 
 # care_temp_group("inpatient")
