@@ -16,6 +16,9 @@ dict_title <- \(x) {
     _[["title"]]
 }
 
+#' @noRd
+caid_url <- function(x) paste0("https://data.medicaid.gov/api/1/datastore/query/", x, "/0")
+
 #' @autoglobal
 #' @noRd
 catalog_caid <- function() {

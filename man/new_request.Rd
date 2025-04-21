@@ -18,5 +18,5 @@ Create a new request by class
 \examples{
 careMain("enrollees") |> new_request()
 proMain("affiliations") |> new_request()
-
+openMain("profile_covered") |> new_request()
 }
