@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9201</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9202</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,15 +65,17 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">careTemp</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careTemp&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 624200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:165] "provider key" "practice state or us territory" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints  : tibble [6 × 5] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Quality Payment Program Experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;careMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;careTempDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 624200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:165] "provider key" "practice state or us territory" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [6 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2024-05-08" "2023-06-12" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data" "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data" "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data" "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data" ...</span>
