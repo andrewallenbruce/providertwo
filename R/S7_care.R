@@ -164,7 +164,7 @@ careMain2 <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- care_main("enrollees")
+    x <- care_main(alias)
     q <- dims_care(x$identifier)
 
     new_object(
@@ -184,7 +184,7 @@ careMain2 <- new_class(
 #'
 #' @returns An S7 `<careGroup>` object.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' careGroup("home_health")
 #' careGroup("hospice")
 #' careGroup("hospitals")
@@ -293,7 +293,7 @@ careTemp <- new_class(
 #'
 #' @returns An S7 `<careTempGroup>` object.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' careTempGroup("inpatient")
 #' careTempGroup("outpatient")
 #' careTempGroup("utilization")

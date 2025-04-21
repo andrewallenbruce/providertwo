@@ -41,6 +41,8 @@ utils::globalVariables(c(
   # <.tidy_resources>
   "downloadURL",
   # <.tidy_resources>
+  "ext",
+  # <.tidy_resources>
   "fileSize",
   # <care_group>
   "filetype",
@@ -114,6 +116,8 @@ utils::globalVariables(c(
   "sec_spec_4",
   # <catalog_care>
   "site",
+  # <.tidy_resources>
+  "size",
   # <catalog_care>
   # <catalog_caid>
   "temporal",
@@ -131,6 +135,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <openTemp>
+  # <.tidy_resources>
   # <care_temp_group>
   # <open_dictionary>
   "year",

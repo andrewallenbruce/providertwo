@@ -42,7 +42,6 @@ Collate:
     'S7_care.R'
     'S7_open.R'
     'S7_pro.R'
-    'S7_method_print.R'
     'S7_method_request.R'
     'S7_method_resources.R'
     'alias_care.R'

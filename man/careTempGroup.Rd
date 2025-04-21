@@ -16,10 +16,12 @@ An S7 \verb{<careTempGroup>} object.
 Group of Medicare Temporal Endpoints
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 careTempGroup("inpatient")
 careTempGroup("outpatient")
 careTempGroup("utilization")
 careTempGroup("suppliers")
 careTempGroup("prescribers")
 careTempGroup("staffing")
+\dontshow{\}) # examplesIf}
 }

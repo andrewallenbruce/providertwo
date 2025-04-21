@@ -11,7 +11,10 @@ NULL
       size     = roundup(fileSize / 1e6),
       ext      = file_ext(downloadURL),
       download = downloadURL
-    )
+    ) |>
+    f_fill(year) |>
+    roworder(-year, ext, -size) |>
+    as_tbl()
 }
 
 #' @name list_resources
@@ -32,15 +35,12 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 
 method(list_resources, class_character) <- function(x) {
   fload(x, query = "/data") |>
-    .tidy_resources() |>
-    f_fill(year)
+    .tidy_resources()
 }
 
 method(list_resources, careMain) <- function(x) {
   prop(x, "resources") |>
-    list_resources() |>
-    roworder(-year, ext, -size) |>
-    as_tbl()
+    list_resources()
 }
 
 method(list_resources, careTemp) <- function(x) {
@@ -52,8 +52,5 @@ method(list_resources, careTemp) <- function(x) {
     resps_successes() |>
     resps_data(\(resp) resp_body_string(resp) |>
                  fparse(query = "/data")) |>
-    .tidy_resources() |>
-    f_fill(year) |>
-    roworder(-year, ext, -size) |>
-    as_tbl()
+    .tidy_resources()
 }
