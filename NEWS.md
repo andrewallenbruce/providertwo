@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9199 (2025-04-20)
+
+* removed print methods, old pins
+
+
 # providertwo 0.0.0.9198 (2025-04-20)
 
 * rewriting Care
