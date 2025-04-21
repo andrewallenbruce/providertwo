@@ -1,3 +1,71 @@
+#' Medicare Endpoint
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns An S7 `<careMain>` object.
+#'
+#' @examplesIf interactive()
+#' careMain("contact")
+#' careMain("crosswalk")
+#' careMain("dialysis")
+#' careMain("enrollees")
+#' careMain("facilities")
+#' careMain("hospice_acute")
+#' careMain("IQIES")
+#' careMain("laboratories")
+#' careMain("long_term")
+#' careMain("opt_out")
+#' careMain("order_refer")
+#' careMain("rbcs")
+#' careMain("transparency")
+#' @autoglobal
+#' @rdname careMain
+#' @export
+careMain <- new_class(
+  parent     = Care,
+  name       = "careMain",
+  package    = NULL,
+  properties = list(
+    title       = class_character,
+    description = class_character,
+    modified    = class_character | class_Date,
+    identifier  = class_character,
+    rows        = class_integer,
+    pages       = class_integer,
+    fields      = class_character,
+    download    = class_character,
+    temporal    = class_character,
+    periodicity = class_character,
+    resources   = class_character,
+    dictionary  = class_character,
+    site        = class_character,
+    references  = class_character
+  ),
+  constructor = function(alias) {
+
+    x <- care_main(alias)
+    q <- dims_care(x$identifier)
+
+    new_object(
+      Care(),
+      title       = x$title,
+      description = x$description,
+      modified    = x$modified,
+      periodicity = x$periodicity,
+      temporal    = x$temporal,
+      identifier  = x$identifier,
+      resources   = x$resources,
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages,
+      download    = x$download,
+      dictionary  = x$dictionary,
+      site        = x$site,
+      references  = x$references
+    )
+  }
+)
+
 #' API Endpoint Current Object (Provider)
 #'
 #' @inheritParams Current

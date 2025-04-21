@@ -2,28 +2,20 @@
 % Please edit documentation in R/S7_care.R
 \name{careMain}
 \alias{careMain}
-\alias{careMain2}
 \title{Medicare Endpoint}
 \usage{
 careMain(alias)
-
-careMain2(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<careMain>} object.
-
-An S7 \verb{<careMain>} object.
 }
 \description{
 Medicare Endpoint
-
-Medicare Endpoint 2
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 careMain("contact")
 careMain("crosswalk")
 careMain("dialysis")
@@ -37,18 +29,4 @@ careMain("opt_out")
 careMain("order_refer")
 careMain("rbcs")
 careMain("transparency")
-\dontshow{\}) # examplesIf}
-careMain2("contact")
-careMain2("crosswalk")
-careMain2("dialysis")
-careMain2("enrollees")
-careMain2("facilities")
-careMain2("hospice_acute")
-careMain2("IQIES")
-careMain2("laboratories")
-careMain2("long_term")
-careMain2("opt_out")
-careMain2("order_refer")
-careMain2("rbcs")
-careMain2("transparency")
 }

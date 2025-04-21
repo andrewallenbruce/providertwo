@@ -40,6 +40,35 @@ care_main <- function(x, call = caller_env()) {
 
 }
 
+# care_temp("quality_payment")
+#' @autoglobal
+#' @noRd
+care_temp <- function(x, call = caller_env()) {
+
+  x <- switch(
+    x,
+    quality_payment = "Quality Payment Program Experience",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+  if (!exists("catalog")) .catalog <- catalogs()
+
+  x <- select_alias(.catalog$care$temp, x)
+
+  l <- slt(x, -data) |> c()
+
+  list(
+    title       = l$title,
+    description = l$description,
+    periodicity = l$periodicity,
+    contact     = l$contact,
+    dictionary  = l$dictionary,
+    site        = l$site,
+    identifier  = get_elem(x, "data")[[1]]$identifier[1],
+    endpoints   = get_elem(x, "data")[[1]]
+    )
+
+}
+
 # care_group("home_health")
 # care_group("hospice")
 # care_group("hospitals")
@@ -69,22 +98,6 @@ care_group <- function(x, call = caller_env()) {
   if (!exists("catalog")) .catalog <- catalogs()
 
   select_alias(.catalog$care$main, x) |> slt(-filetype)
-}
-
-# care_temp("quality_payment")
-#' @autoglobal
-#' @noRd
-care_temp <- function(x, call = caller_env()) {
-
-  x <- switch(
-    x,
-    quality_payment = "Quality Payment Program Experience",
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
-
-  if (!exists("catalog")) .catalog <- catalogs()
-
-  select_alias(.catalog$care$temp, x)
-
 }
 
 # care_temp_group("inpatient")

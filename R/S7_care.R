@@ -2,79 +2,7 @@
 #' @noRd
 Care <- new_class(name = "Care", package = NULL)
 
-#' Medicare Endpoint
-#'
-#' @param alias `<chr>` endpoint alias
-#'
-#' @returns An S7 `<careMain>` object.
-#'
-#' @examplesIf interactive()
-#' careMain("contact")
-#' careMain("crosswalk")
-#' careMain("dialysis")
-#' careMain("enrollees")
-#' careMain("facilities")
-#' careMain("hospice_acute")
-#' careMain("IQIES")
-#' careMain("laboratories")
-#' careMain("long_term")
-#' careMain("opt_out")
-#' careMain("order_refer")
-#' careMain("rbcs")
-#' careMain("transparency")
-#' @autoglobal
-#' @rdname careMain
-#' @export
-careMain <- new_class(
-  parent     = Care,
-  name       = "careMain",
-  package    = NULL,
-  properties = list(
-    title       = class_character,
-    description = class_character,
-    modified    = class_character | class_Date,
-    identifier  = class_character,
-    rows        = class_integer,
-    pages       = class_integer,
-    fields      = class_character,
-    download    = class_character,
-    temporal    = class_character,
-    periodicity = class_character,
-    resources   = class_character,
-    dictionary  = class_character,
-    site        = class_character,
-    references  = class_character
-  ),
-  constructor = function(alias) {
-
-    x <- care_main(alias)
-    q <- dims_care(x$identifier)
-
-    new_object(
-      Care(),
-      title       = x$title,
-      description = x$description,
-      modified    = x$modified,
-      periodicity = x$periodicity,
-      temporal    = x$temporal,
-      identifier  = x$identifier,
-      resources   = x$resources,
-      rows        = q$rows,
-      fields      = q$fields,
-      pages       = q$pages,
-      download    = x$download,
-      dictionary  = x$dictionary,
-      site        = x$site,
-      references  = x$references
-    )
-  }
-)
-
-#' Medicare Class Metadata
-#' @param x `<list>` metadata list
-#' @returns An S7 `<careMeta>` object.
-#' @export
-#' @keywords internal
+#' @noRd
 #' @autoglobal
 careMeta <- new_class(
   name = "careMeta",
@@ -104,11 +32,7 @@ careMeta <- new_class(
   }
 )
 
-#' Medicare Class Dimensions
-#' @param x `<list>` dimensions list
-#' @returns An S7 `<careDim>` object.
-#' @export
-#' @keywords internal
+#' @noRd
 #' @autoglobal
 careDim <- new_class(
   name = "careDim",
@@ -119,41 +43,44 @@ careDim <- new_class(
     fields = class_character
   ),
   constructor = function(x) {
+    x <- x$identifier |>
+      request() |>
+      req_url_query(offset = 0L, size = 1L) |>
+      perform_simple() |>
+      _[["meta"]]
+
     new_object(
       S7_object(),
-      rows   = x$rows,
-      pages  = x$pages,
-      fields = x$fields
+      rows   = x$total_rows,
+      pages  = offset_size(x$total_rows, 5000L),
+      fields = x$headers
     )
   }
 )
 
-#' Medicare Endpoint 2
-#'
+#' Medicare Endpoint
 #' @param alias `<chr>` endpoint alias
-#'
 #' @returns An S7 `<careMain>` object.
-#'
 #' @examples
-#' careMain2("contact")
-#' careMain2("crosswalk")
-#' careMain2("dialysis")
-#' careMain2("enrollees")
-#' careMain2("facilities")
-#' careMain2("hospice_acute")
-#' careMain2("IQIES")
-#' careMain2("laboratories")
-#' careMain2("long_term")
-#' careMain2("opt_out")
-#' careMain2("order_refer")
-#' careMain2("rbcs")
-#' careMain2("transparency")
+#' careMain("contact")
+#' careMain("crosswalk")
+#' careMain("dialysis")
+#' careMain("enrollees")
+#' careMain("facilities")
+#' careMain("hospice_acute")
+#' careMain("IQIES")
+#' careMain("laboratories")
+#' careMain("long_term")
+#' careMain("opt_out")
+#' careMain("order_refer")
+#' careMain("rbcs")
+#' careMain("transparency")
 #' @autoglobal
 #' @rdname careMain
 #' @export
-careMain2 <- new_class(
+careMain <- new_class(
   parent     = Care,
-  name       = "careMain2",
+  name       = "careMain",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -165,25 +92,68 @@ careMain2 <- new_class(
   constructor = function(alias) {
 
     x <- care_main(alias)
-    q <- dims_care(x$identifier)
 
     new_object(
-      S7_object(),
+      Care(),
       title       = x$title,
       metadata    = careMeta(x),
-      dimensions  = careDim(q),
+      dimensions  = careDim(x),
       identifier  = x$identifier,
       resources   = x$resources
     )
   }
 )
 
+#' @noRd
+#' @autoglobal
+careTempMeta <- new_class(
+  name = "careMeta",
+  package = NULL,
+  properties = list(
+    description = class_character,
+    periodicity = class_character,
+    dictionary  = class_character,
+    site        = class_character
+  ),
+  constructor = function(x) {
+    new_object(
+      S7_object(),
+      description = x$description,
+      periodicity = x$periodicity,
+      dictionary  = x$dictionary,
+      site        = x$site
+    )
+  }
+)
+
+#' @noRd
+#' @autoglobal
+careTempDim <- new_class(
+  name = "careTempDim",
+  package = NULL,
+  properties = list(
+    rows   = class_integer,
+    pages  = class_integer,
+    fields = class_character
+  ),
+  constructor = function(x) {
+
+    x <- req_url_query(request(x$identifier), offset = 0L, size = 1L)
+    y <- perform_simple(req_url_path_append(x, "stats")) |> _[["total_rows"]]
+    x <- names(perform_simple(x))
+
+    new_object(
+      S7_object(),
+      rows   = y,
+      pages  = offset_size(y, 5000L),
+      fields = x
+    )
+  }
+)
+
 #' Medicare Temporal Endpoint
-#'
 #' @param alias `<chr>` title alias
-#'
 #' @returns An S7 `<careTemp>` object.
-#'
 #' @examples
 #' careTemp("quality_payment")
 #' @autoglobal
@@ -195,32 +165,20 @@ careTemp <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    description = class_character,
-    rows        = class_integer,
-    pages       = class_integer,
-    fields      = class_character,
-    periodicity = class_character,
-    dictionary  = class_character,
-    site        = class_character,
+    metadata    = careTempMeta,
+    dimensions  = careTempDim,
     endpoints   = class_list
   ),
   constructor = function(alias) {
 
     x <- care_temp(alias)
-    d <- get_elem(x, "data")[[1]]
-    q <- dims_care_temp(d$identifier[1])
 
     new_object(
       Care(),
       title       = x$title,
-      description = x$description,
-      rows        = q$rows,
-      pages       = q$pages,
-      fields      = q$fields,
-      periodicity = x$periodicity,
-      dictionary  = x$dictionary,
-      site        = x$site,
-      endpoints   = slt(d, year, modified, identifier, download, resources)
+      metadata    = careTempMeta(x),
+      dimensions  = careTempDim(x),
+      endpoints   = slt(x$endpoints, -temporal, -filetype)
     )
   }
 )
@@ -337,7 +295,7 @@ careTempGroup <- new_class(
       Care(),
       title        = x$title,
       periodicity  = x$periodicity,
-      years        = order(x$years),
+      years        = sort(x$years),
       groups       = glue("list({template})") |> parse_expr() |> eval_bare()
     )
   }

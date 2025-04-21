@@ -8,7 +8,9 @@ quick_care <- function(x, offset = 0L) {
     req_url_query(offset = offset, size = 5000L) |>
     perform_simple()
 
-  set_clean(as_tbl(x$data), x$meta$headers) |>
+  x$data |>
+    as_tbl() |>
+    set_clean(x$meta$headers) |>
     map_na_if()
 }
 
