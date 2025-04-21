@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9198</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9199</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,151 +64,115 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_covered"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Covered Recipient Profile Supplement <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Covered Recipient Profile Supplement</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">file contains information about physicians</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">and non-physician practitioners who have</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">been indicated as recipients of payments,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">other transfers of value, or ownership and</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">investment interest in payment records, as</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">well as physicians and non-physician</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">practitioners who have been identified as</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">principal investigators associated with</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">research payment records published by Open</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Payments. This file contains only those</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">physicians that have at least one</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">published payment record in this cycle of</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">the publication as of January 30, 2025.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The criteria used by the Centers for</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Medicare &amp; Medicaid Services (CMS) to</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">determine which payment records are</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">eligible for publication is available in</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">the Open Payments Methodology and Data</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Dictionary Document. This document can be</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">found on the Resources page of the Open</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Payments website</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">(https://www.cms.gov/OpenPayments/Resources).</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">The Methodology and Data Dictionary</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Document also includes information on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data collection and reporting methodology,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data fields included in the files, and any</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">notes or special considerations that users</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">should be aware of.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 1,530,412</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 3,061</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Covered Recipient Profile Supplement"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "The Covered Recipient Profile Supplement file contains information about physicians and non-physician practitio"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1530412</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:32] "covered_recipient_profile_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/PHPRFL_P01302025_01212025/OP_CVRD_RCPNT_PRFL_SPLMTL_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "23160558-6742-54ff-8b9f-cac7d514ff4e"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_physician"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Physician (Distinct) Profile Information <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 1,528,054</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 3,057</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Physician (Distinct) Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1528054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:33] "covered_recipient_profile_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PHYSN_NON_PHYSN_PRCTNR_PRFL_SRCH_P013"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "6ed6ae76-2999-49da-b0b2-d7df150ac754"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/6ed6ae76-2999-49da-b0b2-d7df150ac754/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_information"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Profile Information <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset provides profile information</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">to display on payment search results.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 1,534,695</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 3,070</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset provides profile information to display on payment search results."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1534695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:20] "entity_id" "entity_provider_type" "entity_npi" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/all-entities-profile-search.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "f2ed17cc-f045-4e25-9b28-75c72f0c7efe"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/f2ed17cc-f045-4e25-9b28-75c72f0c7efe/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_mapping"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Provider Profile ID Mapping Table <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Maps secondary/duplicate provider profile</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">IDs to the primary ID in the Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">system. For multiple reasons, a small</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">number of providers have more than one ID</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">in the payments records.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 2,358</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 5</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Provider Profile ID Mapping Table"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Maps secondary/duplicate provider profile IDs to the primary ID in the Open Payments system. For multiple reaso"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2358</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:2] "primary_provider_profile_id" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PRVDR_PRFL_MAPPING_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "d19e5be2-5b8c-562c-af22-c243503bcfac"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/d19e5be2-5b8c-562c-af22-c243503bcfac/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_entity"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Reporting Entity Profile Information <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 2,843</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 6</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Reporting Entity Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:9] "amgpo_making_payment_id" "amgpo_making_payment_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_RPTG_ORG_PRFL_SRCH_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "1cf0c6c0-c377-466e-b78f-037b442559f8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/1cf0c6c0-c377-466e-b78f-037b442559f8/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"profile_teaching"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> Teaching Hospital Profile Information <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 1,440</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 3</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "Teaching Hospital Profile Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 1440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:12] "teaching_hospital_ccn" "teaching_hospital_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_TH_PRFL_SRCH_P01302025_01212025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "8219fcb3-fb3d-4b51-9f65-be8a048c0608"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/8219fcb3-fb3d-4b51-9f65-be8a048c0608/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"state_total"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> State Level Payment Total and Averages for all Years <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 2,765</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 6</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "State Level Payment Total and Averages for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 2765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:28] "country_code" "country_name" "state_code" "state_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_STATE_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "02157882-0f43-473a-a777-c96eb5b1b623"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/02157882-0f43-473a-a777-c96eb5b1b623/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"state_group"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> State Payment Totals and Averages Grouped by Nature of Payment for all Years <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">Groups payment data by state, recipient</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">type, and nature of payment.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 16,758</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 34</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "Groups payment data by state, recipient type, and nature of payment."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 16758</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:28] "country_code" "country_name" "state_code" "state_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYRall_P01"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "7c5144d9-1b2a-5039-a91a-cccb8ed7805c"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/7c5144d9-1b2a-5039-a91a-cccb8ed7805c/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"national_group"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> National Level Payment Total and Averages by Provider Specialty for all Years <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 4,188</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 9</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "National Level Payment Total and Averages by Provider Specialty for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 4188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:21] "payment_type" "recipient_type" "program_year" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SPLTY_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "04c3355f-955b-4620-b3a8-08020cc9c1f2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/04c3355f-955b-4620-b3a8-08020cc9c1f2/0"</span>
 <span class="r-in"><span><span class="fu">openMain</span><span class="op">(</span><span class="st">"national_total"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">──</span> National Level Payment Total and Averages for all Years <span style="color: #555555;">──</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">This dataset is pre-filtered based on the</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">most frequent searches of Open Payments</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #00BBBB; font-style: italic;">data.</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Rows 24</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Pages 1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   • Fields 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Modified ❯ <span style="color: #BBBB00; font-style: italic;">2025-01-30</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;openMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title      : chr "National Level Payment Total and Averages for all Years"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ modified   : Date[1:1], format: "2025-01-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows       : int 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields     : chr [1:18] "metric_level" "payment_type" "recipient_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTNL_SMRY_P01302025_01212025-joined.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ uuid       : chr "aaaddc12-a3a7-4cc5-9c12-4a726317aa1c"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier : chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/aaaddc12-a3a7-4cc5-9c12-4a726317aa1c/0"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
