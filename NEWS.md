@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9202 (2025-04-21)
+
+* rewriting Care classes
+
+
 # providertwo 0.0.0.9201 (2025-04-21)
 
 * tidying up
