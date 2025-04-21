@@ -1,6 +1,19 @@
 #' @include S7_care.R
 NULL
 
+#' @autoglobal
+#' @noRd
+.tidy_resources <- \(x) {
+  x |>
+    fcompute(
+      year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
+      file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+      size     = roundup(fileSize / 1e6),
+      ext      = file_ext(downloadURL),
+      download = downloadURL
+    )
+}
+
 #' @name list_resources
 #' @title List resources
 #'
@@ -19,13 +32,7 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 
 method(list_resources, class_character) <- function(x) {
   fload(x, query = "/data") |>
-    fcompute(
-      year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
-      size     = roundup(fileSize / 1e6),
-      ext      = file_ext(downloadURL),
-      download = downloadURL
-    ) |>
+    .tidy_resources() |>
     f_fill(year)
 }
 
@@ -45,13 +52,7 @@ method(list_resources, careTemp) <- function(x) {
     resps_successes() |>
     resps_data(\(resp) resp_body_string(resp) |>
                  fparse(query = "/data")) |>
-    fcompute(
-      year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
-      size     = roundup(fileSize / 1e6),
-      ext      = file_ext(downloadURL),
-      download = downloadURL
-    ) |>
+    .tidy_resources() |>
     f_fill(year) |>
     roworder(-year, ext, -size) |>
     as_tbl()

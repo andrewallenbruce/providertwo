@@ -38,7 +38,10 @@ utils::globalVariables(c(
   # <openTemp>
   "download",
   # <catalog_care>
+  # <.tidy_resources>
   "downloadURL",
+  # <.tidy_resources>
+  "fileSize",
   # <care_group>
   "filetype",
   # <catalog_pro>
@@ -78,6 +81,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <openTemp>
   "modified",
+  # <.tidy_resources>
   # <open_dictionary>
   "name",
   # <catalog_care>

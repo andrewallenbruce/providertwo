@@ -21,15 +21,21 @@ new_request <- new_generic("new_request", "x", function(x) {
   S7_dispatch()
 })
 
+method(new_request, class_character) <- function(x) {
+  x |>
+    request() |>
+    req_throttle(capacity = 30, fill_time_s = 60)
+}
+
 method(new_request, careMain) <- function(x) {
   prop(x, "identifier") |>
-    request() |>
+    new_request() |>
     req_url_query(offset = 0L, size = 5000L)
 }
 
 method(new_request, proMain) <- function(x) {
   prop(x, "identifier") |>
-    request() |>
+    new_request() |>
     req_url_query(
       count   = "false",
       format  = "json",
@@ -44,7 +50,7 @@ method(new_request, proMain) <- function(x) {
 
 method(new_request, openMain) <- function(x) {
   prop(x, "identifier") |>
-    request() |>
+    new_request() |>
     req_url_query(
       count   = "false",
       format  = "json",

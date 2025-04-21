@@ -8,7 +8,7 @@ Care <- new_class(name = "Care", package = NULL)
 #'
 #' @returns An S7 `<careMain>` object.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' careMain("contact")
 #' careMain("crosswalk")
 #' careMain("dialysis")
@@ -66,6 +66,114 @@ careMain <- new_class(
       dictionary  = x$dictionary,
       site        = x$site,
       references  = x$references
+    )
+  }
+)
+
+#' Medicare Class Metadata
+#' @param x `<list>` metadata list
+#' @returns An S7 `<care_metadata>` object.
+#' @export
+#' @keywords internal
+#' @autoglobal
+care_metadata <- new_class(
+  name = "care_metadata",
+  package = NULL,
+  properties = list(
+    description = class_character,
+    temporal    = class_character,
+    periodicity = class_character,
+    dictionary  = class_character,
+    site        = class_character,
+    references  = class_character,
+    modified    = new_union(class_character, class_Date),
+    download    = class_character
+  ),
+  constructor = function(x) {
+    new_object(
+      S7_object(),
+      description = x$description,
+      temporal    = x$temporal,
+      periodicity = x$periodicity,
+      dictionary  = x$dictionary,
+      site        = x$site,
+      references  = x$references,
+      modified    = x$modified,
+      download    = x$download
+    )
+  }
+)
+
+#' Medicare Class Dimensions
+#' @param x `<list>` dimensions list
+#' @returns An S7 `<care_dimensions>` object.
+#' @export
+#' @keywords internal
+#' @autoglobal
+care_dimensions <- new_class(
+  name = "care_dimensions",
+  package = NULL,
+  properties = list(
+    rows   = class_integer,
+    pages  = class_integer,
+    fields = class_character
+  ),
+  constructor = function(x) {
+    new_object(
+      S7_object(),
+      rows   = x$rows,
+      pages  = x$pages,
+      fields = x$fields
+    )
+  }
+)
+
+#' Medicare Endpoint 2
+#'
+#' @param alias `<chr>` endpoint alias
+#'
+#' @returns An S7 `<careMain>` object.
+#'
+#' @examples
+#' careMain2("contact")
+#' careMain2("crosswalk")
+#' careMain2("dialysis")
+#' careMain2("enrollees")
+#' careMain2("facilities")
+#' careMain2("hospice_acute")
+#' careMain2("IQIES")
+#' careMain2("laboratories")
+#' careMain2("long_term")
+#' careMain2("opt_out")
+#' careMain2("order_refer")
+#' careMain2("rbcs")
+#' careMain2("transparency")
+#' @autoglobal
+#' @rdname careMain
+#' @export
+careMain2 <- new_class(
+  parent     = Care,
+  name       = "careMain2",
+  package    = NULL,
+  properties = list(
+    title       = class_character,
+    metadata    = care_metadata,
+    dimensions  = care_dimensions,
+    identifier  = class_character,
+    resources   = class_character
+  ),
+  constructor = function(alias) {
+
+    x <- care_main("enrollees")
+    q <- dims_care(x$identifier)
+
+    new_object(
+      S7_object(),
+      title       = x$title,
+      metadata    = care_metadata(x),
+      dimensions  = care_dimensions(q),
+      identifier  = x$identifier,
+      resources   = x$resources
     )
   }
 )
