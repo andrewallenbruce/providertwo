@@ -37,6 +37,7 @@ catalog_care <- function() {
            references  = delist(references),
            temporal    = fmt_temporal(temporal),
            title       = gsub("  ", " ", title, perl = TRUE),
+           description = stri_trans_general(description, "latin-ascii"),
            description = gsub("[\"']", "", description, perl = TRUE),
            description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
            description = gsub("^ATTENTION USERS\\n\\n\\nSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information.\\n\\n.+\\n\\nFor more information on the opt-out process, see Manage Your Enrollment.+or view the FAQ section below.\\n\\n.+\\n\\n", "", description, perl = TRUE),
@@ -88,12 +89,9 @@ catalog_care <- function() {
   )
 }
 
-
-#' @noRd
-pro_url <- function(x) paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", x, "/0")
-
 # "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
 # pro_dict <- function(x) paste0("https://data.cms.gov/provider-data/dataset/", x, "#data-dictionary")
+
 #' @autoglobal
 #' @noRd
 catalog_pro <- function() {
@@ -101,6 +99,7 @@ catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
   mtt(x,
+      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
@@ -113,9 +112,6 @@ catalog_pro <- function() {
     as_tbl()
 }
 
-#' @noRd
-open_url <- function(x) paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", x, "/0")
-
 #' @autoglobal
 #' @noRd
 catalog_open <- function() {
@@ -123,6 +119,7 @@ catalog_open <- function() {
   x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
   x <- mtt(x,
+           identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
            modified    = as_date(modified),
            year        = get_data_elem(keyword),
            year        = stri_replace_all_fixed(year, c("all years"), c("All")),

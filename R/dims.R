@@ -58,7 +58,6 @@ dims_care_temp_group <- function(x, g) {
 #' @noRd
 dims_pro <- function(x) {
   x <- x |>
-    pro_url() |>
     request() |>
     req_url_query(
       schema  = "false",
@@ -83,7 +82,6 @@ dims_pro <- function(x) {
 #' @noRd
 dims_open <- function(x) {
   x <- x |>
-    open_url() |>
     request() |>
     req_url_query(
       schema  = "false",
@@ -109,7 +107,6 @@ dims_open <- function(x) {
 dims_caid <- function(x) {
 
   x <- x |>
-    caid_url() |>
     request() |>
     req_url_query(
       schema  = "false",

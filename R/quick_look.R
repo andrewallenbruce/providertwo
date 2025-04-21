@@ -82,7 +82,6 @@ quick_open_temp <- function(x, offset = 0L) {
   openTemp(alias = x) |>
     prop("endpoints") |>
     _[["identifier"]][1] |>
-    open_url() |> # TODO remove url generation functions
     request() |>
     req_url_query(
       count   = "false",
@@ -103,7 +102,6 @@ quick_open_temp <- function(x, offset = 0L) {
 
 quick_caid <- function(x) {
   x |>
-    caid_url() |> # TODO remove url generation functions
     request() |>
     req_url_query(
       count   = "false",

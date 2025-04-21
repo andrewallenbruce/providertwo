@@ -1,5 +1,29 @@
 #' @autoglobal
 #' @noRd
+is_complete_with_limit <- function(limit) {
+  function(resp)
+    length(resp_body_json(resp)$data) < limit
+}
+
+#' @autoglobal
+#' @noRd
+req_perform_iterative_offset <- function(req, limit) {
+  # TODO: allow switching between different API limits?
+  check_number_whole(limit, min = 1, max = 5000)
+
+  req_perform_iterative(
+    req,
+    next_req        = iterate_with_offset(
+      param_name    = "offset",
+      start         = 0L,
+      offset        = limit,
+      resp_complete = is_complete_with_limit(limit)
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
 parse_json_response_public <- function(resp) {
   resp_body_string(resp) |>
     fparse(query = "/data") |>

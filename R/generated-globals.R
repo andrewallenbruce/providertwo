@@ -5,6 +5,7 @@ utils::globalVariables(c(
   "accessURL",
   # <catalog_care>
   # <catalog_caid>
+  # <catalog_health>
   "accrualPeriodicity",
   # <clinicians>
   "add1",
@@ -14,6 +15,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   # <care_temp_group>
   "contact",
   # <npi_nppes>
@@ -27,11 +29,13 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   "description",
   # <catalog_care>
   "dictionary",
   # <catalog_care>
   # <catalog_caid>
+  # <catalog_health>
   "distribution",
   # <catalog_pro>
   # <catalog_open>
@@ -54,16 +58,19 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   # <openTemp>
   # <care_temp_group>
   "identifier",
   # <catalog_pro>
   # <catalog_caid>
+  # <catalog_health>
   "issued",
   # <catalog_caid>
   "key",
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   "keyword",
   # <catalog_care>
   # <catalog_pro>
@@ -71,8 +78,6 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
-  # <perform_request_provider>
-  "limit",
   # <catalog_care>
   "main",
   # <catalog_care>
@@ -81,13 +86,17 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   # <openTemp>
   "modified",
+  # <catalog_health>
+  "N",
   # <.tidy_resources>
   # <open_dictionary>
   "name",
   # <catalog_care>
   # <catalog_caid>
+  # <catalog_health>
   # <care_temp_group>
   "periodicity",
   # <catalog_caid>
@@ -128,6 +137,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   # <care_temp_group>
   # <select_alias>
   "title",

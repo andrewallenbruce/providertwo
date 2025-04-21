@@ -8,31 +8,32 @@ make_join_col <- \(x, col) {
 
 #' @autoglobal
 #' @noRd
-dict_title <- \(x) {
-  x |>
-    request() |>
-    perform_simple() |>
-    _[["data"]] |>
-    _[["title"]]
-}
-
-#' @noRd
-caid_url <- function(x) paste0("https://data.medicaid.gov/api/1/datastore/query/", x, "/0")
-
-#' @autoglobal
-#' @noRd
 catalog_caid <- function() {
 
   x <- fload("https://data.medicaid.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
   x <- x |>
     mtt(
+      identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
       title       = gsub("^ ", "", title, perl = TRUE)) |>
-    slt(title, identifier, description, periodicity, issued, modified, contact, theme, key = keyword, distribution, temporal, reference = references) |>
+    slt(
+      title,
+      identifier,
+      description,
+      periodicity,
+      issued,
+      modified,
+      contact,
+      theme,
+      key = keyword,
+      distribution,
+      temporal,
+      reference = references
+    ) |>
     as_tbl()
 
   grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
@@ -58,4 +59,48 @@ catalog_caid <- function() {
     down = funique(dwns, cols = c("title", "download")),
     dict = funique(dict, cols = c("title", "dictionary"))
   )
+}
+
+#' @autoglobal
+#' @noRd
+catalog_health <- function() {
+
+  x <- fload("https://data.healthcare.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
+
+  x <- x |>
+    as_tbl() |>
+    mtt(
+      modified    = as_date(modified),
+      issued      = as_date(issued),
+      periodicity = fmt_periodicity(accrualPeriodicity),
+      contact     = fmt_contactpoint(x$contactPoint)
+    ) |>
+    slt(
+      title,
+      identifier,
+      description,
+      periodicity,
+      issued,
+      modified,
+      contact,
+      keyword,
+      distribution
+    )
+
+  keys <- new_df(title = x$title, keyword = make_join_col(x, keyword)) |>
+    sbt(keyword != "healthcare") |>
+    mtt(keyword = stri_replace_all_regex(keyword, ", healthcare|healthcare, ", ""))
+
+  d <- rowbind(x$distribution, fill = TRUE)
+
+  tvec <- vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE)))
+
+  download <- new_tbl(title = tvec, download = delist(get_elem(d$data, "downloadURL"))) |>
+    fcount(title, add = TRUE)
+
+  list(
+    main = join_on_title(slt(x, -keyword, -distribution), keys) |> join_on_title(download |> sbt(N == 1) |> slt(-N)),
+    download = download |> sbt(N > 1)
+  )
+
 }

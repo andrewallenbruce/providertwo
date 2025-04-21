@@ -29,13 +29,8 @@ proMain <- new_class(
     download    = class_character,
     issued     = class_character | class_Date,
     released   = class_character | class_Date,
-    uuid       = class_character,
     site       = class_character,
-    identifier = new_property(
-      class_character,
-      getter = function(self) pro_url(self@uuid),
-      setter = NULL
-    )
+    identifier = class_character
   ),
   constructor = function(alias) {
 
@@ -46,7 +41,7 @@ proMain <- new_class(
       Pro(),
       title       = x$title,
       description = x$description,
-      uuid        = x$identifier,
+      identifier  = x$identifier,
       download    = x$download,
       issued      = x$issued,
       modified    = x$modified,

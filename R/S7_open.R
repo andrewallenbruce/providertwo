@@ -29,19 +29,13 @@ openMain <- new_class(
   properties = list(
     title       = class_character,
     description = class_character,
-    # contact     = class_character,
     modified    = class_character | class_Date,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
     download    = class_character,
-    uuid        = class_character,
-    identifier = new_property(
-      class_character,
-      getter = function(self) open_url(self@uuid),
-      setter = NULL
-    )
-  ),
+    identifier  = class_character
+    ),
   constructor = function(alias) {
 
     x <- open_main(alias)
@@ -51,9 +45,8 @@ openMain <- new_class(
       Open(),
       title       = x$title,
       description = x$description,
-      # contact     = x$contact,
       modified    = x$modified,
-      uuid        = x$identifier,
+      identifier  = x$identifier,
       download    = x$download,
       rows        = q$rows,
       fields      = q$fields,
@@ -82,7 +75,6 @@ openTemp <- new_class(
   properties = list(
     title       = class_character,
     description = class_character,
-    # contact     = class_character,
     rows        = class_integer,
     pages       = class_integer,
     fields      = class_character,
@@ -97,7 +89,6 @@ openTemp <- new_class(
       Open(),
       title       = x$title[1],
       description = x$description[1],
-      # contact     = x$contact[1],
       rows        = q$rows,
       fields      = q$fields,
       pages       = q$pages,

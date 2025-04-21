@@ -53,7 +53,6 @@ Collate:
     'end_nppes.R'
     'generated-globals.R'
     'httr2_misc.R'
-    'httr2_old.R'
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'

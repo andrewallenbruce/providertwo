@@ -3,11 +3,11 @@ NULL
 
 #' @autoglobal
 #' @noRd
-.tidy_resources <- \(x) {
+.tidy_resources <- function(x) {
   x |>
     fcompute(
       year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      file     = stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+      file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
       size     = roundup(fileSize / 1e6),
       ext      = file_ext(downloadURL),
       download = downloadURL
@@ -19,11 +19,8 @@ NULL
 
 #' @name list_resources
 #' @title List resources
-#'
 #' @param x Object of class `careMain` or `careTemp`
-#'
 #' @returns A list of API resources
-#'
 #' @examples
 #' careMain("enrollees") |> list_resources()
 #' careTemp("quality_payment") |> list_resources()
