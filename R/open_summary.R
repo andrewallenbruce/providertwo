@@ -266,49 +266,42 @@ open_national <- function() {
 #' @rdname open_summary
 open_dictionary <- function() {
 
-  x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
-  x <- get_elem(x, "data", DF.as.list = TRUE)
-  x <- get_elem(x, "title|describedBy$", regex = TRUE)
-  x <- map(x, \(x) x[not_null(names(x))])
-  x <- new_df(name = delist(get_elem(x, "title")), dictionary = delist(get_elem(x, "describedBy"))) |>
-    mtt(year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-        name = cheapr_if_else(na(year), name, stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")),
-        year = cheapr_if_else(na(year), fmax(year), year)) |>
-    sbt(year == fmax(year), -year)
+  x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
+    get_elem("data", DF.as.list = TRUE) |>
+    get_elem("title|describedBy$", regex = TRUE) |>
+    map(\(x) x[not_null(names(x))])
 
-  get_dict  <- \(x) perform_simple_request(x) |> _[["data"]] |> _[["fields"]]
-  research  <- get_dict(x$dictionary[[1]])
-  ownership <- get_dict(x$dictionary[[2]])
-  general   <- get_dict(x$dictionary[[3]])
-  covered   <- get_dict(x$dictionary[[4]])
-
-  list(
-    `Research Payment Data` = new_tbl(
-      field       = research$name,
-      description = research$description,
-      type        = research$type,
-      maxlength   = research$constraints$maxLength,
-      pattern     = research$constraints$pattern,
-      max         = research$constraints$maximum),
-    `Ownership Payment Data` = new_tbl(
-      field       = ownership$name,
-      description = ownership$description,
-      type        = ownership$type,
-      maxlength   = ownership$constraints$maxLength,
-      pattern     = ownership$constraints$pattern,
-      max         = ownership$constraints$maximum),
-    `General Payment Data` = new_tbl(
-      field       = general$name,
-      description = general$description,
-      type        = general$type,
-      maxlength   = general$constraints$maxLength,
-      pattern     = general$constraints$pattern,
-      max         = general$constraints$maximum),
-    `Covered Recipient Profile Supplement` = new_tbl(
-      field       = covered$name,
-      description = covered$description,
-      type        = covered$type,
-      maxlength   = covered$constraints$maxLength,
-      pattern     = covered$constraints$pattern,
-      max         = covered$constraints$maximum))
+  new_df(
+    name = get_elem(x, "title") |> delist(),
+    download = get_elem(x, "describedBy") |> delist()
+    ) |>
+    mtt(
+      year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
+      name = cheapr_if_else(is_na(year), name,
+        stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")),
+      year = cheapr_if_else(is_na(year), fmax(year), year)
+      ) |>
+    sbt(year == fmax(year), -year) |>
+    _[["download"]] |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map(\(resp)
+        resp_body_string(resp) |>
+          fparse(query = "/data") |>
+          _[["fields"]] |>
+          map_na_if() |>
+          as_tbl() |>
+          mtt(
+            description = stri_trans_general(description, "latin-ascii"),
+            description = gsub("[\n\"']", "", description, perl = TRUE),
+            description = gsub("[\\\\]", "-", description, perl = TRUE),
+            description = stri_trim_both(stri_replace_all_regex(description, "\\s+", " ")),
+            title = NULL
+            )
+        ) |>
+    set_clean(get_elem(x, "title") |>
+        stri_extract_all_regex("^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)|Covered Recipient Profile Supplement") |>
+        delist() |>
+        funique())
 }

@@ -29,6 +29,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
+  # <open_dictionary>
   "description",
   # <catalog_care>
   "dictionary",
