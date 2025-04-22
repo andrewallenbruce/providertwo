@@ -47,7 +47,6 @@ Collate:
     'alias_care.R'
     'alias_open.R'
     'alias_pro.R'
-    'dims.R'
     'end_affiliations.R'
     'end_enrollees.R'
     'end_nppes.R'

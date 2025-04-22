@@ -1,18 +1,3 @@
-# care_main("contact")
-# care_main("crosswalk")
-# care_main("dialysis")
-# care_main("enrollees")
-# care_main("facilities")
-# care_main("hospice_acute")
-# care_main("IQIES")
-# care_main("laboratories")
-# care_main("order_refer")
-# care_main("laboratories")
-# care_main("long_term")
-# care_main("opt_out")
-# care_main("order_refer")
-# care_main("RBCS")
-# care_main("transparency")
 #' @autoglobal
 #' @noRd
 care_main <- function(x, call = caller_env()) {
@@ -66,15 +51,6 @@ care_main <- function(x, call = caller_env()) {
 
 # program_stats   = "^CMS Program Statistics",
 # care_group("program_stats")
-#
-# care_group("HHA")
-# care_group("hospice")
-# care_group("hospital")
-# care_group("RHC")
-# care_group("FQHC")
-# care_group("pending")
-# care_group("reassignment")
-# care_group("SNF")
 #' @autoglobal
 #' @noRd
 care_group <- function(x, call = caller_env()) {
@@ -147,7 +123,6 @@ care_group <- function(x, call = caller_env()) {
   )
 }
 
-# care_temp("quality_payment")
 #' @autoglobal
 #' @noRd
 care_temp <- function(x, call = caller_env()) {
@@ -195,12 +170,6 @@ care_temp <- function(x, call = caller_env()) {
 
 }
 
-# care_temp_group("inpatient")
-# care_temp_group("outpatient")
-# care_temp_group("utilization")
-# care_temp_group("suppliers")
-# care_temp_group("prescribers")
-# care_temp_group("staffing")
 #' @autoglobal
 #' @noRd
 care_temp_group <- function(x, call = caller_env()) {

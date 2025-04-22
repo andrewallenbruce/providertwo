@@ -16,14 +16,15 @@ An S7 \verb{<openMain>} object.
 Open Payments Endpoint
 }
 \examples{
-openMain("profile_covered")
-openMain("profile_physician")
-openMain("profile_information")
-openMain("profile_mapping")
-openMain("profile_entity")
-openMain("profile_teaching")
-openMain("state_total")
-openMain("state_group")
-openMain("national_group")
-openMain("national_total")
+openMain("PROF_covered")
+openMain("PROF_physician")
+openMain("PROF_information")
+openMain("PROF_mapping")
+openMain("PROF_entity")
+openMain("PROF_teaching")
+#openMain("SUMM_dashboard")
+openMain("SUMM_state_all")
+openMain("SUMM_state_group")
+openMain("SUMM_nation_all")
+openMain("SUMM_nation_group")
 }

@@ -40,7 +40,6 @@ utils::globalVariables(c(
   "distribution",
   # <catalog_pro>
   # <catalog_open>
-  # <openTemp>
   "download",
   # <catalog_care>
   # <.tidy_resources>
@@ -57,7 +56,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <openTemp>
   "identifier",
   # <catalog_pro>
   # <catalog_caid>
@@ -84,7 +82,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <openTemp>
   "modified",
   # <catalog_health>
   "N",
@@ -104,9 +101,6 @@ utils::globalVariables(c(
   "released",
   # <catalog_care>
   "resourcesAPI",
-  # <dims_open>
-  # <dims_caid>
-  "rows",
   # <clinicians>
   "sec_spec_1",
   # <clinicians>
@@ -135,7 +129,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_open>
   # <catalog_caid>
-  # <openTemp>
   # <.tidy_resources>
   # <open_dictionary>
   "year",

@@ -1,6 +1,3 @@
-# pro_main("affiliations")
-# pro_main("clinicians")
-# pro_main("utilization")
 #' @autoglobal
 #' @noRd
 pro_main <- function(x, call = caller_env()) {
@@ -23,8 +20,6 @@ pro_main <- function(x, call = caller_env()) {
 
 }
 
-# pro_group("PDC")
-# pro_group("MIPS")
 #' @autoglobal
 #' @noRd
 pro_group <- function(x) {

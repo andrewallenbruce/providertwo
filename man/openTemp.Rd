@@ -16,7 +16,11 @@ An S7 \verb{<openTemp>} object.
 Open Payments Temporal Endpoint
 }
 \examples{
-openTemp("general")
-openTemp("ownership")
-openTemp("research")
+openTemp("DATA_general")
+openTemp("DATA_ownership")
+openTemp("DATA_research")
+openTemp("GROUP_recip_nature")
+openTemp("GROUP_recip_entity")
+openTemp("GROUP_entity_nature")
+openTemp("GROUP_all")
 }
