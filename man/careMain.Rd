@@ -27,6 +27,6 @@ careMain("laboratories")
 careMain("long_term")
 careMain("opt_out")
 careMain("order_refer")
-careMain("rbcs")
+careMain("RBCS")
 careMain("transparency")
 }

@@ -79,7 +79,7 @@ careDim <- new_class(
 #' careMain("long_term")
 #' careMain("opt_out")
 #' careMain("order_refer")
-#' careMain("rbcs")
+#' careMain("RBCS")
 #' careMain("transparency")
 #' @autoglobal
 #' @rdname careMain
@@ -142,12 +142,12 @@ careTempDim <- new_class(
       class_integer,
       default = 0L
     ),
-    fields = class_character,
     pages = new_property(
       class_integer,
       getter = function(self)
         offset_size(self@rows, 5000L)
-    )
+    ),
+    fields = class_character
   ),
   constructor = function(x) {
 

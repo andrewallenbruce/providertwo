@@ -11,7 +11,7 @@
 # care_main("long_term")
 # care_main("opt_out")
 # care_main("order_refer")
-# care_main("rbcs")
+# care_main("RBCS")
 # care_main("transparency")
 #' @autoglobal
 #' @noRd
@@ -19,43 +19,42 @@ care_main <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    contact         = "Public Reporting of Missing Digital Contact Information",
-    crosswalk       = "Medicare Provider and Supplier Taxonomy Crosswalk",
-    dialysis        = "Medicare Dialysis Facilities",
-    enrollees       = "Public Provider Enrollment",
-    facilities      = "Provider of Services File - Hospital & Non-Hospital Facilities",
-    hospice_acute   = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
-    IQIES           = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
-    laboratories    = "Provider of Services File - Clinical Laboratories",
-    long_term       = "Long-Term Care Facility Characteristics",
-    opt_out         = "Opt Out Affidavits",
-    order_refer     = "Order and Referring",
-    rbcs            = "Restructured BETOS Classification System",
-    transparency    = "Hospital Price Transparency Enforcement Activities and Outcomes",
-
-    HHA_all_owners                                  = "^Home Health Agency All Owners$",
-    HHA_cost_report                                 = "^Home Health Agency Cost Report$",
-    HHA_enrollments                                 = "^Home Health Agency Enrollments$",
-    hospice_all_owners                              = "^Hospice All Owners$",
-    hospice_enrollments                             = "^Hospice Enrollments$",
-    hospital_all_owners                             = "^Hospital All Owners$",
-    hospital_chow                                   = "^Hospital Change of Ownership$",
-    hospital_chow_owner_information                 = "^Hospital Change of Ownership - Owner Information$",
-    hospital_enrollments                            = "^Hospital Enrollments$",
-    RHC_all_owners                  = "^Rural Health Clinic All Owners$",
-    RHC_enrollments                 = "^Rural Health Clinic Enrollments$",
-    FQHC_all_owners                                 = "^Federally Qualified Health Center All Owners$",
-    FQHC_enrollments                                = "^Federally Qualified Health Center Enrollments$",
-    PILAT_non_physicians                            = "^Pending Initial Logging and Tracking Non Physicians$",
-    PILAT_physicians                                = "^Pending Initial Logging and Tracking Physicians$",
-    revalidation_clinic_group_practice = "^Revalidation Clinic Group Practice Reassignment$",
-    revalidation_due_date_list                      = "^Revalidation Due Date List$",
-    revalidation_reassignment_list                  = "^Revalidation Reassignment List$",
-    SNF_all_owners                                  = "^Skilled Nursing Facility All Owners$",
-    SNF_chow                                        = "^Skilled Nursing Facility Change of Ownership$",
-    SNF_chow_owner_information                      = "^Skilled Nursing Facility Change of Ownership - Owner Information$",
-    SNF_cost_report                                 = "^Skilled Nursing Facility Cost Report$",
-    SNF_enrollments                                 = "^Skilled Nursing Facility Enrollments$",
+    contact                   = "Public Reporting of Missing Digital Contact Information",
+    crosswalk                 = "Medicare Provider and Supplier Taxonomy Crosswalk",
+    dialysis                  = "Medicare Dialysis Facilities",
+    enrollees                 = "Public Provider Enrollment",
+    facilities                = "Provider of Services File - Hospital & Non-Hospital Facilities",
+    hospice_acute             = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
+    IQIES                     = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
+    laboratories              = "Provider of Services File - Clinical Laboratories",
+    long_term                 = "Long-Term Care Facility Characteristics",
+    opt_out                   = "Opt Out Affidavits",
+    order_refer               = "Order and Referring",
+    RBCS                      = "Restructured BETOS Classification System",
+    transparency              = "Hospital Price Transparency Enforcement Activities and Outcomes",
+    HHA_all_owners            = "^Home Health Agency All Owners$",
+    HHA_cost_report           = "^Home Health Agency Cost Report$",
+    HHA_enrollments           = "^Home Health Agency Enrollments$",
+    hospice_all_owners        = "^Hospice All Owners$",
+    hospice_enrollments       = "^Hospice Enrollments$",
+    hospital_all_owners       = "^Hospital All Owners$",
+    hospital_chow             = "^Hospital Change of Ownership$",
+    hospital_chow_owner       = "^Hospital Change of Ownership - Owner Information$",
+    hospital_enrollments      = "^Hospital Enrollments$",
+    RHC_all_owners            = "^Rural Health Clinic All Owners$",
+    RHC_enrollments           = "^Rural Health Clinic Enrollments$",
+    FQHC_all_owners           = "^Federally Qualified Health Center All Owners$",
+    FQHC_enrollments          = "^Federally Qualified Health Center Enrollments$",
+    PILAT_non_physicians      = "^Pending Initial Logging and Tracking Non Physicians$",
+    PILAT_physicians          = "^Pending Initial Logging and Tracking Physicians$",
+    revalidation_group        = "^Revalidation Clinic Group Practice Reassignment$",
+    revalidation_due_date     = "^Revalidation Due Date List$",
+    revalidation_reassignment = "^Revalidation Reassignment List$",
+    SNF_all_owners            = "^Skilled Nursing Facility All Owners$",
+    SNF_chow                  = "^Skilled Nursing Facility Change of Ownership$",
+    SNF_chow_owner            = "^Skilled Nursing Facility Change of Ownership - Owner Information$",
+    SNF_cost_report           = "^Skilled Nursing Facility Cost Report$",
+    SNF_enrollments           = "^Skilled Nursing Facility Enrollments$",
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
@@ -65,56 +64,73 @@ care_main <- function(x, call = caller_env()) {
 
 }
 
+# program_stats   = "^CMS Program Statistics",
+# care_group("program_stats")
+#
 # care_group("HHA")
 # care_group("hospice")
 # care_group("hospital")
 # care_group("RHC")
 # care_group("FQHC")
 # care_group("pending")
-# care_group("program_stats")
 # care_group("reassignment")
 # care_group("SNF")
 #' @autoglobal
 #' @noRd
 care_group <- function(x, call = caller_env()) {
-  # program_stats   = "^CMS Program Statistics",
   switch(
     x,
     HHA = list(
       group = "Home Health Agencies",
-      alias = c("HHA_all_owners", "HHA_cost_report", "HHA_enrollments")
+      alias = c(
+        "HHA_all_owners",
+        "HHA_cost_report",
+        "HHA_enrollments"
+      )
     ),
     hospice = list(
-      group = "Hospice",
-      alias = c("hospice_all_owners", "hospice_enrollments")
+      group = "Hospices",
+      alias = c(
+        "hospice_all_owners",
+        "hospice_enrollments"
+      )
     ),
     hospital = list(
       group = "Hospitals",
       alias = c(
         "hospital_all_owners",
         "hospital_chow",
-        "hospital_chow_owner_information",
+        "hospital_chow_owner",
         "hospital_enrollments"
       )
     ),
     RHC = list(
       group = "Rural Health Clinics",
-      alias = c("RHC_all_owners", "RHC_enrollments")
+      alias = c(
+        "RHC_all_owners",
+        "RHC_enrollments"
+      )
     ),
     FQHC = list(
       group = "Federally Qualified Health Centers",
-      alias = c("FQHC_all_owners", "FQHC_enrollments")
+      alias = c(
+        "FQHC_all_owners",
+        "FQHC_enrollments"
+      )
     ),
     pending = list(
       group = "Pending Initial Logging and Tracking",
-      alias = c("PILAT_non_physicians", "PILAT_physicians")
+      alias = c(
+        "PILAT_non_physicians",
+        "PILAT_physicians"
+      )
     ),
     reassignment = list(
       group = "Revalidation Reassignment Lists",
       alias = c(
-        "revalidation_clinic_group_practice",
-        "revalidation_due_date_list",
-        "revalidation_reassignment_list"
+        "revalidation_group",
+        "revalidation_due_date",
+        "revalidation_reassignment"
       )
     ),
     SNF = list(
@@ -122,7 +138,7 @@ care_group <- function(x, call = caller_env()) {
       alias = c(
         "SNF_all_owners",
         "SNF_chow",
-        "SNF_chow_owner_information",
+        "SNF_chow_owner",
         "SNF_cost_report",
         "SNF_enrollments"
       )
@@ -138,26 +154,26 @@ care_temp <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    quality_payment                    = "Quality Payment Program Experience",
-    inpatient_geography_and_service    = "^Medicare Inpatient Hospitals - by Geography and Service$",
-    inpatient_provider                 = "^Medicare Inpatient Hospitals - by Provider$",
-    inpatient_provider_and_service     = "^Medicare Inpatient Hospitals - by Provider and Service$",
-    outpatient_geography_and_service   = "^Medicare Outpatient Hospitals - by Geography and Service$",
-    outpatient_provider_and_service    = "^Medicare Outpatient Hospitals - by Provider and Service$",
-    prescribers_geography_and_drug     = "^Medicare Part D Prescribers - by Geography and Drug$",
-    prescribers_provider               = "^Medicare Part D Prescribers - by Provider$",
-    prescribers_provider_and_drug      = "^Medicare Part D Prescribers - by Provider and Drug$",
-    suppliers_geography_and_service    = "^Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service$",
-    suppliers_provider                 = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider$",
-    suppliers_provider_and_service     = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service$",
-    suppliers_supplier                 = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier$",
-    suppliers_supplier_and_service     = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service$",
-    staffing_non_nurse                 = "^Payroll Based Journal Daily Non-Nurse Staffing$",
-    staffing_nurse                     = "^Payroll Based Journal Daily Nurse Staffing$",
-    staffing_employee_detail           = "^Payroll Based Journal Employee Detail Nursing Home Staffing$",
-    utilization_geography_and_service  = "^Medicare Physician & Other Practitioners - by Geography and Service$",
-    utilization_provider               = "^Medicare Physician & Other Practitioners - by Provider$",
-    utilization_provider_and_service   = "^Medicare Physician & Other Practitioners - by Provider and Service$",
+    quality_payment            = "^Quality Payment Program Experience$",
+    IN_geography_and_service   = "^Medicare Inpatient Hospitals - by Geography and Service$",
+    IN_provider                = "^Medicare Inpatient Hospitals - by Provider$",
+    IN_provider_and_service    = "^Medicare Inpatient Hospitals - by Provider and Service$",
+    OUT_geography_and_service  = "^Medicare Outpatient Hospitals - by Geography and Service$",
+    OUT_provider_and_service   = "^Medicare Outpatient Hospitals - by Provider and Service$",
+    PRX_geography_and_drug     = "^Medicare Part D Prescribers - by Geography and Drug$",
+    PRX_provider               = "^Medicare Part D Prescribers - by Provider$",
+    PRX_provider_and_drug      = "^Medicare Part D Prescribers - by Provider and Drug$",
+    DME_geography_and_service  = "^Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service$",
+    DME_provider               = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider$",
+    DME_provider_and_service   = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service$",
+    DME_supplier               = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier$",
+    DME_supplier_and_service   = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service$",
+    STAFF_non_nurse            = "^Payroll Based Journal Daily Non-Nurse Staffing$",
+    STAFF_nurse                = "^Payroll Based Journal Daily Nurse Staffing$",
+    STAFF_employee             = "^Payroll Based Journal Employee Detail Nursing Home Staffing$",
+    UTIL_geography_and_service = "^Medicare Physician & Other Practitioners - by Geography and Service$",
+    UTIL_provider              = "^Medicare Physician & Other Practitioners - by Provider$",
+    UTIL_provider_and_service  = "^Medicare Physician & Other Practitioners - by Provider and Service$",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
@@ -188,33 +204,50 @@ care_temp <- function(x, call = caller_env()) {
 #' @autoglobal
 #' @noRd
 care_temp_group <- function(x, call = caller_env()) {
-
   switch(
     x,
-    inpatient   = list(group = "Medicare Inpatient Hospitals",
-                       alias = c("inpatient_geography_and_service",
-                                 "inpatient_provider",
-                                 "inpatient_provider_and_service")),
-    outpatient  = list(group = "Medicare Outpatient Hospitals",
-                       alias = c("outpatient_geography_and_service",
-                                 "outpatient_provider_and_service")),
-    prescribers = list(group = "Medicare Part D Prescribers",
-                       alias = c("prescribers_geography_and_drug",
-                                 "prescribers_provider",
-                                 "prescribers_provider_and_drug")),
-    suppliers   = list(group = "Medicare Durable Medical Equipment, Devices & Supplies",
-                       alias = c("suppliers_geography_and_service",
-                                 "suppliers_provider",
-                                 "suppliers_provider_and_service",
-                                 "suppliers_supplier",
-                                 "suppliers_supplier_and_service")),
-    staffing    = list(group = "Nursing Home Payroll-Based Journal Staffing",
-                       alias = c("staffing_non_nurse",
-                                 "staffing_nurse",
-                                 "staffing_employee_detail")),
-    utilization = list(group = "Medicare Physician & Other Practitioners",
-                       alias = c("utilization_geography_and_service",
-                                 "utilization_provider",
-                                 "utilization_provider_and_service")),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    inpatient   = list(
+      group = "Medicare Inpatient Hospitals",
+      alias = c(
+        "IN_geography_and_service",
+        "IN_provider",
+        "IN_provider_and_service"
+      )
+    ),
+    outpatient  = list(
+      group = "Medicare Outpatient Hospitals",
+      alias = c("OUT_geography_and_service", "OUT_provider_and_service")
+    ),
+    prescribers = list(
+      group = "Medicare Part D Prescribers",
+      alias = c(
+        "PRX_geography_and_drug",
+        "PRX_provider",
+        "PRX_provider_and_drug"
+      )
+    ),
+    suppliers   = list(
+      group = "Medicare Durable Medical Equipment, Devices & Supplies",
+      alias = c(
+        "DME_geography_and_service",
+        "DME_provider",
+        "DME_provider_and_service",
+        "DME_supplier",
+        "DME_supplier_and_service"
+      )
+    ),
+    staffing    = list(
+      group = "Nursing Home Payroll-Based Journal Staffing",
+      alias = c("STAFF_non_nurse", "STAFF_nurse", "STAFF_employee")
+    ),
+    utilization = list(
+      group = "Medicare Physician & Other Practitioners",
+      alias = c(
+        "UTIL_geography_and_service",
+        "UTIL_provider",
+        "UTIL_provider_and_service"
+      )
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 }
