@@ -16,13 +16,11 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <care_temp_group>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
   # <care_temp>
-  # <care_temp_group>
   "data",
   # <catalog_care>
   "describedBy",
@@ -51,7 +49,6 @@ utils::globalVariables(c(
   "fileSize",
   # <catalog_pro>
   # <catalog_caid>
-  # <care_temp_group>
   "group",
   # <catalog_care>
   # <catalog_pro>
@@ -59,7 +56,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   # <openTemp>
-  # <care_temp_group>
   "identifier",
   # <catalog_pro>
   # <catalog_caid>
@@ -96,7 +92,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_caid>
   # <catalog_health>
-  # <care_temp_group>
   "periodicity",
   # <catalog_caid>
   "reference",
@@ -105,8 +100,6 @@ utils::globalVariables(c(
   "references",
   # <catalog_pro>
   "released",
-  # <care_temp_group>
-  "resources",
   # <catalog_care>
   "resourcesAPI",
   # <dims_care_temp>
@@ -137,7 +130,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <care_temp_group>
   # <select_alias>
   "title",
   # <catalog_care>
@@ -145,7 +137,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <openTemp>
   # <.tidy_resources>
-  # <care_temp_group>
   # <open_dictionary>
   "year",
   NULL

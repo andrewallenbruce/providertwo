@@ -65,35 +65,6 @@ care_main <- function(x, call = caller_env()) {
 
 }
 
-# care_temp("quality_payment")
-#' @autoglobal
-#' @noRd
-care_temp <- function(x, call = caller_env()) {
-
-  x <- switch(
-    x,
-    quality_payment = "Quality Payment Program Experience",
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
-
-  if (!exists("catalog")) .catalog <- catalogs()
-
-  x <- select_alias(.catalog$care$temp, x)
-
-  l <- slt(x, -data) |> c()
-
-  list(
-    title       = l$title,
-    description = l$description,
-    periodicity = l$periodicity,
-    contact     = l$contact,
-    dictionary  = l$dictionary,
-    site        = l$site,
-    identifier  = get_elem(x, "data")[[1]]$identifier[1],
-    endpoints   = get_elem(x, "data")[[1]]
-    )
-
-}
-
 # care_group("home_health")
 # care_group("hospice")
 # care_group("hospital")
@@ -144,6 +115,54 @@ care_group <- function(x, call = caller_env()) {
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 }
 
+# care_temp("quality_payment")
+#' @autoglobal
+#' @noRd
+care_temp <- function(x, call = caller_env()) {
+
+  x <- switch(
+    x,
+    quality_payment                    = "Quality Payment Program Experience",
+    inpatient_geography_and_service    = "^Medicare Inpatient Hospitals - by Geography and Service$",
+    inpatient_provider                 = "^Medicare Inpatient Hospitals - by Provider$",
+    inpatient_provider_and_service     = "^Medicare Inpatient Hospitals - by Provider and Service$",
+    outpatient_geography_and_service   = "^Medicare Outpatient Hospitals - by Geography and Service$",
+    outpatient_provider_and_service    = "^Medicare Outpatient Hospitals - by Provider and Service$",
+    prescribers_geography_and_drug     = "^Medicare Part D Prescribers - by Geography and Drug$",
+    prescribers_provider               = "^Medicare Part D Prescribers - by Provider$",
+    prescribers_provider_and_drug      = "^Medicare Part D Prescribers - by Provider and Drug$",
+    suppliers_geography_and_service    = "^Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service$",
+    suppliers_provider                 = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider$",
+    suppliers_provider_and_service     = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service$",
+    suppliers_supplier                 = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier$",
+    suppliers_supplier_and_service     = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service$",
+    staffing_non_nurse                 = "^Payroll Based Journal Daily Non-Nurse Staffing$",
+    staffing_nurse                     = "^Payroll Based Journal Daily Nurse Staffing$",
+    staffing_employee_detail           = "^Payroll Based Journal Employee Detail Nursing Home Staffing$",
+    utilization_geography_and_service  = "^Medicare Physician & Other Practitioners - by Geography and Service$",
+    utilization_provider               = "^Medicare Physician & Other Practitioners - by Provider$",
+    utilization_provider_and_service   = "^Medicare Physician & Other Practitioners - by Provider and Service$",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+  if (!exists("catalog")) .catalog <- catalogs()
+
+  x <- select_alias(.catalog$care$temp, x)
+
+  l <- slt(x, -data) |> c()
+
+  list(
+    title       = l$title,
+    description = l$description,
+    periodicity = l$periodicity,
+    contact     = l$contact,
+    dictionary  = l$dictionary,
+    site        = l$site,
+    identifier  = get_elem(x, "data")[[1]]$identifier[1],
+    endpoints   = get_elem(x, "data")[[1]]
+  )
+
+}
+
 # care_temp_group("inpatient")
 # care_temp_group("outpatient")
 # care_temp_group("utilization")
@@ -154,66 +173,32 @@ care_group <- function(x, call = caller_env()) {
 #' @noRd
 care_temp_group <- function(x, call = caller_env()) {
 
-  x <- switch(
+  switch(
     x,
-    inpatient       = "Medicare Inpatient Hospitals",
-    outpatient      = "Medicare Outpatient Hospitals",
-    prescribers     = "Medicare Part D Prescribers", # "Medicare Part D (Prescribers|Opioid|Spending)",
-    suppliers       = "Medicare Durable Medical Equipment, Devices & Supplies",
-    staffing        = "^Payroll Based Journal",
-    utilization     = "Medicare Physician & Other Practitioners",
+    inpatient   = list(group = "Medicare Inpatient Hospitals",
+                       alias = c("inpatient_geography_and_service",
+                                 "inpatient_provider",
+                                 "inpatient_provider_and_service")),
+    outpatient  = list(group = "Medicare Outpatient Hospitals",
+                       alias = c("outpatient_geography_and_service",
+                                 "outpatient_provider_and_service")),
+    prescribers = list(group = "Medicare Part D Prescribers",
+                       alias = c("prescribers_geography_and_drug",
+                                 "prescribers_provider",
+                                 "prescribers_provider_and_drug")),
+    suppliers   = list(group = "Medicare Durable Medical Equipment, Devices & Supplies",
+                       alias = c("suppliers_geography_and_service",
+                                 "suppliers_provider",
+                                 "suppliers_provider_and_service",
+                                 "suppliers_supplier",
+                                 "suppliers_supplier_and_service")),
+    staffing    = list(group = "Nursing Home Payroll-Based Journal Staffing",
+                       alias = c("staffing_non_nurse",
+                                 "staffing_nurse",
+                                 "staffing_employee_detail")),
+    utilization = list(group = "Medicare Physician & Other Practitioners",
+                       alias = c("utilization_geography_and_service",
+                                 "utilization_provider",
+                                 "utilization_provider_and_service")),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
-
-  if (!exists("catalog")) .catalog <- catalogs()
-
-  x <- select_alias(.catalog$care$temp, x)
-
-  if (all(stri_detect_regex(x$title, "^Payroll"))) {
-
-    x <- mtt(x, group = clean_names(stri_extract_first_regex(title, "(?<=Payroll Based Journal\\s).*$")), title = "Payroll Based Journal")
-
-  } else {
-
-    x <- mtt(x, group = clean_names(stri_extract_first_regex(title, "(?<=-\\s).*$")), title = stri_extract_first_regex(title, "^.*(?=\\s-)"))
-
-  }
-
-  x2 <- map2(x$data,  x$group, \(a, b) slt(mtt(a, group = clean_names(b)), year, group, identifier, resources)) |> rowbind() |>
-    join(slt(x, -data, -title, -periodicity, -contact), on = "group", verbose = 0)
-
-  years  <- funique(x2$year)
-  groups <- funique(x2$group)
-
-  q <- dims_care_temp_group(x = sbt(x2, year == fmax(year)) |> _[["identifier"]], g = groups)
-
-  x2 <- rsplit(x2, ~ group)
-
-  template <- glue(
-    "
-  {group} = list(
-  description = x2${group}$description[1],
-  dictionary  = x2${group}$dictionary[1],
-  site        = x2${group}$site[1],
-  rows        = q$rows${group},
-  pages       = q$pages${group},
-  fields      = q$fields${group},
-  endpoints   = slt(x2${group}, -description, -dictionary, -site))
-  ",
-    group = x$group) |>
-    glue_collapse(sep = ",\n")
-
-  glue(
-    "
-  list(
-    title       = x$title[1],
-    periodicity = x$periodicity[1],
-    contact     = x$contact[1],
-    years       = years,
-    groups      = groups,
-  {template}
-  )
-  "
-  ) |>
-    parse_expr() |>
-    eval_bare()
 }

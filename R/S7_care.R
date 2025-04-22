@@ -202,7 +202,9 @@ careGroup <- new_class(
   parent     = Care,
   name       = "careGroup",
   package    = NULL,
-  properties = list(group = class_character, members = class_list),
+  properties = list(
+    group = class_character,
+    members = class_list),
   constructor = function(alias) {
 
     x <- care_group(alias)
@@ -221,7 +223,7 @@ careGroup <- new_class(
 #'
 #' @returns An S7 `<careTempGroup>` object.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' careTempGroup("inpatient")
 #' careTempGroup("outpatient")
 #' careTempGroup("utilization")
@@ -236,36 +238,18 @@ careTempGroup <- new_class(
   name       = "careTempGroup",
   package    = NULL,
   properties = list(
-    title       = class_character,
-    periodicity = class_character,
-    years       = class_integer,
-    groups      = class_list
+    group = class_character,
+    # years = class_integer,
+    members = class_list
   ),
   constructor = function(alias) {
 
     x <- care_temp_group(alias)
 
-    template <- glue(
-      "
-      {group} = list(
-        description = x${group}$description,
-        dictionary  = x${group}$dictionary,
-        site        = x${group}$site,
-        rows        = x${group}$rows,
-        pages       = x${group}$pages,
-        fields      = x${group}$fields,
-        endpoints   = x${group}$endpoints
-        )
-      ",
-      group = x$groups) |>
-      glue_collapse(sep = ",\n")
-
     new_object(
       Care(),
-      title        = x$title,
-      periodicity  = x$periodicity,
-      years        = sort(x$years),
-      groups       = glue("list({template})") |> parse_expr() |> eval_bare()
+      group  = x$group,
+      members = map(x$alias, careTemp) |> set_names(x$alias)
     )
   }
 )

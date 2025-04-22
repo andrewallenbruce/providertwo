@@ -15,6 +15,7 @@ NULL
 #' careMain("enrollees") |> new_request()
 #' proMain("affiliations") |> new_request()
 #' openMain("profile_covered") |> new_request()
+#' careGroup("hospital") |> new_request()
 #' @autoglobal
 #' @export
 new_request <- new_generic("new_request", "x", function(x) {
@@ -31,6 +32,15 @@ method(new_request, careMain) <- function(x) {
   prop(x, "identifier") |>
     new_request() |>
     req_url_query(offset = 0L, size = 5000L)
+}
+
+method(new_request, careGroup) <- function(x) {
+  map(
+    prop(x, "members"),
+    \(x) prop(x, "identifier") |>
+      new_request() |>
+      req_url_query(offset = 0L, size = 5000L)
+  )
 }
 
 method(new_request, proMain) <- function(x) {
