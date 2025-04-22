@@ -11,10 +11,10 @@ careMeta <- new_class(
     description = class_character,
     temporal    = class_character,
     periodicity = class_character,
+    modified    = new_union(class_character, class_Date),
     dictionary  = class_character,
     site        = class_character,
     references  = class_character,
-    modified    = new_union(class_character, class_Date),
     download    = class_character
   ),
   constructor = function(x) {
@@ -22,11 +22,11 @@ careMeta <- new_class(
       S7_object(),
       description = x$description,
       temporal    = x$temporal,
+      modified    = x$modified,
       periodicity = x$periodicity,
       dictionary  = x$dictionary,
       site        = x$site,
       references  = x$references,
-      modified    = x$modified,
       download    = x$download
     )
   }
@@ -38,11 +38,19 @@ careDim <- new_class(
   name = "careDim",
   package = NULL,
   properties = list(
-    rows   = class_integer,
-    pages  = class_integer,
+    rows = new_property(
+      class_integer,
+      default = 0L
+      ),
+    pages = new_property(
+      class_integer,
+      getter = function(self)
+        offset_size(self@rows, 5000L)
+      ),
     fields = class_character
-  ),
+    ),
   constructor = function(x) {
+
     x <- x$identifier |>
       request() |>
       req_url_query(offset = 0L, size = 1L) |>
@@ -52,9 +60,7 @@ careDim <- new_class(
     new_object(
       S7_object(),
       rows   = x$total_rows,
-      pages  = offset_size(x$total_rows, 5000L),
-      fields = x$headers
-    )
+      fields = x$headers)
   }
 )
 
@@ -132,21 +138,27 @@ careTempDim <- new_class(
   name = "careTempDim",
   package = NULL,
   properties = list(
-    rows   = class_integer,
-    pages  = class_integer,
-    fields = class_character
+    rows = new_property(
+      class_integer,
+      default = 0L
+    ),
+    fields = class_character,
+    pages = new_property(
+      class_integer,
+      getter = function(self)
+        offset_size(self@rows, 5000L)
+    )
   ),
   constructor = function(x) {
 
-    x <- req_url_query(request(x$identifier), offset = 0L, size = 1L)
-    y <- perform_simple(req_url_path_append(x, "stats")) |> _[["total_rows"]]
-    x <- names(perform_simple(x))
+    x <- x$identifier |>
+      request() |>
+      req_url_query(offset = 0L, size = 1L)
 
     new_object(
       S7_object(),
-      rows   = y,
-      pages  = offset_size(y, 5000L),
-      fields = x
+      rows = x |> req_url_path_append("stats") |> perform_simple() |>_[["total_rows"]],
+      fields = x |> perform_simple() |>names()
     )
   }
 )
@@ -187,14 +199,14 @@ careTemp <- new_class(
 #' @param alias `<chr>` title alias
 #' @returns An S7 `<careGroup>` object.
 #' @examples
-#' careGroup("home_health")
+#' careGroup("HHA")
 #' careGroup("hospice")
 #' careGroup("hospital")
-#' careGroup("rural_health")
-#' careGroup("fqhc")
+#' careGroup("RHC")
+#' careGroup("FQHC")
 #' careGroup("pending")
 #' careGroup("reassignment")
-#' careGroup("skilled_nursing")
+#' careGroup("SNF")
 #' @autoglobal
 #' @rdname careGroup
 #' @export
@@ -212,17 +224,15 @@ careGroup <- new_class(
     new_object(
       Care(),
       group  = x$group,
-      members = map(x$alias, careMain) |> set_names(x$alias)
+      members = map(x$alias, careMain) |>
+        set_names(x$alias)
     )
   }
 )
 
 #' Group of Medicare Temporal Endpoints
-#'
 #' @param alias `<chr>` title alias
-#'
 #' @returns An S7 `<careTempGroup>` object.
-#'
 #' @examples
 #' careTempGroup("inpatient")
 #' careTempGroup("outpatient")
@@ -249,7 +259,8 @@ careTempGroup <- new_class(
     new_object(
       Care(),
       group  = x$group,
-      members = map(x$alias, careTemp) |> set_names(x$alias)
+      members = map(x$alias, careTemp) |>
+        set_names(x$alias)
     )
   }
 )

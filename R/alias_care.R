@@ -42,13 +42,13 @@ care_main <- function(x, call = caller_env()) {
     hospital_chow                                   = "^Hospital Change of Ownership$",
     hospital_chow_owner_information                 = "^Hospital Change of Ownership - Owner Information$",
     hospital_enrollments                            = "^Hospital Enrollments$",
-    rural_health_clinic_all_owners                  = "^Rural Health Clinic All Owners$",
-    rural_health_clinic_enrollments                 = "^Rural Health Clinic Enrollments$",
+    RHC_all_owners                  = "^Rural Health Clinic All Owners$",
+    RHC_enrollments                 = "^Rural Health Clinic Enrollments$",
     FQHC_all_owners                                 = "^Federally Qualified Health Center All Owners$",
     FQHC_enrollments                                = "^Federally Qualified Health Center Enrollments$",
     PILAT_non_physicians                            = "^Pending Initial Logging and Tracking Non Physicians$",
     PILAT_physicians                                = "^Pending Initial Logging and Tracking Physicians$",
-    revalidation_clinic_group_practice_reassignment = "^Revalidation Clinic Group Practice Reassignment$",
+    revalidation_clinic_group_practice = "^Revalidation Clinic Group Practice Reassignment$",
     revalidation_due_date_list                      = "^Revalidation Due Date List$",
     revalidation_reassignment_list                  = "^Revalidation Reassignment List$",
     SNF_all_owners                                  = "^Skilled Nursing Facility All Owners$",
@@ -65,54 +65,70 @@ care_main <- function(x, call = caller_env()) {
 
 }
 
-# care_group("home_health")
+# care_group("HHA")
 # care_group("hospice")
 # care_group("hospital")
-# care_group("rural_health")
-# care_group("fqhc")
+# care_group("RHC")
+# care_group("FQHC")
 # care_group("pending")
 # care_group("program_stats")
 # care_group("reassignment")
-# care_group("skilled_nursing")
+# care_group("SNF")
 #' @autoglobal
 #' @noRd
 care_group <- function(x, call = caller_env()) {
-
   # program_stats   = "^CMS Program Statistics",
   switch(
     x,
-    home_health     = list(group = "Home Health Agencies",
-                           alias = c("HHA_all_owners",
-                                     "HHA_cost_report",
-                                     "HHA_enrollments")),
-    hospice         = list(group = "Hospice",
-                           alias = c("hospice_all_owners",
-                                     "hospice_enrollments")),
-    hospital        = list(group = "Hospitals",
-                           alias = c("hospital_all_owners",
-                                     "hospital_chow",
-                                     "hospital_chow_owner_information",
-                                     "hospital_enrollments")),
-    rural_health    = list(group = "Rural Health Clinics",
-                           alias = c("rural_health_clinic_all_owners",
-                                     "rural_health_clinic_enrollments")),
-    fqhc            = list(group = "Federally Qualified Health Centers",
-                           alias = c("FQHC_all_owners",
-                                     "FQHC_enrollments")),
-    pending         = list(group = "Pending Initial Logging and Tracking",
-                           alias = c("PILAT_non_physicians",
-                                     "PILAT_physicians")),
-    reassignment    = list(group = "Revalidation Reassignment Lists",
-                           alias = c("revalidation_clinic_group_practice_reassignment",
-                                     "revalidation_due_date_list",
-                                     "revalidation_reassignment_list")),
-    skilled_nursing = list(group = "Skilled Nursing Facilities",
-                           alias = c("SNF_all_owners",
-                                     "SNF_chow",
-                                     "SNF_chow_owner_information",
-                                     "SNF_cost_report",
-                                     "SNF_enrollments")),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    HHA = list(
+      group = "Home Health Agencies",
+      alias = c("HHA_all_owners", "HHA_cost_report", "HHA_enrollments")
+    ),
+    hospice = list(
+      group = "Hospice",
+      alias = c("hospice_all_owners", "hospice_enrollments")
+    ),
+    hospital = list(
+      group = "Hospitals",
+      alias = c(
+        "hospital_all_owners",
+        "hospital_chow",
+        "hospital_chow_owner_information",
+        "hospital_enrollments"
+      )
+    ),
+    RHC = list(
+      group = "Rural Health Clinics",
+      alias = c("RHC_all_owners", "RHC_enrollments")
+    ),
+    FQHC = list(
+      group = "Federally Qualified Health Centers",
+      alias = c("FQHC_all_owners", "FQHC_enrollments")
+    ),
+    pending = list(
+      group = "Pending Initial Logging and Tracking",
+      alias = c("PILAT_non_physicians", "PILAT_physicians")
+    ),
+    reassignment = list(
+      group = "Revalidation Reassignment Lists",
+      alias = c(
+        "revalidation_clinic_group_practice",
+        "revalidation_due_date_list",
+        "revalidation_reassignment_list"
+      )
+    ),
+    SNF = list(
+      group = "Skilled Nursing Facilities",
+      alias = c(
+        "SNF_all_owners",
+        "SNF_chow",
+        "SNF_chow_owner_information",
+        "SNF_cost_report",
+        "SNF_enrollments"
+      )
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 }
 
 # care_temp("quality_payment")

@@ -32,6 +32,7 @@ utils::globalVariables(c(
   # <open_dictionary>
   "description",
   # <catalog_care>
+  # <catalog_pro>
   "dictionary",
   # <catalog_care>
   # <catalog_caid>
@@ -103,8 +104,6 @@ utils::globalVariables(c(
   "released",
   # <catalog_care>
   "resourcesAPI",
-  # <dims_care_temp>
-  # <dims_pro>
   # <dims_open>
   # <dims_caid>
   "rows",

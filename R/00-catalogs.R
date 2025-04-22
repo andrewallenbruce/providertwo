@@ -90,7 +90,6 @@ catalog_care <- function() {
 }
 
 # "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
-# pro_dict <- function(x) paste0("https://data.cms.gov/provider-data/dataset/", x, "#data-dictionary")
 
 #' @autoglobal
 #' @noRd
@@ -99,6 +98,7 @@ catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
   mtt(x,
+      dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
       identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
       issued      = as_date(issued),
       modified    = as_date(modified),
@@ -107,7 +107,7 @@ catalog_pro <- function() {
       description = stri_trim(gsub("\n", "", description, perl = TRUE)),
       download    = delist_elem(x$distribution, "downloadURL"),
       contact     = fmt_contactpoint(x$contactPoint)) |>
-    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage) |>
+    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
     roworder(group, title) |>
     as_tbl()
 }

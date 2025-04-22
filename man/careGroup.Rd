@@ -16,12 +16,12 @@ An S7 \verb{<careGroup>} object.
 Medicare Endpoint Group
 }
 \examples{
-careGroup("home_health")
+careGroup("HHA")
 careGroup("hospice")
 careGroup("hospital")
-careGroup("rural_health")
-careGroup("fqhc")
+careGroup("RHC")
+careGroup("FQHC")
 careGroup("pending")
 careGroup("reassignment")
-careGroup("skilled_nursing")
+careGroup("SNF")
 }

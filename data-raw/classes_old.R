@@ -1,3 +1,42 @@
+proMain <- new_class(
+  parent     = Pro,
+  name       = "proMain",
+  package    = NULL,
+  properties = list(
+    title       = class_character,
+    description = class_character,
+    modified    = class_character | class_Date,
+    rows        = class_integer,
+    pages       = class_integer,
+    fields      = class_character,
+    download    = class_character,
+    issued     = class_character | class_Date,
+    released   = class_character | class_Date,
+    site       = class_character,
+    identifier = class_character
+  ),
+  constructor = function(alias) {
+
+    x <- pro_main(alias)
+    q <- dims_pro(x$identifier)
+
+    new_object(
+      Pro(),
+      title       = x$title,
+      description = x$description,
+      identifier  = x$identifier,
+      download    = x$download,
+      issued      = x$issued,
+      modified    = x$modified,
+      released    = x$released,
+      site        = x$site,
+      rows        = q$rows,
+      fields      = q$fields,
+      pages       = q$pages
+    )
+  }
+)
+
 #' Medicare Endpoint
 #'
 #' @param alias `<chr>` endpoint alias

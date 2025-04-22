@@ -2,21 +2,30 @@
 % Please edit documentation in R/S7_pro.R
 \name{proMain}
 \alias{proMain}
+\alias{proGroup}
 \title{Provider Endpoint}
 \usage{
 proMain(alias)
+
+proGroup(alias)
 }
 \arguments{
-\item{alias}{\verb{<chr>} endpoint alias}
+\item{alias}{\verb{<chr>} title alias}
 }
 \value{
 An S7 \verb{<proMain>} object.
+
+An S7 \verb{<proGroup>} object.
 }
 \description{
 Provider Endpoint
+
+Provider Endpoint Group
 }
 \examples{
-proMain("affiliations") |> str()
-proMain("clinicians") |> str()
-proMain("utilization") |> str()
+proMain("affiliations")
+proMain("clinicians")
+proMain("utilization")
+proGroup("PDC")
+proGroup("MIPS")
 }
