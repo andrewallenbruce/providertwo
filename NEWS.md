@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9205 (2025-04-22)
+
+* open_dictionary refactored
+
+
 # providertwo 0.0.0.9204 (2025-04-21)
 
 * rewrote careTempGroup
