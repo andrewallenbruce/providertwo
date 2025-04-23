@@ -8,6 +8,7 @@ resp_simple_json <- function(resp, ...) {
 #' @noRd
 perform_simple <- function(req, ...) {
   req_perform(req) |>
+    # resp_check_status(resp, info = args) |>
     resp_simple_json(...)
 }
 

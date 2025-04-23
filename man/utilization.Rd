@@ -40,6 +40,6 @@ about clinicians' experience.
 }
 \examples{
 utilization(last_name = "CURRY")
-# utilization(npi = "1043245657") ERRORS
+utilization(npi = "1043245657")
 utilization(npi = "1003001785")
 }

@@ -205,7 +205,7 @@ clinicians <- function(npi           = NULL,
 #'
 #' @examples
 #' utilization(last_name = "CURRY")
-#' # utilization(npi = "1043245657") ERRORS
+#' utilization(npi = "1043245657")
 #' utilization(npi = "1003001785")
 #' @autoglobal
 #' @export
@@ -229,16 +229,25 @@ utilization <- function(npi         = NULL,
     "procedure_category"   = procedure,
     "count"                = count,
     "percentile"           = percentile
-  )
+  ) |>
+    format_query_pro()
 
-  proMain("utilization") |>
-    new_request() |>
-    req_url_query(!!!format_query_pro(args)) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    rnm(pro_names$utilization) |>
-    as_tbl()
+  req <- proMain("utilization") |> new_request() |> req_url_query(!!!args)
+
+  n <- req_url_query(req, count = "true", results = "false") |> perform_simple() |> _[["count"]]
+
+  if (!n) {
+    return(NULL)
+  }
+
+  if (n) {
+    req_url_query(req, count = "false", results = "true") |>
+      perform_simple() |>
+      _[["results"]] |>
+      map_na_if() |>
+      rnm(pro_names$utilization) |>
+      as_tbl()
+  }
 }
 
 #' @noRd

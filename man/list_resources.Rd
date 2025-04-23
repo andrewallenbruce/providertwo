@@ -7,7 +7,7 @@
 list_resources(x)
 }
 \arguments{
-\item{x}{Object of class \code{careMain} or \code{careTemp}}
+\item{x}{\code{careMain}, \code{careGroup}, \code{careTemp}, or \code{careTempGroup} object}
 }
 \value{
 A list of API resources
@@ -18,4 +18,6 @@ List resources
 \examples{
 careMain("enrollees") |> list_resources()
 careTemp("quality_payment") |> list_resources()
+careGroup("HHA") |> list_resources()
+#careTempGroup("inpatient") |> list_resources()
 }
