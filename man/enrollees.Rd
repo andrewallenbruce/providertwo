@@ -8,13 +8,13 @@ enrollees(
   npi = NULL,
   pac = NULL,
   enid = NULL,
-  specialty_code = NULL,
-  specialty_desc = NULL,
   state = NULL,
   first_name = NULL,
   middle_name = NULL,
   last_name = NULL,
-  org_name = NULL
+  org_name = NULL,
+  specialty_code = NULL,
+  specialty_description = NULL
 )
 }
 \arguments{
@@ -24,15 +24,15 @@ enrollees(
 
 \item{enid}{\verb{<chr>} 15-digit Medicare Enrollment ID}
 
-\item{specialty_code}{\verb{<chr>} Enrollment specialty code}
-
-\item{specialty_desc}{\verb{<chr>} Enrollment specialty description}
-
 \item{state}{\verb{<chr>} Enrollment state abbreviation}
 
 \item{first_name, middle_name, last_name}{\verb{<chr>} Individual provider's name}
 
 \item{org_name}{\verb{<chr>} Organizational provider's name}
+
+\item{specialty_code}{\verb{<chr>} Enrollment specialty code}
+
+\item{specialty_description}{\verb{<chr>} Enrollment specialty description}
 }
 \value{
 \verb{<tibble>} of search results
@@ -62,7 +62,7 @@ approved to bill Medicare.
 
 \examples{
 enrollees(enid = "I20040309000221")
-# enrollees(npi = "1417918293", specialty_code = "14-41")
-# enrollees(pac = "2860305554")
-# enrollees(state = "GA")
+enrollees(npi = "1417918293")
+enrollees(pac = "2860305554")
+enrollees(state = "GA")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/end_affiliations.R
 \name{utilization}
 \alias{utilization}
-\title{PDC Utilization}
+\title{Clinicians Utilization}
 \usage{
 utilization(
   npi = NULL,
@@ -29,15 +29,17 @@ utilization(
 
 \item{percentile}{\verb{<int>} Percentile of procedures performed}
 }
+\value{
+\verb{<tibble>} of search results
+}
 \description{
-The Doctors and Clinicians utilization
-data file reports volume information for
-procedures of interest on clinician
-profile pages and in the provider data
-catalog (PDC) to inform patients and
-caregivers about clinicians' experience.
+The Doctors and Clinicians utilization data file reports volume
+information for procedures of interest on clinician profile pages and
+in the provider data catalog (PDC) to inform patients and caregivers
+about clinicians' experience.
 }
 \examples{
-utilization()
-
+utilization(last_name = "CURRY")
+# utilization(npi = "1043245657") ERRORS
+utilization(npi = "1003001785")
 }

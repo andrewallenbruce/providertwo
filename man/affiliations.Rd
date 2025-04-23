@@ -35,11 +35,16 @@ affiliations(
 \item \code{"Dialysis facility"}
 }}
 
-\item{ccn_facility}{\verb{<chr>} 6-digit CMS Certification Number (CCN) of
-facility or unit within hospital where an individual provider provides service.}
+\item{ccn_facility}{\verb{<chr>} 6-digit CMS Certification Number (CCN)
+of a facility or unit within hospital where an individual provider
+provides service.}
 
-\item{ccn_primary}{\verb{<int>} 6-digit CMS Certification Number (CCN) of a
-sub-unit's primary hospital, should the provider provide services in said unit.}
+\item{ccn_primary}{\verb{<int>} 6-digit CMS Certification Number (CCN)
+of a sub-unit's primary hospital, should the provider provide
+services in said unit.}
+}
+\value{
+\verb{<tibble>} of search results
 }
 \description{
 Facility affiliations data publicly reported in the Provider Data Catalog.
@@ -53,11 +58,10 @@ Facility affiliations data publicly reported in the Provider Data Catalog.
 
 \examples{
 affiliations(facility_type = "Home health agency")
-# affiliations(last_name = "CURRY")
-# affiliations(ccn_primary = "670055")
-# affiliations(ccn_facility = "370781")
-# affiliations(ccn_facility = "331302")
-# affiliations(ccn_facility = "33Z302")
-# affiliations(npi = "1043245657")
-
+affiliations(last_name = "CURRY")
+affiliations(ccn_primary = "670055")
+affiliations(ccn_facility = "370781")
+affiliations(ccn_facility = "331302")
+affiliations(ccn_facility = "33Z302")
+affiliations(npi = "1043245657")
 }

@@ -2,18 +2,103 @@
 % Please edit documentation in R/end_affiliations.R
 \name{clinicians}
 \alias{clinicians}
-\title{Clinicians}
+\title{Clinicians National Downloadable File}
 \usage{
-clinicians()
+clinicians(
+  npi = NULL,
+  pac = NULL,
+  enid = NULL,
+  last_name = NULL,
+  first_name = NULL,
+  middle_name = NULL,
+  suffix = NULL,
+  gender = NULL,
+  credential = NULL,
+  med_school = NULL,
+  grad_year = NULL,
+  spec_prim = NULL,
+  spec_sec = NULL,
+  telehealth = NULL,
+  pac_org = NULL,
+  org_n_members = NULL,
+  facility_name = NULL,
+  add1 = NULL,
+  add2 = NULL,
+  city = NULL,
+  state = NULL,
+  zip = NULL,
+  phone = NULL,
+  ind_assign = NULL,
+  grp_assign = NULL,
+  add_id = NULL
+)
+}
+\arguments{
+\item{npi}{\verb{<chr>} 10-digit Individual NPI}
+
+\item{pac}{\verb{<chr>} 10-digit Individual PECOS Associate Control (PAC) ID}
+
+\item{enid}{\verb{<chr>} 15-digit Medicare Enrollment ID}
+
+\item{first_name, middle_name, last_name, suffix}{\verb{<chr>} Individual provider's name}
+
+\item{gender}{Individual provider's gender}
+
+\item{credential}{Individual provider's credentials}
+
+\item{med_school}{Medical school attended}
+
+\item{grad_year}{Year of graduation from medical school}
+
+\item{spec_prim}{Primary specialty}
+
+\item{spec_sec}{Secondary specialty}
+
+\item{telehealth}{Telehealth services}
+
+\item{pac_org}{\verb{<chr>} 10-digit Organization PECOS Associate Control (PAC) ID}
+
+\item{org_n_members}{Number of members in the organization}
+
+\item{facility_name}{Facility name}
+
+\item{add1}{Address line 1}
+
+\item{add2}{Address line 2}
+
+\item{city}{City}
+
+\item{state}{State}
+
+\item{zip}{Zip code}
+
+\item{phone}{Phone number}
+
+\item{ind_assign}{Individual assignment}
+
+\item{grp_assign}{Group assignment}
+
+\item{add_id}{Address ID}
+}
+\value{
+\verb{<tibble>} of search results
 }
 \description{
-The Doctors and Clinicians utilization
-data file reports volume information for
-procedures of interest on clinician
-profile pages and in the provider data
-catalog (PDC) to inform patients and
-caregivers about clinicians' experience.
+The Doctors and Clinicians national downloadable file is organized such
+that each line is unique at the clinician/enrollment record/group/address
+level. Clinicians with multiple Medicare enrollment records and/or single
+enrollments linking to multiple practice locations are listed on
+multiple lines.
 }
+\section{Periodicity}{
+
+\itemize{
+\item Monthly (R/P1M)
+}
+}
+
 \examples{
-clinicians()
+clinicians(last_name = "CURRY")
+clinicians(npi = "1043245657")
+clinicians(state = "GA")
 }

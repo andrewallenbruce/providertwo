@@ -7,10 +7,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "accrualPeriodicity",
-  # <clinicians>
-  "add1",
-  # <clinicians>
-  "add2",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>

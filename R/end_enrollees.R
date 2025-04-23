@@ -16,56 +16,69 @@
 #' @param npi `<chr>` 10-digit Individual NPI
 #' @param pac `<chr>` 10-digit PECOS Associate Control (PAC) ID
 #' @param enid `<chr>` 15-digit Medicare Enrollment ID
-#' @param specialty_code `<chr>` Enrollment specialty code
-#' @param specialty_desc `<chr>` Enrollment specialty description
 #' @param state `<chr>` Enrollment state abbreviation
 #' @param first_name,middle_name,last_name `<chr>` Individual provider's name
 #' @param org_name `<chr>` Organizational provider's name
-#'
+#' @param specialty_code `<chr>` Enrollment specialty code
+#' @param specialty_description `<chr>` Enrollment specialty description
 #' @returns `<tibble>` of search results
-#'
 #' @examples
 #' enrollees(enid = "I20040309000221")
-#' # enrollees(npi = "1417918293", specialty_code = "14-41")
-#' # enrollees(pac = "2860305554")
-#' # enrollees(state = "GA")
+#' enrollees(npi = "1417918293")
+#' enrollees(pac = "2860305554")
+#' enrollees(state = "GA")
 #' @autoglobal
 #' @export
-enrollees <- function(npi            = NULL,
-                      pac            = NULL,
-                      enid           = NULL,
-                      specialty_code = NULL,
-                      specialty_desc = NULL,
-                      state          = NULL,
-                      first_name     = NULL,
-                      middle_name    = NULL,
-                      last_name      = NULL,
-                      org_name       = NULL) {
+enrollees <- function(npi                   = NULL,
+                      pac                   = NULL,
+                      enid                  = NULL,
+                      state                 = NULL,
+                      first_name            = NULL,
+                      middle_name           = NULL,
+                      last_name             = NULL,
+                      org_name              = NULL,
+                      specialty_code        = NULL,
+                      specialty_description = NULL) {
 
-  # args <- list2(
-  #   "NPI"                = arg_npi(npi),
-  #   "PECOS_ASCT_CNTL_ID" = pac,
-  #   "ENRLMT_ID"          = enid,
-  #   "PROVIDER_TYPE_CD"   = specialty_code,
-  #   "PROVIDER_TYPE_DESC" = specialty_desc,
-  #   "STATE_CD"           = arg_state(state),
-  #   "FIRST_NAME"         = first_name,
-  #   "MDL_NAME"           = middle_name,
-  #   "LAST_NAME"          = last_name,
-  #   "ORG_NAME"           = org_name
-  # )
-  #
-  # list(
-  #   args = args,
-  #   request = careMain("enrollees") |> new_request()
-  # )
+  args <- list2(
+    "NPI"                = npi,
+    "PECOS_ASCT_CNTL_ID" = pac,
+    "ENRLMT_ID"          = enid,
+    "PROVIDER_TYPE_CD"   = specialty_code,
+    "PROVIDER_TYPE_DESC" = specialty_description,
+    "STATE_CD"           = state,
+    "FIRST_NAME"         = first_name,
+    "MDL_NAME"           = middle_name,
+    "LAST_NAME"          = last_name,
+    "ORG_NAME"           = org_name
+  )
 
   x <- careMain("enrollees") |>
     new_request() |>
-    perform_simple()
+    req_url_query(!!!format_query_care(args)) |>
+    perform_simple() |>
+    get_elem(c("data", "headers"))
 
-  as_tbl(x$data) |>
-    set_names(x$meta$headers) |>
-    map_na_if()
+    x$data |>
+    as_tbl() |>
+    set_names(x$meta) |>
+    map_na_if() |>
+    rnm(care_names$enrollees)
 
 }
+
+#' @noRd
+care_names <- list(
+  enrollees = c(
+    "NPI"                = "npi",
+    "PECOS_ASCT_CNTL_ID" = "pac",
+    "ENRLMT_ID"          = "enid",
+    "PROVIDER_TYPE_CD"   = "specialty_code",
+    "PROVIDER_TYPE_DESC" = "specialty_description",
+    "STATE_CD"           = "state",
+    "FIRST_NAME"         = "first_name",
+    "MDL_NAME"           = "middle_name",
+    "LAST_NAME"          = "last_name",
+    "ORG_NAME"           = "org_name"
+  )
+)
