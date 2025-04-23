@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9210 (2025-04-23)
+
+* list_resources methods for Care groups
+
+
 # providertwo 0.0.0.9209 (2025-04-22)
 
 * affiliations, utilization, clinicians, enrollees work
