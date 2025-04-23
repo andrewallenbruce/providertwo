@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9209 (2025-04-22)
+
+* affiliations, utilization, clinicians, enrollees work
+
+
 # providertwo 0.0.0.9208 (2025-04-22)
 
 * added openGroup, openTempGroup
