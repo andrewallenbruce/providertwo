@@ -109,28 +109,6 @@ npi_nppes <- function(npi            = NULL,
 
   if (length(args$number) > 1) return(.nppes_multi_npi(args$number))
 
-    # address <- rsplit(yank(x[[1]]$addresses), ~ address_purpose)
-    # address <- join(rnm(address$LOCATION, address_location = address_1), rnm(address$MAILING, address_mailing = address_1), overid = 2, verbose = 0)
-    # taxonomies <- set_names(null_to_na(yank(x[[1]]$taxonomies)), c("taxonomy_code", "taxonomy_group", "taxonomy_desc", "taxonomy_state", "taxonomy_license", "taxonomy_primary"))
-    # identifiers <- set_names(null_to_na(yank(x[[1]]$identifiers)), c("identifiers_code", "identifiers_desc", "identifiers_issuer", "identifiers_id", "identifiers_state"))
-    #
-    # res <- c(
-    #   npi               = yank_index_name(x, number),
-    #   entity            = convert_entity(yank_index_name(x, enumeration_type)),
-    #   date_created      = convert_epoch(yank_index_name(x, created_epoch)),
-    #   last_updated      = convert_epoch(yank_index_name(x, last_updated_epoch)),
-    #   practiceLocations = null_to_na(yank(x[[1]]$practiceLocations)),
-    #   other_names       = null_to_na(yank(x[[1]]$other_names)),
-    #   endpoints         = null_to_na(yank(x[[1]]$endpoints)),
-    #   inject(c(!!!x[[1]]$basic, !!!address, !!!taxonomies, !!!identifiers))
-      # list(identifiers = identifiers)
-      # ) |>
-      # as_tbl()
-      #
-      # return(res)
-
-
-
     args <- compact(args)
 
     "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200" |>

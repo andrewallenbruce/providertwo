@@ -1,11 +1,11 @@
 # quick_care("enrollees")
 #' @autoglobal
 #' @noRd
-quick_care <- function(x, offset = 0L) {
+quick_care <- function(x, offset = 0L, size = 5000L) {
   x <- careMain(alias = x) |>
     prop("identifier") |>
     request() |>
-    req_url_query(offset = offset, size = 5000L) |>
+    req_url_query(offset = offset, size = size) |>
     perform_simple()
 
   x$data |>
@@ -14,15 +14,42 @@ quick_care <- function(x, offset = 0L) {
     map_na_if()
 }
 
+# quick_care_group("RHC")
+#' @autoglobal
+#' @noRd
+quick_care_group <- function(x, offset = 0L, limit = 5000L) {
+
+  x <- careGroup(alias = x) |>
+    prop("members") |>
+    map(\(x) prop(x, "identifier") |>
+          request() |>
+          req_url_query(offset = offset, size = limit)) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes()
+
+  nms <- map(x, \(resp)
+            resp_simple_json(resp) |>
+              _[["meta"]] |>
+              _[["headers"]])
+
+  map2(x, nms, \(resp, nm)
+    resp_body_string(resp) |>
+      fparse(query = "/data") |>
+      as_tbl() |>
+      set_clean(nm) |>
+      map_na_if()
+  )
+}
+
 # quick_care_temp("quality_payment")
 #' @autoglobal
 #' @noRd
-quick_care_temp <- function(x, offset = 0L) {
+quick_care_temp <- function(x, offset = 0L, limit = 5000L) {
   careTemp(alias = x) |>
     prop("endpoints") |>
     _[["identifier"]][1] |>
     request() |>
-    req_url_query(offset = offset, size = 5000L) |>
+    req_url_query(offset = offset, size = limit) |>
     perform_simple() |>
     map_na_if() |>
     rnm(clean_names) |>
@@ -32,7 +59,7 @@ quick_care_temp <- function(x, offset = 0L) {
 # quick_pro("clinicians")
 #' @autoglobal
 #' @noRd
-quick_pro <- function(x, offset = 0L) {
+quick_pro <- function(x, offset = 0L, limit = 2000L) {
   proMain(alias = x) |>
     prop("identifier") |>
     request() |>
@@ -44,7 +71,7 @@ quick_pro <- function(x, offset = 0L) {
       rowIds  = "false",
       schema  = "false",
       offset  = offset,
-      limit   = 2000L
+      limit   = limit
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -56,7 +83,7 @@ quick_pro <- function(x, offset = 0L) {
 # quick_open("profile_covered")
 #' @autoglobal
 #' @noRd
-quick_open <- function(x, offset = 0L) {
+quick_open <- function(x, offset = 0L, limit = 500L) {
   openMain(alias = x) |>
     prop("identifier") |>
     request() |>
@@ -68,7 +95,7 @@ quick_open <- function(x, offset = 0L) {
       rowIds  = "false",
       schema  = "false",
       offset  = offset,
-      limit   = 500L
+      limit   = limit
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -80,7 +107,7 @@ quick_open <- function(x, offset = 0L) {
 # quick_open_temp("ownership")
 #' @autoglobal
 #' @noRd
-quick_open_temp <- function(x, offset = 0L) {
+quick_open_temp <- function(x, offset = 0L, limit = 500L) {
   openTemp(alias = x) |>
     prop("endpoints") |>
     _[["identifier"]][1] |>
@@ -93,7 +120,7 @@ quick_open_temp <- function(x, offset = 0L) {
       rowIds  = "false",
       schema  = "false",
       offset  = offset,
-      limit   = 500L
+      limit   = limit
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -102,7 +129,7 @@ quick_open_temp <- function(x, offset = 0L) {
     as_tbl()
 }
 
-quick_caid <- function(x) {
+quick_caid <- function(x, offset = 0L, limit = 8000L) {
   x |>
     request() |>
     req_url_query(
@@ -112,8 +139,8 @@ quick_caid <- function(x) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = 0L,
-      limit   = 8000L
+      offset  = offset,
+      limit   = limit
     ) |>
     perform_simple() |>
     _[["results"]] |>

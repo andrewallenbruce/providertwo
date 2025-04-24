@@ -1,14 +1,13 @@
-underscore <- \(x) gsub("___owner$", "", x, perl = TRUE)
-char_binary <- \(x) val_match(x, "N" ~ 0L, "Y" ~ 1L)
-pct_prop <- \(x) {
-  cheapr::case(x == "0" ~ 0, cheapr::is_na(x) ~ NA_real_, .default = as.double(x) / 100)
-}
+underscore  <- \(x) gsub("___owner$", "", x, perl = TRUE)
 
-rhc_enroll <- careGroup("rural_health")@groups |>
-  _[["rural_health_clinic_enrollments"]] |>
-  _[["endpoints"]] |>
-  _[["identifier"]] |>
-  providertwo:::quick_care() |>
+char_binary <- \(x) val_match(x, "N" ~ 0L, "Y" ~ 1L)
+
+pct_prop    <- \(x) case(x == "0" ~ 0, is_na(x) ~ NA_real_, .default = as.double(x) / 100)
+
+rhc_enroll <- careGroup("RHC")@members |>
+  _[["RHC_enrollments"]] |>
+  prop("identifier") |>
+  quick_care() |>
   mtt(incorporation_date = providertwo:::as_date(incorporation_date),
       multiple_npi_flag = char_binary(multiple_npi_flag),
       address = cheapr_if_else(
