@@ -73,7 +73,6 @@ careDim <- new_class(
 #' careMain("dialysis")
 #' careMain("enrollees")
 #' careMain("facilities")
-#' careMain("hospice_acute")
 #' careMain("IQIES")
 #' careMain("laboratories")
 #' careMain("long_term")

@@ -176,14 +176,24 @@ clinicians <- function(npi           = NULL,
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
+    mtt(
+      address = cheapr_if_else(!is_na(adr_ln_2), paste(adr_ln_1, adr_ln_2), adr_ln_1),
+      grd_yr = as.integer(grd_yr),
+      num_org_mem = as.integer(num_org_mem),
+      telehlth = val_match(telehlth, "N" ~ 0L, "Y" ~ 1L),
+      ind_assgn = val_match(ind_assgn, "N" ~ 0L, "Y" ~ 1L),
+      grp_assgn = val_match(grp_assgn, "N" ~ 0L, "Y" ~ 1L)) |>
+    slt(
+      -adr_ln_1,
+      -adr_ln_2,
+      -sec_spec_1,
+      -sec_spec_2,
+      -sec_spec_3,
+      -sec_spec_4,
+      -adrs_id,
+      -ln_2_sprs
+    ) |>
     rnm(pro_names$clinicians) |>
-    mtt(address = paste(add1, add2)) |>
-    slt(-add1,
-        -add2,
-        -sec_spec_1,
-        -sec_spec_2,
-        -sec_spec_3,
-        -sec_spec_4) |>
     as_tbl()
 }
 
@@ -337,36 +347,36 @@ pro_names <- list(
   ),
   clinicians = c(
     # "npi",
-    # "suff",
-    # "cred",
-    # "med_sch",
     # "sec_spec_1", X
     # "sec_spec_2", X
     # "sec_spec_3", X
     # "sec_spec_4", X
     # "facility_name",
+    # "ln_2_sprs"            = "add_sprs",
+    # "ind_assgn"            = "asn_ind",
+    # "grp_assgn"            = "asn_grp",
+    # "adrs_id"              = "add_id",
     "ind_pac_id"           = "pac",
     "ind_enrl_id"          = "enid",
     "provider_last_name"   = "last_name",
     "provider_first_name"  = "first_name",
     "provider_middle_name" = "middle_name",
+    "suff"                 = "suffix_name",
+    "cred"                 = "credential",
     "gndr"                 = "gender",
     "grd_yr"               = "grad_year",
+    "med_sch"              = "med_school",
     "pri_spec"             = "spec_prim",
     "sec_spec_all"         = "spec_sec",
     "telehlth"             = "telehealth",
-    "org_pac_id"           = "pac_org",
-    "num_org_mem"          = "org_n_memb",
-    "adr_ln_1"             = "add1",
-    "adr_ln_2"             = "add2",
-    "ln_2_sprs"            = "add_sprs",
+    "org_pac_id"           = "org_pac",
+    "num_org_mem"          = "org_members",
+    # "adr_ln_1"             = "add1",
+    # "adr_ln_2"             = "add2",
     "citytown"             = "city",
     "state"                = "state",
     "zip_code"             = "zip",
-    "telephone_number"     = "phone",
-    "ind_assgn"            = "asn_ind",
-    "grp_assgn"            = "asn_grp",
-    "adrs_id"              = "add_id"
+    "telephone_number"     = "phone"
   ),
   utilization = c(
     # "npi",

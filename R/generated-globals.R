@@ -7,6 +7,12 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "accrualPeriodicity",
+  # <clinicians>
+  "adr_ln_1",
+  # <clinicians>
+  "adr_ln_2",
+  # <clinicians>
+  "adrs_id",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -44,15 +50,21 @@ utils::globalVariables(c(
   "ext",
   # <.tidy_resources>
   "fileSize",
+  # <clinicians>
+  "grd_yr",
   # <catalog_pro>
   # <catalog_caid>
   "group",
+  # <clinicians>
+  "grp_assgn",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
   "identifier",
+  # <clinicians>
+  "ind_assgn",
   # <catalog_pro>
   # <catalog_caid>
   # <catalog_health>
@@ -69,6 +81,8 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
+  # <clinicians>
+  "ln_2_sprs",
   # <catalog_care>
   "main",
   # <catalog_care>
@@ -84,6 +98,8 @@ utils::globalVariables(c(
   # <.tidy_resources>
   # <open_dictionary>
   "name",
+  # <clinicians>
+  "num_org_mem",
   # <catalog_care>
   # <catalog_caid>
   # <catalog_health>
@@ -109,6 +125,8 @@ utils::globalVariables(c(
   "site",
   # <.tidy_resources>
   "size",
+  # <clinicians>
+  "telehlth",
   # <catalog_care>
   # <catalog_caid>
   "temporal",

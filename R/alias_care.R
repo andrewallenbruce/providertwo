@@ -9,7 +9,6 @@ care_main <- function(x, call = caller_env()) {
     dialysis                  = "Medicare Dialysis Facilities",
     enrollees                 = "Public Provider Enrollment",
     facilities                = "Provider of Services File - Hospital & Non-Hospital Facilities",
-    hospice_acute             = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
     IQIES                     = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
     laboratories              = "Provider of Services File - Clinical Laboratories",
     long_term                 = "Long-Term Care Facility Characteristics",
@@ -22,6 +21,7 @@ care_main <- function(x, call = caller_env()) {
     HHA_enrollments           = "^Home Health Agency Enrollments$",
     hospice_all_owners        = "^Hospice All Owners$",
     hospice_enrollments       = "^Hospice Enrollments$",
+    hospice_acute             = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
     hospital_all_owners       = "^Hospital All Owners$",
     hospital_chow             = "^Hospital Change of Ownership$",
     hospital_chow_owner       = "^Hospital Change of Ownership - Owner Information$",
@@ -68,7 +68,8 @@ care_group <- function(x, call = caller_env()) {
       group = "Hospices",
       alias = c(
         "hospice_all_owners",
-        "hospice_enrollments"
+        "hospice_enrollments",
+        "hospice_acute"
       )
     ),
     hospital = list(
@@ -185,7 +186,10 @@ care_temp_group <- function(x, call = caller_env()) {
     ),
     outpatient  = list(
       group = "Medicare Outpatient Hospitals",
-      alias = c("OUT_geography_and_service", "OUT_provider_and_service")
+      alias = c(
+        "OUT_geography_and_service",
+        "OUT_provider_and_service"
+      )
     ),
     prescribers = list(
       group = "Medicare Part D Prescribers",
@@ -207,7 +211,11 @@ care_temp_group <- function(x, call = caller_env()) {
     ),
     staffing    = list(
       group = "Nursing Home Payroll-Based Journal Staffing",
-      alias = c("STAFF_non_nurse", "STAFF_nurse", "STAFF_employee")
+      alias = c(
+        "STAFF_non_nurse",
+        "STAFF_nurse",
+        "STAFF_employee"
+      )
     ),
     utilization = list(
       group = "Medicare Physician & Other Practitioners",
