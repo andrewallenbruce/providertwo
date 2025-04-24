@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9214 (2025-04-24)
+
+* qpp eligibility
+
+
 # providertwo 0.0.0.9213 (2025-04-23)
 
 * corrections
