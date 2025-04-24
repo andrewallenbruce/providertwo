@@ -145,13 +145,25 @@ npi_nppes <- function(npi            = NULL,
 #' @autoglobal
 #' @noRd
 .nppes_multi_npi <- function(npi_vec) {
-
-  ("https://npiregistry.cms.hhs.gov/api/?version=2.1&" + glue("number={delist(npi_vec)}")) |>
+  resp <- glue(
+    "https://npiregistry.cms.hhs.gov/api/?version=2.1&",
+    "number={delist(npi_vec)}"
+  ) |>
     map(request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    resps_data(\(resp) resp_body_string(resp) |> fparse() |> _[["results"]]) |>
-    slt(-created_epoch, -last_updated_epoch) |>
-    as_tbl()
+    req_perform_parallel(on_error = "continue")
 
+  if (length(resps_successes(resp)) > 0L) {
+    resp <- resp |>
+      resps_successes() |>
+      resps_data(\(resp) resp_body_string(resp) |> fparse() |> _[["results"]]) |>
+      slt(-created_epoch, -last_updated_epoch) |>
+      as_tbl() |>
+      rrapply(
+        condition = \(x) ! is.null(x),
+        deflt = NA_character_,
+        how = "list",
+        options = list(namesep = "_", simplify = TRUE)
+      )
+  }
+  resp
 }
