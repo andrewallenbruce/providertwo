@@ -4,13 +4,9 @@
 NULL
 
 #' @name new_request
-#'
 #' @title Create a new request by class
-#'
 #' @param x An object of class `proMain`, `careMain`, or `openMain`
-#'
 #' @returns A new request
-#'
 #' @examples
 #' careMain("enrollees") |> new_request()
 #' proMain("affiliations") |> new_request()

@@ -187,6 +187,78 @@ clinicians <- function(npi           = NULL,
     as_tbl()
 }
 
+#' Utilization Class
+#' @param npi `<chr>` 10-digit Individual NPI
+#' @param pac `<chr>` 10-digit PECOS Associate Control (PAC) ID
+#' @param first_name,middle_name,last_name,suffix `<chr>` Individual provider's name
+#' @param procedure `<chr>` Procedure category
+#' @param count `<int>` Number of procedures performed
+#' @param percentile `<int>` Percentile of procedures performed
+#' @returns An S7 `<proUtilization>` object.
+#' @examples
+#' proUtilization(last_name = "CURRY")
+#' proUtilization(last_name = "CURRY", middle_name = "")
+#' @autoglobal
+#' @export
+proUtilization <- new_class(
+  name       = "proUtilization",
+  package    = NULL,
+  properties = list(
+    args = new_property(
+      class_list,
+      getter = function(self)
+        format_query_pro(self@args)),
+    request = new_property(
+      class_list,
+      getter = function(self)
+        new_request(self@request) |>
+        req_url_query(!!!self@args)),
+    count = new_property(
+      class_integer,
+      getter = function(self)
+        req_url_query(
+          self@request,
+          count = "true",
+          results = "false") |>
+        perform_simple() |>
+        _[["count"]]),
+    response = new_property(
+      new_union(NULL, class_list),
+      getter = function(self) {
+
+        if (self@count == 0L) return(NULL)
+
+        perform_simple(self@request) |>
+        _[["results"]]
+
+      })),
+  constructor = function(npi         = NULL,
+                         pac         = NULL,
+                         last_name   = NULL,
+                         first_name  = NULL,
+                         middle_name = NULL,
+                         suffix      = NULL,
+                         procedure   = NULL,
+                         count       = NULL,
+                         percentile  = NULL) {
+
+    new_object(
+      S7_object(),
+      args = list2(
+        "npi"                  = npi,
+        "ind_pac_id"           = pac,
+        "provider_last_name"   = last_name,
+        "provider_first_name"  = first_name,
+        "provider_middle_name" = middle_name,
+        "suff"                 = suffix,
+        "procedure_category"   = procedure,
+        "count"                = count,
+        "percentile"           = percentile),
+      request = proMain("utilization")
+      )
+  }
+)
+
 #' Clinicians Utilization
 #'
 #' The Doctors and Clinicians utilization data file reports volume

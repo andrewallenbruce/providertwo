@@ -1,5 +1,13 @@
 #' @autoglobal
 #' @noRd
+remove_non_ascii <- function(x) {
+  # x[!stri_detect_regex(x, "[^[:ascii:]]")]
+  gsub("[^\x20-\x7E]", "", x, perl = TRUE)
+}
+
+
+#' @autoglobal
+#' @noRd
 flatten_column <- function(i) {
   map_chr(i, function(x) paste0(delist(x), collapse = ", "))
 }

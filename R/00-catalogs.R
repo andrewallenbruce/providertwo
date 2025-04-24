@@ -208,14 +208,27 @@ catalog_open <- function() {
        ))
 }
 
+#' @name catalogs
+#' @title API Catalogs
+#' @description
+#' List of API catalogs:
+#'    1. `care` - CMS Medicare API
+#'    1. `pro` - CMS Provider API
+#'    1. `open` - CMS Open Payments API
+#'    1. `caid` - CMS Medicaid API
+#'    1. `health` - CMS HealthCare.gov API
+#' @returns `<list>` of catalogs
+#' @examples
+#' catalogs()
 #' @autoglobal
-#' @noRd
+#' @export
 catalogs <- function() {
   list(
-    care = catalog_care(),
-    pro  = catalog_pro(),
-    open = catalog_open(),
-    caid = catalog_caid()
+    care   = catalog_care(),
+    pro    = catalog_pro(),
+    open   = catalog_open(),
+    caid   = catalog_caid(),
+    health = catalog_health()
   )
 }
 
