@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9216 (2025-04-24)
+
+* generic quick
+
+
 # providertwo 0.0.0.9215 (2025-04-24)
 
 * quick_look
