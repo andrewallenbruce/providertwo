@@ -67,7 +67,7 @@ affiliations <- function(npi           = NULL,
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(pro_names$affiliations) |>
+    rnm(pro_name("affiliations")) |>
     as_tbl()
 }
 
@@ -193,7 +193,7 @@ clinicians <- function(npi           = NULL,
       -adrs_id,
       -ln_2_sprs
     ) |>
-    rnm(pro_names$clinicians) |>
+    rnm(pro_name("clinicians")) |>
     as_tbl()
 }
 
@@ -327,67 +327,52 @@ utilization <- function(npi         = NULL,
       perform_simple() |>
       _[["results"]] |>
       map_na_if() |>
-      rnm(pro_names$utilization) |>
+      rnm(pro_name("utilization")) |>
       as_tbl()
   }
 }
 
 #' @noRd
-pro_names <- list(
-  affiliations = c(
-    # "npi",
-    # "suff",
-    # "facility_type",
-    "ind_pac_id"                                 = "pac",
-    "provider_last_name"                         = "last_name",
-    "provider_first_name"                        = "first_name",
-    "provider_middle_name"                       = "middle_name",
-    "facility_affiliations_certification_number" = "ccn_facility",
-    "facility_type_certification_number"         = "ccn_primary"
-  ),
-  clinicians = c(
-    # "npi",
-    # "sec_spec_1", X
-    # "sec_spec_2", X
-    # "sec_spec_3", X
-    # "sec_spec_4", X
-    # "facility_name",
-    # "ln_2_sprs"            = "add_sprs",
-    # "ind_assgn"            = "asn_ind",
-    # "grp_assgn"            = "asn_grp",
-    # "adrs_id"              = "add_id",
-    "ind_pac_id"           = "pac",
-    "ind_enrl_id"          = "enid",
-    "provider_last_name"   = "last_name",
-    "provider_first_name"  = "first_name",
-    "provider_middle_name" = "middle_name",
-    "suff"                 = "suffix_name",
-    "cred"                 = "credential",
-    "gndr"                 = "gender",
-    "grd_yr"               = "grad_year",
-    "med_sch"              = "med_school",
-    "pri_spec"             = "spec_prim",
-    "sec_spec_all"         = "spec_sec",
-    "telehlth"             = "telehealth",
-    "org_pac_id"           = "org_pac",
-    "num_org_mem"          = "org_members",
-    # "adr_ln_1"             = "add1",
-    # "adr_ln_2"             = "add2",
-    "citytown"             = "city",
-    "state"                = "state",
-    "zip_code"             = "zip",
-    "telephone_number"     = "phone"
-  ),
-  utilization = c(
-    # "npi",
-    # "suff",
-    # "procedure_category",
-    # "count",
-    # "percentile",
-    "ind_pac_id"                = "pac",
-    "provider_last_name"        = "last_name",
-    "provider_first_name"       = "first_name",
-    "provider_middle_name"      = "middle_name",
-    "profile_display_indicator" = "display"
+#' @autoglobal
+pro_name <- function(x, call = caller_env()) {
+  switch(
+    x,
+    affiliations = c(
+      ind_pac_id                                 = "pac",
+      provider_last_name                         = "last_name",
+      provider_first_name                        = "first_name",
+      provider_middle_name                       = "middle_name",
+      facility_affiliations_certification_number = "ccn_facility",
+      facility_type_certification_number         = "ccn_primary"
+    ),
+    clinicians = c(
+      ind_pac_id                                 = "pac",
+      ind_enrl_id                                = "enid",
+      provider_last_name                         = "last_name",
+      provider_first_name                        = "first_name",
+      provider_middle_name                       = "middle_name",
+      suff                                       = "suffix_name",
+      cred                                       = "credential",
+      gndr                                       = "gender",
+      grd_yr                                     = "grad_year",
+      med_sch                                    = "med_school",
+      pri_spec                                   = "spec_prim",
+      sec_spec_all                               = "spec_sec",
+      telehlth                                   = "telehealth",
+      org_pac_id                                 = "org_pac",
+      num_org_mem                                = "org_members",
+      citytown                                   = "city",
+      state                                      = "state",
+      zip_code                                   = "zip",
+      telephone_number                           = "phone"
+    ),
+    utilization = c(
+      ind_pac_id                                 = "pac",
+      provider_last_name                         = "last_name",
+      provider_first_name                        = "first_name",
+      provider_middle_name                       = "middle_name",
+      profile_display_indicator                  = "display"
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
-)
+}

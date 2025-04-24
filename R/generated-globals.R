@@ -13,6 +13,8 @@ utils::globalVariables(c(
   "adr_ln_2",
   # <clinicians>
   "adrs_id",
+  # <qpp_stats>
+  "category",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -24,6 +26,8 @@ utils::globalVariables(c(
   "created_epoch",
   # <care_temp>
   "data",
+  # <qpp_elig>
+  "date_approved",
   # <catalog_care>
   "describedBy",
   # <catalog_care>
@@ -46,10 +50,16 @@ utils::globalVariables(c(
   # <catalog_care>
   # <.tidy_resources>
   "downloadURL",
+  # <qpp_elig>
+  "entity_type",
   # <.tidy_resources>
   "ext",
   # <.tidy_resources>
   "fileSize",
+  # <qpp_elig>
+  "first_name",
+  # <qpp_elig>
+  "firstApprovedDate",
   # <clinicians>
   "grd_yr",
   # <catalog_pro>
@@ -65,6 +75,10 @@ utils::globalVariables(c(
   "identifier",
   # <clinicians>
   "ind_assgn",
+  # <qpp_elig>
+  "is_maqi",
+  # <qpp_elig>
+  "is_new_enroll",
   # <catalog_pro>
   # <catalog_caid>
   # <catalog_health>
@@ -78,6 +92,8 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   "landingPage",
+  # <qpp_elig>
+  "last_name",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
@@ -87,6 +103,8 @@ utils::globalVariables(c(
   "main",
   # <catalog_care>
   "mediaType",
+  # <qpp_elig>
+  "middle_name",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -98,6 +116,8 @@ utils::globalVariables(c(
   # <.tidy_resources>
   # <open_dictionary>
   "name",
+  # <qpp_elig>
+  "nationalProviderIdentifierType",
   # <clinicians>
   "num_org_mem",
   # <catalog_care>
@@ -125,6 +145,16 @@ utils::globalVariables(c(
   "site",
   # <.tidy_resources>
   "size",
+  # <qpp_elig>
+  "specialty",
+  # <qpp_elig>
+  "specialty_category",
+  # <qpp_elig>
+  "specialty_description",
+  # <qpp_elig>
+  "specialty_type",
+  # <qpp_stats>
+  "statistic",
   # <clinicians>
   "telehlth",
   # <catalog_care>
@@ -146,5 +176,9 @@ utils::globalVariables(c(
   # <.tidy_resources>
   # <open_dictionary>
   "year",
+  # <qpp_elig>
+  "year_pecos_enroll",
+  # <qpp_elig>
+  "years_in_medicare",
   NULL
 ))

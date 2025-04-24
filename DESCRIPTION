@@ -51,6 +51,7 @@ Collate:
     'end_affiliations.R'
     'end_enrollees.R'
     'end_nppes.R'
+    'end_qpp.R'
     'generated-globals.R'
     'httr2_misc.R'
     'import-standalone-obj-type.R'
