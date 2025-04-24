@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9212 (2025-04-23)
+
+* update dependencies
+* re-render readme
+
+
 # providertwo 0.0.0.9211 (2025-04-23)
 
 * exported `catalogs()`
