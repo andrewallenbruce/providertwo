@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9211 (2025-04-23)
+
+* exported `catalogs()`
+* experimenting with `proUtilization()` class
+* `remove_non_ascii()` helper
+
+
 # providertwo 0.0.0.9210 (2025-04-23)
 
 * list_resources methods for Care groups
