@@ -15,7 +15,7 @@ caidDim <- new_class(
     pages = new_property(
       class_integer,
       getter = function(self)
-        offset_size(self@rows, 2000L)
+        offset_size(self@rows, 8000L)
     ),
     fields = class_character
   ),
@@ -49,9 +49,10 @@ caidMeta <- new_class(
   package = NULL,
   properties = list(
     description = class_character,
+    temporal    = class_character,
+    periodicity = class_character,
     issued      = new_union(class_character, class_Date),
     modified    = new_union(class_character, class_Date),
-    site        = class_character,
     dictionary  = class_character,
     download    = class_character
   ),
@@ -59,10 +60,10 @@ caidMeta <- new_class(
     new_object(
       S7_object(),
       description = x$description,
+      temporal    = x$temporal,
+      periodicity = x$periodicity,
       issued      = x$issued,
       modified    = x$modified,
-      released    = x$released,
-      site        = x$site,
       dictionary  = x$dictionary,
       download    = x$download
     )
@@ -73,9 +74,18 @@ caidMeta <- new_class(
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<caidMain>` object.
 #' @examplesIf interactive()
-#' caidMain("affiliations")
-#' caidMain("clinicians")
-#' caidMain("utilization")
+#' caidMain("mlr")
+#' caidMain("mesd")
+#' caidMain("wcv")
+#' caidMain("mhsud")
+#' caidMain("disability")
+#' caidMain("pi")
+#' caidMain("livebirth")
+#' caidMain("blood")
+#' caidMain("lang")
+#' caidMain("race")
+#' caidMain("rural")
+#' caidMain("waive")
 #' @autoglobal
 #' @rdname caid
 #' @export

@@ -90,6 +90,38 @@ method(quick_, proGroup) <- function(x, offset, limit) {
       )
 }
 
+method(quick_, caidMain) <- function(x, offset, limit) {
+  prop(x, "identifier") |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      offset  = offset,
+      limit   = limit
+    ) |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    rnm(clean_names) |>
+    as_tbl()
+}
+
+
+# quick("mlr")
+# quick("mesd")
+# quick("wcv")
+# quick("mhsud")
+# quick("disability")
+# quick("livebirth")
+# quick("lang")
+# quick("race")
+# quick("rural")
+# quick("waive")
+#
 # quick("PDC")
 # quick("MIPS")
 #
@@ -158,6 +190,34 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     MIPS_virtual   = quick_(proMain(x), offset = offset, limit = cheapr_if_else(limit > 2000L, 2000L, limit)),
     MIPS           = ,
     PDC            = quick_(proGroup(x), offset = offset, limit = cheapr_if_else(limit > 2000L, 2000L, limit)),
+    mlr            = ,
+    mesd           = ,
+    wcv            = ,
+    mhsud          = ,
+    disability     = ,
+    pi             = ,
+    livebirth      = ,
+    blood          = ,
+    lang           = ,
+    race           = ,
+    rural          = ,
+    waive          = ,
+    newdrug_01     = ,
+    newdrug_02     = ,
+    newdrug_03     = ,
+    newdrug_04     = ,
+    newdrug_05     = ,
+    newdrug_06     = ,
+    newdrug_07     = ,
+    newdrug_08     = ,
+    newdrug_09     = ,
+    newdrug_10     = ,
+    newdrug_11     = ,
+    newdrug_12     = ,
+    newdrug_13     = ,
+    newdrug_14     = ,
+    newdrug_15     = ,
+    newdrug_16     = quick_(caidMain(x), offset = offset, limit = cheapr_if_else(limit > 8000L, 8000L, limit)),
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )

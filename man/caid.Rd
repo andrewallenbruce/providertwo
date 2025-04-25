@@ -17,8 +17,17 @@ Provider Endpoint
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-caidMain("affiliations")
-caidMain("clinicians")
-caidMain("utilization")
+caidMain("mlr")
+caidMain("mesd")
+caidMain("wcv")
+caidMain("mhsud")
+caidMain("disability")
+caidMain("pi")
+caidMain("livebirth")
+caidMain("blood")
+caidMain("lang")
+caidMain("race")
+caidMain("rural")
+caidMain("waive")
 \dontshow{\}) # examplesIf}
 }

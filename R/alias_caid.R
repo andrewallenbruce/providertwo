@@ -8,13 +8,13 @@ caid_main <- function(x, call = caller_env()) {
     wcv        = "Medicaid and CHIP enrollees who received a well-child visit",
     mhsud      = "Medicaid and CHIP enrollees who received mental health or SUD services",
     disability = "Medicaid enrollees who qualify for benefits based on disability",
-    pi         = "PI dataset",
-    livebirth  = "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births",
-    blood      = "Pricing Comparison for Blood Disorder Treatments (Pricing as of 12/1/2024)",
+    # pi         = "^PI dataset$", # NOT WORKING
+    livebirth  = "^Prematurity and severe maternal morbidity among Medicaid",
+    # blood      = "Pricing Comparison for Blood Disorder Treatments //(Pricing as of 12/1/2024//)", # GROUP
     lang       = "Primary language spoken by the Medicaid and CHIP population",
     race       = "Race and ethnicity of the national Medicaid and CHIP population",
     rural      = "Rural Medicaid and CHIP enrollees",
-    waive      = "Section 1915(c) waiver program participants",
+    waive      = "Section 1915",
 
     newdrug_01 = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program 01-06-2025-to-01-12-2025",
     newdrug_02 = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program 01-13-2025-to-01-19-2025",
