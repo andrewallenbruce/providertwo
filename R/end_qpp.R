@@ -1,10 +1,25 @@
-# qpp_stats(year = 2018:2025) |> print(n = 40)
+
+#' Quality Payment Program (QPP)
+#' @name quality_payment
+#' @param year A vector of years from 2018 to 2025
+#' @param npi A vector of NPIs
+#' @examples
+#' qpp_stats(year = 2018:2025)
+#'
+#' qpp_elig(npi = 1043477615, year = 2018)
+#' qpp_elig(npi = 1144544834, year = 2025)
+#' qpp_elig(npi = 1932365699, year = 2024)
+#'
+#' # CORRECT FORM: eligibility/npis/1043477615/1144544834?year=2018
+#' # Multiple NPIs, One year at a time
+#' qpp_elig(npi = c(1144544834, 1043477615, 1932365699), year = 2024)
+NULL
+
 #' @autoglobal
-#' @noRd
+#' @export
+#' @rdname quality_payment
 qpp_stats <- function(year) {
-
   f <- function(year) {
-
     check_number_whole(year, min = 2018, max = 2025)
 
     x <- glue("https://qpp.cms.gov/api/eligibility/stats/?year={year}") |>
@@ -16,7 +31,9 @@ qpp_stats <- function(year) {
     new_tbl(
       year = rep(as.integer(year), 4),
       category = c(rep("Individual", 2), rep("Group", 2)) |> factor_(),
-      statistic = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2) |> factor_(),
+      statistic = rep(c(
+        "HCC Risk Score", "Dual Eligibility Ratio"
+      ), 2) |> factor_(),
       mean = c(
         x$individual$hccRiskScoreAverage,
         x$individual$dualEligibilityAverage,
@@ -30,27 +47,29 @@ qpp_stats <- function(year) {
     roworder(statistic, category)
 }
 
-# qpp_elig(npi = 1043477615, year = 2018) |> str()
-# qpp_elig(npi = 1144544834, year = 2025) |> str()
-# qpp_elig(npi = 1932365699, year = 2024) |> str()
 #' @autoglobal
-#' @noRd
+#' @export
+#' @rdname quality_payment
 qpp_elig <- function(npi, year) {
-
   check_number_whole(year, min = 2018, max = 2025)
 
-  x <- glue("https://qpp.cms.gov/api/eligibility/npis/{npi}/?year={year}") |>
+  npi <- paste(npi, collapse = ",")
+
+  x <- glue("https://qpp.cms.gov/api/eligibility/npis/{npi}") |>
     request() |>
+    req_url_query(year = year) |>
     req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
     req_error(body = \(resp) resp_body_json(resp)$error$message) |>
     perform_simple() |>
-    _[["data"]]
+    _[["data"]] |>
+    as_tbl()
 
   x |>
-    as_tbl() |>
     mtt(
       year = as.integer(year),
-      nationalProviderIdentifierType = factor_(val_match(nationalProviderIdentifierType, 1 ~ "I", 2 ~ "O")),
+      nationalProviderIdentifierType = factor_(val_match(
+        nationalProviderIdentifierType, 1 ~ "I", 2 ~ "O"
+      )),
       firstApprovedDate = as_date(firstApprovedDate),
       specialty_description = x$specialty$specialtyDescription,
       specialty_type = x$specialty$typeDescription,
@@ -61,19 +80,19 @@ qpp_elig <- function(npi, year) {
     colorder(
       year,
       npi,
+      entity,
+      last_name,
       first_name,
       middle_name,
-      last_name,
-      entity_type,
-      specialty_description,
-      specialty_type,
-      specialty_category,
+      is_new,
       date_approved,
+      enroll_year,
       years_in_medicare,
-      year_pecos_enroll,
-      is_new_enroll,
+      specialty_category,
+      specialty_type,
+      specialty_description,
       is_maqi
-      )
+    )
 }
 
 #' @autoglobal
@@ -85,11 +104,11 @@ qpp_name <- function(x, call = caller_env()) {
       firstName                      = "first_name",
       middleName                     = "middle_name",
       lastName                       = "last_name",
-      nationalProviderIdentifierType = "entity_type",
+      nationalProviderIdentifierType = "entity",
+      newlyEnrolled                  = "is_new",
       firstApprovedDate              = "date_approved",
+      pecosEnrollmentDate            = "enroll_year",
       yearsInMedicare                = "years_in_medicare",
-      pecosEnrollmentDate            = "year_pecos_enroll",
-      newlyEnrolled                  = "is_new_enroll",
       isMaqi                         = "is_maqi",
       organizations                  = "ORGS"
     ),

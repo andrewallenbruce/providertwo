@@ -52,7 +52,9 @@ utils::globalVariables(c(
   # <.tidy_resources>
   "downloadURL",
   # <qpp_elig>
-  "entity_type",
+  "enroll_year",
+  # <qpp_elig>
+  "entity",
   # <.tidy_resources>
   "ext",
   # <.tidy_resources>
@@ -79,7 +81,7 @@ utils::globalVariables(c(
   # <qpp_elig>
   "is_maqi",
   # <qpp_elig>
-  "is_new_enroll",
+  "is_new",
   # <catalog_pro>
   # <catalog_caid>
   # <catalog_health>
@@ -178,8 +180,6 @@ utils::globalVariables(c(
   # <.tidy_resources>
   # <open_dictionary>
   "year",
-  # <qpp_elig>
-  "year_pecos_enroll",
   # <qpp_elig>
   "years_in_medicare",
   NULL
