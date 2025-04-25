@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9220</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,20 +63,198 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
-<span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"mlr"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"mlr"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "MLR Summary Reports"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The MLR Summary Reports provide plan-specific MLRs for Medicaid managed care programs. The MLR summary report d"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: "2024-11-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2024-11-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/8f48dac1-fd84-489a-86be-1b16963d5651"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/mlr-public-use-file-07302024final.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 1719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:14] "state" "program_name" "program_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/743f9f04-4473-41e2-9da2-9a89db65ee55/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"mesd"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Medicaid Enterprise System Datatable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "Medicaid Enterprise System Datatable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/de58d5ec-4515-494e-ae3f-620200f72989"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/data-analysis-table-for-medcaid-01172025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:12] "implementation_year" "policyupdate_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"wcv"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Medicaid and CHIP enrollees who received a well-child visit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/de58d5ec-4515-494e-ae3f-620200f72989"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/well-child-visits-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/289182e5-44c8-4fcc-96c4-4af69be9863f/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"mhsud"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Medicaid and CHIP enrollees who received mental health or SUD services"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/de58d5ec-4515-494e-ae3f-620200f72989"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/mh-and-sud-services-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8062e2f4-4c0a-41c9-8217-979468a80986/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"disability"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"pi"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Medicaid enrollees who qualify for benefits based on disability"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid enrollees who are eligible for benefits based "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/disability-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b12e390f-1721-47c0-bb38-b0b1805e0446/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"livebirth"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"blood"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and rates of Medicaid- and Childrens Health Insurance Program (CHIP)-cover"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/de58d5ec-4515-494e-ae3f-620200f72989"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/preterm-birth-and-smm-2020-2022-01172025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/ee3b9534-0d19-4c1b-bf74-43f898d5de7c/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"lang"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Primary language spoken by the Medicaid and CHIP population"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/primary-language-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/3df86994-c0e4-4106-a404-e95e87c824e6/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"race"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Race and ethnicity of the national Medicaid and CHIP population"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/race-and-ethnicity-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b9e18d80-c765-4fb9-95e7-81951e01a6a3/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"rural"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Rural Medicaid and CHIP enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/rural-residence-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/73fdbf7c-569e-427b-9bff-eeed34a51dcb/0"</span>
 <span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"waive"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Section 1915(c) waiver program participants"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/de58d5ec-4515-494e-ae3f-620200f72989"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/1915c-waiver-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "year" "geography" "subpopulation_topic" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/4d4eaf55-33d3-4468-80b4-63553f4530ae/0"</span>
+<span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"newdrug_01"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program 01-06-2025-to-01-12-2025"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The data below contains newly reported, active covered outpatient drugs which were reported by participating dr"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-14"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/mdrp-newly-rprt-drug-01-06-2025-to-01-12-2025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:22] "ndc1" "ndc2" "ndc3" "labeler_name" "labeler_status" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b4cfe208-05cd-46a0-baef-fe0e67d2abb1/0"</span>
+<span class="r-in"><span><span class="fu">caidMain</span><span class="op">(</span><span class="st">"newdrug_16"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caidMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program 12-30-2024-to-01-05-2025"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caidMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The data below contains newly reported, active covered outpatient drugs which were reported by participating dr"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-06"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/6eb01b59-271e-4a58-b9b8-2d17e2cbd34b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.medicaid.gov/data/mdrp-newly-rprt-drug-12-30-2024-to-01-05-2025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;caidDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:22] "ndc1" "ndc2" "ndc3" "labeler_name" "labeler_status" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/c1561c13-1ed6-430f-8d88-7d8cbea6d083/0"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
