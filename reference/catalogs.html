@@ -21,7 +21,7 @@ health - CMS HealthCare.gov API
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9217</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9218</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -170,7 +170,7 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$main</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 434 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 434 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACA Federal… https://d… <span style="color: #949494;">"</span>Affordabl… Decenniall… 2016-10-31 2025-03-28 Medica…</span>
@@ -184,56 +184,42 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Benefit Pac… https://d… <span style="color: #949494;">"</span>This data… Decenniall… <span style="color: #BB0000;">NA</span>         2024-01-05 Medica…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Blood Lead … https://d… <span style="color: #949494;">"</span>This data… Decenniall… <span style="color: #BB0000;">NA</span>         2024-01-05 Medica…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 424 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$temp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 63 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 63 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year title  identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2019-07-22 2019-09-26 Chris …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>017 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2018-08-08 2019-08-05 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>016 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2017-09-28 2018-10-25 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>015 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2016-12-01 2018-10-25 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>014 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2016-03-16 2017-08-03 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>023 Child… https://d… <span style="color: #949494;">"</span>Performan… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>         2024-09-25 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>022 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… <span style="color: #BB0000;">NA</span>         2023-09-11 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>021 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… <span style="color: #BB0000;">NA</span>         2023-09-11 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>020 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… <span style="color: #BB0000;">NA</span>         2021-09-28 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>019 Child… https://d… <span style="color: #949494;">"</span>Performan… Annually [… 2020-07-22 2020-10-14 RajB (…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Child… https://d… Performanc… Annually [… 2019-07-22 2019-09-26 Chris …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>017 Child… https://d… Performanc… Annually [… 2018-08-08 2019-08-05 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>016 Child… https://d… Performanc… Annually [… 2017-09-28 2018-10-25 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>015 Child… https://d… Performanc… Annually [… 2016-12-01 2018-10-25 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>014 Child… https://d… Performanc… Annually [… 2016-03-16 2017-08-03 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>023 Child… https://d… Performanc… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>         2024-09-25 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>022 Child… https://d… Performanc… Annually [… <span style="color: #BB0000;">NA</span>         2023-09-11 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>021 Child… https://d… Performanc… Annually [… <span style="color: #BB0000;">NA</span>         2023-09-11 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>020 Child… https://d… Performanc… Annually [… <span style="color: #BB0000;">NA</span>         2021-09-28 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>019 Child… https://d… Performanc… Annually [… 2020-07-22 2020-10-14 RajB (…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 53 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$down</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 507 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title                            download                                   N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> State Drug Utilization Data 1991 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> State Drug Utilization Data 1992 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> State Drug Utilization Data 1993 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> State Drug Utilization Data 1994 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> State Drug Utilization Data 1995 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> State Drug Utilization Data 1996 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> State Drug Utilization Data 1997 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> State Drug Utilization Data 1998 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> State Drug Utilization Data 1999 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> State Drug Utilization Data 2000 https://download.medicaid.gov/data/St…     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 497 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$dict</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 503 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    title                            dictionary                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> State Drug Utilization Data 1991 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> State Drug Utilization Data 1992 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> State Drug Utilization Data 1993 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> State Drug Utilization Data 1994 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> State Drug Utilization Data 1995 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> State Drug Utilization Data 1996 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> State Drug Utilization Data 1997 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> State Drug Utilization Data 1998 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> State Drug Utilization Data 1999 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> State Drug Utilization Data 2000 https://data.medicaid.gov/api/1/metastore/s…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 493 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$download</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title                                   download                            N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Scorecard measure                       https://download.medicaid.gov/…     3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Scorecard TAG v0.2.4-1 (dev)            https://download.medicaid.gov/…     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Scorecard TAG v0.2.4-1 (dev0)           https://download.medicaid.gov/…     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Scorecard TAG v0.3.0-1 (etl_test)       https://download.medicaid.gov/…     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Medicaid and CHIP CAA Reporting Metrics https://download.medicaid.gov/…    17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 44 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $health</span>
