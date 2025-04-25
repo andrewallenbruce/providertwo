@@ -111,6 +111,9 @@ method(quick_, caidMain) <- function(x, offset, limit) {
 }
 
 
+# map(glue("newdrug_0{1:9}"), quick)
+# map(glue("newdrug_1{0:6}"), quick)
+#
 # quick("mlr")
 # quick("mesd")
 # quick("wcv")
@@ -195,9 +198,9 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     wcv            = ,
     mhsud          = ,
     disability     = ,
-    pi             = ,
+    # pi             = ,
     livebirth      = ,
-    blood          = ,
+    # blood          = ,
     lang           = ,
     race           = ,
     rural          = ,

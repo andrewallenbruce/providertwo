@@ -11,6 +11,7 @@
   openGroup     <<- memoise::memoise(openGroup)
   openTemp      <<- memoise::memoise(openTemp)
   openTempGroup <<- memoise::memoise(openTempGroup)
+  caidMain      <<- memoise::memoise(caidMain)
 
   rlang::run_on_load()
 
