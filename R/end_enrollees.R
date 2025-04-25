@@ -63,22 +63,27 @@ enrollees <- function(npi                   = NULL,
     as_tbl() |>
     set_names(x$meta) |>
     map_na_if() |>
-    rnm(care_names$enrollees)
+    rnm(care_names("enrollees"))
 
 }
 
 #' @noRd
-care_names <- list(
-  enrollees = c(
-    "NPI"                = "npi",
-    "PECOS_ASCT_CNTL_ID" = "pac",
-    "ENRLMT_ID"          = "enid",
-    "PROVIDER_TYPE_CD"   = "specialty_code",
-    "PROVIDER_TYPE_DESC" = "specialty_description",
-    "STATE_CD"           = "state",
-    "FIRST_NAME"         = "first_name",
-    "MDL_NAME"           = "middle_name",
-    "LAST_NAME"          = "last_name",
-    "ORG_NAME"           = "org_name"
+#' @autoglobal
+care_names <- function(x, call = caller_env()) {
+  switch(
+    x,
+    enrollees = c(
+      NPI                = "npi",
+      PECOS_ASCT_CNTL_ID = "pac",
+      ENRLMT_ID          = "enid",
+      PROVIDER_TYPE_CD   = "specialty_code",
+      PROVIDER_TYPE_DESC = "specialty_description",
+      STATE_CD           = "state",
+      FIRST_NAME         = "first_name",
+      MDL_NAME           = "middle_name",
+      LAST_NAME          = "last_name",
+      ORG_NAME           = "org_name"
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
-)
+}

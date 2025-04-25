@@ -46,7 +46,6 @@ utils::globalVariables(c(
   "distribution",
   # <catalog_pro>
   # <catalog_open>
-  # <openTemp>
   "download",
   # <catalog_care>
   # <.tidy_resources>
@@ -57,8 +56,6 @@ utils::globalVariables(c(
   "ext",
   # <.tidy_resources>
   "fileSize",
-  # <careTemp>
-  "filetype",
   # <qpp_elig>
   "first_name",
   # <qpp_elig>
@@ -75,7 +72,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <openTemp>
   "identifier",
   # <clinicians>
   "ind_assgn",
@@ -114,7 +110,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <openTemp>
   "modified",
   # <catalog_health>
   "N",
@@ -164,7 +159,6 @@ utils::globalVariables(c(
   "telehlth",
   # <catalog_care>
   # <catalog_caid>
-  # <careTemp>
   "temporal",
   # <catalog_pro>
   # <catalog_caid>
@@ -179,7 +173,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_open>
   # <catalog_caid>
-  # <openTemp>
   # <.tidy_resources>
   # <open_dictionary>
   "year",

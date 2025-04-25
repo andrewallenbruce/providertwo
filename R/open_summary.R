@@ -277,10 +277,13 @@ open_dictionary <- function() {
     ) |>
     mtt(
       year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      name = cheapr_if_else(is_na(year), name,
-        stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")),
+      name = cheapr_if_else(
+        is_na(year),
+        name,
+        stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")
+      ),
       year = cheapr_if_else(is_na(year), fmax(year), year)
-      ) |>
+    ) |>
     sbt(year == fmax(year), -year) |>
     _[["download"]] |>
     map(request) |>
@@ -300,8 +303,12 @@ open_dictionary <- function() {
             title = NULL
             )
         ) |>
-    set_clean(get_elem(x, "title") |>
-        stri_extract_all_regex("^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)|Covered Recipient Profile Supplement") |>
+    set_clean(
+      get_elem(x, "title") |>
+        stri_extract_all_regex(
+          "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)|Covered Recipient Profile Supplement"
+          ) |>
         delist() |>
-        funique())
+        funique()
+      )
 }

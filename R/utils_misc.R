@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+make_address <- function(a1, a2) {
+  cheapr_if_else(!is_na(a2), paste(a1, a2), a1)
+}
+
+#' @autoglobal
+#' @noRd
 remove_non_ascii <- function(x) {
   # x[!stri_detect_regex(x, "[^[:ascii:]]")]
   gsub("[^\x20-\x7E]", "", x, perl = TRUE)

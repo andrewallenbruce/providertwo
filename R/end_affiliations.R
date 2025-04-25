@@ -67,7 +67,7 @@ affiliations <- function(npi           = NULL,
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
-    rnm(pro_name("affiliations")) |>
+    rnm(pro_names("affiliations")) |>
     as_tbl()
 }
 
@@ -177,7 +177,7 @@ clinicians <- function(npi           = NULL,
     _[["results"]] |>
     map_na_if() |>
     mtt(
-      address = cheapr_if_else(!is_na(adr_ln_2), paste(adr_ln_1, adr_ln_2), adr_ln_1),
+      address = make_address(adr_ln_1, adr_ln_2),
       grd_yr = as.integer(grd_yr),
       num_org_mem = as.integer(num_org_mem),
       telehlth = val_match(telehlth, "N" ~ 0L, "Y" ~ 1L),
@@ -193,7 +193,7 @@ clinicians <- function(npi           = NULL,
       -adrs_id,
       -ln_2_sprs
     ) |>
-    rnm(pro_name("clinicians")) |>
+    rnm(pro_names("clinicians")) |>
     as_tbl()
 }
 
@@ -327,14 +327,14 @@ utilization <- function(npi         = NULL,
       perform_simple() |>
       _[["results"]] |>
       map_na_if() |>
-      rnm(pro_name("utilization")) |>
+      rnm(pro_names("utilization")) |>
       as_tbl()
   }
 }
 
 #' @noRd
 #' @autoglobal
-pro_name <- function(x, call = caller_env()) {
+pro_names <- function(x, call = caller_env()) {
   switch(
     x,
     affiliations = c(
