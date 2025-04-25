@@ -19,7 +19,13 @@ catalog_caid <- function() {
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
-      title       = gsub("^ ", "", title, perl = TRUE)) |>
+      title       = gsub("^ ", "", title, perl = TRUE),
+      description = stri_trans_general(description, "latin-ascii"),
+      description = remove_non_ascii(description),
+      description = gsub("[\"']", "", description, perl = TRUE),
+      description = gsub("\r\n", " ", description, perl = TRUE),
+      description = gsub("  ", " ", description, perl = TRUE)
+      ) |>
     slt(
       title,
       identifier,
@@ -36,28 +42,68 @@ catalog_caid <- function() {
     ) |>
     as_tbl()
 
-  grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
+  grps <- new_df(
+    title = x$title,
+    group = make_join_col(x, theme)) |>
+    sbt(not_na(group) & group != "Uncategorized")
 
-  keys <- new_df(title = x$title, key = make_join_col(x, key))
+  keys <- new_df(
+    title = x$title,
+    key = make_join_col(x, key))
 
-  refs <- new_df(title = x$title, reference = flatten_column(x$reference) |> na_if("NA")) |>
-          sbt(not_na(reference) & stri_detect_regex(reference, "^https://www.mathematica.org/", negate = TRUE)) |>
-          mtt(reference = stri_replace_all_fixed(reference, ", https://www.mathematica.org/", ""))
+  refs <- new_df(
+    title = x$title,
+    reference = flatten_column(x$reference) |> na_if("NA")) |>
+    sbt(not_na(reference) & stri_detect_regex(reference, "^https://www.mathematica.org/", negate = TRUE)) |>
+    mtt(reference = stri_replace_all_fixed(reference, ", https://www.mathematica.org/", ""))
 
-  dict <- new_tbl(title = vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE))),
-                  dictionary = get_elem(get_elem(x$distribution, "data", DF.as.list = TRUE), "describedBy$", regex = TRUE) |> delist())
+  trep <- vec_rep_each(
+    x$title,
+    get_elem(x$distribution, "data", DF.as.list = TRUE) |>
+      fnobs())
 
-  dwns <- new_tbl(title = vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE))),
-                  download = get_elem(get_elem(x$distribution, "data", DF.as.list = TRUE), "^downloadURL$", regex = TRUE) |> delist()) |>
+  dictionary <- new_tbl(
+    title = trep,
+    dictionary = get_elem(x$distribution, "data", DF.as.list = TRUE) |>
+      get_elem("describedBy$", regex = TRUE) |>
+      delist())
+
+  download <- new_tbl(
+    title = trep,
+    download = get_elem(x$distribution, "data", DF.as.list = TRUE) |>
+      get_elem("^downloadURL$", regex = TRUE) |>
+      delist()) |>
     fcount(title, add = TRUE)
 
-  main <- reduce(list(slt(x, -theme, -key, -reference, -distribution), grps, keys, refs), join_on_title) |> roworder(title)
+  main <- list(
+    slt(x, -theme, -key, -reference, -distribution),
+    grps,
+    keys,
+    refs,
+    download |> sbt(N == 1) |> slt(-N),
+    dictionary) |>
+    reduce(join_on_title) |>
+    roworder(title)
+
+  pat <- paste0(
+    "State Drug Utilization Data [0-9]{4}|",
+    "NADAC \\(National Average Drug Acquisition Cost\\)|",
+    "^[0-9]{4} Child and Adult Health Care Quality|",
+    "^[0-9]{4} Managed Care Programs by State$"
+  )
 
   list(
-    main = sbt(main, stri_detect_regex(title, "State Drug Utilization Data [0-9]{4}|NADAC \\(National Average Drug Acquisition Cost\\)|^[0-9]{4} Child and Adult Health Care Quality|^[0-9]{4} Managed Care Programs by State$", negate = TRUE, case_insensitive = TRUE)),
-    temp = sbt(main, stri_detect_regex(title, "State Drug Utilization Data [0-9]{4}|NADAC \\(National Average Drug Acquisition Cost\\)|^[0-9]{4} Child and Adult Health Care Quality|^[0-9]{4} Managed Care Programs by State$", case_insensitive = TRUE)) |> mtt(year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer(), title = stri_replace_all_regex(title, " [12][0-9]{3}|[12][0-9]{3} | \\(National Average Drug Acquisition Cost\\)", "")) |> colorder(year) |> roworder(title, -year),
-    down = funique(dwns, cols = c("title", "download")),
-    dict = funique(dict, cols = c("title", "dictionary"))
+    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE),
+    temp = subset_detect(main, title, pat, ci = TRUE) |>
+      mtt(
+        year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer(),
+        title = stri_replace_all_regex(title, " [12][0-9]{3}|[12][0-9]{3} | \\(National Average Drug Acquisition Cost\\)", "")
+        ) |>
+      colorder(year) |>
+      roworder(title, -year),
+    download = download |>
+      sbt(N > 1) |>
+      funique(cols = c("title", "download"))
   )
 }
 
@@ -87,20 +133,35 @@ catalog_health <- function() {
       distribution
     )
 
-  keys <- new_df(title = x$title, keyword = make_join_col(x, keyword)) |>
+  keys <- new_df(
+    title = x$title,
+    keyword = make_join_col(x, keyword)) |>
     sbt(keyword != "healthcare") |>
     mtt(keyword = stri_replace_all_regex(keyword, ", healthcare|healthcare, ", ""))
 
   d <- rowbind(x$distribution, fill = TRUE)
 
-  tvec <- vec_rep_each(x$title, fnobs(get_elem(x$distribution, "data", DF.as.list = TRUE)))
+  trep <- vec_rep_each(
+    x$title,
+    get_elem(x$distribution, "data", DF.as.list = TRUE) |>
+      fnobs())
 
-  download <- new_tbl(title = tvec, download = delist(get_elem(d$data, "downloadURL"))) |>
+  download <- new_tbl(
+    title = trep,
+    download = get_elem(d$data, "downloadURL") |>
+      delist()) |>
     fcount(title, add = TRUE)
 
   list(
-    main = join_on_title(slt(x, -keyword, -distribution), keys) |> join_on_title(download |> sbt(N == 1) |> slt(-N)),
-    download = download |> sbt(N > 1)
+    main = list(
+      slt(x, -keyword, -distribution),
+      keys,
+      download |>
+        sbt(N == 1) |>
+        slt(-N)) |>
+      reduce(join_on_title),
+    download = download |>
+      sbt(N > 1)
   )
 
 }

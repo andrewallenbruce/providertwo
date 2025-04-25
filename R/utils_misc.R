@@ -58,16 +58,17 @@ set_clean <- function(i, x) {
 
 #' @autoglobal
 #' @noRd
-pdetect <- function(x, p, n = FALSE) {
+pdetect <- function(x, p, n = FALSE, ci = FALSE) {
   stri_detect_regex(str     = x,
                     pattern = p,
-                    negate  = n)
+                    negate  = n,
+                    case_insensitive = ci)
 }
 
 #' @autoglobal
 #' @noRd
-subset_detect <- function(i, j, p, n = FALSE) {
-  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n))
+subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
+  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
 }
 
 #' @autoglobal

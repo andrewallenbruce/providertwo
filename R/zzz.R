@@ -18,6 +18,7 @@
 
   open_dashboard <<- memoise::memoise(open_dashboard)
   open_national  <<- memoise::memoise(open_national)
+  quick          <<- memoise::memoise(quick)
 
 }
 
