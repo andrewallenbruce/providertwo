@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9220 (2025-04-25)
+
+* caid quick
+
+
 # providertwo 0.0.0.9219 (2025-04-25)
 
 * caid aliases, classes, quick method
