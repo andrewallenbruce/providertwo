@@ -73,19 +73,19 @@ caidMeta <- new_class(
 #' Provider Endpoint
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<caidMain>` object.
-#' @examplesIf interactive()
+#' @examples
 #' caidMain("mlr")
 #' caidMain("mesd")
 #' caidMain("wcv")
 #' caidMain("mhsud")
 #' caidMain("disability")
-#' caidMain("pi")
 #' caidMain("livebirth")
-#' caidMain("blood")
 #' caidMain("lang")
 #' caidMain("race")
 #' caidMain("rural")
 #' caidMain("waive")
+#' caidMain("newdrug_01")
+#' caidMain("newdrug_16")
 #' @autoglobal
 #' @rdname caid
 #' @export

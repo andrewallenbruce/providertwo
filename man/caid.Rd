@@ -16,18 +16,16 @@ An S7 \verb{<caidMain>} object.
 Provider Endpoint
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 caidMain("mlr")
 caidMain("mesd")
 caidMain("wcv")
 caidMain("mhsud")
 caidMain("disability")
-caidMain("pi")
 caidMain("livebirth")
-caidMain("blood")
 caidMain("lang")
 caidMain("race")
 caidMain("rural")
 caidMain("waive")
-\dontshow{\}) # examplesIf}
+caidMain("newdrug_01")
+caidMain("newdrug_16")
 }
