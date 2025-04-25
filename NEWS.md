@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9222 (2025-04-25)
+
+* quality_payment work
+
+
 # providertwo 0.0.0.9221 (2025-04-25)
 
 * class_dimensions, class_metadata
