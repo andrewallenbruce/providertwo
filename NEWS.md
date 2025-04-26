@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9225 (2025-04-26)
+
+* caidGroup, quick_ method
+
+
 # providertwo 0.0.0.9224 (2025-04-26)
 
 * offset tests
