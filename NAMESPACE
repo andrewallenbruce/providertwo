@@ -3,6 +3,7 @@
 export(affiliations)
 export(arg_npi)
 export(arg_state)
+export(caidGroup)
 export(caidMain)
 export(careGroup)
 export(careMain)

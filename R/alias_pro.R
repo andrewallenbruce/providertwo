@@ -22,7 +22,7 @@ pro_main <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-pro_group <- function(x) {
+pro_group <- function(x, call = caller_env()) {
   switch(
     x,
     MIPS = list(
@@ -31,12 +31,16 @@ pro_group <- function(x) {
                 "MIPS_patient",
                 "MIPS_clinician",
                 "MIPS_group",
-                "MIPS_virtual")),
+                "MIPS_virtual"
+                )
+      ),
     PDC = list(
       group = "Provider Data Catalog",
       alias = c("affiliations",
                 "clinicians",
-                "utilization")),
+                "utilization"
+                )
+      ),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

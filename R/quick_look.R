@@ -110,32 +110,36 @@ method(quick_, caidMain) <- function(x, offset, limit) {
     as_tbl()
 }
 
+method(quick_, caidGroup) <- function(x, offset, limit) {
 
-# map(glue("newdrug_0{1:9}"), quick)
-# map(glue("newdrug_1{0:6}"), quick)
-#
-# quick("mlr")
-# quick("mesd")
-# quick("wcv")
-# quick("mhsud")
-# quick("disability")
-# quick("livebirth")
-# quick("lang")
-# quick("race")
-# quick("rural")
-# quick("waive")
+  prop(x, "members") |>
+    map(\(x)
+        prop(x, "identifier") |>
+          request() |>
+          req_url_query(offset = offset,
+                        size   = limit)
+    ) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map(\(resp)
+        resp_body_string(resp) |>
+          fparse() |>
+          _[["results"]] |>
+          as_tbl() |>
+          map_na_if()
+    ) |>
+    set_names(
+      prop(x, "members") |>
+        names()
+    )
+}
+
+# quick("MLR")
+# quick("enterprise")
+# quick("demographics")
 #
 # quick("PDC")
 # quick("MIPS")
-#
-# quick("affiliations")
-# quick("clinicians")
-# quick("utilization")
-# quick("MIPS_perform")
-# quick("MIPS_patient")
-# quick("MIPS_clinician")
-# quick("MIPS_group")
-# quick("MIPS_virtual")
 #
 # quick("HHA")
 # quick("hospice")
@@ -174,7 +178,7 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     opt_out        = ,
     order_refer    = ,
     RBCS           = ,
-    transparency   = quick_(careMain(x), offset = offset, limit = cheapr_if_else(limit > 5000L, 5000L, limit)),
+    transparency   = quick_(careMain(x), offset = offset, limit = thresh(limit, 5000L)),
     HHA            = ,
     hospice        = ,
     hospital       = ,
@@ -182,48 +186,29 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     FQHC           = ,
     pending        = ,
     reassignment   = ,
-    SNF            = quick_(careGroup(x), offset = offset, limit = cheapr_if_else(limit > 5000L, 5000L, limit)),
-    affiliations   = ,
-    clinicians     = ,
-    utilization    = ,
-    MIPS_perform   = ,
-    MIPS_patient   = ,
-    MIPS_clinician = ,
-    MIPS_group     = ,
-    MIPS_virtual   = quick_(proMain(x), offset = offset, limit = cheapr_if_else(limit > 2000L, 2000L, limit)),
+    SNF            = quick_(careGroup(x), offset = offset, limit = thresh(limit, 5000L)),
+    # affiliations   = ,
+    # clinicians     = ,
+    # utilization    = ,
+    # MIPS_perform   = ,
+    # MIPS_patient   = ,
+    # MIPS_clinician = ,
+    # MIPS_group     = ,
+    # MIPS_virtual   = quick_(proMain(x), offset = offset, limit = thresh(limit, 2000L)),
     MIPS           = ,
-    PDC            = quick_(proGroup(x), offset = offset, limit = cheapr_if_else(limit > 2000L, 2000L, limit)),
-    mlr            = ,
-    mesd           = ,
-    wcv            = ,
-    mhsud          = ,
-    disability     = ,
-    # pi             = ,
-    livebirth      = ,
-    # blood          = ,
-    lang           = ,
-    race           = ,
-    rural          = ,
-    waive          = ,
-    newdrug_01     = ,
-    newdrug_02     = ,
-    newdrug_03     = ,
-    newdrug_04     = ,
-    newdrug_05     = ,
-    newdrug_06     = ,
-    newdrug_07     = ,
-    newdrug_08     = ,
-    newdrug_09     = ,
-    newdrug_10     = ,
-    newdrug_11     = ,
-    newdrug_12     = ,
-    newdrug_13     = ,
-    newdrug_14     = ,
-    newdrug_15     = ,
-    newdrug_16     = quick_(caidMain(x), offset = offset, limit = cheapr_if_else(limit > 8000L, 8000L, limit)),
+    PDC            = quick_(proGroup(x), offset = offset, limit = thresh(limit, 2000L)),
+    MLR            = ,
+    enterprise     = quick_(caidMain(x), offset = offset, limit = thresh(limit, 8000L)),
+    demographics   = quick_(caidGroup(x), offset = offset, limit = thresh(limit, 8000L)),
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
+}
+
+#' @autoglobal
+#' @noRd
+thresh <- function(n, threshold) {
+  cheapr_if_else(n > threshold, threshold, n)
 }
 
 # quick_care_temp("quality_payment")

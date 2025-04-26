@@ -4,48 +4,8 @@ Caid <- new_class(name = "Caid", package = NULL)
 
 #' @noRd
 #' @autoglobal
-caidDim <- new_class(
-  name = "caidDim",
-  package = NULL,
-  properties = list(
-    rows = new_property(
-      class_integer,
-      default = 0L
-    ),
-    pages = new_property(
-      class_integer,
-      getter = function(self)
-        offset_size(self@rows, 8000L)
-    ),
-    fields = class_character
-  ),
-  constructor = function(x) {
-
-    x <- x$identifier |>
-      request() |>
-      req_url_query(
-        schema  = "false",
-        keys    = "false",
-        results = "false",
-        count   = "true",
-        format  = "json",
-        rowIds  = "false",
-        offset  = 0L,
-        limit   = 1L
-      ) |>
-      perform_simple()
-
-    new_object(
-      S7_object(),
-      rows   = x$count,
-      fields = x$query$properties)
-  }
-)
-
-#' @noRd
-#' @autoglobal
-class_dimensions <- new_class(
-  name = "class_dimensions",
+caid_dimensions <- new_class(
+  name = "caid_dimensions",
   package = NULL,
   properties = list(
     limit = class_integer,
@@ -93,8 +53,8 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
-class_metadata <- new_class(
-  name = "class_metadata",
+caid_metadata <- new_class(
+  name = "caid_metadata",
   package = NULL,
   properties = list(
     description = class_character,
@@ -119,22 +79,12 @@ class_metadata <- new_class(
   }
 )
 
-#' Provider Endpoint
+#' Medicaid Endpoint
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<caidMain>` object.
 #' @examples
-#' caidMain("mlr")
-#' caidMain("mesd")
-#' caidMain("wcv")
-#' caidMain("mhsud")
-#' caidMain("disability")
-#' caidMain("livebirth")
-#' caidMain("lang")
-#' caidMain("race")
-#' caidMain("rural")
-#' caidMain("waive")
-#' caidMain("newdrug_01")
-#' caidMain("newdrug_16")
+#' caidMain("MLR")
+#' caidMain("enterprise")
 #' @autoglobal
 #' @rdname caid
 #' @export
@@ -144,9 +94,9 @@ caidMain <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = class_metadata,
+    metadata    = caid_metadata,
     identifier  = class_character,
-    dimensions  = class_dimensions
+    dimensions  = caid_dimensions
   ),
   constructor = function(alias) {
 
@@ -155,9 +105,36 @@ caidMain <- new_class(
     new_object(
       Caid(),
       title       = x$title,
-      metadata    = class_metadata(x),
+      metadata    = caid_metadata(x),
       identifier  = x$identifier,
-      dimensions  = class_dimensions(x)
+      dimensions  = caid_dimensions(x)
+    )
+  }
+)
+
+#' Medicaid Endpoint Group
+#' @param alias `<chr>` title alias
+#' @returns An S7 `<caidGroup>` object.
+#' @examples
+#' caidGroup("demographics")
+#' @autoglobal
+#' @rdname pro
+#' @export
+caidGroup <- new_class(
+  parent     = Caid,
+  name       = "caidGroup",
+  package    = NULL,
+  properties = list(
+    group = class_character,
+    members = class_list),
+  constructor = function(alias) {
+
+    x <- caid_group(alias)
+
+    new_object(
+      Caid(),
+      group  = x$group,
+      members = map(x$alias, caidMain) |> set_names(x$alias)
     )
   }
 )

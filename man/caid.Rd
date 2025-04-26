@@ -2,7 +2,7 @@
 % Please edit documentation in R/S7_caid.R
 \name{caidMain}
 \alias{caidMain}
-\title{Provider Endpoint}
+\title{Medicaid Endpoint}
 \usage{
 caidMain(alias)
 }
@@ -13,19 +13,9 @@ caidMain(alias)
 An S7 \verb{<caidMain>} object.
 }
 \description{
-Provider Endpoint
+Medicaid Endpoint
 }
 \examples{
-caidMain("mlr")
-caidMain("mesd")
-caidMain("wcv")
-caidMain("mhsud")
-caidMain("disability")
-caidMain("livebirth")
-caidMain("lang")
-caidMain("race")
-caidMain("rural")
-caidMain("waive")
-caidMain("newdrug_01")
-caidMain("newdrug_16")
+caidMain("MLR")
+caidMain("enterprise")
 }
