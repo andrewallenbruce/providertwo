@@ -2,20 +2,28 @@
 % Please edit documentation in R/S7_caid.R
 \name{caidMain}
 \alias{caidMain}
+\alias{caidGroup}
 \title{Medicaid Endpoint}
 \usage{
 caidMain(alias)
+
+caidGroup(alias)
 }
 \arguments{
-\item{alias}{\verb{<chr>} endpoint alias}
+\item{alias}{\verb{<chr>} title alias}
 }
 \value{
 An S7 \verb{<caidMain>} object.
+
+An S7 \verb{<caidGroup>} object.
 }
 \description{
 Medicaid Endpoint
+
+Medicaid Endpoint Group
 }
 \examples{
 caidMain("MLR")
 caidMain("enterprise")
+caidGroup("demographics")
 }

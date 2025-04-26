@@ -1,5 +1,18 @@
 #' @autoglobal
 #' @noRd
+thresh <- function(n, threshold) {
+  cheapr_if_else(n > threshold, threshold, n)
+}
+
+#' @autoglobal
+#' @noRd
+total_rows <- function(x) {
+  prop(x, "dimensions") |>
+    prop("rows")
+}
+
+#' @autoglobal
+#' @noRd
 quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
   S7_dispatch()
 })
@@ -7,7 +20,10 @@ quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
 method(quick_, careMain) <- function(x, offset, limit) {
   x <- prop(x, "identifier") |>
     request() |>
-    req_url_query(offset = offset, size = limit) |>
+    req_url_query(
+      offset = thresh(offset, total_rows(x)),
+      size   = thresh(limit, 5000L)
+      ) |>
     perform_simple()
 
   x$data |>
@@ -23,8 +39,11 @@ method(quick_, careGroup) <- function(x, offset, limit) {
     obj,
     \(x) prop(x, "identifier") |>
       request() |>
-      req_url_query(offset = offset, size = limit)
-  ) |>
+      req_url_query(
+        offset = thresh(offset, total_rows(x)),
+        size   = thresh(limit, 5000L)
+        )
+    ) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes()
 
@@ -56,8 +75,8 @@ method(quick_, proMain) <- function(x, offset, limit) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = offset,
-      limit   = limit
+      offset  = thresh(offset, total_rows(x)),
+      limit   = thresh(limit, 2000L)
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -72,9 +91,16 @@ method(quick_, proGroup) <- function(x, offset, limit) {
     map(\(x)
         prop(x, "identifier") |>
           request() |>
-          req_url_query(offset = offset,
-                        size   = limit)
-        ) |>
+          req_url_query(
+            count   = "false",
+            format  = "json",
+            keys    = "true",
+            results = "true",
+            rowIds  = "false",
+            schema  = "false",
+            offset  = thresh(offset, total_rows(x)),
+            limit   = thresh(limit, 2000L)
+            )) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(\(resp)
@@ -100,8 +126,8 @@ method(quick_, caidMain) <- function(x, offset, limit) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = offset,
-      limit   = limit
+      offset  = thresh(offset, total_rows(x)),
+      limit   = thresh(limit, 8000L)
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -116,9 +142,16 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
     map(\(x)
         prop(x, "identifier") |>
           request() |>
-          req_url_query(offset = offset,
-                        size   = limit)
-    ) |>
+          req_url_query(
+            count   = "false",
+            format  = "json",
+            keys    = "true",
+            results = "true",
+            rowIds  = "false",
+            schema  = "false",
+            offset  = thresh(offset, total_rows(x)),
+            limit   = thresh(limit, 8000L)
+            )) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(\(resp)
@@ -178,7 +211,7 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     opt_out        = ,
     order_refer    = ,
     RBCS           = ,
-    transparency   = quick_(careMain(x), offset = offset, limit = thresh(limit, 5000L)),
+    transparency   = quick_(careMain(x), offset = offset, limit = limit),
     HHA            = ,
     hospice        = ,
     hospital       = ,
@@ -186,40 +219,30 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     FQHC           = ,
     pending        = ,
     reassignment   = ,
-    SNF            = quick_(careGroup(x), offset = offset, limit = thresh(limit, 5000L)),
-    # affiliations   = ,
-    # clinicians     = ,
-    # utilization    = ,
-    # MIPS_perform   = ,
-    # MIPS_patient   = ,
-    # MIPS_clinician = ,
-    # MIPS_group     = ,
-    # MIPS_virtual   = quick_(proMain(x), offset = offset, limit = thresh(limit, 2000L)),
+    SNF            = quick_(careGroup(x), offset = offset, limit = limit),
+    # MIPS_virtual   = quick_(proMain(x), offset = offset, limit = limit),
     MIPS           = ,
-    PDC            = quick_(proGroup(x), offset = offset, limit = thresh(limit, 2000L)),
+    PDC            = quick_(proGroup(x), offset = offset, limit = limit),
     MLR            = ,
-    enterprise     = quick_(caidMain(x), offset = offset, limit = thresh(limit, 8000L)),
-    demographics   = quick_(caidGroup(x), offset = offset, limit = thresh(limit, 8000L)),
+    enterprise     = quick_(caidMain(x), offset = offset, limit = limit),
+    demographics   = quick_(caidGroup(x), offset = offset, limit = limit),
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
-}
-
-#' @autoglobal
-#' @noRd
-thresh <- function(n, threshold) {
-  cheapr_if_else(n > threshold, threshold, n)
 }
 
 # quick_care_temp("quality_payment")
 #' @autoglobal
 #' @noRd
 quick_care_temp <- function(x, offset = 0L, limit = 5000L) {
-  careTemp(alias = x) |>
+  careTemp(x) |>
     prop("endpoints") |>
     _[["identifier"]][1] |>
     request() |>
-    req_url_query(offset = offset, size = limit) |>
+    req_url_query(
+      offset = thresh(offset, total_rows(careTemp(x))),
+      size   = thresh(limit, 5000L)
+      ) |>
     perform_simple() |>
     map_na_if() |>
     rnm(clean_names) |>
@@ -230,7 +253,7 @@ quick_care_temp <- function(x, offset = 0L, limit = 5000L) {
 #' @autoglobal
 #' @noRd
 quick_open <- function(x, offset = 0L, limit = 500L) {
-  openMain(alias = x) |>
+  openMain(x) |>
     prop("identifier") |>
     request() |>
     req_url_query(
@@ -240,8 +263,8 @@ quick_open <- function(x, offset = 0L, limit = 500L) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = offset,
-      limit   = limit
+      offset  = thresh(offset, total_rows(openMain(x))),
+      limit   = thresh(limit, 500L)
     ) |>
     perform_simple() |>
     _[["results"]] |>
@@ -254,7 +277,7 @@ quick_open <- function(x, offset = 0L, limit = 500L) {
 #' @autoglobal
 #' @noRd
 quick_open_temp <- function(x, offset = 0L, limit = 500L) {
-  openTemp(alias = x) |>
+  openTemp(x) |>
     prop("endpoints") |>
     _[["identifier"]][1] |>
     request() |>
@@ -265,8 +288,8 @@ quick_open_temp <- function(x, offset = 0L, limit = 500L) {
       results = "true",
       rowIds  = "false",
       schema  = "false",
-      offset  = offset,
-      limit   = limit
+      offset  = thresh(offset, total_rows(openTemp(x))),
+      limit   = thresh(limit, 500L)
     ) |>
     perform_simple() |>
     _[["results"]] |>

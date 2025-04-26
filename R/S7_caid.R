@@ -118,7 +118,7 @@ caidMain <- new_class(
 #' @examples
 #' caidGroup("demographics")
 #' @autoglobal
-#' @rdname pro
+#' @rdname caid
 #' @export
 caidGroup <- new_class(
   parent     = Caid,
