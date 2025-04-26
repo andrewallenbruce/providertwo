@@ -1,62 +1,48 @@
-
-#' Quality Payment Program (QPP)
+#' Quality Payment Program
 #' @name quality_payment
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
 #' @examples
-#' qpp_stats(year = 2018:2025)
-#'
+#' qpp_stats(year = 2018:2025) |> print(n = Inf)
 #' qpp_elig(npi = 1043477615, year = 2018)
 #' qpp_elig(npi = 1144544834, year = 2025)
 #' qpp_elig(npi = 1932365699, year = 2024)
-#'
-#' # CORRECT FORM: eligibility/npis/1043477615/1144544834?year=2018
-#' # Multiple NPIs, One year at a time
-#' qpp_elig(npi = c(1144544834, 1043477615, 1932365699), year = 2024)
+#' qpp_elig(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
+#' qpp_elig(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
 NULL
 
 #' @autoglobal
 #' @export
 #' @rdname quality_payment
 qpp_stats <- function(year) {
-  f <- function(year) {
-    check_number_whole(year, min = 2018, max = 2025)
 
-    x <- glue("https://qpp.cms.gov/api/eligibility/stats/?year={year}") |>
-      request() |>
-      req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
-      perform_simple() |>
-      get_elem("data")
+  walk(year, \(year) check_number_whole(year, min = 2018, max = 2025))
 
+  map(year, \(y) {
     new_tbl(
-      year = rep(as.integer(year), 4),
+      year     = rep(as.integer(y), 4),
       category = c(rep("Individual", 2), rep("Group", 2)) |> factor_(),
-      statistic = rep(c(
-        "HCC Risk Score", "Dual Eligibility Ratio"
-      ), 2) |> factor_(),
-      mean = c(
-        x$individual$hccRiskScoreAverage,
-        x$individual$dualEligibilityAverage,
-        x$group$hccRiskScoreAverage,
-        x$group$dualEligibilityAverage
-      )
-    )
-  }
-  map(year, f) |>
+      metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2) |> factor_(),
+      mean     = request("https://qpp.cms.gov/api/eligibility/stats") |>
+        req_url_query(year = y) |>
+        perform_simple() |>
+        get_elem("data") |>
+        unlist(use.names = FALSE))
+    }
+  ) |>
     rowbind() |>
-    roworder(statistic, category)
+    roworder(metric, category)
 }
 
 #' @autoglobal
 #' @export
 #' @rdname quality_payment
-qpp_elig <- function(npi, year) {
+qpp_elig <- function(year, npi) {
+
   check_number_whole(year, min = 2018, max = 2025)
 
-  npi <- paste(npi, collapse = ",")
-
-  x <- glue("https://qpp.cms.gov/api/eligibility/npis/{npi}") |>
-    request() |>
+  x <- request("https://qpp.cms.gov/api/eligibility/npis/") |>
+    req_url_path_append(paste(npi, collapse = ",")) |>
     req_url_query(year = year) |>
     req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
     req_error(body = \(resp) resp_body_json(resp)$error$message) |>
@@ -66,14 +52,12 @@ qpp_elig <- function(npi, year) {
 
   x |>
     mtt(
-      year = as.integer(year),
-      nationalProviderIdentifierType = factor_(val_match(
-        nationalProviderIdentifierType, 1 ~ "I", 2 ~ "O"
-      )),
-      firstApprovedDate = as_date(firstApprovedDate),
-      specialty_description = x$specialty$specialtyDescription,
-      specialty_type = x$specialty$typeDescription,
-      specialty_category = x$specialty$categoryReference
+      year                           = as.integer(year),
+      nationalProviderIdentifierType = factor_(val_match(nationalProviderIdentifierType, 1 ~ "I", 2 ~ "O")),
+      firstApprovedDate              = as_date(firstApprovedDate),
+      specialty_description          = x$specialty$specialtyDescription,
+      specialty_type                 = x$specialty$typeDescription,
+      specialty_category             = x$specialty$categoryReference
     ) |>
     slt(-specialty) |>
     rnm(qpp_name("base")) |>
@@ -143,3 +127,8 @@ qpp_name <- function(x, call = caller_env()) {
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
+
+# x <- request("https://qpp.cms.gov/api/eligibility/stats") |>
+# req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
+# req_url_query(year = year) |> perform_simple() |>
+# get_elem("data") |> unlist(use.names = FALSE)

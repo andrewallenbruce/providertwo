@@ -4,11 +4,11 @@
 \alias{quality_payment}
 \alias{qpp_stats}
 \alias{qpp_elig}
-\title{Quality Payment Program (QPP)}
+\title{Quality Payment Program}
 \usage{
 qpp_stats(year)
 
-qpp_elig(npi, year)
+qpp_elig(year, npi)
 }
 \arguments{
 \item{year}{A vector of years from 2018 to 2025}
@@ -16,16 +16,13 @@ qpp_elig(npi, year)
 \item{npi}{A vector of NPIs}
 }
 \description{
-Quality Payment Program (QPP)
+Quality Payment Program
 }
 \examples{
-qpp_stats(year = 2018:2025)
-
+qpp_stats(year = 2018:2025) |> print(n = Inf)
 qpp_elig(npi = 1043477615, year = 2018)
 qpp_elig(npi = 1144544834, year = 2025)
 qpp_elig(npi = 1932365699, year = 2024)
-
-# CORRECT FORM: eligibility/npis/1043477615/1144544834?year=2018
-# Multiple NPIs, One year at a time
-qpp_elig(npi = c(1144544834, 1043477615, 1932365699), year = 2024)
+qpp_elig(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
+qpp_elig(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
 }
