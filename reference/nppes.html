@@ -9,7 +9,7 @@ Search the NPPES NPI Registry"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9224</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,19 +80,15 @@ Search the NPPES NPI Registry"></head><body>
 
 
 <dt id="arg-npi">npi<a class="anchor" aria-label="anchor" href="#arg-npi"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Search terms, separated by spaces</p></dd>
+<dd><p><code>&lt;chr&gt;</code> Unique 10-digit National Provider Identifier number issued by CMS to US healthcare providers through NPPES.</p></dd>
 
 
 <dt id="arg-entity">entity<a class="anchor" aria-label="anchor" href="#arg-entity"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Entity type: <code>individual</code> or <code>organization</code></p></dd>
+<dd><p><code>&lt;chr&gt;</code> Entity type; one of either I for Individual (NPI-1) or O for Organizational (NPI-2)</p></dd>
 
 
-<dt id="arg-first">first<a class="anchor" aria-label="anchor" href="#arg-first"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Individual provider's first name</p></dd>
-
-
-<dt id="arg-last">last<a class="anchor" aria-label="anchor" href="#arg-last"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Individual provider's last name</p></dd>
+<dt id="arg-first-last">first, last<a class="anchor" aria-label="anchor" href="#arg-first-last"></a></dt>
+<dd><p><code>&lt;chr&gt;</code> Individual provider's name</p></dd>
 
 
 <dt id="arg-organization">organization<a class="anchor" aria-label="anchor" href="#arg-organization"></a></dt>
@@ -100,27 +96,27 @@ Search the NPPES NPI Registry"></head><body>
 
 
 <dt id="arg-name-type">name_type<a class="anchor" aria-label="anchor" href="#arg-name-type"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Name purpose: <code>legal</code> or <code>de</code></p></dd>
+<dd><p><code>&lt;chr&gt;</code> Type of individual the first and last name parameters refer to; one of either AO for Authorized Officials or Provider for Individual Providers.</p></dd>
 
 
 <dt id="arg-taxonomy-desc">taxonomy_desc<a class="anchor" aria-label="anchor" href="#arg-taxonomy-desc"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Taxonomy description</p></dd>
+<dd><p><code>&lt;chr&gt;</code> Provider's taxonomy description, e.g. Pharmacist, Pediatrics</p></dd>
 
 
 <dt id="arg-city">city<a class="anchor" aria-label="anchor" href="#arg-city"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> City</p></dd>
+<dd><p><code>&lt;chr&gt;</code> City name. For military addresses, search for either APO or FPO.</p></dd>
 
 
 <dt id="arg-state">state<a class="anchor" aria-label="anchor" href="#arg-state"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> State</p></dd>
+<dd><p><code>&lt;chr&gt;</code> 2-character state abbreviation. If it is the only input, one other parameter besides entype and country is required.</p></dd>
 
 
 <dt id="arg-zip">zip<a class="anchor" aria-label="anchor" href="#arg-zip"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Zip code</p></dd>
+<dd><p><code>&lt;chr&gt;</code> WC 5- to 9-digit zip code, without a hyphen.</p></dd>
 
 
 <dt id="arg-country">country<a class="anchor" aria-label="anchor" href="#arg-country"></a></dt>
-<dd><p><code>&lt;chr&gt;</code> Country code</p></dd>
+<dd><p><code>&lt;chr&gt;</code> 2-character country abbreviation. Can be the only input, as long as it is not US.</p></dd>
 
 </dl></div>
     <div class="section level2">
