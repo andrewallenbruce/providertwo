@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9223 (2025-04-25)
+
+* removed files from data-raw
+* qpp work
+
+
 # providertwo 0.0.0.9222 (2025-04-25)
 
 * quality_payment work
