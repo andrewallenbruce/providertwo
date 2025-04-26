@@ -38,7 +38,7 @@ npi_nlm <- function(terms, npi = NULL) {
     # req_url_query(ef = "NPI:npi,name.full:full_name,provider_type:specialty,addr_practice.full:full_address") |>
     # req_url_query(q = "NPI:1083618052")
 
-  n <- yank(perform_simple(req))
+  n <- perform_simple(req) |> _[[1]]
 
   if (n <= 500L) {
     cli_results(n, 500L, "NPPES", "NLM")
@@ -62,17 +62,16 @@ npi_nlm <- function(terms, npi = NULL) {
 
 #' Search the NPPES NPI Registry
 #'
-#' @param npi `<chr>` Search terms, separated by spaces
-#' @param entity `<chr>` Entity type: `individual` or `organization`
-#' @param first `<chr>` Individual provider's first name
-#' @param last `<chr>` Individual provider's last name
+#' @param npi `<chr>` Unique 10-digit National Provider Identifier number issued by CMS to US healthcare providers through NPPES.
+#' @param entity `<chr>` Entity type; one of either I for Individual (NPI-1) or O for Organizational (NPI-2)
+#' @param first,last `<chr>` Individual provider's name
 #' @param organization `<chr>` Organizational provider's name
-#' @param name_type `<chr>` Name purpose: `legal` or `de`
-#' @param taxonomy_desc `<chr>` Taxonomy description
-#' @param city `<chr>` City
-#' @param state `<chr>` State
-#' @param zip `<chr>` Zip code
-#' @param country `<chr>` Country code
+#' @param name_type `<chr>` Type of individual the first and last name parameters refer to; one of either AO for Authorized Officials or Provider for Individual Providers.
+#' @param taxonomy_desc `<chr>` Provider's taxonomy description, e.g. Pharmacist, Pediatrics
+#' @param city `<chr>` City name. For military addresses, search for either APO or FPO.
+#' @param state `<chr>` 2-character state abbreviation. If it is the only input, one other parameter besides entype and country is required.
+#' @param zip `<chr>` WC 5- to 9-digit zip code, without a hyphen.
+#' @param country `<chr>` 2-character country abbreviation. Can be the only input, as long as it is not US.
 #' @returns `<tibble>` of search results
 #' @examples
 #' npi_nppes(npi = npi_ex$k[1:2]) |> str()

@@ -31,27 +31,25 @@ npi_nppes(
 \arguments{
 \item{terms}{\verb{<chr>} Search terms, separated by spaces}
 
-\item{npi}{\verb{<chr>} Search terms, separated by spaces}
+\item{npi}{\verb{<chr>} Unique 10-digit National Provider Identifier number issued by CMS to US healthcare providers through NPPES.}
 
-\item{entity}{\verb{<chr>} Entity type: \code{individual} or \code{organization}}
+\item{entity}{\verb{<chr>} Entity type; one of either I for Individual (NPI-1) or O for Organizational (NPI-2)}
 
-\item{first}{\verb{<chr>} Individual provider's first name}
-
-\item{last}{\verb{<chr>} Individual provider's last name}
+\item{first, last}{\verb{<chr>} Individual provider's name}
 
 \item{organization}{\verb{<chr>} Organizational provider's name}
 
-\item{name_type}{\verb{<chr>} Name purpose: \code{legal} or \code{de}}
+\item{name_type}{\verb{<chr>} Type of individual the first and last name parameters refer to; one of either AO for Authorized Officials or Provider for Individual Providers.}
 
-\item{taxonomy_desc}{\verb{<chr>} Taxonomy description}
+\item{taxonomy_desc}{\verb{<chr>} Provider's taxonomy description, e.g. Pharmacist, Pediatrics}
 
-\item{city}{\verb{<chr>} City}
+\item{city}{\verb{<chr>} City name. For military addresses, search for either APO or FPO.}
 
-\item{state}{\verb{<chr>} State}
+\item{state}{\verb{<chr>} 2-character state abbreviation. If it is the only input, one other parameter besides entype and country is required.}
 
-\item{zip}{\verb{<chr>} Zip code}
+\item{zip}{\verb{<chr>} WC 5- to 9-digit zip code, without a hyphen.}
 
-\item{country}{\verb{<chr>} Country code}
+\item{country}{\verb{<chr>} 2-character country abbreviation. Can be the only input, as long as it is not US.}
 }
 \value{
 \verb{<tibble>} of search results

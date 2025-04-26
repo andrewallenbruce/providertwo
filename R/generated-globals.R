@@ -106,6 +106,8 @@ utils::globalVariables(c(
   "main",
   # <catalog_care>
   "mediaType",
+  # <qpp_stats>
+  "metric",
   # <qpp_elig>
   "middle_name",
   # <catalog_care>
@@ -157,8 +159,6 @@ utils::globalVariables(c(
   "specialty_description",
   # <qpp_elig>
   "specialty_type",
-  # <qpp_stats>
-  "statistic",
   # <clinicians>
   "telehlth",
   # <catalog_care>

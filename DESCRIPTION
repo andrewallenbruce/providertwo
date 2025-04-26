@@ -59,6 +59,7 @@ Collate:
     'import-standalone-obj-type.R'
     'import-standalone-purrr.R'
     'import-standalone-types-check.R'
+    'offset.R'
     'open_summary.R'
     'providertwo-package.R'
     'query.R'
