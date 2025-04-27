@@ -277,7 +277,7 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     SPICE             = ,
     CAHPS_hospice     = ,
     HHVBP             = ,
-    HHCA              = ,
+    HHC               = ,
     HHCAHPS           = quick_(proGroup(x), offset = offset, limit = limit),
     PROF_covered      = ,
     PROF_physician    = ,
