@@ -1,5 +1,20 @@
 #' @autoglobal
 #' @noRd
+fmt_entity <- function(x, type = c("int", "chr")) {
+
+  type <- match.arg(type, c("int", "chr"))
+
+  switch(
+    type,
+    int = val_match(x, 1 ~ "I", 2 ~ "O"),
+    chr = val_match(x, "NPI-1" ~ "I", "NPI-2" ~ "O")
+  ) |>
+    factor_()
+
+}
+
+#' @autoglobal
+#' @noRd
 print_list <- function(ls, prefix = "") {
   if (length(ls) == 0) cat("<empty>\n")
 

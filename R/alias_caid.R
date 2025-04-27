@@ -23,7 +23,11 @@ caid_main <- function(x, call = caller_env()) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(.catalog$caid$main, x) |> c()
+  res <- select_alias(.catalog$caid$main, x)
+
+  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+
+  c(res)
 
 }
 
@@ -77,19 +81,14 @@ caid_temp <- function(x, call = caller_env()) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  x <- select_alias(.catalog$caid$temp, x)
+  res <- select_alias(.catalog$caid$temp, x)
 
-  l <- slt(x, -data) |> c()
+  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
-  list(
-    title       = l$title,
-    description = l$description,
-    periodicity = l$periodicity,
-    contact     = l$contact,
-    dictionary  = l$dictionary,
-    site        = l$site,
-    identifier  = get_elem(x, "data")[[1]]$identifier[1],
-    endpoints   = get_elem(x, "data")[[1]]
+  list_tidy(
+    !!!c(slt(res, -data)),
+    endpoints   = get_elem(res, "data") |> _[[1]],
+    identifier  = endpoints$identifier[1]
   )
 
 }

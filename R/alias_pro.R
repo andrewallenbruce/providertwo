@@ -16,7 +16,11 @@ pro_main <- function(x, call = caller_env()) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(.catalog$pro, x) |> c()
+  res <- select_alias(.catalog$pro, x)
+
+  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+
+  c(res)
 
 }
 

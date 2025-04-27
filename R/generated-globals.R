@@ -51,6 +51,9 @@ utils::globalVariables(c(
   # <catalog_care>
   # <.tidy_resources>
   "downloadURL",
+  # <caid_temp>
+  # <care_temp>
+  "endpoints",
   # <qpp_elig>
   "enroll_year",
   # <qpp_elig>

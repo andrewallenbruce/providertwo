@@ -1,5 +1,18 @@
 #' @autoglobal
 #' @noRd
+thresh <- function(n, threshold) {
+  cheapr_if_else(n > threshold, threshold, n)
+}
+
+#' @autoglobal
+#' @noRd
+total_rows <- function(x) {
+  prop(x, "dimensions") |>
+    prop("rows")
+}
+
+#' @autoglobal
+#' @noRd
 make_address <- function(a1, a2) {
   cheapr_if_else(!is_na(a2), paste(a1, a2), a1)
 }

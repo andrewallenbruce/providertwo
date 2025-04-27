@@ -4,48 +4,54 @@ care_main <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    contact                   = "Public Reporting of Missing Digital Contact Information",
-    crosswalk                 = "Medicare Provider and Supplier Taxonomy Crosswalk",
-    dialysis                  = "Medicare Dialysis Facilities",
-    enrollees                 = "Public Provider Enrollment",
-    facilities                = "Provider of Services File - Hospital & Non-Hospital Facilities",
-    IQIES                     = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
-    laboratories              = "Provider of Services File - Clinical Laboratories",
-    long_term                 = "Long-Term Care Facility Characteristics",
-    opt_out                   = "Opt Out Affidavits",
-    order_refer               = "Order and Referring",
-    RBCS                      = "Restructured BETOS Classification System",
-    transparency              = "Hospital Price Transparency Enforcement Activities and Outcomes",
-    HHA_all_owners            = "^Home Health Agency All Owners$",
-    HHA_cost_report           = "^Home Health Agency Cost Report$",
-    HHA_enrollments           = "^Home Health Agency Enrollments$",
-    hospice_all_owners        = "^Hospice All Owners$",
-    hospice_enrollments       = "^Hospice Enrollments$",
-    hospice_acute             = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
-    hospital_all_owners       = "^Hospital All Owners$",
-    hospital_chow             = "^Hospital Change of Ownership$",
-    hospital_chow_owner       = "^Hospital Change of Ownership - Owner Information$",
-    hospital_enrollments      = "^Hospital Enrollments$",
-    RHC_all_owners            = "^Rural Health Clinic All Owners$",
-    RHC_enrollments           = "^Rural Health Clinic Enrollments$",
-    FQHC_all_owners           = "^Federally Qualified Health Center All Owners$",
-    FQHC_enrollments          = "^Federally Qualified Health Center Enrollments$",
-    PILAT_non_physicians      = "^Pending Initial Logging and Tracking Non Physicians$",
-    PILAT_physicians          = "^Pending Initial Logging and Tracking Physicians$",
-    revalidation_group        = "^Revalidation Clinic Group Practice Reassignment$",
-    revalidation_due_date     = "^Revalidation Due Date List$",
-    revalidation_reassignment = "^Revalidation Reassignment List$",
-    SNF_all_owners            = "^Skilled Nursing Facility All Owners$",
-    SNF_chow                  = "^Skilled Nursing Facility Change of Ownership$",
-    SNF_chow_owner            = "^Skilled Nursing Facility Change of Ownership - Owner Information$",
-    SNF_cost_report           = "^Skilled Nursing Facility Cost Report$",
-    SNF_enrollments           = "^Skilled Nursing Facility Enrollments$",
+    contact = "Public Reporting of Missing Digital Contact Information",
+    crosswalk = "Medicare Provider and Supplier Taxonomy Crosswalk",
+    dialysis = "Medicare Dialysis Facilities",
+    enrollees = "Public Provider Enrollment",
+    facilities = "Provider of Services File - Hospital & Non-Hospital Facilities",
+    IQIES = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
+    laboratories = "Provider of Services File - Clinical Laboratories",
+    long_term = "Long-Term Care Facility Characteristics",
+    opt_out = "Opt Out Affidavits",
+    order_refer = "Order and Referring",
+    RBCS = "Restructured BETOS Classification System",
+    transparency = "Hospital Price Transparency Enforcement Activities and Outcomes",
+    HHA_owners = "^Home Health Agency All Owners$",
+    HHA_cost_report = "^Home Health Agency Cost Report$",
+    HHA_enrollments = "^Home Health Agency Enrollments$",
+    hospice_owners = "^Hospice All Owners$",
+    hospice_enrollments = "^Hospice Enrollments$",
+    hospice_acute = "Medicare Post-Acute Care and Hospice - by Geography & Provider",
+    hospital_owners = "^Hospital All Owners$",
+    hospital_chow = "^Hospital Change of Ownership$",
+    hospital_chow_owner = "^Hospital Change of Ownership - Owner Information$",
+    hospital_enrollments = "^Hospital Enrollments$",
+    RHC_owners = "^Rural Health Clinic All Owners$",
+    RHC_enrollments = "^Rural Health Clinic Enrollments$",
+    FQHC_owners = "^Federally Qualified Health Center All Owners$",
+    FQHC_enrollments = "^Federally Qualified Health Center Enrollments$",
+    PILAT_non_physicians = "^Pending Initial Logging and Tracking Non Physicians$",
+    PILAT_physicians = "^Pending Initial Logging and Tracking Physicians$",
+    REVAL_group = "^Revalidation Clinic Group Practice Reassignment$",
+    REVAL_due_date = "^Revalidation Due Date List$",
+    REVAL_reassignment = "^Revalidation Reassignment List$",
+    SNF_owners = "^Skilled Nursing Facility All Owners$",
+    SNF_chow = "^Skilled Nursing Facility Change of Ownership$",
+    SNF_chow_owner = "^Skilled Nursing Facility Change of Ownership - Owner Information$",
+    SNF_cost_report = "^Skilled Nursing Facility Cost Report$",
+    SNF_enrollments = "^Skilled Nursing Facility Enrollments$",
 
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  select_alias(.catalog$care$main, x) |> c()
+  res <- select_alias(.catalog$care$main, x)
+
+  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+
+  c(res)
 
 }
 
@@ -59,7 +65,7 @@ care_group <- function(x, call = caller_env()) {
     HHA = list(
       group = "Home Health Agencies",
       alias = c(
-        "HHA_all_owners",
+        "HHA_owners",
         "HHA_cost_report",
         "HHA_enrollments"
       )
@@ -67,7 +73,7 @@ care_group <- function(x, call = caller_env()) {
     hospice = list(
       group = "Hospices",
       alias = c(
-        "hospice_all_owners",
+        "hospice_owners",
         "hospice_enrollments",
         "hospice_acute"
       )
@@ -75,7 +81,7 @@ care_group <- function(x, call = caller_env()) {
     hospital = list(
       group = "Hospitals",
       alias = c(
-        "hospital_all_owners",
+        "hospital_owners",
         "hospital_chow",
         "hospital_chow_owner",
         "hospital_enrollments"
@@ -84,14 +90,14 @@ care_group <- function(x, call = caller_env()) {
     RHC = list(
       group = "Rural Health Clinics",
       alias = c(
-        "RHC_all_owners",
+        "RHC_owners",
         "RHC_enrollments"
       )
     ),
     FQHC = list(
       group = "Federally Qualified Health Centers",
       alias = c(
-        "FQHC_all_owners",
+        "FQHC_owners",
         "FQHC_enrollments"
       )
     ),
@@ -105,15 +111,15 @@ care_group <- function(x, call = caller_env()) {
     reassignment = list(
       group = "Revalidation Reassignment Lists",
       alias = c(
-        "revalidation_group",
-        "revalidation_due_date",
-        "revalidation_reassignment"
+        "REVAL_group",
+        "REVAL_due_date",
+        "REVAL_reassignment"
       )
     ),
     SNF = list(
       group = "Skilled Nursing Facilities",
       alias = c(
-        "SNF_all_owners",
+        "SNF_owners",
         "SNF_chow",
         "SNF_chow_owner",
         "SNF_cost_report",
@@ -154,19 +160,14 @@ care_temp <- function(x, call = caller_env()) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  x <- select_alias(.catalog$care$temp, x)
+  res <- select_alias(.catalog$care$temp, x)
 
-  l <- slt(x, -data) |> c()
+  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
-  list(
-    title       = l$title,
-    description = l$description,
-    periodicity = l$periodicity,
-    contact     = l$contact,
-    dictionary  = l$dictionary,
-    site        = l$site,
-    identifier  = get_elem(x, "data")[[1]]$identifier[1],
-    endpoints   = get_elem(x, "data")[[1]]
+  list_tidy(
+    !!!c(slt(res, -data)),
+    endpoints   = get_elem(res, "data") |> _[[1]],
+    identifier  = endpoints$identifier[1]
   )
 
 }

@@ -136,7 +136,7 @@ npi_nppes <- function(npi            = NULL,
       slt(-created_epoch, -last_updated_epoch) |>
       as_tbl() |>
       rrapply(
-        condition = \(x) ! is.null(x),
+        condition = \(x) !is.null(x),
         deflt = NA_character_,
         how = "list",
         options = list(namesep = "_", simplify = TRUE)

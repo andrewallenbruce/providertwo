@@ -1,15 +1,4 @@
-#' @autoglobal
-#' @noRd
-thresh <- function(n, threshold) {
-  cheapr_if_else(n > threshold, threshold, n)
-}
 
-#' @autoglobal
-#' @noRd
-total_rows <- function(x) {
-  prop(x, "dimensions") |>
-    prop("rows")
-}
 
 #' @autoglobal
 #' @noRd
@@ -116,6 +105,57 @@ method(quick_, proGroup) <- function(x, offset, limit) {
       )
 }
 
+method(quick_, openMain) <- function(x, offset, limit) {
+  prop(x, "identifier") |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      offset  = thresh(offset, total_rows(x)),
+      limit   = thresh(limit, 500L)
+    ) |>
+    perform_simple() |>
+    _[["results"]] |>
+    map_na_if() |>
+    rnm(clean_names) |>
+    as_tbl()
+}
+
+method(quick_, openGroup) <- function(x, offset, limit) {
+
+  prop(x, "members") |>
+    map(\(x)
+        prop(x, "identifier") |>
+          request() |>
+          req_url_query(
+            count   = "false",
+            format  = "json",
+            keys    = "true",
+            results = "true",
+            rowIds  = "false",
+            schema  = "false",
+            offset  = thresh(offset, total_rows(x)),
+            limit   = thresh(limit, 500L)
+          )) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map(\(resp)
+        resp_body_string(resp) |>
+          fparse() |>
+          _[["results"]] |>
+          as_tbl() |>
+          map_na_if()
+    ) |>
+    set_names(
+      prop(x, "members") |>
+        names()
+    )
+}
+
 method(quick_, caidMain) <- function(x, offset, limit) {
   prop(x, "identifier") |>
     request() |>
@@ -174,6 +214,9 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
 # quick("PDC")
 # quick("MIPS")
 #
+# quick("summary")
+# quick("profile")
+#
 # quick("HHA")
 # quick("hospice")
 # quick("hospital")
@@ -200,101 +243,53 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
 quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
   switch(
     x,
-    contact        = ,
-    crosswalk      = ,
-    dialysis       = ,
-    enrollees      = ,
-    facilities     = ,
-    IQIES          = ,
-    laboratories   = ,
-    long_term      = ,
-    opt_out        = ,
-    order_refer    = ,
-    RBCS           = ,
-    transparency   = quick_(careMain(x), offset = offset, limit = limit),
-    HHA            = ,
-    hospice        = ,
-    hospital       = ,
-    RHC            = ,
-    FQHC           = ,
-    pending        = ,
-    reassignment   = ,
-    SNF            = quick_(careGroup(x), offset = offset, limit = limit),
-    # MIPS_virtual   = quick_(proMain(x), offset = offset, limit = limit),
-    MIPS           = ,
-    PDC            = quick_(proGroup(x), offset = offset, limit = limit),
-    MLR            = ,
-    enterprise     = quick_(caidMain(x), offset = offset, limit = limit),
-    demographics   = quick_(caidGroup(x), offset = offset, limit = limit),
+    contact           = ,
+    crosswalk         = ,
+    dialysis          = ,
+    enrollees         = ,
+    facilities        = ,
+    IQIES             = ,
+    laboratories      = ,
+    long_term         = ,
+    opt_out           = ,
+    order_refer       = ,
+    RBCS              = ,
+    transparency      = quick_(careMain(x), offset = offset, limit = limit),
+    HHA               = ,
+    hospice           = ,
+    hospital          = ,
+    RHC               = ,
+    FQHC              = ,
+    pending           = ,
+    reassignment      = ,
+    SNF               = quick_(careGroup(x), offset = offset, limit = limit),
+    affiliations      = ,
+    clinicians        = ,
+    utilization       = ,
+    MIPS_perform      = ,
+    MIPS_patient      = ,
+    MIPS_clinician    = ,
+    MIPS_group        = ,
+    MIPS_virtual      = quick_(proMain(x), offset = offset, limit = limit),
+    MIPS              = ,
+    PDC               = quick_(proGroup(x), offset = offset, limit = limit),
+    PROF_covered      = ,
+    PROF_physician    = ,
+    PROF_information  = ,
+    PROF_mapping      = ,
+    PROF_entity       = ,
+    PROF_teaching     = ,
+    SUMM_dashboard    = ,
+    SUMM_state_all    = ,
+    SUMM_state_group  = ,
+    SUMM_nation_all   = ,
+    SUMM_nation_group = quick_(openMain(x), offset = offset, limit = limit),
+    profile           = ,
+    summary           = quick_(openGroup(x), offset = offset, limit = limit),
+    MLR               = ,
+    enterprise        = quick_(caidMain(x), offset = offset, limit = limit),
+    demographics      = quick_(caidGroup(x), offset = offset, limit = limit),
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
-
-# quick_care_temp("quality_payment")
-#' @autoglobal
-#' @noRd
-quick_care_temp <- function(x, offset = 0L, limit = 5000L) {
-  careTemp(x) |>
-    prop("endpoints") |>
-    _[["identifier"]][1] |>
-    request() |>
-    req_url_query(
-      offset = thresh(offset, total_rows(careTemp(x))),
-      size   = thresh(limit, 5000L)
-      ) |>
-    perform_simple() |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
-}
-
-# quick_open("profile_covered")
-#' @autoglobal
-#' @noRd
-quick_open <- function(x, offset = 0L, limit = 500L) {
-  openMain(x) |>
-    prop("identifier") |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      results = "true",
-      rowIds  = "false",
-      schema  = "false",
-      offset  = thresh(offset, total_rows(openMain(x))),
-      limit   = thresh(limit, 500L)
-    ) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
-}
-
-# quick_open_temp("ownership")
-#' @autoglobal
-#' @noRd
-quick_open_temp <- function(x, offset = 0L, limit = 500L) {
-  openTemp(x) |>
-    prop("endpoints") |>
-    _[["identifier"]][1] |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      results = "true",
-      rowIds  = "false",
-      schema  = "false",
-      offset  = thresh(offset, total_rows(openTemp(x))),
-      limit   = thresh(limit, 500L)
-    ) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
-}
-

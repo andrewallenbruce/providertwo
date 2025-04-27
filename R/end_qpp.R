@@ -53,7 +53,7 @@ qpp_elig <- function(year, npi) {
   x |>
     mtt(
       year                           = as.integer(year),
-      nationalProviderIdentifierType = factor_(val_match(nationalProviderIdentifierType, 1 ~ "I", 2 ~ "O")),
+      nationalProviderIdentifierType = fmt_entity(nationalProviderIdentifierType),
       firstApprovedDate              = as_date(firstApprovedDate),
       specialty_description          = x$specialty$specialtyDescription,
       specialty_type                 = x$specialty$typeDescription,
