@@ -2,22 +2,27 @@
 #' @noRd
 Pro <- new_class(name = "Pro", package = NULL)
 
+
 #' @noRd
 #' @autoglobal
-proDim <- new_class(
-  name = "proDim",
+pro_dimensions <- new_class(
+  name = "pro_dimensions",
   package = NULL,
   properties = list(
-    rows = new_property(
-      class_integer,
-      default = 0L
-    ),
+    limit = class_integer,
+    rows = class_integer,
     pages = new_property(
       class_integer,
       getter = function(self)
-        offset_size(self@rows, 2000L)
+        offset_size(self@rows,
+                    self@limit)
     ),
-    fields = class_character
+    fields = new_property(
+      class_character,
+      getter = function(self)
+        as.list(self@fields) |>
+        set_names(self@fields)
+    )
   ),
   constructor = function(x) {
 
@@ -37,6 +42,7 @@ proDim <- new_class(
 
     new_object(
       S7_object(),
+      limit  = 2000L,
       rows   = x$count,
       fields = x$query$properties)
   }
@@ -44,8 +50,8 @@ proDim <- new_class(
 
 #' @noRd
 #' @autoglobal
-proMeta <- new_class(
-  name = "proMeta",
+pro_metadata <- new_class(
+  name = "pro_metadata",
   package = NULL,
   properties = list(
     description = class_character,
@@ -74,9 +80,9 @@ proMeta <- new_class(
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<proMain>` object.
 #' @examples
-#' proMain("affiliations")
-#' proMain("clinicians")
-#' proMain("utilization")
+#' proMain("PDC_affiliations")
+#' proMain("PDC_clinicians")
+#' proMain("PDC_utilization")
 #' @autoglobal
 #' @rdname pro
 #' @export
@@ -86,8 +92,8 @@ proMain <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = proMeta,
-    dimensions  = proDim,
+    metadata    = pro_metadata,
+    dimensions  = pro_dimensions,
     identifier  = class_character
   ),
   constructor = function(alias) {
@@ -97,8 +103,8 @@ proMain <- new_class(
     new_object(
       Pro(),
       title       = x$title,
-      metadata    = proMeta(x),
-      dimensions  = proDim(x),
+      metadata    = pro_metadata(x),
+      dimensions  = pro_dimensions(x),
       identifier  = x$identifier
     )
   }
@@ -119,15 +125,21 @@ proGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    members = class_list),
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, \(x) proMain(x)) |>
+          set_names(self@members)
+      )
+    ),
   constructor = function(alias) {
 
     x <- pro_group(alias)
 
     new_object(
       Pro(),
-      group  = x$group,
-      members = map(x$alias, proMain) |> set_names(x$alias)
+      group   = x$group,
+      members = x$alias
     )
   }
 )

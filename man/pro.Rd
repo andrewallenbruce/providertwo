@@ -23,9 +23,9 @@ Provider Endpoint
 Provider Endpoint Group
 }
 \examples{
-proMain("affiliations")
-proMain("clinicians")
-proMain("utilization")
+proMain("PDC_affiliations")
+proMain("PDC_clinicians")
+proMain("PDC_utilization")
 proGroup("PDC")
 proGroup("MIPS")
 }

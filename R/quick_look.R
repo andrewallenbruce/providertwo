@@ -1,5 +1,3 @@
-
-
 #' @autoglobal
 #' @noRd
 quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
@@ -211,8 +209,16 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
 # quick("enterprise")
 # quick("demographics")
 #
+# quick("suppliers")
 # quick("PDC")
 # quick("MIPS")
+# quick("LTCH")
+# quick("IRF")
+# quick("SPICE")
+# quick("CAHPS_hospice")
+# quick("HHVBP")
+# quick("HHCA")
+# quick("HHCAHPS")
 #
 # quick("summary")
 # quick("profile")
@@ -263,16 +269,16 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     pending           = ,
     reassignment      = ,
     SNF               = quick_(careGroup(x), offset = offset, limit = limit),
-    affiliations      = ,
-    clinicians        = ,
-    utilization       = ,
-    MIPS_perform      = ,
-    MIPS_patient      = ,
-    MIPS_clinician    = ,
-    MIPS_group        = ,
-    MIPS_virtual      = quick_(proMain(x), offset = offset, limit = limit),
+    suppliers         = quick_(proMain(x), offset = offset, limit = limit),
+    PDC               = ,
     MIPS              = ,
-    PDC               = quick_(proGroup(x), offset = offset, limit = limit),
+    LTCH              = ,
+    IRF               = ,
+    SPICE             = ,
+    CAHPS_hospice     = ,
+    HHVBP             = ,
+    HHCA              = ,
+    HHCAHPS           = quick_(proGroup(x), offset = offset, limit = limit),
     PROF_covered      = ,
     PROF_physician    = ,
     PROF_information  = ,

@@ -38,10 +38,6 @@ caid_dimensions <- new_class(
         limit   = 1L
       ) |>
       perform_simple()
-      # list_c() |>
-      # get_elem(
-      # c("^count$", "properties$"),
-      # regex = TRUE)
 
     new_object(
       S7_object(),
@@ -58,7 +54,6 @@ caid_metadata <- new_class(
   package = NULL,
   properties = list(
     description = class_character,
-    # periodicity = class_character,
     modified    = new_union(class_character, class_Date),
     dictionary  = class_character,
     download    = class_character
@@ -67,7 +62,6 @@ caid_metadata <- new_class(
     new_object(
       S7_object(),
       description = x$description,
-      # periodicity = x$periodicity,
       modified    = x$modified,
       dictionary  = x$dictionary,
       download    = x$download
@@ -122,15 +116,21 @@ caidGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    members = class_list),
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, \(x) caidMain(x)) |>
+        set_names(self@members)
+      )
+    ),
   constructor = function(alias) {
 
     x <- caid_group(alias)
 
     new_object(
       Caid(),
-      group  = x$group,
-      members = map(x$alias, caidMain) |> set_names(x$alias)
+      group   = x$group,
+      members = x$alias
     )
   }
 )

@@ -17,7 +17,7 @@ Create a new request by class
 }
 \examples{
 careMain("enrollees") |> new_request()
-proMain("affiliations") |> new_request()
+proMain("PDC_affiliations") |> new_request()
 openMain("PROF_covered") |> new_request()
 careGroup("hospital") |> new_request()
 }

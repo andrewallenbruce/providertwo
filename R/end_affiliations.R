@@ -61,7 +61,7 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  proMain("affiliations") |>
+  proMain("PDC_affiliations") |>
     new_request() |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
@@ -170,7 +170,7 @@ clinicians <- function(npi           = NULL,
     "adrs_id"              = add_id
   )
 
-  proMain("clinicians") |>
+  proMain("PDC_clinicians") |>
     new_request() |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
@@ -264,7 +264,7 @@ proUtilization <- new_class(
         "procedure_category"   = procedure,
         "count"                = count,
         "percentile"           = percentile),
-      request = proMain("utilization")
+      request = proMain("PDC_utilization")
       )
   }
 )
@@ -314,7 +314,7 @@ utilization <- function(npi         = NULL,
   ) |>
     format_query_pro()
 
-  req <- proMain("utilization") |> new_request() |> req_url_query(!!!args)
+  req <- proMain("PDC_utilization") |> new_request() |> req_url_query(!!!args)
 
   n <- req_url_query(req, count = "true", results = "false") |> perform_simple() |> _[["count"]]
 
