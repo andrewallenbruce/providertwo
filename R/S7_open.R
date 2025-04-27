@@ -4,20 +4,24 @@ Open <- new_class(name = "Open", package = NULL)
 
 #' @noRd
 #' @autoglobal
-openDim <- new_class(
-  name = "openDim",
+open_dimensions <- new_class(
+  name = "open_dimensions",
   package = NULL,
   properties = list(
-    rows = new_property(
-      class_integer,
-      default = 0L
-    ),
+    limit = class_integer,
+    rows = class_integer,
     pages = new_property(
       class_integer,
       getter = function(self)
-        offset_size(self@rows, 500L)
+        offset_size(self@rows,
+                    self@limit)
     ),
-    fields = class_character
+    fields = new_property(
+      class_character,
+      getter = function(self)
+        as.list(self@fields) |>
+        set_names(self@fields)
+    )
   ),
   constructor = function(x) {
 
@@ -37,6 +41,7 @@ openDim <- new_class(
 
     new_object(
       S7_object(),
+      limit  = 500L,
       rows   = x$count,
       fields = x$query$properties)
   }
@@ -44,13 +49,13 @@ openDim <- new_class(
 
 #' @noRd
 #' @autoglobal
-openMeta <- new_class(
-  name = "openMeta",
+open_metadata <- new_class(
+  name = "open_metadata",
   package = NULL,
   properties = list(
     description = class_character,
     modified    = new_union(class_character, class_Date),
-    download    = class_character
+    download    = new_union(NULL, class_character)
   ),
   constructor = function(x) {
     new_object(
@@ -72,13 +77,13 @@ openMeta <- new_class(
 #' openMain("PROF_mapping")
 #' openMain("PROF_entity")
 #' openMain("PROF_teaching")
-#' #openMain("SUMM_dashboard")
+#' openMain("SUMM_dashboard")
 #' openMain("SUMM_state_all")
 #' openMain("SUMM_state_group")
 #' openMain("SUMM_nation_all")
 #' openMain("SUMM_nation_group")
 #' @autoglobal
-#' @rdname openMain
+#' @rdname openpayments
 #' @export
 openMain <- new_class(
   parent     = Open,
@@ -86,9 +91,9 @@ openMain <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = openMeta,
-    dimensions  = openDim,
-    identifier  = class_character
+    identifier  = class_character,
+    metadata    = open_metadata,
+    dimensions  = open_dimensions
   ),
   constructor = function(alias) {
 
@@ -97,9 +102,9 @@ openMain <- new_class(
     new_object(
       Open(),
       title       = x$title,
-      metadata    = openMeta(x),
-      dimensions  = openDim(x),
-      identifier  = x$identifier
+      identifier  = x$identifier,
+      metadata    = open_metadata(x),
+      dimensions  = open_dimensions(x)
     )
   }
 )
@@ -111,7 +116,7 @@ openMain <- new_class(
 #' openGroup("profile")
 #  openGroup("summary")
 #' @autoglobal
-#' @rdname openGroup
+#' @rdname openpayments
 #' @export
 openGroup <- new_class(
   parent     = Open,
@@ -119,7 +124,13 @@ openGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    members = class_list),
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, openMain) |>
+        set_names(self@members)
+      )
+    ),
   constructor = function(alias) {
 
     x <- open_group(alias)
@@ -127,7 +138,7 @@ openGroup <- new_class(
     new_object(
       Open(),
       group  = x$group,
-      members = map(x$alias, openMain) |> set_names(x$alias)
+      members = x$alias
     )
   }
 )
@@ -144,7 +155,7 @@ openGroup <- new_class(
 #' openTemp("GROUP_entity_nature")
 #' openTemp("GROUP_all")
 #' @autoglobal
-#' @rdname openTemp
+#' @rdname openpayments
 #' @export
 openTemp <- new_class(
   parent     = Open,
@@ -152,27 +163,28 @@ openTemp <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = openMeta,
-    dimensions  = openDim,
+    metadata    = open_metadata,
+    dimensions  = open_dimensions,
     endpoints   = class_list
     ),
   constructor = function(alias) {
 
     x <- open_temp(alias)
 
-    m <- list(
+    x <- list(
+      title       = x$title[1],
       description = x$description[1],
-      modified = x$modified[1],
-      download = character(0),
-      identifier = x$identifier[1]
+      modified    = x$modified[1],
+      identifier  = x$identifier[1],
+      endpoints   = slt(x, year, identifier, download)
     )
 
     new_object(
       Open(),
-      title       = x$title[1],
-      metadata    = openMeta(m),
-      dimensions  = openDim(m),
-      endpoints   = slt(x, year, modified, identifier, download)
+      title       = x$title,
+      metadata    = open_metadata(x),
+      dimensions  = open_dimensions(x),
+      endpoints   = x$endpoints
     )
   }
 )
@@ -184,7 +196,7 @@ openTemp <- new_class(
 #' openTempGroup("grouped_payment")
 #' openTempGroup("detailed_payment")
 #' @autoglobal
-#' @rdname openTempGroup
+#' @rdname openpayments
 #' @export
 openTempGroup <- new_class(
   parent     = Open,
@@ -192,18 +204,21 @@ openTempGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    # years = class_integer,
-    members = class_list
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, openTemp) |>
+        set_names(self@members)
+    )
   ),
   constructor = function(alias) {
 
     x <- open_temp_group(alias)
 
     new_object(
-      Care(),
-      group  = x$group,
-      members = map(x$alias, openTemp) |>
-        set_names(x$alias)
+      Open(),
+      group   = x$group,
+      members = x$alias
     )
   }
 )

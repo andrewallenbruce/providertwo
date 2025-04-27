@@ -84,7 +84,7 @@ pro_metadata <- new_class(
 #' proMain("PDC_clinicians")
 #' proMain("PDC_utilization")
 #' @autoglobal
-#' @rdname pro
+#' @rdname provider
 #' @export
 proMain <- new_class(
   parent     = Pro,
@@ -117,7 +117,7 @@ proMain <- new_class(
 #' proGroup("PDC")
 #' proGroup("MIPS")
 #' @autoglobal
-#' @rdname pro
+#' @rdname provider
 #' @export
 proGroup <- new_class(
   parent     = Pro,
@@ -128,7 +128,7 @@ proGroup <- new_class(
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, \(x) proMain(x)) |>
+        map(self@members, proMain) |>
           set_names(self@members)
       )
     ),

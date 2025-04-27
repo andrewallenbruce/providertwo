@@ -119,7 +119,7 @@ caidGroup <- new_class(
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, \(x) caidMain(x)) |>
+        map(self@members, caidMain) |>
         set_names(self@members)
       )
     ),
