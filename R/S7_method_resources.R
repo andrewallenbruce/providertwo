@@ -23,8 +23,8 @@ NULL
 #' @returns A list of API resources
 #' @examples
 #' careMain("enrollees") |> list_resources()
-#' careTemp("quality_payment") |> list_resources()
 #' careGroup("HHA") |> list_resources()
+#' careTemp("quality_payment") |> list_resources()
 #' #careTempGroup("inpatient") |> list_resources()
 #' @autoglobal
 #' @export
@@ -47,8 +47,12 @@ method(list_resources, careGroup) <- function(x) {
     map(\(x) prop(x, "resources") |> request()) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    resps_data(\(resp) resp_body_string(resp) |> fparse(query = "/data") |> as_tbl() |> .tidy_resources()) |>
-    funique()
+    map(\(resp)
+        resp_body_string(resp) |>
+          fparse(query = "/data") |>
+          as_tbl() |>
+          .tidy_resources()) |>
+    set_names(names(prop(x, "members")))
 }
 
 method(list_resources, careTemp) <- function(x) {
@@ -64,15 +68,7 @@ method(list_resources, careTemp) <- function(x) {
 }
 
 method(list_resources, careTempGroup) <- function(x) {
-  reqs <- prop(x, "members") |>
-    map(\(x) prop(x, "endpoints") |>
-          _[["resources"]] |>
-          map(request))
-
-  # TODO fix this
-  reqs[1] |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    resps_data(\(resp) resp_body_string(resp) |> fparse(query = "/data") |> as_tbl() |> .tidy_resources()) |>
-    funique()
+  prop(x, "members") |>
+    map(list_resources) |>
+    set_names(names(prop(x, "members")))
 }

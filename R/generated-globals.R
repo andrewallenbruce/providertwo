@@ -58,6 +58,7 @@ utils::globalVariables(c(
   "enroll_year",
   # <qpp_elig>
   "entity",
+  # <catalog_caid>
   # <.tidy_resources>
   "ext",
   # <.tidy_resources>
@@ -73,6 +74,8 @@ utils::globalVariables(c(
   "group",
   # <clinicians>
   "grp_assgn",
+  # <catalog_caid>
+  "id",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>

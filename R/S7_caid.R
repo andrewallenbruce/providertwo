@@ -58,9 +58,7 @@ caid_metadata <- new_class(
   package = NULL,
   properties = list(
     description = class_character,
-    temporal    = class_character,
-    periodicity = class_character,
-    issued      = new_union(class_character, class_Date),
+    # periodicity = class_character,
     modified    = new_union(class_character, class_Date),
     dictionary  = class_character,
     download    = class_character
@@ -69,9 +67,7 @@ caid_metadata <- new_class(
     new_object(
       S7_object(),
       description = x$description,
-      temporal    = x$temporal,
-      periodicity = x$periodicity,
-      issued      = x$issued,
+      # periodicity = x$periodicity,
       modified    = x$modified,
       dictionary  = x$dictionary,
       download    = x$download

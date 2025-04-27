@@ -17,7 +17,7 @@ List resources
 }
 \examples{
 careMain("enrollees") |> list_resources()
-careTemp("quality_payment") |> list_resources()
 careGroup("HHA") |> list_resources()
+careTemp("quality_payment") |> list_resources()
 #careTempGroup("inpatient") |> list_resources()
 }
