@@ -9,7 +9,7 @@ Provider Endpoint Group"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9228</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9229</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,10 +69,10 @@ Provider Endpoint Group"></head><body>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"affiliations"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"PDC_affiliations"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Facility Affiliation Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This is the facility affiliations data publicly reported in the Provider Data Catalog."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-04-04"</span>
@@ -80,15 +80,25 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/b7c4080ae144663e43353a9c35cd3f53_1743782712/Fa"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 1577099</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 789</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:9] "npi" "ind_pac_id" "provider_last_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npi                                       : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ind_pac_id                                : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_last_name                        : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_first_name                       : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_middle_name                      : chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ suff                                      : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_type                             : chr "facility_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_affiliations_certification_number: chr "facility_affiliations_certification_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_type_certification_number        : chr "facility_type_certification_number"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0"</span>
-<span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"clinicians"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"PDC_clinicians"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "National Downloadable File"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Doctors and Clinicians national downloadable file is organized such that each line is unique at the clinici"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-04-04"</span>
@@ -96,15 +106,47 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/52c3f098d7e56028a298fd297cb0b38d_1743782711/DA"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 2642756</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:31] "npi" "ind_pac_id" "ind_enrl_id" "provider_last_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npi                 : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ind_pac_id          : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ind_enrl_id         : chr "ind_enrl_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_last_name  : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_first_name : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_middle_name: chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ suff                : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ gndr                : chr "gndr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ cred                : chr "cred"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ med_sch             : chr "med_sch"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ grd_yr              : chr "grd_yr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pri_spec            : chr "pri_spec"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ sec_spec_1          : chr "sec_spec_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ sec_spec_2          : chr "sec_spec_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ sec_spec_3          : chr "sec_spec_3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ sec_spec_4          : chr "sec_spec_4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ sec_spec_all        : chr "sec_spec_all"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ telehlth            : chr "telehlth"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_name       : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ org_pac_id          : chr "org_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ num_org_mem         : chr "num_org_mem"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ adr_ln_1            : chr "adr_ln_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ adr_ln_2            : chr "adr_ln_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ln_2_sprs           : chr "ln_2_sprs"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ citytown            : chr "citytown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state               : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ zip_code            : chr "zip_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ telephone_number    : chr "telephone_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ind_assgn           : chr "ind_assgn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ grp_assgn           : chr "grp_assgn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ adrs_id             : chr "adrs_id"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0"</span>
-<span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"utilization"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">proMain</span><span class="op">(</span><span class="st">"PDC_utilization"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Utilization Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Doctors and Clinicians utilization data file reports volume information for procedures of interest on clini"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ issued     : Date[1:1], format: "2024-01-04"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-03-24"</span>
@@ -112,18 +154,29 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/provider-data/dataset/n0yb-util"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/n0yb-util#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/72eedb23fcbe1ef3666f89db01b85e1d_1742861112/Utilization.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 301894</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:10] "npi" "ind_pac_id" "provider_last_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npi                      : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ind_pac_id               : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_last_name       : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_first_name      : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider_middle_name     : chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ suff                     : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ procedure_category       : chr "procedure_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ count                    : chr "count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ percentile               : chr "percentile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ profile_display_indicator: chr "profile_display_indicator"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/n0yb-util/0"</span>
 <span class="r-in"><span><span class="fu">proGroup</span><span class="op">(</span><span class="st">"PDC"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;proGroup&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Provider Data Catalog"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ affiliations: &lt;proMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_affiliations: &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Facility Affiliation Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This is the facility affiliations data publicly reported in the Provider Data Catalog."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-04-04"</span>
@@ -131,14 +184,24 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/b7c4080ae144663e43353a9c35cd3f53_1743782712/Fa"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1577099</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 789</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:9] "npi" "ind_pac_id" "provider_last_name" "provider_first_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                                       : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id                                : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name                        : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name                       : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name                      : chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                                      : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_type                             : chr "facility_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_affiliations_certification_number: chr "facility_affiliations_certification_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_type_certification_number        : chr "facility_type_certification_number"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clinicians  : &lt;proMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_clinicians  : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "National Downloadable File"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Doctors and Clinicians national downloadable file is organized such that each line is unique at the clinici"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-04-04"</span>
@@ -146,14 +209,46 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/52c3f098d7e56028a298fd297cb0b38d_1743782711/DA"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 2642756</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:31] "npi" "ind_pac_id" "ind_enrl_id" "provider_last_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                 : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id          : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_enrl_id         : chr "ind_enrl_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name  : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name: chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ gndr                : chr "gndr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cred                : chr "cred"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ med_sch             : chr "med_sch"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ grd_yr              : chr "grd_yr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ pri_spec            : chr "pri_spec"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_1          : chr "sec_spec_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_2          : chr "sec_spec_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_3          : chr "sec_spec_3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_4          : chr "sec_spec_4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_all        : chr "sec_spec_all"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telehlth            : chr "telehlth"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name       : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id          : chr "org_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ num_org_mem         : chr "num_org_mem"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adr_ln_1            : chr "adr_ln_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adr_ln_2            : chr "adr_ln_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ln_2_sprs           : chr "ln_2_sprs"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ citytown            : chr "citytown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state               : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ zip_code            : chr "zip_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telephone_number    : chr "telephone_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_assgn           : chr "ind_assgn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ grp_assgn           : chr "grp_assgn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adrs_id             : chr "adrs_id"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ utilization : &lt;proMain&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_utilization : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Utilization Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Doctors and Clinicians utilization data file reports volume information for procedures of interest on clini"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2024-01-04"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-03-24"</span>
@@ -161,10 +256,21 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/n0yb-util"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/n0yb-util#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/72eedb23fcbe1ef3666f89db01b85e1d_1742861112/Utilization.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 301894</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:10] "npi" "ind_pac_id" "provider_last_name" "provider_first_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                      : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id               : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name       : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name      : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name     : chr "provider_middle_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                     : chr "suff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ procedure_category       : chr "procedure_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count                    : chr "count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentile               : chr "percentile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ profile_display_indicator: chr "profile_display_indicator"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/n0yb-util/0"</span>
 <span class="r-in"><span><span class="fu">proGroup</span><span class="op">(</span><span class="st">"MIPS"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;proGroup&gt;</span>
@@ -172,7 +278,7 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_perform  : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "PY 2022 Clinician Public Reporting: Overall MIPS Performance"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This file contains Merit-Based Incentive Payment System (MIPS) Final Scores and performance category scores for"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-07-25"</span>
@@ -180,14 +286,28 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/a174-a962"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/a174-a962#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/6b9e57db797c95853b034b329b1212b2_1721952317/ec_score_file.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 624209</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:13] "npi" "org_pac_id" "provider_last_name" "provider_first_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                                       : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id                                : chr "org_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name                        : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name                       : chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ source                                    : chr "source"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facilitybased_scoring_certification_number: chr "facilitybased_scoring_certification_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name                             : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ quality_category_score                    : chr "quality_category_score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ pi_category_score                         : chr "pi_category_score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ia_category_score                         : chr "ia_category_score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cost_category_score                       : chr "cost_category_score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ final_mips_score_without_cpb              : chr "final_mips_score_without_cpb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ final_mips_score                          : chr "final_mips_score"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/a174-a962/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_patient  : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "PY 2022 Group Public Reporting: Patient Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This file contains information for the Consumer Assessment of Healthcare Providers and Systems (CAHPS) for MIPS"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-05-16"</span>
@@ -195,14 +315,22 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/8c70-d353"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/8c70-d353#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/6083bb351293e72eda42881d6a93d803_1715976323/gr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 432</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:7] "facility_name" "org_pac_id" "measure_cd" "measure_title" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name: chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id   : chr "org_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd   : chr "measure_cd"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title: chr "measure_title"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate     : chr "prf_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count: chr "patient_count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fn           : chr "fn"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/8c70-d353/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_clinician: &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "PY 2022 Clinician Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2020-11-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-05-16"</span>
@@ -210,14 +338,33 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/7d6a-e7a6"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/7d6a-e7a6#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/b9c4d902c52ae898d3f422fffbdc59fe_1715976323/ec"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 523282</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:18] "npi" "ind_pac_id" "provider_last_name" "provider_first_name" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id         : chr "ind_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name : chr "provider_last_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name: chr "provider_first_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_1         : chr "apm_affl_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_2         : chr "apm_affl_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_3         : chr "apm_affl_3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_4         : chr "apm_affl_4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd         : chr "measure_cd"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title      : chr "measure_title"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr           : chr "invs_msr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value  : chr "attestation_value"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate           : chr "prf_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count      : chr "patient_count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ star_value         : chr "star_value"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_benchmark: chr "five_star_benchmark"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type    : chr "collection_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ccxp_ind           : chr "ccxp_ind"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/7d6a-e7a6/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_group    : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "PY 2022 Group Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2023-08-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-05-16"</span>
@@ -225,14 +372,31 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/0ba7-2cb0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/0ba7-2cb0#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/410d73868de5a4ea585a61ca1365a256_1715976322/gr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 193488</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:16] "facility_name" "org_pac_id" "aco_id_1" "aco_nm_1" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name      : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id         : chr "org_pac_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_id_1           : chr "aco_id_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_nm_1           : chr "aco_nm_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_id_2           : chr "aco_id_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_nm_2           : chr "aco_nm_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd         : chr "measure_cd"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title      : chr "measure_title"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr           : chr "invs_msr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value  : chr "attestation_value"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate           : chr "prf_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count      : chr "patient_count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ star_value         : chr "star_value"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_benchmark: chr "five_star_benchmark"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type    : chr "collection_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ccxp_ind           : chr "ccxp_ind"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/0ba7-2cb0/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_virtual  : &lt;proMain&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "PY 2022 Virtual Group Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;proMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;pro_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ issued     : Date[1:1], format: "2021-06-04"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-05-16"</span>
@@ -240,10 +404,19 @@ Provider Endpoint Group"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-data/dataset/46dc-a66c"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/provider-data/dataset/46dc-a66c#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/635d18fe1428158bf5b033cd27da6cc3_1715976333/vg"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;proDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;pro_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields: chr [1:8] "virtual_group_id" "measure_cd" "measure_title" "invs_msr" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ virtual_group_id : chr "virtual_group_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd       : chr "measure_cd"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title    : chr "measure_title"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr         : chr "invs_msr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value: chr "attestation_value"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate         : chr "prf_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count    : chr "patient_count"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type  : chr "collection_type"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/46dc-a66c/0"</span>
 </code></pre></div>
     </div>
