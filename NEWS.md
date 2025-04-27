@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9227 (2025-04-26)
+
+* alias functions now error for 0-row df returned
+* quick methods for openMain, openGroup
+
+
 # providertwo 0.0.0.9226 (2025-04-26)
 
 * total rows threshold
