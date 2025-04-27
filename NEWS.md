@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9229 (2025-04-27)
+
+* pro_main, pro_group
+
+
 # providertwo 0.0.0.9228 (2025-04-27)
 
 * str_look
