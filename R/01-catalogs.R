@@ -85,11 +85,13 @@ catalog_caid <- function() {
     mtt(reference = stri_replace_all_fixed(reference, ", https://www.mathematica.org/", ""))
 
   dictionary <- new_df(
-    title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
+    # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
+    title = vec_rep_each(x$title, fnobs(get_dist(x))),
     dictionary = get_dist(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
 
   download <- new_tbl(
-    title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
+    # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
+    title = vec_rep_each(x$title, fnobs(get_dist(x))),
     download = get_dist(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext = file_ext(download),
     id = groupid(title)) |>
