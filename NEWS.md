@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9228 (2025-04-27)
+
+* str_look
+
+
 # providertwo 0.0.0.9227 (2025-04-26)
 
 * alias functions now error for 0-row df returned
