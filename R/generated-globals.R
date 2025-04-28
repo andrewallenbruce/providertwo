@@ -51,9 +51,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <.tidy_resources>
   "downloadURL",
-  # <select_caid_temp>
-  # <care_temp>
-  "endpoints",
   # <qpp_elig>
   "enroll_year",
   # <qpp_elig>
@@ -76,12 +73,6 @@ utils::globalVariables(c(
   "grp_assgn",
   # <catalog_caid>
   "id",
-  # <catalog_care>
-  # <catalog_pro>
-  # <catalog_open>
-  # <catalog_caid>
-  # <catalog_health>
-  "identifier",
   # <clinicians>
   "ind_assgn",
   # <qpp_elig>

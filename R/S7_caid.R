@@ -5,7 +5,7 @@ caid_dimensions <- new_class(
   package = NULL,
   properties = list(
     limit = class_integer,
-    rows = class_integer,
+    rows  = class_integer,
     pages = new_property(
       class_integer,
       getter = function(self)
