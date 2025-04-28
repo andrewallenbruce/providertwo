@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9230</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9231</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,15 +66,116 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">careTemp</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;careTemp&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;careMeta&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;care_temp_metadata&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr "Annually [R/P1Y]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;careTempDim&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;care_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 624200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields: chr [1:165] "provider key" "practice state or us territory" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 165</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ provider key                                     : chr "provider key"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ practice state or us territory                   : chr "practice state or us territory"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ practice size                                    : chr "practice size"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ clinician type                                   : chr "clinician type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ clinician specialty                              : chr "clinician specialty"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ years in medicare                                : chr "years in medicare"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npi                                              : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ non-reporting                                    : chr "non-reporting"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ participation option                             : chr "participation option"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ medicare patients                                : chr "medicare patients"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ allowed charges                                  : chr "allowed charges"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ services                                         : chr "services"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ opted into mips                                  : chr "opted into mips"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ small practice status                            : chr "small practice status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ rural status                                     : chr "rural status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ health professional shortage area status         : chr "health professional shortage area status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ambulatory surgical center-based status          : chr "ambulatory surgical center-based status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hospital-based status                            : chr "hospital-based status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ non-patient facing status                        : chr "non-patient facing status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility-based status                            : chr "facility-based status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ dual eligibility ratio                           : chr "dual eligibility ratio"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ safety-net status                                : chr "safety-net status"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ extreme uncontrollable circumstance (euc)        : chr "extreme uncontrollable circumstance (euc)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ final score                                      : chr "final score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ payment adjustment percentage                    : chr "payment adjustment percentage"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ complex patient bonus                            : chr "complex patient bonus"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality reweighting (euc)                        : chr "quality reweighting (euc)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality category score                           : chr "quality category score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality improvement score                        : chr "quality improvement score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ small practice bonus                             : chr "small practice bonus"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 1                             : chr "quality measure id 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 1                : chr "quality measure collection type 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 1                          : chr "quality measure score 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 2                             : chr "quality measure id 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 2                : chr "quality measure collection type 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 2                          : chr "quality measure score 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 3                             : chr "quality measure id 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 3                : chr "quality measure collection type 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 3                          : chr "quality measure score 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 4                             : chr "quality measure id 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 4                : chr "quality measure collection type 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 4                          : chr "quality measure score 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 5                             : chr "quality measure id 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 5                : chr "quality measure collection type 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 5                          : chr "quality measure score 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 6                             : chr "quality measure id 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 6                : chr "quality measure collection type 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 6                          : chr "quality measure score 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 7                             : chr "quality measure id 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 7                : chr "quality measure collection type 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 7                          : chr "quality measure score 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 8                             : chr "quality measure id 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 8                : chr "quality measure collection type 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 8                          : chr "quality measure score 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 9                             : chr "quality measure id 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 9                : chr "quality measure collection type 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 9                          : chr "quality measure score 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 10                            : chr "quality measure id 10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 10               : chr "quality measure collection type 10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 10                         : chr "quality measure score 10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 11                            : chr "quality measure id 11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 11               : chr "quality measure collection type 11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 11                         : chr "quality measure score 11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure id 12                            : chr "quality measure id 12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure collection type 12               : chr "quality measure collection type 12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality measure score 12                         : chr "quality measure score 12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ promoting interoperability (pi) category score   : chr "promoting interoperability (pi) category score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi reweighting (euc)                             : chr "pi reweighting (euc)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi reweighting (hardship exception)              : chr "pi reweighting (hardship exception)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi reweighting (special status or clinician type): chr "pi reweighting (special status or clinician type)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ cehrt id                                         : chr "cehrt id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 1                                  : chr "pi measure id 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 1                                : chr "pi measure type 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 1                               : chr "pi measure score 1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 2                                  : chr "pi measure id 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 2                                : chr "pi measure type 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 2                               : chr "pi measure score 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 3                                  : chr "pi measure id 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 3                                : chr "pi measure type 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 3                               : chr "pi measure score 3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 4                                  : chr "pi measure id 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 4                                : chr "pi measure type 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 4                               : chr "pi measure score 4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 5                                  : chr "pi measure id 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 5                                : chr "pi measure type 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 5                               : chr "pi measure score 5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 6                                  : chr "pi measure id 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 6                                : chr "pi measure type 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 6                               : chr "pi measure score 6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 7                                  : chr "pi measure id 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 7                                : chr "pi measure type 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 7                               : chr "pi measure score 7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 8                                  : chr "pi measure id 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 8                                : chr "pi measure type 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 8                               : chr "pi measure score 8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 9                                  : chr "pi measure id 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure type 9                                : chr "pi measure type 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 9                               : chr "pi measure score 9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 10                                 : chr "pi measure id 10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. ..  [list output truncated]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [6 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2022 2021 2020 2019 2018 2017</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2024-05-08" "2023-06-12" ...</span>
