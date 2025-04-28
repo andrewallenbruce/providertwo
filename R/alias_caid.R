@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-caid_main <- function(x, call = caller_env()) {
+select_caid_main <- function(x, call = caller_env()) {
   x <- switch(
     x,
     MLR            = "MLR Summary Reports",
@@ -30,7 +30,7 @@ caid_main <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-caid_group <- function(x, call = caller_env()) {
+select_caid_group <- function(x, call = caller_env()) {
   switch(
     x,
     demographics = list(
@@ -52,7 +52,7 @@ caid_group <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-caid_temp <- function(x, call = caller_env()) {
+select_caid_temp <- function(x, call = caller_env()) {
 
   x <- switch(
     x,

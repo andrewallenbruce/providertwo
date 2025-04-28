@@ -6,13 +6,6 @@ thresh <- function(n, threshold) {
 
 #' @autoglobal
 #' @noRd
-total_rows <- function(x) {
-  prop(x, "dimensions") |>
-    prop("rows")
-}
-
-#' @autoglobal
-#' @noRd
 make_address <- function(a1, a2) {
   cheapr_if_else(!is_na(a2), paste(a1, a2), a1)
 }
@@ -24,6 +17,16 @@ remove_non_ascii <- function(x) {
   gsub("[^\x20-\x7E]", "", x, perl = TRUE)
 }
 
+#' @autoglobal
+#' @noRd
+join_on_title <- function(a, b) {
+  join(
+    x = a,
+    y = b,
+    on = "title",
+    verbose = 0
+  )
+}
 
 #' @autoglobal
 #' @noRd
@@ -58,6 +61,8 @@ smush_elem <- function(i, el) {
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
+  # remove _|-
+  # remove spaces
   gsub("\\(|\\)", "",
        gsub("\\s|-", "_", tolower(x), perl = TRUE),
        perl = TRUE)
@@ -88,13 +93,6 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 #' @noRd
 select_alias <- function(x, alias) {
   subset_detect(x, title, alias)
-}
-
-#' @autoglobal
-#' @noRd
-prop_empty <- function(obj, nm) {
-  check_is_S7(obj)
-  empty(prop(obj, nm))
 }
 
 #' @noRd

@@ -1,31 +1,5 @@
 #' @autoglobal
 #' @noRd
-fmt_contactpoint <- function(x) {
-  x <- delist(get_elem(x, "^has", regex = TRUE)) |>
-    set_names(delist(get_elem(x, "fn")))
-
-  as.character(glue("{names(x)} ({x})"))
-}
-
-#' @autoglobal
-#' @noRd
-fmt_temporal <- function(x) {
-  gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-join_on_title <- function(a, b) {
-  join(
-    x = a,
-    y = b,
-    on = "title",
-    verbose = 0
-  )
-}
-
-#' @autoglobal
-#' @noRd
 catalog_care <- function() {
 
   x <- fload("https://data.cms.gov/data.json", query = "/dataset")

@@ -47,6 +47,7 @@ Collate:
     'S7_pro.R'
     'S7_method_request.R'
     'S7_method_resources.R'
+    'S7_utils.R'
     'alias_caid.R'
     'alias_care.R'
     'alias_open.R'

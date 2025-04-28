@@ -1,7 +1,3 @@
-#' @autoglobal
-#' @noRd
-Caid <- new_class(name = "Caid", package = NULL)
-
 #' @noRd
 #' @autoglobal
 caid_dimensions <- new_class(
@@ -71,32 +67,31 @@ caid_metadata <- new_class(
 
 #' Medicaid Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<caidMain>` object.
+#' @returns An S7 `<caid_endpoint>` object.
 #' @examples
-#' caidMain("MLR")
-#' caidMain("enterprise")
+#' caid_endpoint("MLR")
+#' caid_endpoint("enterprise")
 #' @autoglobal
 #' @rdname caid
 #' @export
-caidMain <- new_class(
-  parent     = Caid,
-  name       = "caidMain",
+caid_endpoint <- new_class(
+  name       = "caid_endpoint",
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = caid_metadata,
     identifier  = class_character,
+    metadata    = caid_metadata,
     dimensions  = caid_dimensions
   ),
   constructor = function(alias) {
 
-    x <- caid_main(alias)
+    x <- select_caid_main(alias)
 
     new_object(
-      Caid(),
+      S7_object(),
       title       = x$title,
-      metadata    = caid_metadata(x),
       identifier  = x$identifier,
+      metadata    = caid_metadata(x),
       dimensions  = caid_dimensions(x)
     )
   }
@@ -104,31 +99,30 @@ caidMain <- new_class(
 
 #' Medicaid Endpoint Group
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<caidGroup>` object.
+#' @returns An S7 `<caid_group>` object.
 #' @examples
-#' caidGroup("demographics")
+#' caid_group("demographics")
 #' @autoglobal
 #' @rdname caid
 #' @export
-caidGroup <- new_class(
-  parent     = Caid,
-  name       = "caidGroup",
+caid_group <- new_class(
+  name       = "caid_group",
   package    = NULL,
   properties = list(
-    group = class_character,
-    members = new_property(
+    group    = class_character,
+    members  = new_property(
       class_list,
       getter = function(self)
-        map(self@members, caidMain) |>
+        map(self@members, caid_endpoint) |>
         set_names(self@members)
       )
     ),
   constructor = function(alias) {
 
-    x <- caid_group(alias)
+    x <- select_caid_group(alias)
 
     new_object(
-      Caid(),
+      S7_object(),
       group   = x$group,
       members = x$alias
     )

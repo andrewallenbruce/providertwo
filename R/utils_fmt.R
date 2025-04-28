@@ -15,6 +15,21 @@ fmt_entity <- function(x, type = c("int", "chr")) {
 
 #' @autoglobal
 #' @noRd
+fmt_contactpoint <- function(x) {
+  x <- delist(get_elem(x, "^has", regex = TRUE)) |>
+    set_names(delist(get_elem(x, "fn")))
+
+  as.character(glue("{names(x)} ({x})"))
+}
+
+#' @autoglobal
+#' @noRd
+fmt_temporal <- function(x) {
+  gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
 print_list <- function(ls, prefix = "") {
   if (length(ls) == 0) cat("<empty>\n")
 

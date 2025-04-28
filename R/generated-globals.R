@@ -24,7 +24,7 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
-  # <caid_temp>
+  # <select_caid_temp>
   # <care_temp>
   "data",
   # <qpp_elig>
@@ -51,7 +51,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <.tidy_resources>
   "downloadURL",
-  # <caid_temp>
+  # <select_caid_temp>
   # <care_temp>
   "endpoints",
   # <qpp_elig>

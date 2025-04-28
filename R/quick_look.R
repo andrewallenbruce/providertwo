@@ -154,7 +154,7 @@ method(quick_, openGroup) <- function(x, offset, limit) {
     )
 }
 
-method(quick_, caidMain) <- function(x, offset, limit) {
+method(quick_, caid_endpoint) <- function(x, offset, limit) {
   prop(x, "identifier") |>
     request() |>
     req_url_query(
@@ -174,7 +174,7 @@ method(quick_, caidMain) <- function(x, offset, limit) {
     as_tbl()
 }
 
-method(quick_, caidGroup) <- function(x, offset, limit) {
+method(quick_, caid_group) <- function(x, offset, limit) {
 
   prop(x, "members") |>
     map(\(x)
@@ -299,8 +299,8 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     profile           = ,
     summary           = quick_(openGroup(x), offset = offset, limit = limit),
     MLR               = ,
-    enterprise        = quick_(caidMain(x), offset = offset, limit = limit),
-    demographics      = quick_(caidGroup(x), offset = offset, limit = limit),
+    enterprise        = quick_(caid_endpoint(x), offset = offset, limit = limit),
+    demographics      = quick_(caid_group(x), offset = offset, limit = limit),
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
