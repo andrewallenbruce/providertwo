@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9234 (2025-04-28)
+
+* prop accessors
+* caid_endpoint, caid_group
+* more provider aliases
+
+
 # providertwo 0.0.0.9233 (2025-04-28)
 
 * more aliases added to provider API
