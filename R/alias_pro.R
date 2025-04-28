@@ -38,6 +38,23 @@ pro_main <- function(x, call = caller_env()) {
     HHCAHPS_measure         = "^Home Health Care - Patient Survey \\(HHCAHPS\\) Measure Dates 2023Q4 to 2024Q3$",
     HHCAHPS_national        = "^Home Health Care - Patient Survey \\(HHCAHPS\\) National Data 2023Q4 to 2024Q3$",
     HHCAHPS_state           = "^Home Health Care - Patient Survey \\(HHCAHPS\\) State Data 2023Q4 to 2024Q3$",
+    SNF_VBP_agg             = "^FY 2025 SNF VBP Aggregate Performance$",
+    SNF_VBP_fac             = "^FY 2025 SNF VBP Facility-Level Dataset$",
+    SNF_quality_nation      = "^Skilled Nursing Facility Quality Reporting Program - National Data$",
+    SNF_quality_provider    = "^Skilled Nursing Facility Quality Reporting Program - Provider Data$",
+    SNF_quality_swing       = "^Skilled Nursing Facility Quality Reporting Program - Swing Beds - Provider Data$",
+    NH_ownership            = "^Ownership$",
+    NH_penalties            = "^Penalties$",
+    NH_provider             = "^Provider Information$",
+    NH_citation             = "^Citation Code Look-up$",
+    NH_fire                 = "^Fire Safety Deficiencies$",
+    NH_deficiencies         = "^Health Deficiencies$",
+    NH_inspection           = "^Inspection Dates$",
+    NH_quality_mds          = "^MDS Quality Measures$",
+    NH_quality_claims       = "^Medicare Claims Quality Measures$",
+    NH_state_avg            = "^State US Averages$",
+    NH_state_cut            = "^State-Level Health Inspection Cut Points$",
+    NH_interval             = "^Nursing Home Data Collection Interval$",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
@@ -133,6 +150,38 @@ pro_group <- function(x, call = caller_env()) {
         "HHCAHPS_measure",
         "HHCAHPS_national",
         "HHCAHPS_state"
+      )
+    ),
+    SNF_VBP = list(
+      group = "FY 2025 SNF VBP",
+      alias = c(
+        "SNF_VBP_agg",
+        "SNF_VBP_fac"
+      )
+    ),
+    SNF_quality = list(
+      group = "SNF Quality Measures",
+      alias = c(
+        "SNF_quality_nation",
+        "SNF_quality_provider",
+        "SNF_quality_swing"
+      )
+    ),
+    NH_pro = list(
+      group = "Nursing Homes",
+      alias = c(
+        "NH_ownership",
+        "NH_penalties",
+        "NH_provider",
+        "NH_citation",
+        "NH_fire",
+        "NH_deficiencies",
+        "NH_inspection",
+        "NH_quality_mds",
+        "NH_quality_claims",
+        "NH_state_avg",
+        "NH_state_cut",
+        "NH_interval"
       )
     ),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
