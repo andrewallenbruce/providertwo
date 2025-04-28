@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9233 (2025-04-28)
+
+* more aliases added to provider API
+* rebuild readme
+
+
 # providertwo 0.0.0.9232 (2025-04-28)
 
 * Working careTempGroup method for list_resources
