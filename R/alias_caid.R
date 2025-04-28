@@ -3,8 +3,6 @@
 caid_main <- function(x, call = caller_env()) {
   x <- switch(
     x,
-    # pi         = "^PI dataset$", # NOT WORKING
-
     MLR            = "MLR Summary Reports",
     enterprise     = "Medicaid Enterprise System Datatable",
 

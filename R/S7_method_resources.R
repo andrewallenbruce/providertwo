@@ -8,8 +8,8 @@ NULL
     fcompute(
       year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
       file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
-      size     = roundup(fileSize / 1e6),
-      ext      = file_ext(downloadURL),
+      size     = fs::as_fs_bytes(fileSize),
+      ext      = tolower(file_ext(downloadURL)),
       download = downloadURL
     ) |>
     f_fill(year) |>
@@ -25,7 +25,7 @@ NULL
 #' careMain("enrollees") |> list_resources()
 #' careGroup("HHA") |> list_resources()
 #' careTemp("quality_payment") |> list_resources()
-#' #careTempGroup("inpatient") |> list_resources()
+#' careTempGroup("inpatient") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
@@ -56,7 +56,6 @@ method(list_resources, careGroup) <- function(x) {
 }
 
 method(list_resources, careTemp) <- function(x) {
-
   prop(x, "endpoints") |>
     _[["resources"]] |>
     map(request) |>
@@ -69,6 +68,29 @@ method(list_resources, careTemp) <- function(x) {
 
 method(list_resources, careTempGroup) <- function(x) {
   prop(x, "members") |>
-    map(list_resources) |>
+    map(
+      \(x)
+      prop(x, "endpoints") |>
+        _[["resources"]] |>
+        map(request) |>
+        req_perform_parallel(on_error = "continue") |>
+        resps_successes() |>
+        resps_data(
+          \(resp)
+          resp_body_string(resp) |>
+            fparse(query = "/data") |>
+            fcompute(
+              year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")[[1]]),
+              file = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
+              size = fs::as_fs_bytes(fileSize),
+              ext  = tolower(file_ext(downloadURL)),
+              download = downloadURL) |>
+            f_fill(year) |>
+            roworder(-year, ext, -size) |>
+            as_tbl()
+          )
+      ) |>
     set_names(names(prop(x, "members")))
 }
+
+# roundup(fileSize / 1e6)

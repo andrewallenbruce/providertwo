@@ -4,9 +4,9 @@
 \name{providertwo-package}
 \alias{providertwo}
 \alias{providertwo-package}
-\title{providertwo: What the Package Does (One Line, Title Case)}
+\title{providertwo: Tidy Healthcare Provider API Interface}
 \description{
-What the package does (one paragraph).
+Provides easy access to healthcare provider data through publicly available APIs.
 }
 \seealso{
 Useful links:
