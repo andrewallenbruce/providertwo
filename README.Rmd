@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 
 ![GitHub R package version](https://img.shields.io/github/r-package/v/andrewallenbruce/providertwo?style=flat-square&logo=R&label=Package&color=%23192a38)
-[![minimal R version](https://img.shields.io/badge/R%20%3E%3D-4.4.2-red.svg)](https://cran.r-project.org/)
+[![minimal R version](https://img.shields.io/badge/R%20%3E%3D-4.4.0-red.svg)](https://cran.r-project.org/)
 [![Code size](https://img.shields.io/github/languages/code-size/andrewallenbruce/providertwo.svg)](https://github.com/andrewallenbruce/providertwo)
 [![Last commit](https://img.shields.io/github/last-commit/andrewallenbruce/providertwo.svg)](https://github.com/andrewallenbruce/providertwo/commits/master)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
