@@ -4,8 +4,62 @@ Care <- new_class(name = "Care", package = NULL)
 
 #' @noRd
 #' @autoglobal
-careMeta <- new_class(
-  name = "careMeta",
+care_dimensions <- new_class(
+  name = "care_dimensions",
+  package = NULL,
+  properties = list(
+    limit = class_integer,
+    rows = class_integer,
+    pages = new_property(
+      class_integer,
+      getter = function(self)
+        offset_size(self@rows,
+                    self@limit)
+    ),
+    fields = new_property(
+      class_character,
+      getter = function(self)
+        as.list(self@fields) |>
+        set_names(self@fields)
+    )
+  ),
+  constructor = function(x) {
+
+    if (grepl("data-viewer$", x$identifier, perl = TRUE)) {
+
+      x <- request(x$identifier) |>
+        req_url_query(offset = 0L, size = 1L) |>
+        perform_simple() |>
+        _[["meta"]]
+
+      new_object(
+        S7_object(),
+        limit  = 5000L,
+        rows   = x$total_rows,
+        fields = x$headers
+      )
+
+    } else {
+      x <- request(x$identifier) |>
+        req_url_query(offset = 0L, size = 1L)
+
+      new_object(
+        S7_object(),
+        limit  = 5000L,
+        rows   = req_url_path_append(x, "stats") |>
+          perform_simple() |>
+          _[["total_rows"]],
+        fields = perform_simple(x) |>
+          names()
+      )
+    }
+  }
+)
+
+#' @noRd
+#' @autoglobal
+care_metadata <- new_class(
+  name = "care_metadata",
   package = NULL,
   properties = list(
     description = class_character,
@@ -29,38 +83,6 @@ careMeta <- new_class(
       references  = x$references,
       download    = x$download
     )
-  }
-)
-
-#' @noRd
-#' @autoglobal
-careDim <- new_class(
-  name = "careDim",
-  package = NULL,
-  properties = list(
-    rows = new_property(
-      class_integer,
-      default = 0L
-      ),
-    pages = new_property(
-      class_integer,
-      getter = function(self)
-        offset_size(self@rows, 5000L)
-      ),
-    fields = class_character
-    ),
-  constructor = function(x) {
-
-    x <- x$identifier |>
-      request() |>
-      req_url_query(offset = 0L, size = 1L) |>
-      perform_simple() |>
-      _[["meta"]]
-
-    new_object(
-      S7_object(),
-      rows   = x$total_rows,
-      fields = x$headers)
   }
 )
 
@@ -89,9 +111,9 @@ careMain <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = careMeta,
-    dimensions  = careDim,
     identifier  = class_character,
+    dimensions  = care_dimensions,
+    metadata    = care_metadata,
     resources   = class_character
   ),
   constructor = function(alias) {
@@ -101,8 +123,8 @@ careMain <- new_class(
     new_object(
       Care(),
       title       = x$title,
-      metadata    = careMeta(x),
-      dimensions  = careDim(x),
+      metadata    = care_metadata(x),
+      dimensions  = care_dimensions(x),
       identifier  = x$identifier,
       resources   = x$resources
     )
@@ -111,8 +133,8 @@ careMain <- new_class(
 
 #' @noRd
 #' @autoglobal
-careTempMeta <- new_class(
-  name = "careMeta",
+care_temp_metadata <- new_class(
+  name = "care_temp_metadata",
   package = NULL,
   properties = list(
     description = class_character,
@@ -131,37 +153,6 @@ careTempMeta <- new_class(
   }
 )
 
-#' @noRd
-#' @autoglobal
-careTempDim <- new_class(
-  name = "careTempDim",
-  package = NULL,
-  properties = list(
-    rows = new_property(
-      class_integer,
-      default = 0L
-    ),
-    pages = new_property(
-      class_integer,
-      getter = function(self)
-        offset_size(self@rows, 5000L)
-    ),
-    fields = class_character
-  ),
-  constructor = function(x) {
-
-    x <- x$identifier |>
-      request() |>
-      req_url_query(offset = 0L, size = 1L)
-
-    new_object(
-      S7_object(),
-      rows = x |> req_url_path_append("stats") |> perform_simple() |>_[["total_rows"]],
-      fields = x |> perform_simple() |>names()
-    )
-  }
-)
-
 #' Medicare Temporal Endpoint
 #' @param alias `<chr>` title alias
 #' @returns An S7 `<careTemp>` object.
@@ -176,8 +167,8 @@ careTemp <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = careTempMeta,
-    dimensions  = careTempDim,
+    metadata    = care_temp_metadata,
+    dimensions  = care_dimensions,
     endpoints   = class_list
   ),
   constructor = function(alias) {
@@ -187,8 +178,8 @@ careTemp <- new_class(
     new_object(
       Care(),
       title       = x$title,
-      metadata    = careTempMeta(x),
-      dimensions  = careTempDim(x),
+      metadata    = care_temp_metadata(x),
+      dimensions  = care_dimensions(x),
       endpoints   = slt(x$endpoints, -temporal, -filetype)
     )
   }
@@ -215,7 +206,13 @@ careGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    members = class_list),
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, careMain) |>
+        set_names(self@members)
+    )
+  ),
   constructor = function(alias) {
 
     x <- care_group(alias)
@@ -223,8 +220,7 @@ careGroup <- new_class(
     new_object(
       Care(),
       group  = x$group,
-      members = map(x$alias, careMain) |>
-        set_names(x$alias)
+      members = x$alias
     )
   }
 )
@@ -248,8 +244,12 @@ careTempGroup <- new_class(
   package    = NULL,
   properties = list(
     group = class_character,
-    # years = class_integer,
-    members = class_list
+    members = new_property(
+      class_list,
+      getter = function(self)
+        map(self@members, careTemp) |>
+        set_names(self@members)
+    )
   ),
   constructor = function(alias) {
 
@@ -257,9 +257,8 @@ careTempGroup <- new_class(
 
     new_object(
       Care(),
-      group  = x$group,
-      members = map(x$alias, careTemp) |>
-        set_names(x$alias)
+      group   = x$group,
+      members = x$alias
     )
   }
 )
