@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9232 (2025-04-28)
+
+* Working careTempGroup method for list_resources
+
+
 # providertwo 0.0.0.9231 (2025-04-27)
 
 * care_dimensions, care_metadata, care_temp_metadata
