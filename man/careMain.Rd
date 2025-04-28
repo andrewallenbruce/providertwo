@@ -18,7 +18,7 @@ Medicare Endpoint
 \examples{
 careMain("contact")
 careMain("crosswalk")
-careMain("dialysis")
+careMain("CARE_dialysis")
 careMain("enrollees")
 careMain("facilities")
 careMain("IQIES")

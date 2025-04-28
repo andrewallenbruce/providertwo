@@ -219,6 +219,9 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
 # quick("HHVBP")
 # quick("HHCA")
 # quick("HHCAHPS")
+# quick("SNF_VBP")
+# quick("SNF_quality")
+# quick("NH_pro")
 #
 # quick("summary")
 # quick("profile")
@@ -234,7 +237,7 @@ method(quick_, caidGroup) <- function(x, offset, limit) {
 #
 # quick("contact")
 # quick("crosswalk")
-# quick("dialysis")
+# quick("CARE_dialysis")
 # quick("enrollees")
 # quick("facilities")
 # quick("IQIES")
@@ -251,7 +254,7 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     x,
     contact           = ,
     crosswalk         = ,
-    dialysis          = ,
+    CARE_dialysis     = ,
     enrollees         = ,
     facilities        = ,
     IQIES             = ,
@@ -278,7 +281,10 @@ quick <- function(x, offset = 0L, limit = 10000L, call = caller_env()) {
     CAHPS_hospice     = ,
     HHVBP             = ,
     HHC               = ,
-    HHCAHPS           = quick_(proGroup(x), offset = offset, limit = limit),
+    HHCAHPS           = ,
+    SNF_VBP           = ,
+    SNF_quality       = ,
+    NH_pro            = quick_(proGroup(x), offset = offset, limit = limit),
     PROF_covered      = ,
     PROF_physician    = ,
     PROF_information  = ,

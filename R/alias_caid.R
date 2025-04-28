@@ -28,8 +28,6 @@ caid_main <- function(x, call = caller_env()) {
 
 }
 
-
-
 #' @autoglobal
 #' @noRd
 caid_group <- function(x, call = caller_env()) {

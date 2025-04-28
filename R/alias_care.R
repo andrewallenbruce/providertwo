@@ -6,7 +6,7 @@ care_main <- function(x, call = caller_env()) {
     x,
     contact = "Public Reporting of Missing Digital Contact Information",
     crosswalk = "Medicare Provider and Supplier Taxonomy Crosswalk",
-    dialysis = "Medicare Dialysis Facilities",
+    CARE_dialysis = "Medicare Dialysis Facilities",
     enrollees = "Public Provider Enrollment",
     facilities = "Provider of Services File - Hospital & Non-Hospital Facilities",
     IQIES = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",

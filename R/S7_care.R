@@ -92,7 +92,7 @@ care_metadata <- new_class(
 #' @examples
 #' careMain("contact")
 #' careMain("crosswalk")
-#' careMain("dialysis")
+#' careMain("CARE_dialysis")
 #' careMain("enrollees")
 #' careMain("facilities")
 #' careMain("IQIES")
