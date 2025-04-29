@@ -1,16 +1,12 @@
-#' @autoglobal
-#' @noRd
-Open <- new_class(name = "Open", package = NULL)
-
 #' @noRd
 #' @autoglobal
 open_dimensions <- new_class(
-  name = "open_dimensions",
-  package = NULL,
+  name       = "open_dimensions",
+  package    = NULL,
   properties = list(
-    limit = class_integer,
-    rows = class_integer,
-    pages = new_property(
+    limit    = class_integer,
+    rows     = class_integer,
+    pages    = new_property(
       class_integer,
       getter = function(self)
         offset_size(self@rows,
@@ -69,25 +65,24 @@ open_metadata <- new_class(
 
 #' Open Payments Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<openMain>` object.
+#' @returns An S7 `<open_endpoint>` object.
 #' @examples
-#' openMain("PROF_covered")
-#' openMain("PROF_physician")
-#' openMain("PROF_information")
-#' openMain("PROF_mapping")
-#' openMain("PROF_entity")
-#' openMain("PROF_teaching")
-#' openMain("SUMM_dashboard")
-#' openMain("SUMM_state_all")
-#' openMain("SUMM_state_group")
-#' openMain("SUMM_nation_all")
-#' openMain("SUMM_nation_group")
+#' open_endpoint("PROF_covered")
+#' open_endpoint("PROF_physician")
+#' open_endpoint("PROF_information")
+#' open_endpoint("PROF_mapping")
+#' open_endpoint("PROF_entity")
+#' open_endpoint("PROF_teaching")
+#' open_endpoint("SUMM_dashboard")
+#' open_endpoint("SUMM_state_all")
+#' open_endpoint("SUMM_state_group")
+#' open_endpoint("SUMM_nation_all")
+#' open_endpoint("SUMM_nation_group")
 #' @autoglobal
 #' @rdname openpayments
 #' @export
-openMain <- new_class(
-  parent     = Open,
-  name       = "openMain",
+open_endpoint <- new_class(
+  name       = "open_endpoint",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -97,10 +92,10 @@ openMain <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- open_main(alias)
+    x <- select_open_main(alias)
 
     new_object(
-      Open(),
+      S7_object(),
       title       = x$title,
       identifier  = x$identifier,
       metadata    = open_metadata(x),
@@ -111,32 +106,31 @@ openMain <- new_class(
 
 #' Open Payments Endpoint Group
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<openGroup>` object.
+#' @returns An S7 `<open_group>` object.
 #' @examples
-#' openGroup("profile")
-#  openGroup("summary")
+#' open_group("profile")
+#  open_group("summary")
 #' @autoglobal
 #' @rdname openpayments
 #' @export
-openGroup <- new_class(
-  parent     = Open,
-  name       = "openGroup",
+open_group <- new_class(
+  name       = "open_group",
   package    = NULL,
   properties = list(
     group = class_character,
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, openMain) |>
+        map(self@members, open_endpoint) |>
         set_names(self@members)
       )
     ),
   constructor = function(alias) {
 
-    x <- open_group(alias)
+    x <- select_open_group(alias)
 
     new_object(
-      Open(),
+      S7_object(),
       group  = x$group,
       members = x$alias
     )
@@ -145,21 +139,20 @@ openGroup <- new_class(
 
 #' Open Payments Temporal Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<openTemp>` object.
+#' @returns An S7 `<open_temporal>` object.
 #' @examples
-#' openTemp("DATA_general")
-#' openTemp("DATA_ownership")
-#' openTemp("DATA_research")
-#' openTemp("GROUP_recip_nature")
-#' openTemp("GROUP_recip_entity")
-#' openTemp("GROUP_entity_nature")
-#' openTemp("GROUP_all")
+#' open_temporal("DATA_general")
+#' open_temporal("DATA_ownership")
+#' open_temporal("DATA_research")
+#' open_temporal("GROUP_recip_nature")
+#' open_temporal("GROUP_recip_entity")
+#' open_temporal("GROUP_entity_nature")
+#' open_temporal("GROUP_all")
 #' @autoglobal
 #' @rdname openpayments
 #' @export
-openTemp <- new_class(
-  parent     = Open,
-  name       = "openTemp",
+open_temporal <- new_class(
+  name       = "open_temporal",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -169,7 +162,7 @@ openTemp <- new_class(
     ),
   constructor = function(alias) {
 
-    x <- open_temp(alias)
+    x <- select_open_temp(alias)
 
     x <- list(
       title       = x$title[1],
@@ -180,7 +173,7 @@ openTemp <- new_class(
     )
 
     new_object(
-      Open(),
+      S7_object(),
       title       = x$title,
       metadata    = open_metadata(x),
       dimensions  = open_dimensions(x),
@@ -191,32 +184,31 @@ openTemp <- new_class(
 
 #' Group of Open Payments Temporal Endpoints
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<openTempGroup>` object.
+#' @returns An S7 `<open_troup>` object.
 #' @examples
-#' openTempGroup("grouped_payment")
-#' openTempGroup("detailed_payment")
+#' open_troup("grouped_payment")
+#' open_troup("detailed_payment")
 #' @autoglobal
 #' @rdname openpayments
 #' @export
-openTempGroup <- new_class(
-  parent     = Open,
-  name       = "openTempGroup",
+open_troup <- new_class(
+  name       = "open_troup",
   package    = NULL,
   properties = list(
     group = class_character,
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, openTemp) |>
+        map(self@members, open_temporal) |>
         set_names(self@members)
     )
   ),
   constructor = function(alias) {
 
-    x <- open_temp_group(alias)
+    x <- select_open_temp_group(alias)
 
     new_object(
-      Open(),
+      S7_object(),
       group   = x$group,
       members = x$alias
     )

@@ -33,6 +33,7 @@ method(quick_, careGroup) <- function(x, offset, limit) {
     req_perform_parallel(on_error = "continue") |>
     resps_successes()
 
+  # TODO use fields(x) instead of headers
   nms <- map(o, \(resp) resp_simple_json(resp) |> _[["meta"]] |> _[["headers"]])
 
   map2(
@@ -96,7 +97,7 @@ method(quick_, pro_group) <- function(x, offset, limit) {
     set_names(members_names(x))
 }
 
-method(quick_, openMain) <- function(x, offset, limit) {
+method(quick_, open_endpoint) <- function(x, offset, limit) {
   identifier(x) |>
     request() |>
     req_url_query(
@@ -116,7 +117,7 @@ method(quick_, openMain) <- function(x, offset, limit) {
     as_tbl()
 }
 
-method(quick_, openGroup) <- function(x, offset, limit) {
+method(quick_, open_group) <- function(x, offset, limit) {
   members(x) |>
     map(
       \(x)

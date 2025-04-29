@@ -7,7 +7,7 @@ perform_bare <- new_generic("perform_bare", "x", function(x) {
   S7_dispatch()
 })
 
-method(perform_bare, openMain) <- function(x) {
+method(perform_bare, open_endpoint) <- function(x) {
   prop(x, "identifier") |>
     request() |>
     req_url_query(
@@ -246,7 +246,7 @@ NULL
 #' @rdname open_summary
 open_dashboard <- function() {
   openDashboard(
-    response = openMain("SUMM_dashboard") |>
+    response = open_endpoint("SUMM_dashboard") |>
       perform_bare()) |>
     tidyup()
 }
@@ -256,7 +256,7 @@ open_dashboard <- function() {
 #' @rdname open_summary
 open_national <- function() {
   openNational(
-    response = openMain("SUMM_nation_all") |>
+    response = open_endpoint("SUMM_nation_all") |>
       perform_bare()) |>
     tidyup()
 }

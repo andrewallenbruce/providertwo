@@ -13,10 +13,10 @@
   pro_endpoint  <<- memoise::memoise(pro_endpoint)
   pro_group     <<- memoise::memoise(pro_group)
 
-  openMain      <<- memoise::memoise(openMain)
-  openGroup     <<- memoise::memoise(openGroup)
-  openTemp      <<- memoise::memoise(openTemp)
-  openTempGroup <<- memoise::memoise(openTempGroup)
+  open_endpoint  <<- memoise::memoise(open_endpoint)
+  open_group     <<- memoise::memoise(open_group)
+  open_temporal  <<- memoise::memoise(open_temporal)
+  open_troup     <<- memoise::memoise(open_troup)
 
   caid_endpoint <<- memoise::memoise(caid_endpoint)
   caid_group    <<- memoise::memoise(caid_group)

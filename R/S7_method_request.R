@@ -5,12 +5,12 @@ NULL
 
 #' @name new_request
 #' @title Create a new request by class
-#' @param x An object of class `proMain`, `careMain`, or `openMain`
+#' @param x An object of class `pro_endpoint`, `careMain`, or `open_endpoint`
 #' @returns A new request
 #' @examples
 #' careMain("enrollees") |> new_request()
 #' pro_endpoint("PDC_affiliations") |> new_request()
-#' openMain("PROF_covered") |> new_request()
+#' open_endpoint("PROF_covered") |> new_request()
 #' careGroup("hospital") |> new_request()
 #' @autoglobal
 #' @export
@@ -54,7 +54,7 @@ method(new_request, pro_endpoint) <- function(x) {
     )
 }
 
-method(new_request, openMain) <- function(x) {
+method(new_request, open_endpoint) <- function(x) {
   identifier(x) |>
     new_request() |>
     req_url_query(

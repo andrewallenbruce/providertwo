@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-open_main <- function(x, call = caller_env()) {
+select_open_main <- function(x, call = caller_env()) {
   x <- switch(
     x,
     PROF_covered      = "^Covered Recipient Profile Supplement$",
@@ -28,7 +28,7 @@ open_main <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-open_group <- function(x, call = caller_env()) {
+select_open_group <- function(x, call = caller_env()) {
   switch(
     x,
     profile = list(
@@ -58,7 +58,7 @@ open_group <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-open_temp <- function(x, call = caller_env()) {
+select_open_temp <- function(x, call = caller_env()) {
   x <- switch(
     x,
     DATA_general        = "^General Payment Data$",
@@ -82,7 +82,7 @@ open_temp <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-open_temp_group <- function(x, call = caller_env()) {
+select_open_temp_group <- function(x, call = caller_env()) {
   switch(
     x,
     grouped_payment = list(

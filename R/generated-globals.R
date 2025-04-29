@@ -45,6 +45,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "distribution",
+  # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
   "download",
@@ -60,6 +61,8 @@ utils::globalVariables(c(
   "ext",
   # <.tidy_resources>
   "fileSize",
+  # <catalog_care>
+  "filetype",
   # <qpp_elig>
   "first_name",
   # <qpp_elig>

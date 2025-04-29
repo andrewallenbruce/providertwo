@@ -1,7 +1,3 @@
-#' @autoglobal
-#' @noRd
-Care <- new_class(name = "Care", package = NULL)
-
 #' @noRd
 #' @autoglobal
 care_dimensions <- new_class(
@@ -106,7 +102,6 @@ care_metadata <- new_class(
 #' @rdname careMain
 #' @export
 careMain <- new_class(
-  parent     = Care,
   name       = "careMain",
   package    = NULL,
   properties = list(
@@ -121,7 +116,7 @@ careMain <- new_class(
     x <- care_main(alias)
 
     new_object(
-      Care(),
+      S7_object(),
       title       = x$title,
       metadata    = care_metadata(x),
       dimensions  = care_dimensions(x),
@@ -162,7 +157,6 @@ care_temp_metadata <- new_class(
 #' @rdname careTemp
 #' @export
 careTemp <- new_class(
-  parent     = Care,
   name       = "careTemp",
   package    = NULL,
   properties = list(
@@ -176,11 +170,11 @@ careTemp <- new_class(
     x <- care_temp(alias)
 
     new_object(
-      Care(),
+      S7_object(),
       title       = x$title,
       metadata    = care_temp_metadata(x),
       dimensions  = care_dimensions(x),
-      endpoints   = slt(x$endpoints, -temporal, -filetype)
+      endpoints   = x$endpoints
     )
   }
 )
@@ -201,7 +195,6 @@ careTemp <- new_class(
 #' @rdname careGroup
 #' @export
 careGroup <- new_class(
-  parent     = Care,
   name       = "careGroup",
   package    = NULL,
   properties = list(
@@ -218,7 +211,7 @@ careGroup <- new_class(
     x <- care_group(alias)
 
     new_object(
-      Care(),
+      S7_object(),
       group  = x$group,
       members = x$alias
     )
@@ -239,7 +232,6 @@ careGroup <- new_class(
 #' @rdname careTempGroup
 #' @export
 careTempGroup <- new_class(
-  parent     = Care,
   name       = "careTempGroup",
   package    = NULL,
   properties = list(
@@ -256,7 +248,7 @@ careTempGroup <- new_class(
     x <- care_temp_group(alias)
 
     new_object(
-      Care(),
+      S7_object(),
       group   = x$group,
       members = x$alias
     )
