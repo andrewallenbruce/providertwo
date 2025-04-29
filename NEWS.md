@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9236 (2025-04-28)
+
+* fix: quick method for careGroup
+
+
 # providertwo 0.0.0.9235 (2025-04-28)
 
 * `quick()` generic and methods exported
