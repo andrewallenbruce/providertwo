@@ -126,8 +126,7 @@ method(quick_, pro_endpoint) <- function(x, offset, limit) {
 method(quick_, pro_group) <- function(x, offset, limit) {
   members(x) |>
     map(
-      \(x)
-      identifier(x) |>
+      \(x) identifier(x) |>
         request() |>
         req_url_query(
           count   = "false",
@@ -142,12 +141,13 @@ method(quick_, pro_group) <- function(x, offset, limit) {
     ) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp)
-        resp_body_string(resp) |>
-          fparse() |>
-          _[["results"]] |>
-          as_tbl() |>
-          map_na_if()) |>
+    map(
+      \(resp) resp_body_string(resp) |>
+        fparse() |>
+        _[["results"]] |>
+        as_tbl() |>
+        map_na_if()
+      ) |>
     set_names(members_names(x))
 }
 
@@ -176,8 +176,7 @@ method(quick_, open_endpoint) <- function(x, offset, limit) {
 method(quick_, open_group) <- function(x, offset, limit) {
   members(x) |>
     map(
-      \(x)
-      identifier(x) |>
+      \(x) identifier(x) |>
         request() |>
         req_url_query(
           count   = "false",
@@ -192,12 +191,13 @@ method(quick_, open_group) <- function(x, offset, limit) {
     ) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp)
-        resp_body_string(resp) |>
-          fparse() |>
-          _[["results"]] |>
-          as_tbl() |>
-          map_na_if()) |>
+    map(
+      \(resp) resp_body_string(resp) |>
+        fparse() |>
+        _[["results"]] |>
+        as_tbl() |>
+        map_na_if()
+      ) |>
     set_names(members_names(x))
 }
 

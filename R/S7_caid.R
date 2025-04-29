@@ -9,8 +9,7 @@ caid_dimensions <- new_class(
     pages = new_property(
       class_integer,
       getter = function(self)
-        offset_size(self@rows,
-                    self@limit)
+        offset_size(self@rows, self@limit)
       ),
     fields = new_property(
       class_character,
@@ -85,7 +84,7 @@ caid_endpoint <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- select_caid_main(alias)
+    x <- select_caid(alias)
 
     new_object(
       S7_object(),

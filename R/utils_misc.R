@@ -19,6 +19,12 @@ remove_non_ascii <- function(x) {
 
 #' @autoglobal
 #' @noRd
+detect_non_ascii <- function(x) {
+  grepl("[^\x20-\x7E]", x, perl = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
 join_on_title <- function(a, b) {
   join(x = a, y = b, on = "title", verbose = 0)
 }

@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-select_caid_main <- function(x, call = caller_env()) {
+select_caid <- function(x, call = caller_env()) {
   x <- switch(
     x,
     MLR            = "MLR Summary Reports",
@@ -77,4 +77,19 @@ select_caid_temp <- function(x, call = caller_env()) {
     identifier  = endpoints$identifier[1]
   )
 
+}
+
+#' @autoglobal
+#' @noRd
+select_caid_troup <- function(x, call = caller_env()) {
+  switch(
+    x,
+    NAME   = list(
+      group = "GROUPNAME",
+      alias = c(
+        "ALIAS_NAME"
+      )
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 }

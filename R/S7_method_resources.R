@@ -48,31 +48,39 @@ method(list_resources, care_endpoint) <- function(x) {
 }
 
 method(list_resources, care_group) <- function(x) {
-  map(members(x), \(x) resources(x) |> request()) |>
+  map(
+    members(x),
+    \(x) resources(x) |>
+      request()
+    ) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp)
-        resp_body_string(resp) |>
-          fparse(query = "/data") |>
-          as_tbl() |>
-          .tidy_resources()) |>
+    map(
+      \(resp) resp_body_string(resp) |>
+        fparse(query = "/data") |>
+        as_tbl() |>
+        .tidy_resources()
+      ) |>
     set_names(members_names(x))
 }
 
 method(list_resources, care_temporal) <- function(x) {
-  endpoints(x) |> _[["resources"]] |>
+  endpoints(x)$resources |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    resps_data(\(resp) resp_body_string(resp) |>
-                 fparse(query = "/data")) |>
+    resps_data(
+      \(resp) resp_body_string(resp) |>
+        fparse(query = "/data")
+      ) |>
     .tidy_resources()
 }
 
 method(list_resources, care_troup) <- function(x) {
   map(
     members(x),
-    \(x) endpoints(x) |> _[["resources"]] |> map(request) |>
+    \(x) endpoints(x)$resources |>
+      map(request) |>
       req_perform_parallel(on_error = "continue") |>
       resps_successes() |>
       resps_data(
@@ -80,21 +88,15 @@ method(list_resources, care_troup) <- function(x) {
           fparse(query = "/data") |>
           fcompute(
             year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")[[1]]),
-            file = gsub(
-              "  ",
-              " ",
-              stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
-              perl = TRUE
-            ),
+            file = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
             size = fs::as_fs_bytes(fileSize),
             ext  = tolower(file_ext(downloadURL)),
-            download = downloadURL
-          ) |>
+            download = downloadURL) |>
           f_fill(year) |>
           roworder(-year, ext, -size) |>
           as_tbl()
-      )
-  ) |>
+        )
+    ) |>
     set_names(members_names(x))
 }
 

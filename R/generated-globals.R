@@ -48,6 +48,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <select_open_temp>
   "download",
   # <catalog_care>
   # <.tidy_resources>
@@ -178,6 +179,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <.tidy_resources>
+  # <select_open_temp>
   # <open_dictionary>
   "year",
   # <qpp_elig>

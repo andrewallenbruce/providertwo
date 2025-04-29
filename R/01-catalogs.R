@@ -87,18 +87,16 @@ catalog_caid <- function() {
   )
 
   list(
-    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE),
+    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
+      sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)),
     temp = subset_detect(main, title, pat, ci = TRUE) |>
-      mtt(
-        year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer()
-        # title = stri_replace_all_regex(title, pat2, "")
-        # title = stri_replace_all_regex(title, " [0-9]{2,8}-?.*", "")
-        ) |>
+      sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)) |>
+      mtt(year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |>
+            as.integer()) |>
       colorder(year) |>
       roworder(title, -year),
-    download = download |>
-      sbt(N > 1) |>
-      funique(cols = c("title", "download"))
+    download = download |> sbt(N > 1) |> funique(cols = c("title", "download")),
+    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto"))
   )
 }
 

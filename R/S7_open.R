@@ -51,7 +51,7 @@ open_metadata <- new_class(
   properties = list(
     description = class_character,
     modified    = new_union(class_character, class_Date),
-    download    = new_union(NULL, class_character)
+    download    = class_character
   ),
   constructor = function(x) {
     new_object(
@@ -59,6 +59,24 @@ open_metadata <- new_class(
       description = x$description,
       modified    = x$modified,
       download    = x$download
+    )
+  }
+)
+
+#' @noRd
+#' @autoglobal
+open_metatemp <- new_class(
+  name          = "open_metatemp",
+  package       = NULL,
+  properties    = list(
+    description = class_character,
+    modified    = new_union(class_character, class_Date)
+  ),
+  constructor = function(x) {
+    new_object(
+      S7_object(),
+      description = x$description,
+      modified    = x$modified
     )
   }
 )
@@ -92,7 +110,7 @@ open_endpoint <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- select_open_main(alias)
+    x <- select_open(alias)
 
     new_object(
       S7_object(),
@@ -121,7 +139,8 @@ open_group <- new_class(
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, open_endpoint) |>
+        map(self@members,
+            open_endpoint) |>
         set_names(self@members)
       )
     ),
@@ -131,7 +150,7 @@ open_group <- new_class(
 
     new_object(
       S7_object(),
-      group  = x$group,
+      group   = x$group,
       members = x$alias
     )
   }
@@ -156,7 +175,7 @@ open_temporal <- new_class(
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = open_metadata,
+    metadata    = open_metatemp,
     dimensions  = open_dimensions,
     endpoints   = class_list
     ),
@@ -164,25 +183,17 @@ open_temporal <- new_class(
 
     x <- select_open_temp(alias)
 
-    x <- list(
-      title       = x$title[1],
-      description = x$description[1],
-      modified    = x$modified[1],
-      identifier  = x$identifier[1],
-      endpoints   = slt(x, year, identifier, download)
-    )
-
     new_object(
       S7_object(),
       title       = x$title,
-      metadata    = open_metadata(x),
+      metadata    = open_metatemp(x),
       dimensions  = open_dimensions(x),
       endpoints   = x$endpoints
     )
   }
 )
 
-#' Group of Open Payments Temporal Endpoints
+#' Open Payments Temporal Endpoint Group
 #' @param alias `<chr>` title alias
 #' @returns An S7 `<open_troup>` object.
 #' @examples
@@ -195,17 +206,18 @@ open_troup <- new_class(
   name       = "open_troup",
   package    = NULL,
   properties = list(
-    group = class_character,
-    members = new_property(
+    group    = class_character,
+    members  = new_property(
       class_list,
       getter = function(self)
-        map(self@members, open_temporal) |>
+        map(self@members,
+            open_temporal) |>
         set_names(self@members)
     )
   ),
   constructor = function(alias) {
 
-    x <- select_open_temp_group(alias)
+    x <- select_open_troup(alias)
 
     new_object(
       S7_object(),

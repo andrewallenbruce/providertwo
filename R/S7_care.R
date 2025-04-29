@@ -1,16 +1,15 @@
 #' @noRd
 #' @autoglobal
 care_dimensions <- new_class(
-  name = "care_dimensions",
-  package = NULL,
+  name       = "care_dimensions",
+  package    = NULL,
   properties = list(
-    limit = class_integer,
-    rows = class_integer,
-    pages = new_property(
+    limit    = class_integer,
+    rows     = class_integer,
+    pages    = new_property(
       class_integer,
       getter = function(self)
-        offset_size(self@rows,
-                    self@limit)
+        offset_size(self@rows, self@limit)
     ),
     fields = new_property(
       class_character,
@@ -82,6 +81,28 @@ care_metadata <- new_class(
   }
 )
 
+#' @noRd
+#' @autoglobal
+care_metatemp <- new_class(
+  name = "care_metatemp",
+  package = NULL,
+  properties = list(
+    description = class_character,
+    periodicity = class_character,
+    dictionary  = class_character,
+    site        = class_character
+  ),
+  constructor = function(x) {
+    new_object(
+      S7_object(),
+      description = x$description,
+      periodicity = x$periodicity,
+      dictionary  = x$dictionary,
+      site        = x$site
+    )
+  }
+)
+
 #' Medicare Endpoint
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<care_endpoint>` object.
@@ -122,28 +143,6 @@ care_endpoint <- new_class(
       dimensions  = care_dimensions(x),
       identifier  = x$identifier,
       resources   = x$resources
-    )
-  }
-)
-
-#' @noRd
-#' @autoglobal
-care_metatemp <- new_class(
-  name = "care_metatemp",
-  package = NULL,
-  properties = list(
-    description = class_character,
-    periodicity = class_character,
-    dictionary  = class_character,
-    site        = class_character
-  ),
-  constructor = function(x) {
-    new_object(
-      S7_object(),
-      description = x$description,
-      periodicity = x$periodicity,
-      dictionary  = x$dictionary,
-      site        = x$site
     )
   }
 )
@@ -192,7 +191,7 @@ care_temporal <- new_class(
 #' care_group("reassignment")
 #' care_group("SNF")
 #' @autoglobal
-#' @rdname careGroup
+#' @rdname care_group
 #' @export
 care_group <- new_class(
   name       = "care_group",

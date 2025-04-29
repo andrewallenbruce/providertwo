@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-select_open_main <- function(x, call = caller_env()) {
+select_open <- function(x, call = caller_env()) {
   x <- switch(
     x,
     PROF_covered      = "^Covered Recipient Profile Supplement$",
@@ -67,8 +67,8 @@ select_open_temp <- function(x, call = caller_env()) {
     DATA_research       = "^Research Payment Data$",
     GROUP_recip_nature  = "^Payments Grouped by Covered Recipient and Nature of Payments$",
     GROUP_recip_entity  = "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    GROUP_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     GROUP_entity_nature = "^Payments Grouped by Covered Recipient and Nature of Payments$",
+    GROUP_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
@@ -78,12 +78,18 @@ select_open_temp <- function(x, call = caller_env()) {
 
   if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
-  res
+  list(
+    title       = res$title[1],
+    description = res$description[1],
+    modified    = res$modified[1],
+    identifier  = res$identifier[1],
+    endpoints   = slt(res, year, identifier, download)
+  )
 }
 
 #' @autoglobal
 #' @noRd
-select_open_temp_group <- function(x, call = caller_env()) {
+select_open_troup <- function(x, call = caller_env()) {
   switch(
     x,
     grouped_payment = list(

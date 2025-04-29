@@ -34,7 +34,7 @@ Open Payments Endpoint Group
 
 Open Payments Temporal Endpoint
 
-Group of Open Payments Temporal Endpoints
+Open Payments Temporal Endpoint Group
 }
 \examples{
 open_endpoint("PROF_covered")
