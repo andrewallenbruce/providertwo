@@ -27,10 +27,10 @@ NULL
 #' @param x `careMain`, `careGroup`, `careTemp`, or `careTempGroup` object
 #' @returns A list of API resources
 #' @examples
-#' careMain("enrollees") |> list_resources()
-#' careGroup("HHA") |> list_resources()
-#' careTemp("quality_payment") |> list_resources()
-#' careTempGroup("inpatient") |> list_resources()
+#' care_endpoint("enrollees") |> list_resources()
+#' care_group("HHA") |> list_resources()
+#' care_temporal("quality_payment") |> list_resources()
+#' care_troup("inpatient") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
@@ -42,12 +42,12 @@ method(list_resources, class_character) <- function(x) {
     .tidy_resources()
 }
 
-method(list_resources, careMain) <- function(x) {
+method(list_resources, care_endpoint) <- function(x) {
   resources(x) |>
     list_resources()
 }
 
-method(list_resources, careGroup) <- function(x) {
+method(list_resources, care_group) <- function(x) {
   map(members(x), \(x) resources(x) |> request()) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -59,7 +59,7 @@ method(list_resources, careGroup) <- function(x) {
     set_names(members_names(x))
 }
 
-method(list_resources, careTemp) <- function(x) {
+method(list_resources, care_temporal) <- function(x) {
   endpoints(x) |> _[["resources"]] |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
@@ -69,7 +69,7 @@ method(list_resources, careTemp) <- function(x) {
     .tidy_resources()
 }
 
-method(list_resources, careTempGroup) <- function(x) {
+method(list_resources, care_troup) <- function(x) {
   map(
     members(x),
     \(x) endpoints(x) |> _[["resources"]] |> map(request) |>

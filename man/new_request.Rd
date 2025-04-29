@@ -7,7 +7,7 @@
 new_request(x)
 }
 \arguments{
-\item{x}{An object of class \code{pro_endpoint}, \code{careMain}, or \code{open_endpoint}}
+\item{x}{An object of class \code{care_endpoint}, \code{care_group}, \code{pro_endpoint}, or \code{open_endpoint}}
 }
 \value{
 A new request
@@ -16,8 +16,11 @@ A new request
 Create a new request by class
 }
 \examples{
-careMain("enrollees") |> new_request()
+care_endpoint("enrollees") |> new_request()
+care_group("hospital") |> new_request()
+
 pro_endpoint("PDC_affiliations") |> new_request()
+
 open_endpoint("PROF_covered") |> new_request()
-careGroup("hospital") |> new_request()
+
 }

@@ -84,25 +84,25 @@ care_metadata <- new_class(
 
 #' Medicare Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<careMain>` object.
+#' @returns An S7 `<care_endpoint>` object.
 #' @examples
-#' careMain("contact")
-#' careMain("crosswalk")
-#' careMain("CARE_dialysis")
-#' careMain("enrollees")
-#' careMain("facilities")
-#' careMain("IQIES")
-#' careMain("laboratories")
-#' careMain("long_term")
-#' careMain("opt_out")
-#' careMain("order_refer")
-#' careMain("RBCS")
-#' careMain("transparency")
+#' care_endpoint("contact")
+#' care_endpoint("crosswalk")
+#' care_endpoint("CARE_dialysis")
+#' care_endpoint("enrollees")
+#' care_endpoint("facilities")
+#' care_endpoint("IQIES")
+#' care_endpoint("laboratories")
+#' care_endpoint("long_term")
+#' care_endpoint("opt_out")
+#' care_endpoint("order_refer")
+#' care_endpoint("RBCS")
+#' care_endpoint("transparency")
 #' @autoglobal
-#' @rdname careMain
+#' @rdname care_endpoint
 #' @export
-careMain <- new_class(
-  name       = "careMain",
+care_endpoint <- new_class(
+  name       = "care_endpoint",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -113,7 +113,7 @@ careMain <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- care_main(alias)
+    x <- select_care(alias)
 
     new_object(
       S7_object(),
@@ -128,7 +128,7 @@ careMain <- new_class(
 
 #' @noRd
 #' @autoglobal
-care_temp_metadata <- new_class(
+care_metatemp <- new_class(
   name = "care_temp_metadata",
   package = NULL,
   properties = list(
@@ -150,29 +150,29 @@ care_temp_metadata <- new_class(
 
 #' Medicare Temporal Endpoint
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<careTemp>` object.
+#' @returns An S7 `<care_temporal>` object.
 #' @examples
-#' careTemp("quality_payment")
+#' care_temporal("quality_payment")
 #' @autoglobal
-#' @rdname careTemp
+#' @rdname care_temporal
 #' @export
-careTemp <- new_class(
+care_temporal <- new_class(
   name       = "careTemp",
   package    = NULL,
   properties = list(
     title       = class_character,
-    metadata    = care_temp_metadata,
+    metadata    = care_metatemp,
     dimensions  = care_dimensions,
     endpoints   = class_list
   ),
   constructor = function(alias) {
 
-    x <- care_temp(alias)
+    x <- select_care_temp(alias)
 
     new_object(
       S7_object(),
       title       = x$title,
-      metadata    = care_temp_metadata(x),
+      metadata    = care_metatemp(x),
       dimensions  = care_dimensions(x),
       endpoints   = x$endpoints
     )
@@ -181,38 +181,38 @@ careTemp <- new_class(
 
 #' Medicare Endpoint Group
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<careGroup>` object.
+#' @returns An S7 `<care_group>` object.
 #' @examples
-#' careGroup("HHA")
-#' careGroup("hospice")
-#' careGroup("hospital")
-#' careGroup("RHC")
-#' careGroup("FQHC")
-#' careGroup("pending")
-#' careGroup("reassignment")
-#' careGroup("SNF")
+#' care_group("HHA")
+#' care_group("hospice")
+#' care_group("hospital")
+#' care_group("RHC")
+#' care_group("FQHC")
+#' care_group("pending")
+#' care_group("reassignment")
+#' care_group("SNF")
 #' @autoglobal
 #' @rdname careGroup
 #' @export
-careGroup <- new_class(
-  name       = "careGroup",
+care_group <- new_class(
+  name       = "care_group",
   package    = NULL,
   properties = list(
     group = class_character,
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, careMain) |>
+        map(self@members, care_endpoint) |>
         set_names(self@members)
     )
   ),
   constructor = function(alias) {
 
-    x <- care_group(alias)
+    x <- select_care_group(alias)
 
     new_object(
       S7_object(),
-      group  = x$group,
+      group   = x$group,
       members = x$alias
     )
   }
@@ -220,18 +220,18 @@ careGroup <- new_class(
 
 #' Group of Medicare Temporal Endpoints
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<careTempGroup>` object.
+#' @returns An S7 `<care_troup>` object.
 #' @examples
-#' careTempGroup("inpatient")
-#' careTempGroup("outpatient")
-#' careTempGroup("utilization")
-#' careTempGroup("suppliers")
-#' careTempGroup("prescribers")
-#' careTempGroup("staffing")
+#' care_troup("inpatient")
+#' care_troup("outpatient")
+#' care_troup("utilization")
+#' care_troup("suppliers")
+#' care_troup("prescribers")
+#' care_troup("staffing")
 #' @autoglobal
-#' @rdname careTempGroup
+#' @rdname care_troup
 #' @export
-careTempGroup <- new_class(
+care_troup <- new_class(
   name       = "careTempGroup",
   package    = NULL,
   properties = list(
@@ -239,13 +239,13 @@ careTempGroup <- new_class(
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, careTemp) |>
+        map(self@members, care_temporal) |>
         set_names(self@members)
     )
   ),
   constructor = function(alias) {
 
-    x <- care_temp_group(alias)
+    x <- select_care_troup(alias)
 
     new_object(
       S7_object(),

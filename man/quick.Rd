@@ -4,7 +4,7 @@
 \alias{quick}
 \title{Quickly access CMS data}
 \usage{
-quick(x, offset = 0L, limit = 10000L, call = caller_env())
+quick(x, offset = 0L, limit = 1L, call = caller_env())
 }
 \arguments{
 \item{x}{A string representing the CMS data endpoint or category.}
@@ -23,46 +23,51 @@ A data frame or object containing the requested CMS data.
 It provides a simple way to retrieve data from different CMS programs and categories.
 }
 \examples{
-quick("MLR", limit = 1) |> str()
-quick("enterprise", limit = 1) |> str()
-quick("demographics", limit = 1) |> str()
+# MEDICAID
+quick("MLR") |> str()
+quick("enterprise") |> str()
+quick("demographics") |> str()
 
-quick("suppliers", limit = 1) |> str()
-quick("PDC", limit = 1) |> str()
-quick("MIPS", limit = 1) |> str()
-quick("LTCH", limit = 1) |> str()
-quick("IRF", limit = 1) |> str()
-quick("SPICE", limit = 1) |> str()
-quick("CAHPS_hospice", limit = 1) |> str()
-quick("HHVBP", limit = 1) |> str()
-quick("HHCAHPS", limit = 1) |> str()
-quick("HHCAHPS", limit = 1) |> str()
-quick("SNF_VBP", limit = 1) |> str()
-quick("SNF_quality", limit = 1) |> str()
-quick("NH_pro", limit = 1) |> str()
 
-quick("summary", limit = 1) |> str()
-quick("profile", limit = 1) |> str()
+# PROVIDER
+quick("suppliers") |> str()
+quick("PDC") |> str()
+quick("MIPS") |> str()
+quick("LTCH") |> str()
+quick("IRF") |> str()
+quick("SPICE") |> str()
+quick("CAHPS_hospice") |> str()
+quick("HHVBP") |> str()
+quick("HHCAHPS") |> str()
+quick("HHCAHPS") |> str()
+quick("SNF_VBP") |> str()
+quick("SNF_quality") |> str()
+quick("NH_pro") |> str()
 
-quick("HHA", limit = 1) |> str()
-quick("hospice", limit = 1) |> str()
-quick("hospital", limit = 1) |> str()
-quick("RHC", limit = 1) |> str()
-quick("FQHC", limit = 1) |> str()
-quick("pending", limit = 1) |> str()
-quick("reassignment", limit = 1) |> str()
-quick("SNF", limit = 1) |> str()
+# OPEN PAYMENTS
+quick("summary") |> str()
+quick("profile") |> str()
 
-quick("contact", limit = 1) |> str()
-quick("crosswalk", limit = 1) |> str()
-quick("CARE_dialysis", limit = 1) |> str()
-quick("enrollees", limit = 1) |> str()
-quick("facilities", limit = 1) |> str()
-quick("IQIES", limit = 1) |> str()
-quick("laboratories", limit = 1) |> str()
-quick("long_term", limit = 1) |> str()
-quick("opt_out", limit = 1) |> str()
-quick("order_refer", limit = 1) |> str()
-quick("RBCS", limit = 1) |> str()
-quick("transparency", limit = 1) |> str()
+# MEDICARE
+quick("HHA") |> str()
+quick("hospice") |> str()
+quick("hospital") |> str()
+quick("RHC") |> str()
+quick("FQHC") |> str()
+quick("pending") |> str()
+quick("reassignment") |> str()
+quick("SNF") |> str()
+
+quick("contact") |> str()
+quick("crosswalk") |> str()
+quick("CARE_dialysis") |> str()
+quick("enrollees") |> str()
+quick("facilities") |> str()
+quick("IQIES") |> str()
+quick("laboratories") |> str()
+quick("long_term") |> str()
+quick("opt_out") |> str()
+quick("order_refer") |> str()
+quick("RBCS") |> str()
+quick("transparency") |> str()
 }

@@ -25,7 +25,7 @@ utils::globalVariables(c(
   # <.nppes_multi_npi>
   "created_epoch",
   # <select_caid_temp>
-  # <care_temp>
+  # <select_care_temp>
   "data",
   # <qpp_elig>
   "date_approved",

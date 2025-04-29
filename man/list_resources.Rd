@@ -16,8 +16,8 @@ A list of API resources
 List resources
 }
 \examples{
-careMain("enrollees") |> list_resources()
-careGroup("HHA") |> list_resources()
-careTemp("quality_payment") |> list_resources()
-careTempGroup("inpatient") |> list_resources()
+care_endpoint("enrollees") |> list_resources()
+care_group("HHA") |> list_resources()
+care_temporal("quality_payment") |> list_resources()
+care_troup("inpatient") |> list_resources()
 }

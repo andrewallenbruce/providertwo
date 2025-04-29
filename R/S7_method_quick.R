@@ -9,7 +9,19 @@ quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
   S7_dispatch()
 })
 
-method(quick_, careMain) <- function(x, offset, limit) {
+# quick("contact")
+# quick("crosswalk")
+# quick("CARE_dialysis")
+# quick("enrollees")
+# quick("facilities")
+# quick("IQIES")
+# quick("laboratories")
+# quick("long_term")
+# quick("opt_out")
+# quick("order_refer")
+# quick("RBCS")
+# quick("transparency")
+method(quick_, care_endpoint) <- function(x, offset, limit) {
   x <- identifier(x) |>
     request() |>
     req_url_query(offset = thresh(offset, rows(x)),
@@ -22,7 +34,16 @@ method(quick_, careMain) <- function(x, offset, limit) {
     map_na_if()
 }
 
-method(quick_, careGroup) <- function(x, offset, limit) {
+
+# quick("HHA")
+# quick("hospice")
+# quick("hospital")
+# quick("RHC")
+# quick("FQHC")
+# quick("pending")
+# quick("reassignment")
+# quick("SNF")
+method(quick_, care_group) <- function(x, offset, limit) {
   o <- members(x) |>
     map(\(x) identifier(x) |>
           request() |>
@@ -49,6 +70,7 @@ method(quick_, careGroup) <- function(x, offset, limit) {
     set_names(members_names(x))
 }
 
+# quick("suppliers")
 method(quick_, pro_endpoint) <- function(x, offset, limit) {
   identifier(x) |>
     request() |>
@@ -69,6 +91,18 @@ method(quick_, pro_endpoint) <- function(x, offset, limit) {
     as_tbl()
 }
 
+# quick("PDC")
+# quick("MIPS")
+# quick("LTCH")
+# quick("IRF")
+# quick("SPICE")
+# quick("CAHPS_hospice")
+# quick("HHVBP")
+# quick("HHCA")
+# quick("HHCAHPS")
+# quick("SNF_VBP")
+# quick("SNF_quality")
+# quick("NH_pro")
 method(quick_, pro_group) <- function(x, offset, limit) {
   members(x) |>
     map(
@@ -117,6 +151,8 @@ method(quick_, open_endpoint) <- function(x, offset, limit) {
     as_tbl()
 }
 
+# quick("summary")
+# quick("profile")
 method(quick_, open_group) <- function(x, offset, limit) {
   members(x) |>
     map(
@@ -145,6 +181,8 @@ method(quick_, open_group) <- function(x, offset, limit) {
     set_names(members_names(x))
 }
 
+# quick("MLR")
+# quick("enterprise")
 method(quick_, caid_endpoint) <- function(x, offset, limit) {
   identifier(x) |>
     request() |>
@@ -165,6 +203,7 @@ method(quick_, caid_endpoint) <- function(x, offset, limit) {
     as_tbl()
 }
 
+# quick("demographics")
 method(quick_, caid_group) <- function(x, offset, limit) {
   members(x) |>
     map(
@@ -192,46 +231,3 @@ method(quick_, caid_group) <- function(x, offset, limit) {
           map_na_if()) |>
     set_names(members_names(x))
 }
-
-# quick("MLR")
-# quick("enterprise")
-# quick("demographics")
-#
-# quick("suppliers")
-# quick("PDC")
-# quick("MIPS")
-# quick("LTCH")
-# quick("IRF")
-# quick("SPICE")
-# quick("CAHPS_hospice")
-# quick("HHVBP")
-# quick("HHCA")
-# quick("HHCAHPS")
-# quick("SNF_VBP")
-# quick("SNF_quality")
-# quick("NH_pro")
-#
-# quick("summary")
-# quick("profile")
-#
-# quick("HHA")
-# quick("hospice")
-# quick("hospital")
-# quick("RHC")
-# quick("FQHC")
-# quick("pending")
-# quick("reassignment")
-# quick("SNF")
-#
-# quick("contact")
-# quick("crosswalk")
-# quick("CARE_dialysis")
-# quick("enrollees")
-# quick("facilities")
-# quick("IQIES")
-# quick("laboratories")
-# quick("long_term")
-# quick("opt_out")
-# quick("order_refer")
-# quick("RBCS")
-# quick("transparency")

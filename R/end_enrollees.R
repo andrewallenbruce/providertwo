@@ -53,7 +53,7 @@ enrollees <- function(npi                   = NULL,
     "ORG_NAME"           = org_name
   )
 
-  x <- careMain("enrollees") |>
+  x <- care_endpoint("enrollees") |>
     new_request() |>
     req_url_query(!!!format_query_care(args)) |>
     perform_simple() |>

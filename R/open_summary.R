@@ -14,11 +14,11 @@ method(perform_bare, open_endpoint) <- function(x) {
       count   = "false",
       format  = "json",
       keys    = "true",
-      limit   = 500L,
-      offset  = 0L,
       results = "true",
       rowIds  = "false",
-      schema  = "false"
+      schema  = "false",
+      offset  = 0L,
+      limit   = 500L
     ) |>
     req_perform() |>
     resp_body_string() |>
@@ -271,17 +271,11 @@ open_dictionary <- function() {
     get_elem("title|describedBy$", regex = TRUE) |>
     map(\(x) x[not_null(names(x))])
 
-  new_df(
-    name = get_elem(x, "title") |> delist(),
-    download = get_elem(x, "describedBy") |> delist()
-    ) |>
+  new_df(name     = get_elem(x, "title") |> delist(),
+         download = get_elem(x, "describedBy") |> delist()) |>
     mtt(
       year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      name = cheapr_if_else(
-        is_na(year),
-        name,
-        stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")
-      ),
+      name = cheapr_if_else(is_na(year), name, stri_extract_all_regex(name, "^.*(?=\\s.\\sDetailed Dataset [0-9]{4} Reporting Year)")),
       year = cheapr_if_else(is_na(year), fmax(year), year)
     ) |>
     sbt(year == fmax(year), -year) |>
@@ -289,20 +283,21 @@ open_dictionary <- function() {
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp)
-        resp_body_string(resp) |>
-          fparse(query = "/data") |>
-          _[["fields"]] |>
-          map_na_if() |>
-          as_tbl() |>
-          mtt(
-            description = stri_trans_general(description, "latin-ascii"),
-            description = gsub("[\n\"']", "", description, perl = TRUE),
-            description = gsub("[\\\\]", "-", description, perl = TRUE),
-            description = stri_trim_both(stri_replace_all_regex(description, "\\s+", " ")),
-            title = NULL
-            )
-        ) |>
+    map(
+      \(resp)
+      resp_body_string(resp) |>
+        fparse(query = "/data") |>
+        _[["fields"]] |>
+        map_na_if() |>
+        as_tbl() |>
+        mtt(
+          description = stri_trans_general(description, "latin-ascii"),
+          description = gsub("[\n\"']", "", description, perl = TRUE),
+          description = gsub("[\\\\]", "-", description, perl = TRUE),
+          description = stri_trim_both(stri_replace_all_regex(description, "\\s+", " ")),
+          title = NULL
+          )
+      ) |>
     set_clean(
       get_elem(x, "title") |>
         stri_extract_all_regex(

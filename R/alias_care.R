@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-care_main <- function(x, call = caller_env()) {
+select_care <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
@@ -59,7 +59,7 @@ care_main <- function(x, call = caller_env()) {
 # care_group("program_stats")
 #' @autoglobal
 #' @noRd
-care_group <- function(x, call = caller_env()) {
+select_care_group <- function(x, call = caller_env()) {
   switch(
     x,
     HHA = list(
@@ -132,7 +132,7 @@ care_group <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-care_temp <- function(x, call = caller_env()) {
+select_care_temp <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
@@ -174,7 +174,7 @@ care_temp <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-care_temp_group <- function(x, call = caller_env()) {
+select_care_troup <- function(x, call = caller_env()) {
   switch(
     x,
     inpatient   = list(
