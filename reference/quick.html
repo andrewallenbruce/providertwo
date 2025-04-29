@@ -9,7 +9,7 @@ It provides a simple way to retrieve data from different CMS programs and catego
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9239</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9240</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -481,7 +481,7 @@ It provides a simple way to retrieve data from different CMS programs and catego
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ score                       : chr "99.5"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote                    : chr NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_date_range          : chr "04/01/2023-03/31/2024"</span>
-<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"CAHPS_hospice"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"CAHPS_SPICE"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_SPICE_nation  : tibble [1 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_code: chr "EMO_REL_BBV"</span>
@@ -513,6 +513,397 @@ It provides a simple way to retrieve data from different CMS programs and catego
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ score       : chr "7"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote    : chr NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ date        : chr "04/01/2022-03/31/2024"</span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"CAHPS_HHC"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_patient : tibble [1 × 26] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "017000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating                              : chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating_footnote                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_gave_care_in_a_professional_way     : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_gave_care_in_a_professional_way    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "92"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_9099: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_communicated_well_with_them         : chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_communicated_well_with_them        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "90"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_979f: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_team_discussed_medicines_pain_and_home_safety       : chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_star_rating_discussed_medicines_pain_home_safety       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "89"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_e836: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_how_patients_rated_overall_care_from_agency     : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_overall_care_from_agency           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "91"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_gave_their_home_health_c417: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_yes_they_woul_c5a2: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "665"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_number_of_completed_surveys                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "19"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_survey_response_rate                               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_number                                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_measure : tibble [1 × 2] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_name      : chr "How often the home health team gave care in a professional way"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_date_range: chr "October 1, 2023 to September 30, 2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_national: tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ country                                                         : chr "Nation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "89"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "86"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "82"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "85"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "1013291"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_state   : tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "87"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "80"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "83"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "668"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "20"</span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"CAHPS_ICH"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_ICH_esrd    : tibble [1 × 37] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                                                   : chr "032302 MARICOPA MEDICAL CTR - DIALYSIS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "032302"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ alternate_ccn                                                   : chr "030022"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address                                                         : chr "2525 E ROOSEVELT ST"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ city                                                            : chr "PHOENIX"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AZ"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                                                        : chr "85008"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ network                                                         : chr "15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_name                                                    : chr "ICH CAHPS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ neph_comm_and_caring_achievement_measure_rate                   : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ neph_comm_and_caring_measure_score                              : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_neph_comm_and_caring_measure_score                : chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_neph_comm_and_caring_measure_score             : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ quality_of_dialysis_care_and_ops_achievement_measure_rate       : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ quality_of_dialysis_care_and_ops_measure_score                  : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_quality_of_dialysis_care_and_ops_measure_score    : chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_quality_of_dialysis_care_and_ops_measure_score : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ providing_info_to_patients_achievement_measure_rate             : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ providing_info_to_patients_measure_score                        : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_providing_info_to_patients_measure_score          : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_providing_info_to_patients_measure_score       : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_neph_achievement_measure_rate                 : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_neph_measure_score                            : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_overall_rating_of_neph_measure_score              : chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_overall_rating_of_neph_measure_score           : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_dialysis_staff_achievement_measure_rate       : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_dialysis_staff_measure_score                  : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_overall_rating_of_dialysis_staff_measure_score    : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_overall_rating_of_dialysis_staff_measure_score : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_dialysis_facility_achievement_measure_rate    : chr "No Rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ overall_rating_of_dialysis_facility_measure_score               : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_overall_rating_of_dialysis_facility_measure_score : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_overall_rating_of_dialysis_facility_measur_5881: chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ichcahps_measure_score                                          : chr "No Score"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ich_cahps_reason_for_no_score_see_footnotes_file                : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state_average_ich_cahps_measure_score                           : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ national_average_ich_cahps_measure_score                        : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_ICH_facility: tibble [1 × 47] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "012306"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ network                                                         : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                                                   : chr "CHILDRENS HOSPITAL DIALYSIS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address_line_1                                                  : chr "1600 7TH AVENUE SOUTH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address_line_2                                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ citytown                                                        : chr "BIRMINGHAM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                                                        : chr "35233"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ countyparish                                                    : chr "Jefferson"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ telephone_number                                                : chr "(205) 638-9275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ profit_or_nonprofit                                             : chr "Non-profit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ chain_owned                                                     : chr "No"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ chain_organization                                              : chr "Independent"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ichcahps_date                                                   : chr "20OCT2023-12JUL2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ichcahps_data_availability_code                                 : chr "102"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsnephrologists_communication_an_846c: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsnephrologists_communication_a_2b84: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsnephrologists_communication_and__205e: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_nephrologists_communication_and_caring      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_nephrologists_communication_and_caring           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsquality_of_dialysis_center_car_997a: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsquality_of_dialysis_center_ca_cf52: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsquality_of_dialysis_center_care__0710: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_quality_of_dialysis_center_care_and_ope_92e9: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_quality_of_dialysis_center_care_and_operations   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsproviding_information_to_patients  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_providing_information_to_patients   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_providing_information_to_patients           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_providing_information_to_patients                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_nephrologist         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patients_rating_of_the_nephrologist       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_rating_of_the_nephrologist          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_nephrologist                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_the_nephrologist                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_center_staff: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_center_78a1: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_center_staff  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_center_staff         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_the_dialysis_center_staff                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_facility    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_facility   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_facility      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_facility             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_of_the_dialysis_facility                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ total_number_of_completed_interviews_from_the_fall_and_spri_6652: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ich_cahps_survey_of_patients_experiences_star_rating            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_ICH_national: tibble [1 × 26] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ country                                                         : chr "NATION"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsnephrologists_communication_an_846c: chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsnephrologists_communication_a_2b84: chr "15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsnephrologists_communication_and__205e: chr "67"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_nephrologists_communication_and_caring      : chr "81"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsquality_of_dialysis_center_car_997a: chr "17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsquality_of_dialysis_center_ca_cf52: chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsquality_of_dialysis_center_care__0710: chr "65"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_quality_of_dialysis_center_care_and_ope_92e9: chr "81"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsproviding_information_to_patients  : chr "21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_providing_information_to_patients   : chr "79"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_providing_information_to_patients           : chr "79"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_nephrologist         : chr "14"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patients_rating_of_the_nephrologist       : chr "26"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_rating_of_the_nephrologist          : chr "60"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_nephrologist                  : chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_center_staff: chr "10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_center_78a1: chr "24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_center_staff  : chr "66"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_center_staff         : chr "87"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_facility    : chr "11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_facility   : chr "19"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_facility      : chr "70"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_facility             : chr "88"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ total_number_of_completed_interviews_from_the_fall_and_spri_6652: chr "175872"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_ICH_state   : tibble [1 × 26] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsnephrologists_communication_an_846c: chr "15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsnephrologists_communication_a_2b84: chr "12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsnephrologists_communication_and__205e: chr "73"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_nephrologists_communication_and_caring      : chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsquality_of_dialysis_center_car_997a: chr "13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsquality_of_dialysis_center_ca_cf52: chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsquality_of_dialysis_center_care__0710: chr "69"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_quality_of_dialysis_center_care_and_ope_92e9: chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsproviding_information_to_patients  : chr "15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_providing_information_to_patients   : chr "85"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_providing_information_to_patients           : chr "85"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_nephrologist         : chr "10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patients_rating_of_the_nephrologist       : chr "28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patients_rating_of_the_nephrologist          : chr "62"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_nephrologist                  : chr "86"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_center_staff: chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_center_78a1: chr "28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_center_staff  : chr "68"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_center_staff         : chr "90"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower_box_percent_of_patientsrating_of_the_dialysis_facility    : chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ middle_box_percent_of_patientsrating_of_the_dialysis_facility   : chr "16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ top_box_percent_of_patientsrating_of_the_dialysis_facility      : chr "77"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ linearized_score_of_rating_of_the_dialysis_facility             : chr "91"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ total_number_of_completed_interviews_from_the_fall_and_spri_6652: chr "203"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "25"</span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"CAHPS_OAS"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_footnotes    : tibble [1 × 2] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_number    : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ oas_cahps_footnotes: chr "Very few patients completed the survey. The scores shown, if any, reflect a very small number of surveys and th"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_ASC_facility : tibble [1 × 30] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_id                                                     : chr "01C0001020"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                                                   : chr "MEDPLEX OUTPATIENT SURGERY CENTER LTD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address                                                         : chr "4511 SOUTHLAKE PARKWAY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ citytown                                                        : chr "BIRMINGHAM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                                                        : chr "35244"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ countyparish                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ telephone_number                                                : chr "(205) 985-4398"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr "98"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr "99"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr "90"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr "9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr "96"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote                                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr "1227"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "322"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr "26"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_ASC_national : tibble [1 × 21] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr "99"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr "92"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr "89"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr "9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr "87"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr "11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr "631357"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "167691"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr "27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_ASC_state    : tibble [1 × 22] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr "99"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr "93"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr "96"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr "90"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr "88"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr "11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr "4796"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "1205"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr "25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_HOSP_facility: tibble [1 × 30] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_id                                                     : chr "010001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                                                   : chr "SOUTHEAST HEALTH MEDICAL CENTER"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address                                                         : chr "1108 ROSS CLARK CIRCLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ citytown                                                        : chr "DOTHAN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                                                        : chr "36301"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ countyparish                                                    : chr "HOUSTON"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ telephone_number                                                : chr "(334) 793-8701"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote                                                        : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_HOSP_national: tibble [1 × 21] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr "98"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr "92"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr "86"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr "11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr "94"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr "82"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr "16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr "93"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr "2666807"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "643848"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr "25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_OAS_HOSP_state   : tibble [1 × 22] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_gave_care_in_a__2c9f: chr "96"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_gave_care_in_a_pr_1fa8: chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_give_care_in_a_pro_9b71: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facilities_and_staff_linear_mean_score                          : chr "98"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_definitely_communicated_ab_5eaa: chr "92"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_somewhat_communicated_abou_eae8: chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_that_staff_did_not_communicate_about__f071: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ communication_about_your_procedure_linear_mean_score            : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_9_or_10_on_a_sca_e274: chr "84"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_7_or_8_on_a_scal_cb89: chr "13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_gave_the_facility_a_rating_of_0_to_6_on_a_scal_5c23: chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_rating_of_the_facility_linear_mean_score               : chr "94"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_yes_they_would_definitely_recommend_t_2ec6: chr "83"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_probably_yes_they_would_recommend_the_747d: chr "15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_who_reported_no_they_would_not_recommend_the_facil_6d96: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patients_recommending_the_facility_linear_mean_score            : chr "93"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_sampled_patients                                      : chr "50974"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "12899"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent                                    : chr "26"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                                                      : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                                                        : chr "03/31/2024"</span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"HCAHPS"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ HCAHPS_hospital: tibble [1 × 22] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_id                          : chr "010001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                        : chr "SOUTHEAST HEALTH MEDICAL CENTER"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address                              : chr "1108 ROSS CLARK CIRCLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ citytown                             : chr "DOTHAN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                : chr "AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                             : chr "36301"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ countyparish                         : chr "HOUSTON"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ telephone_number                     : chr "(334) 793-8701"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_measure_id                    : chr "H_COMP_1_A_P"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_question                      : chr "Patients who reported that their nurses \"Always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_description            : chr "Nurses \"always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_survey_star_rating           : chr "Not Applicable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_survey_star_rating_footnote  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_percent                : chr "72"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_percent_footnote       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_linear_mean_value             : chr "Not Applicable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys          : chr "684"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys_footnote : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent         : chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate_percent_footnote: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                           : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                             : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ HCAHPS_national: tibble [1 × 7] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_measure_id        : chr "H_COMP_1_A_P"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_question          : chr "Patients who reported that their nurses \"Always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_description: chr "Nurses \"always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_percent    : chr "80"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date               : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                 : chr "03/31/2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ HCAHPS_state   : tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                    : chr "AK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_measure_id        : chr "H_COMP_1_A_P"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_question          : chr "Patients who reported that their nurses \"Always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_description: chr "Nurses \"always\" communicated well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcahps_answer_percent    : chr "81"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date               : chr "04/01/2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                 : chr "03/31/2024"</span>
 <span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"HHVBP"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ HHVBP_agency: tibble [1 × 252] (S3: tbl_df/tbl/data.frame)</span>
@@ -656,106 +1047,6 @@ It provides a simple way to retrieve data from different CMS programs and catego
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cohorts_linear_exchange_function_lef_ratio                     : chr "3.445"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cohorts_average_total_performance_score_tps                    : chr "29.308"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cohorts_average_adjusted_payment_percentage_app                : chr "0.000%"</span>
-<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"HHCAHPS"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_patient : tibble [1 × 26] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "017000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating                              : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating_footnote                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_gave_care_in_a_professional_way     : chr "4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_gave_care_in_a_professional_way    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "92"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_9099: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_communicated_well_with_them         : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_communicated_well_with_them        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "90"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_979f: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_team_discussed_medicines_pain_and_home_safety       : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_star_rating_discussed_medicines_pain_home_safety       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "89"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_e836: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_how_patients_rated_overall_care_from_agency     : chr "4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_overall_care_from_agency           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "91"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_gave_their_home_health_c417: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "84"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_yes_they_woul_c5a2: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "665"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_number_of_completed_surveys                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "19"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_survey_response_rate                               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_number                                                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_measure : tibble [1 × 2] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_name      : chr "How often the home health team gave care in a professional way"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_date_range: chr "October 1, 2023 to September 30, 2024"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_national: tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ country                                                         : chr "Nation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "89"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "86"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "82"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "85"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "1013291"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "23"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_state   : tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AK"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "87"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "84"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "80"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "83"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "668"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "20"</span>
-<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"HHCAHPS"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_patient : tibble [1 × 26] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "017000"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating                              : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hhcahps_survey_summary_star_rating_footnote                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_gave_care_in_a_professional_way     : chr "4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_gave_care_in_a_professional_way    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "92"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_9099: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_health_team_communicated_well_with_them         : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_communicated_well_with_them        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "90"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_979f: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_team_discussed_medicines_pain_and_home_safety       : chr "5"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_star_rating_discussed_medicines_pain_home_safety       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "89"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_that_their_ho_e836: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ star_rating_for_how_patients_rated_overall_care_from_agency     : chr "4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_star_rating_for_overall_care_from_agency           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "91"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_gave_their_home_health_c417: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "84"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_percent_of_patients_who_reported_yes_they_woul_c5a2: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "665"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_number_of_completed_surveys                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "19"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_for_survey_response_rate                               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ footnote_number                                                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_measure : tibble [1 × 2] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_name      : chr "How often the home health team gave care in a professional way"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measure_date_range: chr "October 1, 2023 to September 30, 2024"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_national: tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ country                                                         : chr "Nation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "89"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "86"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "82"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "85"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "1013291"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "23"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CAHPS_HHC_state   : tibble [1 × 8] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AK"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_c7be: chr "87"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7896: chr "84"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_that_their_home_health_tea_7ba5: chr "80"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_gave_their_home_health_agency_a_rat_187c: chr "83"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percent_of_patients_who_reported_yes_they_would_definitely__2707: chr "79"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_completed_surveys                                     : chr "668"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survey_response_rate                                            : chr "20"</span>
 <span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"SNF_VBP"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ SNF_VBP_agg: tibble [1 × 9] (S3: tbl_df/tbl/data.frame)</span>
@@ -833,7 +1124,7 @@ It provides a simple way to retrieve data from different CMS programs and catego
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ start_date                  : chr "10/01/2021"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ end_date                    : chr "09/30/2023"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ measuredaterange            : chr "-"</span>
-<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"NH_pro"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"NURSING_HOMES"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ NH_ownership     : tibble [1 × 13] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn               : chr "015009"</span>
@@ -2648,7 +2939,7 @@ It provides a simple way to retrieve data from different CMS programs and catego
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer></div>
