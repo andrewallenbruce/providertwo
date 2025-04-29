@@ -23,22 +23,20 @@ method(quick_, careMain) <- function(x, offset, limit) {
 }
 
 method(quick_, careGroup) <- function(x, offset, limit) {
-  x <- map(
-    members(x),
-    \(x) identifier(x) |>
-      request() |>
-      req_url_query(
-        offset = thresh(offset, rows(x)),
-        size   = thresh(limit, 5000L)
-      )
-  ) |>
+  o <- members(x) |>
+    map(\(x) identifier(x) |>
+          request() |>
+          req_url_query(
+            offset = thresh(offset, rows(x)),
+            size   = thresh(limit, 5000L)
+          )) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes()
 
-  nms <- map(x, \(resp) resp_simple_json(resp) |> _[["meta"]] |> _[["headers"]])
+  nms <- map(o, \(resp) resp_simple_json(resp) |> _[["meta"]] |> _[["headers"]])
 
   map2(
-    x,
+    o,
     nms,
     \(resp, nm)
     resp_body_string(resp) |>
