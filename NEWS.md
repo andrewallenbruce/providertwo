@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9235 (2025-04-28)
+
+* `quick()` generic and methods exported
+* pro_endpoint and pro_group reimplemented
+
+
 # providertwo 0.0.0.9234 (2025-04-28)
 
 * prop accessors
