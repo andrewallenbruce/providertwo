@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9238 (2025-04-29)
+
+* care_endpoint, care_group, care_temporal, care_troup classes
+
+
 # providertwo 0.0.0.9237 (2025-04-29)
 
 * open_endpoint, open_group, open_temporal, open_troup classes
