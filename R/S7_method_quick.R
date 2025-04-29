@@ -34,6 +34,30 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
     map_na_if()
 }
 
+# quick("quality_payment")
+method(quick_, care_temporal) <- function(x, offset, limit) {
+  map2(
+    endpoints(x)$identifier,
+    rows(x),
+    \(x, y)
+    request(x) |>
+      req_url_query(
+        offset = thresh(offset, y),
+        size = thresh(limit, 5000L))) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map2(
+      endpoints(x)$year,
+      \(resp, yr)
+      resp_body_string(resp) |>
+        fparse() |>
+        mtt(year = yr) |>
+        colorder(year, npi)
+    ) |>
+    rowbind(fill = TRUE) |>
+    map_na_if() |>
+    as_tbl()
+}
 
 # quick("HHA")
 # quick("hospice")
@@ -44,29 +68,25 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
 # quick("reassignment")
 # quick("SNF")
 method(quick_, care_group) <- function(x, offset, limit) {
-  o <- members(x) |>
-    map(\(x) identifier(x) |>
-          request() |>
-          req_url_query(
-            offset = thresh(offset, rows(x)),
-            size   = thresh(limit, 5000L)
-          )) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes()
-
-  # TODO use fields(x) instead of headers
-  nms <- map(o, \(resp) resp_simple_json(resp) |> _[["meta"]] |> _[["headers"]])
-
-  map2(
-    o,
-    nms,
-    \(resp, nm)
-    resp_body_string(resp) |>
-      fparse(query = "/data") |>
-      as_tbl() |>
-      set_clean(nm) |>
-      map_na_if()
+  map(
+    members(x),
+    \(x) identifier(x) |>
+      request() |>
+      req_url_query(
+        offset = thresh(offset, rows(x)),
+        size   = thresh(limit, 5000L)
+      )
   ) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map2(
+      members(x),
+      \(resp, n) resp_body_string(resp) |>
+        fparse(query = "/data") |>
+        as_tbl() |>
+        set_clean(fields(n)) |>
+        map_na_if()
+    ) |>
     set_names(members_names(x))
 }
 

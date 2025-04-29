@@ -129,7 +129,7 @@ care_endpoint <- new_class(
 #' @noRd
 #' @autoglobal
 care_metatemp <- new_class(
-  name = "care_temp_metadata",
+  name = "care_metatemp",
   package = NULL,
   properties = list(
     description = class_character,
@@ -157,7 +157,7 @@ care_metatemp <- new_class(
 #' @rdname care_temporal
 #' @export
 care_temporal <- new_class(
-  name       = "careTemp",
+  name       = "care_temporal",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -232,7 +232,7 @@ care_group <- new_class(
 #' @rdname care_troup
 #' @export
 care_troup <- new_class(
-  name       = "careTempGroup",
+  name       = "care_troup",
   package    = NULL,
   properties = list(
     group = class_character,
