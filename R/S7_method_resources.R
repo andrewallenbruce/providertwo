@@ -24,7 +24,7 @@ NULL
 
 #' @name list_resources
 #' @title List resources
-#' @param x `careMain`, `careGroup`, `careTemp`, or `careTempGroup` object
+#' @param x `care_endpoint`, `care_group`, `care_temporal`, or `care_troup` object
 #' @returns A list of API resources
 #' @examples
 #' care_endpoint("enrollees") |> list_resources()

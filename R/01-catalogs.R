@@ -1,44 +1,5 @@
 #' @autoglobal
 #' @noRd
-str_look <- function(pattern, look) {
-  switch(
-    match.arg(look, c("ahead", "behind")),
-    ahead  = glue("(?<={pattern}).*$"),
-    behind = glue("^.*(?={pattern})")
-  )
-}
-
-#' @autoglobal
-#' @noRd
-str_look_detect <- function(x, pattern, look) {
-  str_look(pattern, look) |>
-    grepl(x, perl = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-str_look_replace <- function(x, pattern, look, replacement) {
-  str_look(pattern, look) |>
-    gsub(replacement = replacement, x, perl = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-str_look_remove <- function(x, pattern, look) {
-  str_look_replace(x, pattern, look, replacement = "")
-}
-
-
-#' @autoglobal
-#' @noRd
-make_join_col <- \(x, col) {
-  map(x[[ensym(col)]], function(x) get_elem(as.list(x), "data")) |>
-    flatten_column() |>
-    na_if("")
-}
-
-#' @autoglobal
-#' @noRd
 catalog_caid <- function() {
 
   x <- fload("https://data.medicaid.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
@@ -167,35 +128,22 @@ catalog_health <- function() {
       distribution
     )
 
+  get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
+
   keys <- new_df(
-    title = x$title,
+    title   = x$title,
     keyword = make_join_col(x, keyword)) |>
     sbt(keyword != "healthcare") |>
     mtt(keyword = stri_replace_all_regex(keyword, ", healthcare|healthcare, ", ""))
 
-  d <- rowbind(x$distribution, fill = TRUE)
-
-  trep <- vec_rep_each(
-    x$title,
-    get_elem(x$distribution, "data", DF.as.list = TRUE) |>
-      fnobs())
-
   download <- new_tbl(
-    title = trep,
-    download = get_elem(d$data, "downloadURL") |>
-      delist()) |>
+    title    = vec_rep_each(x$title, fnobs(get_dist(x))),
+    download = get_elem(get_dist(x), "downloadURL") |> delist()) |>
     fcount(title, add = TRUE)
 
   list(
-    main = list(
-      slt(x, -keyword, -distribution),
-      keys,
-      download |>
-        sbt(N == 1) |>
-        slt(-N)) |>
-      reduce(join_on_title),
-    download = download |>
-      sbt(N > 1)
+    main     = list(slt(x, -keyword, -distribution), keys, sbt(download, N == 1, -N)) |> reduce(join_on_title),
+    download = sbt(download, N > 1)
   )
 
 }

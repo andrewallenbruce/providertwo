@@ -1,3 +1,42 @@
+#' @autoglobal
+#' @noRd
+str_look <- function(pattern, look) {
+  switch(
+    match.arg(look, c("ahead", "behind")),
+    ahead  = glue("(?<={pattern}).*$"),
+    behind = glue("^.*(?={pattern})")
+  )
+}
+
+#' @autoglobal
+#' @noRd
+str_look_detect <- function(x, pattern, look) {
+  str_look(pattern, look) |>
+    grepl(x, perl = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+str_look_replace <- function(x, pattern, look, replacement) {
+  str_look(pattern, look) |>
+    gsub(replacement = replacement, x, perl = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+str_look_remove <- function(x, pattern, look) {
+  str_look_replace(x, pattern, look, replacement = "")
+}
+
+
+#' @autoglobal
+#' @noRd
+make_join_col <- \(x, col) {
+  map(x[[ensym(col)]], function(x) get_elem(as.list(x), "data")) |>
+    flatten_column() |>
+    na_if("")
+}
+
 # care_types("single")
 # care_types("multi")
 #' @autoglobal

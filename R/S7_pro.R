@@ -92,7 +92,7 @@ pro_endpoint <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- select_pro_main(alias)
+    x <- select_pro(alias)
 
     new_object(
       S7_object(),

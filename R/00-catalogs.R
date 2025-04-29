@@ -89,7 +89,7 @@ catalog_care <- function() {
 catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
-  mtt(x,
+  x <- mtt(x,
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
     issued      = as_date(issued),
@@ -114,6 +114,11 @@ catalog_pro <- function() {
     ) |>
     roworder(group, title) |>
     as_tbl()
+
+  list(
+   main = sbt(x, group != "Physician office visit costs"),
+   cost = sbt(x, group == "Physician office visit costs")
+  )
 }
 
 #' @autoglobal
