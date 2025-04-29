@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9241 (2025-04-29)
+
+* care_temporal quick method
+* fix care_ class names
+
+
 # providertwo 0.0.0.9240 (2025-04-29)
 
 * more Provider API aliases
