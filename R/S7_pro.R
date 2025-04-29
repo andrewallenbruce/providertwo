@@ -1,8 +1,3 @@
-#' @autoglobal
-#' @noRd
-Pro <- new_class(name = "Pro", package = NULL)
-
-
 #' @noRd
 #' @autoglobal
 pro_dimensions <- new_class(
@@ -78,17 +73,16 @@ pro_metadata <- new_class(
 
 #' Provider Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<proMain>` object.
+#' @returns An S7 `<pro_endpoint>` object.
 #' @examples
-#' proMain("PDC_affiliations")
-#' proMain("PDC_clinicians")
-#' proMain("PDC_utilization")
+#' pro_endpoint("PDC_affiliations")
+#' pro_endpoint("PDC_clinicians")
+#' pro_endpoint("PDC_utilization")
 #' @autoglobal
 #' @rdname provider
 #' @export
-proMain <- new_class(
-  parent     = Pro,
-  name       = "proMain",
+pro_endpoint <- new_class(
+  name       = "pro_endpoint",
   package    = NULL,
   properties = list(
     title       = class_character,
@@ -98,46 +92,45 @@ proMain <- new_class(
   ),
   constructor = function(alias) {
 
-    x <- pro_main(alias)
+    x <- select_pro_main(alias)
 
     new_object(
-      Pro(),
+      S7_object(),
       title       = x$title,
+      identifier  = x$identifier,
       metadata    = pro_metadata(x),
-      dimensions  = pro_dimensions(x),
-      identifier  = x$identifier
+      dimensions  = pro_dimensions(x)
     )
   }
 )
 
 #' Provider Endpoint Group
 #' @param alias `<chr>` title alias
-#' @returns An S7 `<proGroup>` object.
+#' @returns An S7 `<pro_group>` object.
 #' @examples
-#' proGroup("PDC")
-#' proGroup("MIPS")
+#' pro_group("PDC")
+#' pro_group("MIPS")
 #' @autoglobal
 #' @rdname provider
 #' @export
-proGroup <- new_class(
-  parent     = Pro,
-  name       = "proGroup",
+pro_group <- new_class(
+  name       = "pro_group",
   package    = NULL,
   properties = list(
     group = class_character,
     members = new_property(
       class_list,
       getter = function(self)
-        map(self@members, proMain) |>
+        map(self@members, pro_endpoint) |>
           set_names(self@members)
       )
     ),
   constructor = function(alias) {
 
-    x <- pro_group(alias)
+    x <- select_pro_group(alias)
 
     new_object(
-      Pro(),
+      S7_object(),
       group   = x$group,
       members = x$alias
     )

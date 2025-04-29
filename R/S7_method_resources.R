@@ -7,7 +7,12 @@ NULL
   x |>
     fcompute(
       year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
+      file     = gsub(
+        "  ",
+        " ",
+        stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+        perl = TRUE
+      ),
       size     = fs::as_fs_bytes(fileSize),
       ext      = tolower(file_ext(downloadURL)),
       download = downloadURL
@@ -38,13 +43,12 @@ method(list_resources, class_character) <- function(x) {
 }
 
 method(list_resources, careMain) <- function(x) {
-  prop(x, "resources") |>
+  resources(x) |>
     list_resources()
 }
 
 method(list_resources, careGroup) <- function(x) {
-  prop(x, "members") |>
-    map(\(x) prop(x, "resources") |> request()) |>
+  map(members(x), \(x) resources(x) |> request()) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(\(resp)
@@ -52,12 +56,11 @@ method(list_resources, careGroup) <- function(x) {
           fparse(query = "/data") |>
           as_tbl() |>
           .tidy_resources()) |>
-    set_names(names(prop(x, "members")))
+    set_names(members_names(x))
 }
 
 method(list_resources, careTemp) <- function(x) {
-  prop(x, "endpoints") |>
-    _[["resources"]] |>
+  endpoints(x) |> _[["resources"]] |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -67,30 +70,32 @@ method(list_resources, careTemp) <- function(x) {
 }
 
 method(list_resources, careTempGroup) <- function(x) {
-  prop(x, "members") |>
-    map(
-      \(x)
-      prop(x, "endpoints") |>
-        _[["resources"]] |>
-        map(request) |>
-        req_perform_parallel(on_error = "continue") |>
-        resps_successes() |>
-        resps_data(
-          \(resp)
-          resp_body_string(resp) |>
-            fparse(query = "/data") |>
-            fcompute(
-              year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")[[1]]),
-              file = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
-              size = fs::as_fs_bytes(fileSize),
-              ext  = tolower(file_ext(downloadURL)),
-              download = downloadURL) |>
-            f_fill(year) |>
-            roworder(-year, ext, -size) |>
-            as_tbl()
-          )
-      ) |>
-    set_names(names(prop(x, "members")))
+  map(
+    members(x),
+    \(x) endpoints(x) |> _[["resources"]] |> map(request) |>
+      req_perform_parallel(on_error = "continue") |>
+      resps_successes() |>
+      resps_data(
+        \(resp) resp_body_string(resp) |>
+          fparse(query = "/data") |>
+          fcompute(
+            year = as.integer(stri_extract_all_regex(name, "[0-9]{4}")[[1]]),
+            file = gsub(
+              "  ",
+              " ",
+              stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
+              perl = TRUE
+            ),
+            size = fs::as_fs_bytes(fileSize),
+            ext  = tolower(file_ext(downloadURL)),
+            download = downloadURL
+          ) |>
+          f_fill(year) |>
+          roworder(-year, ext, -size) |>
+          as_tbl()
+      )
+  ) |>
+    set_names(members_names(x))
 }
 
 # roundup(fileSize / 1e6)

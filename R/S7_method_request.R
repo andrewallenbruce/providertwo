@@ -9,7 +9,7 @@ NULL
 #' @returns A new request
 #' @examples
 #' careMain("enrollees") |> new_request()
-#' proMain("PDC_affiliations") |> new_request()
+#' pro_endpoint("PDC_affiliations") |> new_request()
 #' openMain("PROF_covered") |> new_request()
 #' careGroup("hospital") |> new_request()
 #' @autoglobal
@@ -25,22 +25,22 @@ method(new_request, class_character) <- function(x) {
 }
 
 method(new_request, careMain) <- function(x) {
-  prop(x, "identifier") |>
+  identifier(x) |>
     new_request() |>
     req_url_query(offset = 0L, size = 5000L)
 }
 
 method(new_request, careGroup) <- function(x) {
   map(
-    prop(x, "members"),
-    \(x) prop(x, "identifier") |>
+    members(x),
+    \(x) identifier(x) |>
       new_request() |>
       req_url_query(offset = 0L, size = 5000L)
   )
 }
 
-method(new_request, proMain) <- function(x) {
-  prop(x, "identifier") |>
+method(new_request, pro_endpoint) <- function(x) {
+  identifier(x) |>
     new_request() |>
     req_url_query(
       count   = "false",
@@ -55,7 +55,7 @@ method(new_request, proMain) <- function(x) {
 }
 
 method(new_request, openMain) <- function(x) {
-  prop(x, "identifier") |>
+  identifier(x) |>
     new_request() |>
     req_url_query(
       count   = "false",

@@ -18,13 +18,31 @@ members <- function(x) {
 
 #' @autoglobal
 #' @noRd
+members_names <- function(x) {
+  members(x) |> names()
+}
+
+#' @autoglobal
+#' @noRd
+set_members_names <- function(x) {
+  set_names(x, members_names(x))
+}
+
+#' @autoglobal
+#' @noRd
 identifier <- function(x) {
   prop(x, "identifier")
 }
 
 #' @autoglobal
 #' @noRd
-total_rows <- function(x) {
+resources <- function(x) {
+  prop(x, "resources")
+}
+
+#' @autoglobal
+#' @noRd
+rows <- function(x) {
   dimensions(x) |> prop("rows")
 }
 

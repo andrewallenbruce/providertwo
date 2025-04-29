@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-pro_main <- function(x, call = caller_env()) {
+select_pro_main <- function(x, call = caller_env()) {
   x <- switch(
     x,
     suppliers               = "^Medical Equipment Suppliers$",
@@ -54,7 +54,7 @@ pro_main <- function(x, call = caller_env()) {
     NH_quality_claims       = "^Medicare Claims Quality Measures$",
     NH_state_avg            = "^State US Averages$",
     NH_state_cut            = "^State-Level Health Inspection Cut Points$",
-    NH_interval             = "^Nursing Home Data Collection Interval$",
+    NH_interval             = "^Nursing Home Data Collection Interval",
     PRO_dialysis_fac        = "^Dialysis Facility - Listing by Facility$",
     PRO_dialysis_nat        = "^Dialysis Facility - National Averages$",
     PRO_dialysis_state      = "^Dialysis Facility - State Averages$",
@@ -92,7 +92,7 @@ pro_main <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-pro_group <- function(x, call = caller_env()) {
+select_pro_group <- function(x, call = caller_env()) {
   switch(
     x,
     MIPS = list(
