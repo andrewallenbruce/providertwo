@@ -21,7 +21,7 @@ health - CMS HealthCare.gov API
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9236</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9237</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@ health - CMS HealthCare.gov API
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">catalogs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care$main</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title          description modified   periodicity temporal contact identifier</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACO REACH Ali… <span style="color: #949494;">"</span>The Accou… 2025-04-25 Annually [… 2021-01… ACO RE… https://d…</span>
@@ -90,24 +90,24 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Agency for He… <span style="color: #949494;">"</span>The Agenc… 2020-12-08 Annually [… 2015-01… Defici… https://d…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CMS Program S… <span style="color: #949494;">"</span>The CMS P… 2023-03-06 Annually [… 2013-01… CMS Pr… https://d…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 129 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: dictionary &lt;chr&gt;, site &lt;chr&gt;, references &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   year &lt;int&gt;, download &lt;chr&gt;, filetype &lt;chr&gt;, resources &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: dictionary &lt;chr&gt;, site &lt;chr&gt;, references &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, resources &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care$temp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 112 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 79 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title                   data description periodicity contact dictionary site </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;list&lt;t&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACO REACH Aligned …  <span style="color: #949494;">[1 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… ACO RE… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ACO REACH Eligible…  <span style="color: #949494;">[1 × 7]</span> <span style="color: #949494;">"</span>Accountab… Annually [… ACO RE… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ACO REACH Financia…  <span style="color: #949494;">[1 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… ACO RE… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ACO REACH Providers  <span style="color: #949494;">[1 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… ACO RE… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Accountable Care O… <span style="color: #949494;">[12 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… Shared… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Accountable Care O…  <span style="color: #949494;">[9 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… Shared… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Accountable Care O… <span style="color: #949494;">[12 × 7]</span> <span style="color: #949494;">"</span>The Accou… Annually [… Shared… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Advance Investment…  <span style="color: #949494;">[2 × 7]</span> <span style="color: #949494;">"</span>The Advan… Annually [… Shared… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Agency for Healthc…  <span style="color: #949494;">[2 × 7]</span> <span style="color: #949494;">"</span>The Agenc… Annually [… Defici… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> COVID-19 Nursing H…  <span style="color: #949494;">[1 × 7]</span> <span style="color: #949494;">"</span>Submitted… Weekly [R/… COVID-… https://d… http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 102 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accountable Care O… <span style="color: #949494;">[12 × 6]</span> The Accoun… Annually [… Shared… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accountable Care O…  <span style="color: #949494;">[9 × 6]</span> The Accoun… Annually [… Shared… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Accountable Care O… <span style="color: #949494;">[12 × 6]</span> The Accoun… Annually [… Shared… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Advance Investment…  <span style="color: #949494;">[2 × 6]</span> The Advanc… Annually [… Shared… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Agency for Healthc…  <span style="color: #949494;">[2 × 6]</span> The Agency… Annually [… Defici… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> County-level Aggre…  <span style="color: #949494;">[8 × 6]</span> The Shared… Annually [… Shared… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Deficit Reduction … <span style="color: #949494;">[10 × 6]</span> The Public… Annually [… Defici… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> End-Stage Renal Di…  <span style="color: #949494;">[3 × 6]</span> The End-St… Monthly [R… ETC Mo… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Facility-Level Min…  <span style="color: #949494;">[2 × 6]</span> The Facili… Quarterly … NH Fac… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Federally Qualifie…  <span style="color: #949494;">[3 × 6]</span> The Federa… Quarterly … Provid… https://d… http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 69 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $pro</span>
