@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9242 (2025-04-29)
+
+* open classes cleanup
+
+
 # providertwo 0.0.0.9241 (2025-04-29)
 
 * care_temporal quick method
