@@ -24,13 +24,15 @@
 #' quick("LTCH") |> str()
 #' quick("IRF") |> str()
 #' quick("SPICE") |> str()
-#' quick("CAHPS_hospice") |> str()
+#' quick("CAHPS_SPICE") |> str()
+#' quick("CAHPS_HHC") |> str()
+#' quick("CAHPS_ICH") |> str()
+#' quick("CAHPS_OAS") |> str()
+#' quick("HCAHPS") |> str()
 #' quick("HHVBP") |> str()
-#' quick("HHCAHPS") |> str()
-#' quick("HHCAHPS") |> str()
 #' quick("SNF_VBP") |> str()
 #' quick("SNF_quality") |> str()
-#' quick("NH_pro") |> str()
+#' quick("NURSING_HOMES") |> str()
 #'
 #' # OPEN PAYMENTS
 #' quick("summary") |> str()
@@ -83,19 +85,50 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     pending           = ,
     reassignment      = ,
     SNF               = quick_(care_group(x), offset = offset, limit = limit),
+    PSI90_6digit      = ,
+    joint_replace     = ,
+    Data_Updates      = ,
+    Footnote_Xwalk    = ,
+    Measure_Dates     = ,
+    Hospital_Maternal = ,
+    Hospital_Outcomes = ,
+    Hospital_General  = ,
+    Hospital_PI       = ,
     suppliers         = quick_(pro_endpoint(x), offset = offset, limit = limit),
-    PDC               = ,
+    CAHPS_SPICE       = ,
+    CAHPS_HHC         = ,
+    CAHPS_ICH         = ,
+    CAHPS_OAS         = ,
+    HCAHPS            = ,
     MIPS              = ,
+    PDC               = ,
     LTCH              = ,
+    IPF               = ,
     IRF               = ,
     SPICE             = ,
-    CAHPS_hospice     = ,
+    HVBP              = ,
     HHVBP             = ,
     HHC               = ,
-    HHCAHPS           = ,
     SNF_VBP           = ,
     SNF_quality       = ,
-    NH_pro            = quick_(pro_group(x), offset = offset, limit = limit),
+    NURSING_HOMES     = ,
+    COMP_DEATH        = ,
+    PCH_COMP          = ,
+    PCH_PALL          = ,
+    PCH_HCAHPS        = ,
+    ASC_quality       = ,
+    EQUI              = ,
+    HAI               = ,
+    DIAL              = ,
+    ESRD              = ,
+    MSPB              = ,
+    OUT_img           = ,
+    Timely            = ,
+    UNPLAN            = ,
+    VHA               = ,
+    CHANGES           = ,
+    VOC               = ,
+    REDUCT            = quick_(pro_group(x), offset = offset, limit = limit),
     PROF_covered      = ,
     PROF_physician    = ,
     PROF_information  = ,

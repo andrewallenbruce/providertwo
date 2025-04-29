@@ -21,7 +21,8 @@ select_open_main <- function(x, call = caller_env()) {
 
   res <- select_alias(.catalog$open$main, x)
 
-  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 }
