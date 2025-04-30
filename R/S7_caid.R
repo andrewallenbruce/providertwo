@@ -1,23 +1,12 @@
+#' @include S7_classes.R
+NULL
+
 #' @noRd
 #' @autoglobal
 caid_dimensions <- new_class(
-  name = "caid_dimensions",
-  package = NULL,
-  properties = list(
-    limit = class_integer,
-    rows  = class_integer,
-    pages = new_property(
-      class_integer,
-      getter = function(self)
-        offset_size(self@rows, self@limit)
-      ),
-    fields = new_property(
-      class_character,
-      getter = function(self)
-        as.list(self@fields) |>
-        set_names(self@fields)
-      )
-    ),
+  name        = "caid_dimensions",
+  parent      = class_dimensions,
+  package     = NULL,
   constructor = function(x) {
 
     x <- x$identifier |>
@@ -35,7 +24,7 @@ caid_dimensions <- new_class(
       perform_simple()
 
     new_object(
-      S7_object(),
+      class_dimensions(),
       limit  = 8000L,
       rows   = x$count,
       fields = x$query$properties)
@@ -45,22 +34,17 @@ caid_dimensions <- new_class(
 #' @noRd
 #' @autoglobal
 caid_metadata <- new_class(
-  name = "caid_metadata",
-  package = NULL,
-  properties = list(
-    description = class_character,
-    modified    = new_union(class_character, class_Date),
-    dictionary  = class_character,
-    download    = class_character
-  ),
+  name        = "caid_metadata",
+  parent      = class_metadata,
+  package     = NULL,
   constructor = function(x) {
-    new_object(
-      S7_object(),
-      description = x$description,
-      modified    = x$modified,
-      dictionary  = x$dictionary,
-      download    = x$download
-    )
+      new_object(
+        class_metadata(),
+        description = x$description,
+        modified    = x$modified,
+        dictionary  = x$dictionary,
+        download    = x$download
+      )
   }
 )
 
@@ -74,20 +58,15 @@ caid_metadata <- new_class(
 #' @rdname caid
 #' @export
 caid_endpoint <- new_class(
-  name       = "caid_endpoint",
-  package    = NULL,
-  properties = list(
-    title       = class_character,
-    identifier  = class_character,
-    metadata    = caid_metadata,
-    dimensions  = caid_dimensions
-  ),
+  name        = "caid_endpoint",
+  parent      = class_endpoint,
+  package     = NULL,
   constructor = function(alias) {
 
     x <- select_caid(alias)
 
     new_object(
-      S7_object(),
+      class_endpoint(),
       title       = x$title,
       identifier  = x$identifier,
       metadata    = caid_metadata(x),
@@ -106,9 +85,9 @@ caid_endpoint <- new_class(
 #' @export
 caid_group <- new_class(
   name       = "caid_group",
+  parent     = class_group,
   package    = NULL,
   properties = list(
-    group    = class_character,
     members  = new_property(
       class_list,
       getter = function(self)
@@ -121,7 +100,7 @@ caid_group <- new_class(
     x <- select_caid_group(alias)
 
     new_object(
-      S7_object(),
+      class_group(),
       group   = x$group,
       members = x$alias
     )

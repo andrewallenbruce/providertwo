@@ -41,6 +41,7 @@ Collate:
     '00-catalogs.R'
     '01-catalogs.R'
     'S7_args.R'
+    'S7_classes.R'
     'S7_caid.R'
     'S7_care.R'
     'S7_open.R'
