@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9243 (2025-04-29)
+
+* medicaid catalog work
+* quick method refinement
+* set_members_names helper
+
+
 # providertwo 0.0.0.9242 (2025-04-29)
 
 * open classes cleanup
