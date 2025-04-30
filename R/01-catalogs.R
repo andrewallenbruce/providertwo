@@ -88,13 +88,42 @@ catalog_caid <- function() {
 
   list(
     main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
-      sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)),
+      sbt(
+        stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)
+      ),
     temp = subset_detect(main, title, pat, ci = TRUE) |>
-      sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)) |>
-      mtt(year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |>
-            as.integer()) |>
-      colorder(year) |>
-      roworder(title, -year),
+      sbt(
+        stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)
+      ) |>
+      mtt(
+        year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer(),
+        title = case(
+          grepl("Child and Adult Health Care Quality Measures", title, perl = TRUE) ~ "Child and Adult Health Care Quality Measures",
+          grepl("[0-9]{4} Manage", title, perl = TRUE) ~ "Managed Care Programs by State",
+          grepl(
+            "NADAC \\(National Average Drug Acquisition Cost\\)",
+            title,
+            perl = TRUE
+          ) ~ "NADAC",
+          grepl("State Drug Utilization Data", title, perl = TRUE) ~ "State Drug Utilization Data",
+          grepl("Pricing Comparison", title, perl = TRUE) ~ "Pricing Comparison for Blood Disorder Treatments",
+          grepl("Product Data for Newly Reported", title, perl = TRUE) ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+          .default = title
+        )
+      ) |>
+      roworder(title, year, modified) |>
+      f_fill(periodicity) |>
+      slt(
+        year,
+        title,
+        description,
+        periodicity,
+        issued,
+        modified,
+        identifier,
+        download,
+        dictionary
+      ),
     download = download |> sbt(N > 1) |> funique(cols = c("title", "download")),
     scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto"))
   )

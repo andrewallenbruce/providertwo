@@ -24,8 +24,8 @@ members_names <- function(x) {
 
 #' @autoglobal
 #' @noRd
-set_members_names <- function(x) {
-  set_names(x, members_names(x))
+set_members_names <- function(x, obj) {
+  set_names(x, members_names(obj))
 }
 
 #' @autoglobal

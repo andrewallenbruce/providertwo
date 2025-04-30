@@ -23,53 +23,5 @@ A data frame or object containing the requested CMS data.
 It provides a simple way to retrieve data from different CMS programs and categories.
 }
 \examples{
-# MEDICAID
 quick("MLR") |> str()
-quick("enterprise") |> str()
-quick("demographics") |> str()
-
-
-# PROVIDER
-quick("suppliers") |> str()
-quick("PDC") |> str()
-quick("MIPS") |> str()
-quick("LTCH") |> str()
-quick("IRF") |> str()
-quick("SPICE") |> str()
-quick("CAHPS_SPICE") |> str()
-quick("CAHPS_HHC") |> str()
-quick("CAHPS_ICH") |> str()
-quick("CAHPS_OAS") |> str()
-quick("HCAHPS") |> str()
-quick("HHVBP") |> str()
-quick("SNF_VBP") |> str()
-quick("SNF_quality") |> str()
-quick("NURSING_HOMES") |> str()
-
-# OPEN PAYMENTS
-quick("summary") |> str()
-quick("profile") |> str()
-
-# MEDICARE
-quick("HHA") |> str()
-quick("hospice") |> str()
-quick("hospital") |> str()
-quick("RHC") |> str()
-quick("FQHC") |> str()
-quick("pending") |> str()
-quick("reassignment") |> str()
-quick("SNF") |> str()
-
-quick("contact") |> str()
-quick("crosswalk") |> str()
-quick("CARE_dialysis") |> str()
-quick("enrollees") |> str()
-quick("facilities") |> str()
-quick("IQIES") |> str()
-quick("laboratories") |> str()
-quick("long_term") |> str()
-quick("opt_out") |> str()
-quick("order_refer") |> str()
-quick("RBCS") |> str()
-quick("transparency") |> str()
 }

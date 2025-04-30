@@ -11,59 +11,11 @@
 #' @returns A data frame or object containing the requested CMS data.
 #'
 #' @examples
-#' # MEDICAID
 #' quick("MLR") |> str()
-#' quick("enterprise") |> str()
-#' quick("demographics") |> str()
-#'
-#'
-#' # PROVIDER
-#' quick("suppliers") |> str()
-#' quick("PDC") |> str()
-#' quick("MIPS") |> str()
-#' quick("LTCH") |> str()
-#' quick("IRF") |> str()
-#' quick("SPICE") |> str()
-#' quick("CAHPS_SPICE") |> str()
-#' quick("CAHPS_HHC") |> str()
-#' quick("CAHPS_ICH") |> str()
-#' quick("CAHPS_OAS") |> str()
-#' quick("HCAHPS") |> str()
-#' quick("HHVBP") |> str()
-#' quick("SNF_VBP") |> str()
-#' quick("SNF_quality") |> str()
-#' quick("NURSING_HOMES") |> str()
-#'
-#' # OPEN PAYMENTS
-#' quick("summary") |> str()
-#' quick("profile") |> str()
-#'
-#' # MEDICARE
-#' quick("HHA") |> str()
-#' quick("hospice") |> str()
-#' quick("hospital") |> str()
-#' quick("RHC") |> str()
-#' quick("FQHC") |> str()
-#' quick("pending") |> str()
-#' quick("reassignment") |> str()
-#' quick("SNF") |> str()
-#'
-#' quick("contact") |> str()
-#' quick("crosswalk") |> str()
-#' quick("CARE_dialysis") |> str()
-#' quick("enrollees") |> str()
-#' quick("facilities") |> str()
-#' quick("IQIES") |> str()
-#' quick("laboratories") |> str()
-#' quick("long_term") |> str()
-#' quick("opt_out") |> str()
-#' quick("order_refer") |> str()
-#' quick("RBCS") |> str()
-#' quick("transparency") |> str()
 #' @autoglobal
 #' @export
 quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
-  switch(
+  ob <- switch(
     x,
     contact           = ,
     crosswalk         = ,
@@ -76,7 +28,7 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     opt_out           = ,
     order_refer       = ,
     RBCS              = ,
-    transparency      = quick_(care_endpoint(x), offset = offset, limit = limit),
+    transparency      = care_endpoint(x),
     HHA               = ,
     hospice           = ,
     hospital          = ,
@@ -84,7 +36,7 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     FQHC              = ,
     pending           = ,
     reassignment      = ,
-    SNF               = quick_(care_group(x), offset = offset, limit = limit),
+    SNF               = care_group(x),
     PSI90_6digit      = ,
     joint_replace     = ,
     Data_Updates      = ,
@@ -94,7 +46,7 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     Hospital_Outcomes = ,
     Hospital_General  = ,
     Hospital_PI       = ,
-    suppliers         = quick_(pro_endpoint(x), offset = offset, limit = limit),
+    suppliers         = pro_endpoint(x),
     CAHPS_SPICE       = ,
     CAHPS_HHC         = ,
     CAHPS_ICH         = ,
@@ -128,7 +80,7 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     VHA               = ,
     CHANGES           = ,
     VOC               = ,
-    REDUCT            = quick_(pro_group(x), offset = offset, limit = limit),
+    REDUCT            = pro_group(x),
     PROF_covered      = ,
     PROF_physician    = ,
     PROF_information  = ,
@@ -139,13 +91,13 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     SUMM_state_all    = ,
     SUMM_state_group  = ,
     SUMM_nation_all   = ,
-    SUMM_nation_group = quick_(open_endpoint(x), offset = offset, limit = limit),
+    SUMM_nation_group = open_endpoint(x),
     profile           = ,
-    summary           = quick_(open_group(x), offset = offset, limit = limit),
+    summary           = open_group(x),
     MLR               = ,
-    enterprise        = quick_(caid_endpoint(x), offset = offset, limit = limit),
-    demographics      = quick_(caid_group(x), offset = offset, limit = limit),
-
+    enterprise        = caid_endpoint(x),
+    demographics      = caid_group(x),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
+  quick_(ob, offset = offset, limit = limit)
 }
