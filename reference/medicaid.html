@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9248</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9249</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,9 +69,9 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caid_endpoint</span><span class="op">(</span><span class="st">"enterprise"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr NA</span>
@@ -95,13 +95,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ tshirt_size                      : chr "tshirt_size"</span>
 <span class="r-in"><span><span class="fu">caid_group</span><span class="op">(</span><span class="st">"demographics"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ flass  : chr "caid_endpoint"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicaid and CHIP Enrollee Demographics"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_well      : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Medicaid and CHIP enrollees who received a well-child visit"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/289182e5-44c8-4fcc-96c4-4af69be9863f/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicaid and CHIP enrollees who received a well-child visit"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -121,9 +120,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_sud       : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Medicaid and CHIP enrollees who received mental health or SUD services"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8062e2f4-4c0a-41c9-8217-979468a80986/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicaid and CHIP enrollees who received mental health or SUD services"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -143,9 +142,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_disability: &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Medicaid enrollees who qualify for benefits based on disability"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b12e390f-1721-47c0-bb38-b0b1805e0446/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicaid enrollees who qualify for benefits based on disability"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid enrollees who are eligible for benefits based "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -165,9 +164,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_premature : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/ee3b9534-0d19-4c1b-bf74-43f898d5de7c/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and rates of Medicaid- and Childrens Health Insurance Program (CHIP)-cover"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -187,9 +186,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ rate_of_deliveries             : chr "rate_of_deliveries"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                   : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_language  : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Primary language spoken by the Medicaid and CHIP population"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/3df86994-c0e4-4106-a404-e95e87c824e6/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Primary language spoken by the Medicaid and CHIP population"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-18"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -209,9 +208,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_race      : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Race and ethnicity of the national Medicaid and CHIP population"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b9e18d80-c765-4fb9-95e7-81951e01a6a3/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Race and ethnicity of the national Medicaid and CHIP population"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -231,9 +230,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_rural     : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Rural Medicaid and CHIP enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/73fdbf7c-569e-427b-9bff-eeed34a51dcb/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Rural Medicaid and CHIP enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -253,9 +252,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_waive     : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Section 1915(c) waiver program participants"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/4d4eaf55-33d3-4468-80b4-63553f4530ae/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;caid_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Section 1915(c) waiver program participants"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-17"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr NA</span>
@@ -276,8 +275,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
 <span class="r-in"><span><span class="fu">caid_temporal</span><span class="op">(</span><span class="st">"MCP"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Managed Care Programs by State"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Managed Care Programs by State"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "Dataset."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>

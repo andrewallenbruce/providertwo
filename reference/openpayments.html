@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9248</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9249</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,9 +71,9 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">open_endpoint</span><span class="op">(</span><span class="st">"PROF_covered"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Covered Recipient Profile Supplement"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Covered Recipient Profile Supplement"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Covered Recipient Profile Supplement file contains information about physicians and non-physician practitio"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.cms.gov/openpayments/PHPRFL_P01302025_01212025/OP_CVRD_RCPNT_PRFL_SPLMTL_P01302025_01212025.csv"</span>
@@ -116,9 +116,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ covered_recipient_profile_license_state_code_5 : chr "covered_recipient_profile_license_state_code_5"</span>
 <span class="r-in"><span><span class="fu">open_endpoint</span><span class="op">(</span><span class="st">"SUMM_state_group"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/7c5144d9-1b2a-5039-a91a-cccb8ed7805c/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "Groups payment data by state, recipient type, and nature of payment."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYRall_P01"| __truncated__</span>
@@ -157,13 +157,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ median_total_payment_count_teaching_hospital          : chr "median_total_payment_count_teaching_hospital"</span>
 <span class="r-in"><span><span class="fu">open_group</span><span class="op">(</span><span class="st">"profile"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ flass  : chr "open_endpoint"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Open Payments Profiles"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_covered    : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Covered Recipient Profile Supplement"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Covered Recipient Profile Supplement"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Covered Recipient Profile Supplement file contains information about physicians and non-physician practitio"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/PHPRFL_P01302025_01212025/OP_CVRD_RCPNT_PRFL_SPLMTL_P01302025_01212025.csv"</span>
@@ -205,9 +204,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_license_state_code_4 : chr "covered_recipient_profile_license_state_code_4"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_license_state_code_5 : chr "covered_recipient_profile_license_state_code_5"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_physician  : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Physician (Distinct) Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/6ed6ae76-2999-49da-b0b2-d7df150ac754/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Physician (Distinct) Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PHYSN_NON_PHYSN_PRCTNR_PRFL_SRCH_P013"| __truncated__</span>
@@ -250,9 +249,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_alternate_last_name5  : chr "covered_recipient_profile_alternate_last_name5"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ has_multiple_ids                                : chr "has_multiple_ids"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_information: &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/f2ed17cc-f045-4e25-9b28-75c72f0c7efe/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset provides profile information to display on payment search results."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/all-entities-profile-search.csv"</span>
@@ -282,9 +281,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ entity_specialty      : chr "entity_specialty"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ location              : chr "location"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_mapping    : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Provider Profile ID Mapping Table"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/d19e5be2-5b8c-562c-af22-c243503bcfac/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Provider Profile ID Mapping Table"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "Maps secondary/duplicate provider profile IDs to the primary ID in the Open Payments system. For multiple reaso"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_PRVDR_PRFL_MAPPING_P01302025_01212025.csv"</span>
@@ -296,9 +295,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ primary_provider_profile_id  : chr "primary_provider_profile_id"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ secondary_provider_profile_id: chr "secondary_provider_profile_id"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_entity     : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Reporting Entity Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/1cf0c6c0-c377-466e-b78f-037b442559f8/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Reporting Entity Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_RPTG_ORG_PRFL_SRCH_P01302025_01212025.csv"</span>
@@ -317,9 +316,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ amgpo_making_payment_alternate_name4: chr "amgpo_making_payment_alternate_name4"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ amgpo_making_payment_alternate_name5: chr "amgpo_making_payment_alternate_name5"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PROF_teaching   : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Teaching Hospital Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/8219fcb3-fb3d-4b51-9f65-be8a048c0608/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Teaching Hospital Profile Information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_TH_PRFL_SRCH_P01302025_01212025.csv"</span>
@@ -342,13 +341,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ teaching_hospital_alternate_name5: chr "teaching_hospital_alternate_name5"</span>
 <span class="r-in"><span><span class="fu">open_group</span><span class="op">(</span><span class="st">"summary"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ flass  : chr "open_endpoint"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Open Payments Summaries"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ SUMM_dashboard   : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Summary Dashboard - all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/e0d225fc-8230-401d-8fad-e2262fb22b4c/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Summary Dashboard - all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "Summary data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_DSHBRD_P01302025_01212025.csv"</span>
@@ -368,9 +366,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ py_2023             : chr "py_2023"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total               : chr "total"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ SUMM_state_all   : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "State Level Payment Total and Averages for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/02157882-0f43-473a-a777-c96eb5b1b623/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "State Level Payment Total and Averages for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_STATE_SMRY_P01302025_01212025-joined.csv"</span>
@@ -408,9 +406,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_non_physician_practitioner : chr "median_total_payment_count_non_physician_practitioner"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_teaching_hospital          : chr "median_total_payment_count_teaching_hospital"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ SUMM_state_group : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/7c5144d9-1b2a-5039-a91a-cccb8ed7805c/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "State Payment Totals and Averages Grouped by Nature of Payment for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "Groups payment data by state, recipient type, and nature of payment."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTR_OF_PYMT_BY_STATE_SMRY_PGYRall_P01"| __truncated__</span>
@@ -448,9 +446,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_non_physician_practitioner : chr "median_total_payment_count_non_physician_practitioner"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_teaching_hospital          : chr "median_total_payment_count_teaching_hospital"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ SUMM_nation_all  : &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "National Level Payment Total and Averages for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/aaaddc12-a3a7-4cc5-9c12-4a726317aa1c/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "National Level Payment Total and Averages for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_NTNL_SMRY_P01302025_01212025-joined.csv"</span>
@@ -478,9 +476,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_physician                  : chr "median_total_payment_count_physician"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_non_physician_practitioner : chr "median_total_payment_count_non_physician_practitioner"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ SUMM_nation_group: &lt;open_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "National Level Payment Total and Averages by Provider Specialty for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://openpaymentsdata.cms.gov/api/1/datastore/query/04c3355f-955b-4620-b3a8-08020cc9c1f2/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;open_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "National Level Payment Total and Averages by Provider Specialty for all Years"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SPLTY_SMRY_P01302025_01212025-joined.csv"</span>
@@ -512,8 +510,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ median_total_payment_count_non_physician_practitioner : chr "median_total_payment_count_non_physician_practitioner"</span>
 <span class="r-in"><span><span class="fu">open_temporal</span><span class="op">(</span><span class="st">"DATA_general"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "General Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "General Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "All general (non-research, non-ownership related) payments from the 2023 program year [January 1 – December 31, 2023]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
@@ -618,8 +616,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_GNRL_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_GNRL_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_GNRL_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_GNRL_PGYR2020_P01302025_01212025.csv" ...</span>
 <span class="r-in"><span><span class="fu">open_temporal</span><span class="op">(</span><span class="st">"GROUP_all"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title     : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
@@ -641,12 +639,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ ...</span>
 <span class="r-in"><span><span class="fu">open_troup</span><span class="op">(</span><span class="st">"grouped_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_troup&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ flass  : chr "open_temporal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Payments Grouped by Year"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_recip_nature : &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -669,8 +666,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/4017acfa-0eeb-4b8a-b68c-3b41e779c4a2/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/686b765e-f4b7-4d35-a050-fb5af926dbbe/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/d35243be-55cb-5087-931e-a294e0e0917f/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/1fd2be47-cb72-435a-b2df-142f38e99a05/0" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2023_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2022_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2021_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2020_P0"| __truncated__ ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_recip_entity : &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Payments Grouped by Covered Recipient and Reporting Entities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Payments Grouped by Covered Recipient and Reporting Entities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -695,8 +692,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/4fbf0094-3c7b-425a-aabe-5778052559ad/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/d2d87f39-b117-4ac8-9f36-a088fb22a25b/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/7c9ebb83-8f88-5462-ab7d-1925b0113cfc/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/78ad9c8d-d7ae-4066-bf2d-a66e3c9d6e3b/0" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2020_P01302025_01212025.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_entity_nature: &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -719,8 +716,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/4017acfa-0eeb-4b8a-b68c-3b41e779c4a2/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/686b765e-f4b7-4d35-a050-fb5af926dbbe/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/d35243be-55cb-5087-931e-a294e0e0917f/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/1fd2be47-cb72-435a-b2df-142f38e99a05/0" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2023_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2022_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2021_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2020_P0"| __truncated__ ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_all          : &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -742,12 +739,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_CR_BY_NTR_OF_PYMT_PG"| __truncated__ ...</span>
 <span class="r-in"><span><span class="fu">open_troup</span><span class="op">(</span><span class="st">"detailed_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;open_troup&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ flass  : chr "open_temporal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Payments Detailed by Year"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DATA_general  : &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "General Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "General Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "All general (non-research, non-ownership related) payments from the 2023 program year [January 1 – December 31, 2023]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -851,8 +847,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/fb3a65aa-c901-4a38-a813-b04b00dfa2a9/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/df01c2f8-dc1f-4e79-96cb-8208beaf143c/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/0380bbeb-aea1-58b6-b708-829f92a48202/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/a08c4b30-5cf3-4948-ad40-36f404619019/0" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_GNRL_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_GNRL_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_GNRL_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_GNRL_PGYR2020_P01302025_01212025.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DATA_ownership: &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Ownership Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Ownership Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "Ownership Payment Data - Detailed Dataset 2023 Reporting Year\nAll ownership and investment payments from the 2"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
@@ -895,8 +891,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/ac0bc85c-02e3-45d9-89e8-2ff43da85df7/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/37792388-800f-427a-9e02-b11601454eeb/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/b0c03b8d-06df-58f2-8ce2-4daeffee147e/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/a9a0bf48-6b96-4589-b4c2-3c5dcfbeaca2/0" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/PGYR2023_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2022_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2021_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/PGYR2020_P01302025_01212025/OP_DTL_OWNRSHP_PGYR2020_P01302025_01212025.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DATA_research : &lt;open_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ title     : chr "Research Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Research Payment Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "Research Payment Data – Detailed Dataset 2023 Reporting Year\nAll research-related payments from the 2023 progr"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
