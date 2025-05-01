@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9245 (2025-05-01)
+
+* caid aliases
+
+
 # providertwo 0.0.0.9244 (2025-04-30)
 
 * parent classes
