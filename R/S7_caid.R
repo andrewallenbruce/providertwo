@@ -27,14 +27,23 @@ caid_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-caid_metadata <- function(x) {
-  class_metadata(
-    description = x$description,
-    modified    = x$modified,
-    dictionary  = x$dictionary,
-    download    = x$download
-  )
-}
+caid_metadata <- new_class(
+  name = "caid_metadata",
+  parent = class_metadata,
+  package = NULL,
+  properties = list(
+    dictionary  = class_character,
+    download    = class_character),
+  constructor = function(x) {
+    new_object(
+      class_metadata(),
+      description = x$description,
+      modified    = x$modified,
+      dictionary  = x$dictionary,
+      download    = x$download
+    )
+  }
+)
 
 #' Medicaid Endpoint
 #' @param alias `<chr>` endpoint alias
@@ -85,20 +94,13 @@ caid_group <- new_class(
   name       = "caid_group",
   parent     = class_group,
   package    = NULL,
-  properties = list(
-    members  = new_property(
-      class_list,
-      getter = function(self)
-        map(self@members, caid_endpoint) |>
-        set_names(self@members)
-      )
-    ),
   constructor = function(alias) {
 
     x <- select_caid_group(alias)
 
     new_object(
       class_group(),
+      flass   = "caid_endpoint",
       group   = x$group,
       members = x$alias
     )
@@ -127,9 +129,9 @@ caid_temporal <- new_class(
     x <- select_caid_temp(alias)
 
     new_object(
-      S7_object(),
+      class_temporal(),
       title       = x$title,
-      metadata    = caid_metadata(x),
+      metadata    = class_metadata(x$description, x$modified),
       dimensions  = caid_dimensions(x),
       endpoints   = x$endpoints
     )

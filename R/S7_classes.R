@@ -31,15 +31,15 @@ class_metadata <- new_class(
   package = NULL,
   properties = list(
     description = class_character,
-    issued      = new_union(NULL, class_character, class_Date),
-    modified    = new_union(class_character, class_Date),
-    released    = new_union(NULL, class_character, class_Date),
-    dictionary  = new_union(NULL, class_character),
-    download    = new_union(NULL, class_character),
-    temporal    = new_union(NULL, class_character),
-    periodicity = new_union(NULL, class_character),
-    site        = new_union(NULL, class_character),
-    references  = new_union(NULL, class_character)
+    modified    = new_union(class_character, class_Date)
+    # issued      = new_union(NULL, class_character, class_Date),
+    # released    = new_union(NULL, class_character, class_Date),
+    # dictionary  = new_union(NULL, class_character),
+    # download    = new_union(NULL, class_character),
+    # temporal    = new_union(NULL, class_character),
+    # periodicity = new_union(NULL, class_character),
+    # site        = new_union(NULL, class_character),
+    # references  = new_union(NULL, class_character)
   )
 )
 
@@ -62,11 +62,12 @@ class_group <- new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
+    flass    = class_character,
     group    = class_character,
     members  = new_property(
       class_list,
       getter = function(self)
-        map(self@members, class_endpoint) |>
+        map(self@members, rlang::as_function(self@flass)) |>
         set_names(self@members)
     )
   )
