@@ -68,6 +68,16 @@ caid_endpoint <- new_class(
 #' @returns An S7 `<caid_group>` object.
 #' @examples
 #' caid_group("demographics")
+#' caid_group("services")
+#' caid_group("beneficiaries")
+#' caid_group("financial")
+#' caid_group("NADAC")
+#' caid_group("PKG")
+#' caid_group("DRUG")
+#' caid_group("DUAL")
+#' caid_group("MEGI")
+#' caid_group("CMS64")
+#' caid_group("MC")
 #' @autoglobal
 #' @rdname caid
 #' @export
@@ -91,6 +101,37 @@ caid_group <- new_class(
       class_group(),
       group   = x$group,
       members = x$alias
+    )
+  }
+)
+
+#' Medicaid Temporal Endpoint
+#' @param alias `<chr>` endpoint alias
+#' @returns An S7 `<caid_temporal>` object.
+#' @examples
+#' caid_temporal("NADAC")
+#' caid_temporal("rebate")
+#' caid_temporal("MCP")
+#' caid_temporal("blood")
+#' caid_temporal("drug")
+#' caid_temporal("HCQ")
+#' @autoglobal
+#' @rdname caid
+#' @export
+caid_temporal <- new_class(
+  name       = "caid_temporal",
+  parent     = class_temporal,
+  package    = NULL,
+  constructor = function(alias) {
+
+    x <- select_caid_temp(alias)
+
+    new_object(
+      S7_object(),
+      title       = x$title,
+      metadata    = caid_metadata(x),
+      dimensions  = caid_dimensions(x),
+      endpoints   = x$endpoints
     )
   }
 )

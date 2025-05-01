@@ -3,27 +3,50 @@
 \name{caid_endpoint}
 \alias{caid_endpoint}
 \alias{caid_group}
+\alias{caid_temporal}
 \title{Medicaid Endpoint}
 \usage{
 caid_endpoint(alias)
 
 caid_group(alias)
+
+caid_temporal(alias)
 }
 \arguments{
-\item{alias}{\verb{<chr>} title alias}
+\item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
 An S7 \verb{<caid_endpoint>} object.
 
 An S7 \verb{<caid_group>} object.
+
+An S7 \verb{<caid_temporal>} object.
 }
 \description{
 Medicaid Endpoint
 
 Medicaid Endpoint Group
+
+Medicaid Temporal Endpoint
 }
 \examples{
 caid_endpoint("MLR")
 caid_endpoint("enterprise")
 caid_group("demographics")
+caid_group("services")
+caid_group("beneficiaries")
+caid_group("financial")
+caid_group("NADAC")
+caid_group("PKG")
+caid_group("DRUG")
+caid_group("DUAL")
+caid_group("MEGI")
+caid_group("CMS64")
+caid_group("MC")
+caid_temporal("NADAC")
+caid_temporal("rebate")
+caid_temporal("MCP")
+caid_temporal("blood")
+caid_temporal("drug")
+caid_temporal("HCQ")
 }
