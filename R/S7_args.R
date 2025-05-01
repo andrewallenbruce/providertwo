@@ -27,11 +27,12 @@
 #' arg_state(c("CA", "CA"))
 #' try(arg_state("C"))
 #' try(arg_state("AA"))
+#' @noRd
 NULL
 
 #' @autoglobal
 #' @rdname arguments
-#' @export
+#' @noRd
 arg_npi <- new_class(
   name    = "arg_npi",
   package = NULL,
@@ -63,7 +64,7 @@ arg_npi <- new_class(
 
 #' @autoglobal
 #' @rdname arguments
-#' @export
+#' @noRd
 arg_state <- new_class(
   name    = "arg_state",
   package = NULL,

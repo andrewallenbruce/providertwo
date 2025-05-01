@@ -25,11 +25,12 @@ seq_along0 <- function(x) {
 #' format_query_pro(list(NPI = "1417918293", PECOS = "001132"))
 #'
 #' @name query-format
+#' @noRd
 NULL
 
 #' @autoglobal
-#' @export
 #' @rdname query-format
+#' @noRd
 format_query_care <- function(args, operator = "=") {
 
   args  <- discard(args, null)
@@ -52,8 +53,8 @@ format_query_care <- function(args, operator = "=") {
 }
 
 #' @autoglobal
-#' @export
 #' @rdname query-format
+#' @noRd
 format_query_pro <- function(args, operator = "=") {
 
   args  <- discard(args, null)

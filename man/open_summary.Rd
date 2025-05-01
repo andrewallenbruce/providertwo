@@ -4,14 +4,11 @@
 \alias{open_summary}
 \alias{open_dashboard}
 \alias{open_national}
-\alias{open_dictionary}
 \title{Open Payments Summaries}
 \usage{
 open_dashboard()
 
 open_national()
-
-open_dictionary()
 }
 \value{
 A \verb{<tibble>}
@@ -22,5 +19,4 @@ Open Payments Summaries
 \examples{
 open_dashboard()
 open_national()
-open_dictionary()
 }

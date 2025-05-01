@@ -238,7 +238,6 @@ method(tidyup, openNational) <- function(x) {
 #' @examples
 #' open_dashboard()
 #' open_national()
-#' open_dictionary()
 NULL
 
 #' @autoglobal
@@ -262,8 +261,8 @@ open_national <- function() {
 }
 
 #' @autoglobal
-#' @export
 #' @rdname open_summary
+#' @noRd
 open_dictionary <- function() {
 
   x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>

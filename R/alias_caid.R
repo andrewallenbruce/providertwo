@@ -251,17 +251,24 @@ select_caid_group <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-select_caid_temp <- function(x, call = caller_env()) {
+caid_temp_list <- list(
+  NADAC  = "NADAC",
+  MCP    = "^Managed Care Programs",
+  rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+  blood  = "^Pricing Comparison for Blood Disorder Treatments",
+  drug   = "^State Drug Utilization Data",
+  HCQ    = "Child and Adult Health Care Quality Measures"
+)
 
-  x <- switch(
-    x,
-    NADAC  = "NADAC",
-    MCP    = "^Managed Care Programs",
-    rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-    blood  = "^Pricing Comparison for Blood Disorder Treatments",
-    drug   = "^State Drug Utilization Data",
-    HCQ    = "Child and Adult Health Care Quality Measures",
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+#' @autoglobal
+#' @noRd
+select_caid_temp <- function(x = "MCP", call = caller_env()) {
+
+  temp1 <- '{names(caid_temp_list)} = "{unlist(caid_temp_list, use.names = FALSE)}", '
+  temp2 <- 'switch(x, <<xx>> cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))'
+
+  xx <- glue(temp1) |> glue_collapse(sep = "\n")
+  x  <- glue(temp2, .open = "<<", .close = ">>") |> parse_expr() |> eval_bare()
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -279,3 +286,13 @@ select_caid_temp <- function(x, call = caller_env()) {
   )
 
 }
+
+# x <- switch(
+#   x,
+#   NADAC  = "NADAC",
+#   MCP    = "^Managed Care Programs",
+#   rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+#   blood  = "^Pricing Comparison for Blood Disorder Treatments",
+#   drug   = "^State Drug Utilization Data",
+#   HCQ    = "Child and Adult Health Care Quality Measures",
+#   cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
