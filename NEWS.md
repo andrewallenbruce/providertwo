@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9248 (2025-05-01)
+
+* converted open classes
+
+
 # providertwo 0.0.0.9247 (2025-05-01)
 
 * base classes, caid_metadata
