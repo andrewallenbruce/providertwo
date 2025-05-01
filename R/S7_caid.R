@@ -3,11 +3,7 @@ NULL
 
 #' @noRd
 #' @autoglobal
-caid_dimensions <- new_class(
-  name        = "caid_dimensions",
-  parent      = class_dimensions,
-  package     = NULL,
-  constructor = function(x) {
+caid_dimensions <- function(x) {
 
     x <- x$identifier |>
       request() |>
@@ -19,34 +15,26 @@ caid_dimensions <- new_class(
         format  = "json",
         rowIds  = "false",
         offset  = 0L,
-        limit   = 1L
-      ) |>
+        limit   = 1L) |>
       perform_simple()
 
-    new_object(
-      class_dimensions(),
+    class_dimensions(
       limit  = 8000L,
       rows   = x$count,
-      fields = x$query$properties)
-  }
-)
+      fields = x$query$properties
+    )
+}
 
 #' @noRd
 #' @autoglobal
-caid_metadata <- new_class(
-  name        = "caid_metadata",
-  parent      = class_metadata,
-  package     = NULL,
-  constructor = function(x) {
-      new_object(
-        class_metadata(),
-        description = x$description,
-        modified    = x$modified,
-        dictionary  = x$dictionary,
-        download    = x$download
-      )
-  }
-)
+caid_metadata <- function(x) {
+  class_metadata(
+    description = x$description,
+    modified    = x$modified,
+    dictionary  = x$dictionary,
+    download    = x$download
+  )
+}
 
 #' Medicaid Endpoint
 #' @param alias `<chr>` endpoint alias

@@ -41,7 +41,6 @@ select_care <- function(x, call = caller_env()) {
     SNF_cost_report = "^Skilled Nursing Facility Cost Report$",
     SNF_enrollments = "^Skilled Nursing Facility Enrollments$",
 
-
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 

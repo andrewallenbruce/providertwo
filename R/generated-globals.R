@@ -24,7 +24,6 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
-  # <select_caid_temp>
   # <select_care_temp>
   "data",
   # <qpp_elig>
@@ -40,6 +39,7 @@ utils::globalVariables(c(
   "description",
   # <catalog_care>
   # <catalog_pro>
+  # <select_caid_temp>
   "dictionary",
   # <catalog_care>
   # <catalog_caid>
@@ -48,6 +48,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
+  # <select_caid_temp>
   # <select_open_temp>
   "download",
   # <catalog_care>
@@ -179,6 +180,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <.tidy_resources>
+  # <select_caid_temp>
   # <select_open_temp>
   # <open_dictionary>
   "year",

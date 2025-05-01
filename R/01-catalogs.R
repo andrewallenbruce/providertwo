@@ -12,6 +12,7 @@ catalog_caid <- function() {
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
       title       = gsub("^ ", "", title, perl = TRUE),
+      title       = remove_non_ascii(title),
       description = stri_trans_general(description, "latin-ascii"),
       description = remove_non_ascii(description),
       description = gsub("[\"']", "", description, perl = TRUE),
@@ -111,7 +112,7 @@ catalog_caid <- function() {
           .default = title
         )
       ) |>
-      roworder(title, year, modified) |>
+      roworder(title, -year) |>
       f_fill(periodicity) |>
       slt(
         year,
@@ -138,6 +139,7 @@ catalog_health <- function() {
   x <- x |>
     as_tbl() |>
     mtt(
+      title       = remove_non_ascii(title),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),

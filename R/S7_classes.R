@@ -15,7 +15,11 @@ class_dimensions <- new_class(
       class_character,
       getter = function(self)
         as.list(self@fields) |>
-        set_names(self@fields)
+        set_names(self@fields),
+      setter = function(self, value) {
+        self@fields <- value
+        self
+      }
     )
   )
 )

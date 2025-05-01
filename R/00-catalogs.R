@@ -12,7 +12,9 @@ catalog_care <- function() {
     references  = delist(references),
     temporal    = fmt_temporal(temporal),
     title       = gsub("  ", " ", title, perl = TRUE),
+    title       = remove_non_ascii(title),
     description = stri_trans_general(description, "latin-ascii"),
+    description = remove_non_ascii(description),
     description = gsub("[\"']", "", description, perl = TRUE),
     description = gsub(
       "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$",
@@ -90,6 +92,7 @@ catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
   x <- mtt(x,
+    title = remove_non_ascii(title),
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
     issued      = as_date(issued),
@@ -133,6 +136,7 @@ catalog_open <- function() {
     year        = get_data_elem(keyword),
     year        = gsub("all years", "All", year, perl = TRUE),
     year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
+    title = remove_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
     description = gsub("[\"']", "", description, perl = TRUE),
