@@ -28,12 +28,13 @@ caid_dimensions <- function(x) {
 #' @noRd
 #' @autoglobal
 caid_metadata <- new_class(
-  name = "caid_metadata",
-  parent = class_metadata,
-  package = NULL,
-  properties = list(
+  name          = "caid_metadata",
+  parent        = class_metadata,
+  package       = NULL,
+  properties    = list(
     dictionary  = class_character,
-    download    = class_character),
+    download    = class_character
+    ),
   constructor = function(x) {
     new_object(
       class_metadata(),
@@ -45,14 +46,18 @@ caid_metadata <- new_class(
   }
 )
 
-#' Medicaid Endpoint
+#' Medicaid API Endpoint Classes
+#' @name medicaid
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<caid_endpoint>` object.
+#' @returns An S7 `<caid_endpoint>`, `<caid_group>`, or `<caid_temporal>` object
 #' @examples
-#' caid_endpoint("MLR")
 #' caid_endpoint("enterprise")
+#' caid_group("demographics")
+#' caid_temporal("MCP")
+NULL
+
 #' @autoglobal
-#' @rdname caid
+#' @rdname medicaid
 #' @export
 caid_endpoint <- new_class(
   name        = "caid_endpoint",
@@ -72,28 +77,13 @@ caid_endpoint <- new_class(
   }
 )
 
-#' Medicaid Endpoint Group
-#' @param alias `<chr>` title alias
-#' @returns An S7 `<caid_group>` object.
-#' @examples
-#' caid_group("demographics")
-#' caid_group("services")
-#' caid_group("beneficiaries")
-#' caid_group("financial")
-#' caid_group("NADAC")
-#' caid_group("PKG")
-#' caid_group("DRUG")
-#' caid_group("DUAL")
-#' caid_group("MEGI")
-#' caid_group("CMS64")
-#' caid_group("MC")
 #' @autoglobal
-#' @rdname caid
+#' @rdname medicaid
 #' @export
 caid_group <- new_class(
-  name       = "caid_group",
-  parent     = class_group,
-  package    = NULL,
+  name        = "caid_group",
+  parent      = class_group,
+  package     = NULL,
   constructor = function(alias) {
 
     x <- select_caid_group(alias)
@@ -107,23 +97,13 @@ caid_group <- new_class(
   }
 )
 
-#' Medicaid Temporal Endpoint
-#' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<caid_temporal>` object.
-#' @examples
-#' caid_temporal("NADAC")
-#' caid_temporal("rebate")
-#' caid_temporal("MCP")
-#' caid_temporal("blood")
-#' caid_temporal("drug")
-#' caid_temporal("HCQ")
 #' @autoglobal
-#' @rdname caid
+#' @rdname medicaid
 #' @export
 caid_temporal <- new_class(
-  name       = "caid_temporal",
-  parent     = class_temporal,
-  package    = NULL,
+  name        = "caid_temporal",
+  parent      = class_temporal,
+  package     = NULL,
   constructor = function(alias) {
 
     x <- select_caid_temp(alias)

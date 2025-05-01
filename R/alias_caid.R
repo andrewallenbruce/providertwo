@@ -279,18 +279,3 @@ select_caid_temp <- function(x, call = caller_env()) {
   )
 
 }
-
-#' @autoglobal
-#' @noRd
-select_caid_troup <- function(x, call = caller_env()) {
-  switch(
-    x,
-    NAME = list(
-      group = "GROUPNAME",
-      alias = c(
-        "ALIAS_NAME"
-      )
-    ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-}

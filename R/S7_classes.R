@@ -85,19 +85,3 @@ class_temporal <- new_class(
     endpoints   = class_list
   )
 )
-
-#' @noRd
-#' @autoglobal
-class_troup <- new_class(
-  name       = "class_troup",
-  package    = NULL,
-  properties = list(
-    group = class_character,
-    members = new_property(
-      class_list,
-      getter = function(self)
-        map(self@members, class_temporal) |>
-        set_names(self@members)
-    )
-  )
-)
