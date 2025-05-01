@@ -30,6 +30,7 @@ class_metadata <- new_class(
   name = "class_metadata",
   package = NULL,
   properties = list(
+    title       = class_character,
     description = class_character,
     modified    = new_union(class_character, class_Date)
     # issued      = new_union(NULL, class_character, class_Date),
@@ -49,7 +50,6 @@ class_endpoint <- new_class(
   name       = "class_endpoint",
   package    = NULL,
   properties = list(
-    title       = class_character,
     identifier  = class_character,
     metadata    = class_metadata,
     dimensions  = class_dimensions
@@ -62,14 +62,8 @@ class_group <- new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
-    flass    = class_character,
     group    = class_character,
-    members  = new_property(
-      class_list,
-      getter = function(self)
-        map(self@members, rlang::as_function(self@flass)) |>
-        set_names(self@members)
-    )
+    members  = class_list
   )
 )
 
@@ -79,7 +73,6 @@ class_temporal <- new_class(
   name       = "class_temporal",
   package    = NULL,
   properties = list(
-    title       = class_character,
     metadata    = class_metadata,
     dimensions  = class_dimensions,
     endpoints   = class_list

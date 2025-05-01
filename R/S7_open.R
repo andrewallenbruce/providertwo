@@ -37,6 +37,7 @@ open_metadata <- new_class(
   constructor = function(x) {
     new_object(
       class_metadata(),
+      title       = x$title,
       description = x$description,
       modified    = x$modified,
       download    = x$download
@@ -72,7 +73,6 @@ open_endpoint <- new_class(
 
     new_object(
       class_endpoint(),
-      title       = x$title,
       identifier  = x$identifier,
       metadata    = open_metadata(x),
       dimensions  = open_dimensions(x)
@@ -93,9 +93,8 @@ open_group <- new_class(
 
     new_object(
       class_group(),
-      flass   = "open_endpoint",
       group   = x$group,
-      members = x$alias
+      members = set_names(map(x$alias, open_endpoint), x$alias)
     )
   }
 )
@@ -113,8 +112,7 @@ open_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      title       = x$title,
-      metadata    = class_metadata(x$description, x$modified),
+      metadata    = class_metadata(x$title, x$description, x$modified),
       dimensions  = open_dimensions(x),
       endpoints   = x$endpoints
     )
@@ -134,9 +132,8 @@ open_troup <- new_class(
 
     new_object(
       class_group(),
-      flass   = "open_temporal",
       group   = x$group,
-      members = x$alias
+      members = set_names(map(x$alias, open_temporal), x$alias)
     )
   }
 )

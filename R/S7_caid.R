@@ -38,6 +38,7 @@ caid_metadata <- new_class(
   constructor = function(x) {
     new_object(
       class_metadata(),
+      title       = x$title,
       description = x$description,
       modified    = x$modified,
       dictionary  = x$dictionary,
@@ -69,7 +70,6 @@ caid_endpoint <- new_class(
 
     new_object(
       class_endpoint(),
-      title       = x$title,
       identifier  = x$identifier,
       metadata    = caid_metadata(x),
       dimensions  = caid_dimensions(x)
@@ -90,9 +90,8 @@ caid_group <- new_class(
 
     new_object(
       class_group(),
-      flass   = "caid_endpoint",
       group   = x$group,
-      members = x$alias
+      members = set_names(map(x$alias, caid_endpoint), x$alias)
     )
   }
 )
@@ -110,8 +109,7 @@ caid_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      title       = x$title,
-      metadata    = class_metadata(x$description, x$modified),
+      metadata    = class_metadata(x$title, x$description, x$modified),
       dimensions  = caid_dimensions(x),
       endpoints   = x$endpoints
     )
