@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9251 (2025-05-01)
+
+* converted pro classes
+
+
 # providertwo 0.0.0.9250 (2025-05-01)
 
 * clean up
