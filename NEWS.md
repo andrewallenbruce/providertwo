@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9253 (2025-05-02)
+
+* new care aliases
+* limit one example per class
+
+
 # providertwo 0.0.0.9252 (2025-05-02)
 
 * `care_*` classes rewritten with new implementation
