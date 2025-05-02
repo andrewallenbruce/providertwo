@@ -27,11 +27,7 @@ Open Payments API Endpoint Classes
 }
 \examples{
 open_endpoint("PROF_covered")
-open_endpoint("SUMM_state_group")
 open_group("profile")
-open_group("summary")
-open_temporal("DATA_general")
 open_temporal("GROUP_all")
 open_troup("grouped_payment")
-open_troup("detailed_payment")
 }

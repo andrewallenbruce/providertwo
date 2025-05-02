@@ -4,19 +4,20 @@ select_caid <- function(x, call = caller_env()) {
   x <- switch(
     x,
     ACA_FUL             = "ACA Federal Upper Limits",
-    MLR                 = "MLR Summary Reports",
-    ELE                 = "Express Lane Eligibility for Medicaid and CHIP Coverage",
-    MLTSS               = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
-    enterprise          = "Medicaid Enterprise System Datatable",
-    CHIP_data           = "^CHIP Applications, Eligibility Determinations, and Enrollment Data",
-    CHIP_elig           = "^Continuous Eligibility for Medicaid and CHIP Coverage$",
-    DSH                 = "Disproportionate Share Hospital \\(DSH\\) Payments - Annual Reporting Requirements",
-    DPRI                = "Division of Pharmacy Releases Index dataset",
-    DRP_new             = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+    MLR_summary         = "MLR Summary Reports",
+    MLTSS_enroll        = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
+    MCD_enterprise      = "Medicaid Enterprise System Datatable",
+    DSH_payments        = "Disproportionate Share Hospital \\(DSH\\) Payments - Annual Reporting Requirements",
+    DPR_index           = "Division of Pharmacy Releases Index dataset",
+    MDRP_new            = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
     CAHPS_NAM           = "NAM CAHPS 2014 Public Use",
+    enroll_mon_test     = "Monthly Enrollment - Test",
+    enroll_new_adult    = "Medicaid Enrollment - New Adult Group",
+    pi_data             = "PI dataset",
+    tiles               = "category_tiles",
 
-    NADAC_first         = "^First Time NADAC Rates$",
     NADAC               = "^NADAC$",
+    NADAC_first         = "^First Time NADAC Rates$",
     NADAC_compare       = "^NADAC Comparison$",
 
     DEMO_well           = "^Medicaid and CHIP enrollees who received a well",
@@ -28,17 +29,17 @@ select_caid <- function(x, call = caller_env()) {
     DEMO_rural          = "^Rural Medicaid and CHIP enrollees$",
     DEMO_waive          = "^Section 1915",
 
-    SERV_acute       = "^Acute Care Services Provided to the Medicaid and CHIP Population$",
-    SERV_behavior    = "^Behavioral Health ServicesProvided to the Medicaid and CHIP Population$",
-    SERV_perinatal   = "^Perinatal Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_screen      = "^Health Screenings Provided to Medicaid and CHIP Beneficiaries Under Age 19",
-    SERV_contra      = "^Contraceptive Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_dental      = "^Dental Services Provided to Medicaid and CHIP Beneficiaries Under Age 19",
-    SERV_pregnancy   = "^Pregnancy Outcomes for Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_telehealth  = "^Telehealth Services Provided to the Medicaid and CHIP Population",
-    SERV_vaccination = "^Vaccinations Provided to the Medicaid and CHIP Population under age 19",
-    SERV_lead        = "^Blood Lead Screening Services Provided to Medicaid and CHIP Beneficiaries",
-    SERV_respiratory = "^Respiratory Conditions in the Medicaid and CHIP Population",
+    SERV_acute          = "^Acute Care Services Provided to the Medicaid and CHIP Population$",
+    SERV_behavior       = "^Behavioral Health ServicesProvided to the Medicaid and CHIP Population$",
+    SERV_perinatal      = "^Perinatal Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
+    SERV_screen         = "^Health Screenings Provided to Medicaid and CHIP Beneficiaries Under Age 19",
+    SERV_contra         = "^Contraceptive Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
+    SERV_dental         = "^Dental Services Provided to Medicaid and CHIP Beneficiaries Under Age 19",
+    SERV_pregnancy      = "^Pregnancy Outcomes for Medicaid and CHIP Beneficiaries ages 15 to 44",
+    SERV_telehealth     = "^Telehealth Services Provided to the Medicaid and CHIP Population",
+    SERV_vaccination    = "^Vaccinations Provided to the Medicaid and CHIP Population under age 19",
+    SERV_lead           = "^Blood Lead Screening Services Provided to Medicaid and CHIP Beneficiaries",
+    SERV_respiratory    = "^Respiratory Conditions in the Medicaid and CHIP Population",
 
     BENE_behavior       = "Beneficiaries receiving a behavioral health service by behavioral health condition, 2017-2021",
     BENE_physical       = "Beneficiaries receiving a physical health service among beneficiaries receiving a SUD service by physical health cond, 2017-2021",
@@ -54,17 +55,17 @@ select_caid <- function(x, call = caller_env()) {
 
     DRUG_amp_mon        = "Drug AMP Reporting - Monthly",
     DRUG_amp_qtr        = "Drug AMP Reporting - Quarterly",
-    DRUG_contracts      = "Drug Manufacturer Contacts",
     DRUG_products       = "Drug Products in the Medicaid Drug Rebate Program",
     DRUG_clot           = "^Clotting Factor Drug Report",
     DRUG_pediatric      = "Exclusive Pediatric Drugs",
-    DRUG_contact        = "Medicaid Drug Rebate Program State Contact Information",
+    DRUG_contact_manu   = "Drug Manufacturer Contacts",
+    DRUG_contact_state  = "Medicaid Drug Rebate Program State Contact Information",
 
     DUAL_month          = "Dual Status Information for Medicaid and CHIP Beneficiaries by Month",
     DUAL_year           = "Dual Status Information for Medicaid and CHIP Beneficiaries by Year",
 
-    MEGI_month          = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Month",
-    MEGI_year           = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Year",
+    MEG_month           = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Month",
+    MEG_year            = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Year",
 
     CMS64_CAA           = "Medicaid CMS-64 CAA 2023 Increased FMAP Expenditure Data Collected through MBES/CBES",
     CMS64_FFCRA         = "Medicaid CMS-64 FFCRA Increased FMAP Expenditure",
@@ -79,34 +80,29 @@ select_caid <- function(x, call = caller_env()) {
     MC_feat_qa          = "Managed Care Features by QA and Performance Incentive",
     MC_bene_month       = "Managed Care Information for Medicaid and CHIP Beneficiaries by Month",
     MC_bene_year        = "Managed Care Information for Medicaid and CHIP Beneficiaries by Year",
+    MC_share            = "Share of Medicaid Enrollees in Managed Care",
 
     FIN_mgmt            = "Medicaid Financial Management Data$",
     FIN_nation          = "Medicaid Financial Management Data  National Totals",
 
-    # demo_ = "HealthCare\\.gov Marketplace Medicaid Unwinding Report",
-    # demo_ = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
+    Unwind_marketplace     = "HealthCare\\.gov Marketplace Medicaid Unwinding Report",
+    Unwind_transition      = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
+    Unwind_historic        = "Separate CHIP Enrollment by Month and State\\s.+\\sHistoric CAA/Unwinding Period",
+    Unwind_SBM             = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
 
-    # demo_ = "Medicaid Enrollment - New Adult Group",
-
-    # demo_ = "Medicaid and CHIP CAA Reporting Metrics",
-    # demo_ = "Medicaid and CHIP Eligibility Levels",
-    # demo_ = "Medicaid and CHIP Updated Renewal Outcomes",
-
-    # demo_ = "Presumptive Eligibility for Medicaid and CHIP Coverage",
-    # demo_ = "Program Information for Medicaid and CHIP Beneficiaries by Month",
-    # demo_ = "Program Information for Medicaid and CHIP Beneficiaries by Year",
-
-    # demo_ = "Separate CHIP Enrollment by Month and State",
-    # demo_ = "Separate CHIP Enrollment by Month and State\\s.+\\sHistoric CAA/Unwinding Period",
-    # demo_ = "Share of Medicaid Enrollees in Managed Care",
-    # demo_ = "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data",
-    # demo_ = "State Medicaid and CHIP Eligibility Processing Data",
-    # demo_ = "State Medicaid and CHIP Test",
-    # demo_ = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
-
-    # demo_ = "Monthly Enrollment - Test",
-    # demo_ = "PI dataset",
-    # demo_ = "category_tiles",
+    CHIP_bene_month        = "Program Information for Medicaid and CHIP Beneficiaries by Month",
+    CHIP_bene_year         = "Program Information for Medicaid and CHIP Beneficiaries by Year",
+    CHIP_application       = "^CHIP Applications, Eligibility Determinations, and Enrollment Data",
+    CHIP_continue          = "^Continuous Eligibility for Medicaid and CHIP Coverage$",
+    CHIP_express           = "Express Lane Eligibility for Medicaid and CHIP Coverage",
+    CHIP_metrics           = "Medicaid and CHIP CAA Reporting Metrics",
+    CHIP_levels            = "Medicaid and CHIP Eligibility Levels",
+    CHIP_renewal           = "Medicaid and CHIP Updated Renewal Outcomes",
+    CHIP_presume           = "Presumptive Eligibility for Medicaid and CHIP Coverage",
+    CHIP_separate          = "Separate CHIP Enrollment by Month and State",
+    CHIP_application_state = "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data",
+    CHIP_processing_state  = "State Medicaid and CHIP Eligibility Processing Data",
+    CHIP_test              = "State Medicaid and CHIP Test",
 
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
@@ -183,7 +179,7 @@ select_caid_group <- function(x, call = caller_env()) {
       )
     ),
     NADAC = list(
-      group = "NADAC",
+      group = "NADAC (National Average Drug Acquisition Cost)",
       alias = c(
         "NADAC",
         "NADAC_first",
@@ -202,11 +198,11 @@ select_caid_group <- function(x, call = caller_env()) {
       alias = c(
         "DRUG_amp_mon",
         "DRUG_amp_qtr",
-        "DRUG_contracts",
         "DRUG_products",
         "DRUG_clot",
         "DRUG_pediatric",
-        "DRUG_contact"
+        "DRUG_contact_manu",
+        "DRUG_contact_state"
       )
     ),
     DUAL = list(
@@ -219,8 +215,8 @@ select_caid_group <- function(x, call = caller_env()) {
     MEGI = list(
       group = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
       alias = c(
-        "MEGI_month",
-        "MEGI_year"
+        "MEG_month",
+        "MEG_year"
       )
     ),
     CMS64 = list(
@@ -251,24 +247,18 @@ select_caid_group <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-caid_temp_list <- list(
-  NADAC  = "NADAC",
-  MCP    = "^Managed Care Programs",
-  rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-  blood  = "^Pricing Comparison for Blood Disorder Treatments",
-  drug   = "^State Drug Utilization Data",
-  HCQ    = "Child and Adult Health Care Quality Measures"
-)
+select_caid_temp <- function(x, call = caller_env()) {
 
-#' @autoglobal
-#' @noRd
-select_caid_temp <- function(x = "MCP", call = caller_env()) {
-
-  temp1 <- '{names(caid_temp_list)} = "{unlist(caid_temp_list, use.names = FALSE)}", '
-  temp2 <- 'switch(x, <<xx>> cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))'
-
-  xx <- glue(temp1) |> glue_collapse(sep = "\n")
-  x  <- glue(temp2, .open = "<<", .close = ">>") |> parse_expr() |> eval_bare()
+  x <- switch(
+    x,
+    NADAC  = "NADAC",
+    MCP    = "^Managed Care Programs",
+    rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+    blood  = "^Pricing Comparison for Blood Disorder Treatments",
+    drug   = "^State Drug Utilization Data",
+    HCQ    = "Child and Adult Health Care Quality Measures",
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
@@ -284,15 +274,21 @@ select_caid_temp <- function(x = "MCP", call = caller_env()) {
     identifier  = res$identifier[1],
     endpoints   = slt(res, year, identifier, download, dictionary)
   )
-
 }
 
-# x <- switch(
-#   x,
-#   NADAC  = "NADAC",
-#   MCP    = "^Managed Care Programs",
-#   rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-#   blood  = "^Pricing Comparison for Blood Disorder Treatments",
-#   drug   = "^State Drug Utilization Data",
-#   HCQ    = "Child and Adult Health Care Quality Measures",
-#   cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+#' @autoglobal
+#' @noRd
+caid_temp_list <- list(
+  NADAC  = "NADAC",
+  MCP    = "^Managed Care Programs",
+  rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+  blood  = "^Pricing Comparison for Blood Disorder Treatments",
+  drug   = "^State Drug Utilization Data",
+  HCQ    = "Child and Adult Health Care Quality Measures"
+)
+
+# temp1 <- '{names(caid_temp_list)} = "{unlist(caid_temp_list, use.names = FALSE)}", '
+# temp2 <- 'switch(x, <<xx>> cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))'
+#
+# xx <- glue(temp1) |> glue_collapse(sep = "\n")
+# x  <- glue(temp2, .open = "<<", .close = ">>") |> parse_expr() |> eval_bare()

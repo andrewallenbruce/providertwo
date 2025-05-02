@@ -5,14 +5,15 @@ select_pro <- function(x, call = caller_env()) {
     x,
     PSI90_6digit = "CMS Medicare PSI-90 and component measures - six-digit estimate dataset",
     joint_replace = "Comprehensive Care For Joint Replacement Model - Provider Data",
+    footnote_xwalk = "Footnote Crosswalk",
+    suppliers = "^Medical Equipment Suppliers$",
+
     Data_Updates = "Data Updates",
-    Footnote_Xwalk = "Footnote Crosswalk",
     Measure_Dates = "Measure Dates",
     Hospital_Maternal = "Maternal Health - Hospital",
     Hospital_Outcomes = "Patient-Reported Outcomes - Hospital",
     Hospital_General = "Hospital General Information",
     Hospital_PI = "Promoting Interoperability - Hospital",
-    suppliers = "^Medical Equipment Suppliers$",
 
     REDUCT_HAC = "Hospital-Acquired Condition \\(HAC\\) Reduction Program",
     REDUCT_HRR = "Hospital Readmissions Reduction Program",

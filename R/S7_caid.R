@@ -52,7 +52,7 @@ caid_metadata <- new_class(
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<caid_endpoint>`, `<caid_group>`, or `<caid_temporal>` object
 #' @examples
-#' caid_endpoint("enterprise")
+#' caid_endpoint("MLR_summary")
 #' caid_group("demographics")
 #' caid_temporal("MCP")
 NULL

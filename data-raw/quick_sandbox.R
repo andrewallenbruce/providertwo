@@ -1,6 +1,6 @@
 # MEDICAID
-quick("MLR")
-quick("enterprise")
+quick("MLR_summary")
+quick("MCD_enterprise")
 quick("demographics")
 
 # PROVIDER
@@ -47,47 +47,97 @@ quick("order_refer")
 quick("RBCS")
 quick("transparency")
 
-# quick("PDC")
-# quick("MIPS")
-# quick("LTCH")
-# quick("IRF")
-# quick("SPICE")
-# quick("CAHPS_hospice")
-# quick("HHVBP")
-# quick("HHCA")
-# quick("HHCAHPS")
-# quick("SNF_VBP")
-# quick("SNF_quality")
-# quick("NH_pro")
 
-# quick("suppliers")
-#
-# quick("HHA")
-# quick("hospice")
-# quick("hospital")
-# quick("RHC")
-# quick("FQHC")
-# quick("pending")
-# quick("reassignment")
-# quick("SNF")
-#
-# quick("quality_payment")
-#
-# quick("contact")
-# quick("crosswalk")
-# quick("CARE_dialysis")
-# quick("enrollees")
-# quick("facilities")
-# quick("IQIES")
-# quick("laboratories")
-# quick("long_term")
-# quick("opt_out")
-# quick("order_refer")
-# quick("RBCS")
-# quick("transparency")
-# quick("summary")
-# quick("profile")
-# quick("MLR")
-# quick("enterprise")
-
-# quick("demographics")
+c(
+  "contact",
+  "crosswalk",
+  "CARE_dialysis",
+  "enrollees",
+  "facilities",
+  "IQIES",
+  "laboratories",
+  "long_term",
+  "opt_out",
+  "order_refer",
+  "RBCS",
+  "transparency",
+  "HHA",
+  "hospice",
+  "hospital",
+  "RHC",
+  "FQHC",
+  "pending",
+  "reassignment",
+  "SNF",
+  "PSI90_6digit",
+  "joint_replace",
+  "footnote_xwalk",
+  "Data_Updates",
+  "Measure_Dates",
+  "Hospital_Maternal",
+  "Hospital_Outcomes",
+  "Hospital_General",
+  "Hospital_PI",
+  "suppliers",
+  "CAHPS_SPICE",
+  "CAHPS_HHC",
+  "CAHPS_ICH",
+  "CAHPS_OAS",
+  "HCAHPS",
+  "MIPS",
+  "PDC",
+  "LTCH",
+  "IPF",
+  "IRF",
+  "SPICE",
+  "PROF_covered",
+  "PROF_physician",
+  "PROF_information",
+  "PROF_mapping",
+  "PROF_entity",
+  "PROF_teaching",
+  "SUMM_dashboard",
+  "SUMM_state_all",
+  "SUMM_state_group",
+  "SUMM_nation_all",
+  "SUMM_nation_group",
+  "profile",
+  "summary",
+  "ACA_FUL",
+  "MLR_summary",
+  "MLTSS_enroll",
+  "MCD_enterprise",
+  "DSH_payments",
+  "DPR_index",
+  "MDRP_new",
+  "CAHPS_NAM",
+  "enroll_mon_test",
+  "enroll_new_adult",
+  "pi_data",
+  "tiles",
+  "NADAC",
+  "demographics",
+  "HVBP",
+  "HHVBP",
+  "HHC",
+  "SNF_VBP",
+  "SNF_quality",
+  "NURSING_HOMES",
+  "COMP_DEATH",
+  "PCH_COMP",
+  "PCH_PALL",
+  "PCH_HCAHPS",
+  "ASC_quality",
+  "EQUI",
+  "HAI",
+  "DIAL",
+  "ESRD",
+  "MSPB",
+  "OUT_img",
+  "Timely",
+  "UNPLAN",
+  "VHA",
+  "CHANGES",
+  "VOC",
+  "REDUCT"
+)

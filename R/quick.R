@@ -11,7 +11,7 @@
 #' @returns A data frame or object containing the requested CMS data.
 #'
 #' @examples
-#' quick("MLR") |> str()
+#' quick("MLR_summary") |> str()
 #' @autoglobal
 #' @export
 quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
@@ -39,8 +39,8 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     SNF               = care_group(x),
     PSI90_6digit      = ,
     joint_replace     = ,
+    footnote_xwalk    = ,
     Data_Updates      = ,
-    Footnote_Xwalk    = ,
     Measure_Dates     = ,
     Hospital_Maternal = ,
     Hospital_Outcomes = ,
@@ -94,8 +94,19 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     SUMM_nation_group = open_endpoint(x),
     profile           = ,
     summary           = open_group(x),
-    MLR               = ,
-    enterprise        = caid_endpoint(x),
+    ACA_FUL           = ,
+    MLR_summary       = ,
+    MLTSS_enroll      = ,
+    MCD_enterprise    = ,
+    DSH_payments      = ,
+    DPR_index         = ,
+    MDRP_new          = ,
+    CAHPS_NAM         = ,
+    enroll_mon_test   = ,
+    enroll_new_adult  = ,
+    pi_data           = ,
+    tiles             = caid_endpoint(x),
+    NADAC             = ,
     demographics      = caid_group(x),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
