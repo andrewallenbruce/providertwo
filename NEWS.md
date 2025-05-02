@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9252 (2025-05-02)
+
+* `care_*` classes rewritten with new implementation
+* `new_request` renamed to `base_request`
+* `quick` methods reimplemented
+* `list_resources` methods reimplemented
+
+
 # providertwo 0.0.0.9251 (2025-05-01)
 
 * converted pro classes
