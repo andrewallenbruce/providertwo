@@ -54,7 +54,7 @@ enrollees <- function(npi                   = NULL,
   )
 
   x <- care_endpoint("enrollees") |>
-    new_request() |>
+    base_request() |>
     req_url_query(!!!format_query_care(args)) |>
     perform_simple() |>
     get_elem(c("data", "headers"))

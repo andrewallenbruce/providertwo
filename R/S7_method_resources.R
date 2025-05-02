@@ -37,35 +37,30 @@ list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
-method(list_resources, class_character) <- function(x) {
-  fload(x, query = "/data") |>
+# method(list_resources, class_character) <- function(x) {
+#   fload(x, query = "/data") |>
+#     .tidy_resources()
+# }
+
+method(list_resources, care_endpoint) <- function(x) {
+  x@metadata@resources |>
+    fload(x, query = "/data") |>
     .tidy_resources()
 }
 
-method(list_resources, care_endpoint) <- function(x) {
-  resources(x) |>
-    list_resources()
-}
-
 method(list_resources, care_group) <- function(x) {
-  map(
-    members(x),
-    \(x) resources(x) |>
-      request()
-    ) |>
+  map(x@members, \(x) x@metadata@resources |> request()) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(
-      \(resp) resp_body_string(resp) |>
-        fparse(query = "/data") |>
-        as_tbl() |>
-        .tidy_resources()
-      ) |>
-    set_names(members_names(x))
+    map(\(resp) resp_body_string(resp) |>
+          fparse(query = "/data") |>
+          as_tbl() |>
+          .tidy_resources()) |>
+    set_names(names(x@members))
 }
 
 method(list_resources, care_temporal) <- function(x) {
-  endpoints(x)$resources |>
+  x@endpoints$resources |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -77,10 +72,8 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, care_troup) <- function(x) {
-  map(
-    members(x),
-    \(x) endpoints(x)$resources |>
-      map(request) |>
+  x@members |>
+    map(\(x) x@endpoints$resources |> map(request) |>
       req_perform_parallel(on_error = "continue") |>
       resps_successes() |>
       resps_data(
@@ -97,7 +90,7 @@ method(list_resources, care_troup) <- function(x) {
           as_tbl()
         )
     ) |>
-    set_names(members_names(x))
+    set_names(names(x@members))
 }
 
 # roundup(fileSize / 1e6)

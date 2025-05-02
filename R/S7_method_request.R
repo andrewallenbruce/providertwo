@@ -4,48 +4,47 @@
 #' @include S7_caid.R
 NULL
 
-#' @name new_request
+#' @name base_request
 #' @title Create a new request by class
 #' @param x An object of class `care_endpoint`, `care_group`, `pro_endpoint`, or `open_endpoint`
-#' @returns A new request
+#' @returns A new base request
 #' @examples
-#' care_endpoint("enrollees") |> new_request()
-#' care_group("hospital") |> new_request()
-#'
-#' pro_endpoint("PDC_affiliations") |> new_request()
-#'
-#' open_endpoint("PROF_covered") |> new_request()
-#'
+#' care_endpoint("enrollees") |> base_request()
+#' care_group("hospital") |> base_request()
+#' pro_endpoint("PDC_affiliations") |> base_request()
+#' open_endpoint("PROF_covered") |> base_request()
 #' @autoglobal
 #' @export
-new_request <- new_generic("new_request", "x", function(x) {
+base_request <- new_generic("base_request", "x", function(x) {
   S7_dispatch()
 })
 
-method(new_request, class_character) <- function(x) {
-  x |>
-    request() |>
-    req_throttle(capacity = 30, fill_time_s = 60)
-}
+# method(new_request, class_endpoint) <- function(x) {
+#   x |>
+#     request() |>
+#     req_throttle(capacity = 30, fill_time_s = 60)
+# }
 
-method(new_request, care_endpoint) <- function(x) {
-  identifier(x) |>
-    new_request() |>
+method(base_request, care_endpoint) <- function(x) {
+  x@identifier |>
+    request() |>
+    req_throttle(capacity = 30, fill_time_s = 60) |>
     req_url_query(offset = 0L, size = 5000L)
 }
 
-method(new_request, care_group) <- function(x) {
-  map(
-    members(x),
-    \(x) identifier(x) |>
-      new_request() |>
-      req_url_query(offset = 0L, size = 5000L)
+method(base_request, care_group) <- function(x) {
+  x@members |>
+    map(\(x) x@identifier |>
+          request() |>
+          req_throttle(capacity = 30, fill_time_s = 60) |>
+          req_url_query(offset = 0L, size = 5000L)
   )
 }
 
-method(new_request, pro_endpoint) <- function(x) {
-  identifier(x) |>
-    new_request() |>
+method(base_request, pro_endpoint) <- function(x) {
+  x@identifier |>
+    request() |>
+    req_throttle(capacity = 30, fill_time_s = 60) |>
     req_url_query(
       count   = "false",
       format  = "json",
@@ -58,9 +57,10 @@ method(new_request, pro_endpoint) <- function(x) {
     )
 }
 
-method(new_request, open_endpoint) <- function(x) {
-  identifier(x) |>
-    new_request() |>
+method(base_request, open_endpoint) <- function(x) {
+  x@identifier |>
+    request() |>
+    req_throttle(capacity = 30, fill_time_s = 60) |>
     req_url_query(
       count   = "false",
       format  = "json",

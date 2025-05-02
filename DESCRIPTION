@@ -52,6 +52,7 @@ Collate:
     'S7_utils.R'
     'alias_caid.R'
     'alias_care.R'
+    'alias_lists.R'
     'alias_open.R'
     'alias_pro.R'
     'end_affiliations.R'

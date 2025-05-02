@@ -8,7 +8,7 @@ perform_bare <- new_generic("perform_bare", "x", function(x) {
 })
 
 method(perform_bare, open_endpoint) <- function(x) {
-  prop(x, "identifier") |>
+  x@identifier |>
     request() |>
     req_url_query(
       count   = "false",
