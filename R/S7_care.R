@@ -86,23 +86,9 @@ temp_metadata <- new_class(
 #' @returns An S7 `<care_endpoint>`, `<care_group>`, `<care_temporal>`, or `<care_troup>` object
 #' @examples
 #' care_endpoint("CARE_dialysis")
-#' care_endpoint("long_term")
-#' care_endpoint("transparency")
 #' care_temporal("quality_payment")
-#' care_group("HHA")
-#' care_group("hospice")
 #' care_group("hospital")
-#' care_group("RHC")
-#' care_group("FQHC")
-#' care_group("pending")
-#' care_group("reassignment")
-#' care_group("SNF")
-#' care_troup("inpatient")
-#' care_troup("outpatient")
 #' care_troup("utilization")
-#' care_troup("suppliers")
-#' care_troup("prescribers")
-#' care_troup("staffing")
 NULL
 
 #' @autoglobal
