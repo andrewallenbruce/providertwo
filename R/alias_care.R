@@ -214,7 +214,7 @@ select_care_group <- function(x, call = caller_env()) {
         "ACO_REACH_orgs"
       )
     ),
-    CMS_stats = list(
+    program_stats = list(
       group = "CMS Program Statistics",
       alias = c(
         "CMS_MA_enroll",
@@ -258,26 +258,36 @@ select_care_temp <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    quality_payment            = "^Quality Payment Program Experience$",
-    IN_geography_and_service   = "^Medicare Inpatient Hospitals - by Geography and Service$",
-    IN_provider                = "^Medicare Inpatient Hospitals - by Provider$",
-    IN_provider_and_service    = "^Medicare Inpatient Hospitals - by Provider and Service$",
-    OUT_geography_and_service  = "^Medicare Outpatient Hospitals - by Geography and Service$",
-    OUT_provider_and_service   = "^Medicare Outpatient Hospitals - by Provider and Service$",
-    PRX_geography_and_drug     = "^Medicare Part D Prescribers - by Geography and Drug$",
-    PRX_provider               = "^Medicare Part D Prescribers - by Provider$",
-    PRX_provider_and_drug      = "^Medicare Part D Prescribers - by Provider and Drug$",
-    DME_geography_and_service  = "^Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service$",
-    DME_provider               = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider$",
-    DME_provider_and_service   = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service$",
-    DME_supplier               = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier$",
-    DME_supplier_and_service   = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service$",
-    STAFF_non_nurse            = "^Payroll Based Journal Daily Non-Nurse Staffing$",
-    STAFF_nurse                = "^Payroll Based Journal Daily Nurse Staffing$",
-    STAFF_employee             = "^Payroll Based Journal Employee Detail Nursing Home Staffing$",
-    UTIL_geography_and_service = "^Medicare Physician & Other Practitioners - by Geography and Service$",
-    UTIL_provider              = "^Medicare Physician & Other Practitioners - by Provider$",
-    UTIL_provider_and_service  = "^Medicare Physician & Other Practitioners - by Provider and Service$",
+    quality_payment      = "^Quality Payment Program Experience$",
+    procedure_summary    = "^Physician[/]Supplier Procedure Summary$",
+    dialysis_facilities  = "^Medicare Dialysis Facilities$",
+    aco_shared_savings   = "^Performance Year Financial and Quality Results$",
+    opioid_treatment     = "^Opioid Treatment Program Providers$",
+    hospital_costreport  = "^Hospital Provider Cost Report$",
+    SNF_costreport       = "^Skilled Nursing Facility Cost Report$",
+    HHA_costreport       = "^Home Health Agency Cost Report$",
+    NH_performance       = "^Nursing Home Affiliated Entity Performance Measures$",
+    NH_mds_frequency     = "^Minimum Data Set Frequency$",
+    NH_mds_facility      = "^Facility[-]Level Minimum Data Set Frequency$",
+    IN_geography         = "^Medicare Inpatient Hospitals - by Geography and Service$",
+    IN_provider          = "^Medicare Inpatient Hospitals - by Provider$",
+    IN_service           = "^Medicare Inpatient Hospitals - by Provider and Service$",
+    OUT_geography        = "^Medicare Outpatient Hospitals - by Geography and Service$",
+    OUT_service          = "^Medicare Outpatient Hospitals - by Provider and Service$",
+    PRX_geography        = "^Medicare Part D Prescribers - by Geography and Drug$",
+    PRX_provider         = "^Medicare Part D Prescribers - by Provider$",
+    PRX_drug             = "^Medicare Part D Prescribers - by Provider and Drug$",
+    DME_geography        = "^Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service$",
+    DME_provider         = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider$",
+    DME_service          = "^Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service$",
+    DME_supplier         = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier$",
+    DME_supplier_service = "^Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service$",
+    NH_staff_nonurse     = "^Payroll Based Journal Daily Non-Nurse Staffing$",
+    NH_staff_nurse       = "^Payroll Based Journal Daily Nurse Staffing$",
+    NH_staff_employee    = "^Payroll Based Journal Employee Detail Nursing Home Staffing$",
+    UTIL_geography       = "^Medicare Physician & Other Practitioners - by Geography and Service$",
+    UTIL_provider        = "^Medicare Physician & Other Practitioners - by Provider$",
+    UTIL_service         = "^Medicare Physician & Other Practitioners - by Provider and Service$",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
@@ -302,50 +312,50 @@ select_care_troup <- function(x, call = caller_env()) {
     inpatient   = list(
       group = "Medicare Inpatient Hospitals",
       alias = c(
-        "IN_geography_and_service",
+        "IN_geography",
         "IN_provider",
-        "IN_provider_and_service"
+        "IN_service"
       )
     ),
     outpatient  = list(
       group = "Medicare Outpatient Hospitals",
       alias = c(
-        "OUT_geography_and_service",
-        "OUT_provider_and_service"
+        "OUT_geography",
+        "OUT_service"
       )
     ),
     prescribers = list(
       group = "Medicare Part D Prescribers",
       alias = c(
-        "PRX_geography_and_drug",
+        "PRX_geography",
         "PRX_provider",
-        "PRX_provider_and_drug"
+        "PRX_drug"
       )
     ),
     suppliers   = list(
       group = "Medicare Durable Medical Equipment, Devices & Supplies",
       alias = c(
-        "DME_geography_and_service",
+        "DME_geography",
         "DME_provider",
-        "DME_provider_and_service",
+        "DME_service",
         "DME_supplier",
-        "DME_supplier_and_service"
+        "DME_supplier_service"
       )
     ),
     staffing    = list(
       group = "Nursing Home Payroll-Based Journal Staffing",
       alias = c(
-        "STAFF_non_nurse",
-        "STAFF_nurse",
-        "STAFF_employee"
+        "NH_staff_nonurse",
+        "NH_staff_nurse",
+        "NH_staff_employee"
       )
     ),
     utilization = list(
       group = "Medicare Physician & Other Practitioners",
       alias = c(
-        "UTIL_geography_and_service",
+        "UTIL_geography",
         "UTIL_provider",
-        "UTIL_provider_and_service"
+        "UTIL_service"
       )
     ),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
