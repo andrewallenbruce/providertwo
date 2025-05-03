@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9255 (2025-05-02)
+
+* base_request methods
+
+
 # providertwo 0.0.0.9254 (2025-05-02)
 
 * yet more aliases
