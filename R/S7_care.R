@@ -134,9 +134,9 @@ care_group <- new_class(
 #' @rdname medicare
 #' @export
 care_temporal <- new_class(
-  name       = "care_temporal",
+  name        = "care_temporal",
   parent      = class_temporal,
-  package    = NULL,
+  package     = NULL,
   constructor = function(alias) {
 
     x <- select_care_temp(alias)

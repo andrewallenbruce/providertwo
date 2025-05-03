@@ -10,65 +10,129 @@ NULL
 #' @returns A new base request
 #' @examples
 #' care_endpoint("enrollees") |> base_request()
-#' care_group("hospital") |> base_request()
 #' pro_endpoint("PDC_affiliations") |> base_request()
 #' open_endpoint("PROF_covered") |> base_request()
+#' caid_endpoint("MLR_summary") |> base_request()
+#'
+#' care_group("hospital") |> base_request()
+#' pro_group("MIPS") |> base_request()
+#'
+#' care_temporal("quality_payment") |> base_request()
+#' caid_temporal("MCP") |> base_request()
+#' open_temporal("GROUP_all") |> base_request()
+#'
+#' care_troup("utilization") |> base_request()
+#' open_troup("grouped_payment") |> base_request()
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x", function(x) {
   S7_dispatch()
 })
 
-# method(new_request, class_endpoint) <- function(x) {
-#   x |>
-#     request() |>
-#     req_throttle(capacity = 30, fill_time_s = 60)
-# }
+method(base_request, class_character) <- function(x) {
+  x |>
+    request() |>
+    req_throttle(capacity = 30, fill_time_s = 60) |>
+    req_url_query(offset = 0L)
+}
 
+## ----------(endpoint)
 method(base_request, care_endpoint) <- function(x) {
   x@identifier |>
-    request() |>
-    req_throttle(capacity = 30, fill_time_s = 60) |>
-    req_url_query(offset = 0L, size = 5000L)
+    base_request() |>
+    req_url_query(size = 5000L)
 }
 
-method(base_request, care_group) <- function(x) {
-  x@members |>
-    map(\(x) x@identifier |>
-          request() |>
-          req_throttle(capacity = 30, fill_time_s = 60) |>
-          req_url_query(offset = 0L, size = 5000L)
-  )
-}
-
-method(base_request, pro_endpoint) <- function(x) {
+method(base_request, caid_endpoint) <- function(x) {
   x@identifier |>
-    request() |>
-    req_throttle(capacity = 30, fill_time_s = 60) |>
+    base_request() |>
     req_url_query(
       count   = "false",
       format  = "json",
       keys    = "true",
-      limit   = 2000L,
-      offset  = 0L,
       results = "true",
       rowIds  = "false",
-      schema  = "false"
+      schema  = "false",
+      limit   = 8000L
+    )
+}
+
+method(base_request, pro_endpoint) <- function(x) {
+  x@identifier |>
+    base_request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      limit   = 2000L
     )
 }
 
 method(base_request, open_endpoint) <- function(x) {
   x@identifier |>
-    request() |>
-    req_throttle(capacity = 30, fill_time_s = 60) |>
+    base_request() |>
     req_url_query(
       count   = "false",
       format  = "json",
       keys    = "true",
-      limit   = 500L,
-      offset  = 0L,
       results = "true",
       rowIds  = "false",
-      schema  = "false"
+      schema  = "false",
+      limit   = 500L
     )
 }
+
+## ----------(temporal)
+method(base_request, care_temporal) <- function(x) {
+  map(x@endpoints$identifier,
+      \(x)
+      base_request(x) |>
+        req_url_query(size = 5000L))
+}
+
+method(base_request, caid_temporal) <- function(x) {
+  map(
+    x@endpoints$identifier,
+    \(x)
+    base_request(x) |>
+      req_url_query(
+        count   = "false",
+        format  = "json",
+        keys    = "true",
+        results = "true",
+        rowIds  = "false",
+        schema  = "false",
+        limit   = 8000L
+      )
+  )
+}
+
+method(base_request, open_temporal) <- function(x) {
+  map(
+    x@endpoints$identifier,
+    \(x)
+    base_request(x) |>
+      req_url_query(
+        count   = "false",
+        format  = "json",
+        keys    = "true",
+        results = "true",
+        rowIds  = "false",
+        schema  = "false",
+        limit   = 500L
+      )
+  )
+}
+
+## ----------(group)
+method(base_request, care_group) <- function(x) { map(x@members, base_request) }
+method(base_request, open_group) <- function(x) { map(x@members, base_request) }
+method(base_request, pro_group)  <- function(x) { map(x@members, base_request) }
+method(base_request, caid_group) <- function(x) { map(x@members, base_request) }
+
+## ----------(troup)
+method(base_request, care_troup) <- function(x) { map(x@members, base_request) }
+method(base_request, open_troup) <- function(x) { map(x@members, base_request) }
