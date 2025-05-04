@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9257 (2025-05-04)
+
+* catalog_health work
+
+
 # providertwo 0.0.0.9256 (2025-05-04)
 
 * fix pro_metadata name
