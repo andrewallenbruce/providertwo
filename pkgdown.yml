@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-05-03T02:07Z
+last_built: 2025-05-04T04:07Z
 urls:
   reference: https://andrewallenbruce.github.io/providertwo/reference
   article: https://andrewallenbruce.github.io/providertwo/articles
