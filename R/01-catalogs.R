@@ -167,12 +167,38 @@ catalog_health <- function() {
 
   download <- new_tbl(
     title    = vec_rep_each(x$title, fnobs(get_dist(x))),
-    download = get_elem(get_dist(x), "downloadURL") |> delist()) |>
+    download = get_elem(get_dist(x), "downloadURL") |> delist(),
+    ext      = tools::file_ext(download)) |>
     fcount(title, add = TRUE)
 
-  list(
-    main     = list(slt(x, -keyword, -distribution), keys, sbt(download, N == 1, -N)) |> reduce(join_on_title),
-    download = sbt(download, N > 1)
+  download <- rowbind(
+    sbt(download, N == 1, -N, -ext),
+    sbt(download, N > 1 & ext == "csv", -N, -ext)
   )
 
+  x <- list(slt(x, -keyword, -distribution), keys, download) |> reduce(join_on_title)
+
+  list(
+    main = sbt(x, stri_detect_regex(title, "[2][0-9]{3}", negate = TRUE)),
+    temp = sbt(x, grepl("[2][0-9]{3}", title, perl = TRUE)) |>
+      mtt(
+        year = as.integer(stri_extract_first_regex(title, "[2][0-9]{3}")),
+        title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
+        title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
+        title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
+        title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
+        title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
+        title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
+        title = case(
+          grepl("^Benefits\\sCost", title, perl = TRUE) ~ "Benefits and Cost Sharing PUF",
+          grepl("^Plan\\sCrosswalk\\sPUF", title, perl = TRUE) ~ "Plan ID Crosswalk PUF",
+          .default = title
+        ),
+        title = gsub("  ", " ", title, perl = TRUE),
+        title = str_look_remove(title, "County", "ahead")
+      ) |>
+      sbt(stri_detect_regex(title, "\\.zip$|Excel$", negate = TRUE)) |>
+      colorder(year) |>
+      roworder(title, -year)
+  )
 }

@@ -59,6 +59,7 @@ utils::globalVariables(c(
   # <qpp_elig>
   "entity",
   # <catalog_caid>
+  # <catalog_health>
   # <.tidy_resources>
   "ext",
   # <.tidy_resources>
@@ -179,6 +180,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_health>
   # <.tidy_resources>
   # <select_caid_temp>
   # <select_open_temp>
