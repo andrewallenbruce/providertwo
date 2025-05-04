@@ -27,8 +27,7 @@ caid_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-caid_metadata <- new_class(
-  name          = "caid_metadata",
+caid_metadata := new_class(
   parent        = class_metadata,
   package       = NULL,
   properties    = list(
@@ -57,11 +56,11 @@ caid_metadata <- new_class(
 #' caid_temporal("MCP")
 NULL
 
-#' @autoglobal
+#' @name caid_endpoint
 #' @rdname medicaid
+#' @autoglobal
 #' @export
-caid_endpoint <- new_class(
-  name        = "caid_endpoint",
+caid_endpoint := new_class(
   parent      = class_endpoint,
   package     = NULL,
   constructor = function(alias) {
@@ -77,11 +76,11 @@ caid_endpoint <- new_class(
   }
 )
 
-#' @autoglobal
+#' @name caid_group
 #' @rdname medicaid
+#' @autoglobal
 #' @export
-caid_group <- new_class(
-  name        = "caid_group",
+caid_group := new_class(
   parent      = class_group,
   package     = NULL,
   constructor = function(alias) {
@@ -96,11 +95,11 @@ caid_group <- new_class(
   }
 )
 
-#' @autoglobal
+#' @name caid_temporal
 #' @rdname medicaid
+#' @autoglobal
 #' @export
-caid_temporal <- new_class(
-  name        = "caid_temporal",
+caid_temporal := new_class(
   parent      = class_temporal,
   package     = NULL,
   constructor = function(alias) {

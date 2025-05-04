@@ -21,8 +21,8 @@ NULL
 #' caid_temporal("MCP") |> base_request()
 #' open_temporal("GROUP_all") |> base_request()
 #'
-#' care_troup("utilization") |> base_request()
-#' open_troup("grouped_payment") |> base_request()
+#' # care_troup("utilization") |> base_request()
+#' # open_troup("grouped_payment") |> base_request()
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x", function(x) {

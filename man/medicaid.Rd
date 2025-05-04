@@ -6,13 +6,6 @@
 \alias{caid_group}
 \alias{caid_temporal}
 \title{Medicaid API Endpoint Classes}
-\usage{
-caid_endpoint(alias)
-
-caid_group(alias)
-
-caid_temporal(alias)
-}
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 }

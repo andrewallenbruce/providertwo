@@ -14,7 +14,7 @@
 #' @import RcppSimdJson
 #' @import cli
 #' @import rrapply
-#' @rawNamespace import(rlang, except = c(is_na, new_list))
+#' @rawNamespace import(rlang, except = c(is_na, new_list, ":="))
 #' @rawNamespace if (getRversion() < "4.3.0") importFrom("S7", "@")
 ## usethis namespace: end
 NULL
