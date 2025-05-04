@@ -28,7 +28,7 @@ pro_dimensions <- function(x) {
 #' @noRd
 #' @autoglobal
 pro_metadata <- new_class(
-  name       = "open_metadata",
+  name       = "pro_metadata",
   parent     = class_metadata,
   package    = NULL,
   properties = list(

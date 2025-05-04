@@ -33,14 +33,6 @@ class_metadata <- new_class(
     title       = class_character,
     description = class_character,
     modified    = new_union(class_character, class_Date)
-    # issued      = new_union(NULL, class_character, class_Date),
-    # released    = new_union(NULL, class_character, class_Date),
-    # dictionary  = new_union(NULL, class_character),
-    # download    = new_union(NULL, class_character),
-    # temporal    = new_union(NULL, class_character),
-    # periodicity = new_union(NULL, class_character),
-    # site        = new_union(NULL, class_character),
-    # references  = new_union(NULL, class_character)
   )
 )
 
