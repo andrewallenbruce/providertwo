@@ -27,24 +27,24 @@ catalog_caid <- function() {
       issued,
       modified,
       contact,
-      theme,
-      key = keyword,
+      # theme,
+      # key = keyword,
       distribution,
       temporal,
-      reference = references
+      references
     ) |>
     as_tbl()
 
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
 
-  grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
-  keys <- new_df(title = x$title, key = make_join_col(x, key))
+  # grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
+  # keys <- new_df(title = x$title, key = make_join_col(x, key))
 
   refs <- new_df(
     title = x$title,
-    reference = flatten_column(x$reference) |> na_if("NA")) |>
-    sbt(not_na(reference) & stri_detect_regex(reference, "^https://www.mathematica.org/", negate = TRUE)) |>
-    mtt(reference = stri_replace_all_fixed(reference, ", https://www.mathematica.org/", ""))
+    references = flatten_column(x$references) |> na_if("NA")) |>
+    sbt(not_na(references) & stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
+    mtt(references = stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
 
   dictionary <- new_df(
     # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
@@ -60,9 +60,9 @@ catalog_caid <- function() {
     fcount(id, add = TRUE)
 
   main <- list(
-    slt(x, -theme, -key, -reference, -distribution),
-    grps,
-    keys,
+    slt(x, -references, -distribution),
+    # grps,
+    # keys,
     refs,
     download |> sbt(N == 1, -N, -id, -ext),
     dictionary) |>
@@ -79,33 +79,15 @@ catalog_caid <- function() {
     "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}"
   )
 
-  pat2 <- paste0(
-    " [12][0-9]{3}|",
-    "[12][0-9]{3} |",
-    " \\(National Average Drug Acquisition Cost\\)|",
-    " \\(Pricing as of.*|",
-    " Quality$|"
-  )
-
   list(
-    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
-      sbt(
-        stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)
-      ),
-    temp = subset_detect(main, title, pat, ci = TRUE) |>
-      sbt(
-        stri_detect_regex(title, "CoreS|Scorecard|Auto", negate = TRUE)
-      ) |>
+    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
+    temp = subset_detect(main, title, pat, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
       mtt(
         year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer(),
         title = case(
           grepl("Child and Adult Health Care Quality Measures", title, perl = TRUE) ~ "Child and Adult Health Care Quality Measures",
           grepl("[0-9]{4} Manage", title, perl = TRUE) ~ "Managed Care Programs by State",
-          grepl(
-            "NADAC \\(National Average Drug Acquisition Cost\\)",
-            title,
-            perl = TRUE
-          ) ~ "NADAC",
+          grepl("NADAC \\(National Average Drug Acquisition Cost\\)", title, perl = TRUE) ~ "NADAC",
           grepl("State Drug Utilization Data", title, perl = TRUE) ~ "State Drug Utilization Data",
           grepl("Pricing Comparison", title, perl = TRUE) ~ "Pricing Comparison for Blood Disorder Treatments",
           grepl("Product Data for Newly Reported", title, perl = TRUE) ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
@@ -113,6 +95,7 @@ catalog_caid <- function() {
         )
       ) |>
       roworder(title, -year) |>
+      # TODO this is probably incorrect
       f_fill(periodicity) |>
       slt(
         year,
@@ -125,8 +108,8 @@ catalog_caid <- function() {
         download,
         dictionary
       ),
-    download = download |> sbt(N > 1) |> funique(cols = c("title", "download")),
-    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> sbt(stri_detect_regex(title, "CoreS|Scorecard|Auto"))
+    download  = sbt(download, N > 1) |> funique(cols = c("title", "download")),
+    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
   )
 }
 
@@ -139,7 +122,12 @@ catalog_health <- function() {
   x <- x |>
     as_tbl() |>
     mtt(
+      identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
       title       = remove_non_ascii(title),
+      description = remove_non_ascii(description),
+      description = gsub("[\"']", "", description, perl = TRUE),
+      description = gsub("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s", "", description, perl = TRUE),
+      description = gsub("Dataset.", "Dataset", description, perl = TRUE),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
@@ -153,22 +141,15 @@ catalog_health <- function() {
       issued,
       modified,
       contact,
-      keyword,
       distribution
     )
 
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
 
-  keys <- new_df(
-    title   = x$title,
-    keyword = make_join_col(x, keyword)) |>
-    sbt(keyword != "healthcare") |>
-    mtt(keyword = stri_replace_all_regex(keyword, ", healthcare|healthcare, ", ""))
-
   download <- new_tbl(
     title    = vec_rep_each(x$title, fnobs(get_dist(x))),
     download = get_elem(get_dist(x), "downloadURL") |> delist(),
-    ext      = tools::file_ext(download)) |>
+    ext      = file_ext(download)) |>
     fcount(title, add = TRUE)
 
   download <- rowbind(
@@ -176,29 +157,31 @@ catalog_health <- function() {
     sbt(download, N > 1 & ext == "csv", -N, -ext)
   )
 
-  x <- list(slt(x, -keyword, -distribution), keys, download) |> reduce(join_on_title)
+  x <- list(slt(x, -distribution), download) |> reduce(join_on_title)
+
+  temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
+    mtt(
+      year = as.integer(stri_extract_first_regex(title, "[2][0-9]{3}")),
+      title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
+      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
+      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
+      title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
+      title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
+      title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
+      title = case(
+        grepl("^Benefits\\sCost", title, perl = TRUE) ~ "Benefits and Cost Sharing PUF",
+        grepl("^Plan\\sCrosswalk\\sPUF", title, perl = TRUE) ~ "Plan ID Crosswalk PUF",
+        .default = title
+      ),
+      title = gsub("  ", " ", title, perl = TRUE),
+      title = str_look_remove(title, "County", "ahead")
+    ) |>
+    subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
+    colorder(year) |>
+    roworder(title, -year)
 
   list(
-    main = sbt(x, stri_detect_regex(title, "[2][0-9]{3}", negate = TRUE)),
-    temp = sbt(x, grepl("[2][0-9]{3}", title, perl = TRUE)) |>
-      mtt(
-        year = as.integer(stri_extract_first_regex(title, "[2][0-9]{3}")),
-        title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
-        title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
-        title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
-        title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
-        title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
-        title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
-        title = case(
-          grepl("^Benefits\\sCost", title, perl = TRUE) ~ "Benefits and Cost Sharing PUF",
-          grepl("^Plan\\sCrosswalk\\sPUF", title, perl = TRUE) ~ "Plan ID Crosswalk PUF",
-          .default = title
-        ),
-        title = gsub("  ", " ", title, perl = TRUE),
-        title = str_look_remove(title, "County", "ahead")
-      ) |>
-      sbt(stri_detect_regex(title, "\\.zip$|Excel$", negate = TRUE)) |>
-      colorder(year) |>
-      roworder(title, -year)
+    main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE),
+    temp = temporal
   )
 }

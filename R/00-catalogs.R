@@ -16,24 +16,10 @@ catalog_care <- function() {
     description = stri_trans_general(description, "latin-ascii"),
     description = remove_non_ascii(description),
     description = gsub("[\"']", "", description, perl = TRUE),
-    description = gsub(
-      "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$",
-      "",
-      description,
-      perl = TRUE
-    ),
-    description = gsub(
-      "^ATTENTION USERS\\n\\n\\nSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information.\\n\\n.+\\n\\nFor more information on the opt-out process, see Manage Your Enrollment.+or view the FAQ section below.\\n\\n.+\\n\\n",
-      "",
-      description,
-      perl = TRUE
-    ),
-    description = gsub(
-      "\\n\\n.+\\n\\nOn November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+",
-      "",
-      description,
-      perl = TRUE
-    ),
+    description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
+    # Opt Out Affidavits
+    description = gsub("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ", "", description, perl = TRUE),
+    description = gsub("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", "", description, perl = TRUE),
     description = gsub("\\n\\n.+\\n\\n", " ", description, perl = TRUE),
     description = stri_trim(description)
   ) |>
@@ -52,6 +38,8 @@ catalog_care <- function() {
     ) |>
     as_tbl()
 
+  # subset_detect(x, description, "On November 17") |> _$description
+
   d <- rowbind(x$distribution, fill = TRUE) |>
     fcompute(
       year       = as.integer(stri_extract_all_regex(title, "[0-9]{4}")),
@@ -67,8 +55,7 @@ catalog_care <- function() {
     colorder(title) |>
     as_tbl()
 
-  d <- sset(d, row_na_counts(d) < 4) |>
-    funique(cols = c("title", "year", "format"))
+  d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
   list_tidy(
     main = join_on_title(

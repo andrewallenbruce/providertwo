@@ -73,7 +73,6 @@ utils::globalVariables(c(
   # <clinicians>
   "grd_yr",
   # <catalog_pro>
-  # <catalog_caid>
   "group",
   # <clinicians>
   "grp_assgn",
@@ -89,11 +88,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "issued",
-  # <catalog_caid>
-  "key",
   # <catalog_open>
-  # <catalog_caid>
-  # <catalog_health>
   "keyword",
   # <catalog_care>
   # <catalog_pro>
@@ -133,8 +128,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "periodicity",
-  # <catalog_caid>
-  "reference",
   # <catalog_care>
   # <catalog_caid>
   "references",
@@ -168,7 +161,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   "temporal",
   # <catalog_pro>
-  # <catalog_caid>
   "theme",
   # <catalog_care>
   # <catalog_pro>
