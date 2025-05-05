@@ -21,7 +21,7 @@ health - CMS HealthCare.gov API
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9258</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9259</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,7 +189,7 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$main</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 89 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 89 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACA Federal… https://d… <span style="color: #949494;">"</span>Affordabl… Decenniall… 2016-10-31 2025-04-28 Medica…</span>
@@ -203,8 +203,8 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Benefit Pac… https://d… <span style="color: #949494;">"</span>This data… Decenniall… <span style="color: #BB0000;">NA</span>         2024-01-05 Medica…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Blood Lead … https://d… <span style="color: #949494;">"</span>This data… Decenniall… <span style="color: #BB0000;">NA</span>         2024-01-05 Medica…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 79 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: temporal &lt;chr&gt;, references &lt;chr&gt;, download &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dictionary &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$temp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 176 × 9</span></span>
@@ -240,7 +240,7 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 29 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$scorecard</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 240 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 240 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued modified   contact    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CoreSEt fil… https://d… This is a … Annually [… <span style="color: #BB0000;">NA</span>     2024-11-06 Medicaid.g…</span>
@@ -254,44 +254,44 @@ health - CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> CoreSEt mea… https://d… This is a … Annually [… <span style="color: #BB0000;">NA</span>     2024-11-06 Medicaid.g…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CoreSEt mea… https://d… This is a … Annually [… <span style="color: #BB0000;">NA</span>     2024-11-12 Medicaid.g…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 230 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: temporal &lt;chr&gt;, group &lt;chr&gt;, key &lt;chr&gt;, reference &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: temporal &lt;chr&gt;, references &lt;chr&gt;, download &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dictionary &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $health</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $health$main</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 55 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 55 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Agent Broke… e4rr-zk4i  <span style="color: #949494;">"</span>Dataset.<span style="color: #949494;">"</span>  Decenniall… 2018-07-31 2025-05-01 FFMPro…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AB Registra… wb6u-x2ny  <span style="color: #949494;">"</span>Access Da… Decenniall… 2016-03-30 2025-05-01 FFMPro…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AB Suspensi… e8uy-7rnp  <span style="color: #949494;">"</span>Access Da… Decenniall… 2016-05-03 2025-05-01 FFMPro…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Issuer_Part… 5k5i-wzex  <span style="color: #949494;">"</span>The datas… Decenniall… 2020-06-05 2025-01-13 Domini…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rolling Dra… dwyq-rebe  <span style="color: #949494;">"</span>ECP Rolli… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Auto-popula… 6z38-ihx4  <span style="color: #949494;">"</span>ECP Autof… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Issuer Part… tfpe-r7fa  <span style="color: #949494;">"</span>Dataset.<span style="color: #949494;">"</span>  <span style="color: #BB0000;">NA</span>          2019-10-09 2020-09-29 Hiko N…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NIPR Valid … wk5a-kdpd  <span style="color: #949494;">"</span>This data… Decenniall… 2016-11-17 2020-08-10 diaz_j…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Direct Enro… nsnu-pbze  <span style="color: #949494;">"</span>Dataset.<span style="color: #949494;">"</span>  Decenniall… 2018-09-27 2024-08-07 Hiko N…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Issuer and … skyj-46j6  <span style="color: #949494;">"</span>Dataset.<span style="color: #949494;">"</span>  <span style="color: #BB0000;">NA</span>          2019-10-09 2019-11-22 Hiko N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Agent Broke… https://d… Dataset     Decenniall… 2018-07-31 2025-05-01 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AB Registra… https://d… Access Dat… Decenniall… 2016-03-30 2025-05-01 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AB Suspensi… https://d… Access Dat… Decenniall… 2016-05-03 2025-05-01 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Issuer_Part… https://d… The datase… Decenniall… 2020-06-05 2025-01-13 Domini…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rolling Dra… https://d… ECP Rollin… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Auto-popula… https://d… ECP Autofi… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Issuer Part… https://d… Dataset     <span style="color: #BB0000;">NA</span>          2019-10-09 2020-09-29 Hiko N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NIPR Valid … https://d… This datas… Decenniall… 2016-11-17 2020-08-10 diaz_j…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Direct Enro… https://d… Dataset     Decenniall… 2018-09-27 2024-08-07 Hiko N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Issuer and … https://d… Dataset     <span style="color: #BB0000;">NA</span>          2019-10-09 2019-11-22 Hiko N…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 45 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: keyword &lt;chr&gt;, download &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: download &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $health$temp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 226 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 226 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year title  identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>025 Benef… 8060e816-… <span style="color: #949494;">"</span>The Benef… Continuous… 2024-12-10 2024-12-18 Center…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>024 Benef… 958672e5-… <span style="color: #949494;">"</span>The Benef… Continuous… 2024-08-06 2024-08-14 Center…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>023 Benef… 08f39b98-… <span style="color: #949494;">"</span>The Benef… Continuous… 2023-08-09 2023-08-16 Center…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>022 Benef… 9dbef2bc-… <span style="color: #949494;">"</span>The Benef… Continuous… 2022-08-10 2022-08-17 Center…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>021 Benef… 86mw-kems  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2020-10-09 2021-08-11 Andy E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>020 Benef… kq37-29bw  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2019-10-22 2020-10-23 Ashley…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>019 Benef… qpmu-mh2y  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2018-10-25 2019-10-21 Andrew…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>018 Benef… afk4-e2ai  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2017-10-25 2018-08-14 Andrew…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>017 Benef… np2y-8daw  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2017-01-04 2017-08-25 Andrew…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>016 Benef… rtj8-qhma  <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2015-11-10 2016-08-15 Balaji…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>025 Benef… https://d… <span style="color: #949494;">"</span>The Benef… Continuous… 2024-12-10 2024-12-18 Center…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>024 Benef… https://d… <span style="color: #949494;">"</span>The Benef… Continuous… 2024-08-06 2024-08-14 Center…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>023 Benef… https://d… <span style="color: #949494;">"</span>The Benef… Continuous… 2023-08-09 2023-08-16 Center…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>022 Benef… https://d… <span style="color: #949494;">"</span>The Benef… Continuous… 2022-08-10 2022-08-17 Center…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>021 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2020-10-09 2021-08-11 Andy E…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>020 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2019-10-22 2020-10-23 Ashley…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>019 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2018-10-25 2019-10-21 Andrew…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>018 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2017-10-25 2018-08-14 Andrew…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>017 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2017-01-04 2017-08-25 Andrew…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>016 Benef… https://d… <span style="color: #949494;">"</span>The Benef… <span style="color: #BB0000;">NA</span>          2015-11-10 2016-08-15 Balaji…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 216 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: keyword &lt;chr&gt;, download &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: download &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
