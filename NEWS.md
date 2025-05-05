@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9260 (2025-05-04)
+
+* removed metadata classes in favor of a simple list
+
+
 # providertwo 0.0.0.9259 (2025-05-04)
 
 * catalog cleanup
