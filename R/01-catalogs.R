@@ -8,43 +8,30 @@ catalog_caid <- function() {
     mtt(
       identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
       modified    = as_date(modified),
-      issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
       title       = gsub("^ ", "", title, perl = TRUE),
       title       = remove_non_ascii(title),
+      title       = gsub("  ", " ", title, perl = TRUE),
       description = stri_trans_general(description, "latin-ascii"),
       description = remove_non_ascii(description),
       description = gsub("[\"']", "", description, perl = TRUE),
       description = gsub("\r\n", " ", description, perl = TRUE),
-      description = gsub("  ", " ", description, perl = TRUE)
+      description = gsub("  ", " ", description, perl = TRUE),
+      description = cheapr_if_else(description == "Dataset.", NA_character_, description)
       ) |>
     slt(
       title,
       identifier,
       description,
       periodicity,
-      issued,
       modified,
       contact,
-      # theme,
-      # key = keyword,
-      distribution,
-      temporal,
-      references
+      distribution
     ) |>
     as_tbl()
 
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
-
-  # grps <- new_df(title = x$title, group = make_join_col(x, theme)) |> sbt(not_na(group) & group != "Uncategorized")
-  # keys <- new_df(title = x$title, key = make_join_col(x, key))
-
-  refs <- new_df(
-    title = x$title,
-    references = flatten_column(x$references) |> na_if("NA")) |>
-    sbt(not_na(references) & stri_detect_regex(references, "^https://www.mathematica.org/", negate = TRUE)) |>
-    mtt(references = stri_replace_all_fixed(references, ", https://www.mathematica.org/", ""))
 
   dictionary <- new_df(
     # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
@@ -60,10 +47,7 @@ catalog_caid <- function() {
     fcount(id, add = TRUE)
 
   main <- list(
-    slt(x, -references, -distribution),
-    # grps,
-    # keys,
-    refs,
+    slt(x, -distribution),
     download |> sbt(N == 1, -N, -id, -ext),
     dictionary) |>
     reduce(join_on_title) |>
@@ -94,20 +78,20 @@ catalog_caid <- function() {
           .default = title
         )
       ) |>
-      roworder(title, -year) |>
+      roworder(title, year) |>
       # TODO this is probably incorrect
-      f_fill(periodicity) |>
+      f_fill(description, periodicity) |>
       slt(
         year,
         title,
         description,
         periodicity,
-        issued,
         modified,
         identifier,
         download,
         dictionary
-      ),
+      ) |>
+      roworder(title, -year),
     download  = sbt(download, N > 1) |> funique(cols = c("title", "download")),
     scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
   )

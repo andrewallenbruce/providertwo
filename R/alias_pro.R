@@ -6,10 +6,10 @@ select_pro <- function(x, call = caller_env()) {
     PSI90_6digit = "CMS Medicare PSI-90 and component measures - six-digit estimate dataset",
     joint_replace = "Comprehensive Care For Joint Replacement Model - Provider Data",
     footnote_xwalk = "Footnote Crosswalk",
-    suppliers = "^Medical Equipment Suppliers$",
+    pro_suppliers = "^Medical Equipment Suppliers$",
 
-    Data_Updates = "Data Updates",
-    Measure_Dates = "Measure Dates",
+    Hospital_Updates = "Data Updates",
+    Hospital_Measure_Dates = "Measure Dates",
     Hospital_Maternal = "Maternal Health - Hospital",
     Hospital_Outcomes = "Patient-Reported Outcomes - Hospital",
     Hospital_General = "Hospital General Information",

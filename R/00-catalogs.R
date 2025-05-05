@@ -76,7 +76,7 @@ catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
   x <- mtt(x,
-    title = remove_non_ascii(title),
+    title       = remove_non_ascii(title),
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
     issued      = as_date(issued),
@@ -104,7 +104,7 @@ catalog_pro <- function() {
 
   list(
    endpoint = sbt(x, group != "Physician office visit costs"),
-   cost = sbt(x, group == "Physician office visit costs")
+   cost     = sbt(x, group == "Physician office visit costs")
   )
 }
 

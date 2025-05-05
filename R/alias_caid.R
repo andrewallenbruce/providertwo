@@ -83,11 +83,11 @@ select_caid <- function(x, call = caller_env()) {
     MC_share            = "Share of Medicaid Enrollees in Managed Care",
 
     FIN_mgmt            = "Medicaid Financial Management Data$",
-    FIN_nation          = "Medicaid Financial Management Data  National Totals",
+    FIN_nation          = "Medicaid Financial Management Data National Totals",
 
     Unwind_marketplace     = "HealthCare\\.gov Marketplace Medicaid Unwinding Report",
     Unwind_transition      = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
-    Unwind_historic        = "Separate CHIP Enrollment by Month and State\\s.+\\sHistoric CAA/Unwinding Period",
+    Unwind_historic        = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
     Unwind_SBM             = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
 
     CHIP_bene_month        = "Program Information for Medicaid and CHIP Beneficiaries by Month",

@@ -85,7 +85,6 @@ utils::globalVariables(c(
   # <qpp_elig>
   "is_new",
   # <catalog_pro>
-  # <catalog_caid>
   # <catalog_health>
   "issued",
   # <catalog_open>
@@ -129,7 +128,6 @@ utils::globalVariables(c(
   # <catalog_health>
   "periodicity",
   # <catalog_care>
-  # <catalog_caid>
   "references",
   # <catalog_pro>
   "released",
@@ -158,7 +156,6 @@ utils::globalVariables(c(
   # <clinicians>
   "telehlth",
   # <catalog_care>
-  # <catalog_caid>
   "temporal",
   # <catalog_pro>
   "theme",
