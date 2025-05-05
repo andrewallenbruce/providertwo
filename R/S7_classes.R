@@ -62,22 +62,11 @@ class_dimensions := new_class(
 
 #' @noRd
 #' @autoglobal
-class_metadata := new_class(
-  package       = NULL,
-  properties    = list(
-    title       = class_character,
-    description = class_character,
-    modified    = new_union(class_character, class_Date)
-  )
-)
-
-#' @noRd
-#' @autoglobal
 class_endpoint := new_class(
   package       = NULL,
   properties    = list(
     identifier  = class_character,
-    metadata    = class_metadata,
+    metadata    = class_list,
     dimensions  = class_dimensions
   )
 )
@@ -97,7 +86,7 @@ class_group := new_class(
 class_temporal := new_class(
   package       = NULL,
   properties    = list(
-    metadata    = class_metadata,
+    metadata    = class_list,
     dimensions  = class_dimensions,
     endpoints   = class_list
   )

@@ -52,7 +52,7 @@ utils::globalVariables(c(
   # <select_open_temp>
   "download",
   # <catalog_care>
-  # <.tidy_resources>
+  # <tidy_resources>
   "downloadURL",
   # <qpp_elig>
   "enroll_year",
@@ -60,9 +60,9 @@ utils::globalVariables(c(
   "entity",
   # <catalog_caid>
   # <catalog_health>
-  # <.tidy_resources>
+  # <tidy_resources>
   "ext",
-  # <.tidy_resources>
+  # <tidy_resources>
   "fileSize",
   # <catalog_care>
   "filetype",
@@ -117,7 +117,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_health>
   "N",
-  # <.tidy_resources>
+  # <tidy_resources>
   # <open_dictionary>
   "name",
   # <qpp_elig>
@@ -145,7 +145,7 @@ utils::globalVariables(c(
   "sec_spec_4",
   # <catalog_care>
   "site",
-  # <.tidy_resources>
+  # <tidy_resources>
   "size",
   # <qpp_elig>
   "specialty",
@@ -173,7 +173,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
-  # <.tidy_resources>
+  # <tidy_resources>
   # <select_caid_temp>
   # <select_open_temp>
   # <open_dictionary>

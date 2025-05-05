@@ -26,59 +26,33 @@ care_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-care_metadata <- new_class(
-  name = "care_metadata",
-  parent = class_metadata,
-  package = NULL,
-  properties = list(
-    temporal    = class_character,
-    periodicity = class_character,
-    download    = class_character,
-    resources   = class_character,
-    dictionary  = class_character,
-    site        = class_character,
-    references  = class_character
-  ),
-  constructor = function(x) {
-    new_object(
-      class_metadata(),
-      title       = x$title,
-      description = x$description,
-      modified    = x$modified %||% NA_character_,
-      temporal    = x$temporal,
-      periodicity = x$periodicity,
-      download    = x$download,
-      resources   = x$resources,
-      dictionary  = x$dictionary,
-      site        = x$site,
-      references  = x$references
-    )
-  }
-)
+care_metadata <- function(x) {
+  list(
+    title       = x$title,
+    description = x$description,
+    modified    = x$modified %||% NA_character_,
+    temporal    = x$temporal,
+    periodicity = x$periodicity,
+    download    = x$download,
+    resources   = x$resources,
+    dictionary  = x$dictionary,
+    site        = x$site,
+    references  = x$references
+  )
+}
 
 #' @noRd
 #' @autoglobal
-temp_metadata <- new_class(
-  name = "temp_metadata",
-  parent = class_metadata,
-  package = NULL,
-  properties = list(
-    periodicity = class_character,
-    dictionary  = class_character,
-    site        = class_character
-  ),
-  constructor = function(x) {
-    new_object(
-      class_metadata(),
-      title       = x$title,
-      description = x$description,
-      modified    = x$modified %||% NA_character_,
-      periodicity = x$periodicity,
-      dictionary  = x$dictionary,
-      site        = x$site
-    )
-  }
-)
+temp_metadata <- function(x) {
+  list(
+    title       = x$title,
+    description = x$description,
+    modified    = x$modified %||% NA_character_,
+    periodicity = x$periodicity,
+    dictionary  = x$dictionary,
+    site        = x$site
+  )
+}
 
 #' Medicare API Endpoint Classes
 #' @name medicare

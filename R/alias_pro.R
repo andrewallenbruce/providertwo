@@ -159,7 +159,7 @@ select_pro <- function(x, call = caller_env()) {
 
   if (!exists("catalog")) .catalog <- catalogs()
 
-  res <- select_alias(.catalog$pro$main, x)
+  res <- select_alias(.catalog$pro$endpoint, x)
 
   if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)

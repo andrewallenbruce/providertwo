@@ -3,16 +3,11 @@ NULL
 
 #' @autoglobal
 #' @noRd
-.tidy_resources <- function(x) {
+tidy_resources <- function(x) {
   x |>
     fcompute(
       year     = as.integer(stri_extract_all_regex(name, "[0-9]{4}")),
-      file     = gsub(
-        "  ",
-        " ",
-        stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""),
-        perl = TRUE
-      ),
+      file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
       size     = fs::as_fs_bytes(fileSize),
       ext      = tolower(file_ext(downloadURL)),
       download = downloadURL
@@ -39,23 +34,23 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 
 # method(list_resources, class_character) <- function(x) {
 #   fload(x, query = "/data") |>
-#     .tidy_resources()
+#     tidy_resources()
 # }
 
 method(list_resources, care_endpoint) <- function(x) {
-  x@metadata@resources |>
+  x@metadata$resources |>
     fload(x, query = "/data") |>
-    .tidy_resources()
+    tidy_resources()
 }
 
 method(list_resources, care_group) <- function(x) {
-  map(x@members, \(x) x@metadata@resources |> request()) |>
+  map(x@members, \(x) x@metadata$resources |> request()) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(\(resp) resp_body_string(resp) |>
           fparse(query = "/data") |>
           as_tbl() |>
-          .tidy_resources()) |>
+          tidy_resources()) |>
     set_names(names(x@members))
 }
 
@@ -68,7 +63,7 @@ method(list_resources, care_temporal) <- function(x) {
       \(resp) resp_body_string(resp) |>
         fparse(query = "/data")
       ) |>
-    .tidy_resources()
+    tidy_resources()
 }
 
 method(list_resources, care_troup) <- function(x) {

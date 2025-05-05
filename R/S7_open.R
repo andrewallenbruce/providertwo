@@ -27,23 +27,14 @@ open_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-open_metadata <- new_class(
-  name       = "open_metadata",
-  parent     = class_metadata,
-  package    = NULL,
-  properties = list(
-    download = class_character
-    ),
-  constructor = function(x) {
-    new_object(
-      class_metadata(),
-      title       = x$title,
-      description = x$description,
-      modified    = x$modified,
-      download    = x$download
-    )
-  }
-)
+open_metadata <- function(x) {
+  list(
+    title       = x$title,
+    description = x$description,
+    modified    = x$modified,
+    download    = x$download
+  )
+}
 
 #' Open Payments API Endpoint Classes
 #' @name openpayments
@@ -108,7 +99,7 @@ open_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      metadata    = class_metadata(x$title, x$description, x$modified),
+      metadata    = list(title = x$title, description = x$description, modified = x$modified),
       dimensions  = open_dimensions(x),
       endpoints   = x$endpoints
     )

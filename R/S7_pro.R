@@ -27,31 +27,18 @@ pro_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-pro_metadata <- new_class(
-  name       = "pro_metadata",
-  parent     = class_metadata,
-  package    = NULL,
-  properties = list(
-    issued      = new_union(class_character, class_Date),
-    released    = new_union(class_character, class_Date),
-    site        = class_character,
-    dictionary  = class_character,
-    download    = class_character
-  ),
-  constructor = function(x) {
-    new_object(
-      class_metadata(),
-      title       = x$title,
-      description = x$description,
-      issued      = x$issued,
-      modified    = x$modified,
-      released    = x$released,
-      site        = x$site,
-      dictionary  = x$dictionary,
-      download    = x$download
-    )
-  }
-)
+pro_metadata <- function(x) {
+  list(
+    title       = x$title,
+    description = x$description,
+    issued      = x$issued,
+    modified    = x$modified,
+    released    = x$released,
+    site        = x$site,
+    dictionary  = x$dictionary,
+    download    = x$download
+  )
+}
 
 #' Provider API Endpoint Classes
 #' @name provider

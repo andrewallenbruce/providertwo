@@ -38,8 +38,6 @@ catalog_care <- function() {
     ) |>
     as_tbl()
 
-  # subset_detect(x, description, "On November 17") |> _$description
-
   d <- rowbind(x$distribution, fill = TRUE) |>
     fcompute(
       year       = as.integer(stri_extract_all_regex(title, "[0-9]{4}")),
@@ -72,7 +70,6 @@ catalog_care <- function() {
 }
 
 # "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
-
 #' @autoglobal
 #' @noRd
 catalog_pro <- function() {
@@ -106,7 +103,7 @@ catalog_pro <- function() {
     as_tbl()
 
   list(
-   main = sbt(x, group != "Physician office visit costs"),
+   endpoint = sbt(x, group != "Physician office visit costs"),
    cost = sbt(x, group == "Physician office visit costs")
   )
 }
@@ -123,7 +120,7 @@ catalog_open <- function() {
     year        = get_data_elem(keyword),
     year        = gsub("all years", "All", year, perl = TRUE),
     year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
-    title = remove_non_ascii(title),
+    title       = remove_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
     description = gsub("[\"']", "", description, perl = TRUE),

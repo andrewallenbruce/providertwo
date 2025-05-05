@@ -27,24 +27,15 @@ caid_dimensions <- function(x) {
 
 #' @noRd
 #' @autoglobal
-caid_metadata := new_class(
-  parent        = class_metadata,
-  package       = NULL,
-  properties    = list(
-    dictionary  = class_character,
-    download    = class_character
-    ),
-  constructor = function(x) {
-    new_object(
-      class_metadata(),
-      title       = x$title,
-      description = x$description,
-      modified    = x$modified,
-      dictionary  = x$dictionary,
-      download    = x$download
-    )
-  }
-)
+caid_metadata <- function(x) {
+  list(
+    title       = x$title,
+    description = x$description,
+    modified    = x$modified,
+    dictionary  = x$dictionary,
+    download    = x$download
+  )
+}
 
 #' Medicaid API Endpoint Classes
 #' @name medicaid
@@ -108,7 +99,7 @@ caid_temporal := new_class(
 
     new_object(
       class_temporal(),
-      metadata    = class_metadata(x$title, x$description, x$modified),
+      metadata    = list(title = x$title, description = x$description, modified = x$modified),
       dimensions  = caid_dimensions(x),
       endpoints   = x$endpoints
     )
