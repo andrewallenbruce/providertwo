@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9259</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9260</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,17 +72,17 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">care_endpoint</span><span class="op">(</span><span class="st">"CARE_dialysis"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Medicare Dialysis Facilities data provides information on clinical and patient measures for Medicare-certif"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : Date[1:1], format: "2024-02-29"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ temporal   : chr "2009-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ download   : chr "https://data.cms.gov/sites/default/files/2024-02/b2c2658d-e19d-48db-8b3b-9d343a4d395f/dfr_facility_socrata_fy2024.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f8610e87-ba25-43a3-a49e-927dbc8701ae"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024%20Data%20Dictionary.xlsx"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ references : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024_DFR_Guide%20and%20Methodology.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Medicare Dialysis Facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "The Medicare Dialysis Facilities data provides information on clinical and patient measures for Medicare-certif"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-02-29"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ temporal   : chr "2009-01-01 • 2024-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/sites/default/files/2024-02/b2c2658d-e19d-48db-8b3b-9d343a4d395f/dfr_facility_socrata_fy2024.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f8610e87-ba25-43a3-a49e-927dbc8701ae"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024%20Data%20Dictionary.xlsx"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ references : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024_DFR_Guide%20and%20Methodology.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 11679243</span>
@@ -104,13 +104,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ Measure_ID    : chr "Measure_ID"</span>
 <span class="r-in"><span><span class="fu">care_temporal</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;care_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  : &lt;temp_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ title      : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ description: chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ modified   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Quality Payment Program Experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "The Quality Payment Program (QPP) Experience dataset provides participation and performance information in the "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 624200</span>
@@ -229,17 +229,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_owners      : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital All Owners"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital All Owners Information dataset provides information on all owners of the hospitals. This data incl"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-04-28"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2022-11-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/7220a543-2259-4cff-aded-8eff96740412/Hospital_All_Owners_2025.02.28.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/029c119f-f79c-49be-9100-344d31d10344"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_All_Owners_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital All Owners Information dataset provides information on all owners of the hospitals. This data incl"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-04-28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2022-11-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2025-03/7220a543-2259-4cff-aded-8eff96740412/Hospital_All_Owners_2025.02.28.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/029c119f-f79c-49be-9100-344d31d10344"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_All_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 148696</span>
@@ -281,17 +281,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE TEXT - OWNER            : chr "OTHER TYPE TEXT - OWNER"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_chow        : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital Change of Ownership"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital Change of Ownership (CHOW) dataset provides information on the hospital ownership changes that occ"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2022-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/2e9ddac3-eb7e-4805-a3e0-9c52152af37a/Hospital_CHOW_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/c04031db-54ce-461c-85d1-d2613d71f167"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/Hospital_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Change of Ownership"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital Change of Ownership (CHOW) dataset provides information on the hospital ownership changes that occ"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2022-01-01 • 2024-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2025-01/2e9ddac3-eb7e-4805-a3e0-9c52152af37a/Hospital_CHOW_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/c04031db-54ce-461c-85d1-d2613d71f167"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/Hospital_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 707</span>
@@ -322,17 +322,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ DOING BUSINESS AS NAME - SELLER: chr "DOING BUSINESS AS NAME - SELLER"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_chow_owner  : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital Change of Ownership - Owner Information"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital Change of Ownership (CHOW) - Owner Information dataset provides information on individual and orga"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-01-15"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2022-01-01 • 2024-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Quarterly [R/P3M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e42d8d95-39eb-43a4-86ca-de774b00c7ca/Hospital_CHOW_Owners_2025.01.02.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/60625dc8-b621-45f0-9423-077fd133b13e"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Owners_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Change of Ownership - Owner Information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital Change of Ownership (CHOW) - Owner Information dataset provides information on individual and orga"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-15"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2022-01-01 • 2024-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Quarterly [R/P3M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2025-01/e42d8d95-39eb-43a4-86ca-de774b00c7ca/Hospital_CHOW_Owners_2025.01.02.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/60625dc8-b621-45f0-9423-077fd133b13e"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Owners_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 20909</span>
@@ -374,17 +374,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE TEXT - OWNER            : chr "OTHER TYPE TEXT - OWNER"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_enrollments : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2025-04-28"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2022-11-01 • 2025-03-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2025-03/b560e35d-b330-494d-a55f-061c2be3997f/Hospital_Enrollments_2025.02.28.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f6f6505c-e8b0-4d57-b258-e2b94133aaf2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital Enrollments dataset provides enrollment information of all Hospitals currently enrolled in Medicar"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-04-28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2022-11-01 • 2025-03-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2025-03/b560e35d-b330-494d-a55f-061c2be3997f/Hospital_Enrollments_2025.02.28.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/f6f6505c-e8b0-4d57-b258-e2b94133aaf2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 9272</span>
@@ -431,17 +431,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ CAH OR HOSPITAL CCN           : chr "CAH OR HOSPITAL CCN"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_cost_report : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital Provider Cost Report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital Provider Cost Report dataset provides select measures from the hospital annual cost report. This d"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-10-23"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2011-01-01 • 2022-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2024-10/b220a101-219f-47d5-acfe-1685596bc727/CostReport_2022_Final.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/44060663-47d8-4ced-a115-b53b4c270acb"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/sites/default/files/2024-03/9756088d-5280-4090-80b9-449d31ef25a3/Cost%20Report%20Data%20Di"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/resources/hospital-provider-cost-report-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Provider Cost Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital Provider Cost Report dataset provides select measures from the hospital annual cost report. This d"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-10-23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2011-01-01 • 2022-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2024-10/b220a101-219f-47d5-acfe-1685596bc727/CostReport_2022_Final.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/44060663-47d8-4ced-a115-b53b4c270acb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-03/9756088d-5280-4090-80b9-449d31ef25a3/Cost%20Report%20Data%20Di"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/resources/hospital-provider-cost-report-methodology"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 6064</span>
@@ -549,17 +549,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. ..  [list output truncated]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_service_area: &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/8708ca8b-8636-44ed-8303-724cbfaf78ad/data-viewer"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;care_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Hospital Service Area"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Hospital Service Area data is a summary of calendar year Medicare inpatient hospital fee-for-service and Me"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : Date[1:1], format: "2024-07-26"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ temporal   : chr "2015-01-01 • 2023-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ download   : chr "https://data.cms.gov/sites/default/files/2024-07/88791b91-c9e4-448f-b961-60313b43bc40/Hospital_Service_Area_2023.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/8708ca8b-8636-44ed-8303-724cbfaf78ad"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/resources/hospital-service-area-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-inpatient-hospitals/hospital-service-area"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ references : chr "https://data.cms.gov/resources/hospital-service-area-methodology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Service Area"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Hospital Service Area data is a summary of calendar year Medicare inpatient hospital fee-for-service and Me"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-07-26"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ temporal   : chr "2015-01-01 • 2023-12-31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/sites/default/files/2024-07/88791b91-c9e4-448f-b961-60313b43bc40/Hospital_Service_Area_2023.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ resources  : chr "https://data.cms.gov/data-api/v1/dataset-resources/8708ca8b-8636-44ed-8303-724cbfaf78ad"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/resources/hospital-service-area-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-inpatient-hospitals/hospital-service-area"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/resources/hospital-service-area-methodology"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1139666</span>
@@ -575,13 +575,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicare Physician &amp; Other Practitioners"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_geography: &lt;care_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;temp_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicare Physician &amp; Other Practitioners - by Geography and Service"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Medicare Physician &amp; Other Practitioners by Geography and Service dataset contains information on use, paym"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-geography-and-service-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Geography and Service"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Geography and Service dataset contains information on use, paym"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-geography-and-service-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 268634</span>
@@ -610,13 +610,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:11] "https://data.cms.gov/sites/default/files/2024-05/3167b4d9-10c0-48f0-a680-1165f4eec064/MUP_PHY_R24_P05_V10_D22_Geo.csv" "https://data.cms.gov/sites/default/files/2023-05/0a47308e-812e-42cb-8ecf-0c1f457ab849/MUP_PHY_R23_P05_V10_D21_Geo.csv" "https://data.cms.gov/sites/default/files/2022-07/0d730fe9-deb8-453b-a2fd-ce778286d9f6/MUP_PHY_R22_P05_V10_D20_Geo.csv" "https://data.cms.gov/sites/default/files/2021-08/MUP_PHY_R21_P04_V10_D19_Geo.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:11] "https://data.cms.gov/data-api/v1/dataset-resources/ddee9e22-7889-4bef-975a-7853e4cd0fbb" "https://data.cms.gov/data-api/v1/dataset-resources/87304f15-9ed0-41dc-a141-6141a0327453" "https://data.cms.gov/data-api/v1/dataset-resources/f00f462f-bb61-48b1-a321-1c50d78ce175" "https://data.cms.gov/data-api/v1/dataset-resources/31eb3018-43e0-4259-a0d8-e7a1112ffd08" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_provider : &lt;care_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;temp_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Medicare Physician &amp; Other Practitioners by Provider dataset provides information on use, payments, submitt"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-provider-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Provider dataset provides information on use, payments, submitt"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-provider-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1259343</span>
@@ -711,13 +711,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:11] "https://data.cms.gov/sites/default/files/2025-03/88113a46-badb-41ac-855c-62d60ca8c55d/MUP_PHY_R25_P07_V10_D22_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/0cd67673-9f7c-42e9-bf0f-ca73e8dc4fc4/MUP_PHY_R25_P07_V10_D21_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/4b0fefe3-eaed-43bd-be63-d45364cb9fd7/MUP_PHY_R25_P07_V10_D20_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/6f29e406-eb9c-4a60-bbf3-29d2ead443aa/MUP_PHY_R25_P07_V10_D19_Prov.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:11] "https://data.cms.gov/data-api/v1/dataset-resources/8ba584c6-a43a-4b0b-a35a-eb9a59e3a571" "https://data.cms.gov/data-api/v1/dataset-resources/21555c17-ec1b-4e74-b2c6-925c6cbb3147" "https://data.cms.gov/data-api/v1/dataset-resources/44e0a489-666c-4ea4-a1a2-360b6cdc19db" "https://data.cms.gov/data-api/v1/dataset-resources/29d799aa-c660-44fe-a51a-72c4b3e661ac" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_service  : &lt;care_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  : &lt;temp_metadata&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider and Service"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ description: chr "The Medicare Physician &amp; Other Practitioners by Provider and Service dataset provides information on use, payme"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-provider-and-service-data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider and Service"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Provider and Service dataset provides information on use, payme"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/resources/medicare-physician-other-practitioners-by-provider-and-service-data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners/medicare-physic"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 9660647</span>
