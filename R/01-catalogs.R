@@ -48,7 +48,7 @@ catalog_caid <- function() {
 
   main <- list(
     slt(x, -distribution),
-    download |> sbt(N == 1, -N, -id, -ext),
+    rowbind(sbt(download, N == 1), sbt(download, N > 1 & ext == "csv")) |> slt(-N, -id, -ext),
     dictionary) |>
     reduce(join_on_title) |>
     roworder(title)
@@ -64,10 +64,13 @@ catalog_caid <- function() {
   )
 
   list(
-    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
-    temp = subset_detect(main, title, pat, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+    main = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
+    # FIXME temp went from 178 rows to 164
+    temp = subset_detect(main, title, pat, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
       mtt(
-        year = stri_extract_first_regex(title, "[12]{1}[0-9]{3}") |> as.integer(),
+        year = as.integer(stri_extract_first_regex(title, "[12]{1}[0-9]{3}")),
         title = case(
           grepl("Child and Adult Health Care Quality Measures", title, perl = TRUE) ~ "Child and Adult Health Care Quality Measures",
           grepl("[0-9]{4} Manage", title, perl = TRUE) ~ "Managed Care Programs by State",
@@ -76,10 +79,14 @@ catalog_caid <- function() {
           grepl("Pricing Comparison", title, perl = TRUE) ~ "Pricing Comparison for Blood Disorder Treatments",
           grepl("Product Data for Newly Reported", title, perl = TRUE) ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
           .default = title
+        ),
+        description = cheapr_if_else(
+          title == "Child and Adult Health Care Quality Measures",
+          "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+          description
         )
       ) |>
       roworder(title, year) |>
-      # TODO this is probably incorrect
       f_fill(description, periodicity) |>
       slt(
         year,
@@ -91,9 +98,12 @@ catalog_caid <- function() {
         download,
         dictionary
       ) |>
-      roworder(title, -year),
-    download  = sbt(download, N > 1) |> funique(cols = c("title", "download")),
-    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
+      roworder(title, -year) |>
+      f_nest_by(.by = c(title, description, periodicity)) |>
+      f_ungroup(),
+    download  = sbt(download, N > 1 & ext != "csv", -id),
+    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto")
   )
 }
 

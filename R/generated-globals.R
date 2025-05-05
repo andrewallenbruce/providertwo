@@ -112,6 +112,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_health>
+  # <select_caid_temp>
   "modified",
   # <catalog_caid>
   # <catalog_health>

@@ -269,9 +269,8 @@ select_caid_temp <- function(x, call = caller_env()) {
   list(
     title       = res$title[1],
     description = res$description[1],
-    modified    = res$modified[1],
     periodicity = res$periodicity[1],
-    identifier  = res$identifier[1],
-    endpoints   = slt(res, year, identifier, download, dictionary)
+    identifier  = res$data[[1]][["identifier"]][1],
+    endpoints   = slt(res$data[[1]], year, identifier, modified, download, dictionary)
   )
 }
