@@ -139,8 +139,21 @@ catalog_open <- function() {
     as_tbl()
 
   list(
-    main = sbt(x, year == "All", -year) |> roworder(title),
-    temp = sbt(x, year != "All") |> mtt(year = as.integer(year), title = stri_replace_all_regex(title, "^[0-9]{4} ", "")) |> roworder(title, -year)
+    main = sbt(x, year == "All", -year) |>
+      roworder(title),
+    temp = sbt(x, year != "All") |>
+      mtt(year = as.integer(year),
+          title = stri_replace_all_regex(title, "^[0-9]{4} ", ""),
+          description = case(
+            title == "General Payment Data" ~ "All general (non-research, non-ownership related) payments from the program year",
+            title == "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
+            title == "Research Payment Data" ~ "All research-related payments from the program year",
+            .default = description
+          )
+        ) |>
+      roworder(title, -year) |>
+      f_nest_by(.by = c(title, description, modified)) |>
+      f_ungroup()
     )
 }
 

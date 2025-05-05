@@ -67,8 +67,9 @@ select_open_temp <- function(x, call = caller_env()) {
     DATA_research       = "^Research Payment Data$",
     GROUP_recip_nature  = "^Payments Grouped by Covered Recipient and Nature of Payments$",
     GROUP_recip_entity  = "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    GROUP_entity_nature = "^Payments Grouped by Covered Recipient and Nature of Payments$",
+    GROUP_entity_nature = "^Payments Grouped by Reporting Entities and Nature of Payments$",
     GROUP_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
+    GROUP_state_nature  = "^State Payment Totals Grouped by Nature of Payment for all Years$",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
@@ -82,8 +83,8 @@ select_open_temp <- function(x, call = caller_env()) {
     title       = res$title[1],
     description = res$description[1],
     modified    = res$modified[1],
-    identifier  = res$identifier[1],
-    endpoints   = slt(res, year, identifier, download)
+    identifier  = res$data[[1]][["identifier"]][1],
+    endpoints   = slt(res$data[[1]], year, identifier, download)
   )
 }
 
