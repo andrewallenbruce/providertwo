@@ -101,7 +101,9 @@ catalog_caid <- function() {
       roworder(title, -year) |>
       f_nest_by(.by = c(title, description, periodicity)) |>
       f_ungroup(),
-    download  = sbt(download, N > 1 & ext != "csv", -id),
+    download  = sbt(download, N > 1 & ext != "csv", -id) |>
+      f_nest_by(.by = title) |>
+      f_ungroup(),
     scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
       subset_detect(title, "CoreS|Scorecard|Auto")
   )
@@ -155,7 +157,7 @@ catalog_health <- function() {
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
     mtt(
-      year = as.integer(stri_extract_first_regex(title, "[2][0-9]{3}")),
+      year  = as.integer(stri_extract_first_regex(title, "[2][0-9]{3}")),
       title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
       title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
       title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
@@ -168,11 +170,29 @@ catalog_health <- function() {
         .default = title
       ),
       title = gsub("  ", " ", title, perl = TRUE),
-      title = str_look_remove(title, "County", "ahead")
+      title = str_look_remove(title, "County", "ahead"),
+      description = case(
+        title == "Benefits and Cost Sharing PUF" ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
+        title == "Business Rules PUF" ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
+        title == "MLR Dataset" ~ "This file contains Medical Loss Ratio data for the 2019 Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
+        title == "Machine Readable PUF" ~ "The Machine Readable PUF (MR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The MR-PUF contains issuer-level URL locations for machine-readable network provider and formulary information.",
+        title == "Network PUF" ~ "The Network PUF (Ntwrk-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Ntwrk-PUF contains issuer-level data identifying provider network URLs.",
+        title == "Plan Attributes PUF" ~ "The Plan Attributes PUF (Plan-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Plan-PUF contains plan variant-level data on maximum out of pocket payments, deductibles, health savings account (HSA) eligibility, and other plan attributes.",
+        title == "Plan ID Crosswalk PUF" ~ "The Plan ID Crosswalk PUF (CW-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The purpose of the CW-PUF is to map QHPs and SADPs offered through the Exchanges during the previous plan year to plans that will be offered through the Exchanges in the current plan year.",
+        title == "Quality PUF" ~ "The Quality PUF contains 2024 quality ratings data for eligible Qualified Health Plans in PY2025 in states on HealthCare.gov.",
+        title == "Rate PUF" ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
+        title == "Service Area PUF" ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
+        title == "Transparency In Coverage PUF" ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
+        .default = description
+      )
     ) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
-    roworder(title, -year)
+    roworder(title, year) |>
+    f_fill(periodicity) |>
+    roworder(title, -year) |>
+    f_nest_by(.by = c(title, description)) |>
+    f_ungroup()
 
   list(
     main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE),
