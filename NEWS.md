@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9259 (2025-05-04)
+
+* catalog cleanup
+
+
 # providertwo 0.0.0.9258 (2025-05-04)
 
 * added S7 `:=` usage
