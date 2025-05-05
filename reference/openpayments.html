@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9263</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9264</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -377,28 +377,23 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2023_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2022_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2021_P01302025_01212025.csv" "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_AMGPO_PGYR2020_P01302025_01212025.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_entity_nature: &lt;open_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Payments Grouped by Covered Recipient and Nature of Payments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Payments Grouped by Reporting Entities and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This dataset is pre-filtered based on the most frequent searches of Open Payments data."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1184051</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 2369</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ recipient_id                         : chr "recipient_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ recipient_type                       : chr "recipient_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_npi                : chr "covered_recipient_npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_first_name : chr "covered_recipient_profile_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_middle_name: chr "covered_recipient_profile_middle_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ covered_recipient_profile_last_name  : chr "covered_recipient_profile_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ teaching_hospital_name               : chr "teaching_hospital_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ nature_of_payment_type_code          : chr "nature_of_payment_type_code"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_transaction                : chr "number_of_transaction"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_amount                         : chr "total_amount"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 6192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ amgpo_id                   : chr "amgpo_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ nature_of_payment_type_code: chr "nature_of_payment_type_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_transaction      : chr "number_of_transaction"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_amount               : chr "total_amount"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ amgpo_name                 : chr "amgpo_name"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ endpoints : tibble [7 × 3] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:7] 2023 2022 2021 2020 2019 2018 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/4017acfa-0eeb-4b8a-b68c-3b41e779c4a2/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/686b765e-f4b7-4d35-a050-fb5af926dbbe/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/d35243be-55cb-5087-931e-a294e0e0917f/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/1fd2be47-cb72-435a-b2df-142f38e99a05/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2023_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2022_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2021_P0"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_CR_BY_NTR_OF_PYMT_PGYR2020_P0"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:7] "https://openpaymentsdata.cms.gov/api/1/datastore/query/72008dab-0953-4226-a4cd-9f1872e8170d/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/cedcd327-4e5d-43f9-8eb1-c11850fa7c66/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/a2714020-f599-52b0-b12b-8f5b510e547a/0" "https://openpaymentsdata.cms.gov/api/1/datastore/query/7dfe6254-2aee-454f-9ea5-df611a9a7b55/0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:7] "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2023"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2022"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2021"| __truncated__ "https://download.cms.gov/openpayments/SMRY_RPTS_P01302025_01212025/PBLCTN_SMRY_BY_AMGPO_BY_NTR_OF_PYMT_PGYR2020"| __truncated__ ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ GROUP_all          : &lt;open_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments"</span>
