@@ -3,13 +3,19 @@ NULL
 
 #' @autoglobal
 #' @noRd
+set_member_names <- function(x, obj) {
+  set_names(x, names(obj))
+}
+
+#' @autoglobal
+#' @noRd
 tidy_resources <- function(x) {
   x |>
     fcompute(
       year     = as.integer(stri_extract_first_regex(name, "[12]{1}[0-9]{3}")),
       file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
-      size     = fs::as_fs_bytes(fileSize),
-      ext      = tolower(file_ext(downloadURL)),
+      size     = as_fs_bytes(fileSize),
+      ext      = tolower(path_ext(downloadURL)),
       download = downloadURL
     ) |>
     f_fill(year) |>
@@ -34,19 +40,27 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 
 method(list_resources, care_endpoint) <- function(x) {
   x@metadata$resources |>
-    fload(x, query = "/data") |>
+    request() |>
+    req_perform() |>
+    resp_body_string() |>
+    fparse(query = "/data") |>
     tidy_resources()
 }
 
 method(list_resources, care_group) <- function(x) {
-  map(x@members, \(x) x@metadata$resources |> request()) |>
+  x@members |>
+    map(\(x)
+        x@metadata$resources |>
+          request()
+        ) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp) resp_body_string(resp) |>
+    map(\(resp)
+        resp_body_string(resp) |>
           fparse(query = "/data") |>
-          as_tbl() |>
-          tidy_resources()) |>
-    set_names(names(x@members))
+          tidy_resources()
+        ) |>
+    set_member_names(x@members)
 }
 
 method(list_resources, care_temporal) <- function(x) {
@@ -55,7 +69,8 @@ method(list_resources, care_temporal) <- function(x) {
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     resps_data(
-      \(resp) resp_body_string(resp) |>
+      \(resp)
+      resp_body_string(resp) |>
         fparse(query = "/data")
       ) |>
     tidy_resources()
@@ -63,16 +78,17 @@ method(list_resources, care_temporal) <- function(x) {
 
 method(list_resources, care_troup) <- function(x) {
   x@members |>
-    map(\(x) x@endpoints$resources |> map(request) |>
+    map(\(x)
+        x@endpoints$resources |>
+          map(request) |>
       req_perform_parallel(on_error = "continue") |>
       resps_successes() |>
       resps_data(
-        \(resp) resp_body_string(resp) |>
+        \(resp)
+        resp_body_string(resp) |>
           fparse(query = "/data") |>
           tidy_resources()
-        )
+      )
     ) |>
-    set_names(names(x@members))
+    set_member_names(x@members)
 }
-
-# roundup(fileSize / 1e6)

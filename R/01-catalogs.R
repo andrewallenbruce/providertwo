@@ -42,7 +42,7 @@ catalog_caid <- function() {
     # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
     title = vec_rep_each(x$title, fnobs(get_dist(x))),
     download = get_dist(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
-    ext = file_ext(download),
+    ext = path_ext(download),
     id = groupid(title)) |>
     fcount(id, add = TRUE)
 
@@ -145,7 +145,7 @@ catalog_health <- function() {
   download <- new_tbl(
     title    = vec_rep_each(x$title, fnobs(get_dist(x))),
     download = get_elem(get_dist(x), "downloadURL") |> delist(),
-    ext      = file_ext(download)) |>
+    ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
   download <- rowbind(
