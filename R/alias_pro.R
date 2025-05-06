@@ -199,6 +199,18 @@ select_pro_group <- function(x, call = caller_env()) {
         "CAHPS_ICH_state"
       )
     ),
+    CAHPS_OAS = list(
+      group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey",
+      alias = c(
+        "CAHPS_OAS_footnotes",
+        "CAHPS_OAS_ASC_facility",
+        "CAHPS_OAS_ASC_national",
+        "CAHPS_OAS_ASC_state",
+        "CAHPS_OAS_HOSP_facility",
+        "CAHPS_OAS_HOSP_national",
+        "CAHPS_OAS_HOSP_state"
+      )
+    ),
     MIPS = list(
       group = "PY 2022 MIPS Public Reporting",
       alias = c(
@@ -396,18 +408,6 @@ select_pro_group <- function(x, call = caller_env()) {
         "OUT_img_hospital",
         "OUT_img_national",
         "OUT_img_state"
-      )
-    ),
-    CAHPS_OAS = list(
-      group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey",
-      alias = c(
-        "CAHPS_OAS_footnotes",
-        "CAHPS_OAS_ASC_facility",
-        "CAHPS_OAS_ASC_national",
-        "CAHPS_OAS_ASC_state",
-        "CAHPS_OAS_HOSP_facility",
-        "CAHPS_OAS_HOSP_national",
-        "CAHPS_OAS_HOSP_state"
       )
     ),
     PCH_PALL = list(

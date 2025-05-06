@@ -171,7 +171,7 @@ select_caid_group <- function(x, call = caller_env()) {
         "FIN_nation"
       )
     ),
-    NADAC = list(
+    NADAC_group = list(
       group = "NADAC (National Average Drug Acquisition Cost)",
       alias = c(
         "NADAC",
