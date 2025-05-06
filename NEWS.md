@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9265 (2025-05-05)
+
+* removed `:=` S7 impl
+
+
 # providertwo 0.0.0.9264 (2025-05-05)
 
 * catalog_open work
