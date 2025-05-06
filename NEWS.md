@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9266 (2025-05-06)
+
+* temporal quick aliases added
+
+
 # providertwo 0.0.0.9265 (2025-05-05)
 
 * removed `:=` S7 impl
