@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+set_member_names <- function(x, obj) {
+  set_names(x, names(obj))
+}
+
+#' @autoglobal
+#' @noRd
 dimensions <- function(x) {
   prop(x, "dimensions")
 }
@@ -20,12 +26,6 @@ members <- function(x) {
 #' @noRd
 members_names <- function(x) {
   members(x) |> names()
-}
-
-#' @autoglobal
-#' @noRd
-set_members_names <- function(x, obj) {
-  set_names(x, members_names(obj))
 }
 
 #' @autoglobal

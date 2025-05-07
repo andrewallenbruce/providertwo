@@ -17,9 +17,9 @@ NULL
 #' care_group("hospital") |> base_request()
 #' pro_group("MIPS") |> base_request()
 #'
-#' care_temporal("quality_payment") |> base_request()
-#' caid_temporal("MCP") |> base_request()
-#' open_temporal("GROUP_all") |> base_request()
+#' # care_temporal("quality_payment") |> base_request()
+#' # caid_temporal("MCP") |> base_request()
+#' # open_temporal("GROUP_all") |> base_request()
 #'
 #' # care_troup("utilization") |> base_request()
 #' # open_troup("grouped_payment") |> base_request()

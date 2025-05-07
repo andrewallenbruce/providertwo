@@ -3,12 +3,6 @@ NULL
 
 #' @autoglobal
 #' @noRd
-set_member_names <- function(x, obj) {
-  set_names(x, names(obj))
-}
-
-#' @autoglobal
-#' @noRd
 tidy_resources <- function(x) {
   x |>
     fcompute(
