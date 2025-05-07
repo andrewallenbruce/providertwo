@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9269 (2025-05-07)
+
+* added purrr dependency
+* added caid_temporal method for quick
+
+
 # providertwo 0.0.0.9268 (2025-05-07)
 
 * quick aliases
