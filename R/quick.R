@@ -65,12 +65,12 @@ quick <- function(x, offset = 0L, limit = 1L, call = caller_env()) {
     PTB_drugs              = ,
     MKT                    = care_group(x),
 
-    quality_payment      = ,
-    procedure_summary    = ,
-    dialysis_facilities  = ,
-    aco_shared_savings   = ,
-    opioid_treatment     = ,
-    hospital_costreport  = care_temporal(x),
+    quality_payment        = ,
+    procedure_summary      = ,
+    dialysis_facilities    = ,
+    aco_shared_savings     = ,
+    opioid_treatment       = ,
+    hospital_costreport    = care_temporal(x),
 
     PSI90_6digit           = ,
     joint_replace          = ,
