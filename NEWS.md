@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9268 (2025-05-07)
+
+* quick aliases
+
+
 # providertwo 0.0.0.9267 (2025-05-06)
 
 * list_resources work
