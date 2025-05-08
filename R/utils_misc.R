@@ -7,22 +7,13 @@ extract_year <- function(x) {
 #' @autoglobal
 #' @noRd
 grapple <- function(str, pt, ...) {
-  grepl(x = str,
-        pattern = pt,
-        perl = TRUE,
-        ...)
+  grepl(x = str, pattern = pt, perl = TRUE, ...)
 }
 
 #' @autoglobal
 #' @noRd
 greplace <- \(str, pt, rp, ...) {
-  gsub(
-    x = str,
-    pattern = pt,
-    replacement = rp,
-    perl = TRUE,
-    ...
-  )
+  gsub(x = str, pattern = pt, replacement = rp, perl = TRUE, ...)
 }
 
 #' @autoglobal

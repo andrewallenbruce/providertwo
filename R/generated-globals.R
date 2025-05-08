@@ -5,7 +5,7 @@ utils::globalVariables(c(
   "accessURL",
   # <catalog_care>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "accrualPeriodicity",
   # <clinicians>
   "adr_ln_1",
@@ -19,7 +19,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -36,7 +36,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   # <open_dictionary>
   "description",
   # <catalog_care>
@@ -44,7 +44,7 @@ utils::globalVariables(c(
   "dictionary",
   # <catalog_care>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "distribution",
   # <catalog_care>
   # <catalog_pro>
@@ -58,7 +58,7 @@ utils::globalVariables(c(
   # <quality_eligibility>
   "entity",
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   # <tidy_resources>
   "ext",
   # <tidy_resources>
@@ -84,7 +84,7 @@ utils::globalVariables(c(
   # <quality_eligibility>
   "is_new",
   # <catalog_pro>
-  # <catalog_health>
+  # <catalog_hgov>
   "issued",
   # <catalog_open>
   "keyword",
@@ -110,10 +110,10 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "modified",
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "N",
   # <tidy_resources>
   # <open_dictionary>
@@ -124,7 +124,7 @@ utils::globalVariables(c(
   "num_org_mem",
   # <catalog_care>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   "periodicity",
   # <catalog_care>
   "references",
@@ -162,13 +162,13 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   # <select_alias>
   "title",
   # <catalog_care>
   # <catalog_open>
   # <catalog_caid>
-  # <catalog_health>
+  # <catalog_hgov>
   # <tidy_resources>
   # <open_dictionary>
   "year",

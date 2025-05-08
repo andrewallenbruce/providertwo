@@ -11,16 +11,15 @@ catalog_care <- function() {
     contact     = fmt_contactpoint(x$contactPoint),
     references  = delist(references),
     temporal    = fmt_temporal(temporal),
-    title       = gsub("  ", " ", title, perl = TRUE),
+    title       = greplace(title, "  ", " "),
     title       = remove_non_ascii(title),
     description = stri_trans_general(description, "latin-ascii"),
     description = remove_non_ascii(description),
-    description = gsub("[\"']", "", description, perl = TRUE),
-    description = gsub("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", "", description, perl = TRUE),
-    # Opt Out Affidavits
-    description = gsub("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ", "", description, perl = TRUE),
-    description = gsub("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", "", description, perl = TRUE),
-    description = gsub("\\n\\n.+\\n\\n", " ", description, perl = TRUE),
+    description = greplace(description, "[\"']", ""),
+    description = greplace(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", ""),
+    description = greplace(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ", ""),
+    description = greplace(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", ""),
+    description = greplace(description, "\\n\\n.+\\n\\n", ""),
     description = stri_trim(description)
   ) |>
     slt(
@@ -40,9 +39,9 @@ catalog_care <- function() {
 
   d <- rowbind(x$distribution, fill = TRUE) |>
     fcompute(
-      year       = as.integer(stri_extract_all_regex(title, "[0-9]{4}")),
+      year       = extract_year(title),
       title      = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
-      format     = cheapr_if_else(not_na(description), description, format),
+      format     = cheapr_if_else(!is_na(description), description, format),
       modified   = as_date(modified),
       temporal   = fmt_temporal(temporal),
       identifier = accessURL,
@@ -83,22 +82,10 @@ catalog_pro <- function() {
     modified    = as_date(modified),
     released    = as_date(released),
     group       = flatten_column(theme),
-    description = stri_trim(gsub("\n", "", description, perl = TRUE)),
+    description = stri_trim(greplace(description, "\n", "")),
     download    = delist_elem(x$distribution, "downloadURL"),
     contact     = fmt_contactpoint(x$contactPoint)) |>
-    slt(
-      title,
-      group,
-      description,
-      issued,
-      modified,
-      released,
-      identifier,
-      contact,
-      download,
-      site = landingPage,
-      dictionary
-    ) |>
+    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
     roworder(group, title) |>
     as_tbl()
 
@@ -118,15 +105,15 @@ catalog_open <- function() {
     identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
     modified    = as_date(modified),
     year        = get_data_elem(keyword),
-    year        = gsub("all years", "All", year, perl = TRUE),
+    year        = greplace(year, "all years", "All"),
     year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
     title       = remove_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
-    description = gsub("[\"']", "", description, perl = TRUE),
-    description = gsub("\r\n", " ", description, perl = TRUE),
-    description = gsub("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$", "", description, perl = TRUE),
-    description = gsub("  ", " ", description, perl = TRUE),
+    description = greplace(description, "[\"']", ""),
+    description = greplace(description, "\r\n", " "),
+    description = greplace(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$", ""),
+    description = greplace(description, "  ", " "),
     description = stri_trim(description),
     download    = get_elem(x$distribution, "data", DF.as.list = TRUE) |> get_elem("downloadURL") |> delist()) |>
     slt(year,
@@ -139,18 +126,14 @@ catalog_open <- function() {
     as_tbl()
 
   list(
-    main = sbt(x, year == "All", -year) |>
-      roworder(title),
+    main = sbt(x, year == "All", -year) |> roworder(title),
     temp = sbt(x, year != "All") |>
-      mtt(year = as.integer(year),
-          title = stri_replace_all_regex(title, "^[0-9]{4} ", ""),
-          description = case(
-            title == "General Payment Data" ~ "All general (non-research, non-ownership related) payments from the program year",
-            title == "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
-            title == "Research Payment Data" ~ "All research-related payments from the program year",
-            .default = description
-          )
-        ) |>
+      mtt(year        = as.integer(year),
+          title       = stri_replace_all_regex(title, "^[0-9]{4} ", ""),
+          description = case(title == "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
+                             title == "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
+                             title == "Research Payment Data"  ~ "All research-related payments from the program year",
+                             .default = description)) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(title, description, modified)) |>
       f_ungroup()
@@ -161,11 +144,11 @@ catalog_open <- function() {
 #' @title API Catalogs
 #' @description
 #' List of API catalogs:
-#'    1. `care` - CMS Medicare API
-#'    1. `pro` - CMS Provider API
-#'    1. `open` - CMS Open Payments API
-#'    1. `caid` - CMS Medicaid API
-#'    1. `health` - CMS HealthCare.gov API
+#'   * `catalog_care`: CMS Medicare API
+#'   * `catalog_pro`: CMS Provider API
+#'   * `catalog_open`: CMS Open Payments API
+#'   * `catalog_caid`: CMS Medicaid API
+#'   * `catalog_hgov`: CMS HealthCare.gov API
 #' @returns `<list>` of catalogs
 #' @examples
 #' catalogs()
@@ -173,11 +156,11 @@ catalog_open <- function() {
 #' @export
 catalogs <- function() {
   list(
-    care   = catalog_care(),
-    pro    = catalog_pro(),
-    open   = catalog_open(),
-    caid   = catalog_caid(),
-    health = catalog_health()
+    care = catalog_care(),
+    pro  = catalog_pro(),
+    open = catalog_open(),
+    caid = catalog_caid(),
+    hgov = catalog_hgov()
   )
 }
 

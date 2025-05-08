@@ -4,9 +4,11 @@ NULL
 #' @noRd
 #' @autoglobal
 care_dimensions <- function(x) {
+
   req <- req_url_query(request(x$identifier), offset = 0L, size = 1L)
 
   if (grepl("data-viewer$", x$identifier, perl = TRUE)) {
+
     x <- perform_simple(req)$meta
 
     class_dimensions(
@@ -16,11 +18,13 @@ care_dimensions <- function(x) {
     )
 
   } else {
+
     class_dimensions(
       limit  = 5000L,
       rows   = perform_simple(req_url_path_append(req, "stats"))$total_rows,
       fields = names(perform_simple(req))
     )
+
   }
 }
 
@@ -30,7 +34,7 @@ care_metadata <- function(x) {
   list(
     title       = x$title,
     description = x$description,
-    modified    = x$modified %||% NA_character_,
+    modified    = x$modified,
     temporal    = x$temporal,
     periodicity = x$periodicity,
     download    = x$download,
@@ -47,7 +51,6 @@ temp_metadata <- function(x) {
   list(
     title       = x$title,
     description = x$description,
-    modified    = x$modified %||% NA_character_,
     periodicity = x$periodicity,
     dictionary  = x$dictionary,
     site        = x$site
@@ -129,9 +132,9 @@ care_temporal <- new_class(
 #' @rdname medicare
 #' @export
 care_troup <- new_class(
-  name = "care_troup",
-  parent = class_group,
-  package = NULL,
+  name        = "care_troup",
+  parent      = class_group,
+  package     = NULL,
   constructor = function(alias) {
 
     x <- select_care_troup(alias)

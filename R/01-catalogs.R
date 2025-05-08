@@ -10,14 +10,14 @@ catalog_caid <- function() {
       modified    = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
-      title       = gsub("^ ", "", title, perl = TRUE),
+      title       = greplace(title, "^\\s", ""),
       title       = remove_non_ascii(title),
-      title       = gsub("  ", " ", title, perl = TRUE),
+      title       = greplace(title, "\\s\\s", "\\s"),
       description = stri_trans_general(description, "latin-ascii"),
       description = remove_non_ascii(description),
-      description = gsub("[\"']", "", description, perl = TRUE),
-      description = gsub("\r\n", " ", description, perl = TRUE),
-      description = gsub("  ", " ", description, perl = TRUE),
+      description = greplace(description, "[\"']", ""),
+      description = greplace(description, "\r\n", "\\s"),
+      description = greplace(description, "\\s\\s", "\\s"),
       description = cheapr_if_else(description == "Dataset.", NA_character_, description)
       ) |>
     slt(
@@ -34,26 +34,29 @@ catalog_caid <- function() {
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
 
   dictionary <- new_df(
-    # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
-    title = vec_rep_each(x$title, fnobs(get_dist(x))),
+    title      = vec_rep_each(x$title, fnobs(get_dist(x))),
     dictionary = get_dist(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
 
   download <- new_tbl(
-    # title = cheapr_rep_each(x$title, fnobs(get_dist(x))),
-    title = vec_rep_each(x$title, fnobs(get_dist(x))),
+    title    = vec_rep_each(x$title, fnobs(get_dist(x))),
     download = get_dist(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
-    ext = path_ext(download),
-    id = groupid(title)) |>
+    ext      = path_ext(download),
+    id       = groupid(title)
+    ) |>
     fcount(id, add = TRUE)
 
   main <- list(
     slt(x, -distribution),
-    rowbind(sbt(download, N == 1), sbt(download, N > 1 & ext == "csv")) |> slt(-N, -id, -ext),
-    dictionary) |>
+    rowbind(
+      sbt(download, N == 1),
+      sbt(download, N > 1 & ext == "csv")) |>
+      slt(-N, -id, -ext),
+    dictionary
+    ) |>
     reduce(join_on_title) |>
     roworder(title)
 
-  pat <- paste0(
+  ptn <- paste0(
     "State Drug Utilization Data [0-9]{4}|",
     "NADAC \\(National Average Drug Acquisition Cost\\)|",
     "^[0-9]{4} Child and Adult Health Care Quality|",
@@ -64,50 +67,31 @@ catalog_caid <- function() {
   )
 
   list(
-    main       = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
+    main       = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
     resources  = sbt(download, N > 2 & ext != "csv", -id, -N) |> f_nest_by(.by = title) |> f_ungroup(),
-    # FIXME temp went from 178 rows to 164
-    temp = subset_detect(main, title, pat, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(
-        year = extract_year(title),
-        title = case(
-          grapple(title, "Child and Adult Health Care Quality Measures") ~ "Child and Adult Health Care Quality Measures",
-          grapple(title, "[0-9]{4} Manage") ~ "Managed Care Programs by State",
-          grapple(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
-          grapple(title, "State Drug Utilization Data") ~ "State Drug Utilization Data",
-          grapple(title, "Pricing Comparison") ~ "Pricing Comparison for Blood Disorder Treatments",
-          grapple(title, "Product Data for Newly Reported") ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-          .default = title
-        ),
-        description = cheapr_if_else(
-          title == "Child and Adult Health Care Quality Measures",
-          "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
-          description
-        )
-      ) |>
+    temp       = subset_detect(main, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(year = extract_year(title),
+          title = case(grapple(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
+                       grapple(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
+                       grapple(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
+                       grapple(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
+                       grapple(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
+                       grapple(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+                       .default = title),
+          description = cheapr_if_else(title == "Child and Adult Health Care Quality Measures", "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.", description)) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
-      slt(
-        year,
-        title,
-        description,
-        periodicity,
-        modified,
-        identifier,
-        download,
-        dictionary
-      ) |>
+      slt(year, title, description, periodicity, modified, identifier, download, dictionary) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(title, description, periodicity)) |>
       f_ungroup(),
-    scorecard = subset_detect(main, title, pat, n = TRUE, ci = TRUE) |>
-      subset_detect(title, "CoreS|Scorecard|Auto")
+    scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
   )
 }
 
 #' @autoglobal
 #' @noRd
-catalog_health <- function() {
+catalog_hgov <- function() {
 
   x <- fload("https://data.healthcare.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
@@ -116,11 +100,11 @@ catalog_health <- function() {
     mtt(
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
       title       = remove_non_ascii(title),
-      title       = gsub("  ", " ", title, perl = TRUE),
+      title       = greplace(title, "  ", " "),
       description = remove_non_ascii(description),
-      description = gsub("[\"']", "", description, perl = TRUE),
-      description = gsub("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s", "", description, perl = TRUE),
-      description = gsub("Dataset.", NA_character_, description, perl = TRUE),
+      description = greplace(description, "[\"']", ""),
+      description = greplace(description, "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s", ""),
+      description = greplace(description, "Dataset.", NA_character_),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
@@ -171,8 +155,8 @@ catalog_health <- function() {
         grapple(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
         .default = title
       ),
-      title = gsub("  ", " ", title, perl = TRUE),
-      title = gsub("/\\s", "/", title, perl = TRUE),
+      title = greplace(title, "  ", " "),
+      title = greplace(title, "/\\s", "/"),
       title = str_look_remove(title, "County", "ahead"),
       description = case(
         grapple(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
@@ -186,8 +170,7 @@ catalog_health <- function() {
         grapple(title, "Rate PUF")                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
         grapple(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
         grapple(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
-        .default = description
-      ),
+        .default = description),
       periodicity = "Annually [R/P1Y]"
     ) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>

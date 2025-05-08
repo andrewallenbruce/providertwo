@@ -11,12 +11,12 @@ catalogs()
 }
 \description{
 List of API catalogs:
-\enumerate{
-\item \code{care} - CMS Medicare API
-\item \code{pro} - CMS Provider API
-\item \code{open} - CMS Open Payments API
-\item \code{caid} - CMS Medicaid API
-\item \code{health} - CMS HealthCare.gov API
+\itemize{
+\item \code{catalog_care}: CMS Medicare API
+\item \code{catalog_pro}: CMS Provider API
+\item \code{catalog_open}: CMS Open Payments API
+\item \code{catalog_caid}: CMS Medicaid API
+\item \code{catalog_hgov}: CMS HealthCare.gov API
 }
 }
 \examples{
