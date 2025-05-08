@@ -11,18 +11,18 @@ NULL
 #' @examples
 #' care_endpoint("enrollees") |> base_request()
 #' pro_endpoint("pdc_affiliations") |> base_request()
-#' open_endpoint("PROF_covered") |> base_request()
-#' caid_endpoint("MLR_summary") |> base_request()
+#' open_endpoint("profile_covered") |> base_request()
+#' caid_endpoint("mlr_summary") |> base_request()
 #'
 #' care_group("hospital") |> base_request()
 #' pro_group("pro_mips") |> base_request()
 #'
 #' # care_temporal("quality_payment") |> base_request()
-#' # caid_temporal("MCP") |> base_request()
-#' # open_temporal("GROUP_all") |> base_request()
+#' # caid_temporal("healthcare_quality") |> base_request()
+#' # open_temporal("payment_general") |> base_request()
 #'
 #' # care_troup("utilization") |> base_request()
-#' # open_troup("grouped_payment") |> base_request()
+#' # open_troup("payment_grouped") |> base_request()
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x", function(x) {

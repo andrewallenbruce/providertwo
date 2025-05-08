@@ -245,7 +245,7 @@ NULL
 #' @rdname open_summary
 open_dashboard <- function() {
   openDashboard(
-    response = open_endpoint("SUMM_dashboard") |>
+    response = open_endpoint("summary_dashboard") |>
       perform_bare()) |>
     tidyup()
 }
@@ -255,7 +255,7 @@ open_dashboard <- function() {
 #' @rdname open_summary
 open_national <- function() {
   openNational(
-    response = open_endpoint("SUMM_nation_all") |>
+    response = open_endpoint("summary_national") |>
       perform_bare()) |>
     tidyup()
 }

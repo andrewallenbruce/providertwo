@@ -41,10 +41,10 @@ open_metadata <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<open_endpoint>`, `<open_group>`, `<open_temporal>`, or `<open_troup>` object
 #' @examples
-#' open_endpoint("PROF_covered")
+#' open_endpoint("profile_covered")
 #' open_group("profile")
-#' open_temporal("GROUP_all")
-#' open_troup("grouped_payment")
+#' open_temporal("grouped_state_nature")
+#' open_troup("payment_detailed")
 NULL
 
 #' @autoglobal

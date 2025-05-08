@@ -23,5 +23,5 @@ A data frame or object containing the requested CMS data.
 It provides a simple way to retrieve data from different CMS programs and categories.
 }
 \examples{
-quick("MLR_summary") |> str()
+quick("pro_dialysis") |> str()
 }

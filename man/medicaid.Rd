@@ -23,7 +23,7 @@ An S7 \verb{<caid_endpoint>}, \verb{<caid_group>}, or \verb{<caid_temporal>} obj
 Medicaid API Endpoint Classes
 }
 \examples{
-caid_endpoint("MLR_summary")
-caid_group("demographics")
-caid_temporal("MCP")
+caid_endpoint("managed_longterm")
+caid_group("caid_dual_status")
+caid_temporal("state_drug_util")
 }

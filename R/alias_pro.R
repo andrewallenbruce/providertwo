@@ -77,7 +77,7 @@ select_pro <- function(x, call = caller_env()) {
     hospice_state             = "^Hospice [-] State Data$",
     hospice_zip               = "^Hospice [-] Zip Data$",
     hospice_national          = "^Hospice[-]National Data$",
-    hospital_PSI90            = "^CMS Medicare PSI[-]90 and component measures [-] six[-]digit estimate dataset",
+    hospital_psi90            = "^CMS Medicare PSI[-]90 and component measures [-] six[-]digit estimate dataset",
     hospital_joint            = "^Comprehensive Care For Joint Replacement Model [-] Provider Data",
     hospital_footnote         = "^Footnote Crosswalk",
     hospital_update           = "^Data Updates",
@@ -163,4 +163,48 @@ select_pro <- function(x, call = caller_env()) {
 
   c(res)
 
+}
+
+#' @autoglobal
+#' @noRd
+select_pro_group <- function(x, call = caller_env()) {
+  switch(
+    x,
+    pro_cahps_spice      = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
+    pro_cahps_hhc        = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
+    pro_cahps_ich        = list(group = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
+    pro_cahps_oas        = list(group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey", alias = c("cahps_oas_footnotes", "cahps_oas_asc_facility", "cahps_oas_asc_national", "cahps_oas_asc_state", "cahps_oas_hosp_facility", "cahps_oas_hosp_national", "cahps_oas_hosp_state")),
+    pro_mips             = list(group = "PY 2022 MIPS Public Reporting", alias = c("mips_performance", "mips_patient", "mips_clinician", "mips_group", "mips_virtual")),
+    pro_drs              = list(group = "Provider Data Catalog", alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")),
+    pro_ltch             = list(group = "Long-Term Care Hospitals", alias = c("ltch_general", "ltch_provider", "ltch_national")),
+    pro_irf              = list(group = "Inpatient Rehabilitation Facilities", alias = c("irf_conditions", "irf_general", "irf_provider", "irf_national")),
+    pro_hospice          = list(group = "Hospices", alias = c("hospice_general", "hospice_provider", "hospice_state", "hospice_zip", "hospice_national")),
+    pro_hhc_vbp          = list(group = "Expanded Home Health Value-Based Purchasing (HHVBP) Model", alias = c("hhvbp_agency", "hhvbp_cohort")),
+    pro_home_health      = list(group = "Home Health Care Agencies", alias = c("hhc_range", "hhc_national", "hhc_state", "hhc_zip", "hhc_agency")),
+    pro_snf_vbp          = list(group = "FY 2025 SNF VBP", alias = c("snf_vbp_performance", "snf_vbp_facility")),
+    pro_snf_quality      = list(group = "SNF Quality Measures", alias = c("snf_quality_nation", "snf_quality_provider", "snf_quality_swing")),
+    pro_nursing          = list(group = "Nursing Homes", alias = c("nursing_ownership", "nursing_penalties", "nursing_provider", "nursing_citation", "nursing_fire", "nursing_deficiencies", "nursing_inspection", "nursing_quality_mds", "nursing_quality_claims", "nursing_state_avg", "nursing_state_cut", "nursing_interval")),
+    pro_complication     = list(group = "Complications and Deaths", alias = c("complication_hospital", "complication_state", "complication_national")),
+    pro_complication_pch = list(group = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital", alias = c("complication_pch_hospital", "complication_pch_national")),
+    pro_asc_quality      = list(group = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
+    pro_equity           = list(group = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
+    pro_hai              = list(group = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
+    pro_dialysis         = list(group = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
+    pro_esrd             = list(group = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
+    pro_hvbp             = list(group = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
+    pro_ipf              = list(group = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
+    pro_mspb             = list(group = "Medicare Spending Per Beneficiary", alias = c("mspb_claim", "mspb_hospital", "mspb_decimal", "mspb_national", "mspb_state")),
+    pro_out_img          = list(group = "Outpatient Imaging Efficiency", alias = c("out_img_hospital", "out_img_national", "out_img_state")),
+    pro_pch_pall         = list(group = "Palliative Care: PPS-Exempt Cancer Hospital", alias = c("pch_pall_hospital", "pch_pall_national")),
+    pro_pch_hcahps       = list(group = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital", alias = c("hcahps_pch_hospital", "hcahps_pch_national", "hcahps_pch_state")),
+    pro_hcahps           = list(group = "Patient Survey (HCAHPS)", alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")),
+    pro_timely           = list(group = "Timely and Effective Care", alias = c("timely_hospital", "timely_national", "timely_state")),
+    pro_unplan           = list(group = "Unplanned Hospital Visits", alias = c("unplan_hospital", "unplan_national", "unplan_state")),
+    pro_va               = list(group = "Veterans Health Administration", alias = c("va_behavioral", "va_provider", "va_timely")),
+    pro_hospital_changes = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
+    pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
+    pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
+
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
 }

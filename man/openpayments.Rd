@@ -26,8 +26,8 @@ An S7 \verb{<open_endpoint>}, \verb{<open_group>}, \verb{<open_temporal>}, or \v
 Open Payments API Endpoint Classes
 }
 \examples{
-open_endpoint("PROF_covered")
+open_endpoint("profile_covered")
 open_group("profile")
-open_temporal("GROUP_all")
-open_troup("grouped_payment")
+open_temporal("grouped_state_nature")
+open_troup("payment_detailed")
 }

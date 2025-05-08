@@ -42,9 +42,9 @@ caid_metadata <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<caid_endpoint>`, `<caid_group>`, or `<caid_temporal>` object
 #' @examples
-#' caid_endpoint("MLR_summary")
-#' caid_group("demographics")
-#' caid_temporal("MCP")
+#' caid_endpoint("managed_longterm")
+#' caid_group("caid_dual_status")
+#' caid_temporal("state_drug_util")
 NULL
 
 #' @rdname medicaid

@@ -67,114 +67,224 @@ care_list <- list(
 #' @noRd
 caid_list <- list(
   endpoint = list(
-    ACA_FUL             = "ACA Federal Upper Limits",
-    MLR_summary         = "MLR Summary Reports",
-    MLTSS_enroll        = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
-    MCD_enterprise      = "Medicaid Enterprise System Datatable",
-    DSH_payments        = "Disproportionate Share Hospital \\(DSH\\) Payments - Annual Reporting Requirements",
-    DPR_index           = "Division of Pharmacy Releases Index dataset",
-    MDRP_new            = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-    CAHPS_NAM           = "NAM CAHPS 2014 Public Use",
-    enroll_mon_test     = "Monthly Enrollment - Test",
-    enroll_new_adult    = "Medicaid Enrollment - New Adult Group",
-    pi_data             = "PI dataset",
-    tiles               = "category_tiles",
-
-    NADAC               = "^NADAC$",
-    NADAC_first         = "^First Time NADAC Rates$",
-    NADAC_compare       = "^NADAC Comparison$",
-
-    DEMO_well           = "^Medicaid and CHIP enrollees who received a well",
-    DEMO_sud            = "^Medicaid and CHIP enrollees who received mental health or SUD services$",
-    DEMO_disability     = "^Medicaid enrollees who qualify for benefits based on disability$",
-    DEMO_premature      = "^Prematurity and severe maternal morbidity among Medicaid",
-    DEMO_language       = "^Primary language spoken by the Medicaid and CHIP population$",
-    DEMO_race           = "^Race and ethnicity of the national Medicaid and CHIP population$",
-    DEMO_rural          = "^Rural Medicaid and CHIP enrollees$",
-    DEMO_waive          = "^Section 1915",
-
-    SERV_acute          = "^Acute Care Services Provided to the Medicaid and CHIP Population$",
-    SERV_behavior       = "^Behavioral Health ServicesProvided to the Medicaid and CHIP Population$",
-    SERV_perinatal      = "^Perinatal Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_screen         = "^Health Screenings Provided to Medicaid and CHIP Beneficiaries Under Age 19",
-    SERV_contra         = "^Contraceptive Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_dental         = "^Dental Services Provided to Medicaid and CHIP Beneficiaries Under Age 19",
-    SERV_pregnancy      = "^Pregnancy Outcomes for Medicaid and CHIP Beneficiaries ages 15 to 44",
-    SERV_telehealth     = "^Telehealth Services Provided to the Medicaid and CHIP Population",
-    SERV_vaccination    = "^Vaccinations Provided to the Medicaid and CHIP Population under age 19",
-    SERV_lead           = "^Blood Lead Screening Services Provided to Medicaid and CHIP Beneficiaries",
-    SERV_respiratory    = "^Respiratory Conditions in the Medicaid and CHIP Population",
-
-    BENE_behavior       = "Beneficiaries receiving a behavioral health service by behavioral health condition, 2017-2021",
-    BENE_physical       = "Beneficiaries receiving a physical health service among beneficiaries receiving a SUD service by physical health cond, 2017-2021",
-    BENE_mental         = "Beneficiaries receiving a physical hlth serv among beneficiaries receiving a mental hlth serv, by physical hlth cond, 2017-2021",
-    BENE_integrated     = "Beneficiaries who could benefit from integrated care, 2017-2021",
-    BENE_nas            = "Number and rate of NAS per 1,000 births in newborns whose deliveries were covered by Medicaid or CHIP, 2017 - 2021",
-    BENE_smm            = "Number and rate of SMM among Medicaid- and CHIP-covered deliveries, 2017 - 2021",
-    BENE_postpart       = "Number of pregnant and postpartum Medicaid and CHIP beneficiaries, 2017-2021",
-    BENE_delivery       = "Rate of NAS per 1,000 births in newborns whose deliveries were covered by Medicaid or CHIP, 2017 - 2019",
-
-    PKG_month           = "Benefit Package for Medicaid and CHIP Beneficiaries by Month",
-    PKG_year            = "Benefit Package for Medicaid and CHIP Beneficiaries by Year",
-
-    DRUG_amp_mon        = "Drug AMP Reporting - Monthly",
-    DRUG_amp_qtr        = "Drug AMP Reporting - Quarterly",
-    DRUG_products       = "Drug Products in the Medicaid Drug Rebate Program",
-    DRUG_clot           = "^Clotting Factor Drug Report",
-    DRUG_pediatric      = "Exclusive Pediatric Drugs",
-    DRUG_contact_manu   = "Drug Manufacturer Contacts",
-    DRUG_contact_state  = "Medicaid Drug Rebate Program State Contact Information",
-
-    DUAL_month          = "Dual Status Information for Medicaid and CHIP Beneficiaries by Month",
-    DUAL_year           = "Dual Status Information for Medicaid and CHIP Beneficiaries by Year",
-
-    MEG_month           = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Month",
-    MEG_year            = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Year",
-
-    CMS64_CAA           = "Medicaid CMS-64 CAA 2023 Increased FMAP Expenditure Data Collected through MBES/CBES",
-    CMS64_FFCRA         = "Medicaid CMS-64 FFCRA Increased FMAP Expenditure",
-    CMS64_adult         = "Medicaid CMS-64 New Adult Group Expenditures",
-
-    MC_summary          = "Managed Care Enrollment Summary",
-    MC_program_state    = "^Managed Care Programs\\sby\\sState$",
-    MC_program_plan     = "Managed Care Enrollment by Program and Plan",
-    MC_program_pop_all  = "Managed Care Enrollment by Program and Population \\(All\\)",
-    MC_program_pop_dual = "Managed Care Enrollment by Program and Population \\(Duals\\)",
-    MC_feat_pop         = "Managed Care Features By Enrollment Population",
-    MC_feat_qa          = "Managed Care Features by QA and Performance Incentive",
-    MC_bene_month       = "Managed Care Information for Medicaid and CHIP Beneficiaries by Month",
-    MC_bene_year        = "Managed Care Information for Medicaid and CHIP Beneficiaries by Year",
-    MC_share            = "Share of Medicaid Enrollees in Managed Care",
-
-    FIN_mgmt            = "Medicaid Financial Management Data$",
-    FIN_nation          = "Medicaid Financial Management Data  National Totals",
-
-    Unwind_marketplace     = "HealthCare\\.gov Marketplace Medicaid Unwinding Report",
-    Unwind_transition      = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
-    Unwind_historic        = "Separate CHIP Enrollment by Month and State\\s.+\\sHistoric CAA/Unwinding Period",
-    Unwind_SBM             = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
-
-    CHIP_bene_month        = "Program Information for Medicaid and CHIP Beneficiaries by Month",
-    CHIP_bene_year         = "Program Information for Medicaid and CHIP Beneficiaries by Year",
-    CHIP_application       = "^CHIP Applications, Eligibility Determinations, and Enrollment Data",
-    CHIP_continue          = "^Continuous Eligibility for Medicaid and CHIP Coverage$",
-    CHIP_express           = "Express Lane Eligibility for Medicaid and CHIP Coverage",
-    CHIP_metrics           = "Medicaid and CHIP CAA Reporting Metrics",
-    CHIP_levels            = "Medicaid and CHIP Eligibility Levels",
-    CHIP_renewal           = "Medicaid and CHIP Updated Renewal Outcomes",
-    CHIP_presume           = "Presumptive Eligibility for Medicaid and CHIP Coverage",
-    CHIP_separate          = "Separate CHIP Enrollment by Month and State",
-    CHIP_application_state = "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data",
-    CHIP_processing_state  = "State Medicaid and CHIP Eligibility Processing Data",
-    CHIP_test              = "State Medicaid and CHIP Test"
+    aca_ful                       = "ACA Federal Upper Limits",
+    caid_drug_rebate              = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+    caid_enroll_month             = "Monthly Enrollment - Test",
+    caid_enroll_adult             = "Medicaid Enrollment - New Adult Group",
+    caid_enterprise               = "Medicaid Enterprise System Datatable",
+    caid_pi                       = "PI dataset",
+    caid_tiles                    = "category_tiles",
+    mlr_summary                   = "MLR Summary Reports",
+    managed_longterm              = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
+    dsh_requirement               = "Disproportionate Share Hospital \\(DSH\\) Payments [-] Annual Reporting Requirements",
+    pharm_release_index           = "Division of Pharmacy Releases Index dataset",
+    cahps_nam_puf                 = "NAM CAHPS 2014 Public Use",
+    caid_nadac                    = "^NADAC$",
+    caid_nadac_first              = "^First Time NADAC Rates$",
+    caid_nadac_compare            = "^NADAC Comparison$",
+    caid_finance_mgmt             = "Medicaid Financial Management Data$",
+    caid_finance_nation           = "Medicaid Financial Management Data National Totals",
+    caid_chip_bene_month          = "Program Information for Medicaid and CHIP Beneficiaries by Month",
+    caid_chip_bene_year           = "Program Information for Medicaid and CHIP Beneficiaries by Year",
+    caid_chip_application         = "^CHIP Applications, Eligibility Determinations, and Enrollment Data",
+    caid_chip_continue            = "^Continuous Eligibility for Medicaid and CHIP Coverage$",
+    caid_chip_express             = "Express Lane Eligibility for Medicaid and CHIP Coverage",
+    caid_chip_metrics             = "Medicaid and CHIP CAA Reporting Metrics",
+    caid_chip_levels              = "Medicaid and CHIP Eligibility Levels",
+    caid_chip_renewal             = "Medicaid and CHIP Updated Renewal Outcomes",
+    caid_chip_presume             = "Presumptive Eligibility for Medicaid and CHIP Coverage",
+    caid_chip_separate            = "Separate CHIP Enrollment by Month and State",
+    caid_chip_application_state   = "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data",
+    caid_chip_processing_state    = "State Medicaid and CHIP Eligibility Processing Data",
+    caid_chip_test                = "State Medicaid and CHIP Test",
+    demo_wellvisit                = "^Medicaid and CHIP enrollees who received a well",
+    demo_mental                   = "^Medicaid and CHIP enrollees who received mental health or SUD services$",
+    demo_disability               = "^Medicaid enrollees who qualify for benefits based on disability$",
+    demo_prematurity              = "^Prematurity and severe maternal morbidity among Medicaid",
+    demo_language                 = "^Primary language spoken by the Medicaid and CHIP population$",
+    demo_ethnicity                = "^Race and ethnicity of the national Medicaid and CHIP population$",
+    demo_rural                    = "^Rural Medicaid and CHIP enrollees$",
+    demo_waiver                   = "^Section 1915",
+    service_acute                 = "^Acute Care Services Provided to the Medicaid and CHIP Population$",
+    service_behavior              = "^Behavioral Health Services\\s?Provided to the Medicaid and CHIP Population$",
+    service_perinatal             = "^Perinatal Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
+    service_screening             = "^Health Screenings Provided to Medicaid and CHIP Beneficiaries Under Age 19",
+    service_contraceptive         = "^Contraceptive Care Services Provided to Medicaid and CHIP Beneficiaries ages 15 to 44",
+    service_dental                = "^Dental Services Provided to Medicaid and CHIP Beneficiaries Under Age 19",
+    service_pregnancy             = "^Pregnancy Outcomes for Medicaid and CHIP Beneficiaries ages 15 to 44",
+    service_telehealth            = "^Telehealth Services Provided to the Medicaid and CHIP Population",
+    service_vaccination           = "^Vaccinations Provided to the Medicaid and CHIP Population under age 19",
+    service_bloodlead             = "^Blood Lead Screening Services Provided to Medicaid and CHIP Beneficiaries",
+    service_respiratory           = "^Respiratory Conditions in the Medicaid and CHIP Population",
+    benes_behavior                = "Beneficiaries receiving a behavioral health service by behavioral health condition, 2017-2021",
+    benes_physical                = "Beneficiaries receiving a physical health service among beneficiaries receiving a SUD service by physical health cond, 2017-2021",
+    benes_mental                  = "Beneficiaries receiving a physical hlth serv among beneficiaries receiving a mental hlth serv, by physical hlth cond, 2017-2021",
+    benes_integrated              = "Beneficiaries who could benefit from integrated care, 2017-2021",
+    benes_nas                     = "Number and rate of NAS per 1,000 births in newborns whose deliveries were covered by Medicaid or CHIP, 2017 - 2021",
+    benes_smm                     = "Number and rate of SMM among Medicaid- and CHIP-covered deliveries, 2017 - 2021",
+    benes_pregnant                = "Number of pregnant and postpartum Medicaid and CHIP beneficiaries, 2017-2021",
+    benes_delivery                = "Rate of NAS per 1,000 births in newborns whose deliveries were covered by Medicaid or CHIP, 2017 - 2019",
+    benefit_pkg_month             = "Benefit Package for Medicaid and CHIP Beneficiaries by Month",
+    benefit_pkg_year              = "Benefit Package for Medicaid and CHIP Beneficiaries by Year",
+    drug_amp_month                = "Drug AMP Reporting - Monthly",
+    drug_amp_quarter              = "Drug AMP Reporting - Quarterly",
+    drug_products                 = "Drug Products in the Medicaid Drug Rebate Program",
+    drug_clot                     = "^Clotting Factor Drug Report",
+    drug_pediatric                = "Exclusive Pediatric Drugs",
+    drug_contact_manu             = "Drug Manufacturer Contacts",
+    drug_contact_state            = "Medicaid Drug Rebate Program State Contact Information",
+    dual_status_month             = "Dual Status Information for Medicaid and CHIP Beneficiaries by Month",
+    dual_status_year              = "Dual Status Information for Medicaid and CHIP Beneficiaries by Year",
+    meg_month                     = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Month",
+    meg_year                      = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries by Year",
+    cms64_caa                     = "Medicaid CMS-64 CAA 2023 Increased FMAP Expenditure Data Collected through MBES/CBES",
+    cms64_ffcra                   = "Medicaid CMS-64 FFCRA Increased FMAP Expenditure",
+    cms64_adult                   = "Medicaid CMS-64 New Adult Group Expenditures",
+    managed_care_summary          = "Managed Care Enrollment Summary",
+    managed_care_program_state    = "^Managed Care Programs\\sby\\sState$",
+    managed_care_program_plan     = "Managed Care Enrollment by Program and Plan",
+    managed_care_program_pop_all  = "Managed Care Enrollment by Program and Population \\(All\\)",
+    managed_care_program_pop_dual = "Managed Care Enrollment by Program and Population \\(Duals\\)",
+    managed_care_feat_pop         = "Managed Care Features By Enrollment Population",
+    managed_care_feat_qa          = "Managed Care Features by QA and Performance Incentive",
+    managed_care_bene_month       = "Managed Care Information for Medicaid and CHIP Beneficiaries by Month",
+    managed_care_bene_year        = "Managed Care Information for Medicaid and CHIP Beneficiaries by Year",
+    managed_care_share            = "Share of Medicaid Enrollees in Managed Care",
+    unwind_marketplace            = "HealthCare\\.gov Marketplace Medicaid Unwinding Report",
+    unwind_transition             = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
+    unwind_historic               = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
+    unwind_sbm                    = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report"
   ),
-  temporal = list(
-    NADAC  = "NADAC",
-    MCP    = "^Managed Care Programs",
-    rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-    blood  = "^Pricing Comparison for Blood Disorder Treatments",
-    drug   = "^State Drug Utilization Data",
-    HCQ    = "Child and Adult Health Care Quality Measures"
+  temporal                        = list(
+    nadac_year                    = "^NADAC$",
+    managed_care_state            = "^Managed Care Programs by State$",
+    caid_drug_rebate_week         = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program$",
+    blood_disorder                = "^Pricing Comparison for Blood Disorder Treatments$",
+    state_drug_util               = "^State Drug Utilization Data$",
+    healthcare_quality            = "^Child and Adult Health Care Quality Measures$"
+  ),
+  group = list(
+    caid_demographics = list(
+      group = "Medicaid and CHIP Enrollee Demographics",
+      alias = c(
+        "demo_wellvisit",
+        "demo_mental",
+        "demo_disability",
+        "demo_prematurity",
+        "demo_language",
+        "demo_ethnicity",
+        "demo_rural",
+        "demo_waiver"
+      )
+    ),
+    caid_services = list(
+      group = "Services Provided to the Medicaid and CHIP Population",
+      alias = c(
+        "service_acute",
+        "service_behavior",
+        "service_perinatal",
+        "service_screening",
+        "service_contraceptive",
+        "service_dental",
+        "service_pregnancy",
+        "service_telehealth",
+        "service_vaccination",
+        "service_bloodlead",
+        "service_respiratory"
+      )
+    ),
+    caid_benes = list(
+      group = "Beneficiaries Receiving A Service",
+      alias = c(
+        "benes_behavior",
+        "benes_physical",
+        "benes_mental",
+        "benes_integrated",
+        "benes_nas",
+        "benes_smm",
+        "benes_pregnant",
+        "benes_delivery"
+      )
+    ),
+    caid_finance = list(
+      group = "Medicaid Financial Management Data",
+      alias = c(
+        "caid_finance_mgmt",
+        "caid_finance_nation"
+      )
+    ),
+    caid_nadac_group = list(
+      group = "NADAC (National Average Drug Acquisition Cost)",
+      alias = c(
+        "caid_nadac",
+        "caid_nadac_first",
+        "caid_nadac_compare"
+      )
+    ),
+    caid_benefit_pkg = list(
+      group = "Benefit Package for Medicaid and CHIP Beneficiaries",
+      alias = c(
+        "benefit_pkg_month",
+        "benefit_pkg_year"
+      )
+    ),
+    caid_drug = list(
+      group = "Medicaid Drug Datasets",
+      alias = c(
+        "drug_amp_mon",
+        "drug_amp_qtr",
+        "drug_products",
+        "drug_clot",
+        "drug_pediatric",
+        "drug_contact_manu",
+        "drug_contact_state"
+      )
+    ),
+    caid_dual_status = list(
+      group = "Dual Status Information for Medicaid and CHIP Beneficiaries",
+      alias = c(
+        "dual_status_month",
+        "dual_status_year"
+      )
+    ),
+    caid_meg = list(
+      group = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
+      alias = c(
+        "meg_month",
+        "meg_year"
+      )
+    ),
+    caid_cms64 = list(
+      group = "Medicaid CMS-64",
+      alias = c(
+        "cms64_caa",
+        "cms64_ffcra",
+        "cms64_adult"
+      )
+    ),
+    caid_managed_care = list(
+      group = "Medicaid Managed Care Enrollment",
+      alias = c(
+        "managed_care_summary",
+        "managed_care_program_state",
+        "managed_care_program_plan",
+        "managed_care_program_pop_all",
+        "managed_care_program_pop_dual",
+        "managed_care_feat_pop",
+        "managed_care_feat_qa",
+        "managed_care_bene_month",
+        "managed_care_bene_year"
+      )
+    ),
+    caid_unwind = list(
+      group = "Medicaid Unwinding Report",
+      alias = c(
+        "unwind_marketplace",
+        "unwind_transition",
+        "unwind_historic",
+        "unwind_sbm"
+      )
+    )
   )
 )
 
@@ -182,27 +292,34 @@ caid_list <- list(
 #' @noRd
 open_list <- list(
   endpoint = list(
-    PROF_covered      = "^Covered Recipient Profile Supplement$",
-    PROF_physician    = "^Physician \\(Distinct\\) Profile Information$",
-    PROF_information  = "^Profile Information$",
-    PROF_mapping      = "^Provider Profile ID Mapping Table$",
-    PROF_entity       = "^Reporting Entity Profile Information$",
-    PROF_teaching     = "^Teaching Hospital Profile Information$",
-    SUMM_dashboard    = "^Summary Dashboard",
-    SUMM_state_all    = "^State Level Payment Total and Averages for all Years$",
-    SUMM_state_group  = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
-    SUMM_nation_all   = "^National Level Payment Total and Averages for all Years$",
-    SUMM_nation_group = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
+    profile_covered               = "^Covered Recipient Profile Supplement$",
+    profile_physician             = "^Physician \\(Distinct\\) Profile Information$",
+    profile_information           = "^Profile Information$",
+    profile_mapping               = "^Provider Profile ID Mapping Table$",
+    profile_entity                = "^Reporting Entity Profile Information$",
+    profile_teaching              = "^Teaching Hospital Profile Information$",
+    summary_dashboard             = "^Summary Dashboard",
+    summary_state                 = "^State Level Payment Total and Averages for all Years$",
+    summary_nature                = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
+    summary_national              = "^National Level Payment Total and Averages for all Years$",
+    summary_specialty             = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
   ),
-  temporal = list(
-    DATA_general        = "^General Payment Data$",
-    DATA_ownership      = "^Ownership Payment Data$",
-    DATA_research       = "^Research Payment Data$",
-    GROUP_recip_nature  = "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    GROUP_recip_entity  = "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    GROUP_entity_nature = "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    GROUP_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$"
-  )
+  temporal                        = list(
+    payment_general               = "^General Payment Data$",
+    payment_ownership             = "^Ownership Payment Data$",
+    payment_research              = "^Research Payment Data$",
+    grouped_covered_nature        = "^Payments Grouped by Covered Recipient and Nature of Payments$",
+    grouped_covered_entity        = "^Payments Grouped by Covered Recipient and Reporting Entities$",
+    grouped_entity_nature         = "^Payments Grouped by Reporting Entities and Nature of Payments$",
+    grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
+    grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$"
+  ),
+  group = list(
+    profile                       = list(group = "Open Payments Profiles", alias = c("profile_covered", "profile_physician", "profile_information", "profile_mapping", "profile_entity", "profile_teaching")),
+    summary                       = list(group = "Open Payments Summaries", alias = c("summary_dashboard", "summary_state", "summary_nature", "summary_national", "summary_specialty"))),
+  troup = list(
+    payment_grouped               = list(group = "Open Payments by Year (Grouped)", alias = c("grouped_covered_nature", "grouped_covered_entity", "grouped_entity_nature", "grouped_entity_covered_nature", "grouped_state_nature")),
+    payment_detailed              = list(group = "Open Payments by Year (Detailed)", alias = c("payment_general", "payment_ownership", "payment_research")))
 )
 
 #' @autoglobal
@@ -283,7 +400,7 @@ pro_list <- list(
     hospice_state             = "^Hospice [-] State Data$",
     hospice_zip               = "^Hospice [-] Zip Data$",
     hospice_national          = "^Hospice[-]National Data$",
-    hospital_PSI90            = "^CMS Medicare PSI[-]90 and component measures [-] six[-]digit estimate dataset",
+    hospital_psi90            = "^CMS Medicare PSI[-]90 and component measures [-] six[-]digit estimate dataset",
     hospital_joint            = "^Comprehensive Care For Joint Replacement Model [-] Provider Data",
     hospital_footnote         = "^Footnote Crosswalk",
     hospital_update           = "^Data Updates",
@@ -359,42 +476,48 @@ pro_list <- list(
     va_timely                 = "^Veterans Health Administration Timely and Effective Care Data"
   ),
   group = list(
-    pro_cahps_spice      = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
-    pro_cahps_hhc        = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
-    pro_cahps_ich        = list(group = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
-    pro_cahps_oas        = list(group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey", alias = c("cahps_oas_footnotes", "cahps_oas_asc_facility", "cahps_oas_asc_national", "cahps_oas_asc_state", "cahps_oas_hosp_facility", "cahps_oas_hosp_national", "cahps_oas_hosp_state")),
-    pro_mips             = list(group = "PY 2022 MIPS Public Reporting", alias = c("mips_performance", "mips_patient", "mips_clinician", "mips_group", "mips_virtual")),
-    pro_drs              = list(group = "Provider Data Catalog", alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")),
-    pro_ltch             = list(group = "Long-Term Care Hospitals", alias = c("ltch_general", "ltch_provider", "ltch_national")),
-    pro_irf              = list(group = "Inpatient Rehabilitation Facilities", alias = c("irf_conditions", "irf_general", "irf_provider", "irf_national")),
-    pro_hospice          = list(group = "Hospices", alias = c("hospice_general", "hospice_provider", "hospice_state", "hospice_zip", "hospice_national")),
-    pro_hhc_vbp          = list(group = "Expanded Home Health Value-Based Purchasing (HHVBP) Model", alias = c("hhvbp_agency", "hhvbp_cohort")),
-    pro_home_health      = list(group = "Home Health Care Agencies", alias = c("hhc_range", "hhc_national", "hhc_state", "hhc_zip", "hhc_agency")),
-    pro_snf_vbp          = list(group = "FY 2025 SNF VBP", alias = c("snf_vbp_performance", "snf_vbp_facility")),
-    pro_snf_quality      = list(group = "SNF Quality Measures", alias = c("snf_quality_nation", "snf_quality_provider", "snf_quality_swing")),
-    pro_nursing          = list(group = "Nursing Homes", alias = c("nursing_ownership", "nursing_penalties", "nursing_provider", "nursing_citation", "nursing_fire", "nursing_deficiencies", "nursing_inspection", "nursing_quality_mds", "nursing_quality_claims", "nursing_state_avg", "nursing_state_cut", "nursing_interval")),
-    pro_complication     = list(group = "Complications and Deaths", alias = c("complication_hospital", "complication_state", "complication_national")),
-    pro_complication_pch = list(group = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital", alias = c("complication_pch_hospital", "complication_pch_national")),
-    pro_asc_quality      = list(group = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
-    pro_equity           = list(group = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
-    pro_hai              = list(group = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
-    pro_dialysis         = list(group = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
-    pro_esrd             = list(group = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
-    pro_hvbp             = list(group = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
-    pro_ipf              = list(group = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
-    pro_mspb             = list(group = "Medicare Spending Per Beneficiary", alias = c("mspb_claim", "mspb_hospital", "mspb_decimal", "mspb_national", "mspb_state")),
-    pro_out_img          = list(group = "Outpatient Imaging Efficiency", alias = c("out_img_hospital", "out_img_national", "out_img_state")),
-    pro_pch_pall         = list(group = "Palliative Care: PPS-Exempt Cancer Hospital", alias = c("pch_pall_hospital", "pch_pall_national")),
-    pro_pch_hcahps       = list(group = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital", alias = c("hcahps_pch_hospital", "hcahps_pch_national", "hcahps_pch_state")),
-    pro_hcahps           = list(group = "Patient Survey (HCAHPS)", alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")),
-    pro_timely           = list(group = "Timely and Effective Care", alias = c("timely_hospital", "timely_national", "timely_state")),
-    pro_unplan           = list(group = "Unplanned Hospital Visits", alias = c("unplan_hospital", "unplan_national", "unplan_state")),
-    pro_va               = list(group = "Veterans Health Administration", alias = c("va_behavioral", "va_provider", "va_timely")),
-    pro_hospital_changes = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
-    pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
-    pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr"))
+    pro_cahps_spice           = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
+    pro_cahps_hhc             = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
+    pro_cahps_ich             = list(group = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
+    pro_cahps_oas             = list(group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey", alias = c("cahps_oas_footnotes", "cahps_oas_asc_facility", "cahps_oas_asc_national", "cahps_oas_asc_state", "cahps_oas_hosp_facility", "cahps_oas_hosp_national", "cahps_oas_hosp_state")),
+    pro_mips                  = list(group = "PY 2022 MIPS Public Reporting", alias = c("mips_performance", "mips_patient", "mips_clinician", "mips_group", "mips_virtual")),
+    pro_drs                   = list(group = "Provider Data Catalog", alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")),
+    pro_ltch                  = list(group = "Long-Term Care Hospitals", alias = c("ltch_general", "ltch_provider", "ltch_national")),
+    pro_irf                   = list(group = "Inpatient Rehabilitation Facilities", alias = c("irf_conditions", "irf_general", "irf_provider", "irf_national")),
+    pro_hospice               = list(group = "Hospices", alias = c("hospice_general", "hospice_provider", "hospice_state", "hospice_zip", "hospice_national")),
+    pro_hhc_vbp               = list(group = "Expanded Home Health Value-Based Purchasing (HHVBP) Model", alias = c("hhvbp_agency", "hhvbp_cohort")),
+    pro_home_health           = list(group = "Home Health Care Agencies", alias = c("hhc_range", "hhc_national", "hhc_state", "hhc_zip", "hhc_agency")),
+    pro_snf_vbp               = list(group = "FY 2025 SNF VBP", alias = c("snf_vbp_performance", "snf_vbp_facility")),
+    pro_snf_quality           = list(group = "SNF Quality Measures", alias = c("snf_quality_nation", "snf_quality_provider", "snf_quality_swing")),
+    pro_nursing               = list(group = "Nursing Homes", alias = c("nursing_ownership", "nursing_penalties", "nursing_provider", "nursing_citation", "nursing_fire", "nursing_deficiencies", "nursing_inspection", "nursing_quality_mds", "nursing_quality_claims", "nursing_state_avg", "nursing_state_cut", "nursing_interval")),
+    pro_complication          = list(group = "Complications and Deaths", alias = c("complication_hospital", "complication_state", "complication_national")),
+    pro_complication_pch      = list(group = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital", alias = c("complication_pch_hospital", "complication_pch_national")),
+    pro_asc_quality           = list(group = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
+    pro_equity                = list(group = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
+    pro_hai                   = list(group = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
+    pro_dialysis              = list(group = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
+    pro_esrd                  = list(group = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
+    pro_hvbp                  = list(group = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
+    pro_ipf                   = list(group = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
+    pro_mspb                  = list(group = "Medicare Spending Per Beneficiary", alias = c("mspb_claim", "mspb_hospital", "mspb_decimal", "mspb_national", "mspb_state")),
+    pro_out_img               = list(group = "Outpatient Imaging Efficiency", alias = c("out_img_hospital", "out_img_national", "out_img_state")),
+    pro_pch_pall              = list(group = "Palliative Care: PPS-Exempt Cancer Hospital", alias = c("pch_pall_hospital", "pch_pall_national")),
+    pro_pch_hcahps            = list(group = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital", alias = c("hcahps_pch_hospital", "hcahps_pch_national", "hcahps_pch_state")),
+    pro_hcahps                = list(group = "Patient Survey (HCAHPS)", alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")),
+    pro_timely                = list(group = "Timely and Effective Care", alias = c("timely_hospital", "timely_national", "timely_state")),
+    pro_unplan                = list(group = "Unplanned Hospital Visits", alias = c("unplan_hospital", "unplan_national", "unplan_state")),
+    pro_va                    = list(group = "Veterans Health Administration", alias = c("va_behavioral", "va_provider", "va_timely")),
+    pro_hospital_changes      = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
+    pro_hospital_voc          = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
+    pro_reduction             = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr"))
   )
 )
+
+#' @autoglobal
+#' @noRd
+make_quick_entry <- function(x) {
+  x |> names() |> cat(sep = " = ,\n")
+}
 
 # #' @autoglobal
 # #' @noRd
