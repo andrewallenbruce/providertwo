@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9274 (2025-05-08)
+
+* quick method for care_troup working
+* catalog cleanup
+
+
 # providertwo 0.0.0.9273 (2025-05-08)
 
 * care aliases work
