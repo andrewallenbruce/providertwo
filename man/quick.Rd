@@ -24,4 +24,5 @@ Mostly for debugging purposes.
 }
 \examples{
 quick("pro_dialysis") |> str()
+quick("care_nhome")
 }

@@ -12,6 +12,7 @@
 #'
 #' @examples
 #' quick("pro_dialysis") |> str()
+#' quick("care_nhome")
 #' @autoglobal
 #' @export
 quick <- function(x, offset = 0L, limit = 10L, call = caller_env()) {

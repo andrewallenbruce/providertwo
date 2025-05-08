@@ -45,34 +45,16 @@ method(quick_, care_temporal) <- function(x, offset, limit) {
     as_tbl()
 }
 
-# method(quick_, care_troup) <- function(x, offset, limit) {
-#   res <- x@members |>
-#     purrr::map(\(x) x@endpoints$identifier |>
-#                  purrr::map2(
-#                    x@dimensions@rows,
-#                    \(x, R)
-#                    request(x) |>
-#                      req_url_query(
-#                        offset = thresh(offset, R),
-#                        size   = thresh(limit, 5000L)))) |>
-#     purrr::list_flatten() |>
-#     req_perform_parallel(on_error = "continue") |>
-#     resps_successes()
-#
-#   res |>
-#     purrr::map2(x@members, \(resp, x) set_names(resp, x@endpoints$year))
-#       purrr::map2(resp, x@endpoints$year, \(resp, YR)
-#                   resp_body_string(resp) |>
-#                     fparse() |>
-#                     mtt(year = YR) |>
-#                     colorder(year) |>
-#                     as_tbl()))
-#         as_tbl() |>
-#         set_clean(n@dimensions@fields) |>
-#         map_na_if()
-#     ) |>
-#     set_member_names(x@members)
-# }
+method(quick_, care_troup) <- function(x, offset, limit) {
+  x@members |>
+    purrr::map(
+    \(x)
+    quick_(
+      x,
+      offset,
+      limit),
+    .progress = TRUE)
+}
 
 method(quick_, care_group) <- function(x, offset, limit) {
   x@members |>

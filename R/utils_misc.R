@@ -1,5 +1,32 @@
 #' @autoglobal
 #' @noRd
+extract_year <- function(x) {
+  as.integer(stri_extract_first_regex(x, "[12]{1}[0-9]{3}"))
+}
+
+#' @autoglobal
+#' @noRd
+grapple <- function(str, pt, ...) {
+  grepl(x = str,
+        pattern = pt,
+        perl = TRUE,
+        ...)
+}
+
+#' @autoglobal
+#' @noRd
+greplace <- \(str, pt, rp, ...) {
+  gsub(
+    x = str,
+    pattern = pt,
+    replacement = rp,
+    perl = TRUE,
+    ...
+  )
+}
+
+#' @autoglobal
+#' @noRd
 ndigits <- function(x) {
   stopifnot("x must be an integer" = is.integer(x))
   ceiling(log10(x))
