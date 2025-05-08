@@ -23,6 +23,7 @@ Convenience function to quickly access various CMS data endpoints.
 Mostly for debugging purposes.
 }
 \examples{
-quick("pro_dialysis") |> str()
+quick("pro_dialysis")
 quick("care_nhome")
+quick("business_rules")
 }

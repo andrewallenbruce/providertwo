@@ -11,8 +11,9 @@
 #' @returns A data frame or list containing the requested CMS data.
 #'
 #' @examples
-#' quick("pro_dialysis") |> str()
+#' quick("pro_dialysis")
 #' quick("care_nhome")
+#' quick("business_rules")
 #' @autoglobal
 #' @export
 quick <- function(x, offset = 0L, limit = 10L, call = caller_env()) {
@@ -486,6 +487,60 @@ quick <- function(x, offset = 0L, limit = 10L, call = caller_env()) {
     caid_managed_care = ,
     caid_unwind = caid_group(x),
 
+    ab_registration_completion = ,
+    ab_suspension_termination = ,
+    agent_broker_registration_glossary = ,
+    agent_broker_registration_tracker = ,
+    authority_state = ,
+    auto_pop_file = ,
+    benefits_cost_sharing = ,
+    business_rules = ,
+    catastrophic_plans = ,
+    contact_admins = ,
+    counties = ,
+    county_service_areas = ,
+    direct_enrollment_partners =,
+    issuer_partner_lookup = ,
+    issuer_partner_directory = ,
+    issuer_de_partner_directory = ,
+    network_puf = ,
+    nipr_valid_authority = ,
+    plan_attribute = ,
+    plan_id_cross = ,
+    response_codes = ,
+    rolling_draft_ecp = ,
+    service_area = ,
+    slcsp_cnty_zip = ,
+    states = ,
+    qhp_ind_med = ,
+    qhp_ind_dent = ,
+    qhp_shop_med = ,
+    qhp_shop_dent = ,
+    qhp_id_shop_med = ,
+    qhp_id_shop_dent = ,
+    qhp_id_ind_dent = ,
+    qhp_id_ind_med = ,
+    qhp_nm_ind_dent = ,
+    qhp_nm_ind_med = ,
+    qhp_bus_rule_variables = ,
+    qhp_py19_shop_med_instruct = ,
+    qhp_py19_ind_med_instruct = ,
+    qhp_py19_ind_dent_instruct = ,
+    qhp_py18_shop_med_instruct = ,
+    qhp_py18_ind_med_instruct = ,
+    qhp_py18_ind_dent_instruct = ,
+    local_help = hgov_endpoint(x),
+    medical_loss_ratio = ,
+    qhp_quality_ratings = ,
+    hie_benefits_costshare = ,
+    hie_business_rules = ,
+    hie_machine_readable = ,
+    hie_network = ,
+    hie_plan_attributes = ,
+    hie_plan_id_crosswalk = ,
+    hie_rate = ,
+    hie_service_area = ,
+    hie_transparency = hgov_temporal(x),
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
   quick_(ob, offset = offset, limit = limit)

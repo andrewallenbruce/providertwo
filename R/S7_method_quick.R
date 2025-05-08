@@ -284,3 +284,54 @@ method(quick_, caid_temporal) <- function(x, offset, limit) {
     rnm(clean_names) |>
     as_tbl()
 }
+
+method(quick_, hgov_endpoint) <- function(x, offset, limit) {
+  x@identifier |>
+    request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      offset = thresh(offset, x@dimensions@rows),
+      limit  = thresh(limit, 500L)) |>
+    perform_simple() |>
+    _[["results"]] |>
+    as_tbl() |>
+    set_clean(x@dimensions@fields) |>
+    map_na_if()
+}
+
+method(quick_, hgov_temporal) <- function(x, offset, limit) {
+  x@endpoints$identifier |>
+    purrr::map2(
+      x@dimensions@rows,
+      \(x, R)
+      request(x) |>
+        req_url_query(
+          count   = "false",
+          format  = "json",
+          keys    = "true",
+          results = "true",
+          rowIds  = "false",
+          schema  = "false",
+          offset = thresh(offset, R),
+          limit  = thresh(limit, 500L)
+        )
+    ) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    purrr::map2(x@endpoints$year,
+                \(resp, YR)
+                resp_body_string(resp) |>
+                  fparse() |>
+                  _[["results"]] |>
+                  mtt(year = YR)) |>
+    purrr::list_rbind() |>
+    colorder(year) |>
+    map_na_if() |>
+    rnm(clean_names) |>
+    as_tbl()
+}

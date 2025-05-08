@@ -20,12 +20,14 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
+  # <select_hgov_temp>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
   # <select_caid_temp>
   # <select_care_temp>
+  # <select_hgov_temp>
   # <select_open_temp>
   "data",
   # <quality_eligibility>
