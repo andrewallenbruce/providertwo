@@ -9,7 +9,7 @@ It provides a simple way to retrieve data from different CMS programs and catego
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9270</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9271</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,22 +78,219 @@ It provides a simple way to retrieve data from different CMS programs and catego
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"MLR_summary"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [1 × 14] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ state                                            : chr "AL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ program_name                                     : chr "Maternity Care Program"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ program_type                                     : chr "Other PIHP"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ eligibility_group                                : chr "All populations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ if_other_describe_eligibility_group              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ mco_pihp_or_pahp_name                            : chr "District 1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ mlr_reporting_period_start_date                  : chr "2018-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ mlr_reporting_period_end_date                    : chr "2018-12-31"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ report_year                                      : chr "2018"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ mlr_numerator                                    : chr "$2,254,490"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ mlr_denominator                                  : chr "$2,329,022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ statereported_member_months                      : chr "894"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ adjusted_mlr                                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ remittance_dollar_amount_for_mlr_reporting_period: chr NA</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"pro_dialysis"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dialysis_facility: tibble [1 × 142] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ cms_certification_number_ccn                                    : chr "012306"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ network                                                         : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ facility_name                                                   : chr "CHILDRENS HOSPITAL DIALYSIS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ five_star_date                                                  : chr "01Jan2020-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ five_star                                                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ five_star_data_availability_code                                : chr "260"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address_line_1                                                  : chr "1600 7TH AVENUE SOUTH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ address_line_2                                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ citytown                                                        : chr "BIRMINGHAM"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ zip_code                                                        : chr "35233"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ countyparish                                                    : chr "Jefferson"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ telephone_number                                                : chr "(205) 638-9275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ profit_or_nonprofit                                             : chr "Non-profit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ chain_owned                                                     : chr "No"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ chain_organization                                              : chr "Independent"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ late_shift                                                      : chr "No"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ of_dialysis_stations                                            : chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ offers_incenter_hemodialysis                                    : chr "Yes"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ offers_peritoneal_dialysis                                      : chr "Yes"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ offers_home_hemodialysis_training                               : chr "Yes"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ certification_date                                              : chr "17NOV1982"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ claims_date                                                     : chr "01JUL2023-30JUN2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ eqrs_date                                                       : chr "01JUL2023-30JUN2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smr_date                                                        : chr "01Jan2020-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_survival_category_text                                  : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_survival_data_availability_code                         : chr "199"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_included_in_survival_summary                 : chr "64"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ mortality_rate_facility                                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ mortality_rate_upper_confidence_limit_975                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ mortality_rate_lower_confidence_limit_25                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ shr_date                                                        : chr "01Jan2023-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_hospitalization_category_text                           : chr "Worse than Expected"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_hospitalization_data_availability_code                  : chr "001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_included_in_hospitalization_summary          : chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalization_rate_facility                                   : chr "255.5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalization_rate_upper_confidence_limit_975                 : chr "391.9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalization_rate_lower_confidence_limit_25                  : chr "176.7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ srr_date                                                        : chr "01Jan2023-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_hospital_readmission_category                           : chr "As Expected"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_hospital_readmission_data_availability_code             : chr "001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_hospitalizations_included_in_hospital_readmission_fc2b: chr "63"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ readmission_rate_facility                                       : chr "37.4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ readmission_rate_upper_confidence_limit_975                     : chr "53.5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ readmission_rate_lower_confidence_limit_25                      : chr "23.9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ strr_date                                                       : chr "01Jan2023-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_transfusion_category_text                               : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_transfusion_data_availability_code                      : chr "201"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_included_in_the_transfusion_summary          : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusion_rate_facility                                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusion_rate_upper_confidence_limit_975                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusion_rate_lower_confidence_limit_25                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ swr_date                                                        : chr "01Jan2020-31Dec2022"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ swr_category_text                                               : chr "As Expected"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_transplant_waitlist_data_availability_code              : chr "001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_in_this_facility_for_swr                     : chr "50"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_first_kidney_transplant_waitlist_ratio             : chr "1.32"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ 95_ci_upper_limit_for_swr                                       : chr "2.09"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ 95_ci_lower_limit_for_swr                                       : chr "0.78"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ pppw_category_text                                              : chr "As Expected"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_prevalent_transplant_waitlist_data_availability_code    : chr "001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_for_pppw                                     : chr "44"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_prevalent_patients_waitlisted                     : chr "20.6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ 95_ci_upper_limit_for_pppw                                      : chr "42.1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ 95_ci_lower_limit_for_pppw                                      : chr "8.5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr_date                                                       : chr "01Jan2023-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr_category_text                                              : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ emergency_department_encounter_data_availability_code           : chr "201"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_included_in_sedr_summary                     : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_ed_visits_ratio_facility                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr_upper_confidence_limit_975                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr_lower_confidence_limit_25                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30_date                                                       : chr "01Jan2022-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30_category_text                                              : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ emergency_department_encounter_ratio_occurring_within_30_da_f8e3: chr "199"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_hospitalizations_included_in_ed30_summary             : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_ed_visits_within_30_days_of_hospital_discharge_6307: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30_upper_confidence_limit_975                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30_lower_confidence_limit_25                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ years_modality_switch_based_upon                                : chr "01Jan2020-31Dec2022"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smosr_classification_category_facility                          : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ modality_switch_data_availability_code                          : chr "201"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smosr_number_of_eligible_patients_facility                      : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smosr_standardized_modality_switch_ratio_facility               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smosr_upper_confidence_limit_facility                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ smosr_lower_confidence_limit_facility                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sir_date                                                        : chr "01Jan2023-31Dec2023"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_infection_category_text                                 : chr "As Expected"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ patient_infection_data_availability_code                        : chr "001"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standard_infection_ratio                                        : chr "0.86"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sir_upper_confidence_limit_975                                  : chr "2.33"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sir_lower_confidence_limit_25                                   : chr "0.22"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_category_text                                           : chr "Not Available"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_data_availability_code                                  : chr "199"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ number_of_patients_included_in_fistula_summary                  : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate_facility                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate_upper_confidence_limit_975                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate_lower_confidence_limit_25                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hcp_vaccination_data_collection_dates                           : chr "01APR2024-30JUN2024"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. [list output truncated]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dialysis_national: tibble [1 × 59] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ country                                                         : chr "NATION"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusion_rate_us                                             : chr "32.8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions__better_than_expected_us                           : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions__as_expected_us                                    : chr "4668"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions__worse_than_expected_us                            : chr "341"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_hd_patients_with_ktv12                      : chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_pd_patients_with_ktv17                      : chr "92"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_hd_patients_with_ktv12                  : chr "86"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_pd_patients_with_ktv18                  : chr "77"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_hd_patients_with_npcr                   : chr "88"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate_us                                                 : chr "58.1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__better_than_expected_us                           : chr "278"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__as_expected_us                                    : chr "6512"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__worse_than_expected_us                            : chr "257"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_long_term_catheter_in_use     : chr "18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d: chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222: chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__85e8: chr "23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__fad7: chr "28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__ff32: chr "25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3: chr "17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalization_rate_us                                         : chr "144.7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations__better_than_expected_us                       : chr "97"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations__as_expected_us                                : chr "6825"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations__worse_than_expected_us                        : chr "340"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ readmission_rate_us                                             : chr "26.5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital_readmission__better_than_expected_us                   : chr "132"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital_readmission__as_expected_us                            : chr "6709"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital__readmission__worse_than_expected_us                   : chr "237"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ mortality_rate_us                                               : chr "22.5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival__better_than_expected_us                               : chr "144"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival__as_expected_us                                        : chr "6867"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival__worse_than_expected_us                                : chr "174"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_first_kidney_transplant_waitlist_ratio_us          : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting__better_than_expec_a24d: chr "277"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting__as_expected_us        : chr "3660"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting__worse_than_expected_us: chr "196"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_prevalent_patients_waitlisted_us                  : chr "16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting_better_than_expec_c0cd: chr "433"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting__as_expected_us       : chr "6730"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting__worse_than_expec_e6e9: chr "159"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ healthcare_worker_covid19_vaccination_adherence_percentage_us   : chr "3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_patients_with_hgb10_gdl_us                        : chr "21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_patients_with_hgb12_gdl_us                        : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection__better_than_expected_us                              : chr "3319"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection__as_expected_us                                       : chr "3106"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection__worse_than_expected_us                               : chr "39"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_ed_visits_ratio_us                                 : chr "0.99"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__better_than_expected_us                                   : chr "31"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__as_expected_us                                            : chr "6472"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__worse_than_expected_us                                    : chr "418"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_ed_visits_within_30_days_of_hospital_discharge_d0c6: chr "1.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__better_than_expected_us                                   : chr "138"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__as_expected_us                                            : chr "6588"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__worse_than_expected_us                                    : chr "203"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ standardized_modality_switch_ratio                              : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_1_smsrbetter_than_expected_us               : chr "585"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_2_smsras_expected_us                        : chr "5518"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_3_smsrworse_than_expected_us                : chr "441"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dialysis_state   : tibble [1 × 49] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ state                                                           : chr "AK"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival_better_than_expected_state                             : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival_as_expected_state                                      : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ survival_worse_than_expected_state                              : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations_better_than_expected_state                     : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations_as_expected_state                              : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospitalizations_worse_than_expected_state                      : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital_readmission__better_than_expected_state                : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital_readmission__as_expected_state                         : chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hospital__readmission__worse_than_expected_state                : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions_better_than_expected_state                         : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions_as_expected_state                                  : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ transfusions_worse_than_expected_state                          : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection_better_than_expected_state                            : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection_as_expected_state                                     : chr "8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ infection_worse_than_expected_state                             : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_hd_patients_with_ktv12                      : chr "98"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_pd_patients_with_ktv17                      : chr "95"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_hd_patients_with_ktv12                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_pd_patients_with_ktv18                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_pediatric_hd_patients_with_npcr_in_use            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__better_than_expected_state                        : chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__as_expected_state                                 : chr "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ fistula_rate__worse_than_expected_state                         : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_long_term_catheter_in_use     : chr "13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222: chr "9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__85e8: chr "25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__fad7: chr "28"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_between__ff32: chr "22"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3: chr "17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting_better_than_expect_49e4: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting__as_expected_state     : chr "5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ incident_patients_transplant_waitlisting__worse_than_expect_9b13: chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting_better_than_expec_c046: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting__as_expected_state    : chr "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ prevalent_patients_transplant_waitlisting__worse_than_expec_eeb0: chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ healthcare_worker_covid19_vaccination_adherence_percentage_state: chr "11"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_patients_with_hgb10_gdl_state                     : chr "16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ percentage_of_patients_with_hgb12_gdl_state                     : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__better_than_expected_state                                : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__as_expected_state                                         : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ sedr__worse_than_expected_state                                 : chr "4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__better_than_expected_state                                : chr "0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__as_expected_state                                         : chr "7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ed30__worse_than_expected_state                                 : chr "1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_1_smsrbetter_than_expected_state            : chr "2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_2_smsras_expected_state                     : chr "6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ n_for_smsr_category_3_smsrworse_than_expected_state             : chr "0"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

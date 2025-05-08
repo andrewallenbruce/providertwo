@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9270</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9271</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,14 +77,14 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="openpayments.html">open_endpoint</a></span><span class="op">(</span><span class="st">"PROF_covered"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="openpayments.html">open_endpoint</a></span><span class="op">(</span><span class="st">"profile_covered"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=500</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_endpoint</a></span><span class="op">(</span><span class="st">"MLR_summary"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_endpoint</a></span><span class="op">(</span><span class="st">"mlr_summary"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/743f9f04-4473-41e2-9da2-9a89db65ee55/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=8000</span>
@@ -184,11 +184,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># care_temporal("quality_payment") |&gt; base_request()</span></span></span>
-<span class="r-in"><span><span class="co"># caid_temporal("MCP") |&gt; base_request()</span></span></span>
-<span class="r-in"><span><span class="co"># open_temporal("GROUP_all") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co"># caid_temporal("healthcare_quality") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co"># open_temporal("payment_general") |&gt; base_request()</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># care_troup("utilization") |&gt; base_request()</span></span></span>
-<span class="r-in"><span><span class="co"># open_troup("grouped_payment") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co"># open_troup("payment_grouped") |&gt; base_request()</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9270</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9271</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,290 +67,101 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caid_endpoint</span><span class="op">(</span><span class="st">"MLR_summary"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caid_endpoint</span><span class="op">(</span><span class="st">"managed_longterm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/743f9f04-4473-41e2-9da2-9a89db65ee55/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "MLR Summary Reports"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "The MLR Summary Reports provide plan-specific MLRs for Medicaid managed care programs. The MLR summary report d"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-11-04"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://download.medicaid.gov/data/mlr-public-use-file-07302024final.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/7c6b1168-3353-4027-8b9c-03d622d7e999"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.medicaid.gov/sites/default/files/uploaded_resources/managed-long-term-services-and-supports-mltss-"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 1719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 399</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state                                            : chr "state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ program_name                                     : chr "program_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ program_type                                     : chr "program_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ eligibility_group                                : chr "eligibility_group"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ if_other_describe_eligibility_group              : chr "if_other_describe_eligibility_group"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ mco_pihp_or_pahp_name                            : chr "mco_pihp_or_pahp_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ mlr_reporting_period_start_date                  : chr "mlr_reporting_period_start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ mlr_reporting_period_end_date                    : chr "mlr_reporting_period_end_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ report_year                                      : chr "report_year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ mlr_numerator                                    : chr "mlr_numerator"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ mlr_denominator                                  : chr "mlr_denominator"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ statereported_member_months                      : chr "statereported_member_months"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ adjusted_mlr                                     : chr "adjusted_mlr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ remittance_dollar_amount_for_mlr_reporting_period: chr "remittance_dollar_amount_for_mlr_reporting_period"</span>
-<span class="r-in"><span><span class="fu">caid_group</span><span class="op">(</span><span class="st">"demographics"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state                                    : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ notes                                    : chr "notes"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ total_any_managed_care_enrollees         : chr "total_any_managed_care_enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comprehensive_managed_care_ltss_enrollees: chr "comprehensive_managed_care_ltss_enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comprehensive_managed_care_ltss_percent  : chr "comprehensive_managed_care_ltss_percent"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ managed_ltss_only_enrollees              : chr "managed_ltss_only_enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ managed_ltss_only_percent                : chr "managed_ltss_only_percent"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ year                                     : chr "year"</span>
+<span class="r-in"><span><span class="fu">caid_group</span><span class="op">(</span><span class="st">"caid_dual_status"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicaid and CHIP Enrollee Demographics"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_well      : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/289182e5-44c8-4fcc-96c4-4af69be9863f/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dual Status Information for Medicaid and CHIP Beneficiaries"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_month: &lt;caid_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/36ed6909-ab49-4ca5-a38e-6790138cd613/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid and CHIP enrollees who received a well-child visit"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Month"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes monthly enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/well-child-visits-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/DualStatus-montly.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_sud       : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8062e2f4-4c0a-41c9-8217-979468a80986/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 13356</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state        : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ month        : chr "month"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dualstatus   : chr "dualstatus"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ countenrolled: chr "countenrolled"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dqunusable   : chr "dqunusable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_year : &lt;caid_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/93b36a8e-4dd5-4ff4-9a8b-8c6537684705/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid and CHIP enrollees who received mental health or SUD services"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Year"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set presents annual enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status f"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/mh-and-sud-services-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/DualStatus-anul.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_disability: &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b12e390f-1721-47c0-bb38-b0b1805e0446/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid enrollees who qualify for benefits based on disability"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid enrollees who are eligible for benefits based "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/disability-2020-2022-01162025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 114</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_premature : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/ee3b9534-0d19-4c1b-bf74-43f898d5de7c/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and rates of Medicaid- and Childrens Health Insurance Program (CHIP)-cover"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/preterm-birth-and-smm-2020-2022-01172025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                           : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                      : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic            : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                  : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                       : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_deliveries            : chr "count_of_deliveries"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_deliveries: chr "denominator_count_of_deliveries"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ rate_of_deliveries             : chr "rate_of_deliveries"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                   : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_language  : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/3df86994-c0e4-4106-a404-e95e87c824e6/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Primary language spoken by the Medicaid and CHIP population"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-18"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/primary-language-2020-2022-01162025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_race      : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b9e18d80-c765-4fb9-95e7-81951e01a6a3/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Race and ethnicity of the national Medicaid and CHIP population"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/race-and-ethnicity-2020-2022-01162025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_rural     : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/73fdbf7c-569e-427b-9bff-eeed34a51dcb/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Rural Medicaid and CHIP enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/rural-residence-2020-2022-01162025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 603</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ DEMO_waive     : &lt;caid_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/4d4eaf55-33d3-4468-80b4-63553f4530ae/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Section 1915(c) waiver program participants"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/1915c-waiver-2020-2022-01162025.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr "year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr "geography"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr "subpopulation_topic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr "subpopulation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr "category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr "count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr "denominator_count_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr "percentage_of_enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr "data_version"</span>
-<span class="r-in"><span><span class="fu">caid_temporal</span><span class="op">(</span><span class="st">"MCP"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                    : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                     : chr "year"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dualstatus               : chr "dualstatus"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ counteverenrolled        : chr "counteverenrolled"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ countlastmonthenrollment : chr "countlastmonthenrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ averageenrollmentpermonth: chr "averageenrollmentpermonth"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dqunusable               : chr "dqunusable"</span>
+<span class="r-in"><span><span class="fu">caid_temporal</span><span class="op">(</span><span class="st">"state_drug_util"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;caid_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Managed Care Programs by State"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "State Drug Utilization Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Drug utilization data are reported by states for covered outpatient drugs that are paid for by state Medicaid a"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ features                                                        : chr "features"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ program_type                                                    : chr "program_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ statewide_or_regionspecific                                     : chr "statewide_or_regionspecific"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ federal_operating_authority                                     : chr "federal_operating_authority"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ program_start_date                                              : chr "program_start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ waiver_expiration_date_if_applicable                            : chr "waiver_expiration_date_if_applicable"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ if_the_program_ended_in_2021_indicate_the_end_date              : chr "if_the_program_ended_in_2021_indicate_the_end_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_lowincome_adults_not_covered_under_aca_0778: chr "populations_enrolled_lowincome_adults_not_covered_under_aca_0778"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_lowincome_adults_covered_under_aca_sec_03d9: chr "populations_enrolled_lowincome_adults_covered_under_aca_sec_03d9"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_aged_blind_or_disabled_children_or_adults  : chr "populations_enrolled_aged_blind_or_disabled_children_or_adults"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_nondisabled_children_excludes_children_1dda: chr "populations_enrolled_nondisabled_children_excludes_children_1dda"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_individuals_receiving_limited_benefits_facc: chr "populations_enrolled_individuals_receiving_limited_benefits_facc"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_full_duals                                 : chr "populations_enrolled_full_duals"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_children_with_special_health_care_needs    : chr "populations_enrolled_children_with_special_health_care_needs"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_native_americanalaskan_natives             : chr "populations_enrolled_native_americanalaskan_natives"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_foster_care_and_adoption_assistance_ch_b424: chr "populations_enrolled_foster_care_and_adoption_assistance_ch_b424"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_enrollment_choice_period                   : chr "populations_enrolled_enrollment_choice_period"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_enrollment_broker_name_if_applicable       : chr "populations_enrolled_enrollment_broker_name_if_applicable"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ populations_enrolled_notes_on_enrollment_choice_period          : chr "populations_enrolled_notes_on_enrollment_choice_period"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_inpatient_hospital_physical_health             : chr "benefits_covered_inpatient_hospital_physical_health"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_inpatient_hospital_behavioral_health_mh_an_4041: chr "benefits_covered_inpatient_hospital_behavioral_health_mh_an_4041"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_outpatient_hospital_physical_health            : chr "benefits_covered_outpatient_hospital_physical_health"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_outpatient_hospital_behavioral_health_mh_a_ceee: chr "benefits_covered_outpatient_hospital_behavioral_health_mh_a_ceee"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_partial_hospitalization                        : chr "benefits_covered_partial_hospitalization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_physician                                      : chr "benefits_covered_physician"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_nurse_practitioner                             : chr "benefits_covered_nurse_practitioner"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_rural_health_clinics_and_fqhcs                 : chr "benefits_covered_rural_health_clinics_and_fqhcs"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_clinic_services                                : chr "benefits_covered_clinic_services"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_lab_and_xray                                   : chr "benefits_covered_lab_and_xray"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_prescription_drugs                             : chr "benefits_covered_prescription_drugs"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_prosthetic_devices                             : chr "benefits_covered_prosthetic_devices"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_epsdt                                          : chr "benefits_covered_epsdt"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_case_management                                : chr "benefits_covered_case_management"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_ssa_section_1945authorized_health_home         : chr "benefits_covered_ssa_section_1945authorized_health_home"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_home_health_services_services_in_home          : chr "benefits_covered_home_health_services_services_in_home"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_family_planning                                : chr "benefits_covered_family_planning"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_dental_services_medicalsurgical                : chr "benefits_covered_dental_services_medicalsurgical"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_dental_preventative_or_corrective              : chr "benefits_covered_dental_preventative_or_corrective"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_personal_care_state_plan_option                : chr "benefits_covered_personal_care_state_plan_option"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_hcbs_waiver_services                           : chr "benefits_covered_hcbs_waiver_services"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_private_duty_nursing                           : chr "benefits_covered_private_duty_nursing"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_icfidd                                         : chr "benefits_covered_icfidd"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_nursing_facility_services                      : chr "benefits_covered_nursing_facility_services"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_hospice_care                                   : chr "benefits_covered_hospice_care"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_nonemergency_medical_transportation            : chr "benefits_covered_nonemergency_medical_transportation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_institution_for_mental_disease_inpatient_t_448a: chr "benefits_covered_institution_for_mental_disease_inpatient_t_448a"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ benefits_covered_other_eg_nurse_midwife_services_freestandi_d504: chr "benefits_covered_other_eg_nurse_midwife_services_freestandi_d504"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality_assurance_and_improvement_hedis_data_required           : chr "quality_assurance_and_improvement_hedis_data_required"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality_assurance_and_improvement_cahps_data_required           : chr "quality_assurance_and_improvement_cahps_data_required"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality_assurance_and_improvement_accreditation_required        : chr "quality_assurance_and_improvement_accreditation_required"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality_assurance_and_improvement_accrediting_organization      : chr "quality_assurance_and_improvement_accrediting_organization"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quality_assurance_and_improvement_eqro_contractor_name_if_a_f2dc: chr "quality_assurance_and_improvement_eqro_contractor_name_if_a_f2dc"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ performance_incentives_payment_bonusesdifferentials_to_rewa_eece: chr "performance_incentives_payment_bonusesdifferentials_to_rewa_eece"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ performance_incentives_preferential_autoenrollment_to_rewar_ab96: chr "performance_incentives_preferential_autoenrollment_to_rewar_ab96"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ performance_incentives_public_reports_comparing_plan_perfor_42d0: chr "performance_incentives_public_reports_comparing_plan_perfor_42d0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ performance_incentives_withholds_tied_to_performance_metrics    : chr "performance_incentives_withholds_tied_to_performance_metrics"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ performance_incentives_mcosphps_required_or_encouraged_to_p_bf59: chr "performance_incentives_mcosphps_required_or_encouraged_to_p_bf59"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ participating_plans_plans_in_program                            : chr "participating_plans_plans_in_program"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ notes_program_notes                                             : chr "notes_program_notes"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state                                                           : chr "state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [6 × 5] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2022 2021 2020 2019 2018 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.medicaid.gov/api/1/datastore/query/ac74549c-a621-4f6b-a42d-1a05bc0eb5a3/0" "https://data.medicaid.gov/api/1/datastore/query/7459d190-e592-42e0-9b66-6f4e7e05eb9b/0" "https://data.medicaid.gov/api/1/datastore/query/8483cef4-972a-4c39-8290-c9d19bead88d/0" "https://data.medicaid.gov/api/1/datastore/query/72135da5-f8b4-475b-b602-91621f4205d9/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2024-10-16" "2023-07-21" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:6] "https://data.medicaid.gov/sites/default/files/uploaded_resources/2022-Managed-care-prgrm-features-by-state.csv" "https://data.medicaid.gov/sites/default/files/uploaded_resources/2021-Table9_07212023_1.csv" "https://data.medicaid.gov/sites/default/files/uploaded_resources/2020-Table9_06132022.csv" "https://data.medicaid.gov/sites/default/files/uploaded_resources/2019_Table9_10_0.csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dictionary: chr [1:6] NA NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 2550443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ utilization_type              : chr "utilization_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state                         : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ ndc                           : chr "ndc"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ labeler_code                  : chr "labeler_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ product_code                  : chr "product_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ package_size                  : chr "package_size"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ year                          : chr "year"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ quarter                       : chr "quarter"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ suppression_used              : chr "suppression_used"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ product_name                  : chr "product_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ units_reimbursed              : chr "units_reimbursed"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ number_of_prescriptions       : chr "number_of_prescriptions"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ total_amount_reimbursed       : chr "total_amount_reimbursed"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ medicaid_amount_reimbursed    : chr "medicaid_amount_reimbursed"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ non_medicaid_amount_reimbursed: chr "non_medicaid_amount_reimbursed"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [34 × 5] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:34] 2024 2023 2022 2021 2020 2019 2018 2017 2016 2015 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:34], format: "2024-10-21" "2024-10-21" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:34] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0" "https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0" "https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0" "https://data.medicaid.gov/api/1/datastore/query/eec7fbe6-c4c4-5915-b3d0-be5828ef4e9d/0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:34] "https://download.medicaid.gov/data/SDUD2024.csv" "https://download.medicaid.gov/data/SDUD2023.csv" "https://download.medicaid.gov/data/SDUD2022.csv" "https://download.medicaid.gov/data/SDUD2021.csv" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dictionary: chr [1:34] NA NA NA "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/75ffd9ed-1e27-44c0-ad49-ea39648dff02" ...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
