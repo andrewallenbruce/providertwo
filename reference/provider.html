@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9269</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9270</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,338 +65,337 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"PSI90_6digit"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/muwa-iene/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "CMS Medicare PSI-90 and component measures - six-digit estimate dataset"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "This data set includes the Patient Safety and Adverse Events Composite measure (CMS Medicare PSI 90) and the in"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ issued     : Date[1:1], format: "2020-12-10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ group      : chr "Hospitals"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ issued     : Date[1:1], format: "2024-10-10"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-04-08"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ released   : Date[1:1], format: "2025-04-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/provider-data/dataset/muwa-iene"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/muwa-iene#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/84bd78c1b4e386185bcef2af963d8cf9_1744668313/CM"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7#data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/dd03994fc93e296bb0297f1cd43cc987_1744668308/ASC_Facility.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 51975</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_id  : chr "facility_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_name: chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ address      : chr "address"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ citytown     : chr "citytown"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state        : chr "state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ zip_code     : chr "zip_code"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ countyparish : chr "countyparish"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ measure_id   : chr "measure_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ measure_name : chr "measure_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ rate         : chr "rate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ footnote     : chr "footnote"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ start_date   : chr "start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ end_date     : chr "end_date"</span>
-<span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"joint_replace"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/tqkv-mgxq/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Comprehensive Care For Joint Replacement Model - Provider Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Comprehensive Care for Joint Replacement Model - provider data. This data set includes provider data for two qu"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ issued     : Date[1:1], format: "2020-12-10"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-01-08"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ released   : Date[1:1], format: "2025-04-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/provider-data/dataset/tqkv-mgxq"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/tqkv-mgxq#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/26896abd613a88df1d7d9637e9f85f19_1736791511/CJ"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_id            : chr "facility_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_name          : chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ msa                    : chr "msa"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ msa_title              : chr "msa_title"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hcahps_hlmr            : chr "hcahps_hlmr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hcahps_hlmr_percentile : chr "hcahps_hlmr_percentile"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hcahps_start_date      : chr "hcahps_start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hcahps_end_date        : chr "hcahps_end_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ hcahps_footnote        : chr "hcahps_footnote"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comphipknee            : chr "comphipknee"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comphipknee_percentile : chr "comphipknee_percentile"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comp_start_date        : chr "comp_start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comp_end_date          : chr "comp_end_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ comp_footnote          : chr "comp_footnote"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pro                    : chr "pro"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pro_start_date         : chr "pro_start_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pro_end_date           : chr "pro_end_date"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ reconciliation_footnote: chr "reconciliation_footnote"</span>
-<span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"footnote_xwalk"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/y9us-9xdf/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Footnote Crosswalk"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "The footnote crosswalk displays a list of footnotes and their summary."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ issued     : Date[1:1], format: "2020-12-10"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-01-13"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ released   : Date[1:1], format: "2025-04-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/provider-data/dataset/y9us-9xdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/y9us-9xdf#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/f29bb7c812e242f6edfef0a4b7d0eaca_1736805905/Fo"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ footnote     : chr "footnote"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ footnote_text: chr "footnote_text"</span>
-<span class="r-in"><span><span class="fu">pro_group</span><span class="op">(</span><span class="st">"PDC"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 11288</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_name             : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ facility_id               : chr "facility_id"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npi                       : chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ citytown                  : chr "citytown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ state                     : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ zip_code                  : chr "zip_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ year                      : chr "year"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc1_rate                 : chr "asc1_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc1_footnote             : chr "asc1_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc2_rate                 : chr "asc2_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc2_footnote             : chr "asc2_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc3_rate                 : chr "asc3_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc3_footnote             : chr "asc3_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc4_rate                 : chr "asc4_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc4_footnote             : chr "asc4_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc9_rate                 : chr "asc9_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc9_footnote             : chr "asc9_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc11_rate                : chr "asc11_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc11_footnote            : chr "asc11_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_total_cases         : chr "asc12_total_cases"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_performance_category: chr "asc12_performance_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_rshv_rate           : chr "asc12_rshv_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_interval_lower_limit: chr "asc12_interval_lower_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_interval_upper_limit: chr "asc12_interval_upper_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc12_footnote            : chr "asc12_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc13_rate                : chr "asc13_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc13_footnote            : chr "asc13_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc14_rate                : chr "asc14_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc14_footnote            : chr "asc14_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_total_cases         : chr "asc17_total_cases"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_performance_category: chr "asc17_performance_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_rshv_rate           : chr "asc17_rshv_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_interval_lower_limit: chr "asc17_interval_lower_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_interval_upper_limit: chr "asc17_interval_upper_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc17_footnote            : chr "asc17_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_total_cases         : chr "asc18_total_cases"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_performance_category: chr "asc18_performance_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_rshv_rate           : chr "asc18_rshv_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_interval_lower_limit: chr "asc18_interval_lower_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_interval_upper_limit: chr "asc18_interval_upper_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc18_footnote            : chr "asc18_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_total_cases         : chr "asc19_total_cases"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_performance_category: chr "asc19_performance_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_rshv_rate           : chr "asc19_rshv_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_interval_lower_limit: chr "asc19_interval_lower_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_interval_upper_limit: chr "asc19_interval_upper_limit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc19_footnote            : chr "asc19_footnote"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_sample              : chr "asc20_sample"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_rate                : chr "asc20_rate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_footnote            : chr "asc20_footnote"</span>
+<span class="r-in"><span><span class="fu">pro_group</span><span class="op">(</span><span class="st">"pro_dialysis"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;pro_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Provider Data Catalog"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_affiliations: &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Facility Affiliation Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This is the facility affiliations data publicly reported in the Provider Data Catalog."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-08-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-04-18"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-05-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/27ea-46a8#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/b7c4080ae144663e43353a9c35cd3f53_1744999531/Fa"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1557102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 779</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                                       : chr "npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id                                : chr "ind_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name                        : chr "provider_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name                       : chr "provider_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name                      : chr "provider_middle_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                                      : chr "suff"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_type                             : chr "facility_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_affiliations_certification_number: chr "facility_affiliations_certification_number"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_type_certification_number        : chr "facility_type_certification_number"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_clinicians  : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "National Downloadable File"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Doctors and Clinicians national downloadable file is organized such that each line is unique at the clinici"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-08-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-04-18"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-05-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/mj5m-pzi6#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/52c3f098d7e56028a298fd297cb0b38d_1744999530/DA"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 2640783</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                 : chr "npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id          : chr "ind_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_enrl_id         : chr "ind_enrl_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name  : chr "provider_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name : chr "provider_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name: chr "provider_middle_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                : chr "suff"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ gndr                : chr "gndr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cred                : chr "cred"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ med_sch             : chr "med_sch"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ grd_yr              : chr "grd_yr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ pri_spec            : chr "pri_spec"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_1          : chr "sec_spec_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_2          : chr "sec_spec_2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_3          : chr "sec_spec_3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_4          : chr "sec_spec_4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sec_spec_all        : chr "sec_spec_all"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telehlth            : chr "telehlth"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name       : chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id          : chr "org_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ num_org_mem         : chr "num_org_mem"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adr_ln_1            : chr "adr_ln_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adr_ln_2            : chr "adr_ln_2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ln_2_sprs           : chr "ln_2_sprs"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ citytown            : chr "citytown"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state               : chr "state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ zip_code            : chr "zip_code"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telephone_number    : chr "telephone_number"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_assgn           : chr "ind_assgn"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ grp_assgn           : chr "grp_assgn"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ adrs_id             : chr "adrs_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ PDC_utilization : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/n0yb-util/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Utilization Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Doctors and Clinicians utilization data file reports volume information for procedures of interest on clini"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2024-01-04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_facility: &lt;pro_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - Listing by Facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ group      : chr "Dialysis facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "A list of all dialysis facilities registered with Medicare that includes addresses and phone numbers, as well a"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2020-03-14"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-04-03"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/n0yb-util"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/n0yb-util#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/72eedb23fcbe1ef3666f89db01b85e1d_1742861112/Utilization.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-04-23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9#data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/c04d84bc5c641284494bee4f20f17f9c_1742846704/DFC_FACILITY.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 301894</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                      : chr "npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id               : chr "ind_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name       : chr "provider_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name      : chr "provider_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_middle_name     : chr "provider_middle_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ suff                     : chr "suff"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ procedure_category       : chr "procedure_category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count                    : chr "count"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentile               : chr "percentile"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ profile_display_indicator: chr "profile_display_indicator"</span>
-<span class="r-in"><span><span class="fu">pro_group</span><span class="op">(</span><span class="st">"MIPS"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;pro_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "PY 2022 MIPS Public Reporting"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_performance: &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/a174-a962/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "PY 2022 Clinician Public Reporting: Overall MIPS Performance"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This file contains Merit-Based Incentive Payment System (MIPS) Final Scores and performance category scores for"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-08-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-07-25"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2024-08-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/a174-a962"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/a174-a962#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/6b9e57db797c95853b034b329b1212b2_1721952317/ec_score_file.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 7556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cms_certification_number_ccn                                    : chr "cms_certification_number_ccn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ network                                                         : chr "network"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name                                                   : chr "facility_name"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_date                                                  : chr "five_star_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star                                                       : chr "five_star"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_data_availability_code                                : chr "five_star_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ address_line_1                                                  : chr "address_line_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ address_line_2                                                  : chr "address_line_2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ citytown                                                        : chr "citytown"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                                           : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ zip_code                                                        : chr "zip_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ countyparish                                                    : chr "countyparish"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telephone_number                                                : chr "telephone_number"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ profit_or_nonprofit                                             : chr "profit_or_nonprofit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ chain_owned                                                     : chr "chain_owned"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ chain_organization                                              : chr "chain_organization"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ late_shift                                                      : chr "late_shift"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ of_dialysis_stations                                            : chr "of_dialysis_stations"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ offers_incenter_hemodialysis                                    : chr "offers_incenter_hemodialysis"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ offers_peritoneal_dialysis                                      : chr "offers_peritoneal_dialysis"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ offers_home_hemodialysis_training                               : chr "offers_home_hemodialysis_training"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ certification_date                                              : chr "certification_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ claims_date                                                     : chr "claims_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ eqrs_date                                                       : chr "eqrs_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smr_date                                                        : chr "smr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_survival_category_text                                  : chr "patient_survival_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_survival_data_availability_code                         : chr "patient_survival_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_included_in_survival_summary                 : chr "number_of_patients_included_in_survival_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ mortality_rate_facility                                         : chr "mortality_rate_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ mortality_rate_upper_confidence_limit_975                       : chr "mortality_rate_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ mortality_rate_lower_confidence_limit_25                        : chr "mortality_rate_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ shr_date                                                        : chr "shr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_hospitalization_category_text                           : chr "patient_hospitalization_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_hospitalization_data_availability_code                  : chr "patient_hospitalization_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_included_in_hospitalization_summary          : chr "number_of_patients_included_in_hospitalization_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalization_rate_facility                                   : chr "hospitalization_rate_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalization_rate_upper_confidence_limit_975                 : chr "hospitalization_rate_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalization_rate_lower_confidence_limit_25                  : chr "hospitalization_rate_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ srr_date                                                        : chr "srr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_hospital_readmission_category                           : chr "patient_hospital_readmission_category"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_hospital_readmission_data_availability_code             : chr "patient_hospital_readmission_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_hospitalizations_included_in_hospital_readmission_fc2b: chr "number_of_hospitalizations_included_in_hospital_readmission_fc2b"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ readmission_rate_facility                                       : chr "readmission_rate_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ readmission_rate_upper_confidence_limit_975                     : chr "readmission_rate_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ readmission_rate_lower_confidence_limit_25                      : chr "readmission_rate_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ strr_date                                                       : chr "strr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_transfusion_category_text                               : chr "patient_transfusion_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_transfusion_data_availability_code                      : chr "patient_transfusion_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_included_in_the_transfusion_summary          : chr "number_of_patients_included_in_the_transfusion_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusion_rate_facility                                       : chr "transfusion_rate_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusion_rate_upper_confidence_limit_975                     : chr "transfusion_rate_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusion_rate_lower_confidence_limit_25                      : chr "transfusion_rate_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ swr_date                                                        : chr "swr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ swr_category_text                                               : chr "swr_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_transplant_waitlist_data_availability_code              : chr "patient_transplant_waitlist_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_in_this_facility_for_swr                     : chr "number_of_patients_in_this_facility_for_swr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_first_kidney_transplant_waitlist_ratio             : chr "standardized_first_kidney_transplant_waitlist_ratio"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ 95_ci_upper_limit_for_swr                                       : chr "95_ci_upper_limit_for_swr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ 95_ci_lower_limit_for_swr                                       : chr "95_ci_lower_limit_for_swr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ pppw_category_text                                              : chr "pppw_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_prevalent_transplant_waitlist_data_availability_code    : chr "patient_prevalent_transplant_waitlist_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_for_pppw                                     : chr "number_of_patients_for_pppw"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_prevalent_patients_waitlisted                     : chr "percentage_of_prevalent_patients_waitlisted"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ 95_ci_upper_limit_for_pppw                                      : chr "95_ci_upper_limit_for_pppw"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ 95_ci_lower_limit_for_pppw                                      : chr "95_ci_lower_limit_for_pppw"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr_date                                                       : chr "sedr_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr_category_text                                              : chr "sedr_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ emergency_department_encounter_data_availability_code           : chr "emergency_department_encounter_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_included_in_sedr_summary                     : chr "number_of_patients_included_in_sedr_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_ed_visits_ratio_facility                           : chr "standardized_ed_visits_ratio_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr_upper_confidence_limit_975                                 : chr "sedr_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr_lower_confidence_limit_25                                  : chr "sedr_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30_date                                                       : chr "ed30_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30_category_text                                              : chr "ed30_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ emergency_department_encounter_ratio_occurring_within_30_da_f8e3: chr "emergency_department_encounter_ratio_occurring_within_30_da_f8e3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_hospitalizations_included_in_ed30_summary             : chr "number_of_hospitalizations_included_in_ed30_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_ed_visits_within_30_days_of_hospital_discharge_6307: chr "standardized_ed_visits_within_30_days_of_hospital_discharge_6307"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30_upper_confidence_limit_975                                 : chr "ed30_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30_lower_confidence_limit_25                                  : chr "ed30_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ years_modality_switch_based_upon                                : chr "years_modality_switch_based_upon"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smosr_classification_category_facility                          : chr "smosr_classification_category_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modality_switch_data_availability_code                          : chr "modality_switch_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smosr_number_of_eligible_patients_facility                      : chr "smosr_number_of_eligible_patients_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smosr_standardized_modality_switch_ratio_facility               : chr "smosr_standardized_modality_switch_ratio_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smosr_upper_confidence_limit_facility                           : chr "smosr_upper_confidence_limit_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ smosr_lower_confidence_limit_facility                           : chr "smosr_lower_confidence_limit_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sir_date                                                        : chr "sir_date"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_infection_category_text                                 : chr "patient_infection_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_infection_data_availability_code                        : chr "patient_infection_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standard_infection_ratio                                        : chr "standard_infection_ratio"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sir_upper_confidence_limit_975                                  : chr "sir_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sir_lower_confidence_limit_25                                   : chr "sir_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_category_text                                           : chr "fistula_category_text"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_data_availability_code                                  : chr "fistula_data_availability_code"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ number_of_patients_included_in_fistula_summary                  : chr "number_of_patients_included_in_fistula_summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate_facility                                           : chr "fistula_rate_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate_upper_confidence_limit_975                         : chr "fistula_rate_upper_confidence_limit_975"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate_lower_confidence_limit_25                          : chr "fistula_rate_lower_confidence_limit_25"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hcp_vaccination_data_collection_dates                           : chr "hcp_vaccination_data_collection_dates"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. ..  [list output truncated]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_national: &lt;pro_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2rkq-ygai/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - National Averages"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ group      : chr "Dialysis facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "National averages of common dialysis quality measures."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2020-03-14"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-04-23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/2rkq-ygai"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/2rkq-ygai#data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/ae019f56e76839ee1da1b51f502954cc_1742846706/DFC_NATIONAL.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 624209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                                       : chr "npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id                                : chr "org_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name                        : chr "provider_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name                       : chr "provider_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ source                                    : chr "source"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facilitybased_scoring_certification_number: chr "facilitybased_scoring_certification_number"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name                             : chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ quality_category_score                    : chr "quality_category_score"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ pi_category_score                         : chr "pi_category_score"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ia_category_score                         : chr "ia_category_score"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cost_category_score                       : chr "cost_category_score"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ final_mips_score_without_cpb              : chr "final_mips_score_without_cpb"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ final_mips_score                          : chr "final_mips_score"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_patient    : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/8c70-d353/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "PY 2022 Group Public Reporting: Patient Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This file contains information for the Consumer Assessment of Healthcare Providers and Systems (CAHPS) for MIPS"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-08-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-05-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2024-05-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/8c70-d353"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/8c70-d353#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/6083bb351293e72eda42881d6a93d803_1715976323/gr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name: chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id   : chr "org_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd   : chr "measure_cd"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title: chr "measure_title"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate     : chr "prf_rate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count: chr "patient_count"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fn           : chr "fn"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_clinician  : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/7d6a-e7a6/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "PY 2022 Clinician Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2020-11-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-05-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2024-05-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/7d6a-e7a6"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/7d6a-e7a6#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/b9c4d902c52ae898d3f422fffbdc59fe_1715976323/ec"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ country                                                         : chr "country"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusion_rate_us                                             : chr "transfusion_rate_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions__better_than_expected_us                           : chr "transfusions__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions__as_expected_us                                    : chr "transfusions__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions__worse_than_expected_us                            : chr "transfusions__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_hd_patients_with_ktv12                      : chr "percentage_of_adult_hd_patients_with_ktv12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_pd_patients_with_ktv17                      : chr "percentage_of_adult_pd_patients_with_ktv17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_hd_patients_with_ktv12                  : chr "percentage_of_pediatric_hd_patients_with_ktv12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_pd_patients_with_ktv18                  : chr "percentage_of_pediatric_pd_patients_with_ktv18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_hd_patients_with_npcr                   : chr "percentage_of_pediatric_hd_patients_with_npcr"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate_us                                                 : chr "fistula_rate_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__better_than_expected_us                           : chr "fistula_rate__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__as_expected_us                                    : chr "fistula_rate__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__worse_than_expected_us                            : chr "fistula_rate__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_long_term_catheter_in_use     : chr "percentage_of_adult_patients_with_long_term_catheter_in_use"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d: chr "percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222: chr "percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__85e8: chr "percentage_of_adult_patients_with_serum_phosphorus_between__85e8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__fad7: chr "percentage_of_adult_patients_with_serum_phosphorus_between__fad7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__ff32: chr "percentage_of_adult_patients_with_serum_phosphorus_between__ff32"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3: chr "percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalization_rate_us                                         : chr "hospitalization_rate_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations__better_than_expected_us                       : chr "hospitalizations__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations__as_expected_us                                : chr "hospitalizations__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations__worse_than_expected_us                        : chr "hospitalizations__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ readmission_rate_us                                             : chr "readmission_rate_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital_readmission__better_than_expected_us                   : chr "hospital_readmission__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital_readmission__as_expected_us                            : chr "hospital_readmission__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital__readmission__worse_than_expected_us                   : chr "hospital__readmission__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ mortality_rate_us                                               : chr "mortality_rate_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival__better_than_expected_us                               : chr "survival__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival__as_expected_us                                        : chr "survival__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival__worse_than_expected_us                                : chr "survival__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_first_kidney_transplant_waitlist_ratio_us          : chr "standardized_first_kidney_transplant_waitlist_ratio_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting__better_than_expec_a24d: chr "incident_patients_transplant_waitlisting__better_than_expec_a24d"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting__as_expected_us        : chr "incident_patients_transplant_waitlisting__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting__worse_than_expected_us: chr "incident_patients_transplant_waitlisting__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_prevalent_patients_waitlisted_us                  : chr "percentage_of_prevalent_patients_waitlisted_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting_better_than_expec_c0cd: chr "prevalent_patients_transplant_waitlisting_better_than_expec_c0cd"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting__as_expected_us       : chr "prevalent_patients_transplant_waitlisting__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting__worse_than_expec_e6e9: chr "prevalent_patients_transplant_waitlisting__worse_than_expec_e6e9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ healthcare_worker_covid19_vaccination_adherence_percentage_us   : chr "healthcare_worker_covid19_vaccination_adherence_percentage_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_patients_with_hgb10_gdl_us                        : chr "percentage_of_patients_with_hgb10_gdl_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_patients_with_hgb12_gdl_us                        : chr "percentage_of_patients_with_hgb12_gdl_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection__better_than_expected_us                              : chr "infection__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection__as_expected_us                                       : chr "infection__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection__worse_than_expected_us                               : chr "infection__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_ed_visits_ratio_us                                 : chr "standardized_ed_visits_ratio_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__better_than_expected_us                                   : chr "sedr__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__as_expected_us                                            : chr "sedr__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__worse_than_expected_us                                    : chr "sedr__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_ed_visits_within_30_days_of_hospital_discharge_d0c6: chr "standardized_ed_visits_within_30_days_of_hospital_discharge_d0c6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__better_than_expected_us                                   : chr "ed30__better_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__as_expected_us                                            : chr "ed30__as_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__worse_than_expected_us                                    : chr "ed30__worse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standardized_modality_switch_ratio                              : chr "standardized_modality_switch_ratio"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_1_smsrbetter_than_expected_us               : chr "n_for_smsr_category_1_smsrbetter_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_2_smsras_expected_us                        : chr "n_for_smsr_category_2_smsras_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_3_smsrworse_than_expected_us                : chr "n_for_smsr_category_3_smsrworse_than_expected_us"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_state   : &lt;pro_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2fpu-cgbb/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - State Averages"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ group      : chr "Dialysis facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "State averages of common dialysis quality measures."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2020-03-14"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-04-23"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/2fpu-cgbb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/2fpu-cgbb#data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/3b5f0449f531ee07c467e49abed89954_1742846705/DFC_STATE.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 523282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ npi                : chr "npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ind_pac_id         : chr "ind_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_last_name : chr "provider_last_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ provider_first_name: chr "provider_first_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_1         : chr "apm_affl_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_2         : chr "apm_affl_2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_3         : chr "apm_affl_3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ apm_affl_4         : chr "apm_affl_4"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd         : chr "measure_cd"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title      : chr "measure_title"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr           : chr "invs_msr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value  : chr "attestation_value"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate           : chr "prf_rate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count      : chr "patient_count"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ star_value         : chr "star_value"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_benchmark: chr "five_star_benchmark"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type    : chr "collection_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ccxp_ind           : chr "ccxp_ind"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_group      : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/0ba7-2cb0/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "PY 2022 Group Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-08-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-05-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2024-05-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/0ba7-2cb0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/0ba7-2cb0#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/410d73868de5a4ea585a61ca1365a256_1715976322/gr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 193488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name      : chr "facility_name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ org_pac_id         : chr "org_pac_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_id_1           : chr "aco_id_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_nm_1           : chr "aco_nm_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_id_2           : chr "aco_id_2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ aco_nm_2           : chr "aco_nm_2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd         : chr "measure_cd"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title      : chr "measure_title"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr           : chr "invs_msr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value  : chr "attestation_value"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate           : chr "prf_rate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count      : chr "patient_count"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ star_value         : chr "star_value"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ five_star_benchmark: chr "five_star_benchmark"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type    : chr "collection_type"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ccxp_ind           : chr "ccxp_ind"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ MIPS_virtual    : &lt;pro_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/46dc-a66c/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "PY 2022 Virtual Group Public Reporting: MIPS Measures and Attestations"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This file contains performance information for Merit-Based Incentive Payment System (MIPS) Quality, Promoting I"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2021-06-04"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-05-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2024-05-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/46dc-a66c"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/46dc-a66c#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/635d18fe1428158bf5b033cd27da6cc3_1715976333/vg"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ virtual_group_id : chr "virtual_group_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_cd       : chr "measure_cd"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_title    : chr "measure_title"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ invs_msr         : chr "invs_msr"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ attestation_value: chr "attestation_value"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prf_rate         : chr "prf_rate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ patient_count    : chr "patient_count"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ collection_type  : chr "collection_type"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                                           : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival_better_than_expected_state                             : chr "survival_better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival_as_expected_state                                      : chr "survival_as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ survival_worse_than_expected_state                              : chr "survival_worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations_better_than_expected_state                     : chr "hospitalizations_better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations_as_expected_state                              : chr "hospitalizations_as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospitalizations_worse_than_expected_state                      : chr "hospitalizations_worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital_readmission__better_than_expected_state                : chr "hospital_readmission__better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital_readmission__as_expected_state                         : chr "hospital_readmission__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hospital__readmission__worse_than_expected_state                : chr "hospital__readmission__worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions_better_than_expected_state                         : chr "transfusions_better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions_as_expected_state                                  : chr "transfusions_as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ transfusions_worse_than_expected_state                          : chr "transfusions_worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection_better_than_expected_state                            : chr "infection_better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection_as_expected_state                                     : chr "infection_as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ infection_worse_than_expected_state                             : chr "infection_worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_hd_patients_with_ktv12                      : chr "percentage_of_adult_hd_patients_with_ktv12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_pd_patients_with_ktv17                      : chr "percentage_of_adult_pd_patients_with_ktv17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_hd_patients_with_ktv12                  : chr "percentage_of_pediatric_hd_patients_with_ktv12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_pd_patients_with_ktv18                  : chr "percentage_of_pediatric_pd_patients_with_ktv18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_pediatric_hd_patients_with_npcr_in_use            : chr "percentage_of_pediatric_hd_patients_with_npcr_in_use"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__better_than_expected_state                        : chr "fistula_rate__better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__as_expected_state                                 : chr "fistula_rate__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ fistula_rate__worse_than_expected_state                         : chr "fistula_rate__worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_long_term_catheter_in_use     : chr "percentage_of_adult_patients_with_long_term_catheter_in_use"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d: chr "percentage_of_adult_patients_with_hypercalcemia_serum_calci_044d"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222: chr "percentage_of_adult_patients_with_serum_phosphorus_less_tha_c222"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__85e8: chr "percentage_of_adult_patients_with_serum_phosphorus_between__85e8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__fad7: chr "percentage_of_adult_patients_with_serum_phosphorus_between__fad7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_between__ff32: chr "percentage_of_adult_patients_with_serum_phosphorus_between__ff32"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3: chr "percentage_of_adult_patients_with_serum_phosphorus_greater__d8e3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting_better_than_expect_49e4: chr "incident_patients_transplant_waitlisting_better_than_expect_49e4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting__as_expected_state     : chr "incident_patients_transplant_waitlisting__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ incident_patients_transplant_waitlisting__worse_than_expect_9b13: chr "incident_patients_transplant_waitlisting__worse_than_expect_9b13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting_better_than_expec_c046: chr "prevalent_patients_transplant_waitlisting_better_than_expec_c046"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting__as_expected_state    : chr "prevalent_patients_transplant_waitlisting__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ prevalent_patients_transplant_waitlisting__worse_than_expec_eeb0: chr "prevalent_patients_transplant_waitlisting__worse_than_expec_eeb0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ healthcare_worker_covid19_vaccination_adherence_percentage_state: chr "healthcare_worker_covid19_vaccination_adherence_percentage_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_patients_with_hgb10_gdl_state                     : chr "percentage_of_patients_with_hgb10_gdl_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_patients_with_hgb12_gdl_state                     : chr "percentage_of_patients_with_hgb12_gdl_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__better_than_expected_state                                : chr "sedr__better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__as_expected_state                                         : chr "sedr__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sedr__worse_than_expected_state                                 : chr "sedr__worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__better_than_expected_state                                : chr "ed30__better_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__as_expected_state                                         : chr "ed30__as_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ed30__worse_than_expected_state                                 : chr "ed30__worse_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_1_smsrbetter_than_expected_state            : chr "n_for_smsr_category_1_smsrbetter_than_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_2_smsras_expected_state                     : chr "n_for_smsr_category_2_smsras_expected_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_3_smsrworse_than_expected_state             : chr "n_for_smsr_category_3_smsrworse_than_expected_state"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

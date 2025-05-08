@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9269</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9270</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="provider.html">pro_endpoint</a></span><span class="op">(</span><span class="st">"PDC_affiliations"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="provider.html">pro_endpoint</a></span><span class="op">(</span><span class="st">"pdc_affiliations"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
@@ -141,8 +141,8 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="provider.html">pro_group</a></span><span class="op">(</span><span class="st">"MIPS"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $MIPS_performance</span>
+<span class="r-in"><span><span class="fu"><a href="provider.html">pro_group</a></span><span class="op">(</span><span class="st">"pro_mips"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_performance</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/a174-a962/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
@@ -150,7 +150,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $MIPS_patient</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_patient</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/8c70-d353/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
@@ -158,7 +158,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $MIPS_clinician</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_clinician</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/7d6a-e7a6/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
@@ -166,7 +166,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $MIPS_group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_group</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/0ba7-2cb0/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
@@ -174,7 +174,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $MIPS_virtual</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_virtual</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/46dc-a66c/0?offset=0&amp;count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;limit=2000</span>
