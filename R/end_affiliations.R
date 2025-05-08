@@ -61,14 +61,18 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  pro_endpoint("pdc_affiliations") |>
-    base_request() |>
+  log_info("Loading endpoint...")
+  x <- pro_endpoint("pdc_affiliations")
+  log_info("Querying {x@metadata$title}...")
+  x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
     _[["results"]] |>
     map_na_if() |>
     rnm(pro_names("affiliations")) |>
     as_tbl()
+  log_info("Returned {nrow(x)} results")
+  x
 }
 
 #' Clinicians National Downloadable File
@@ -170,8 +174,10 @@ clinicians <- function(npi           = NULL,
     "adrs_id"              = add_id
   )
 
-  pro_endpoint("pdc_clinicians") |>
-    base_request() |>
+  log_info("Loading endpoint...")
+  x <- pro_endpoint("pdc_clinicians")
+  log_info("Querying {x@metadata$title}...")
+  x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
     _[["results"]] |>
@@ -195,6 +201,8 @@ clinicians <- function(npi           = NULL,
     ) |>
     rnm(pro_names("clinicians")) |>
     as_tbl()
+  log_info("Returned {nrow(x)} results")
+  x
 }
 
 #' Utilization Class
@@ -314,16 +322,26 @@ utilization <- function(npi         = NULL,
   ) |>
     format_query_pro()
 
-  req <- pro_endpoint("pdc_utilization") |> base_request() |> req_url_query(!!!args)
+  req <- pro_endpoint("pdc_utilization") |>
+    base_request() |>
+    req_url_query(!!!args)
 
-  n <- req_url_query(req, count = "true", results = "false") |> perform_simple() |> _[["count"]]
+  n <- req_url_query(
+    req,
+    count = "true",
+    results = "false") |>
+    perform_simple() |>
+    _[["count"]]
 
   if (!n) {
     return(NULL)
   }
 
   if (n) {
-    req_url_query(req, count = "false", results = "true") |>
+    req_url_query(
+      req,
+      count = "false",
+      results = "true") |>
       perform_simple() |>
       _[["results"]] |>
       map_na_if() |>

@@ -12,6 +12,7 @@
 #' @import httr2
 #' @import S7
 #' @import cheapr
+#' @import logger
 #' @import RcppSimdJson
 #' @import cli
 #' @import rrapply
