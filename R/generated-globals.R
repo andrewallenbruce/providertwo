@@ -13,7 +13,7 @@ utils::globalVariables(c(
   "adr_ln_2",
   # <clinicians>
   "adrs_id",
-  # <qpp_stats>
+  # <quality_metrics>
   "category",
   # <catalog_care>
   # <catalog_pro>
@@ -28,7 +28,7 @@ utils::globalVariables(c(
   # <select_care_temp>
   # <select_open_temp>
   "data",
-  # <qpp_elig>
+  # <quality_eligibility>
   "date_approved",
   # <catalog_care>
   "describedBy",
@@ -53,9 +53,9 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
-  # <qpp_elig>
+  # <quality_eligibility>
   "enroll_year",
-  # <qpp_elig>
+  # <quality_eligibility>
   "entity",
   # <catalog_caid>
   # <catalog_health>
@@ -65,9 +65,9 @@ utils::globalVariables(c(
   "fileSize",
   # <catalog_care>
   "filetype",
-  # <qpp_elig>
+  # <quality_eligibility>
   "first_name",
-  # <qpp_elig>
+  # <quality_eligibility>
   "firstApprovedDate",
   # <clinicians>
   "grd_yr",
@@ -79,9 +79,9 @@ utils::globalVariables(c(
   "id",
   # <clinicians>
   "ind_assgn",
-  # <qpp_elig>
+  # <quality_eligibility>
   "is_maqi",
-  # <qpp_elig>
+  # <quality_eligibility>
   "is_new",
   # <catalog_pro>
   # <catalog_health>
@@ -91,7 +91,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   "landingPage",
-  # <qpp_elig>
+  # <quality_eligibility>
   "last_name",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -102,9 +102,9 @@ utils::globalVariables(c(
   "main",
   # <catalog_care>
   "mediaType",
-  # <qpp_stats>
+  # <quality_metrics>
   "metric",
-  # <qpp_elig>
+  # <quality_eligibility>
   "middle_name",
   # <catalog_care>
   # <catalog_pro>
@@ -118,7 +118,7 @@ utils::globalVariables(c(
   # <tidy_resources>
   # <open_dictionary>
   "name",
-  # <qpp_elig>
+  # <quality_eligibility>
   "nationalProviderIdentifierType",
   # <clinicians>
   "num_org_mem",
@@ -144,13 +144,13 @@ utils::globalVariables(c(
   "site",
   # <tidy_resources>
   "size",
-  # <qpp_elig>
+  # <quality_eligibility>
   "specialty",
-  # <qpp_elig>
+  # <quality_eligibility>
   "specialty_category",
-  # <qpp_elig>
+  # <quality_eligibility>
   "specialty_description",
-  # <qpp_elig>
+  # <quality_eligibility>
   "specialty_type",
   # <clinicians>
   "telehlth",
@@ -172,7 +172,7 @@ utils::globalVariables(c(
   # <tidy_resources>
   # <open_dictionary>
   "year",
-  # <qpp_elig>
+  # <quality_eligibility>
   "years_in_medicare",
   NULL
 ))

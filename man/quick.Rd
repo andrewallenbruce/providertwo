@@ -4,23 +4,23 @@
 \alias{quick}
 \title{Quickly access CMS data}
 \usage{
-quick(x, offset = 0L, limit = 1L, call = caller_env())
+quick(x, offset = 0L, limit = 10L, call = caller_env())
 }
 \arguments{
-\item{x}{A string representing the CMS data endpoint or category.}
+\item{x}{\verb{<chr>} Alias representing the CMS data endpoint or category.}
 
-\item{offset}{An integer representing the offset for pagination. Default is 0.}
+\item{offset}{\verb{<int>} The offset for pagination. Default is \code{"0"}.}
 
-\item{limit}{An integer representing the maximum number of records to retrieve. Default is 10,000.}
+\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{"10"}.}
 
-\item{call}{The calling environment. Default is the current environment.}
+\item{call}{Call environment. Default is the current environment.}
 }
 \value{
-A data frame or object containing the requested CMS data.
+A data frame or list containing the requested CMS data.
 }
 \description{
-\code{quick()} is a convenience function to quickly access various CMS data endpoints.
-It provides a simple way to retrieve data from different CMS programs and categories.
+Convenience function to quickly access various CMS data endpoints.
+Mostly for debugging purposes.
 }
 \examples{
 quick("pro_dialysis") |> str()

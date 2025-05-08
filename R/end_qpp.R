@@ -1,20 +1,21 @@
+# quality_eligibility(npi = 1932365699, year = 2024)
+# quality_eligibility(npi = 1043477615, year = 2018)
+# quality_eligibility(npi = 1144544834, year = 2025)
+
 #' Quality Payment Program
 #' @name quality_payment
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
 #' @examples
-#' qpp_stats(year = 2018:2025) |> print(n = Inf)
-#' qpp_elig(npi = 1043477615, year = 2018)
-#' qpp_elig(npi = 1144544834, year = 2025)
-#' qpp_elig(npi = 1932365699, year = 2024)
-#' qpp_elig(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
-#' qpp_elig(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
+#' quality_metrics(year = 2018:2025)
+#' quality_eligibility(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
+#' quality_eligibility(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
 NULL
 
 #' @autoglobal
 #' @export
 #' @rdname quality_payment
-qpp_stats <- function(year) {
+quality_metrics <- function(year) {
 
   walk(year, \(year) check_number_whole(year, min = 2018, max = 2025))
 
@@ -37,7 +38,7 @@ qpp_stats <- function(year) {
 #' @autoglobal
 #' @export
 #' @rdname quality_payment
-qpp_elig <- function(year, npi) {
+quality_eligibility <- function(year, npi) {
 
   check_number_whole(year, min = 2018, max = 2025)
 

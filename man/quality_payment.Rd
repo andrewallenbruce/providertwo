@@ -2,13 +2,13 @@
 % Please edit documentation in R/end_qpp.R
 \name{quality_payment}
 \alias{quality_payment}
-\alias{qpp_stats}
-\alias{qpp_elig}
+\alias{quality_metrics}
+\alias{quality_eligibility}
 \title{Quality Payment Program}
 \usage{
-qpp_stats(year)
+quality_metrics(year)
 
-qpp_elig(year, npi)
+quality_eligibility(year, npi)
 }
 \arguments{
 \item{year}{A vector of years from 2018 to 2025}
@@ -19,10 +19,7 @@ qpp_elig(year, npi)
 Quality Payment Program
 }
 \examples{
-qpp_stats(year = 2018:2025) |> print(n = Inf)
-qpp_elig(npi = 1043477615, year = 2018)
-qpp_elig(npi = 1144544834, year = 2025)
-qpp_elig(npi = 1932365699, year = 2024)
-qpp_elig(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
-qpp_elig(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
+quality_metrics(year = 2018:2025)
+quality_eligibility(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
+quality_eligibility(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
 }

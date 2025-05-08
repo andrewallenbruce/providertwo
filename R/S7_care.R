@@ -59,10 +59,10 @@ temp_metadata <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<care_endpoint>`, `<care_group>`, `<care_temporal>`, or `<care_troup>` object
 #' @examples
-#' care_endpoint("CARE_dialysis")
+#' care_endpoint("care_dialysis")
 #' care_temporal("quality_payment")
-#' care_group("hospital")
-#' care_troup("utilization")
+#' care_group("care_hospital")
+#' care_troup("care_utilization")
 NULL
 
 #' @autoglobal

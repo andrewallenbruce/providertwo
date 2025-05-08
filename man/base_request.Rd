@@ -16,18 +16,18 @@ A new base request
 Create a new request by class
 }
 \examples{
-care_endpoint("enrollees") |> base_request()
+care_endpoint("care_enrollees") |> base_request()
 pro_endpoint("pdc_affiliations") |> base_request()
 open_endpoint("profile_covered") |> base_request()
 caid_endpoint("mlr_summary") |> base_request()
 
-care_group("hospital") |> base_request()
+care_group("care_hospital") |> base_request()
 pro_group("pro_mips") |> base_request()
 
 # care_temporal("quality_payment") |> base_request()
 # caid_temporal("healthcare_quality") |> base_request()
 # open_temporal("payment_general") |> base_request()
 
-# care_troup("utilization") |> base_request()
+# care_troup("care_utilization") |> base_request()
 # open_troup("payment_grouped") |> base_request()
 }
