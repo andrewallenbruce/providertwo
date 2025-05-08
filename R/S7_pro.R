@@ -30,6 +30,7 @@ pro_dimensions <- function(x) {
 pro_metadata <- function(x) {
   list(
     title       = x$title,
+    group       = x$group,
     description = x$description,
     issued      = x$issued,
     modified    = x$modified,
@@ -45,11 +46,8 @@ pro_metadata <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<pro_endpoint>` or`<pro_group>` object
 #' @examples
-#' pro_endpoint("PSI90_6digit")
-#' pro_endpoint("joint_replace")
-#' pro_endpoint("footnote_xwalk")
-#' pro_group("PDC")
-#' pro_group("MIPS")
+#' pro_endpoint("asc_facility")
+#' pro_group("pro_dialysis")
 NULL
 
 #' @autoglobal

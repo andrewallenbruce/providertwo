@@ -1,5 +1,12 @@
 #' @autoglobal
 #' @noRd
+ndigits <- function(x) {
+  stopifnot("x must be an integer" = is.integer(x))
+  ceiling(log10(x))
+}
+
+#' @autoglobal
+#' @noRd
 thresh <- function(n, threshold) {
   cheapr_if_else(n > threshold, threshold, n)
 }
@@ -38,13 +45,13 @@ flatten_column <- function(i) {
 #' @autoglobal
 #' @noRd
 map_na_if <- function(x) {
-  map_if(x, is.character, function(x) na_if(x, y = ""))
+  map_if(x, is.character, \(x) na_if(x, y = ""))
 }
 
 #' @autoglobal
 #' @noRd
 get_data_elem <- function(x) {
-  delist(map(x, function(i) get_elem(as.list(i), "data")))
+  delist(map(x, \(i) get_elem(as.list(i), "data")))
 }
 
 #' @autoglobal
@@ -56,14 +63,12 @@ delist_elem <- function(x, el) {
 #' @autoglobal
 #' @noRd
 smush_elem <- function(i, el) {
-  map_chr(get_elem(i, el), function(x) paste0(x, collapse = ", "))
+  map_chr(get_elem(i, el), \(x) paste0(x, collapse = ", "))
 }
 
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
-  # remove _|-
-  # remove spaces
   gsub("\\(|\\)", "",
        gsub("\\s|-", "_", tolower(x), perl = TRUE),
        perl = TRUE)

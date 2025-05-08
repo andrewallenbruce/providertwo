@@ -20,9 +20,6 @@ An S7 \verb{<pro_endpoint>} or\verb{<pro_group>} object
 Provider API Endpoint Classes
 }
 \examples{
-pro_endpoint("PSI90_6digit")
-pro_endpoint("joint_replace")
-pro_endpoint("footnote_xwalk")
-pro_group("PDC")
-pro_group("MIPS")
+pro_endpoint("asc_facility")
+pro_group("pro_dialysis")
 }

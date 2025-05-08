@@ -119,137 +119,16 @@ select_caid <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-select_caid_group <- function(x, call = caller_env()) {
-  switch(
-    x,
-    demographics = list(
-      group = "Medicaid and CHIP Enrollee Demographics",
-      alias = c(
-        "DEMO_well",
-        "DEMO_sud",
-        "DEMO_disability",
-        "DEMO_premature",
-        "DEMO_language",
-        "DEMO_race",
-        "DEMO_rural",
-        "DEMO_waive"
-        )
-    ),
-    services = list(
-      group = "Services Provided to the Medicaid and CHIP Population",
-      alias = c(
-        "SERV_acute",
-        "SERV_behavior",
-        "SERV_perinatal",
-        "SERV_screen",
-        "SERV_contra",
-        "SERV_dental",
-        "SERV_pregnancy",
-        "SERV_telehealth",
-        "SERV_vaccination",
-        "SERV_respiratory",
-        "SERV_lead"
-        )
-    ),
-    beneficiaries = list(
-      group = "Beneficiaries Receiving A Service",
-      alias = c(
-        "BENE_behavior",
-        "BENE_physical",
-        "BENE_mental",
-        "BENE_integrated",
-        "BENE_nas",
-        "BENE_smm",
-        "BENE_postpart",
-        "BENE_delivery"
-      )
-    ),
-    financial = list(
-      group = "Medicaid Financial Management Data",
-      alias = c(
-        "FIN_mgmt",
-        "FIN_nation"
-      )
-    ),
-    NADAC_group = list(
-      group = "NADAC (National Average Drug Acquisition Cost)",
-      alias = c(
-        "NADAC",
-        "NADAC_first",
-        "NADAC_compare"
-      )
-    ),
-    PKG = list(
-      group = "Benefit Package for Medicaid and CHIP Beneficiaries",
-      alias = c(
-        "PKG_month",
-        "PKG_year"
-      )
-    ),
-    DRUG = list(
-      group = "Medicaid Drug Datasets",
-      alias = c(
-        "DRUG_amp_mon",
-        "DRUG_amp_qtr",
-        "DRUG_products",
-        "DRUG_clot",
-        "DRUG_pediatric",
-        "DRUG_contact_manu",
-        "DRUG_contact_state"
-      )
-    ),
-    DUAL = list(
-      group = "Dual Status Information for Medicaid and CHIP Beneficiaries",
-      alias = c(
-        "DUAL_month",
-        "DUAL_year"
-      )
-    ),
-    MEGI = list(
-      group = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
-      alias = c(
-        "MEG_month",
-        "MEG_year"
-      )
-    ),
-    CMS64 = list(
-      group = "Medicaid CMS-64",
-      alias = c(
-        "CMS64_CAA",
-        "CMS64_FFCRA",
-        "CMS64_adult"
-      )
-    ),
-    MC = list(
-      group = "Managed Care Enrollment",
-      alias = c(
-        "MC_summary",
-        "MC_program_state",
-        "MC_program_plan",
-        "MC_program_pop_all",
-        "MC_program_pop_dual",
-        "MC_feat_pop",
-        "MC_feat_qa",
-        "MC_bene_month",
-        "MC_bene_year"
-      )
-    ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-}
-
-#' @autoglobal
-#' @noRd
 select_caid_temp <- function(x, call = caller_env()) {
 
   x <- switch(
     x,
-    NADAC  = "NADAC",
-    MCP    = "^Managed Care Programs",
-    rebate = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-    blood  = "^Pricing Comparison for Blood Disorder Treatments",
-    drug   = "^State Drug Utilization Data",
-    HCQ    = "Child and Adult Health Care Quality Measures",
+    NADAC           = "NADAC",
+    MCP             = "^Managed Care Programs",
+    rebate          = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+    blood           = "^Pricing Comparison for Blood Disorder Treatments",
+    drug            = "^State Drug Utilization Data",
+    HCQ             = "Child and Adult Health Care Quality Measures",
     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 

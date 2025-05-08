@@ -10,12 +10,12 @@ NULL
 #' @returns A new base request
 #' @examples
 #' care_endpoint("enrollees") |> base_request()
-#' pro_endpoint("PDC_affiliations") |> base_request()
+#' pro_endpoint("pdc_affiliations") |> base_request()
 #' open_endpoint("PROF_covered") |> base_request()
 #' caid_endpoint("MLR_summary") |> base_request()
 #'
 #' care_group("hospital") |> base_request()
-#' pro_group("MIPS") |> base_request()
+#' pro_group("pro_mips") |> base_request()
 #'
 #' # care_temporal("quality_payment") |> base_request()
 #' # caid_temporal("MCP") |> base_request()

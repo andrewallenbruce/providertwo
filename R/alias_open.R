@@ -29,36 +29,6 @@ select_open <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-select_open_group <- function(x, call = caller_env()) {
-  switch(
-    x,
-    profile = list(
-      group = "Open Payments Profiles",
-      alias = c(
-        "PROF_covered",
-        "PROF_physician",
-        "PROF_information",
-        "PROF_mapping",
-        "PROF_entity",
-        "PROF_teaching"
-      )
-    ),
-    summary = list(
-      group = "Open Payments Summaries",
-      alias = c(
-        "SUMM_dashboard",
-        "SUMM_state_all",
-        "SUMM_state_group",
-        "SUMM_nation_all",
-        "SUMM_nation_group"
-      )
-    ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-}
-
-#' @autoglobal
-#' @noRd
 select_open_temp <- function(x, call = caller_env()) {
   x <- switch(
     x,
@@ -85,31 +55,5 @@ select_open_temp <- function(x, call = caller_env()) {
     modified    = res$modified[1],
     identifier  = res$data[[1]][["identifier"]][1],
     endpoints   = slt(res$data[[1]], year, identifier, download)
-  )
-}
-
-#' @autoglobal
-#' @noRd
-select_open_troup <- function(x, call = caller_env()) {
-  switch(
-    x,
-    grouped_payment = list(
-      group = "Payments Grouped by Year",
-      alias = c(
-        "GROUP_recip_nature",
-        "GROUP_recip_entity",
-        "GROUP_entity_nature",
-        "GROUP_all"
-      )
-    ),
-    detailed_payment = list(
-      group = "Payments Detailed by Year",
-      alias = c(
-        "DATA_general",
-        "DATA_ownership",
-        "DATA_research"
-      )
-    ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

@@ -103,8 +103,8 @@ catalog_pro <- function() {
     as_tbl()
 
   list(
-   endpoint = sbt(x, group != "Physician office visit costs"),
-   cost     = sbt(x, group == "Physician office visit costs")
+   end  = sbt(x, group != "Physician office visit costs"),
+   cost = sbt(x, group == "Physician office visit costs")
   )
 }
 
