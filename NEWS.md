@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9273 (2025-05-08)
+
+* care aliases work
+
+
 # providertwo 0.0.0.9272 (2025-05-08)
 
 * trying logger
