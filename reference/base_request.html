@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9272</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9273</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="medicare.html">care_endpoint</a></span><span class="op">(</span><span class="st">"enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="medicare.html">care_endpoint</a></span><span class="op">(</span><span class="st">"care_enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=5000</span>
@@ -92,7 +92,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="medicare.html">care_group</a></span><span class="op">(</span><span class="st">"hospital"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="medicare.html">care_group</a></span><span class="op">(</span><span class="st">"care_hospital"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_owners</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
@@ -125,7 +125,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_cost_report</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_costreport</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer?offset=0&amp;size=5000</span>
@@ -187,7 +187,7 @@
 <span class="r-in"><span><span class="co"># caid_temporal("healthcare_quality") |&gt; base_request()</span></span></span>
 <span class="r-in"><span><span class="co"># open_temporal("payment_general") |&gt; base_request()</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># care_troup("utilization") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co"># care_troup("care_utilization") |&gt; base_request()</span></span></span>
 <span class="r-in"><span><span class="co"># open_troup("payment_grouped") |&gt; base_request()</span></span></span>
 </code></pre></div>
     </div>

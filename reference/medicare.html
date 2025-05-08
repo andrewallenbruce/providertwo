@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9272</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9273</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">care_endpoint</span><span class="op">(</span><span class="st">"CARE_dialysis"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">care_endpoint</span><span class="op">(</span><span class="st">"care_dialysis"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 10</span>
@@ -223,7 +223,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data" "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data" "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data" "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:6] "https://data.cms.gov/sites/default/files/2023-05/0bac88bc-a4c8-4dff-bdbf-660d24e6a689/2021_puf_QPPAR-18260.csv" "https://data.cms.gov/sites/default/files/2023-04/fb3758dd-6ace-4ddb-863b-1b895cef4d7e/2020_puf_qppar_QPPAR-17660.csv" "https://data.cms.gov/sites/default/files/2023-04/f9ef9f64-91d8-49a2-a1be-5a48bbdcc1e9/2019_puf_qppar_QPPAR-17661.csv" "https://data.cms.gov/sites/default/files/2023-04/d2a19b56-7a5f-49c7-b78d-4d0dd49b9391/2018_puf_qppar-QPPAR-17662.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/b3438273-b4a6-44ca-8fb2-9e6026b74642" "https://data.cms.gov/data-api/v1/dataset-resources/8c2ab3e4-597e-43c9-9d94-7223c66d7f25" "https://data.cms.gov/data-api/v1/dataset-resources/48a484e6-ff02-4284-8666-6045b3cac17f" "https://data.cms.gov/data-api/v1/dataset-resources/5776e77d-a844-49fd-b697-a2b01bdacdc7" ...</span>
-<span class="r-in"><span><span class="fu">care_group</span><span class="op">(</span><span class="st">"hospital"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">care_group</span><span class="op">(</span><span class="st">"care_hospital"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;care_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Hospitals"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 6</span>
@@ -429,7 +429,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ REH CONVERSION FLAG           : chr "REH CONVERSION FLAG"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ REH CONVERSION DATE           : chr "REH CONVERSION DATE"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ CAH OR HOSPITAL CCN           : chr "CAH OR HOSPITAL CCN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_cost_report : &lt;care_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_costreport  : &lt;care_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Hospital Provider Cost Report"</span>
@@ -570,11 +570,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_DAYS_OF_CARE : chr "TOTAL_DAYS_OF_CARE"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_CHARGES      : chr "TOTAL_CHARGES"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_CASES        : chr "TOTAL_CASES"</span>
-<span class="r-in"><span><span class="fu">care_troup</span><span class="op">(</span><span class="st">"utilization"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">care_troup</span><span class="op">(</span><span class="st">"care_utilization"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;care_troup&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicare Physician &amp; Other Practitioners"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_geography: &lt;care_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ util_geography: &lt;care_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Geography and Service"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Geography and Service dataset contains information on use, paym"| __truncated__</span>
@@ -609,7 +609,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:11] "https://data.cms.gov/data-api/v1/dataset/ddee9e22-7889-4bef-975a-7853e4cd0fbb/data" "https://data.cms.gov/data-api/v1/dataset/87304f15-9ed0-41dc-a141-6141a0327453/data" "https://data.cms.gov/data-api/v1/dataset/f00f462f-bb61-48b1-a321-1c50d78ce175/data" "https://data.cms.gov/data-api/v1/dataset/31eb3018-43e0-4259-a0d8-e7a1112ffd08/data" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:11] "https://data.cms.gov/sites/default/files/2024-05/3167b4d9-10c0-48f0-a680-1165f4eec064/MUP_PHY_R24_P05_V10_D22_Geo.csv" "https://data.cms.gov/sites/default/files/2023-05/0a47308e-812e-42cb-8ecf-0c1f457ab849/MUP_PHY_R23_P05_V10_D21_Geo.csv" "https://data.cms.gov/sites/default/files/2022-07/0d730fe9-deb8-453b-a2fd-ce778286d9f6/MUP_PHY_R22_P05_V10_D20_Geo.csv" "https://data.cms.gov/sites/default/files/2021-08/MUP_PHY_R21_P04_V10_D19_Geo.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:11] "https://data.cms.gov/data-api/v1/dataset-resources/ddee9e22-7889-4bef-975a-7853e4cd0fbb" "https://data.cms.gov/data-api/v1/dataset-resources/87304f15-9ed0-41dc-a141-6141a0327453" "https://data.cms.gov/data-api/v1/dataset-resources/f00f462f-bb61-48b1-a321-1c50d78ce175" "https://data.cms.gov/data-api/v1/dataset-resources/31eb3018-43e0-4259-a0d8-e7a1112ffd08" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_provider : &lt;care_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ util_provider : &lt;care_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Provider dataset provides information on use, payments, submitt"| __truncated__</span>
@@ -710,7 +710,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:11] "https://data.cms.gov/data-api/v1/dataset/8ba584c6-a43a-4b0b-a35a-eb9a59e3a571/data" "https://data.cms.gov/data-api/v1/dataset/21555c17-ec1b-4e74-b2c6-925c6cbb3147/data" "https://data.cms.gov/data-api/v1/dataset/44e0a489-666c-4ea4-a1a2-360b6cdc19db/data" "https://data.cms.gov/data-api/v1/dataset/29d799aa-c660-44fe-a51a-72c4b3e661ac/data" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:11] "https://data.cms.gov/sites/default/files/2025-03/88113a46-badb-41ac-855c-62d60ca8c55d/MUP_PHY_R25_P07_V10_D22_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/0cd67673-9f7c-42e9-bf0f-ca73e8dc4fc4/MUP_PHY_R25_P07_V10_D21_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/4b0fefe3-eaed-43bd-be63-d45364cb9fd7/MUP_PHY_R25_P07_V10_D20_Prov.csv" "https://data.cms.gov/sites/default/files/2025-03/6f29e406-eb9c-4a60-bbf3-29d2ead443aa/MUP_PHY_R25_P07_V10_D19_Prov.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:11] "https://data.cms.gov/data-api/v1/dataset-resources/8ba584c6-a43a-4b0b-a35a-eb9a59e3a571" "https://data.cms.gov/data-api/v1/dataset-resources/21555c17-ec1b-4e74-b2c6-925c6cbb3147" "https://data.cms.gov/data-api/v1/dataset-resources/44e0a489-666c-4ea4-a1a2-360b6cdc19db" "https://data.cms.gov/data-api/v1/dataset-resources/29d799aa-c660-44fe-a51a-72c4b3e661ac" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ UTIL_service  : &lt;care_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ util_service  : &lt;care_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicare Physician &amp; Other Practitioners - by Provider and Service"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Medicare Physician &amp; Other Practitioners by Provider and Service dataset provides information on use, payme"| __truncated__</span>
