@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9276 (2025-05-08)
+
+* hgov implementation
+
+
 # providertwo 0.0.0.9275 (2025-05-08)
 
 * catalog cleanup
