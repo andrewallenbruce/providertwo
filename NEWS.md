@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9272 (2025-05-08)
+
+* trying logger
+
+
 # providertwo 0.0.0.9271 (2025-05-08)
 
 * alias work
