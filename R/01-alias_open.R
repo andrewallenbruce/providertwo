@@ -3,18 +3,18 @@
 select_open <- function(x, call = caller_env()) {
   x <- switch(
     x,
-    profile_covered     = "^Covered Recipient Profile Supplement$",
-    profile_physician   = "^Physician \\(Distinct\\) Profile Information$",
-    profile_information = "^Profile Information$",
-    profile_mapping     = "^Provider Profile ID Mapping Table$",
-    profile_entity      = "^Reporting Entity Profile Information$",
-    profile_teaching    = "^Teaching Hospital Profile Information$",
-    summary_dashboard   = "^Summary Dashboard",
-    summary_state       = "^State Level Payment Total and Averages for all Years$",
-    summary_nature      = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
-    summary_national    = "^National Level Payment Total and Averages for all Years$",
-    summary_specialty   = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
-    cli::cli_abort(c("x"     = "No matches found for {.val {x}}."), call = call)
+    profile_covered      = "^Covered Recipient Profile Supplement$",
+    profile_physician    = "^Physician \\(Distinct\\) Profile Information$",
+    profile_information  = "^Profile Information$",
+    profile_mapping      = "^Provider Profile ID Mapping Table$",
+    profile_entity       = "^Reporting Entity Profile Information$",
+    profile_teaching     = "^Teaching Hospital Profile Information$",
+    summary_dashboard    = "^Summary Dashboard",
+    summary_state        = "^State Level Payment Total and Averages for all Years$",
+    summary_nature       = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
+    summary_national     = "^National Level Payment Total and Averages for all Years$",
+    summary_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()

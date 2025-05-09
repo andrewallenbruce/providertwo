@@ -44,24 +44,19 @@ method(list_resources, care_endpoint) <- function(x) {
     _[[1]]
 }
 
-method(list_resources, care_group) <- function(x) {
-  x@members |>
-    map(list_resources) |>
-    set_member_names(x@members)
-}
-
 method(list_resources, care_temporal) <- function(x) {
   x@endpoints$resources |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    resps_data(\(resp)
-               resp_body_string(resp) |>
-                 fparse(query = "/data")) |>
+    resps_data(
+      \(resp)
+      resp_body_string(resp) |>
+        fparse(query = "/data")) |>
     tidy_resources()
 }
 
-method(list_resources, care_troup) <- function(x) {
+method(list_resources, class_group) <- function(x) {
   x@members |>
     map(list_resources) |>
     set_member_names(x@members)
