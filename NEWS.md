@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9278 (2025-05-09)
+
+* list_resources refactor for groups
+
+
 # providertwo 0.0.0.9277 (2025-05-08)
 
 * repo cleanup
