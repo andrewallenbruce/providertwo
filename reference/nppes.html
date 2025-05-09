@@ -9,7 +9,7 @@ Search the NPPES NPI Registry"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9278</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9279</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@ Search the NPPES NPI Registry"></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Search the NLM NPI Registry</h1>
-      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/npi_nppes.R" class="external-link"><code>R/npi_nppes.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/npi_nlm.R" class="external-link"><code>R/npi_nlm.R</code></a>, <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/npi_nppes.R" class="external-link"><code>R/npi_nppes.R</code></a></small>
       <div class="d-none name"><code>nppes.Rd</code></div>
     </div>
 
@@ -130,7 +130,6 @@ Search the NPPES NPI Registry"></head><body>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"john bethesda"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 138 RWS <span style="color: #0000BB;">[1 PG]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 138 RWS <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 138 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    full_name      npi        specialty                              full_address</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -148,14 +147,12 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Wiregrass Georgia"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1 RW <span style="color: #0000BB;">[1 PG]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1 RW <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   full_name        npi        specialty full_address                            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> STEWART, CHARLES 1881965564 Dentist   4089 VAL TECH RD WIREGRASS GEORGIA TECH…</span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Dentist Valdosta"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 56 RWS <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 56 RWS <span style="color: #0000BB;">[1 PG]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    full_name           npi        specialty full_address                        </span>
@@ -173,7 +170,6 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 46 more rows</span></span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Valdosta"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1711 RWS <span style="color: #0000BB;">[4 PGS]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1711 RWS <span style="color: #0000BB;">[4 PGS]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,711 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    full_name           npi        specialty                         full_address</span>
@@ -193,7 +189,6 @@ Search the NPPES NPI Registry"></head><body>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BBBB00;">!</span> <span style="color: #0000BB; font-weight: bold;">10000</span> Results Found</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Returning API limit of <span style="color: #0000BB;">[7500]</span>.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 7500 RWS <span style="color: #0000BB;">[16 PGS]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 7500 RWS <span style="color: #0000BB;">[16 PGS]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7,500 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    full_name          npi        specialty                          full_address</span>
