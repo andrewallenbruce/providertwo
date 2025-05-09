@@ -2,6 +2,7 @@
 #' @include S7_pro.R
 #' @include S7_open.R
 #' @include S7_caid.R
+#' @include S7_hgov.R
 #' @autoglobal
 #' @noRd
 quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {

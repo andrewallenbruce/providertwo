@@ -6,8 +6,8 @@ NULL
 tidy_resources <- function(x) {
   x |>
     fcompute(
-      year     = as.integer(stri_extract_first_regex(name, "[12]{1}[0-9]{3}")),
-      file     = gsub("  ", " ", stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), perl = TRUE),
+      year     = extract_year(name),
+      file     = greplace(stri_replace_all_regex(name, " [0-9]{4}|[0-9]{4} ", ""), "  ", " "),
       size     = as_fs_bytes(fileSize),
       ext      = tolower(path_ext(downloadURL)),
       download = downloadURL
