@@ -192,8 +192,8 @@ method(tidyup, openDashboard) <- function(x) {
 
 method(tidyup, openNational) <- function(x) {
 
-  x <- prop(x, "response") |>
-    map_na_if() |>
+  x <- x@response |>
+    as_tbl() |>
     mtt(recipient_type = clean_names(recipient_type)) |>
     rsplit( ~ recipient_type)
 

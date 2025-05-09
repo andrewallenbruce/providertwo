@@ -25,11 +25,11 @@ Imports:
     rlang (>= 1.1.6),
     rrapply (>= 1.2.7),
     S7 (>= 0.2.0),
+    purrr (>= 1.0.4),
     stringi (>= 1.8.7),
     vctrs (>= 0.6.5),
     logger (>= 0.4.0)
 Suggests: 
-    purrr (>= 1.0.4),
     testthat (>= 3.2.3)
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
@@ -60,11 +60,11 @@ Collate:
     'care_quality.R'
     'generated-globals.R'
     'import-standalone-obj-type.R'
-    'import-standalone-purrr.R'
     'import-standalone-types-check.R'
     'methods_base_request.R'
     'methods_list_resources.R'
     'methods_quick.R'
+    'npi_nlm.R'
     'npi_nppes.R'
     'offset.R'
     'open_summary.R'

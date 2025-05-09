@@ -151,15 +151,15 @@ select_pro <- function(x, call = caller_env()) {
     va_behavioral             = "^Veterans Health Administration Behavioral Health Data",
     va_provider               = "^Veterans Health Administration Provider Level Data",
     va_timely                 = "^Veterans Health Administration Timely and Effective Care Data",
-    cli_abort(c("x"           = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x"      = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$pro$end, x)
 
-  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 
@@ -205,6 +205,6 @@ select_pro_group <- function(x, call = caller_env()) {
     pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
     pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
 
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

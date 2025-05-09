@@ -106,15 +106,15 @@ select_care <- function(x, call = caller_env()) {
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
 
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$care$main, x)
 
-  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 
@@ -156,13 +156,13 @@ select_care_temp <- function(x, call = caller_env()) {
     util_geography       = "^Medicare Physician [&] Other Practitioners [-] by Geography and Service$",
     util_provider        = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
-    cli_abort(c("x"      = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$care$temp, x)
 
-  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),
@@ -336,7 +336,7 @@ select_care_group <- function(x, call = caller_env()) {
         "market_state_cnty"
       )
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
 
@@ -400,6 +400,6 @@ select_care_troup <- function(x, call = caller_env()) {
       "nhome_mds_facility"
     )
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

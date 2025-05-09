@@ -62,8 +62,11 @@ flatten_column <- function(i) {
 
 #' @autoglobal
 #' @noRd
-map_na_if <- function(x) {
-  map_if(x, is.character, \(x) na_if(x, y = ""))
+map_na_if <- function(i) {
+  purrr::modify_if(
+    i,
+    is.character, function(x)
+      na_if(x, y = ""))
 }
 
 #' @autoglobal

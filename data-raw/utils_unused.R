@@ -1,3 +1,39 @@
+#' Parse datetime
+#'
+#' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
+#'
+#' @returns `<chr>` parsed ISOdatetime vector
+#'
+#' @examplesIf rlang::is_interactive()
+#' as_datetime("2024-07-29T20:37:53")
+#'
+#' @seealso [clock::date_time_parse_RFC_3339()]
+#' @autoglobal
+#' @noRd
+as_datetime <- function(x) {
+  ISOdatetime(
+    substr(x, 1, 4),
+    substr(x, 6, 7),
+    substr(x, 9, 10),
+    substr(x, 12, 13),
+    substr(x, 15, 16),
+    substr(x, 18, 19)
+  )
+}
+
+#' Parse `openFDA` date character vectors
+#' @autoglobal
+#' @noRd
+as_fda_date <- function(i) {
+  delist(map(i, function(x)
+    paste0(
+      substr(x, 1, 4),
+      substr(x, 5, 6),
+      substr(x, 7, 8),
+      collapse = "-"
+    )))
+}
+
 #' @autoglobal
 #' @noRd
 convert_epoch <- function(x) {
@@ -46,72 +82,4 @@ yank_index_name <- function(x, nm, i = 1L) get_elem(x[[i]], elem = rlang::ensym(
     # right <- as.call(c(right[[1L]], as.character(name), right[-1L]))
   }
   eval(call("<-", name, right), parent.frame())
-}
-
-
-# quick_care_temp("quality_payment")
-#' @autoglobal
-#' @noRd
-quick_care_temp <- function(x, offset = 0L, limit = 5000L) {
-  careTemp(x) |>
-    prop("endpoints") |>
-    _[["identifier"]][1] |>
-    request() |>
-    req_url_query(
-      offset = thresh(offset, total_rows(careTemp(x))),
-      size   = thresh(limit, 5000L)
-    ) |>
-    perform_simple() |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
-}
-
-# quick_open("profile_covered")
-#' @autoglobal
-#' @noRd
-quick_open <- function(x, offset = 0L, limit = 500L) {
-  openMain(x) |>
-    prop("identifier") |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      results = "true",
-      rowIds  = "false",
-      schema  = "false",
-      offset  = thresh(offset, total_rows(openMain(x))),
-      limit   = thresh(limit, 500L)
-    ) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
-}
-
-# quick_open_temp("ownership")
-#' @autoglobal
-#' @noRd
-quick_open_temp <- function(x, offset = 0L, limit = 500L) {
-  openTemp(x) |>
-    prop("endpoints") |>
-    _[["identifier"]][1] |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      results = "true",
-      rowIds  = "false",
-      schema  = "false",
-      offset  = thresh(offset, total_rows(openTemp(x))),
-      limit   = thresh(limit, 500L)
-    ) |>
-    perform_simple() |>
-    _[["results"]] |>
-    map_na_if() |>
-    rnm(clean_names) |>
-    as_tbl()
 }

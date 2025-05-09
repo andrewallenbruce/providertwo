@@ -14,15 +14,15 @@ select_open <- function(x, call = caller_env()) {
     summary_nature      = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
     summary_national    = "^National Level Payment Total and Averages for all Years$",
     summary_specialty   = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
-    cli_abort(c("x"     = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x"     = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$open$main, x)
 
-  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 }
@@ -53,7 +53,7 @@ select_open_group <- function(x, call = caller_env()) {
         "summary_specialty"
       )
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
 
@@ -70,14 +70,14 @@ select_open_temp <- function(x, call = caller_env()) {
     grouped_entity_nature         = "^Payments Grouped by Reporting Entities and Nature of Payments$",
     grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$",
-    cli_abort(c("x"               = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x"          = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$open$temp, x)
 
-  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),
@@ -109,6 +109,6 @@ select_open_troup <- function(x, call = caller_env()) {
         "payment_research"
       )
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

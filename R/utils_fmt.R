@@ -57,11 +57,10 @@ fmt_num <- function(x) prettyNum(x, big.mark = ",")
 #' @autoglobal
 #' @noRd
 cli_results <- function(n, limit, end, api) {
-  cli_inform(
+  cli::cli_inform(
     c(
-      "{.pkg {symbol$square_small_filled}} {end} {.kbd {api}}",
-      "{.pkg {symbol$square_small_filled}} {n} RW{?S} {.kbd {offset_size(n, limit)} PG{?S}}",
-      "{.pkg {symbol$square_small_filled}} {n} RW{?S} {.kbd {offset_size(n, limit)} PG{?S}}"
+      "{.pkg {cli::symbol$square_small_filled}} {end} {.kbd {api}}",
+      "{.pkg {cli::symbol$square_small_filled}} {n} RW{?S} {.kbd {offset_size(n, limit)} PG{?S}}"
       )
     )
 }
@@ -156,40 +155,4 @@ roxy8601 <- function(x) {
     "R/PT1S"   ~ "Continuously (R/PT1S)",
     .default   = "Unknown"
   )
-}
-
-#' Parse datetime
-#'
-#' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
-#'
-#' @returns `<chr>` parsed ISOdatetime vector
-#'
-#' @examplesIf rlang::is_interactive()
-#' as_datetime("2024-07-29T20:37:53")
-#'
-#' @seealso [clock::date_time_parse_RFC_3339()]
-#' @autoglobal
-#' @noRd
-as_datetime <- function(x) {
-  ISOdatetime(
-    substr(x, 1, 4),
-    substr(x, 6, 7),
-    substr(x, 9, 10),
-    substr(x, 12, 13),
-    substr(x, 15, 16),
-    substr(x, 18, 19)
-  )
-}
-
-#' Parse `openFDA` date character vectors
-#' @autoglobal
-#' @noRd
-as_fda_date <- function(i) {
-  delist(map(i, function(x)
-    paste0(
-      substr(x, 1, 4),
-      substr(x, 5, 6),
-      substr(x, 7, 8),
-      collapse = "-"
-    )))
 }

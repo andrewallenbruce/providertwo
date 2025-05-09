@@ -36,7 +36,7 @@ check_luhn <- function(x) {
 assert_luhn <- function(x, call = caller_env()) {
   if (any(!check_luhn(x))) {
     invalid <- x[which_(check_luhn(x), invert = TRUE)]
-    cli_abort(
+    cli::cli_abort(
       c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must pass Luhn algorithm"),
       call = call
     )
@@ -48,7 +48,7 @@ assert_luhn <- function(x, call = caller_env()) {
 assert_digits <- function(x, call = caller_env()) {
   if (any(!grepl("^[0-9]{10}$", x = as.character(x), perl = TRUE))) {
     invalid <- x[which_(grepl('^[0-9]{10}$', x = as.character(x), perl = TRUE), invert = TRUE)]
-    cli_abort(
+    cli::cli_abort(
       c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must be all digits"),
       call = call
     )
@@ -60,7 +60,7 @@ assert_digits <- function(x, call = caller_env()) {
 assert_nchars <- function(x, n, xname, call = caller_env()) {
   if (any(nchar(as.character(x)) != n)) {
     invalid <- x[which_(nchar(as.character(x)) != n)]
-    cli_abort(
+    cli::cli_abort(
       c("Invalid {.arg {xname}} entered: {.val {invalid}}", "x" = "{.arg {xname}} must be {n} characters long"),
       call = call
     )
@@ -72,7 +72,7 @@ assert_nchars <- function(x, n, xname, call = caller_env()) {
 assert_choices <- function(x, choices, xname, call = caller_env()) {
   if (any(!x %in% choices)) {
     invalid <- x[which_(x %in% choices, invert = TRUE)]
-    cli_abort(c("Invalid {.arg {xname}} entered: {.val {invalid}}"), call = call)
+    cli::cli_abort(c("Invalid {.arg {xname}} entered: {.val {invalid}}"), call = call)
   }
 }
 

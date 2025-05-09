@@ -541,7 +541,7 @@ quick <- function(x, offset = 0L, limit = 10L, call = caller_env()) {
     hie_rate = ,
     hie_service_area = ,
     hie_transparency = hgov_temporal(x),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
   quick_(ob, offset = offset, limit = limit)
 }

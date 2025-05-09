@@ -46,15 +46,15 @@ select_hgov <- function(x, call = caller_env()) {
     qhp_py18_ind_med_instruct          = "^QHP PY18 Medical Individual Landscape Instructions$",
     qhp_py18_ind_dent_instruct         = "^QHP PY18 Dental Individual Landscape Instructions$",
     local_help                         = "^Find Local Help$",
-    cli_abort(c("x"                    = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$hgov$main, x)
 
-  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 }
@@ -76,14 +76,14 @@ select_hgov_temp <- function(x, call = caller_env()) {
     hie_rate               = "^Rate PUF$",
     hie_service_area       = "^Service Area PUF$",
     hie_transparency       = "^Transparency in Coverage PUF$",
-    cli_abort(c("x"        = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x"   = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$hgov$temp, x)
 
-  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),

@@ -91,15 +91,15 @@ select_caid <- function(x, call = caller_env()) {
     unwind_historic               = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
     unwind_sbm                    = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
 
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$caid$main, x)
 
-  if (empty(res))     cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
 }
@@ -116,14 +116,14 @@ select_caid_temp <- function(x, call = caller_env()) {
     blood_disorder        = "^Pricing Comparison for Blood Disorder Treatments$",
     state_drug_util       = "^State Drug Utilization Data$",
     healthcare_quality    = "^Child and Adult Health Care Quality Measures$",
-    cli_abort(c("x"       = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x"  = "No matches found for {.val {x}}."), call = call)
   )
 
   if (!exists("catalog")) .catalog <- catalogs()
 
   res <- select_alias(.catalog$caid$temp, x)
 
-  if (empty(res)) cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),
@@ -258,6 +258,6 @@ select_caid_group <- function(x, call = caller_env()) {
         "unwind_sbm"
       )
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

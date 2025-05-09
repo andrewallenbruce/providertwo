@@ -125,11 +125,6 @@ qpp_name <- function(x, call = caller_env()) {
       provider_middle_name                       = "middle_name",
       profile_display_indicator                  = "display"
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
-
-# x <- request("https://qpp.cms.gov/api/eligibility/stats") |>
-# req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
-# req_url_query(year = year) |> perform_simple() |>
-# get_elem("data") |> unlist(use.names = FALSE)

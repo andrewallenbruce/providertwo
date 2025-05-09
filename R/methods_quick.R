@@ -21,6 +21,27 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
     map_na_if()
 }
 
+method(quick_, care_group) <- function(x, offset, limit) {
+  x@members |>
+    purrr::map(\(x) x@identifier |>
+                 request() |>
+                 req_url_query(
+                   offset = thresh(offset, x@dimensions@rows),
+                   size   = thresh(limit, 5000L)
+                 )) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    purrr::map2(
+      x@members,
+      \(resp, n) resp_body_string(resp) |>
+        fparse(query = "/data") |>
+        as_tbl() |>
+        set_clean(n@dimensions@fields) |>
+        map_na_if()
+    ) |>
+    set_member_names(x@members)
+}
+
 method(quick_, care_temporal) <- function(x, offset, limit) {
   x@endpoints$identifier |>
     purrr::map2(
@@ -55,27 +76,6 @@ method(quick_, care_troup) <- function(x, offset, limit) {
       offset,
       limit),
     .progress = TRUE)
-}
-
-method(quick_, care_group) <- function(x, offset, limit) {
-  x@members |>
-    purrr::map(\(x) x@identifier |>
-          request() |>
-          req_url_query(
-            offset = thresh(offset, x@dimensions@rows),
-            size   = thresh(limit, 5000L)
-            )) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    purrr::map2(
-      x@members,
-      \(resp, n) resp_body_string(resp) |>
-        fparse(query = "/data") |>
-        as_tbl() |>
-        set_clean(n@dimensions@fields) |>
-        map_na_if()
-    ) |>
-    set_member_names(x@members)
 }
 
 method(quick_, pro_endpoint) <- function(x, offset, limit) {
