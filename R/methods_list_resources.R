@@ -34,26 +34,19 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 
 method(list_resources, care_endpoint) <- function(x) {
   x@metadata$resources |>
-    request() |>
-    req_perform() |>
-    resp_body_string() |>
-    fparse(query = "/data") |>
-    tidy_resources()
+    as.list() |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map(\(resp) resp_body_string(resp) |>
+          fparse(query = "/data") |>
+          tidy_resources()) |>
+    _[[1]]
 }
 
 method(list_resources, care_group) <- function(x) {
   x@members |>
-    map(\(x)
-        x@metadata$resources |>
-          request()
-        ) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    map(\(resp)
-        resp_body_string(resp) |>
-          fparse(query = "/data") |>
-          tidy_resources()
-        ) |>
+    map(list_resources) |>
     set_member_names(x@members)
 }
 
@@ -62,27 +55,14 @@ method(list_resources, care_temporal) <- function(x) {
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    resps_data(
-      \(resp)
-      resp_body_string(resp) |>
-        fparse(query = "/data")
-      ) |>
+    resps_data(\(resp)
+               resp_body_string(resp) |>
+                 fparse(query = "/data")) |>
     tidy_resources()
 }
 
 method(list_resources, care_troup) <- function(x) {
   x@members |>
-    map(\(x)
-        x@endpoints$resources |>
-          map(request) |>
-      req_perform_parallel(on_error = "continue") |>
-      resps_successes() |>
-      resps_data(
-        \(resp)
-        resp_body_string(resp) |>
-          fparse(query = "/data") |>
-          tidy_resources()
-      )
-    ) |>
+    map(list_resources) |>
     set_member_names(x@members)
 }

@@ -86,6 +86,20 @@ method(base_request, open_endpoint) <- function(x) {
     )
 }
 
+method(base_request, hgov_endpoint) <- function(x) {
+  x@identifier |>
+    base_request() |>
+    req_url_query(
+      count   = "false",
+      format  = "json",
+      keys    = "true",
+      results = "true",
+      rowIds  = "false",
+      schema  = "false",
+      limit   = 500L
+    )
+}
+
 ## ----------(temporal)
 method(base_request, care_temporal) <- function(x) {
   map(x@endpoints$identifier,
@@ -112,6 +126,23 @@ method(base_request, caid_temporal) <- function(x) {
 }
 
 method(base_request, open_temporal) <- function(x) {
+  map(
+    x@endpoints$identifier,
+    \(x)
+    base_request(x) |>
+      req_url_query(
+        count   = "false",
+        format  = "json",
+        keys    = "true",
+        results = "true",
+        rowIds  = "false",
+        schema  = "false",
+        limit   = 500L
+      )
+  )
+}
+
+method(base_request, hgov_temporal) <- function(x) {
   map(
     x@endpoints$identifier,
     \(x)

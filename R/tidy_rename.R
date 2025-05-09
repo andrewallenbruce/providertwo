@@ -1,5 +1,26 @@
 #' @noRd
 #' @autoglobal
+care_names <- function(x, call = caller_env()) {
+  switch(
+    x,
+    enrollees = c(
+      NPI                = "npi",
+      PECOS_ASCT_CNTL_ID = "pac",
+      ENRLMT_ID          = "enid",
+      PROVIDER_TYPE_CD   = "specialty_code",
+      PROVIDER_TYPE_DESC = "specialty_description",
+      STATE_CD           = "state",
+      FIRST_NAME         = "first_name",
+      MDL_NAME           = "middle_name",
+      LAST_NAME          = "last_name",
+      ORG_NAME           = "org_name"
+    ),
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  )
+}
+
+#' @noRd
+#' @autoglobal
 pro_names <- function(x, call = caller_env()) {
   switch(
     x,

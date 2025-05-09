@@ -4,7 +4,16 @@ doc_dict <- tabulapdf::extract_tables(
   file = "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
 )
 
-doc_dict[[1]]
+"Professional Identification"
+doc_dict[[1]][2:16, ] |>
+  set_names(c("variable", "label", "description", "len", "type")) |>
+  print(n = Inf)
+
+"Medical Credentials"
+doc_dict[[1]][18:26, ] |>
+  set_names(c("variable", "label", "description", "len", "type")) |>
+  print(n = Inf)
+
 doc_dict[[2]]
 doc_dict[[3]]
 doc_dict[[4]]
