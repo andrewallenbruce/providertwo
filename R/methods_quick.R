@@ -1,3 +1,28 @@
+#' @autoglobal
+#' @noRd
+dimensions <- function(x) {
+  props(x@dimensions, names = c("limit", "rows"))
+}
+
+#' @autoglobal
+#' @noRd
+fields <- function(x) {
+  prop(x@dimensions, "fields") |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+identifier <- function(x) {
+  prop(x, "identifier") |> as.list()
+}
+
+#' @autoglobal
+#' @noRd
+set_member_names <- function(x, obj) {
+  set_names(x, names(obj))
+}
+
 #' @include S7_care.R
 #' @include S7_pro.R
 #' @include S7_open.R
@@ -17,15 +42,12 @@ method(quick_, class_group) <- function(x, offset, limit) {
 
 method(quick_, care_endpoint) <- function(x, offset, limit) {
 
-  as.list(x@identifier) |>
-    map2(x@dimensions@rows,
-         \(x, row)
-         request(x) |>
-           req_url_query(
-             offset = thresh(offset, row),
-             size   = thresh(limit, 5000L)
-             )
-         ) |>
+  identifier(x) |>
+    map(\(i)
+        request(i) |>
+          req_url_query(
+            offset = thresh(offset, dimensions(x)$rows),
+            size   = thresh(limit, dimensions(x)$limit))) |>
     req_perform_parallel(on_error = "continue") |>
     map(\(x) resp_body_string(x) |>
           fparse(query = "/data") |>
@@ -33,14 +55,14 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
           map_na_if()
         ) |>
     _[[1]] |>
-    set_names(x@dimensions@fields)
+    set_names(fields(x))
 }
 
 method(quick_, pro_endpoint) <- function(x, offset, limit) {
 
   as.list(x@identifier) |>
     map2(x@dimensions@rows,
-         \(x, row)
+         \(x, d)
          request(x) |>
            req_url_query(
              count   = "false",
@@ -49,7 +71,7 @@ method(quick_, pro_endpoint) <- function(x, offset, limit) {
              results = "true",
              rowIds  = "false",
              schema  = "false",
-             offset  = thresh(offset, row),
+             offset  = thresh(offset, d),
              limit   = thresh(limit, 2000L)
            )
     ) |>
@@ -65,9 +87,10 @@ method(quick_, pro_endpoint) <- function(x, offset, limit) {
 }
 
 method(quick_, open_endpoint) <- function(x, offset, limit) {
+
   as.list(x@identifier) |>
     map2(x@dimensions@rows,
-         \(x, row)
+         \(x, d)
          request(x) |>
            req_url_query(
              count   = "false",
@@ -76,7 +99,7 @@ method(quick_, open_endpoint) <- function(x, offset, limit) {
              results = "true",
              rowIds  = "false",
              schema  = "false",
-             offset  = thresh(offset, row),
+             offset = thresh(offset, d),
              limit   = thresh(limit, 500L)
            )
     ) |>
@@ -92,9 +115,10 @@ method(quick_, open_endpoint) <- function(x, offset, limit) {
 }
 
 method(quick_, caid_endpoint) <- function(x, offset, limit) {
+
   as.list(x@identifier) |>
     map2(x@dimensions@rows,
-         \(x, row)
+         \(x, d)
          request(x) |>
            req_url_query(
              count   = "false",
@@ -103,7 +127,7 @@ method(quick_, caid_endpoint) <- function(x, offset, limit) {
              results = "true",
              rowIds  = "false",
              schema  = "false",
-             offset  = thresh(offset, row),
+             offset = thresh(offset, d),
              limit   = thresh(limit, 8000L)
            )
     ) |>
@@ -121,7 +145,7 @@ method(quick_, caid_endpoint) <- function(x, offset, limit) {
 method(quick_, hgov_endpoint) <- function(x, offset, limit) {
   as.list(x@identifier) |>
     map2(x@dimensions@rows,
-         \(x, row)
+         \(x, d)
          request(x) |>
            req_url_query(
              count   = "false",
@@ -130,7 +154,7 @@ method(quick_, hgov_endpoint) <- function(x, offset, limit) {
              results = "true",
              rowIds  = "false",
              schema  = "false",
-             offset  = thresh(offset, row),
+             offset = thresh(offset, d),
              limit   = thresh(limit, 500L)
            )
     ) |>
@@ -148,17 +172,19 @@ method(quick_, hgov_endpoint) <- function(x, offset, limit) {
 method(quick_, care_temporal) <- function(x, offset, limit) {
 
   x@endpoints$identifier |>
-    map2(x@dimensions@rows, \(x, R)
-         request(x) |>
-           req_url_query(offset = thresh(offset, R),
-                         size = thresh(limit, 5000L)
-                         )
-         ) |>
+    map2(x@dimensions@rows,
+      \(x, d)
+      request(x) |>
+        req_url_query(
+          offset = thresh(offset, d),
+          size = thresh(limit, 5000L)
+          )
+      ) |>
     req_perform_parallel(on_error = "continue") |>
-    map2(x@endpoints$year, \(resp, YR)
+    map2(x@endpoints$year, \(resp, yr)
          resp_body_string(resp) |>
            fparse() |>
-           mtt(year = YR) |>
+           mtt(year = yr) |>
            colorder(year)
          ) |>
     rowbind(fill = TRUE) |>
@@ -167,8 +193,10 @@ method(quick_, care_temporal) <- function(x, offset, limit) {
 }
 
 method(quick_, open_temporal) <- function(x, offset, limit) {
+
   x@endpoints$identifier |>
-    map2(x@dimensions@rows, \(x, R)
+    map2(x@dimensions@rows,
+         \(x, d)
          request(x) |>
            req_url_query(
              count   = "false",
@@ -177,16 +205,16 @@ method(quick_, open_temporal) <- function(x, offset, limit) {
              results = "true",
              rowIds  = "false",
              schema  = "false",
-             offset = thresh(offset, R),
+             offset = thresh(offset, d),
              limit  = thresh(limit, 500L)
              )
          ) |>
     req_perform_parallel(on_error = "continue") |>
-    map2(x@endpoints$year, \(resp, YR)
+    map2(x@endpoints$year, \(resp, yr)
          resp_body_string(resp) |>
            fparse() |>
            _[["results"]] |>
-           mtt(year = YR) |>
+           mtt(year = yr) |>
            colorder(year)
          ) |>
     list_rbind() |>
@@ -195,10 +223,10 @@ method(quick_, open_temporal) <- function(x, offset, limit) {
 }
 
 method(quick_, caid_temporal) <- function(x, offset, limit) {
+
   x@endpoints$identifier |>
-    map2(
-      x@dimensions@rows,
-      \(x, R)
+    map2(x@dimensions@rows,
+      \(x, d)
       request(x) |>
         req_url_query(
           count   = "false",
@@ -207,18 +235,18 @@ method(quick_, caid_temporal) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset = thresh(offset, R),
+          offset = thresh(offset, d),
           limit  = thresh(limit, 8000L)
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
     map2(
       x@endpoints$year,
-      \(resp, YR)
+      \(resp, yr)
       resp_body_string(resp) |>
         fparse() |>
         _[["results"]] |>
-        mtt(year = YR) |>
+        mtt(year = yr) |>
         colorder(year)
     ) |>
     list_rbind() |>
@@ -228,10 +256,10 @@ method(quick_, caid_temporal) <- function(x, offset, limit) {
 }
 
 method(quick_, hgov_temporal) <- function(x, offset, limit) {
+
   x@endpoints$identifier |>
-    map2(
-      x@dimensions@rows,
-      \(x, R)
+    map2(x@dimensions@rows,
+      \(x, d)
       request(x) |>
         req_url_query(
           count   = "false",
@@ -240,18 +268,18 @@ method(quick_, hgov_temporal) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset = thresh(offset, R),
+          offset = thresh(offset, d),
           limit  = thresh(limit, 500L)
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
     map2(
       x@endpoints$year,
-      \(resp, YR)
+      \(resp, yr)
       resp_body_string(resp) |>
         fparse() |>
         _[["results"]] |>
-        mtt(year = YR) |>
+        mtt(year = yr) |>
         colorder(year)
     ) |>
     list_rbind() |>
