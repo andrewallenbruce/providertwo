@@ -176,11 +176,11 @@ catalog_caid <- function() {
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
 
   dictionary <- new_df(
-    title      = vec_rep_each(x$title, fnobs(get_dist(x))),
+    title      = cheapr_rep_each(x$title, fnobs(get_dist(x))),
     dictionary = get_dist(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
 
   download <- new_tbl(
-    title    = vec_rep_each(x$title, fnobs(get_dist(x))),
+    title    = cheapr_rep_each(x$title, fnobs(get_dist(x))),
     download = get_dist(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download),
     id       = groupid(title)
@@ -266,7 +266,7 @@ catalog_hgov <- function() {
   get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
 
   download <- new_tbl(
-    title    = vec_rep_each(x$title, fnobs(get_dist(x))),
+    title    = cheapr_rep_each(x$title, fnobs(get_dist(x))),
     download = get_elem(get_dist(x), "downloadURL") |> delist(),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)

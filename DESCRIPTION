@@ -13,7 +13,7 @@ BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
-    cheapr (>= 1.1.0),
+    cheapr (>= 1.2.0),
     cli (>= 3.6.5),
     collapse (>= 2.1.1),
     fastplyr (>= 0.5.1),

@@ -57,7 +57,7 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
-  x@members |>
-    map(list_resources) |>
-    set_member_names(x@members)
+  members(x) |>
+    map(list_resources, .progress = TRUE) |>
+    name_members(x)
 }
