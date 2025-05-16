@@ -3,6 +3,24 @@ NULL
 
 #' @autoglobal
 #' @noRd
+get_resources <- function(obj) {
+  check_is_S7(obj)
+  switch(
+    class(obj)[1],
+    care_endpoint = as.list(prop(obj, "metadata")$resources),
+    care_temporal = as.list(prop(obj, "endpoints")$resources),
+  )
+}
+
+#' @autoglobal
+#' @noRd
+care_parse <- function(resp) {
+  resp_body_string(resp) |> fparse(query = "/data")
+}
+
+
+#' @autoglobal
+#' @noRd
 tidy_resources <- function(x) {
   x |>
     fcompute(
@@ -19,7 +37,7 @@ tidy_resources <- function(x) {
 
 #' @name list_resources
 #' @title List resources
-#' @param x `care_endpoint`, `care_group`, `care_temporal`, or `care_troup` object
+#' @param x `care_endpoint`, `care_group`, `care_temporal`
 #' @returns A list of API resources
 #' @examples
 #' care_endpoint("care_enrollees") |> list_resources()
@@ -33,26 +51,23 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 })
 
 method(list_resources, care_endpoint) <- function(x) {
-  x@metadata$resources |>
-    as.list() |>
+  get_resources(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    map(\(resp) resp_body_string(resp) |>
-          fparse(query = "/data") |>
-          tidy_resources()) |>
-    _[[1]]
+    map(function(resp)
+      care_parse(resp) |>
+        tidy_resources()) |>
+    pluck(1)
 }
 
 method(list_resources, care_temporal) <- function(x) {
-  x@endpoints$resources |>
+  get_resources(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
-    resps_data(
-      \(resp)
-      resp_body_string(resp) |>
-        fparse(query = "/data")) |>
+    resps_data(function(resp)
+      care_parse(resp)) |>
     tidy_resources()
 }
 

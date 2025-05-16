@@ -55,7 +55,6 @@ Collate:
     'S7_hgov.R'
     'S7_open.R'
     'S7_pro.R'
-    'S7_utils.R'
     'care_enrollees.R'
     'care_quality.R'
     'generated-globals.R'

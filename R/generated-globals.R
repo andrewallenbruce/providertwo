@@ -55,6 +55,11 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
+  # <select_caid_temp>
+  # <select_care_temp>
+  # <select_hgov_temp>
+  # <select_open_temp>
+  "endpoints",
   # <quality_eligibility>
   "enroll_year",
   # <quality_eligibility>
@@ -132,6 +137,8 @@ utils::globalVariables(c(
   "references",
   # <catalog_pro>
   "released",
+  # <catalog_care>
+  "resources",
   # <catalog_care>
   "resourcesAPI",
   # <clinicians>
