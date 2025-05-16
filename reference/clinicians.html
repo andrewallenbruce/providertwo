@@ -15,7 +15,7 @@ multiple lines."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9281</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9282</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -197,10 +197,10 @@ multiple lines.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">clinicians</span><span class="op">(</span>last_name <span class="op">=</span> <span class="st">"CURRY"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Querying National Downloadable File...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Returned 465 results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 465 × 24</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Querying National Downloadable File...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Returned 452 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 452 × 24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi        pac      enid  last_name first_name middle_name suffix_name gender</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1013162536 2264585… I200… CURRY     CHOLADDA   V.          <span style="color: #BB0000;">NA</span>          F     </span>
@@ -212,16 +212,16 @@ multiple lines.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1033406533 4082858… I201… CURRY     ROBIN      G           <span style="color: #BB0000;">NA</span>          F     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1033406533 4082858… I201… CURRY     ROBIN      G           <span style="color: #BB0000;">NA</span>          F     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1033655212 8628334… I201… CURRY     SONDRA     <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          F     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1033764634 6204266… I202… CURRY     HALIE      <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          F     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 455 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1043328149 3779594… I200… CURRY     CYNTHIA    J           <span style="color: #BB0000;">NA</span>          F     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 442 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: credential &lt;chr&gt;, med_school &lt;chr&gt;, grad_year &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spec_prim &lt;chr&gt;, spec_sec &lt;chr&gt;, telehealth &lt;int&gt;, facility_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   org_pac &lt;chr&gt;, org_members &lt;int&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   phone &lt;chr&gt;, ind_assgn &lt;int&gt;, grp_assgn &lt;int&gt;, address &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">clinicians</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1043245657"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Querying National Downloadable File...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Returned 1 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Querying National Downloadable File...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Returned 1 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   npi        pac       enid  last_name first_name middle_name suffix_name gender</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
@@ -231,9 +231,9 @@ multiple lines.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   org_pac &lt;chr&gt;, org_members &lt;int&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   phone &lt;chr&gt;, ind_assgn &lt;int&gt;, grp_assgn &lt;int&gt;, address &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">clinicians</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"GA"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Querying National Downloadable File...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-13 19:45:41] Returned 2000 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Querying National Downloadable File...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 10:43:59] Returned 2000 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,000 × 24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi        pac      enid  last_name first_name middle_name suffix_name gender</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
