@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9283</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9284</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,9 +112,9 @@ services in said unit.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>facility_type <span class="op">=</span> <span class="st">"Home health agency"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:20] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Returned 2000 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:56] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:57] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:57] Returned 2000 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,000 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi   pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -131,9 +131,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,990 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>last_name <span class="op">=</span> <span class="st">"CURRY"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Returned 251 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Returned 251 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 251 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi   pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -150,9 +150,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 241 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_primary <span class="op">=</span> <span class="st">"670055"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:21] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Returned 6 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Returned 6 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   npi    pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -164,9 +164,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 19122… 5092… MANSOOR   SAAD       MD          <span style="color: #BB0000;">NA</span>    Inpatient re… 67T055      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"370781"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Returned 20 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Returned 20 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi   pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -192,9 +192,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 1952… 1951… MORGAN    JARED      KEITH       <span style="color: #BB0000;">NA</span>    Hospital      370781      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"331302"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Returned 185 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Returned 185 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 185 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    npi   pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -211,9 +211,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 175 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>ccn_facility <span class="op">=</span> <span class="st">"33Z302"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Returned 3 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Returned 3 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   npi    pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -222,9 +222,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 18018… 3577… DEMURO    ROB        L           <span style="color: #BB0000;">NA</span>    Nursing home  33Z302      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ccn_primary &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">affiliations</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1043245657"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Loading endpoint...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Querying Facility Affiliation Data...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-16 13:27:22] Returned 2 results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:58] Loading endpoint...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:59] Querying Facility Affiliation Data...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO [2025-05-17 02:28:59] Returned 2 results</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   npi    pac   last_name first_name middle_name suff  facility_type ccn_facility</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
