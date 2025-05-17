@@ -14,13 +14,6 @@ get_resources <- function(obj) {
 
 #' @autoglobal
 #' @noRd
-care_parse <- function(resp) {
-  resp_body_string(resp) |> fparse(query = "/data")
-}
-
-
-#' @autoglobal
-#' @noRd
 tidy_resources <- function(x) {
   x |>
     fcompute(
@@ -72,6 +65,11 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
+  all(members(x) |>
+        map_lgl(function(x)
+          S7_inherits(x, care_endpoint) |
+          S7_inherits(x, care_temporal)))
+
   members(x) |>
     map(list_resources, .progress = TRUE) |>
     name_members(x)

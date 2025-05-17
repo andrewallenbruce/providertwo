@@ -1,7 +1,19 @@
 #' @autoglobal
 #' @noRd
+parse_string <- function(resp, query = NULL) {
+  fparse(resp_body_string(resp), query = query)
+}
+
+#' @autoglobal
+#' @noRd
+care_parse <- function(resp) {
+  parse_string(resp, query = "/data")
+}
+
+#' @autoglobal
+#' @noRd
 dimensions <- function(obj) {
-  check_is_S7(obj, class_endpoint)
+  check_is_S7(obj)
   prop(obj, "dimensions") |>
     props(names = c("limit", "rows"))
 }
@@ -9,7 +21,7 @@ dimensions <- function(obj) {
 #' @autoglobal
 #' @noRd
 fields <- function(obj) {
-  check_is_S7(obj, class_endpoint)
+  check_is_S7(obj)
   prop(obj, "dimensions") |>
     prop("fields") |>
     unlist(use.names = FALSE)
@@ -19,7 +31,7 @@ fields <- function(obj) {
 #' @noRd
 identifier <- function(obj) {
   check_is_S7(obj, class_endpoint)
-  list_combine(prop(obj, "identifier"))
+  as.list(prop(obj, "identifier"))
 }
 
 #' @autoglobal
@@ -70,8 +82,7 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
     ) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
-      resp_body_string(x) |>
-        fparse() |>
+      parse_string(x) |>
         _[["results"]] |>
         as_tbl() |>
         map_na_if()) |>
@@ -89,8 +100,7 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
         )) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
-      resp_body_string(x) |>
-        fparse(query = "/data") |>
+        care_parse(x) |>
         as_tbl() |>
         map_na_if()) |>
     pluck(1) |>
@@ -104,121 +114,44 @@ method(quick_, class_group) <- function(x, offset, limit) {
     name_members(x)
 }
 
+method(quick_, class_temporal) <- function(x, offset, limit) {
+  prop(x, "endpoints") |>
+    get_elem("identifier") |>
+    map(
+      function(i)
+        request(i) |>
+        req_url_query(
+          count   = "false",
+          format  = "json",
+          keys    = "true",
+          results = "true",
+          rowIds  = "false",
+          schema  = "false",
+          offset  = thresh(offset, dimensions(x)$rows),
+          limit   = thresh(limit, dimensions(x)$limit)
+        )
+    ) |>
+    req_perform_parallel(on_error = "continue") |>
+    set_names(prop(x, "endpoints") |> get_elem("year")) |>
+    map(function(resp)
+      parse_string(resp) |> _[["results"]]) |>
+    list_rbind(names_to = "year") |>
+    map_na_if() |>
+    as_tbl()
+}
+
 method(quick_, care_temporal) <- function(x, offset, limit) {
-
-  x@endpoints$identifier |>
-    map2(x@dimensions@rows,
-      \(x, d)
-      request(x) |>
+  prop(x, "endpoints") |>
+    get_elem("identifier") |>
+    map(function(i)
+      request(i) |>
         req_url_query(
-          offset = thresh(offset, d),
-          size = thresh(limit, 5000L)
-          )
-      ) |>
+          offset = thresh(offset, dimensions(x)$rows),
+          limit  = thresh(limit, dimensions(x)$limit))) |>
     req_perform_parallel(on_error = "continue") |>
-    map2(x@endpoints$year, \(resp, yr)
-         resp_body_string(resp) |>
-           fparse() |>
-           mtt(year = yr) |>
-           colorder(year)
-         ) |>
-    rowbind(fill = TRUE) |>
+    set_names(prop(x, "endpoints") |> get_elem("year")) |>
+    map(parse_string) |>
+    list_rbind(names_to = "year") |>
     map_na_if() |>
     as_tbl()
-}
-
-method(quick_, open_temporal) <- function(x, offset, limit) {
-
-  x@endpoints$identifier |>
-    map2(x@dimensions@rows,
-         \(x, d)
-         request(x) |>
-           req_url_query(
-             count   = "false",
-             format  = "json",
-             keys    = "true",
-             results = "true",
-             rowIds  = "false",
-             schema  = "false",
-             offset = thresh(offset, d),
-             limit  = thresh(limit, 500L)
-             )
-         ) |>
-    req_perform_parallel(on_error = "continue") |>
-    map2(x@endpoints$year, \(resp, yr)
-         resp_body_string(resp) |>
-           fparse() |>
-           _[["results"]] |>
-           mtt(year = yr) |>
-           colorder(year)
-         ) |>
-    list_rbind() |>
-    map_na_if() |>
-    as_tbl()
-}
-
-method(quick_, caid_temporal) <- function(x, offset, limit) {
-
-  x@endpoints$identifier |>
-    map2(x@dimensions@rows,
-      \(x, d)
-      request(x) |>
-        req_url_query(
-          count   = "false",
-          format  = "json",
-          keys    = "true",
-          results = "true",
-          rowIds  = "false",
-          schema  = "false",
-          offset = thresh(offset, d),
-          limit  = thresh(limit, 8000L)
-        )
-    ) |>
-    req_perform_parallel(on_error = "continue") |>
-    map2(
-      x@endpoints$year,
-      \(resp, yr)
-      resp_body_string(resp) |>
-        fparse() |>
-        _[["results"]] |>
-        mtt(year = yr) |>
-        colorder(year)
-    ) |>
-    list_rbind() |>
-    map_na_if() |>
-    as_tbl() |>
-    set_names(x@dimensions@fields)
-}
-
-method(quick_, hgov_temporal) <- function(x, offset, limit) {
-
-  x@endpoints$identifier |>
-    map2(x@dimensions@rows,
-      \(x, d)
-      request(x) |>
-        req_url_query(
-          count   = "false",
-          format  = "json",
-          keys    = "true",
-          results = "true",
-          rowIds  = "false",
-          schema  = "false",
-          offset = thresh(offset, d),
-          limit  = thresh(limit, 500L)
-        )
-    ) |>
-    req_perform_parallel(on_error = "continue") |>
-    map2(
-      x@endpoints$year,
-      \(resp, yr)
-      resp_body_string(resp) |>
-        fparse() |>
-        _[["results"]] |>
-        mtt(year = yr) |>
-        colorder(year)
-    ) |>
-    list_rbind() |>
-    map_na_if() |>
-    as_tbl() |>
-    set_names(x@dimensions@fields)
 }
