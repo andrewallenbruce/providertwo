@@ -41,8 +41,11 @@ class_dimensions <- new_class(
     fields = new_property(
       class_character,
       getter = function(self)
-        as.list(self@fields) |>
-        set_names(self@fields),
+        set_names(
+          new_list(
+            length(self@fields),
+            character(0)),
+          self@fields),
       setter = function(self, value) {
         self@fields <- value
         self
@@ -65,7 +68,7 @@ class_endpoint <- new_class(
 
 #' @noRd
 #' @autoglobal
-class_temporal<- new_class(
+class_temporal <- new_class(
   name          = "class_temporal",
   package       = NULL,
   properties    = list(
@@ -91,11 +94,11 @@ class_group <- new_class(
 identifier_type <- function(x) {
 
   api <- case(
-    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro",
-    grepl("openpaymentsdata.cms.gov", x, perl = TRUE) ~ "open",
-    grepl("data.medicaid.gov", x, perl = TRUE) ~ "caid",
-    grepl("data.healthcare.gov", x, perl = TRUE) ~ "hgov",
-    grepl("data.cms.gov/data-api", x, perl = TRUE) ~ "care",
+    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro_endpoint",
+    grepl("openpaymentsdata.cms.gov", x, perl = TRUE)   ~ "open",
+    grepl("data.medicaid.gov", x, perl = TRUE)          ~ "caid",
+    grepl("data.healthcare.gov", x, perl = TRUE)        ~ "hgov",
+    grepl("data.cms.gov/data-api", x, perl = TRUE)      ~ "care",
     .default = NA_character_
   )
 
@@ -115,36 +118,36 @@ get_dimensions <- function(x, call = caller_env()) {
     id,
     open          = ,
     hgov          = 500L,
-    pro           = 2000L,
     caid          = 8000L,
+    pro_endpoint  = 2000L,
     care_endpoint = ,
     care_temporal = 5000L,
     cli::cli_abort(
-      c("x" = "{.val {x}} is an invalid type."),
+      c("x" = "{.val {id}} is an invalid identifier."),
       call  = call)
   )
+
+  req <- req_url_query(
+    request(x$identifier),
+    offset = 0L)
 
   req <- switch(
     id,
     care_endpoint = ,
     care_temporal =
-    req_url_query(
-      request(x$identifier),
-      offset = 0L,
-      size   = 1L),
-    req_url_query(
-      request(x$identifier),
-      results = "false",
-      offset  = 0L,
-      limit   = 1L)
-  )
+    req_url_query(req, size = 1L),
+    req_url_query(req, limit = 1L, results = "false"))
 
   x <- switch(
     id,
-    care_endpoint = get_elem(perform_simple(req)$meta, c("total_rows", "headers")),
+    care_endpoint = perform_simple(req)$meta |>
+      get_elem(c("total_rows", "headers")),
     care_temporal = list(
-      headers     = names(perform_simple(req)),
-      total_rows  = perform_simple(req_url_path_append(req, "stats"))$total_rows),
+      headers     = perform_simple(req) |> names(),
+      total_rows  = req_url_path_append(req, "stats") |>
+        perform_simple() |>
+        get_elem("total_rows")
+      ),
     perform_simple(req)
   )
 

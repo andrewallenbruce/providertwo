@@ -3,13 +3,25 @@ NULL
 
 #' @autoglobal
 #' @noRd
-get_resources <- function(obj) {
+is_care_base <- function(x) {
+  S7_inherits(x, care_endpoint) | S7_inherits(x, care_temporal)
+}
+
+
+#' @autoglobal
+#' @noRd
+pull_resource <- function(obj) {
+
   check_is_S7(obj)
-  switch(
+
+  x <- switch(
     class(obj)[1],
-    care_endpoint = as.list(prop(obj, "metadata")$resources),
-    care_temporal = as.list(prop(obj, "endpoints")$resources),
-  )
+    care_endpoint = "metadata",
+    care_temporal = "endpoints")
+
+  prop(obj, x) |>
+    get_elem("resources") |>
+    as.list()
 }
 
 #' @autoglobal
@@ -32,11 +44,11 @@ tidy_resources <- function(x) {
 #' @title List resources
 #' @param x `care_endpoint`, `care_group`, `care_temporal`
 #' @returns A list of API resources
-#' @examples
+#' @examplesIf interactive()
 #' care_endpoint("care_enrollees") |> list_resources()
-#' # care_group("care_hha") |> list_resources()
-#' # care_temporal("quality_payment") |> list_resources()
-#' # care_troup("care_inpatient") |> list_resources()
+#' care_temporal("quality_payment") |> list_resources()
+#' care_group("care_hha") |> list_resources()
+#' care_troup("care_inpatient") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
@@ -44,7 +56,7 @@ list_resources <- new_generic("list_resources", "x", function(x) {
 })
 
 method(list_resources, care_endpoint) <- function(x) {
-  get_resources(x) |>
+  pull_resource(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -55,7 +67,7 @@ method(list_resources, care_endpoint) <- function(x) {
 }
 
 method(list_resources, care_temporal) <- function(x) {
-  get_resources(x) |>
+  pull_resource(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -65,10 +77,8 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
-  all(members(x) |>
-        map_lgl(function(x)
-          S7_inherits(x, care_endpoint) |
-          S7_inherits(x, care_temporal)))
+  if (!all(map_lgl(members(x), is_care_base)))
+    stop("`members` must be a list of `care_endpoint` or `care_temporal` objects.")
 
   members(x) |>
     map(list_resources, .progress = TRUE) |>
