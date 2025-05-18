@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9286 (2025-05-18)
+
+* get_dimensions and get_metadata helpers
+* Unified all metadata into one class
+
+
 # providertwo 0.0.0.9285 (2025-05-17)
 
 * refined base_request methods
