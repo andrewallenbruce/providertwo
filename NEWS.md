@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9287 (2025-05-18)
+
+* `check_catalog_exists()` helper
+
+
 # providertwo 0.0.0.9286 (2025-05-18)
 
 * get_dimensions and get_metadata helpers
