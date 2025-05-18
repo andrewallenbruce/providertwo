@@ -22,7 +22,7 @@
 #' @param specialty_code `<chr>` Enrollment specialty code
 #' @param specialty_description `<chr>` Enrollment specialty description
 #' @returns `<tibble>` of search results
-#' @examples
+#' @examplesIf interactive()
 #' enrollees(enid = "I20040309000221")
 #' enrollees(npi = "1417918293")
 #' enrollees(pac = "2860305554")

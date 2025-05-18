@@ -17,6 +17,8 @@ A \verb{<tibble>}
 Open Payments Summaries
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 open_dashboard()
 open_national()
+\dontshow{\}) # examplesIf}
 }

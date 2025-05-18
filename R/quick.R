@@ -10,7 +10,7 @@
 #'
 #' @returns A data frame or list containing the requested CMS data.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' quick("pro_dialysis")
 #' quick("care_nhome")
 #' quick("business_rules")

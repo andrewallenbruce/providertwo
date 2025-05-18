@@ -2,6 +2,7 @@
 #' @noRd
 seq_along0 <- function(x) {
   seq_along(x) - 1
+  # 0L:(length(x) - 1L)
 }
 
 #' Format Public API Queries
@@ -15,7 +16,7 @@ seq_along0 <- function(x) {
 #'
 #' @returns `<list>` of formatted query `<exprs>`
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' format_query_care(list("NPI" = "1417918293", "PECOS" = NULL))
 #'
 #' format_query_care(list(NPI = "1417918293", PECOS = "001132"))

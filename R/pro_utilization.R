@@ -6,8 +6,7 @@
 #' @param count `<int>` Number of procedures performed
 #' @param percentile `<int>` Percentile of procedures performed
 #' @returns An S7 `<proUtilization>` object.
-#' @examples
-#' proUtilization(last_name = "CURRY")
+#' @examplesIf interactive()
 #' proUtilization(last_name = "CURRY", middle_name = "")
 #' @autoglobal
 #' @export
@@ -86,7 +85,7 @@ proUtilization <- new_class(
 #'
 #' @returns `<tibble>` of search results
 #'
-#' @examples
+#' @examplesIf interactive()
 #' utilization(last_name = "CURRY")
 #' utilization(npi = "1043245657")
 #' utilization(npi = "1003001785")

@@ -35,7 +35,7 @@
 #'
 #' @returns `<tibble>` of search results
 #'
-#' @examples
+#' @examplesIf interactive()
 #' clinicians(last_name = "CURRY")
 #' clinicians(npi = "1043245657")
 #' clinicians(state = "GA")

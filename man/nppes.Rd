@@ -62,11 +62,15 @@ Search the NLM NPI Registry
 Search the NPPES NPI Registry
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 npi_nlm("john bethesda")
 npi_nlm("Wiregrass Georgia")
 npi_nlm("Dentist Valdosta")
 npi_nlm("Valdosta")
 npi_nlm("Atlanta")
+\dontshow{\}) # examplesIf}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 npi_nppes(npi = npi_ex$k[1:2]) |> str()
 npi_nppes(npi = npi_ex$k[1]) |> str()
+\dontshow{\}) # examplesIf}
 }

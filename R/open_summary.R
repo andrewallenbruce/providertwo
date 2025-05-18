@@ -235,7 +235,7 @@ method(tidyup, openNational) <- function(x) {
 #' Open Payments Summaries
 #' @name open_summary
 #' @returns A `<tibble>`
-#' @examples
+#' @examplesIf interactive()
 #' open_dashboard()
 #' open_national()
 NULL

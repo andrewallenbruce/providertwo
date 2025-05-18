@@ -1,3 +1,31 @@
+# urls <- c(
+# "https://data.cms.gov/provider-data/api/1/datastore/query/",
+# "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
+# "https://data.medicaid.gov/api/1/datastore/query/",
+# "https://data.healthcare.gov/api/1/datastore/query/",
+# "https://data.cms.gov/data-api/v1/dataset/1cd9eded-d2c9-4215-a064-aac6dae3b714/data-viewer",
+# "https://data.cms.gov/data-api/v1/dataset/5be87981-41ad-41bc-964e-af5cbf22d5af/data",
+# "https://data")
+# map_vec(urls, identifier_type)
+#' @autoglobal
+#' @noRd
+identifier_type <- function(x) {
+
+  api <- case(
+    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro",
+    grepl("openpaymentsdata.cms.gov", x, perl = TRUE) ~ "open",
+    grepl("data.medicaid.gov", x, perl = TRUE) ~ "caid",
+    grepl("data.healthcare.gov", x, perl = TRUE) ~ "hgov",
+    grepl("data.cms.gov/data-api", x, perl = TRUE) ~ "care",
+    .default = NA_character_
+  )
+
+  if (is_na(api) || api != "care") return(api)
+
+  case(endsWith(x, "viewer") ~ "care_endpoint",
+       endsWith(x, "data") ~ "care_temporal")
+}
+
 #' @autoglobal
 #' @noRd
 extract_year <- function(x) {

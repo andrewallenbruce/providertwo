@@ -61,8 +61,10 @@ approved to bill Medicare.
 }
 
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 enrollees(enid = "I20040309000221")
 enrollees(npi = "1417918293")
 enrollees(pac = "2860305554")
 enrollees(state = "GA")
+\dontshow{\}) # examplesIf}
 }

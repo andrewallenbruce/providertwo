@@ -1,12 +1,8 @@
 #' @name arguments
-#'
 #' @title Argument Classes
-#'
 #' @param x `<chr>` input vector
-#'
 #' @returns An S7 `<arg>` object.
-#'
-#' @examples
+#' @examplesIf interactive()
 #' arg_npi("1225701881")
 #' arg_npi(1225701881)
 #' arg_npi(npi_ex$k)

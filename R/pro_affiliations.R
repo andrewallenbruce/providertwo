@@ -30,7 +30,7 @@
 #'
 #' @returns `<tibble>` of search results
 #'
-#' @examples
+#' @examplesIf interactive()
 #' affiliations(facility_type = "Home health agency")
 #' affiliations(last_name = "CURRY")
 #' affiliations(ccn_primary = "670055")

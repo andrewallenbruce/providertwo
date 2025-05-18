@@ -11,7 +11,7 @@
 #' @param zip `<chr>` WC 5- to 9-digit zip code, without a hyphen.
 #' @param country `<chr>` 2-character country abbreviation. Can be the only input, as long as it is not US.
 #' @returns `<tibble>` of search results
-#' @examples
+#' @examplesIf interactive()
 #' npi_nppes(npi = npi_ex$k[1:2]) |> str()
 #' npi_nppes(npi = npi_ex$k[1]) |> str()
 #' @source [API Documentation](https://npiregistry.cms.hhs.gov/api-page)

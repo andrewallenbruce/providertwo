@@ -14,7 +14,7 @@ nlm_url <- function(api) {
 #' @param terms `<chr>` Search terms, separated by spaces
 #' @param npi `<chr>` Search terms, separated by spaces
 #' @returns `<tibble>` of search results
-#' @examples
+#' @examplesIf interactive()
 #' npi_nlm("john bethesda")
 #' npi_nlm("Wiregrass Georgia")
 #' npi_nlm("Dentist Valdosta")

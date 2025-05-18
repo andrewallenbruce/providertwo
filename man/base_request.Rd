@@ -7,7 +7,7 @@
 base_request(x)
 }
 \arguments{
-\item{x}{An object of class \code{care_endpoint}, \code{care_group}, \code{pro_endpoint}, or \code{open_endpoint}}
+\item{x}{A \code{class_endpoint}, \code{class_temporal} or \code{class_group}}
 }
 \value{
 A new base request
@@ -21,8 +21,8 @@ pro_endpoint("pdc_affiliations") |> base_request()
 open_endpoint("profile_covered") |> base_request()
 caid_endpoint("mlr_summary") |> base_request()
 
-care_group("care_hospital") |> base_request()
-pro_group("pro_mips") |> base_request()
+# care_group("care_hospital") |> base_request()
+# pro_group("pro_mips") |> base_request()
 
 # care_temporal("quality_payment") |> base_request()
 # caid_temporal("healthcare_quality") |> base_request()

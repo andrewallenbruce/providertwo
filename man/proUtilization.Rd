@@ -36,6 +36,7 @@ An S7 \verb{<proUtilization>} object.
 Utilization Class
 }
 \examples{
-proUtilization(last_name = "CURRY")
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 proUtilization(last_name = "CURRY", middle_name = "")
+\dontshow{\}) # examplesIf}
 }

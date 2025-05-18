@@ -8,7 +8,7 @@
 #'   returns an integer sequence beginning at `0`, of length equal to
 #'   `ceiling(n / limit)`.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' offset_seq(100, 10)
 #' offset_size(100, 10)
 #'

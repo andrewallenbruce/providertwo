@@ -98,7 +98,9 @@ multiple lines.
 }
 
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 clinicians(last_name = "CURRY")
 clinicians(npi = "1043245657")
 clinicians(state = "GA")
+\dontshow{\}) # examplesIf}
 }

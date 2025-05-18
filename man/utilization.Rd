@@ -39,7 +39,9 @@ in the provider data catalog (PDC) to inform patients and caregivers
 about clinicians' experience.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 utilization(last_name = "CURRY")
 utilization(npi = "1043245657")
 utilization(npi = "1003001785")
+\dontshow{\}) # examplesIf}
 }

@@ -6,7 +6,7 @@
 #' @name quality_payment
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
-#' @examples
+#' @examplesIf interactive()
 #' quality_metrics(year = 2018:2025)
 #' quality_eligibility(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
 #' quality_eligibility(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
