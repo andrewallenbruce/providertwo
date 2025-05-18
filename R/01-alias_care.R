@@ -109,7 +109,7 @@ select_care <- function(x, call = caller_env()) {
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$care$main, x)
 
@@ -158,7 +158,7 @@ select_care_temp <- function(x, call = caller_env()) {
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$care$temp, x)
 

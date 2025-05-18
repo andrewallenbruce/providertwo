@@ -94,7 +94,7 @@ select_caid <- function(x, call = caller_env()) {
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$caid$main, x)
 
@@ -119,7 +119,7 @@ select_caid_temp <- function(x, call = caller_env()) {
     cli::cli_abort(c("x"  = "No matches found for {.val {x}}."), call = call)
   )
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$caid$temp, x)
 

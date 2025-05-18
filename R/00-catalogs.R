@@ -353,3 +353,9 @@ catalogs <- function() {
 }
 
 rlang::on_load(.catalog <<- catalogs())
+
+#' @autoglobal
+#' @noRd
+check_catalog_exists <- function() {
+  if (!exists(".catalog")) .catalog <<- catalogs()
+}

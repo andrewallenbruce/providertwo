@@ -17,7 +17,7 @@ select_open <- function(x, call = caller_env()) {
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$open$main, x)
 
@@ -73,7 +73,7 @@ select_open_temp <- function(x, call = caller_env()) {
     cli::cli_abort(c("x"          = "No matches found for {.val {x}}."), call = call)
   )
 
-  if (!exists("catalog")) .catalog <- catalogs()
+  check_catalog_exists()
 
   res <- select_alias(.catalog$open$temp, x)
 
