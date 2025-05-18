@@ -9,7 +9,7 @@ Search the NPPES NPI Registry"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9284</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9285</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,205 +127,17 @@ Search the NPPES NPI Registry"></head><body>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"john bethesda"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 138 RWS <span style="color: #0000BB;">[1 PG]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 138 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    full_name      npi        specialty                              full_address</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> KELLY, JOHN    1760880173 Dentist                                4833 BETHES…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> VAVREK, JOHN   1801864624 Military Health Care Provider          NNMC BETHES…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> SCHACHT, JOHN  1760801047 Medical Genetics and Genomics          WR, 8901 RO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> MAYE, JOHN     1225008147 Certified Registered Nurse Anesthetis… 8901 WISCON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> WEEKS, JOHN    1750077236 Military Health Care Provider          8901 WISCON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> CARAWAY, JOHN  1639923378 Student in an Organized Health Care E… 8901 ROCKVI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ATWOOD, JOHN   1023117090 Physician/Cardiovascular Disease (Car… 8901 ROCKVI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> CHOI, JOHN     1205862869 Physician/Neurology                    8901 ROCKVI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DANG, JOHN     1497245765 Physician/Internal Medicine            8901 WISCON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> LINABURY, JOHN 1942564885 Physician/Dermatology                  8901 WISCON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 128 more rows</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+<span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"john bethesda"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Wiregrass Georgia"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1 RW <span style="color: #0000BB;">[1 PG]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   full_name        npi        specialty full_address                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> STEWART, CHARLES 1881965564 Dentist   4089 VAL TECH RD WIREGRASS GEORGIA TECH…</span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Dentist Valdosta"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 56 RWS <span style="color: #0000BB;">[1 PG]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    full_name           npi        specialty full_address                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEPTA, BRENT        1649370339 Dentist   2711 WINDEMERE DR, VALDOSTA, GA 316…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> GRAY, HARDY         1497104871 Dentist   3362 GREYSTONE WAY, VALDOSTA, GA 31…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MAXWELL, DOUGLAS    1205999133 Dentist   2415 ANDOVER DR, VALDOSTA, GA 31602 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> MARABLE, STANLEY    1295883957 Dentist   308 JANET ST, VALDOSTA, GA 31602    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ROWELL, EUGENE, III 1790347185 Dentist   2711 WINDEMERE DR, VALDOSTA, GA 316…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> RASMUSSEN, DUHWAN   1366117186 Dentist   282 NORMAN DR, VALDOSTA, GA 31601   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> BROADFOOT, JAMES    1174704837 Dentist   414 PENDLETON PL, VALDOSTA, GA 31602</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> GRANTHAM, TIMOTHY   1063580181 Dentist   103 W CRANFORD AVE, VALDOSTA, GA 31…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> LAIRSEY, JASON      1528128683 Dentist   103 W CRANFORD AVE, VALDOSTA, GA 31…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ADAMS, BRADLEY      1922026111 Dentist   816 NORTHWOOD PARK DRIVE, VALDOSTA,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 46 more rows</span></span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Valdosta"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 1711 RWS <span style="color: #0000BB;">[4 PGS]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,711 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    full_name           npi        specialty                         full_address</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CRISCUOLA, ROBERT   1487632246 Physician/Pediatric Medicine      3331 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ALVARADO, ALAN      1972581767 Physician/Pediatric Medicine      3440 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> STIEFEL, ERIC       1023219672 Physician/General Surgery         3527 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> SPALDING, JOSHUA    1134828551 Physical Therapist in Private Pr… 3527 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> PEACOCK, KIMBERLY   1942347919 Certified Registered Nurse Anest… 4280 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> KENDRICK, JOHN      1164426136 Physician/General Surgery         3527 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> AGUERO, OSCAR, JR.  1962406918 Physician/General Surgery         3527 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> HASKINS, ERIN       1568769479 Speech Language Pathologist       3256 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> MCNEAL, SHELBY      1265020358 Nurse Practitioner                4274 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CHAVARRIA, KAYLEIGH 1205695301 Speech Language Pathologist       3256 N VALD…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,701 more rows</span></span>
 <span class="r-in"><span><span class="fu">npi_nlm</span><span class="op">(</span><span class="st">"Atlanta"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BBBB00;">!</span> <span style="color: #0000BB; font-weight: bold;">10000</span> Results Found</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Returning API limit of <span style="color: #0000BB;">[7500]</span>.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> NPPES <span style="color: #0000BB;">[NLM]</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">◼</span> 7500 RWS <span style="color: #0000BB;">[16 PGS]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7,500 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    full_name          npi        specialty                          full_address</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ADKINS, ATLANTA    1356023022 Technician                         224 MILL ST…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> HUFF, ATLANTA      1851157887 Counselor                          446 MORGAN …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MORELIK, ATLANTA   1407621188 Case Manager/Care Coordinator      60 W SUNBRI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> CRANIAS, ATLANTA   1720656531 Physician Assistant                2824 ENTERP…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> MCCRAVEY, ATLANTA  1538777081 Nurse Practitioner                 2166 E BROA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> WILLIAMS, ATLANTA  1023670940 Registered Nurse                   240 BUCKTAI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> MACKLIN, ATLANTA   1083207948 Registered Dietitian or Nutrition… 2115 STEPHE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ST.MARTIN, ATLANTA 1114544004 Counselor                          20331 FLANA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> BLACK, ATLANTA     1992516892 Specialist/Technologist            5716 S ARRO…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ROLOFF, ATLANTA    1073242244 Dentist                            13000 TECHN…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,490 more rows</span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [2 × 9] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ enumeration_type : chr [1:2] "NPI-2" "NPI-2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ number           : chr [1:2] "1225701881" "1174270805"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ addresses        :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_purpose : chr [1:2] "LOCATION" "MAILING"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_type    : chr [1:2] "DOM" "DOM"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_1       : chr [1:2] "26400 W 12 MILE RD STE 140" "26400 W 12 MILE RD STE 140"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ city            : chr [1:2] "SOUTHFIELD" "SOUTHFIELD"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "MI" "MI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "480341753" "480341753"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "866-658-8214" "866-658-8214"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_purpose : chr [1:2] "LOCATION" "MAILING"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_type    : chr [1:2] "DOM" "DOM"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_1       : chr [1:2] "1414 WALNUT ST" "333 S DESPLAINES ST STE 201"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ city            : chr [1:2] "PHILADELPHIA" "CHICAGO"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "PA" "IL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "191023824" "606615514"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "855-563-2639" "855-563-2639"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ practiceLocations:List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ basic            :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name                    : chr "VIOS FERTILITY INSTITUTE MICHIGAN PLLC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organizational_subpart               : chr "NO"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ enumeration_date                     : chr "2021-07-29"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_updated                         : chr "2024-02-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ certification_date                   : chr "2024-02-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ status                               : chr "A"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_first_name       : chr "KATRINA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_last_name        : chr "MARSHALL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_telephone_number : chr "7734359036"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_title_or_position: chr "Dir Ins Cred &amp; Payor Contracts"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :List of 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name                    : chr "PEACH STATE MEDICAL PRACTICE, PC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organizational_subpart               : chr "NO"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ enumeration_date                     : chr "2022-03-02"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ last_updated                         : chr "2024-05-20"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ certification_date                   : chr "2024-05-20"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ status                               : chr "A"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_first_name       : chr "FAHIMEH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_last_name        : chr "SASAN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_telephone_number : chr "8555632639"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_title_or_position: chr "Founding OBGYN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_name_prefix      : chr "Dr."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ authorized_official_credential       : chr "DO"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ taxonomies       :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  6 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr "207VE0102X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr "193400000X - Multiple Single Specialty Group"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ desc          : chr "Obstetrics &amp; Gynecology, Reproductive Endocrinology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  6 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr [1:2] "207VE0102X" "207VG0400X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr [1:2] "193200000X - Multi-Specialty Group" "193200000X - Multi-Specialty Group"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ desc          : chr [1:2] "Obstetrics &amp; Gynecology, Reproductive Endocrinology" "Obstetrics &amp; Gynecology, Gynecology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi [1:2] NA NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi [1:2] NA NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi [1:2] TRUE FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifiers      :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ endpoints        :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ other_names      :List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ organization_name: chr "KINDBODY OF PA MEDICAL PRACTICE, PC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ type             : chr "Doing Business As"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code             : chr "3"</span>
 <span class="r-in"><span><span class="fu">npi_nppes</span><span class="op">(</span>npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tibble [1 × 9] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ enumeration_type : chr "NPI-2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ number           : chr "1225701881"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ addresses        :List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	2 obs. of  9 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_code    : chr [1:2] "US" "US"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ country_name    : chr [1:2] "United States" "United States"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_purpose : chr [1:2] "LOCATION" "MAILING"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_type    : chr [1:2] "DOM" "DOM"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ address_1       : chr [1:2] "26400 W 12 MILE RD STE 140" "26400 W 12 MILE RD STE 140"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ city            : chr [1:2] "SOUTHFIELD" "SOUTHFIELD"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state           : chr [1:2] "MI" "MI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ postal_code     : chr [1:2] "480341753" "480341753"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ telephone_number: chr [1:2] "866-658-8214" "866-658-8214"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ practiceLocations:List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ basic            :'data.frame':	1 obs. of  10 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ organization_name                    : chr "VIOS FERTILITY INSTITUTE MICHIGAN PLLC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ organizational_subpart               : chr "NO"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ enumeration_date                     : chr "2021-07-29"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ last_updated                         : chr "2024-02-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ certification_date                   : chr "2024-02-12"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ status                               : chr "A"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_first_name       : chr "KATRINA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_last_name        : chr "MARSHALL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_telephone_number : chr "7734359036"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ authorized_official_title_or_position: chr "Dir Ins Cred &amp; Payor Contracts"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ taxonomies       :List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ :'data.frame':	1 obs. of  6 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ code          : chr "207VE0102X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ taxonomy_group: chr "193400000X - Multiple Single Specialty Group"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ desc          : chr "Obstetrics &amp; Gynecology, Reproductive Endocrinology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ state         : logi NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ license       : logi NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ primary       : logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifiers      :List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ endpoints        :List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ other_names      :List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ : list()</span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

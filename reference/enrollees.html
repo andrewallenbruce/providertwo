@@ -9,7 +9,7 @@ providers actively enrolled in Medicare."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9284</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9285</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,40 +123,12 @@ approved to bill Medicare.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>enid <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi        pac     enid  specialty_code specialty_description state first_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 387048… I200… 14-41          PRACTITIONER - OPTOM… FL    STEVEN    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: middle_name &lt;chr&gt;, last_name &lt;chr&gt;, org_name &lt;chr&gt;</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+<span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>enid <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>npi <span class="op">=</span> <span class="st">"1417918293"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi        pac     enid  specialty_code specialty_description state first_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1417918293 387048… I200… 14-41          PRACTITIONER - OPTOM… FL    STEVEN    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: middle_name &lt;chr&gt;, last_name &lt;chr&gt;, org_name &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>pac <span class="op">=</span> <span class="st">"2860305554"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   npi        pac     enid  specialty_code specialty_description state first_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1134122260 286030… I200… 14-41          PRACTITIONER - OPTOM… TX    ROBERT    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: middle_name &lt;chr&gt;, last_name &lt;chr&gt;, org_name &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">enrollees</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"GA"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,000 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    npi        pac    enid  specialty_code specialty_description state first_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1245249333 99310… I200… 14-08          PRACTITIONER - FAMIL… GA    MICHELLE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1346396462 27693… I200… 14-97          PRACTITIONER - PHYSI… GA    ROBERT    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1356345136 07491… I200… 14-93          PRACTITIONER - EMERG… GA    RONALD    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1508866765 80229… I200… 14-48          PRACTITIONER - PODIA… GA    LISSETTE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1942384953 37794… I200… 14-08          PRACTITIONER - FAMIL… GA    STANLEY   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1699718056 70128… I200… 14-01          PRACTITIONER - GENER… GA    JOHN      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1881634483 67097… I200… 14-08          PRACTITIONER - FAMIL… GA    BRUCE     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1609936566 47895… I200… 14-08          PRACTITIONER - FAMIL… GA    ADOLFO    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1497796718 29613… I200… 14-93          PRACTITIONER - EMERG… GA    REGINALD  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1679547061 04461… I200… 14-08          PRACTITIONER - FAMIL… GA    CHARLES   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4,990 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: middle_name &lt;chr&gt;, last_name &lt;chr&gt;, org_name &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
