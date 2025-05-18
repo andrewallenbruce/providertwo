@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9288 (2025-05-18)
+
+* tweak to class_dimensions -> fields
+* refined list_resources methods
+* cleaning up
+
+
 # providertwo 0.0.0.9287 (2025-05-18)
 
 * `check_catalog_exists()` helper
