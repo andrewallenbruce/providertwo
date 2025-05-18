@@ -25,19 +25,6 @@ hgov_dimensions <- function(x) {
   )
 }
 
-#' @noRd
-#' @autoglobal
-hgov_metadata <- function(x) {
-  list(
-    title       = x$title,
-    description = x$description,
-    periodicity = x$periodicity,
-    issued      = x$issued,
-    modified    = x$modified,
-    download    = x$download
-  )
-}
-
 #' Healthcare.Gov API Endpoint Classes
 #' @name healthcaregov
 #' @param alias `<chr>` endpoint alias
@@ -61,7 +48,7 @@ hgov_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = hgov_metadata(x),
+      metadata    = class_metadata(x),
       dimensions  = hgov_dimensions(x)
     )
   }
@@ -80,9 +67,7 @@ hgov_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      metadata    = list(title = x$title,
-                         description = x$description,
-                         periodicity = x$periodicity),
+      metadata    = class_metadata(x),
       dimensions  = hgov_dimensions(x),
       endpoints   = x$endpoints
     )

@@ -25,22 +25,6 @@ pro_dimensions <- function(x) {
   )
 }
 
-#' @noRd
-#' @autoglobal
-pro_metadata <- function(x) {
-  list(
-    title       = x$title,
-    group       = x$group,
-    description = x$description,
-    issued      = x$issued,
-    modified    = x$modified,
-    released    = x$released,
-    site        = x$site,
-    dictionary  = x$dictionary,
-    download    = x$download
-  )
-}
-
 #' Provider API Endpoint Classes
 #' @name provider
 #' @param alias `<chr>` endpoint alias
@@ -64,7 +48,7 @@ pro_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = pro_metadata(x),
+      metadata    = class_metadata(x),
       dimensions  = pro_dimensions(x)
     )
   }

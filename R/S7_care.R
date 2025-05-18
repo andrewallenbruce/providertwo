@@ -28,35 +28,6 @@ care_dimensions <- function(x) {
   }
 }
 
-#' @noRd
-#' @autoglobal
-care_metadata <- function(x) {
-  list(
-    title       = x$title,
-    description = x$description,
-    modified    = x$modified,
-    temporal    = x$temporal,
-    periodicity = x$periodicity,
-    download    = x$download,
-    resources   = x$resources,
-    dictionary  = x$dictionary,
-    site        = x$site,
-    references  = x$references
-  )
-}
-
-#' @noRd
-#' @autoglobal
-temp_metadata <- function(x) {
-  list(
-    title       = x$title,
-    description = x$description,
-    periodicity = x$periodicity,
-    dictionary  = x$dictionary,
-    site        = x$site
-  )
-}
-
 #' Medicare API Endpoint Classes
 #' @name medicare
 #' @param alias `<chr>` endpoint alias
@@ -82,7 +53,7 @@ care_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = care_metadata(x),
+      metadata    = class_metadata(x),
       dimensions  = care_dimensions(x)
     )
   }
@@ -121,7 +92,7 @@ care_temporal <- new_class(
     new_object(
       class_temporal(),
       title       = x$title,
-      metadata    = temp_metadata(x),
+      metadata    = class_metadata(x),
       dimensions  = care_dimensions(x),
       endpoints   = x$endpoints
     )
