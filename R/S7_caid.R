@@ -1,30 +1,6 @@
 #' @include S7_classes.R
 NULL
 
-#' @noRd
-#' @autoglobal
-caid_dimensions <- function(x) {
-
-    x <- x$identifier |>
-      request() |>
-      req_url_query(
-        schema  = "false",
-        keys    = "false",
-        results = "false",
-        count   = "true",
-        format  = "json",
-        rowIds  = "false",
-        offset  = 0L,
-        limit   = 1L) |>
-      perform_simple()
-
-    class_dimensions(
-      limit  = 8000L,
-      rows   = x$count,
-      fields = x$query$properties
-    )
-}
-
 #' Medicaid API Endpoint Classes
 #' @name medicaid
 #' @param alias `<chr>` endpoint alias
@@ -49,8 +25,8 @@ caid_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = class_metadata(x),
-      dimensions  = caid_dimensions(x)
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x)
     )
   }
 )
@@ -87,8 +63,8 @@ caid_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      metadata    = class_metadata(x),
-      dimensions  = caid_dimensions(x),
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x),
       endpoints   = x$endpoints
     )
   }

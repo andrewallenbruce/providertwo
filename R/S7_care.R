@@ -1,33 +1,6 @@
 #' @include S7_classes.R
 NULL
 
-#' @noRd
-#' @autoglobal
-care_dimensions <- function(x) {
-
-  req <- req_url_query(request(x$identifier), offset = 0L, size = 1L)
-
-  if (grepl("data-viewer$", x$identifier, perl = TRUE)) {
-
-    x <- perform_simple(req)$meta
-
-    class_dimensions(
-      limit  = 5000L,
-      rows   = x$total_rows,
-      fields = x$headers
-    )
-
-  } else {
-
-    class_dimensions(
-      limit  = 5000L,
-      rows   = perform_simple(req_url_path_append(req, "stats"))$total_rows,
-      fields = names(perform_simple(req))
-    )
-
-  }
-}
-
 #' Medicare API Endpoint Classes
 #' @name medicare
 #' @param alias `<chr>` endpoint alias
@@ -53,8 +26,8 @@ care_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = class_metadata(x),
-      dimensions  = care_dimensions(x)
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x)
     )
   }
 )
@@ -92,8 +65,8 @@ care_temporal <- new_class(
     new_object(
       class_temporal(),
       title       = x$title,
-      metadata    = class_metadata(x),
-      dimensions  = care_dimensions(x),
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x),
       endpoints   = x$endpoints
     )
   }

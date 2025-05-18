@@ -7,8 +7,8 @@ null_if <- function(x) {
 
 #' @noRd
 #' @autoglobal
-class_metadata <- function(x) {
-  list(
+get_metadata <- function(x) {
+  compact(list(
     title       = null_if(x$title),
     description = null_if(x$description),
     modified    = null_if(x$modified),
@@ -22,8 +22,7 @@ class_metadata <- function(x) {
     dictionary  = null_if(x$dictionary),
     site        = null_if(x$site),
     references  = null_if(x$references)
-  ) |>
-    compact()
+  ))
 }
 
 #' @noRd
@@ -86,3 +85,89 @@ class_group <- new_class(
     members  = class_list
   )
 )
+
+#' @autoglobal
+#' @noRd
+identifier_type <- function(x) {
+
+  api <- case(
+    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro",
+    grepl("openpaymentsdata.cms.gov", x, perl = TRUE) ~ "open",
+    grepl("data.medicaid.gov", x, perl = TRUE) ~ "caid",
+    grepl("data.healthcare.gov", x, perl = TRUE) ~ "hgov",
+    grepl("data.cms.gov/data-api", x, perl = TRUE) ~ "care",
+    .default = NA_character_
+  )
+
+  if (is_na(api) || api != "care") return(api)
+
+  case(endsWith(x, "viewer") ~ "care_endpoint",
+       endsWith(x, "data") ~ "care_temporal")
+}
+
+#' @autoglobal
+#' @noRd
+get_dimensions <- function(x, call = caller_env()) {
+
+  id <- identifier_type(x$identifier)
+
+  limit <- switch(
+    id,
+    open          = ,
+    hgov          = 500L,
+    pro           = 2000L,
+    caid          = 8000L,
+    care_endpoint = ,
+    care_temporal = 5000L,
+    cli::cli_abort(c("x" = "{.val {x}} is an invalid type."),
+                   call  = call)
+  )
+
+  req <- switch(
+    id,
+    care_endpoint = ,
+    care_temporal = req_url_query(
+      request(x$identifier),
+      offset = 0L,
+      size   = 1L),
+    req_url_query(
+      request(x$identifier),
+      results = "false",
+      offset  = 0L,
+      limit   = 1L)
+  )
+
+  x <- switch(
+    id,
+    care_endpoint = get_elem(
+      perform_simple(req)$meta,
+      c("total_rows", "headers")),
+    care_temporal = list(
+      headers     = names(perform_simple(req)),
+      total_rows  = perform_simple(req_url_path_append(req, "stats"))$total_rows),
+    perform_simple(req)
+  )
+
+  switch(
+    id,
+    care_endpoint = ,
+    care_temporal = class_dimensions(
+      limit  = limit,
+      rows   = x$total_rows,
+      fields = x$headers),
+    class_dimensions(
+      limit  = limit,
+      rows   = x$count,
+      fields = x$query$properties)
+  )
+}
+
+# select_caid("managed_care_bene_year") |> get_dimensions()
+# select_caid_temp("caid_drug_rebate_week") |> get_dimensions()
+# select_care("lab_fee_schedule") |> get_dimensions()
+# select_care_temp("procedure_summary") |> get_dimensions()
+# select_hgov_temp("hie_network") |> get_dimensions()
+# select_hgov("rolling_draft_ecp") |> get_dimensions()
+# select_open("summary_specialty") |> get_dimensions()
+# select_open_temp("payment_general") |> get_dimensions()
+# select_pro("hospital_general") |> get_dimensions()

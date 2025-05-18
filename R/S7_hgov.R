@@ -1,30 +1,6 @@
 #' @include S7_classes.R
 NULL
 
-#' @noRd
-#' @autoglobal
-hgov_dimensions <- function(x) {
-
-  x <- x$identifier |>
-    request() |>
-    req_url_query(
-      schema  = "false",
-      keys    = "false",
-      results = "false",
-      count   = "true",
-      format  = "json",
-      rowIds  = "false",
-      offset  = 0L,
-      limit   = 1L) |>
-    perform_simple()
-
-  class_dimensions(
-    limit  = 500L,
-    rows   = x$count,
-    fields = x$query$properties
-  )
-}
-
 #' Healthcare.Gov API Endpoint Classes
 #' @name healthcaregov
 #' @param alias `<chr>` endpoint alias
@@ -48,8 +24,8 @@ hgov_endpoint <- new_class(
     new_object(
       class_endpoint(),
       identifier  = x$identifier,
-      metadata    = class_metadata(x),
-      dimensions  = hgov_dimensions(x)
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x)
     )
   }
 )
@@ -67,8 +43,8 @@ hgov_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      metadata    = class_metadata(x),
-      dimensions  = hgov_dimensions(x),
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x),
       endpoints   = x$endpoints
     )
   }
