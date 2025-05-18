@@ -102,7 +102,7 @@ identifier_type <- function(x) {
   if (is_na(api) || api != "care") return(api)
 
   case(endsWith(x, "viewer") ~ "care_endpoint",
-       endsWith(x, "data") ~ "care_temporal")
+       endsWith(x, "data")   ~ "care_temporal")
 }
 
 #' @autoglobal
@@ -119,14 +119,16 @@ get_dimensions <- function(x, call = caller_env()) {
     caid          = 8000L,
     care_endpoint = ,
     care_temporal = 5000L,
-    cli::cli_abort(c("x" = "{.val {x}} is an invalid type."),
-                   call  = call)
+    cli::cli_abort(
+      c("x" = "{.val {x}} is an invalid type."),
+      call  = call)
   )
 
   req <- switch(
     id,
     care_endpoint = ,
-    care_temporal = req_url_query(
+    care_temporal =
+    req_url_query(
       request(x$identifier),
       offset = 0L,
       size   = 1L),
@@ -139,9 +141,7 @@ get_dimensions <- function(x, call = caller_env()) {
 
   x <- switch(
     id,
-    care_endpoint = get_elem(
-      perform_simple(req)$meta,
-      c("total_rows", "headers")),
+    care_endpoint = get_elem(perform_simple(req)$meta, c("total_rows", "headers")),
     care_temporal = list(
       headers     = names(perform_simple(req)),
       total_rows  = perform_simple(req_url_path_append(req, "stats"))$total_rows),
@@ -151,7 +151,8 @@ get_dimensions <- function(x, call = caller_env()) {
   switch(
     id,
     care_endpoint = ,
-    care_temporal = class_dimensions(
+    care_temporal =
+    class_dimensions(
       limit  = limit,
       rows   = x$total_rows,
       fields = x$headers),

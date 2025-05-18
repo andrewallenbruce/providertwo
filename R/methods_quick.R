@@ -1,13 +1,15 @@
 #' @autoglobal
 #' @noRd
-parse_string <- function(resp, query = NULL) {
-  fparse(resp_body_string(resp), query = query)
+bound <- function(lower, upper) {
+  check_number_whole(lower, min = 0)
+  check_number_whole(upper, min = lower)
+  cheapr_if_else(lower > upper, upper, lower)
 }
 
 #' @autoglobal
 #' @noRd
-care_parse <- function(resp) {
-  parse_string(resp, query = "/data")
+parse_string <- function(resp, query = NULL) {
+  fparse(resp_body_string(resp), query = query)
 }
 
 #' @autoglobal
@@ -76,14 +78,13 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset  = thresh(offset, dimensions(x)$rows),
-          limit   = thresh(limit, dimensions(x)$limit)
+          offset  = bound(offset, dimensions(x)$rows),
+          limit   = bound(limit, dimensions(x)$limit)
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
-      parse_string(x) |>
-        _[["results"]] |>
+      parse_string(x) |> _[["results"]] |>
         as_tbl() |>
         map_na_if()) |>
     pluck(1) |>
@@ -95,12 +96,12 @@ method(quick_, care_endpoint) <- function(x, offset, limit) {
     map(function(i)
       request(i) |>
         req_url_query(
-          offset = thresh(offset, dimensions(x)$rows),
-          size   = thresh(limit, dimensions(x)$limit)
+          offset = bound(offset, dimensions(x)$rows),
+          size   = bound(limit, dimensions(x)$limit)
         )) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
-        care_parse(x) |>
+      parse_string(x, query = "/data") |>
         as_tbl() |>
         map_na_if()) |>
     pluck(1) |>
@@ -127,8 +128,8 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset  = thresh(offset, dimensions(x)$rows),
-          limit   = thresh(limit, dimensions(x)$limit)
+          offset  = bound(offset, dimensions(x)$rows),
+          limit   = bound(limit, dimensions(x)$limit)
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
@@ -146,8 +147,8 @@ method(quick_, care_temporal) <- function(x, offset, limit) {
     map(function(i)
       request(i) |>
         req_url_query(
-          offset = thresh(offset, dimensions(x)$rows),
-          limit  = thresh(limit, dimensions(x)$limit))) |>
+          offset = bound(offset, dimensions(x)$rows),
+          limit  = bound(limit, dimensions(x)$limit))) |>
     req_perform_parallel(on_error = "continue") |>
     set_names(prop(x, "endpoints") |> get_elem("year")) |>
     map(parse_string) |>

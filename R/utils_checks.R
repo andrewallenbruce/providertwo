@@ -1,3 +1,10 @@
+#' @autoglobal
+#' @noRd
+ndigits <- function(x) {
+  stopifnot("x must be an integer" = is.integer(x))
+  ceiling(log10(x))
+}
+
 # luhn_check("1417918293")
 # luhn_check("1234567890")
 # luhn_check("1234567893")

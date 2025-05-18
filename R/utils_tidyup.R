@@ -1,3 +1,54 @@
+#' @autoglobal
+#' @noRd
+na_if <- function(x, y = "") {
+  vctrs::vec_slice(x, vec_in(x, y, needles_arg = "x", haystack_arg = "y")) <- NA
+  x
+}
+
+#' @autoglobal
+#' @noRd
+map_na_if <- function(i) {
+  purrr::modify_if(
+    i,
+    is.character, function(x)
+      na_if(x, y = ""))
+}
+
+#' @autoglobal
+#' @noRd
+make_address <- function(a1, a2) {
+  cheapr_if_else(!is_na(a2), paste(a1, a2), a1)
+}
+
+#' @autoglobal
+#' @noRd
+clean_names <- function(x) {
+  gsub("\\(|\\)", "",
+       gsub("\\s|-", "_", tolower(x), perl = TRUE),
+       perl = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+set_clean <- function(i, x) {
+  set_names(i, clean_names(x))
+}
+
+#' @autoglobal
+#' @noRd
+fmt_entity <- function(x, type = c("int", "chr")) {
+
+  type <- match.arg(type, c("int", "chr"))
+
+  switch(
+    type,
+    int = val_match(x, 1 ~ "I", 2 ~ "O"),
+    chr = val_match(x, "NPI-1" ~ "I", "NPI-2" ~ "O")
+  ) |>
+    factor_()
+
+}
+
 #' @noRd
 #' @autoglobal
 care_names <- function(x, call = caller_env()) {

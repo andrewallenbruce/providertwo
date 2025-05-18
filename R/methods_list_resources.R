@@ -49,7 +49,7 @@ method(list_resources, care_endpoint) <- function(x) {
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(function(resp)
-      care_parse(resp) |>
+      parse_string(resp, query = "/data") |>
         tidy_resources()) |>
     pluck(1)
 }
@@ -60,7 +60,7 @@ method(list_resources, care_temporal) <- function(x) {
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     resps_data(function(resp)
-      care_parse(resp)) |>
+      parse_string(resp, query = "/data")) |>
     tidy_resources()
 }
 
