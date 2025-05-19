@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9290 (2025-05-19)
+
+* fix: bound, quick defaults
+
+
 # providertwo 0.0.0.9289 (2025-05-18)
 
 * class_dimensions tweak
