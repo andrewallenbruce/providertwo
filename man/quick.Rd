@@ -4,14 +4,14 @@
 \alias{quick}
 \title{Quickly access CMS data}
 \usage{
-quick(x, offset = 0L, limit = 10L, call = caller_env())
+quick(x, offset = 0, limit = 10000, call = caller_env())
 }
 \arguments{
 \item{x}{\verb{<chr>} Alias representing the CMS data endpoint or category.}
 
 \item{offset}{\verb{<int>} The offset for pagination. Default is \code{"0"}.}
 
-\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{"10"}.}
+\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{"1e4"}.}
 
 \item{call}{Call environment. Default is the current environment.}
 }
@@ -23,9 +23,7 @@ Convenience function to quickly access various CMS data endpoints.
 Mostly for debugging purposes.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 quick("pro_dialysis")
 quick("care_nhome")
 quick("business_rules")
-\dontshow{\}) # examplesIf}
 }

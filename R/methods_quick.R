@@ -2,7 +2,7 @@
 #' @noRd
 bound <- function(lower, upper) {
   check_number_whole(lower, min = 0)
-  check_number_whole(upper, min = lower)
+  # check_number_whole(upper, min = lower)
   cheapr_if_else(lower > upper, upper, lower)
 }
 
@@ -26,7 +26,7 @@ fields <- function(obj) {
   check_is_S7(obj)
   prop(obj, "dimensions") |>
     prop("fields") |>
-    unlist(use.names = FALSE)
+    names()
 }
 
 #' @autoglobal

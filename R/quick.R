@@ -5,18 +5,18 @@
 #'
 #' @param x `<chr>` Alias representing the CMS data endpoint or category.
 #' @param offset `<int>` The offset for pagination. Default is `"0"`.
-#' @param limit `<int>` The maximum number of records to retrieve. Default is `"10"`.
+#' @param limit `<int>` The maximum number of records to retrieve. Default is `"1e4"`.
 #' @param call Call environment. Default is the current environment.
 #'
 #' @returns A data frame or list containing the requested CMS data.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' quick("pro_dialysis")
 #' quick("care_nhome")
 #' quick("business_rules")
 #' @autoglobal
 #' @export
-quick <- function(x, offset = 0L, limit = 10L, call = caller_env()) {
+quick <- function(x, offset = 0, limit = 1e4, call = caller_env()) {
   ob <- switch(
     x,
     ahqr_psi11 = ,
