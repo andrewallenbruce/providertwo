@@ -39,7 +39,7 @@ class_dimensions <- new_class(
         offset_size(self@rows, self@limit)
     ),
     fields = new_property(
-      class_character,
+      class_character | class_list,
       getter = function(self)
         set_names(
           new_list(
