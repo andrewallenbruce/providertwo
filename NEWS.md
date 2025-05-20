@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9295 (2025-05-20)
+
+* new_group work
+
+
 # providertwo 0.0.0.9294 (2025-05-20)
 
 * internal environment
