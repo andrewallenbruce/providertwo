@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9293 (2025-05-20)
+
+* experimenting with internal pkg environment
+
+
 # providertwo 0.0.0.9292 (2025-05-19)
 
 * `new_group()` alternate impl
