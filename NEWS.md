@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9292 (2025-05-19)
+
+* `new_group()` alternate impl
+
+
 # providertwo 0.0.0.9291 (2025-05-19)
 
 * new group impl draft
