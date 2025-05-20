@@ -42,6 +42,7 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Collate: 
     '00-catalogs.R'
+    '00-catnew.R'
     '01-alias_caid.R'
     '01-alias_care.R'
     '01-alias_hgov.R'

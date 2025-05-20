@@ -1,3 +1,9 @@
+#' @autoglobal
+#' @noRd
+make_quick_entry <- function(x) {
+  x |> names() |> cat(sep = " = ,\n")
+}
+
 #' Quickly access CMS data
 #'
 #' Convenience function to quickly access various CMS data endpoints.

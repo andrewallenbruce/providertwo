@@ -11,6 +11,9 @@ utils::globalVariables(c(
   # <select_open_temp>
   # <select_pro>
   ".catalog",
+  # <select_endpoint>
+  # <select_temporal>
+  ".catnew",
   # <catalog_care>
   "accessURL",
   # <catalog_care>
@@ -35,6 +38,7 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
+  # <select_temporal>
   # <select_caid_temp>
   # <select_care_temp>
   # <select_hgov_temp>
@@ -65,6 +69,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
+  # <select_temporal>
   # <select_caid_temp>
   # <select_care_temp>
   # <select_hgov_temp>
