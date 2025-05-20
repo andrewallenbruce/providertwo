@@ -14,12 +14,9 @@ select_open <- function(x, call = caller_env()) {
     summary_nature       = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
     summary_national     = "^National Level Payment Total and Averages for all Years$",
     summary_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-  check_catalog_exists()
-
-  res <- select_alias(.catalog$open$main, x)
+  res <- select_alias(the$catalogs$open$main, x)
 
   if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
@@ -70,12 +67,9 @@ select_open_temp <- function(x, call = caller_env()) {
     grouped_entity_nature         = "^Payments Grouped by Reporting Entities and Nature of Payments$",
     grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$",
-    cli::cli_abort(c("x"          = "No matches found for {.val {x}}."), call = call)
-  )
+    cli::cli_abort(c("x"          = "No matches found for {.val {x}}."), call = call))
 
-  check_catalog_exists()
-
-  res <- select_alias(.catalog$open$temp, x)
+  res <- select_alias(the$catalogs$open$temp, x)
 
   if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 

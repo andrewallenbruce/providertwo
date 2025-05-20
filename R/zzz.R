@@ -1,9 +1,8 @@
 .onLoad <- function(libname, pkgname) {
 
-  rlang::run_on_load()
+  # rlang::run_on_load()
   S7::methods_register()
 
-  catalogs       <<- memoise::memoise(catalogs)
   list_resources <<- memoise::memoise(list_resources)
   base_request   <<- memoise::memoise(base_request)
   quick          <<- memoise::memoise(quick)

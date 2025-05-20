@@ -90,11 +90,8 @@ select_caid <- function(x, call = caller_env()) {
     unwind_transition             = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
     unwind_historic               = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
     unwind_sbm                    = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
-
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-  # check_catalog_exists()
-  # res <- select_alias(.catalog$caid$main, x)
   res <- select_alias(the$catalogs$caid$main, x)
 
   if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
@@ -117,8 +114,6 @@ select_caid_temp <- function(x, call = caller_env()) {
     healthcare_quality    = "^Child and Adult Health Care Quality Measures$",
     cli::cli_abort(c("x"  = "No matches found for {.val {x}}."), call = call))
 
-  # check_catalog_exists()
-  # res <- select_alias(.catalog$caid$temp, x)
   res <- select_alias(the$catalogs$caid$temp, x)
 
   if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)

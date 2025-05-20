@@ -44,7 +44,6 @@ Collate:
     'utils_catalog.R'
     'utils_misc.R'
     '00-catalogs.R'
-    '00-catnew.R'
     '01-alias_caid.R'
     '01-alias_care.R'
     '01-alias_hgov.R'

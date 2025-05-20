@@ -105,13 +105,9 @@ select_care <- function(x, call = caller_env()) {
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-
-  check_catalog_exists()
-
-  res <- select_alias(.catalog$care$main, x)
+  res <- select_alias(the$catalogs$care$main, x)
 
   if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
@@ -158,9 +154,7 @@ select_care_temp <- function(x, call = caller_env()) {
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
 
-  check_catalog_exists()
-
-  res <- select_alias(.catalog$care$temp, x)
+  res <- select_alias(the$catalogs$care$temp, x)
 
   if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
