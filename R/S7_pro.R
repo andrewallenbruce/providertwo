@@ -1,17 +1,13 @@
 #' @include S7_classes.R
 NULL
 
-#' Provider API Endpoint Classes
+#' Provider API Endpoint Class
 #' @name provider
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<pro_endpoint>` or`<pro_group>` object
+#' @returns An S7 `<pro_endpoint>`
 #' @examples
 #' pro_endpoint("asc_facility")
-#' pro_group("pro_dialysis")
-NULL
-
 #' @autoglobal
-#' @rdname provider
 #' @export
 pro_endpoint <- new_class(
   name        = "pro_endpoint",
@@ -26,25 +22,6 @@ pro_endpoint <- new_class(
       identifier  = x$identifier,
       metadata    = get_metadata(x),
       dimensions  = get_dimensions(x)
-    )
-  }
-)
-
-#' @autoglobal
-#' @rdname provider
-#' @export
-pro_group <- new_class(
-  name       = "pro_group",
-  parent      = class_group,
-  package    = NULL,
-  constructor = function(alias) {
-
-    x <- select_pro_group(alias)
-
-    new_object(
-      class_group(),
-      group   = x$group,
-      members = set_names(map(x$alias, pro_endpoint), x$alias)
     )
   }
 )

@@ -3,23 +3,19 @@
 \name{provider}
 \alias{provider}
 \alias{pro_endpoint}
-\alias{pro_group}
-\title{Provider API Endpoint Classes}
+\title{Provider API Endpoint Class}
 \usage{
 pro_endpoint(alias)
-
-pro_group(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-An S7 \verb{<pro_endpoint>} or\verb{<pro_group>} object
+An S7 \verb{<pro_endpoint>}
 }
 \description{
-Provider API Endpoint Classes
+Provider API Endpoint Class
 }
 \examples{
 pro_endpoint("asc_facility")
-pro_group("pro_dialysis")
 }

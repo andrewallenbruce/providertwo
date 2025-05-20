@@ -167,7 +167,7 @@ select_group <- function(x, call = caller_env()) {
     complication_state                 = ,
     complication_pch_hospital          = ,
     complication_pch_national          = ,
-    dialysis_facility                  = ,
+    dialysis_byfacility                = ,
     dialysis_national                  = ,
     dialysis_state                     = ,
     esrd_depression                    = ,
@@ -453,25 +453,54 @@ select_group <- function(x, call = caller_env()) {
   )
 }
 
-#' Create a New Group of Endpoints
-#'
-#' @param x `<chr>` Alias representing the CMS data endpoint.
-#' @param q `<lgl>` call `quick_()` method on group if `TRUE`.
-#' @param offset `<int>` Offset for pagination.
-#' @param limit `<int>` Limit for pagination.
+#' Create Groups of Endpoints
+#' @name groups
+#' @param member_names `<chr>` Alias representing the CMS data endpoint.
+#' @param group_name   `<chr>` Name of the group.
+#' @param quick_call   `<lgl>` call `quick_()` method on group if `TRUE`.
+#' @param offset       `<int>` Offset for pagination.
+#' @param limit        `<int>` Limit for pagination.
+#' @param alias `<chr>` endpoint alias
+#' @param ... Additional arguments passed to the group constructor
 #' @returns S7 `class_group` object.
 #' @examples
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
-#' new_group(x = c("qhp_bus_rule_variables", "managed_care_share"), q = TRUE)
+#' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
+#' pro_group("pro_dialysis")
+NULL
+
+
 #' @autoglobal
+#' @rdname groups
 #' @export
-new_group <- function(x, q = FALSE, offset = 0, limit = 10) {
+new_group <- function(member_names,
+                      group_name = NULL,
+                      quick_call = FALSE,
+                      offset     = 0,
+                      limit      = 10) {
+
+  check_required(member_names)
+  check_bool(quick_call)
 
   ob <- class_group(
-    group   = paste(x, collapse = " | "),
-    members = set_names(map(x, select_group), x))
+    group   = if (is.null(group_name)) paste(member_names, collapse = " | ") else group_name,
+    members = set_names(map(member_names, select_group), member_names))
 
-  if (!q) return(ob)
+  if (!quick_call) return(ob)
 
   quick_(ob, offset = offset, limit = limit)
+}
+
+#' @autoglobal
+#' @rdname groups
+#' @export
+pro_group <- function(alias, ...) {
+
+  x <- select_pro_group(alias)
+
+  new_group(
+    member_names = x$alias,
+    group_name   = x$group,
+    ...
+  )
 }
