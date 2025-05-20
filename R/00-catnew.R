@@ -2,11 +2,18 @@
 #' @noRd
 catnew <- function() {
 
-  x <- catalogs()
+  check_catalog_exists()
 
   list(
-    endpoint = cheapr::row_c(x$care$main, x$pro$end, x$open$main, x$caid$main, x$hgov$main),
-    temporal = cheapr::row_c(x$care$temp, x$open$temp, x$caid$temp, x$hgov$temp)
+    endpoint = cheapr::row_c(.catalog$care$main,
+                             .catalog$pro$end,
+                             .catalog$open$main,
+                             .catalog$caid$main,
+                             .catalog$hgov$main),
+    temporal = cheapr::row_c(.catalog$care$temp,
+                             .catalog$open$temp,
+                             .catalog$caid$temp,
+                             .catalog$hgov$temp)
   )
 }
 

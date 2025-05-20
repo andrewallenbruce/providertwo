@@ -64,6 +64,7 @@ Collate:
     'methods_base_request.R'
     'methods_list_resources.R'
     'methods_quick.R'
+    'new_group.R'
     'npi_nlm.R'
     'npi_nppes.R'
     'offset.R'
