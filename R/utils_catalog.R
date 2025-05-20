@@ -1,4 +1,5 @@
 #' @autoglobal
+#' @keywords internal
 #' @noRd
 fmt_contactpoint <- function(x) {
   x <- delist(get_elem(x, "^has", regex = TRUE)) |>
@@ -8,6 +9,7 @@ fmt_contactpoint <- function(x) {
 }
 
 #' @autoglobal
+#' @keywords internal
 #' @noRd
 fmt_temporal <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
@@ -15,8 +17,9 @@ fmt_temporal <- function(x) {
 
 
 #' @autoglobal
+#' @keywords internal
 #' @noRd
-make_join_col <- \(x, col) {
+make_join_col <- function(x, col) {
   map(x[[ensym(col)]], function(x) get_elem(as.list(x), "data")) |>
     flatten_column() |>
     na_if("")
@@ -24,13 +27,9 @@ make_join_col <- \(x, col) {
 
 
 #' ISO 8601 Recurring Time Intervals
-#'
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
-#'
 #' @param x `<chr>` vector of ISO8601 recurrence rules
-#'
 #' @returns `<chr>` vector of human-readable recurrence rule descriptions
-#'
 #' @examplesIf rlang::is_interactive()
 #' accrualPeriodicity = c(
 #'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
@@ -38,16 +37,13 @@ make_join_col <- \(x, col) {
 #'   "R/P0.33M", "R/P0.5M", "R/P1M", "R/P2M",
 #'   "R/P3M",    "R/P4M",   "R/P6M", "R/P1Y",
 #'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
-#'
 #' fmt_periodicity(accrualPeriodicity)
-#'
 #' @section References:
-#'
 #' - [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 #' - [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
 #' - [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
-#'
 #' @autoglobal
+#' @keywords internal
 #' @noRd
 fmt_periodicity <- function(x) {
   val_match(
@@ -108,6 +104,7 @@ roxy8601 <- function(x) {
 # care_types("single")
 # care_types("multi")
 #' @autoglobal
+#' @keywords internal
 #' @noRd
 care_types <- function(x) {
   switch(

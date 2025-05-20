@@ -9,7 +9,7 @@ new_group(x, q = FALSE, offset = 0, limit = 10)
 \arguments{
 \item{x}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
-\item{q}{\verb{<lgl>} return a call to quick_() if \code{TRUE}.}
+\item{q}{\verb{<lgl>} call \code{quick_()} method on group if \code{TRUE}.}
 
 \item{offset}{\verb{<int>} Offset for pagination.}
 

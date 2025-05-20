@@ -2,8 +2,6 @@
 
 utils::globalVariables(c(
   # <catnew>
-  # <select_caid>
-  # <select_caid_temp>
   # <select_care>
   # <select_care_temp>
   # <select_hgov>
@@ -183,12 +181,12 @@ utils::globalVariables(c(
   "temporal",
   # <catalog_pro>
   "theme",
+  # <select_alias>
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
-  # <select_alias>
   "title",
   # <catalog_care>
   # <catalog_open>

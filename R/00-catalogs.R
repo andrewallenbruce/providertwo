@@ -1,3 +1,7 @@
+#' @include utils_misc.R
+#' @include utils_catalog.R
+NULL
+
 #' @autoglobal
 #' @noRd
 catalog_care <- function() {
@@ -328,6 +332,7 @@ catalog_hgov <- function() {
   )
 }
 
+
 #' @name catalogs
 #' @title API Catalogs
 #' @description
@@ -358,4 +363,15 @@ rlang::on_load(.catalog <<- catalogs())
 #' @noRd
 check_catalog_exists <- function() {
   if (!exists(".catalog")) .catalog <<- catalogs()
+}
+
+the          <- new.env(parent = emptyenv())
+the$catalogs <- catalogs()
+
+#' @autoglobal
+#' @noRd
+reset_catalog <- function() {
+  old <- the$catalogs
+  the$catalogs <- catalogs()
+  invisible(old)
 }

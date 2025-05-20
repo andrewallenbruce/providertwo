@@ -456,7 +456,7 @@ select_group <- function(x, call = caller_env()) {
 #' Create a New Group of Endpoints
 #'
 #' @param x `<chr>` Alias representing the CMS data endpoint.
-#' @param q `<lgl>` return a call to quick_() if `TRUE`.
+#' @param q `<lgl>` call `quick_()` method on group if `TRUE`.
 #' @param offset `<int>` Offset for pagination.
 #' @param limit `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
