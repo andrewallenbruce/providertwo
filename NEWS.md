@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9298 (2025-05-21)
+
+* removing individual endpoint classes
+
+
 # providertwo 0.0.0.9297 (2025-05-21)
 
 * removed all individual group classes
