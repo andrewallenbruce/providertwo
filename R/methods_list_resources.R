@@ -48,7 +48,7 @@ tidy_resources <- function(x) {
 #' care_endpoint("care_enrollees") |> list_resources()
 #' care_temporal("quality_payment") |> list_resources()
 #' care_group("care_hha") |> list_resources()
-#' care_troup("care_inpatient") |> list_resources()
+#' care_group("care_inpatient") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {

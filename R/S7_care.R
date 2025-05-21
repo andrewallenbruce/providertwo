@@ -4,12 +4,11 @@ NULL
 #' Medicare API Endpoint Classes
 #' @name medicare
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<care_endpoint>`, `<care_group>`, `<care_temporal>`, or `<care_troup>` object
+#' @returns An S7 `<care_endpoint>`, or `<care_temporal>` object
 #' @examples
 #' care_endpoint("care_dialysis")
 #' care_temporal("quality_payment")
-#' care_group("care_hospital")
-#' care_troup("care_utilization")
+#' pro_endpoint("asc_facility")
 NULL
 
 #' @autoglobal
@@ -28,25 +27,6 @@ care_endpoint <- new_class(
       identifier  = x$identifier,
       metadata    = get_metadata(x),
       dimensions  = get_dimensions(x)
-    )
-  }
-)
-
-#' @autoglobal
-#' @rdname medicare
-#' @export
-care_group <- new_class(
-  name        = "care_group",
-  parent      = class_group,
-  package     = NULL,
-  constructor = function(alias) {
-
-    x <- select_care_group(alias)
-
-    new_object(
-      class_group(),
-      group   = x$group,
-      members = set_names(map(x$alias, care_endpoint), x$alias)
     )
   }
 )
@@ -75,18 +55,19 @@ care_temporal <- new_class(
 #' @autoglobal
 #' @rdname medicare
 #' @export
-care_troup <- new_class(
-  name        = "care_troup",
-  parent      = class_group,
+pro_endpoint <- new_class(
+  name        = "pro_endpoint",
+  parent      = class_endpoint,
   package     = NULL,
   constructor = function(alias) {
 
-    x <- select_care_troup(alias)
+    x <- select_pro(alias)
 
     new_object(
-      class_group(),
-      group   = x$group,
-      members = set_names(map(x$alias, care_temporal), x$alias)
+      class_endpoint(),
+      identifier  = x$identifier,
+      metadata    = get_metadata(x),
+      dimensions  = get_dimensions(x)
     )
   }
 )

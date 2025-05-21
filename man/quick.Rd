@@ -11,7 +11,7 @@ quick(x, offset = 0, limit = 10000, call = caller_env())
 
 \item{offset}{\verb{<int>} The offset for pagination. Default is \code{"0"}.}
 
-\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{"1e4"}.}
+\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{"10000"}.}
 
 \item{call}{Call environment. Default is the current environment.}
 }

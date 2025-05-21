@@ -3,24 +3,21 @@
 \name{medicare}
 \alias{medicare}
 \alias{care_endpoint}
-\alias{care_group}
 \alias{care_temporal}
-\alias{care_troup}
+\alias{pro_endpoint}
 \title{Medicare API Endpoint Classes}
 \usage{
 care_endpoint(alias)
 
-care_group(alias)
-
 care_temporal(alias)
 
-care_troup(alias)
+pro_endpoint(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-An S7 \verb{<care_endpoint>}, \verb{<care_group>}, \verb{<care_temporal>}, or \verb{<care_troup>} object
+An S7 \verb{<care_endpoint>}, or \verb{<care_temporal>} object
 }
 \description{
 Medicare API Endpoint Classes
@@ -28,6 +25,5 @@ Medicare API Endpoint Classes
 \examples{
 care_endpoint("care_dialysis")
 care_temporal("quality_payment")
-care_group("care_hospital")
-care_troup("care_utilization")
+pro_endpoint("asc_facility")
 }

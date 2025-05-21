@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-select_group <- function(x, call = caller_env()) {
+select_member <- function(x, call = caller_env()) {
   switch(
     x,
     ahqr_psi11                         = ,
@@ -460,15 +460,15 @@ select_group <- function(x, call = caller_env()) {
 #' @param quick_call   `<lgl>` call `quick_()` method on group if `TRUE`.
 #' @param offset       `<int>` Offset for pagination.
 #' @param limit        `<int>` Limit for pagination.
-#' @param alias `<chr>` endpoint alias
 #' @param ... Additional arguments passed to the group constructor
 #' @returns S7 `class_group` object.
 #' @examples
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
 #' pro_group("pro_dialysis")
+#' care_group("care_hospital")
+#' care_group("care_utilization")
 NULL
-
 
 #' @autoglobal
 #' @rdname groups
@@ -481,26 +481,25 @@ new_group <- function(member_names,
 
   check_required(member_names)
   check_bool(quick_call)
+  check_character(group_name, allow_null = TRUE)
 
-  ob <- class_group(
-    group   = if (is.null(group_name)) paste(member_names, collapse = " | ") else group_name,
-    members = set_names(map(member_names, select_group), member_names))
+  if (length(member_names) == 1) {
+
+    ob <- select_member(member_names)
+
+    } else {
+
+    ob <- class_group(
+      group = ifelse(
+        is.null(group_name),
+        paste("ALIASES", member_names, collapse = " | "),
+        group_name),
+      members = set_names(map(
+        member_names, select_member), member_names)
+      )
+    }
 
   if (!quick_call) return(ob)
 
   quick_(ob, offset = offset, limit = limit)
-}
-
-#' @autoglobal
-#' @rdname groups
-#' @export
-pro_group <- function(alias, ...) {
-
-  x <- select_pro_group(alias)
-
-  new_group(
-    member_names = x$alias,
-    group_name   = x$group,
-    ...
-  )
 }

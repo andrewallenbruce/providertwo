@@ -1,5 +1,4 @@
 #' @include S7_care.R
-#' @include S7_pro.R
 #' @include S7_open.R
 #' @include S7_caid.R
 #' @include S7_hgov.R
@@ -9,21 +8,18 @@ NULL
 #' @title Create a new request by class
 #' @param x A `class_endpoint`, `class_temporal` or `class_group`
 #' @returns A new base request
-#' @examples
+#' @examplesIf interactive()
 #' care_endpoint("care_enrollees") |> base_request()
 #' pro_endpoint("pdc_affiliations") |> base_request()
 #' open_endpoint("profile_covered") |> base_request()
 #' caid_endpoint("mlr_summary") |> base_request()
-#'
-#' # care_group("care_hospital") |> base_request()
-#' # pro_group("pro_mips") |> base_request()
-#'
-#' # care_temporal("quality_payment") |> base_request()
-#' # caid_temporal("healthcare_quality") |> base_request()
-#' # open_temporal("payment_general") |> base_request()
-#'
-#' # care_troup("care_utilization") |> base_request()
-#' # open_troup("payment_grouped") |> base_request()
+#' care_temporal("quality_payment") |> base_request()
+#' caid_temporal("healthcare_quality") |> base_request()
+#' open_temporal("payment_general") |> base_request()
+#' care_group("care_hospital") |> base_request()
+#' pro_group("pro_mips") |> base_request()
+#' care_group("care_utilization") |> base_request()
+#' open_group("payment_grouped") |> base_request()
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x", function(x) {
@@ -79,8 +75,8 @@ method(base_request, care_temporal) <- function(x) {
     map(
       function(i)
         request(i) |>
-        req_throttle(capacity    = 30, fill_time_s = 60) |>
-        req_url_query(offset = 0L, limit  = dimensions(x)$limit)
+        req_throttle(capacity = 30, fill_time_s = 60) |>
+        req_url_query(offset = 0L, limit = dimensions(x)$limit)
     )
 }
 

@@ -166,10 +166,15 @@ select_care_temp <- function(x, call = caller_env()) {
 
 }
 
+#' @title Medicare API Endpoint Groups
+#' @param x `<chr>` endpoint alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @noRd
-select_care_group <- function(x, call = caller_env()) {
-  switch(
+#' @rdname groups
+#' @export
+care_group <- function(x, call = caller_env(), ...) {
+  x <- switch(
     x,
     care_hha = list(
       group = "Home Health Agencies",
@@ -330,15 +335,6 @@ select_care_group <- function(x, call = caller_env()) {
         "market_state_cnty"
       )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-}
-
-#' @autoglobal
-#' @noRd
-select_care_troup <- function(x, call = caller_env()) {
-  switch(
-    x,
     care_inpatient = list(
       group = "Medicare Inpatient Hospitals",
       alias = c(
@@ -392,8 +388,13 @@ select_care_troup <- function(x, call = caller_env()) {
       "nhome_performance",
       "nhome_mds_frequency",
       "nhome_mds_facility"
-    )
+      )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No groups found for {.val {x}}."), call = call))
+
+  new_group(
+    member_names = x$alias,
+    group_name   = x$group,
+    ...
   )
 }

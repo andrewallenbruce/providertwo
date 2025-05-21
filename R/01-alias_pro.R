@@ -159,10 +159,15 @@ select_pro <- function(x, call = caller_env()) {
   c(res)
 }
 
+#' @title Provider API Endpoint Groups
+#' @param x `<chr>` endpoint alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @noRd
-select_pro_group <- function(x, call = caller_env()) {
-  switch(
+#' @rdname groups
+#' @export
+pro_group <- function(x, call = caller_env(), ...) {
+  x <- switch(
     x,
     pro_cahps_spice      = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
     pro_cahps_hhc        = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
@@ -199,4 +204,10 @@ select_pro_group <- function(x, call = caller_env()) {
     pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
     pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+  new_group(
+    member_names = x$alias,
+    group_name   = x$group,
+    ...
+  )
 }
