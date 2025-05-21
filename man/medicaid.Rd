@@ -3,13 +3,10 @@
 \name{medicaid}
 \alias{medicaid}
 \alias{caid_endpoint}
-\alias{caid_group}
 \alias{caid_temporal}
 \title{Medicaid API Endpoint Classes}
 \usage{
 caid_endpoint(alias)
-
-caid_group(alias)
 
 caid_temporal(alias)
 }
@@ -17,13 +14,12 @@ caid_temporal(alias)
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-An S7 \verb{<caid_endpoint>}, \verb{<caid_group>}, or \verb{<caid_temporal>} object
+An S7 \verb{<caid_endpoint>} or \verb{<caid_temporal>} object
 }
 \description{
 Medicaid API Endpoint Classes
 }
 \examples{
 caid_endpoint("managed_longterm")
-caid_group("caid_dual_status")
 caid_temporal("state_drug_util")
 }

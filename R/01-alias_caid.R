@@ -125,10 +125,15 @@ select_caid_temp <- function(x, call = caller_env()) {
   )
 }
 
+#' @title Medicaid API Endpoint Groups
+#' @param x `<chr>` endpoint alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @noRd
-select_caid_group <- function(x, call = caller_env()) {
-  switch(
+#' @rdname groups
+#' @export
+caid_group <- function(x, call = caller_env(), ...) {
+  x <- switch(
     x,
     caid_demographics = list(
       group = "Medicaid and CHIP Enrollee Demographics",
@@ -251,6 +256,11 @@ select_caid_group <- function(x, call = caller_env()) {
         "unwind_sbm"
       )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+  new_group(
+    member_names = x$alias,
+    group_name   = x$group,
+    ...
   )
 }

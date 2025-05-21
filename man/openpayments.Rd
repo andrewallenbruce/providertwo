@@ -3,31 +3,23 @@
 \name{openpayments}
 \alias{openpayments}
 \alias{open_endpoint}
-\alias{open_group}
 \alias{open_temporal}
-\alias{open_troup}
 \title{Open Payments API Endpoint Classes}
 \usage{
 open_endpoint(alias)
 
-open_group(alias)
-
 open_temporal(alias)
-
-open_troup(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-An S7 \verb{<open_endpoint>}, \verb{<open_group>}, \verb{<open_temporal>}, or \verb{<open_troup>} object
+An S7 \verb{<open_endpoint>} or \verb{<open_temporal>} object
 }
 \description{
 Open Payments API Endpoint Classes
 }
 \examples{
 open_endpoint("profile_covered")
-open_group("profile")
 open_temporal("grouped_state_nature")
-open_troup("payment_detailed")
 }

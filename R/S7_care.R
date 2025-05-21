@@ -44,7 +44,6 @@ care_temporal <- new_class(
 
     new_object(
       class_temporal(),
-      title       = x$title,
       metadata    = get_metadata(x),
       dimensions  = get_dimensions(x),
       endpoints   = x$endpoints

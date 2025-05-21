@@ -74,7 +74,6 @@ Collate:
     'pro_utilization.R'
     'providertwo-package.R'
     'query.R'
-    'quick.R'
     'utils_checks.R'
     'utils_fmt.R'
     'utils_httr2.R'

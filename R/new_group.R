@@ -467,7 +467,8 @@ select_member <- function(x, call = caller_env()) {
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
 #' pro_group("pro_dialysis")
 #' care_group("care_hospital")
-#' care_group("care_utilization")
+#' caid_group("caid_dual_status")
+#' open_group("payment_detailed")
 NULL
 
 #' @autoglobal
@@ -492,7 +493,7 @@ new_group <- function(member_names,
     ob <- class_group(
       group = ifelse(
         is.null(group_name),
-        paste("ALIASES", member_names, collapse = " | "),
+        paste("ALIAS(", member_names, ")", collapse = " | "),
         group_name),
       members = set_names(map(
         member_names, select_member), member_names)
@@ -502,4 +503,30 @@ new_group <- function(member_names,
   if (!quick_call) return(ob)
 
   quick_(ob, offset = offset, limit = limit)
+}
+
+#' @autoglobal
+#' @noRd
+make_quick_entry <- function(x) {
+  x |> names() |> cat(sep = " = ,\n")
+}
+
+#' Quickly access CMS data
+#'
+#' Convenience function to quickly access various CMS data endpoints.
+#' Mostly for debugging purposes.
+#'
+#' @param x `<chr>` Alias representing the CMS data endpoint or category.
+#' @param offset `<int>` The offset for pagination. Default is `0`.
+#' @param limit `<int>` The maximum number of records to retrieve. Default is `10000`.
+#' @param call Call environment. Default is the current environment.
+#' @returns A data frame or list containing the requested CMS data.
+#' @examplesIf interactive()
+#' quick("pro_dialysis")
+#' quick("care_nhome")
+#' quick("business_rules")
+#' @autoglobal
+#' @export
+quick <- function(x, offset = 0, limit = 1e4, call = caller_env()) {
+  quick_(select_member(x), offset = offset, limit = limit)
 }

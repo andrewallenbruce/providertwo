@@ -26,36 +26,6 @@ select_open <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-select_open_group <- function(x, call = caller_env()) {
-  switch(
-    x,
-    profile = list(
-      group = "Open Payments Profiles",
-      alias = c(
-        "profile_covered",
-        "profile_physician",
-        "profile_information",
-        "profile_mapping",
-        "profile_entity",
-        "profile_teaching"
-      )
-    ),
-    summary = list(
-      group = "Open Payments Summaries",
-      alias = c(
-        "summary_dashboard",
-        "summary_state",
-        "summary_nature",
-        "summary_national",
-        "summary_specialty"
-      )
-    ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  )
-}
-
-#' @autoglobal
-#' @noRd
 select_open_temp <- function(x, call = caller_env()) {
   x <- switch(
     x,
@@ -80,11 +50,37 @@ select_open_temp <- function(x, call = caller_env()) {
   )
 }
 
+#' @title Open Payments API Endpoint Groups
+#' @param x `<chr>` endpoint alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @noRd
-select_open_troup <- function(x, call = caller_env()) {
-  switch(
+#' @rdname groups
+#' @export
+open_group <- function(x, call = caller_env(), ...) {
+  x <- switch(
     x,
+    profile = list(
+      group = "Open Payments Profiles",
+      alias = c(
+        "profile_covered",
+        "profile_physician",
+        "profile_information",
+        "profile_mapping",
+        "profile_entity",
+        "profile_teaching"
+      )
+    ),
+    summary = list(
+      group = "Open Payments Summaries",
+      alias = c(
+        "summary_dashboard",
+        "summary_state",
+        "summary_nature",
+        "summary_national",
+        "summary_specialty"
+      )
+    ),
     payment_grouped = list(
       group = "Open Payments by Year (Grouped)",
       alias = c(
@@ -103,6 +99,11 @@ select_open_troup <- function(x, call = caller_env()) {
         "payment_research"
       )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+
+  new_group(
+    member_names = x$alias,
+    group_name   = x$group,
+    ...
   )
 }
