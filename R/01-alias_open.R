@@ -1,8 +1,24 @@
+#' @include S7_classes.R
+NULL
+
+#' Open Payments API Endpoint Classes
+#' @name openpayments
+#' @param alias `<chr>` endpoint or group alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
+#' @returns An S7 `<class_endpoint>`, `<class_temporal>` or `<class_group>` object
+#' @examples
+#' open_endpoint("profile_covered")
+#' open_temporal("grouped_state_nature")
+#' open_group("payment_detailed")
+NULL
+
 #' @autoglobal
-#' @noRd
-select_open <- function(x, call = caller_env()) {
+#' @rdname openpayments
+#' @export
+open_endpoint <- function(alias, call = caller_env()) {
   x <- switch(
-    x,
+    alias,
     profile_covered      = "^Covered Recipient Profile Supplement$",
     profile_physician    = "^Physician \\(Distinct\\) Profile Information$",
     profile_information  = "^Profile Information$",
@@ -14,21 +30,29 @@ select_open <- function(x, call = caller_env()) {
     summary_nature       = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
     summary_national     = "^National Level Payment Total and Averages for all Years$",
     summary_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    )
 
   res <- select_alias(the$catalogs$open$main, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
-  c(res)
+  x <- c(res)
+
+  class_endpoint(
+    identifier  = x$identifier,
+    metadata    = get_metadata(x),
+    dimensions  = get_dimensions(x)
+  )
 }
 
 #' @autoglobal
-#' @noRd
-select_open_temp <- function(x, call = caller_env()) {
+#' @rdname openpayments
+#' @export
+open_temporal <- function(alias, call = caller_env()) {
   x <- switch(
-    x,
+    alias,
     payment_general               = "^General Payment Data$",
     payment_ownership             = "^Ownership Payment Data$",
     payment_research              = "^Research Payment Data$",
@@ -37,29 +61,32 @@ select_open_temp <- function(x, call = caller_env()) {
     grouped_entity_nature         = "^Payments Grouped by Reporting Entities and Nature of Payments$",
     grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$",
-    cli::cli_abort(c("x"          = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x"          = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    )
 
   res <- select_alias(the$catalogs$open$temp, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
-  list_tidy(
+  x <- list_tidy(
     !!!c(slt(res, -data)),
-    endpoints   = get_elem(res, "data") |> _[[1]],
+    endpoints   = pluck(get_elem(res, "data"), 1) |> slt(-contact),
     identifier  = endpoints$identifier[1]
+  )
+
+  class_temporal(
+    metadata    = get_metadata(x),
+    dimensions  = get_dimensions(x),
+    endpoints   = x$endpoints
   )
 }
 
-#' @title Open Payments API Endpoint Groups
-#' @param x `<chr>` endpoint alias
-#' @param call `<env>` environment to use for error reporting
-#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @rdname groups
+#' @rdname openpayments
 #' @export
-open_group <- function(x, call = caller_env(), ...) {
+open_group <- function(alias, call = caller_env(), ...) {
   x <- switch(
-    x,
+    alias,
     profile = list(
       group = "Open Payments Profiles",
       alias = c(
@@ -99,7 +126,8 @@ open_group <- function(x, call = caller_env(), ...) {
         "payment_research"
       )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
+  )
 
   new_group(
     member_names = x$alias,

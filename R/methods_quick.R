@@ -1,3 +1,8 @@
+#' @include S7_care.R
+#' @include S7_caid.R
+#' @include S7_hgov.R
+NULL
+
 #' @autoglobal
 #' @noRd
 bound <- function(lower, upper) {
@@ -55,10 +60,6 @@ name_fields <- function(x, obj) {
   set_names(x, fields(obj))
 }
 
-#' @include S7_care.R
-#' @include S7_open.R
-#' @include S7_caid.R
-#' @include S7_hgov.R
 #' @autoglobal
 #' @noRd
 quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {

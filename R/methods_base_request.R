@@ -1,12 +1,11 @@
 #' @include S7_care.R
-#' @include S7_open.R
 #' @include S7_caid.R
 #' @include S7_hgov.R
 NULL
 
 #' @name base_request
 #' @title Create a new request by class
-#' @param x A `class_endpoint`, `class_temporal` or `class_group`
+#' @param x A `class_endpoint`, `class_temporal` or `class_group` object
 #' @returns A new base request
 #' @examplesIf interactive()
 #' care_endpoint("care_enrollees") |> base_request()

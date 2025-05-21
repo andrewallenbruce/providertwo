@@ -21,6 +21,7 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_hgov>
   # <select_hgov_temp>
+  # <open_temporal>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -28,7 +29,7 @@ utils::globalVariables(c(
   # <select_caid_temp>
   # <select_care_temp>
   # <select_hgov_temp>
-  # <select_open_temp>
+  # <open_temporal>
   "data",
   # <quality_eligibility>
   "date_approved",
@@ -58,7 +59,7 @@ utils::globalVariables(c(
   # <select_caid_temp>
   # <select_care_temp>
   # <select_hgov_temp>
-  # <select_open_temp>
+  # <open_temporal>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",

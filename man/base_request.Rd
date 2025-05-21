@@ -7,7 +7,7 @@
 base_request(x)
 }
 \arguments{
-\item{x}{A \code{class_endpoint}, \code{class_temporal} or \code{class_group}}
+\item{x}{A \code{class_endpoint}, \code{class_temporal} or \code{class_group} object}
 }
 \value{
 A new base request

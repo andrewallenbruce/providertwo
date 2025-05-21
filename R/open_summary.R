@@ -1,13 +1,10 @@
-#' @include S7_open.R
-NULL
-
 #' @autoglobal
 #' @noRd
 perform_bare <- new_generic("perform_bare", "x", function(x) {
   S7_dispatch()
 })
 
-method(perform_bare, open_endpoint) <- function(x) {
+method(perform_bare, class_endpoint) <- function(x) {
   x@identifier |>
     request() |>
     req_url_query(

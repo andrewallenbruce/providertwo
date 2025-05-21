@@ -468,7 +468,6 @@ select_member <- function(x, call = caller_env()) {
 #' pro_group("pro_dialysis")
 #' care_group("care_hospital")
 #' caid_group("caid_dual_status")
-#' open_group("payment_detailed")
 NULL
 
 #' @autoglobal
