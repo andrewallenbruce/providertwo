@@ -1,6 +1,13 @@
 #' @autoglobal
 #' @keywords internal
 #' @noRd
+ifelse_ <- function(test, yes, no, na = no[NA_integer_]) {
+  cheapr_if_else(condition = test, true = yes, false = no, na = na)
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
 get_distribution <- function(x) {
   get_elem(x$distribution, "data", DF.as.list = TRUE)
 }

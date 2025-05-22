@@ -10,6 +10,7 @@ catalog_care <- function() {
 
   x <- mtt(
     x,
+    api         = "Medicare",
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
     contact     = fmt_contactpoint(x$contactPoint),
@@ -24,28 +25,16 @@ catalog_care <- function() {
     description = greplace(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ", ""),
     description = greplace(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", ""),
     description = greplace(description, "\\n\\n.+\\n\\n", ""),
-    description = stri_trim(description)
-  ) |>
-    slt(
-      title,
-      description,
-      modified,
-      periodicity,
-      temporal,
-      contact,
-      identifier,
-      dictionary  = describedBy,
-      site        = landingPage,
-      references,
-      distribution
-    ) |>
+    description = stri_trim(description)) |>
+    slt(api, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references, distribution) |>
     as_tbl()
 
   d <- rowbind(x$distribution, fill = TRUE) |>
     fcompute(
+      api        = "Medicare [Temporal]",
       year       = extract_year(title),
       title      = stri_replace_all_regex(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
-      format     = cheapr_if_else(!is_na(description), description, format),
+      format     = ifelse_(!is_na(description), description, format),
       modified   = as_date(modified),
       temporal   = fmt_temporal(temporal),
       identifier = accessURL,
@@ -61,14 +50,15 @@ catalog_care <- function() {
   list_tidy(
     main = join_on_title(
       slt(x, -distribution),
-      sbt(d, format == "latest", title, download, resources)) |> roworder(title),
+      sbt(d, format == "latest", title, download, resources)) |>
+      roworder(title),
     temp = join_on_title(
       sbt(d, format != "latest" & title %!in_% care_types("single"), -format, -filetype) |>
         roworder(title, -year) |>
-        f_nest_by(.by = title) |>
+        f_nest_by(.by = c(api, title)) |>
         f_ungroup(),
-      slt(main, title, description, periodicity, contact, dictionary, site)
-    )
+      slt(main, title, description, periodicity, contact, dictionary, site, references)) |>
+      colorder(data, pos = "end")
   )
 }
 
@@ -78,7 +68,9 @@ catalog_care <- function() {
 catalog_pro <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
-  x <- mtt(x,
+  x <- mtt(
+    x,
+    api         = "Provider",
     title       = remove_non_ascii(title),
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
@@ -89,7 +81,7 @@ catalog_pro <- function() {
     description = stri_trim(greplace(description, "\n", "")),
     download    = delist_elem(x$distribution, "downloadURL"),
     contact     = fmt_contactpoint(x$contactPoint)) |>
-    slt(title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+    slt(api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
     roworder(group, title) |>
     as_tbl()
 
@@ -105,12 +97,13 @@ catalog_open <- function() {
 
   x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
-  x <- mtt(x,
+  x <- mtt(
+    x,
     identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
     modified    = as_date(modified),
     year        = get_data_elem(keyword),
     year        = greplace(year, "all years", "All"),
-    year        = cheapr_if_else(title == "Provider profile ID mapping table", "All", year),
+    year        = ifelse_(title == "Provider profile ID mapping table", "All", year),
     title       = remove_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
@@ -120,26 +113,28 @@ catalog_open <- function() {
     description = greplace(description, "  ", " "),
     description = stri_trim(description),
     download    = get_elem(x$distribution, "data", DF.as.list = TRUE) |> get_elem("downloadURL") |> delist()) |>
-    slt(year,
-        title,
-        description,
-        modified,
-        identifier,
-        contact,
-        download) |>
+    slt(year, title, description, modified, identifier, contact, download) |>
     as_tbl()
 
   list(
-    main = sbt(x, year == "All", -year) |> roworder(title),
+    main = sbt(x, year == "All", -year) |>
+      mtt(api = "Open Payments") |>
+      colorder(api) |>
+      roworder(title),
     temp = sbt(x, year != "All") |>
-      mtt(year        = as.integer(year),
+      mtt(api         = "Open Payments [Temporal]",
+          year        = as.integer(year),
           title       = stri_replace_all_regex(title, "^[0-9]{4} ", ""),
-          description = case(title == "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
-                             title == "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
-                             title == "Research Payment Data"  ~ "All research-related payments from the program year",
-                             .default = description)) |>
+          description = val_match(
+            title,
+            "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
+            "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
+            "Research Payment Data"  ~ "All research-related payments from the program year",
+            .default = description)
+        ) |>
+      colorder(api) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(title, description, modified)) |>
+      f_nest_by(.by = c(api, title, description, modified)) |>
       f_ungroup()
     )
 }
@@ -158,13 +153,13 @@ catalog_caid <- function() {
       contact     = fmt_contactpoint(x$contactPoint),
       title       = greplace(title, "^ ", ""),
       title       = remove_non_ascii(title),
-      title       = greplace(title, "\\s\\s", "\\s"),
+      title       = greplace(title, "  ", " "),
       description = stri_trans_general(description, "latin-ascii"),
       description = remove_non_ascii(description),
       description = greplace(description, "[\"']", ""),
       description = greplace(description, "\r\n", " "),
       description = greplace(description, "  ", " "),
-      description = cheapr_if_else(description == "Dataset.", NA_character_, description)
+      description = ifelse_(description == "Dataset.", NA_character_, description)
     ) |>
     slt(
       title,
@@ -177,22 +172,23 @@ catalog_caid <- function() {
     ) |>
     as_tbl()
 
-  # dictionary <- new_df(
-  #   title      = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
-  #   dictionary = get_distribution(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
-
   download <- new_tbl(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download),
-    id       = groupid(title)
-  ) |>
+    id       = groupid(title)) |>
     fcount(id, add = TRUE)
 
   main <- list(
     slt(x, -distribution),
-    rowbind(sbt(download, N == 1), sbt(download, N > 1 & ext == "csv")) |> slt(-N, -id, -ext),
-    sbt(download, N > 2 & ext != "csv", -id, -N, -ext) |> f_nest_by(.by = title) |> f_ungroup() |> rnm(resources = data)) |>
+    rowbind(
+      sbt(download, N == 1),
+      sbt(download, N > 1 & ext == "csv")) |>
+      slt(-N, -id, -ext),
+    sbt(download, N > 2 & ext != "csv", -id, -N, -ext) |>
+      f_nest_by(.by = title) |>
+      f_ungroup() |>
+      rnm(resources = data)) |>
     reduce(join_on_title) |>
     roworder(title)
 
@@ -207,24 +203,35 @@ catalog_caid <- function() {
   )
 
   list(
-    main = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
-    temp = subset_detect(main, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(year = extract_year(title),
-          title = case(gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
-                       gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
-                       gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
-                       gdetect(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
-                       gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
-                       gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-                       .default = title),
-          description = cheapr_if_else(title == "Child and Adult Health Care Quality Measures", "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.", description)) |>
+    main = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(api = "Medicaid") |>
+      colorder(api),
+    temp = subset_detect(main, title, ptn, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(api   = "Medicaid [Temporal]",
+          year  = extract_year(title),
+          title = case(
+            gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
+            gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
+            gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
+            gdetect(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
+            gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
+            gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+            .default = title),
+          description = ifelse_(title == "Child and Adult Health Care Quality Measures",
+                                "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+                                description)
+          ) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
-      slt(year, title, description, periodicity, modified, identifier, download) |>
+      slt(api, year, title, description, periodicity, modified, identifier, download) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(title, description, periodicity)) |>
+      f_nest_by(.by = c(api, title, description, periodicity)) |>
       f_ungroup()
-    # scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
+
+    # scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
+    # subset_detect(title, "CoreS|Scorecard|Auto")
   )
 }
 
@@ -266,12 +273,13 @@ catalog_hgov <- function() {
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
-  download <- rowbind(
-    sbt(download, N == 1, -N, -ext),
-    sbt(download, N > 1 & ext == "csv", -N, -ext)
-  )
-
-  x <- list(slt(x, -distribution), download) |> reduce(join_on_title)
+  x <- list(
+    slt(x, -distribution),
+    rowbind(
+      sbt(download, N == 1, -N, -ext),
+      sbt(download, N > 1 & ext == "csv", -N, -ext)
+      )) |>
+    reduce(join_on_title)
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
     mtt(
@@ -347,11 +355,6 @@ catalogs <- function() {
     hgov = catalog_hgov()
   )
 }
-
-# rlang::on_load(.catalog <<- catalogs())
-# check_catalog_exists <- function() {
-#   if (!exists(".catalog")) .catalog <<- catalogs()
-# }
 
 the          <- new.env(parent = emptyenv())
 the$catalogs <- catalogs()

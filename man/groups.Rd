@@ -3,46 +3,34 @@
 \name{groups}
 \alias{groups}
 \alias{new_group}
-\alias{quick}
 \title{Create Groups of Endpoints}
 \usage{
 new_group(
   member_names,
   group_name = NULL,
-  quick_call = FALSE,
+  quick = FALSE,
   offset = 0,
   limit = 10
 )
-
-quick(x, offset = 0, limit = 10000, call = caller_env())
 }
 \arguments{
 \item{member_names}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
 \item{group_name}{\verb{<chr>} Name of the group.}
 
-\item{quick_call}{\verb{<lgl>} call \code{quick_()} method on group if \code{TRUE}.}
+\item{quick}{\verb{<lgl>} call \code{quick_()} method on group if \code{TRUE}.}
 
-\item{offset}{\verb{<int>} The offset for pagination. Default is \code{0}.}
+\item{offset}{\verb{<int>} Offset for pagination.}
 
-\item{limit}{\verb{<int>} The maximum number of records to retrieve. Default is \code{10000}.}
-
-\item{x}{\verb{<chr>} Alias representing the CMS data endpoint or category.}
-
-\item{call}{Call environment. Default is the current environment.}
+\item{limit}{\verb{<int>} Limit for pagination.}
 }
 \value{
 S7 \code{class_group} object.
-
-A data frame or list containing the requested CMS data.
 }
 \description{
-Convenience function to quickly access various CMS data endpoints.
-Mostly for debugging purposes.
+Create Groups of Endpoints
 }
 \examples{
 new_group(c("qhp_bus_rule_variables", "managed_care_share"))
-new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
-quick("revalid_group")
-quick("out_img_national")
+new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick = TRUE)
 }

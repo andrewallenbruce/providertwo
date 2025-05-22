@@ -13,6 +13,11 @@ utils::globalVariables(c(
   "adr_ln_2",
   # <clinicians>
   "adrs_id",
+  # <catalog_care>
+  # <catalog_pro>
+  # <catalog_open>
+  # <catalog_caid>
+  "api",
   # <quality_metrics>
   "category",
   # <catalog_care>
@@ -26,6 +31,7 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
+  # <catalog_care>
   # <catalog_caid>
   # <caid_temporal>
   # <select_care_temp>

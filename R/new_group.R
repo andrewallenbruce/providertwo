@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+make_quick_entry <- function(x) {
+  x |> names() |> cat(sep = " = ,\n")
+}
+
+#' @autoglobal
+#' @noRd
 select_member <- function(x, call = caller_env()) {
   switch(
     x,
@@ -457,13 +463,13 @@ select_member <- function(x, call = caller_env()) {
 #' @name groups
 #' @param member_names `<chr>` Alias representing the CMS data endpoint.
 #' @param group_name   `<chr>` Name of the group.
-#' @param quick_call   `<lgl>` call `quick_()` method on group if `TRUE`.
+#' @param quick        `<lgl>` call `quick_()` method on group if `TRUE`.
 #' @param offset       `<int>` Offset for pagination.
 #' @param limit        `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
 #' @examples
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
-#' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
+#' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick = TRUE)
 NULL
 
 #' @autoglobal
@@ -471,35 +477,34 @@ NULL
 #' @export
 new_group <- function(member_names,
                       group_name = NULL,
-                      quick_call = FALSE,
+                      quick      = FALSE,
                       offset     = 0,
                       limit      = 10) {
 
   check_required(member_names)
-  check_bool(quick_call)
+  check_bool(quick)
   check_character(group_name, allow_null = TRUE)
 
   if (length(member_names) == 1) {
-
     ob <- select_member(member_names)
 
-    } else {
-
+  } else {
     ob <- class_group(
-      group   = ifelse(is.null(group_name), paste("ALIAS(", member_names, ")", collapse = " | "), group_name),
-      members = set_names(map(member_names, select_member), member_names)
-      )
-    }
+      group = ifelse(
+        is.null(group_name),
+        paste0("ALIAS(", member_names, ")", collapse = " | "),
+        group_name
+      ),
+      members = map(member_names, select_member) |>
+        set_names(member_names)
+    )
+  }
 
-  if (!quick_call) return(ob)
+  if (!quick) return(ob)
 
-  quick_(ob, offset = offset, limit = limit)
-}
-
-#' @autoglobal
-#' @noRd
-make_quick_entry <- function(x) {
-  x |> names() |> cat(sep = " = ,\n")
+  quick_(ob,
+         offset = offset,
+         limit  = limit)
 }
 
 #' Quickly access CMS data
@@ -507,17 +512,21 @@ make_quick_entry <- function(x) {
 #' Convenience function to quickly access various CMS data endpoints.
 #' Mostly for debugging purposes.
 #'
-#' @param x `<chr>` Alias representing the CMS data endpoint or category.
+#' @param alias `<chr>` Alias representing the CMS data endpoint or category.
 #' @param offset `<int>` The offset for pagination. Default is `0`.
 #' @param limit `<int>` The maximum number of records to retrieve. Default is `10000`.
-#' @param call Call environment. Default is the current environment.
-#' @returns A data frame or list containing the requested CMS data.
+#' @returns A data frame containing the requested CMS data.
 #' @examples
 #' quick("revalid_group")
 #' quick("out_img_national")
 #' @autoglobal
-#' @rdname groups
 #' @export
-quick <- function(x, offset = 0, limit = 1e4, call = caller_env()) {
-  quick_(select_member(x), offset = offset, limit = limit)
+quick <- function(alias,
+                  offset = 0,
+                  limit  = 1e4) {
+
+  check_required(alias)
+  quick_(select_member(alias),
+         offset = offset,
+         limit  = limit)
 }

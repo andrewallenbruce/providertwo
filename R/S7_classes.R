@@ -15,6 +15,7 @@ unlist_if <- function(x) {
 #' @autoglobal
 get_metadata <- function(x) {
   compact(list(
+    api         = null_if(x$api),
     title       = null_if(x$title),
     description = null_if(x$description),
     modified    = null_if(x$modified),
