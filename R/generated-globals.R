@@ -20,15 +20,15 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
-  # <select_hgov_temp>
+  # <hgov_temporal>
   # <open_temporal>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
-  # <select_caid_temp>
+  # <caid_temporal>
   # <select_care_temp>
-  # <select_hgov_temp>
+  # <hgov_temporal>
   # <open_temporal>
   "data",
   # <quality_eligibility>
@@ -48,6 +48,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_caid>
   # <catalog_hgov>
+  # <caid_dictionary>
   "distribution",
   # <catalog_care>
   # <catalog_pro>
@@ -56,9 +57,9 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
-  # <select_caid_temp>
+  # <caid_temporal>
   # <select_care_temp>
-  # <select_hgov_temp>
+  # <hgov_temporal>
   # <open_temporal>
   "endpoints",
   # <quality_eligibility>
@@ -123,8 +124,8 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_hgov>
   "N",
-  # <tidy_resources>
   # <open_dictionary>
+  # <tidy_resources>
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
@@ -179,8 +180,8 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
-  # <tidy_resources>
   # <open_dictionary>
+  # <tidy_resources>
   "year",
   # <quality_eligibility>
   "years_in_medicare",

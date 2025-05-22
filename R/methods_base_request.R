@@ -1,6 +1,5 @@
+#' @include S7_classes.R
 #' @include S7_care.R
-#' @include S7_caid.R
-#' @include S7_hgov.R
 NULL
 
 #' @name base_request

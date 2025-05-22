@@ -467,7 +467,6 @@ select_member <- function(x, call = caller_env()) {
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
 #' pro_group("pro_dialysis")
 #' care_group("care_hospital")
-#' caid_group("caid_dual_status")
 NULL
 
 #' @autoglobal
@@ -490,12 +489,8 @@ new_group <- function(member_names,
     } else {
 
     ob <- class_group(
-      group = ifelse(
-        is.null(group_name),
-        paste("ALIAS(", member_names, ")", collapse = " | "),
-        group_name),
-      members = set_names(map(
-        member_names, select_member), member_names)
+      group   = ifelse(is.null(group_name), paste("ALIAS(", member_names, ")", collapse = " | "), group_name),
+      members = set_names(map(member_names, select_member), member_names)
       )
     }
 
@@ -520,10 +515,9 @@ make_quick_entry <- function(x) {
 #' @param limit `<int>` The maximum number of records to retrieve. Default is `10000`.
 #' @param call Call environment. Default is the current environment.
 #' @returns A data frame or list containing the requested CMS data.
-#' @examplesIf interactive()
-#' quick("pro_dialysis")
-#' quick("care_nhome")
-#' quick("business_rules")
+#' @examples
+#' quick("revalid_group")
+#' quick("out_img_national")
 #' @autoglobal
 #' @export
 quick <- function(x, offset = 0, limit = 1e4, call = caller_env()) {

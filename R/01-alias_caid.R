@@ -1,8 +1,24 @@
+#' @include S7_classes.R
+NULL
+
+#' Medicaid API Endpoint Classes
+#' @name medicaid
+#' @param alias `<chr>` endpoint or group alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
+#' @returns An S7 `<class_endpoint>`, `<class_temporal>` or `<class_group>` object
+#' @examples
+#' caid_endpoint("managed_longterm")
+#' caid_temporal("state_drug_util")
+#' caid_group("caid_dual_status")
+NULL
+
+#' @rdname medicaid
 #' @autoglobal
-#' @noRd
-select_caid <- function(x, call = caller_env()) {
+#' @export
+caid_endpoint <- function(alias, call = caller_env()) {
   x <- switch(
-    x,
+    alias,
     aca_ful                       = "ACA Federal Upper Limits",
     caid_drug_rebate              = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
     caid_enroll_month             = "Monthly Enrollment - Test",
@@ -90,51 +106,62 @@ select_caid <- function(x, call = caller_env()) {
     unwind_transition             = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
     unwind_historic               = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
     unwind_sbm                    = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+  )
 
   res <- select_alias(the$catalogs$caid$main, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
-  c(res)
+  x <- c(res)
+
+  class_endpoint(
+    identifier  = x$identifier,
+    metadata    = get_metadata(x),
+    dimensions  = get_dimensions(x)
+  )
 }
 
+#' @rdname medicaid
 #' @autoglobal
-#' @noRd
-select_caid_temp <- function(x, call = caller_env()) {
+#' @export
+caid_temporal <- function(alias, call = caller_env()) {
 
   x <- switch(
-    x,
+    alias,
     nadac_year            = "^NADAC$",
     managed_care_state    = "^Managed Care Programs by State$",
     caid_drug_rebate_week = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program$",
     blood_disorder        = "^Pricing Comparison for Blood Disorder Treatments$",
     state_drug_util       = "^State Drug Utilization Data$",
     healthcare_quality    = "^Child and Adult Health Care Quality Measures$",
-    cli::cli_abort(c("x"  = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x"  = "{.emph alias} {.val {alias}} is invalid."), call = call)
+  )
 
   res <- select_alias(the$catalogs$caid$temp, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
-  list_tidy(
+  x <- list_tidy(
     !!!c(slt(res, -data)),
-    endpoints   = get_elem(res, "data") |> _[[1]],
+    endpoints   = pluck(get_elem(res, "data"), 1),
     identifier  = endpoints$identifier[1]
+  )
+
+  class_temporal(
+    metadata    = get_metadata(x),
+    dimensions  = get_dimensions(x),
+    endpoints   = x$endpoints
   )
 }
 
-#' @title Medicaid API Endpoint Groups
-#' @param x `<chr>` endpoint alias
-#' @param call `<env>` environment to use for error reporting
-#' @param ... Additional arguments passed to the group constructor
+#' @rdname medicaid
 #' @autoglobal
-#' @rdname groups
 #' @export
-caid_group <- function(x, call = caller_env(), ...) {
+caid_group <- function(alias, call = caller_env(), ...) {
   x <- switch(
-    x,
+    alias,
     caid_demographics = list(
       group = "Medicaid and CHIP Enrollee Demographics",
       alias = c(
@@ -256,7 +283,8 @@ caid_group <- function(x, call = caller_env(), ...) {
         "unwind_sbm"
       )
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
+  )
 
   new_group(
     member_names = x$alias,

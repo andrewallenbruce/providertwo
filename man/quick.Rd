@@ -23,9 +23,6 @@ Convenience function to quickly access various CMS data endpoints.
 Mostly for debugging purposes.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-quick("pro_dialysis")
-quick("care_nhome")
-quick("business_rules")
-\dontshow{\}) # examplesIf}
+quick("revalid_group")
+quick("out_img_national")
 }

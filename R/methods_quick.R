@@ -1,13 +1,11 @@
+#' @include S7_classes.R
 #' @include S7_care.R
-#' @include S7_caid.R
-#' @include S7_hgov.R
 NULL
 
 #' @autoglobal
 #' @noRd
 bound <- function(lower, upper) {
   check_number_whole(lower, min = 0)
-  # check_number_whole(upper, min = lower)
   cheapr_if_else(lower > upper, upper, lower)
 }
 

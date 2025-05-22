@@ -31,7 +31,7 @@ open_endpoint <- function(alias, call = caller_env()) {
     summary_national     = "^National Level Payment Total and Averages for all Years$",
     summary_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$",
     cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
-    )
+  )
 
   res <- select_alias(the$catalogs$open$main, x)
 
@@ -62,7 +62,7 @@ open_temporal <- function(alias, call = caller_env()) {
     grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$",
     cli::cli_abort(c("x"          = "{.emph alias} {.val {alias}} is invalid."), call = call)
-    )
+  )
 
   res <- select_alias(the$catalogs$open$temp, x)
 
