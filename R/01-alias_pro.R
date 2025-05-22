@@ -16,6 +16,9 @@ NULL
 #' @rdname provider
 #' @export
 pro_endpoint <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     asc_facility              = "^Ambulatory Surgical Center Quality Measures [-] Facility",
@@ -187,6 +190,9 @@ pro_endpoint <- function(alias, call = caller_env()) {
 #' @rdname provider
 #' @export
 pro_group <- function(alias, call = caller_env(), ...) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     pro_cahps_spice      = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),

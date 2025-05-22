@@ -15,6 +15,9 @@ NULL
 #' @autoglobal
 #' @export
 hgov_endpoint <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     ab_registration_completion         = "^AB Registration Completion List$",
@@ -81,6 +84,8 @@ hgov_endpoint <- function(alias, call = caller_env()) {
 #' @autoglobal
 #' @export
 hgov_temporal <- function(alias, call = caller_env()) {
+
+  check_required(alias)
 
   x <- switch(
     alias,

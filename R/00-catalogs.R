@@ -159,17 +159,8 @@ catalog_caid <- function() {
       description = greplace(description, "[\"']", ""),
       description = greplace(description, "\r\n", " "),
       description = greplace(description, "  ", " "),
-      description = ifelse_(description == "Dataset.", NA_character_, description)
-    ) |>
-    slt(
-      title,
-      identifier,
-      description,
-      periodicity,
-      modified,
-      contact,
-      distribution
-    ) |>
+      description = ifelse_(description == "Dataset.", NA_character_, description)) |>
+    slt(title, identifier, description, periodicity, modified, contact, distribution) |>
     as_tbl()
 
   download <- new_tbl(
@@ -269,7 +260,7 @@ catalog_hgov <- function() {
 
   download <- new_tbl(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
-    download = get_elem(get_distribution(x), "downloadURL") |> delist(),
+    download = get_distribution(x) |> get_elem("downloadURL") |> delist(),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
@@ -278,7 +269,8 @@ catalog_hgov <- function() {
     rowbind(
       sbt(download, N == 1, -N, -ext),
       sbt(download, N > 1 & ext == "csv", -N, -ext)
-      )) |>
+      )
+    ) |>
     reduce(join_on_title)
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}") |>

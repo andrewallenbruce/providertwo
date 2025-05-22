@@ -63,9 +63,17 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
+class_backend <- new_class(
+  name = "class_backend",
+  package = NULL,
+  abstract = TRUE)
+
+#' @noRd
+#' @autoglobal
 class_endpoint <- new_class(
   name          = "class_endpoint",
   package       = NULL,
+  parent        = class_backend,
   properties    = list(
     identifier  = class_character,
     metadata    = class_list,
@@ -78,6 +86,7 @@ class_endpoint <- new_class(
 class_temporal <- new_class(
   name          = "class_temporal",
   package       = NULL,
+  parent        = class_backend,
   properties    = list(
     metadata    = class_list,
     dimensions  = class_dimensions,

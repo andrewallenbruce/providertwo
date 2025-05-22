@@ -49,3 +49,10 @@ offset_size <- function(n, limit) {
 
   seq_size(from = 0L, to = n, by = limit)
 }
+
+#' @autoglobal
+#' @noRd
+bound <- function(lower, upper) {
+  check_number_whole(lower, min = 0)
+  cheapr_if_else(lower > upper, upper, lower)
+}

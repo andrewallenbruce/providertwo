@@ -17,6 +17,9 @@ NULL
 #' @autoglobal
 #' @export
 caid_endpoint <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     aca_ful                       = "ACA Federal Upper Limits",
@@ -128,6 +131,8 @@ caid_endpoint <- function(alias, call = caller_env()) {
 #' @export
 caid_temporal <- function(alias, call = caller_env()) {
 
+  check_required(alias)
+
   x <- switch(
     alias,
     nadac_year            = "^NADAC$",
@@ -160,6 +165,9 @@ caid_temporal <- function(alias, call = caller_env()) {
 #' @autoglobal
 #' @export
 caid_group <- function(alias, call = caller_env(), ...) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     caid_demographics = list(

@@ -17,6 +17,9 @@ NULL
 #' @rdname openpayments
 #' @export
 open_endpoint <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     profile_covered      = "^Covered Recipient Profile Supplement$",
@@ -51,6 +54,9 @@ open_endpoint <- function(alias, call = caller_env()) {
 #' @rdname openpayments
 #' @export
 open_temporal <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     payment_general               = "^General Payment Data$",
@@ -85,6 +91,9 @@ open_temporal <- function(alias, call = caller_env()) {
 #' @rdname openpayments
 #' @export
 open_group <- function(alias, call = caller_env(), ...) {
+
+  check_required(alias)
+
   x <- switch(
     alias,
     profile = list(
