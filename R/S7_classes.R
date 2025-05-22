@@ -7,6 +7,12 @@ null_if <- function(x) {
 
 #' @noRd
 #' @autoglobal
+unlist_if <- function(x) {
+  if (is.list(x)) unlist(x, use.names = FALSE) else x
+}
+
+#' @noRd
+#' @autoglobal
 get_metadata <- function(x) {
   compact(list(
     title       = null_if(x$title),
@@ -18,7 +24,7 @@ get_metadata <- function(x) {
     temporal    = null_if(x$temporal),
     periodicity = null_if(x$periodicity),
     download    = null_if(x$download),
-    resources   = null_if(x$resources),
+    resources   = unlist_if(null_if(x$resources)),
     dictionary  = null_if(x$dictionary),
     site        = null_if(x$site),
     references  = null_if(x$references)
@@ -127,9 +133,9 @@ get_dimensions <- function(x, call = caller_env()) {
       call  = call)
   )
 
-  req <- req_url_query(
-    request(x$identifier),
-    offset = 0L)
+  req <- request(x$identifier) |>
+    req_url_query(offset = 0L) |>
+    req_error(body = \(resp) resp_body_json(resp)$meta$message)
 
   req <- switch(
     id,

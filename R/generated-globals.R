@@ -26,6 +26,7 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
+  # <catalog_caid>
   # <caid_temporal>
   # <select_care_temp>
   # <hgov_temporal>

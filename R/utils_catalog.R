@@ -1,6 +1,13 @@
 #' @autoglobal
 #' @keywords internal
 #' @noRd
+get_distribution <- function(x) {
+  get_elem(x$distribution, "data", DF.as.list = TRUE)
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
 fmt_contactpoint <- function(x) {
   x <- delist(get_elem(x, "^has", regex = TRUE)) |>
     set_names(delist(get_elem(x, "fn")))

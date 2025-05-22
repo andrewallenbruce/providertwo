@@ -15,7 +15,7 @@ extract_year <- function(x) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-grapple <- function(str, pt, ...) {
+gdetect <- function(str, pt, ...) {
   grepl(x = str, pattern = pt, perl = TRUE, ...)
 }
 

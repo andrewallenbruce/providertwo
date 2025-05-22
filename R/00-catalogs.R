@@ -177,15 +177,13 @@ catalog_caid <- function() {
     ) |>
     as_tbl()
 
-  get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
-
-  dictionary <- new_df(
-    title      = cheapr_rep_each(x$title, fnobs(get_dist(x))),
-    dictionary = get_dist(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
+  # dictionary <- new_df(
+  #   title      = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
+  #   dictionary = get_distribution(x) |> get_elem("describedBy$", regex = TRUE) |> delist())
 
   download <- new_tbl(
-    title    = cheapr_rep_each(x$title, fnobs(get_dist(x))),
-    download = get_dist(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
+    title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
+    download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download),
     id       = groupid(title)
   ) |>
@@ -193,12 +191,8 @@ catalog_caid <- function() {
 
   main <- list(
     slt(x, -distribution),
-    rowbind(
-      sbt(download, N == 1),
-      sbt(download, N > 1 & ext == "csv")) |>
-      slt(-N, -id, -ext),
-    dictionary
-  ) |>
+    rowbind(sbt(download, N == 1), sbt(download, N > 1 & ext == "csv")) |> slt(-N, -id, -ext),
+    sbt(download, N > 2 & ext != "csv", -id, -N, -ext) |> f_nest_by(.by = title) |> f_ungroup() |> rnm(resources = data)) |>
     reduce(join_on_title) |>
     roworder(title)
 
@@ -213,25 +207,24 @@ catalog_caid <- function() {
   )
 
   list(
-    main       = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
-    resources  = sbt(download, N > 2 & ext != "csv", -id, -N) |> f_nest_by(.by = title) |> f_ungroup(),
-    temp       = subset_detect(main, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+    main = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE),
+    temp = subset_detect(main, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
       mtt(year = extract_year(title),
-          title = case(grapple(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
-                       grapple(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
-                       grapple(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
-                       grapple(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
-                       grapple(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
-                       grapple(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+          title = case(gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
+                       gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
+                       gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
+                       gdetect(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
+                       gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
+                       gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
                        .default = title),
           description = cheapr_if_else(title == "Child and Adult Health Care Quality Measures", "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.", description)) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
-      slt(year, title, description, periodicity, modified, identifier, download, dictionary) |>
+      slt(year, title, description, periodicity, modified, identifier, download) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(title, description, periodicity)) |>
-      f_ungroup(),
-    scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
+      f_ungroup()
+    # scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto")
   )
 }
 
@@ -267,11 +260,9 @@ catalog_hgov <- function() {
       distribution
     )
 
-  get_dist <- \(x) get_elem(x$distribution, "data", DF.as.list = TRUE)
-
   download <- new_tbl(
-    title    = cheapr_rep_each(x$title, fnobs(get_dist(x))),
-    download = get_elem(get_dist(x), "downloadURL") |> delist(),
+    title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
+    download = get_elem(get_distribution(x), "downloadURL") |> delist(),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
@@ -292,30 +283,30 @@ catalog_hgov <- function() {
       title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
       title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
       title = case(
-        grapple(title, "^Benefits\\sCost")                    ~ "Benefits and Cost Sharing PUF",
-        grapple(title, "^Plan\\sCrosswalk\\sPUF")             ~ "Plan ID Crosswalk PUF",
-        grapple(title, "Transparency [Ii]n Coverage PUF")     ~ "Transparency in Coverage PUF",
-        grapple(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
-        grapple(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
-        grapple(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
-        grapple(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
+        gdetect(title, "^Benefits\\sCost")                    ~ "Benefits and Cost Sharing PUF",
+        gdetect(title, "^Plan\\sCrosswalk\\sPUF")             ~ "Plan ID Crosswalk PUF",
+        gdetect(title, "Transparency [Ii]n Coverage PUF")     ~ "Transparency in Coverage PUF",
+        gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
+        gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
+        gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
+        gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
         .default = title
       ),
       title = greplace(title, "  ", " "),
       title = greplace(title, "/\\s", "/"),
       title = str_look_remove(title, "County", "ahead"),
       description = case(
-        grapple(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
-        grapple(title, "Business Rules PUF")            ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
-        grapple(title, "MLR Dataset")                   ~ "This file contains Medical Loss Ratio data for the Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
-        grapple(title, "Machine Readable PUF")          ~ "The Machine Readable PUF (MR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The MR-PUF contains issuer-level URL locations for machine-readable network provider and formulary information.",
-        grapple(title, "Network PUF")                   ~ "The Network PUF (Ntwrk-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Ntwrk-PUF contains issuer-level data identifying provider network URLs.",
-        grapple(title, "Plan Attributes PUF")           ~ "The Plan Attributes PUF (Plan-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Plan-PUF contains plan variant-level data on maximum out of pocket payments, deductibles, health savings account (HSA) eligibility, and other plan attributes.",
-        grapple(title, "Plan ID Crosswalk PUF")         ~ "The Plan ID Crosswalk PUF (CW-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The purpose of the CW-PUF is to map QHPs and SADPs offered through the Exchanges during the previous plan year to plans that will be offered through the Exchanges in the current plan year.",
-        grapple(title, "Quality PUF")                   ~ "The Quality PUF contains yearly quality ratings data for eligible Qualified Health Plans in states on HealthCare.gov.",
-        grapple(title, "Rate PUF")                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
-        grapple(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
-        grapple(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
+        gdetect(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
+        gdetect(title, "Business Rules PUF")            ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
+        gdetect(title, "MLR Dataset")                   ~ "This file contains Medical Loss Ratio data for the Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
+        gdetect(title, "Machine Readable PUF")          ~ "The Machine Readable PUF (MR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The MR-PUF contains issuer-level URL locations for machine-readable network provider and formulary information.",
+        gdetect(title, "Network PUF")                   ~ "The Network PUF (Ntwrk-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Ntwrk-PUF contains issuer-level data identifying provider network URLs.",
+        gdetect(title, "Plan Attributes PUF")           ~ "The Plan Attributes PUF (Plan-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Plan-PUF contains plan variant-level data on maximum out of pocket payments, deductibles, health savings account (HSA) eligibility, and other plan attributes.",
+        gdetect(title, "Plan ID Crosswalk PUF")         ~ "The Plan ID Crosswalk PUF (CW-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The purpose of the CW-PUF is to map QHPs and SADPs offered through the Exchanges during the previous plan year to plans that will be offered through the Exchanges in the current plan year.",
+        gdetect(title, "Quality PUF")                   ~ "The Quality PUF contains yearly quality ratings data for eligible Qualified Health Plans in states on HealthCare.gov.",
+        gdetect(title, "Rate PUF")                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
+        gdetect(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
+        gdetect(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
         .default = description),
       periodicity = "Annually [R/P1Y]"
     ) |>
