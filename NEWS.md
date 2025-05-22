@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9302 (2025-05-22)
+
+* added api slot to metadata
+
+
 # providertwo 0.0.0.9301 (2025-05-22)
 
 * catalog work
