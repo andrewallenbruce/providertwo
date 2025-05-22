@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9301</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9302</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caid_endpoint</span><span class="op">(</span><span class="st">"managed_longterm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "Medicaid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-10-16"</span>
@@ -99,7 +100,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ year                                     : chr(0) </span>
 <span class="r-in"><span><span class="fu">caid_temporal</span><span class="op">(</span><span class="st">"state_drug_util"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "Medicaid [Temporal]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "State Drug Utilization Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Drug utilization data are reported by states for covered outpatient drugs that are paid for by state Medicaid a"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Decennially [R/P10Y]"</span>
@@ -134,7 +136,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_month: &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/36ed6909-ab49-4ca5-a38e-6790138cd613/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Medicaid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Month"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes monthly enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
@@ -152,7 +155,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dqunusable   : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_year : &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/93b36a8e-4dd5-4ff4-9a8b-8c6537684705/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Medicaid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Year"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set presents annual enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status f"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
