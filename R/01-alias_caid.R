@@ -1,7 +1,7 @@
 #' @include S7_classes.R
 NULL
 
-#' Medicaid API Endpoint Classes
+#' Medicaid API Endpoints
 #' @name medicaid
 #' @param alias `<chr>` endpoint or group alias
 #' @param call `<env>` environment to use for error reporting

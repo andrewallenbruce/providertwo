@@ -39,6 +39,7 @@
 #' affiliations(ccn_facility = "33Z302")
 #' affiliations(npi = "1043245657")
 #' @autoglobal
+#' @rdname provider
 #' @export
 affiliations <- function(npi           = NULL,
                          pac           = NULL,

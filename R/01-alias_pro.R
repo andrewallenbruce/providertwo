@@ -1,8 +1,23 @@
+#' @include S7_classes.R
+NULL
+
+#' Provider API Endpoints
+#' @name provider
+#' @param alias `<chr>` endpoint or group alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
+#' @returns An S7 `<class_endpoint>` or `<class_group>` object
+#' @examples
+#' pro_endpoint("asc_facility")
+#' pro_group("pro_dialysis")
+NULL
+
 #' @autoglobal
-#' @noRd
-select_pro <- function(x, call = caller_env()) {
+#' @rdname provider
+#' @export
+pro_endpoint <- function(alias, call = caller_env()) {
   x <- switch(
-    x,
+    alias,
     asc_facility              = "^Ambulatory Surgical Center Quality Measures [-] Facility",
     asc_national              = "^Ambulatory Surgical Center Quality Measures [-] National",
     asc_state                 = "^Ambulatory Surgical Center Quality Measures [-] State",
@@ -151,24 +166,29 @@ select_pro <- function(x, call = caller_env()) {
     va_behavioral             = "^Veterans Health Administration Behavioral Health Data",
     va_provider               = "^Veterans Health Administration Provider Level Data",
     va_timely                 = "^Veterans Health Administration Timely and Effective Care Data",
-    cli::cli_abort(c("x"      = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
+  )
 
   res <- select_alias(the$catalogs$pro$end, x)
-  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
-  c(res)
+
+  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+
+  x <- c(res)
+
+  class_endpoint(
+    identifier  = x$identifier,
+    metadata    = get_metadata(x),
+    dimensions  = get_dimensions(x)
+  )
 }
 
-#' @title Provider API Endpoint Groups
-#' @param x `<chr>` endpoint alias
-#' @param call `<env>` environment to use for error reporting
-#' @param ... Additional arguments passed to the group constructor
 #' @autoglobal
-#' @rdname groups
+#' @rdname provider
 #' @export
-pro_group <- function(x, call = caller_env(), ...) {
+pro_group <- function(alias, call = caller_env(), ...) {
   x <- switch(
-    x,
+    alias,
     pro_cahps_spice      = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
     pro_cahps_hhc        = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
     pro_cahps_ich        = list(group = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
@@ -203,7 +223,8 @@ pro_group <- function(x, call = caller_env(), ...) {
     pro_hospital_changes = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
     pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
     pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+  )
 
   new_group(
     member_names = x$alias,

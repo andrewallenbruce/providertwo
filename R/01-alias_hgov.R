@@ -1,7 +1,7 @@
 #' @include S7_classes.R
 NULL
 
-#' Healthcare.Gov API Endpoint Classes
+#' Healthcare.Gov API Endpoints
 #' @name hgov
 #' @param alias `<chr>` endpoint or group alias
 #' @param call `<env>` environment to use for error reporting

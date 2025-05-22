@@ -9,6 +9,7 @@
 #' @examplesIf interactive()
 #' proUtilization(last_name = "CURRY", middle_name = "")
 #' @autoglobal
+#' @keywords internal
 #' @export
 proUtilization <- new_class(
   name       = "proUtilization",
@@ -90,6 +91,7 @@ proUtilization <- new_class(
 #' utilization(npi = "1043245657")
 #' utilization(npi = "1003001785")
 #' @autoglobal
+#' @rdname provider
 #' @export
 utilization <- function(npi         = NULL,
                         pac         = NULL,

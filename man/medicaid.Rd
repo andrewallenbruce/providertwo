@@ -5,7 +5,7 @@
 \alias{caid_endpoint}
 \alias{caid_temporal}
 \alias{caid_group}
-\title{Medicaid API Endpoint Classes}
+\title{Medicaid API Endpoints}
 \usage{
 caid_endpoint(alias, call = caller_env())
 
@@ -24,7 +24,7 @@ caid_group(alias, call = caller_env(), ...)
 An S7 \verb{<class_endpoint>}, \verb{<class_temporal>} or \verb{<class_group>} object
 }
 \description{
-Medicaid API Endpoint Classes
+Medicaid API Endpoints
 }
 \examples{
 caid_endpoint("managed_longterm")

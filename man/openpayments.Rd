@@ -5,7 +5,7 @@
 \alias{open_endpoint}
 \alias{open_temporal}
 \alias{open_group}
-\title{Open Payments API Endpoint Classes}
+\title{Open Payments API Endpoints}
 \usage{
 open_endpoint(alias, call = caller_env())
 
@@ -24,7 +24,7 @@ open_group(alias, call = caller_env(), ...)
 An S7 \verb{<class_endpoint>}, \verb{<class_temporal>} or \verb{<class_group>} object
 }
 \description{
-Open Payments API Endpoint Classes
+Open Payments API Endpoints
 }
 \examples{
 open_endpoint("profile_covered")

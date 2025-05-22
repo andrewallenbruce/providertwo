@@ -460,13 +460,10 @@ select_member <- function(x, call = caller_env()) {
 #' @param quick_call   `<lgl>` call `quick_()` method on group if `TRUE`.
 #' @param offset       `<int>` Offset for pagination.
 #' @param limit        `<int>` Limit for pagination.
-#' @param ... Additional arguments passed to the group constructor
 #' @returns S7 `class_group` object.
 #' @examples
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick_call = TRUE)
-#' pro_group("pro_dialysis")
-#' care_group("care_hospital")
 NULL
 
 #' @autoglobal
@@ -519,6 +516,7 @@ make_quick_entry <- function(x) {
 #' quick("revalid_group")
 #' quick("out_img_national")
 #' @autoglobal
+#' @rdname groups
 #' @export
 quick <- function(x, offset = 0, limit = 1e4, call = caller_env()) {
   quick_(select_member(x), offset = offset, limit = limit)

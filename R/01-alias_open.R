@@ -1,7 +1,7 @@
 #' @include S7_classes.R
 NULL
 
-#' Open Payments API Endpoint Classes
+#' Open Payments API Endpoints
 #' @name openpayments
 #' @param alias `<chr>` endpoint or group alias
 #' @param call `<env>` environment to use for error reporting

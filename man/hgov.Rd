@@ -4,7 +4,7 @@
 \alias{hgov}
 \alias{hgov_endpoint}
 \alias{hgov_temporal}
-\title{Healthcare.Gov API Endpoint Classes}
+\title{Healthcare.Gov API Endpoints}
 \usage{
 hgov_endpoint(alias, call = caller_env())
 
@@ -19,7 +19,7 @@ hgov_temporal(alias, call = caller_env())
 An S7 \verb{<class_endpoint>} or \verb{<class_temporal>} object
 }
 \description{
-Healthcare.Gov API Endpoint Classes
+Healthcare.Gov API Endpoints
 }
 \examples{
 hgov_endpoint("ab_registration_completion")

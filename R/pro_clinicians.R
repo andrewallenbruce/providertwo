@@ -40,6 +40,7 @@
 #' clinicians(npi = "1043245657")
 #' clinicians(state = "GA")
 #' @autoglobal
+#' @rdname provider
 #' @export
 clinicians <- function(npi           = NULL,
                        pac           = NULL,

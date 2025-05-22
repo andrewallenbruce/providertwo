@@ -105,12 +105,13 @@ select_care <- function(x, call = caller_env()) {
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
+  )
 
   res <- select_alias(the$catalogs$care$main, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
+  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   c(res)
 
@@ -152,249 +153,17 @@ select_care_temp <- function(x, call = caller_env()) {
     util_geography       = "^Medicare Physician [&] Other Practitioners [-] by Geography and Service$",
     util_provider        = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call))
+    cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
+  )
 
   res <- select_alias(the$catalogs$care$temp, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),
-    endpoints   = get_elem(res, "data") |> _[[1]],
+    endpoints   = pluck(get_elem(res, "data"), 1),
     identifier  = endpoints$identifier[1]
   )
 
-}
-
-#' @title Medicare API Endpoint Groups
-#' @param x `<chr>` endpoint alias
-#' @param call `<env>` environment to use for error reporting
-#' @param ... Additional arguments passed to the group constructor
-#' @autoglobal
-#' @rdname groups
-#' @export
-care_group <- function(x, call = caller_env(), ...) {
-  x <- switch(
-    x,
-    care_hha = list(
-      group = "Home Health Agencies",
-      alias = c(
-        "hha_owners",
-        "hha_costreport",
-        "hha_enrollments"
-      )
-    ),
-    care_hospice = list(
-      group = "Hospices",
-      alias = c(
-        "hospice_owners",
-        "hospice_enrollments",
-        "hospice_acute"
-      )
-    ),
-    care_hospital = list(
-      group = "Hospitals",
-      alias = c(
-        "hospital_owners",
-        "hospital_chow",
-        "hospital_chow_owner",
-        "hospital_enrollments",
-        "hospital_costreport",
-        "hospital_service_area"
-      )
-    ),
-    rhc = list(
-      group = "Rural Health Clinics",
-      alias = c(
-        "rhc_owners",
-        "rhc_enrollments"
-      )
-    ),
-    fqhc = list(
-      group = "Federally Qualified Health Centers",
-      alias = c(
-        "fqhc_owners",
-        "fqhc_enrollments"
-      )
-    ),
-    pending = list(
-      group = "Pending Initial Logging and Tracking",
-      alias = c(
-        "pilat_non_physician",
-        "pilat_physician"
-      )
-    ),
-    reassignment = list(
-      group = "Revalidation Reassignment Lists",
-      alias = c(
-        "revalid_group",
-        "revalid_due",
-        "revalid_list"
-      )
-    ),
-    care_snf = list(
-      group = "Skilled Nursing Facilities",
-      alias = c(
-        "snf_owners",
-        "snf_chow",
-        "snf_chow_owner",
-        "snf_cost_report",
-        "snf_enrollments"
-      )
-    ),
-    care_aco = list(
-      group = "Accountable Care Organizations",
-      alias = c(
-        "aco_reach_aligned",
-        "aco_reach_eligible",
-        "aco_reach_results",
-        "aco_reach_providers",
-        "aco_reach_orgs",
-        "aco_pioneer",
-        "aco_participants",
-        "aco_snf_affiliate",
-        "aco_organizations",
-        "aco_bene_cnty"
-      )
-    ),
-    cms_stats = list(
-      group = "CMS Program Statistics",
-      alias = c(
-        "cms_ma_enroll",
-        "cms_ma_outpatient",
-        "cms_ma_other",
-        "cms_ma_inpatient",
-        "cms_ma_snf",
-        "cms_deaths",
-        "cms_hha",
-        "cms_hospice",
-        "cms_inpatient",
-        "cms_new_enroll",
-        "cms_outpatient",
-        "cms_tos",
-        "cms_partd",
-        "cms_partd_enroll",
-        "cms_phys_npp_supp",
-        "cms_premiums",
-        "cms_providers",
-        "cms_snf",
-        "cms_total_enroll",
-        "cms_dual_enroll",
-        "cms_orig_enroll"
-      )
-    ),
-    care_caid = list(
-      group = "Medicaid",
-      alias = c(
-        "care_caid_managed_care",
-        "care_caid_opioid_geo",
-        "care_caid_drug_spend"
-      )
-    ),
-    care_geovar = list(
-      group = "Medicare Geographic Variation",
-      alias = c(
-        "geovar_adv",
-        "geovar_hrr",
-        "geovar_nsc"
-      )
-    ),
-    care_pdp = list(
-      group = "Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information",
-      alias = c(
-        "pdp_month",
-        "pdp_quarter"
-      )
-    ),
-    bene_survey = list(
-      group = "Medicare Current Beneficiary Survey",
-      alias = c(
-        "bene_survey_covid",
-        "bene_survey_cost",
-        "bene_survey_file"
-      )
-    ),
-    partb_drug = list(
-      group = "Medicare Part B Drugs",
-      alias = c(
-        "partb_drug_discard",
-        "partb_drug_spend"
-      )
-    ),
-    partd_drug = list(
-      group = "Medicare Part D Drugs",
-      alias = c(
-        "partd_opioid",
-        "partd_drug_spend"
-      )
-    ),
-    care_market = list(
-      group = "Market Saturation & Utilization",
-      alias = c(
-        "market_cbsa",
-        "market_state_cnty"
-      )
-    ),
-    care_inpatient = list(
-      group = "Medicare Inpatient Hospitals",
-      alias = c(
-        "inpatient_geography",
-        "inpatient_provider",
-        "inpatient_service"
-      )
-    ),
-    care_outpatient = list(
-      group = "Medicare Outpatient Hospitals",
-      alias = c(
-        "outpatient_geography",
-        "outpatient_service"
-      )
-    ),
-    care_prescribers = list(
-      group = "Medicare Part D Prescribers",
-      alias = c(
-        "prx_geography",
-        "prx_provider",
-        "prx_drug"
-      )
-    ),
-    care_dme_suppliers = list(
-      group = "Medicare Durable Medical Equipment, Devices & Supplies",
-      alias = c(
-        "dme_geography",
-        "dme_provider",
-        "dme_service",
-        "dme_supplier",
-        "dme_supplier_service"
-      )
-    ),
-    care_nhome_staff = list(
-      group = "Nursing Home Payroll-Based Journal Staffing",
-      alias = c(
-        "nhome_staff_nonurse",
-        "nhome_staff_nurse",
-        "nhome_staff_employee"
-      )
-    ),
-    care_utilization = list(
-      group = "Medicare Physician & Other Practitioners",
-      alias = c(
-        "util_geography",
-        "util_provider",
-        "util_service"
-      )
-    ),
-    care_nhome = list(group = "Nursing Home Performance", alias = c(
-      "nhome_performance",
-      "nhome_mds_frequency",
-      "nhome_mds_facility"
-      )
-    ),
-    cli::cli_abort(c("x" = "No groups found for {.val {x}}."), call = call))
-
-  new_group(
-    member_names = x$alias,
-    group_name   = x$group,
-    ...
-  )
 }

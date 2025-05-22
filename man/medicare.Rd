@@ -4,17 +4,21 @@
 \alias{medicare}
 \alias{care_endpoint}
 \alias{care_temporal}
-\alias{pro_endpoint}
+\alias{care_group}
 \title{Medicare API Endpoint Classes}
 \usage{
 care_endpoint(alias)
 
 care_temporal(alias)
 
-pro_endpoint(alias)
+care_group(alias, call = caller_env(), ...)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
+
+\item{call}{\verb{<env>} environment to use for error reporting}
+
+\item{...}{Additional arguments passed to the group constructor}
 }
 \value{
 An S7 \verb{<care_endpoint>}, or \verb{<care_temporal>} object
@@ -25,5 +29,5 @@ Medicare API Endpoint Classes
 \examples{
 care_endpoint("care_dialysis")
 care_temporal("quality_payment")
-pro_endpoint("asc_facility")
+care_group("care_hospital")
 }
