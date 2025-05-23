@@ -10,7 +10,6 @@ nlm_url <- function(api) {
 }
 
 #' Search the NLM NPI Registry
-#'
 #' @param terms `<chr>` Search terms, separated by spaces
 #' @param npi `<chr>` Search terms, separated by spaces
 #' @returns `<tibble>` of search results

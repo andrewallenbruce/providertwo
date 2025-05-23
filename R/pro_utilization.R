@@ -9,8 +9,7 @@
 #' @examplesIf interactive()
 #' proUtilization(last_name = "CURRY", middle_name = "")
 #' @autoglobal
-#' @keywords internal
-#' @export
+#' @noRd
 proUtilization <- new_class(
   name       = "proUtilization",
   package    = NULL,
@@ -127,9 +126,7 @@ utilization <- function(npi         = NULL,
     perform_simple() |>
     _[["count"]]
 
-  if (!n) {
-    return(NULL)
-  }
+  if (!n) return(NULL)
 
   if (n) {
     req_url_query(

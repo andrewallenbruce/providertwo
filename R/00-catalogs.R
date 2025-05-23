@@ -56,9 +56,10 @@ catalog_care <- function() {
       sbt(d, format != "latest" & title %!in_% care_types("single"), -format, -filetype) |>
         roworder(title, -year) |>
         f_nest_by(.by = c(api, title)) |>
-        f_ungroup(),
+        f_ungroup() |>
+        rnm(endpoints = data),
       slt(main, title, description, periodicity, contact, dictionary, site, references)) |>
-      colorder(data, pos = "end")
+      colorder(endpoints, pos = "end")
   )
 }
 
@@ -86,7 +87,7 @@ catalog_pro <- function() {
     as_tbl()
 
   list(
-   end  = sbt(x, group != "Physician office visit costs"),
+   main = sbt(x, group != "Physician office visit costs"),
    cost = sbt(x, group == "Physician office visit costs")
   )
 }
@@ -135,7 +136,8 @@ catalog_open <- function() {
       colorder(api) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(api, title, description, modified)) |>
-      f_ungroup()
+      f_ungroup() |>
+      rnm(endpoints = data)
     )
 }
 
@@ -219,11 +221,11 @@ catalog_caid <- function() {
       slt(api, year, title, description, periodicity, modified, identifier, download) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(api, title, description, periodicity)) |>
-      f_ungroup()
-
+      f_ungroup() |>
+      rnm(endpoints = data)
+    )
     # scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
     # subset_detect(title, "CoreS|Scorecard|Auto")
-  )
 }
 
 #' @autoglobal
@@ -269,8 +271,7 @@ catalog_hgov <- function() {
     rowbind(
       sbt(download, N == 1, -N, -ext),
       sbt(download, N > 1 & ext == "csv", -N, -ext)
-      )
-    ) |>
+      )) |>
     reduce(join_on_title)
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
@@ -314,7 +315,8 @@ catalog_hgov <- function() {
     colorder(year) |>
     roworder(title, -year) |>
     f_nest_by(.by = c(title, description, periodicity)) |>
-    f_ungroup()
+    f_ungroup() |>
+    rnm(endpoints = data)
 
   list(
     main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE) |>

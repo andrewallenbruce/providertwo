@@ -26,18 +26,16 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
-  # <hgov_temporal>
+  # <open_endpoint>
   # <open_temporal>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
   # <catalog_care>
+  # <catalog_open>
   # <catalog_caid>
-  # <caid_temporal>
-  # <select_care_temp>
-  # <hgov_temporal>
-  # <open_temporal>
+  # <catalog_hgov>
   "data",
   # <quality_eligibility>
   "date_approved",
@@ -65,6 +63,7 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
+  # <catalog_care>
   # <caid_temporal>
   # <select_care_temp>
   # <hgov_temporal>

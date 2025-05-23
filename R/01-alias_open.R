@@ -41,7 +41,7 @@ open_endpoint <- function(alias, call = caller_env()) {
   if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
-  x <- c(res)
+  x <- c(slt(res, -contact))
 
   class_endpoint(
     identifier  = x$identifier,
@@ -75,8 +75,8 @@ open_temporal <- function(alias, call = caller_env()) {
   if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   x <- list_tidy(
-    !!!c(slt(res, -data)),
-    endpoints   = pluck(get_elem(res, "data"), 1) |> slt(-contact),
+    !!!c(slt(res, -endpoints)),
+    endpoints   = pluck(get_elem(res, "endpoints"), 1) |> slt(-contact),
     identifier  = endpoints$identifier[1]
   )
 

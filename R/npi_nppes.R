@@ -1,5 +1,4 @@
 #' Search the NPPES NPI Registry
-#'
 #' @param npi           `<chr>` Unique 10-digit National Provider Identifier number issued by CMS to US healthcare providers through NPPES.
 #' @param entity        `<chr>` Entity type; one of either I for Individual (NPI-1) or O for Organizational (NPI-2)
 #' @param first,last    `<chr>` Individual provider's name
@@ -70,14 +69,8 @@ npi_nppes <- function(npi            = NULL,
 
     resp <- resp |>
       resps_successes() |>
-      resps_data(
-        \(resp)
-        resp_body_string(resp) |>
-          fparse() |>
-          _[["results"]]
-        ) |>
-      slt(-created_epoch,
-          -last_updated_epoch) |>
+      resps_data(\(resp) parse_string(resp, query = "results")) |>
+      slt(-created_epoch, -last_updated_epoch) |>
       as_tbl() |>
       rrapply(
         condition = \(x) !is.null(x),

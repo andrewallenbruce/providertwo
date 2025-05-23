@@ -149,8 +149,8 @@ caid_temporal <- function(alias, call = caller_env()) {
   if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   x <- list_tidy(
-    !!!c(slt(res, -data)),
-    endpoints   = pluck(get_elem(res, "data"), 1),
+    !!!c(slt(res, -endpoints)),
+    endpoints   = pluck(get_elem(res, "endpoints"), 1),
     identifier  = endpoints$identifier[1]
   )
 
