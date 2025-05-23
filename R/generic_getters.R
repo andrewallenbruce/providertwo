@@ -1,6 +1,28 @@
 #' @include S7_classes.R
 NULL
 
+#--------- class_group -----------
+#' @autoglobal
+#' @noRd
+members_ <- new_generic("members_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(members_, class_group) <- function(obj) {
+  prop(obj, "members")
+}
+
+#' @autoglobal
+#' @noRd
+member_names_ <- new_generic("member_names_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(member_names_, class_group) <- function(obj) {
+  members_(obj) |> names()
+}
+
+#--------- class_temporal ---------
 #' @autoglobal
 #' @noRd
 endpoints_ <- new_generic("endpoints_", "obj", function(obj) {
@@ -9,6 +31,14 @@ endpoints_ <- new_generic("endpoints_", "obj", function(obj) {
 
 method(endpoints_, class_temporal) <- function(obj) {
   prop(obj, "endpoints")
+}
+
+method(endpoints_, class_endpoint) <- function(obj) {
+  NULL
+}
+
+method(endpoints_, class_group) <- function(obj) {
+  members_(obj) |> map(endpoints_)
 }
 
 #' @autoglobal
@@ -21,16 +51,46 @@ method(years_, class_temporal) <- function(obj) {
   endpoints_(obj) |> get_elem("year")
 }
 
+method(years_, class_endpoint) <- function(obj) {
+  NULL
+}
+
+method(years_, class_group) <- function(obj) {
+  members_(obj) |> map(years_)
+}
+
+#--------- class_backend ---------
+
+#--------- metadata --------------
 #' @autoglobal
 #' @noRd
-members_ <- new_generic("members_", "obj", function(obj) {
+metadata_ <- new_generic("metadata_", "obj", function(obj) {
   S7_dispatch()
 })
 
-method(members_, class_group) <- function(obj) {
-  prop(obj, "members")
+method(metadata_, class_backend) <- function(obj) {
+  prop(obj, "metadata")
 }
 
+method(metadata_, class_group) <- function(obj) {
+  members_(obj) |> map(metadata_)
+}
+
+#' @autoglobal
+#' @noRd
+api_ <- new_generic("api_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(api_, class_backend) <- function(obj) {
+  metadata_(obj) |> get_elem("api")
+}
+
+method(api_, class_group) <- function(obj) {
+  members_(obj) |> map(api_)
+}
+
+#--------- dimensions ------------
 #' @autoglobal
 #' @noRd
 dimensions_ <- new_generic("dimensions_", "obj", function(obj) {
@@ -73,15 +133,49 @@ method(limit_, class_group) <- function(obj) {
   members_(obj) |> map(limit_)
 }
 
-# fields_ <- new_generic("fields_", "obj")
-# identifier_ <- new_generic("identifier_", "obj")
-# identifiers_ <- new_generic("identifiers_", "obj")
+#' @autoglobal
+#' @noRd
+fields_ <- new_generic("fields_", "obj", function(obj) {
+  S7_dispatch()
+})
 
-# obj <- care_endpoint("care_dialysis")
-# obj <- care_temporal("quality_payment")
-# obj <- care_group("care_hospital")
-#
-# dimensions_(obj)
-# rows_(obj)
-# limit_(obj)
-# members_(obj)
+method(fields_, class_backend) <- function(obj) {
+  dimensions_(obj) |> prop("fields")
+}
+
+method(fields_, class_group) <- function(obj) {
+  members_(obj) |> map(fields_)
+}
+
+#' @autoglobal
+#' @noRd
+field_names_ <- new_generic("field_names_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(field_names_, class_backend) <- function(obj) {
+  fields_(obj) |> names()
+}
+
+method(field_names_, class_group) <- function(obj) {
+  members_(obj) |> map(field_names_)
+}
+
+#' @autoglobal
+#' @noRd
+identifier_ <- new_generic("identifier_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(identifier_, class_endpoint) <- function(obj) {
+  prop(obj, "identifier")
+}
+
+
+method(identifier_, class_temporal) <- function(obj) {
+  endpoints_(obj) |> get_elem("identifier")
+}
+
+method(identifier_, class_group) <- function(obj) {
+  members_(obj) |> map(identifier_)
+}
