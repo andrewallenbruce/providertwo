@@ -16,7 +16,7 @@ A list of API resources
 List resources
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 care_endpoint("care_enrollees") |> list_resources()
 care_temporal("quality_payment") |> list_resources()
 care_group("care_hha") |> list_resources()

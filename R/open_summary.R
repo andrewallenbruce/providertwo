@@ -1,30 +1,5 @@
 #' @autoglobal
 #' @noRd
-perform_bare <- new_generic("perform_bare", "x", function(x) {
-  S7_dispatch()
-})
-
-method(perform_bare, class_endpoint) <- function(x) {
-  x@identifier |>
-    request() |>
-    req_url_query(
-      count   = "false",
-      format  = "json",
-      keys    = "true",
-      results = "true",
-      rowIds  = "false",
-      schema  = "false",
-      offset  = 0L,
-      limit   = 500L
-    ) |>
-    req_perform() |>
-    resp_body_string() |>
-    fparse() |>
-    _[["results"]]
-}
-
-#' @autoglobal
-#' @noRd
 openDashboard <- new_class(
   name       = "openDashboard",
   package    = NULL,
@@ -243,7 +218,7 @@ NULL
 open_dashboard <- function() {
   openDashboard(
     response = open_endpoint("summary_dashboard") |>
-      perform_bare()) |>
+      quick_(offset = 0L, limit = 500L)) |>
     tidyup()
 }
 
@@ -253,6 +228,6 @@ open_dashboard <- function() {
 open_national <- function() {
   openNational(
     response = open_endpoint("summary_national") |>
-      perform_bare()) |>
+      quick_(offset = 0L, limit = 500L)) |>
     tidyup()
 }

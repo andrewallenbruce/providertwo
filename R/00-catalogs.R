@@ -317,12 +317,15 @@ catalog_hgov <- function() {
     f_ungroup()
 
   list(
-    main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE),
-    temp = subset_detect(temporal, title, "^QHP|^SHOP|^Qualifying", n = TRUE),
+    main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE) |>
+      mtt(api = "HealthcareGov") |>
+      colorder(api),
+    temp = subset_detect(temporal, title, "^QHP|^SHOP|^Qualifying", n = TRUE) |>
+      mtt(api = "HealthcareGov [Temporal]") |>
+      colorder(api),
     qhp  = subset_detect(temporal, title, "^QHP|^SHOP|^Qualifying")
   )
 }
-
 
 #' @name catalogs
 #' @title API Catalogs

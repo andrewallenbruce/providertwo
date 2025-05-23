@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods_base_request.R
 \name{base_request}
 \alias{base_request}
-\title{Create a new request by class}
+\title{Create a new \verb{<httr2_request>} by class}
 \usage{
 base_request(x)
 }
@@ -10,23 +10,24 @@ base_request(x)
 \item{x}{A \code{class_endpoint}, \code{class_temporal} or \code{class_group} object}
 }
 \value{
-A new base request
+An \verb{<httr2_request>} object or list of \verb{<httr2_request>} objects
 }
 \description{
-Create a new request by class
+Create a new \verb{<httr2_request>} by class
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 care_endpoint("care_enrollees") |> base_request()
-pro_endpoint("pdc_affiliations") |> base_request()
-open_endpoint("profile_covered") |> base_request()
-caid_endpoint("mlr_summary") |> base_request()
 care_temporal("quality_payment") |> base_request()
-caid_temporal("healthcare_quality") |> base_request()
-open_temporal("payment_general") |> base_request()
 care_group("care_hospital") |> base_request()
+pro_endpoint("pdc_affiliations") |> base_request()
 pro_group("pro_mips") |> base_request()
-care_group("care_utilization") |> base_request()
+open_endpoint("profile_covered") |> base_request()
+open_temporal("payment_general") |> base_request()
 open_group("payment_grouped") |> base_request()
+caid_endpoint("mlr_summary") |> base_request()
+caid_temporal("healthcare_quality") |> base_request()
+hgov_endpoint("catastrophic_plans") |> base_request()
+hgov_temporal("medical_loss_ratio") |> base_request()
 \dontshow{\}) # examplesIf}
 }

@@ -44,7 +44,7 @@ tidy_resources <- function(x) {
 #' @title List resources
 #' @param x `care_endpoint`, `care_group`, `care_temporal`
 #' @returns A list of API resources
-#' @examplesIf interactive()
+#' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> list_resources()
 #' care_temporal("quality_payment") |> list_resources()
 #' care_group("care_hha") |> list_resources()
@@ -77,10 +77,10 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
-  if (!all(map_lgl(members(x), is_care_base)))
+  if (!all(map_lgl(members_(x), is_care_base)))
     stop("`members` must be a list of `care_endpoint` or `care_temporal` objects.")
 
-  members(x) |>
+  members_(x) |>
     map(list_resources, .progress = TRUE) |>
-    name_members(x)
+    name_members_(x)
 }

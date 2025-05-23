@@ -9,7 +9,7 @@ quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
 })
 
 method(quick_, class_endpoint) <- function(x, offset, limit) {
-  identifier(x) |>
+  identifier_(x) |>
     map(
       function(i)
         request(i) |>
@@ -20,8 +20,8 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset  = bound(offset, dimensions(x)$rows),
-          limit   = bound(limit, dimensions(x)$limit)
+          offset  = bound(offset, rows_(x)),
+          limit   = bound(limit, limit_(x))
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
@@ -30,36 +30,36 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
         as_tbl() |>
         map_na_if()) |>
     pluck(1) |>
-    name_fields(x)
+    name_fields_(x)
 }
 
 method(quick_, care_endpoint) <- function(x, offset, limit) {
-  identifier(x) |>
+  identifier_(x) |>
     map(function(i)
       request(i) |>
         req_url_query(
-          offset = bound(offset, dimensions(x)$rows),
-          size   = bound(limit, dimensions(x)$limit)
-        )) |>
+          offset = bound(offset, rows_(x)),
+          size   = bound(limit, limit_(x))
+        )
+      ) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
       parse_string(x, query = "/data") |>
         as_tbl() |>
         map_na_if()) |>
     pluck(1) |>
-    name_fields(x)
+    name_fields_(x)
 }
 
 method(quick_, class_group) <- function(x, offset, limit) {
-  members(x) |>
+  members_(x) |>
     map(function(x)
       quick_(x, offset, limit), .progress = TRUE) |>
-    name_members(x)
+    name_members_(x)
 }
 
 method(quick_, class_temporal) <- function(x, offset, limit) {
-  prop(x, "endpoints") |>
-    get_elem("identifier") |>
+  identifier_(x) |>
     map(
       function(i)
         request(i) |>
@@ -70,12 +70,12 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
           results = "true",
           rowIds  = "false",
           schema  = "false",
-          offset  = bound(offset, dimensions(x)$rows),
-          limit   = bound(limit, dimensions(x)$limit)
+          offset  = bound(offset, rows_(x)),
+          limit   = bound(limit, limit_(x))
         )
     ) |>
     req_perform_parallel(on_error = "continue") |>
-    set_names(prop(x, "endpoints") |> get_elem("year")) |>
+    name_years_(x) |>
     map(function(resp)
       parse_string(resp, query = "results")) |>
     list_rbind(names_to = "year") |>
@@ -84,15 +84,16 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
 }
 
 method(quick_, care_temporal) <- function(x, offset, limit) {
-  prop(x, "endpoints") |>
-    get_elem("identifier") |>
+  identifier_(x) |>
     map(function(i)
       request(i) |>
         req_url_query(
-          offset = bound(offset, dimensions(x)$rows),
-          limit  = bound(limit, dimensions(x)$limit))) |>
+          offset = bound(offset, rows_(x)),
+          size   = bound(limit, limit_(x))
+        )
+      ) |>
     req_perform_parallel(on_error = "continue") |>
-    set_names(prop(x, "endpoints") |> get_elem("year")) |>
+    name_years_(x) |>
     map(parse_string) |>
     list_rbind(names_to = "year") |>
     map_na_if() |>

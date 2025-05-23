@@ -460,7 +460,6 @@ select_member <- function(x, call = caller_env()) {
 }
 
 #' Create Groups of Endpoints
-#' @name groups
 #' @param member_names `<chr>` Alias representing the CMS data endpoint.
 #' @param group_name   `<chr>` Name of the group.
 #' @param quick        `<lgl>` call `quick_()` method on group if `TRUE`.
@@ -470,41 +469,30 @@ select_member <- function(x, call = caller_env()) {
 #' @examples
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
 #' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick = TRUE)
-NULL
-
 #' @autoglobal
-#' @rdname groups
 #' @export
 new_group <- function(member_names,
                       group_name = NULL,
                       quick      = FALSE,
                       offset     = 0,
                       limit      = 10) {
-
   check_required(member_names)
   check_bool(quick)
   check_character(group_name, allow_null = TRUE)
 
-  if (length(member_names) == 1) {
-    ob <- select_member(member_names)
-
-  } else {
-    ob <- class_group(
-      group = ifelse(
-        is.null(group_name),
-        paste0("ALIAS(", member_names, ")", collapse = " | "),
-        group_name
-      ),
-      members = map(member_names, select_member) |>
-        set_names(member_names)
-    )
-  }
+  ob <- if (length(member_names) == 1)
+    select_member(member_names)
+  else
+    class_group(
+      group_name %||% paste0(member_names,
+                             collapse = " | "),
+      map(member_names,
+          select_member) |>
+        set_names(member_names))
 
   if (!quick) return(ob)
 
-  quick_(ob,
-         offset = offset,
-         limit  = limit)
+  quick_(ob, offset = offset, limit  = limit)
 }
 
 #' Quickly access CMS data
@@ -526,7 +514,9 @@ quick <- function(alias,
                   limit  = 1e4) {
 
   check_required(alias)
-  quick_(select_member(alias),
-         offset = offset,
-         limit  = limit)
+
+  quick_(
+    select_member(alias),
+    offset = offset,
+    limit  = limit)
 }

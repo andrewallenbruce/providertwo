@@ -17,6 +17,7 @@ utils::globalVariables(c(
   # <catalog_pro>
   # <catalog_open>
   # <catalog_caid>
+  # <catalog_hgov>
   "api",
   # <quality_metrics>
   "category",
@@ -93,6 +94,12 @@ utils::globalVariables(c(
   "grp_assgn",
   # <catalog_caid>
   "id",
+  # <catalog_care>
+  # <catalog_pro>
+  # <catalog_open>
+  # <catalog_caid>
+  # <catalog_hgov>
+  "identifier",
   # <clinicians>
   "ind_assgn",
   # <quality_eligibility>

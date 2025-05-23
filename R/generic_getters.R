@@ -22,6 +22,12 @@ method(member_names_, class_group) <- function(obj) {
   members_(obj) |> names()
 }
 
+#' @autoglobal
+#' @noRd
+name_members_ <- function(x, obj) {
+  set_names(x, member_names_(obj))
+}
+
 #--------- class_temporal ---------
 #' @autoglobal
 #' @noRd
@@ -57,6 +63,12 @@ method(years_, class_endpoint) <- function(obj) {
 
 method(years_, class_group) <- function(obj) {
   members_(obj) |> map(years_)
+}
+
+#' @autoglobal
+#' @noRd
+name_years_ <- function(x, obj) {
+  set_names(x, years_(obj))
 }
 
 #--------- class_backend ---------
@@ -159,6 +171,12 @@ method(field_names_, class_backend) <- function(obj) {
 
 method(field_names_, class_group) <- function(obj) {
   members_(obj) |> map(field_names_)
+}
+
+#' @autoglobal
+#' @noRd
+name_fields_ <- function(x, obj) {
+  set_names(x, field_names_(obj))
 }
 
 #' @autoglobal
