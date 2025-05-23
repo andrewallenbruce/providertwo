@@ -21,6 +21,8 @@ utils::globalVariables(c(
   "api",
   # <quality_metrics>
   "category",
+  # <open_dictionary>
+  "constraints",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>
@@ -54,7 +56,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_caid>
   # <catalog_hgov>
-  # <caid_dictionary>
   "distribution",
   # <catalog_care>
   # <catalog_pro>
@@ -63,6 +64,8 @@ utils::globalVariables(c(
   # <catalog_care>
   # <tidy_resources>
   "downloadURL",
+  # <open_dictionary>
+  "endpoint",
   # <catalog_care>
   # <caid_temporal>
   # <select_care_temp>
@@ -79,8 +82,6 @@ utils::globalVariables(c(
   "ext",
   # <tidy_resources>
   "fileSize",
-  # <catalog_care>
-  "filetype",
   # <quality_eligibility>
   "first_name",
   # <quality_eligibility>
@@ -122,8 +123,6 @@ utils::globalVariables(c(
   "ln_2_sprs",
   # <catalog_care>
   "main",
-  # <catalog_care>
-  "mediaType",
   # <quality_metrics>
   "metric",
   # <quality_eligibility>
@@ -188,6 +187,7 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
+  # <open_dictionary>
   "title",
   # <catalog_care>
   # <catalog_open>
