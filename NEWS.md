@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9304 (2025-05-22)
+
+* more generic getters
+
+
 # providertwo 0.0.0.9303 (2025-05-22)
 
 * implementing generic getters
