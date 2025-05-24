@@ -22,7 +22,7 @@ tidyup <- new_generic("tidyup", "x", function(x) {
 
 method(tidyup, openDashboard) <- function(x) {
 
-  cnames <- c(
+  dashnames <- c(
     `2017` = "py_2017",
     `2018` = "py_2018",
     `2019` = "py_2019",
@@ -32,41 +32,40 @@ method(tidyup, openDashboard) <- function(x) {
     `2023` = "py_2023",
     "ALL"  = "total")
 
-  x <- mtt(
-      prop(x, "response"),
+  x <- prop(x, "response") |>
+    mtt(
       metric               = data_metrics,
       data_metrics         = NULL,
       dashboard_row_number = NULL,
       type                 = case(
-        greplace(metric, "^Total Number of") ~ "count",
-        greplace(metric, "^Total Dollar Amount of") ~ "dollar",
-        greplace(metric, "^Total Dollar Amount Invested") ~ "invest",
-        greplace(metric, "^Total value of interest") ~ "value")) |>
+        gdetect(metric, "^Total Number of") ~ "count",
+        gdetect(metric, "^Total Dollar Amount of") ~ "dollar",
+        gdetect(metric, "^Total Dollar Amount Invested") ~ "invest",
+        gdetect(metric, "^Total value of interest") ~ "value")) |>
     rsplit(~ type)
 
   x$count <-  mtt(
     x$count,
     metric = greplace(metric, "^Total Number of ", ""),
     metric = greplace(metric, "^all ", "", metric),
-    type   = ifelse(greplace(metric, "^Payment Records"), "record", "entity")) |>
-    rsplit( ~ type)
+    type   = ifelse(gdetect(metric, "^Payment Records"), "record", "entity")) |>
+    rsplit(~ type)
 
   x$count$entity <- x$count$entity |>
-    rnm(cnames) |>
-    mtt(
-      metric = greplace(metric, "Companies Making Payments \\(AM/GPO Making Payment\\)", "Companies [AM/GPO] Making Payments"),
-      metric = greplace(metric, "Physician Covered Recipients with associated payment records", "Physicians with Payment Records"),
-      metric = greplace(metric, "Non-Physician Practitioner Covered Recipients with associated payment records", "NPPs with Payment Records"),
-      metric = greplace(metric, "Teaching Hospitals with associated payment records", "Teaching Hospitals with Payment Records")) |>
-    pivot(ids   = "metric",
-          names = list("year", "count")) |>
+    rnm(dashnames) |>
+    mtt(metric = case(
+        gdetect(metric, "Companies Making Payments \\(AM/GPO Making Payment\\)") ~ "Companies [AM/GPO] Making Payments",
+        gdetect(metric, "Physician Covered Recipients with associated payment records") ~ "Physicians with Payment Records",
+        gdetect(metric, "Non-Physician Practitioner Covered Recipients with associated payment records") ~ "NPPs with Payment Records",
+        gdetect(metric, "Teaching Hospitals with associated payment records") ~ "Teaching Hospitals with Payment Records")) |>
+    pivot(ids = "metric", names = list("year", "count")) |>
     roworder(metric, -year) |>
     colorder(year) |>
     mtt(count = as.integer(count)) |>
     as_tbl()
 
   x$count$record <- x$count$record |>
-    rnm(cnames) |>
+    rnm(dashnames) |>
     mtt(type = case(
       gdetect(metric, "General Payments") ~ "General",
       gdetect(metric, "Research Payments") ~ "Research",
@@ -86,8 +85,7 @@ method(tidyup, openDashboard) <- function(x) {
         gdetect(metric, " - Non-Covered Recipient Entity") ~ "Non-Covered Recipient Entity",
         gdetect(metric, " - Non-Covered Recipient Individual") ~ "Non-Covered Recipient Individual"),
       metric = NULL) |>
-    pivot(ids   = c("type", "status", "entity"),
-          names = list("year", "count")) |>
+    pivot(ids = c("type", "status", "entity"), names = list("year", "count")) |>
     roworder(type, -year) |>
     colorder(year, type, entity) |>
     mtt(count = as.integer(count)) |>
@@ -113,7 +111,7 @@ method(tidyup, openDashboard) <- function(x) {
 
 method(tidyup, openNational) <- function(x) {
 
-  phy <- c(
+  phynames <- c(
     year            = "program_year",
     payment_type    = "payment_type",
     recipient_type  = "recipient_type",
@@ -126,7 +124,7 @@ method(tidyup, openNational) <- function(x) {
     payments_median = "median_total_payment_count_physician"
   )
 
-  npp <- c(
+  nppnames <- c(
     year            = "program_year",
     payment_type    = "payment_type",
     recipient_type  = "recipient_type",
@@ -142,35 +140,27 @@ method(tidyup, openNational) <- function(x) {
   x <- prop(x, "response") |>
     as_tbl() |>
     mtt(recipient_type = clean_names(recipient_type)) |>
-    rsplit( ~ recipient_type)
+    rsplit(~ recipient_type)
 
   x$covered_recipient_physician <- mtt(
     x$covered_recipient_physician,
     program_year = factor_(program_year),
     payment_type = factor_(payment_type),
     recipient_type = "Physician",
-    across(c(total_number_of_physicians,
-             total_payment_count_physician), as.integer),
-    across(c(total_payment_amount_physician,
-             mean_total_payment_amount_physician,
-             median_total_payment_amount_physician), as.numeric),
-    across(c(mean_total_payment_count_physician,
-             median_total_payment_count_physician), as.double)) |>
-    rnm(phy)
+    acr(c(total_number_of_physicians, total_payment_count_physician), as.integer),
+    acr(c(total_payment_amount_physician, mean_total_payment_amount_physician, median_total_payment_amount_physician), as.numeric),
+    acr(c(mean_total_payment_count_physician, median_total_payment_count_physician), as.double)) |>
+    rnm(phynames)
 
   x$covered_recipient_non_physician_practitioner <- mtt(
     x$covered_recipient_non_physician_practitioner,
     program_year = factor_(program_year),
     payment_type = factor_(payment_type),
     recipient_type = "Non-Physician Practitioner",
-    across(c(total_number_of_non_physician_practitioners,
-             total_payment_count_non_physician_practitioner), as.integer),
-    across(c(total_payment_amount_non_physician_practitioner,
-             mean_total_payment_amount_non_physician_practitioner,
-             median_total_payment_amount_non_physician_practitioner), as.numeric),
-    across(c(mean_total_payment_count_non_physician_practitioner,
-             median_total_payment_count_non_physician_practitioner), as.double)) |>
-    rnm(npp)
+    acr(c(total_number_of_non_physician_practitioners, total_payment_count_non_physician_practitioner), as.integer),
+    acr(c(total_payment_amount_non_physician_practitioner, mean_total_payment_amount_non_physician_practitioner, median_total_payment_amount_non_physician_practitioner), as.numeric),
+    acr(c(mean_total_payment_count_non_physician_practitioner, median_total_payment_count_non_physician_practitioner), as.double)) |>
+    rnm(nppnames)
 
   x |>
     rowbind() |>

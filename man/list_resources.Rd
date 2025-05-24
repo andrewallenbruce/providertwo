@@ -7,7 +7,7 @@
 list_resources(x)
 }
 \arguments{
-\item{x}{\code{care_endpoint}, \code{care_group}, \code{care_temporal}}
+\item{x}{\code{care_endpoint} or \code{care_temporal} object}
 }
 \value{
 A list of API resources

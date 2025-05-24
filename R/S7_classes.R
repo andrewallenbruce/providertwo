@@ -102,45 +102,31 @@ class_group <- new_class(
   properties = list(
     group    = class_character,
     members  = class_list
-  )
+  ),
+  validator = function(self) {
+    if (!all(rlang::have_name(self@members))) "all @members must be named"
+    if (!all(map_lgl(self@members, S7_inherits, class_backend))) "all @members must be a `class_backend` object"
+  }
 )
-
-#' @autoglobal
-#' @noRd
-identifier_type <- function(x) {
-
-  api <- case(
-    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro_endpoint",
-    grepl("openpaymentsdata.cms.gov", x, perl = TRUE)   ~ "open",
-    grepl("data.medicaid.gov", x, perl = TRUE)          ~ "caid",
-    grepl("data.healthcare.gov", x, perl = TRUE)        ~ "hgov",
-    grepl("data.cms.gov/data-api", x, perl = TRUE)      ~ "care",
-    .default = NA_character_
-  )
-
-  if (is_na(api) || api != "care") return(api)
-
-  case(endsWith(x, "viewer") ~ "care_endpoint",
-       endsWith(x, "data")   ~ "care_temporal")
-}
 
 #' @autoglobal
 #' @noRd
 get_dimensions <- function(x, call = caller_env()) {
 
-  id <- identifier_type(x$identifier)
+  api <- x$api
 
   limit <- switch(
-    id,
-    open          = ,
-    hgov          = 500L,
-    caid          = 8000L,
-    pro_endpoint  = 2000L,
-    care_endpoint = ,
-    care_temporal = 5000L,
-    cli::cli_abort(
-      c("x" = "{.val {id}} is an invalid identifier."),
-      call  = call)
+    api,
+    `Open Payments`            = ,
+    `Open Payments [Temporal]` = ,
+    `HealthcareGov`            = ,
+    `HealthcareGov [Temporal]` = 500L,
+    `Provider`                 = 2000L,
+    `Medicare`                 = ,
+    `Medicare [Temporal]`      = 5000L,
+    `Medicaid`                 = ,
+    `Medicaid [Temporal]`      = 8000L,
+    cli::cli_abort(c("x"       = "{.val {x$api}} is an invalid API."), call = call)
   )
 
   req <- request(x$identifier) |>
@@ -148,37 +134,24 @@ get_dimensions <- function(x, call = caller_env()) {
     req_error(body = \(resp) resp_body_json(resp)$meta$message)
 
   req <- switch(
-    id,
-    care_endpoint = ,
-    care_temporal =
-    req_url_query(req, size = 1L),
-    req_url_query(req, limit = 1L, results = "false"))
+    api,
+    `Medicare` = ,
+    `Medicare [Temporal]` = req_url_query(req, size = 1L),
+    req_url_query(req, limit = 1L, results = "false")
+    )
 
   x <- switch(
-    id,
-    care_endpoint = perform_simple(req)$meta |>
-      get_elem(c("total_rows", "headers")),
-    care_temporal = list(
-      headers     = perform_simple(req) |> names(),
-      total_rows  = req_url_path_append(req, "stats") |>
-        perform_simple() |>
-        get_elem("total_rows")
-      ),
+    api,
+    `Medicare`            = perform_simple(req)$meta |> get_elem(c("total_rows", "headers")),
+    `Medicare [Temporal]` = list(headers = perform_simple(req) |> names(), total_rows = req_url_path_append(req, "stats") |> perform_simple() |> get_elem("total_rows")),
     perform_simple(req)
   )
 
   switch(
-    id,
-    care_endpoint = ,
-    care_temporal =
-    class_dimensions(
-      limit  = limit,
-      rows   = x$total_rows,
-      fields = x$headers),
-    class_dimensions(
-      limit  = limit,
-      rows   = x$count,
-      fields = x$query$properties)
+    api,
+    `Medicare` = ,
+    `Medicare [Temporal]` = class_dimensions(limit = limit, rows = x$total_rows, fields = x$headers),
+    class_dimensions(limit = limit, rows = x$count, fields = x$query$properties)
   )
 }
 

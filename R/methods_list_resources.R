@@ -42,7 +42,7 @@ tidy_resources <- function(x) {
 
 #' @name list_resources
 #' @title List resources
-#' @param x `care_endpoint`, `care_group`, `care_temporal`
+#' @param x `care_endpoint` or `care_temporal` object
 #' @returns A list of API resources
 #' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> list_resources()
