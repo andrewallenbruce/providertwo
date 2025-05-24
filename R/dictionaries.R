@@ -9,7 +9,7 @@ open_dictionary <- function() {
   x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids") |>
     get_elem("data", DF.as.list = TRUE) |>
     get_elem("title|describedBy$", regex = TRUE) |>
-    map(\(x) x[not_null(names(x))])
+    map(\(x) x[!is.null(names(x))])
 
   new_df(
     name = get_elem(x, "title") |> delist(),
@@ -40,7 +40,7 @@ open_dictionary <- function() {
         map_na_if() |>
         as_tbl() |>
         mtt(description = stri_trans_general(description, "latin-ascii"),
-            description = greplace(description, "[\n\"']", ""),
+            description = gremove(description, "[\n\"']"),
             description = greplace(description, "[\\\\]", "-"),
             description = stri_trim_both(greplace(description, "\\s+", " ")),
             description = remove_non_ascii(description))

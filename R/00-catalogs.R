@@ -20,11 +20,11 @@ catalog_care <- function() {
     title       = remove_non_ascii(title),
     description = stri_trans_general(description, "latin-ascii"),
     description = remove_non_ascii(description),
-    description = greplace(description, "[\"']", ""),
-    description = greplace(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$", ""),
-    description = greplace(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ", ""),
-    description = greplace(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+", ""),
-    description = greplace(description, "\\n\\n.+\\n\\n", ""),
+    description = gremove(description, "[\"']"),
+    description = gremove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
+    description = gremove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. "),
+    description = gremove(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+"),
+    description = gremove(description, "\\n\\n.+\\n\\n"),
     description = stri_trim(description)) |>
     slt(api, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references, distribution) |>
     as_tbl()
@@ -33,7 +33,7 @@ catalog_care <- function() {
     fcompute(
       api        = "Medicare [Temporal]",
       year       = extract_year(title),
-      title      = greplace(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$", ""),
+      title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
       format     = ifelse_(!is_na(description), description, format),
       modified   = as_date(modified),
       temporal   = fmt_temporal(temporal),
@@ -76,7 +76,7 @@ catalog_pro <- function() {
     modified    = as_date(modified),
     released    = as_date(released),
     group       = flatten_column(theme),
-    description = stri_trim(greplace(description, "\n", "")),
+    description = stri_trim(gremove(description, "\n")),
     download    = delist_elem(x$distribution, "downloadURL"),
     contact     = fmt_contactpoint(x$contactPoint)) |>
     slt(api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
@@ -105,9 +105,9 @@ catalog_open <- function() {
     title       = remove_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
-    description = greplace(description, "[\"']", ""),
+    description = gremove(description, "[\"']"),
     description = greplace(description, "\r\n", " "),
-    description = greplace(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$", ""),
+    description = gremove(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$"),
     description = greplace(description, "  ", " "),
     description = stri_trim(description),
     download    = get_elem(x$distribution, "data", DF.as.list = TRUE) |>
@@ -122,7 +122,7 @@ catalog_open <- function() {
     temp = sbt(x, year != "All") |>
       mtt(api = "Open Payments [Temporal]",
           year = as.integer(year),
-          title = stri_replace_all_regex(title, "^[0-9]{4} ", ""),
+          title = gremove(title, "^[0-9]{4} "),
           description = val_match(
             title,
             "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
@@ -150,12 +150,12 @@ catalog_caid <- function() {
       modified    = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
-      title       = greplace(title, "^ ", ""),
+      title       = gremove(title, "^ "),
       title       = remove_non_ascii(title),
       title       = greplace(title, "  ", " "),
       description = stri_trans_general(description, "latin-ascii"),
       description = remove_non_ascii(description),
-      description = greplace(description, "[\"']", ""),
+      description = gremove(description, "[\"']"),
       description = greplace(description, "\r\n", " "),
       description = greplace(description, "  ", " "),
       description = ifelse_(description == "Dataset.", NA_character_, description)) |>
@@ -238,8 +238,8 @@ catalog_hgov <- function() {
       title       = remove_non_ascii(title),
       title       = greplace(title, "  ", " "),
       description = remove_non_ascii(description),
-      description = greplace(description, "[\"']", ""),
-      description = greplace(description, "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s", ""),
+      description = gremove(description, "[\"']"),
+      description = gremove(description, "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s"),
       description = greplace(description, "Dataset.", NA_character_),
       modified    = as_date(modified),
       issued      = as_date(issued),

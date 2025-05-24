@@ -34,7 +34,7 @@ NULL
 #' @noRd
 format_query_care <- function(args, operator = "=") {
 
-  args  <- discard(args, null)
+  args  <- discard(args, is.null)
 
   query <- glue(
     '
@@ -58,7 +58,7 @@ format_query_care <- function(args, operator = "=") {
 #' @noRd
 format_query_pro <- function(args, operator = "=") {
 
-  args  <- discard(args, null)
+  args  <- discard(args, is.null)
 
   query <- glue(
     '

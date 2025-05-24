@@ -83,3 +83,22 @@ yank_index_name <- function(x, nm, i = 1L) get_elem(x[[i]], elem = rlang::ensym(
   }
   eval(call("<-", name, right), parent.frame())
 }
+
+#' @autoglobal
+#' @noRd
+identifier_type <- function(x) {
+
+  api <- case(
+    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro_endpoint",
+    grepl("openpaymentsdata.cms.gov", x, perl = TRUE)   ~ "open",
+    grepl("data.medicaid.gov", x, perl = TRUE)          ~ "caid",
+    grepl("data.healthcare.gov", x, perl = TRUE)        ~ "hgov",
+    grepl("data.cms.gov/data-api", x, perl = TRUE)      ~ "care",
+    .default = NA_character_
+  )
+
+  if (is_na(api) || api != "care") return(api)
+
+  case(endsWith(x, "viewer") ~ "care_endpoint",
+       endsWith(x, "data")   ~ "care_temporal")
+}

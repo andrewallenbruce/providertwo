@@ -104,7 +104,7 @@ class_group <- new_class(
     members  = class_list
   ),
   validator = function(self) {
-    if (!all(rlang::have_name(self@members))) "all @members must be named"
+    if (!all(have_name(self@members))) "all @members must be named"
     if (!all(map_lgl(self@members, S7_inherits, class_backend))) "all @members must be a `class_backend` object"
   }
 )

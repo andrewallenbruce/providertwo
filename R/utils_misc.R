@@ -29,6 +29,13 @@ greplace <- function(str, pt, rp, ...) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
+gremove <- function(str, pt, ...) {
+  gsub(x = str, pattern = pt, replacement = "", perl = TRUE, ...)
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
 remove_non_ascii <- function(x) {
   # x[!stri_detect_regex(x, "[^[:ascii:]]")]
   gsub("[^\x20-\x7E]", "", x, perl = TRUE)
@@ -126,22 +133,9 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 empty <- function(x) vec_is_empty(x)
 
 #' @autoglobal
-#' @noRd
-if_empty_null <- function(x) if (empty(x)) NULL else x
-
-#' @noRd
-not_na <- function(x) !is_na(x)
-
-#' @autoglobal
 #' @keywords internal
 #' @noRd
 delist <- function(x) unlist(x, use.names = FALSE)
-
-#' @noRd
-null <- function(x) is.null(x)
-
-#' @noRd
-not_null <- function(x) !is.null(x)
 
 #' @autoglobal
 #' @keywords internal

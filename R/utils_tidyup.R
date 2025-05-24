@@ -23,7 +23,7 @@ make_address <- function(a1, a2) {
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
-  gsub("\\(|\\)", "",
+  gremove("\\(|\\)", "",
        gsub("\\s|-", "_", tolower(x), perl = TRUE),
        perl = TRUE)
 }
@@ -46,7 +46,24 @@ fmt_entity <- function(x, type = c("int", "chr")) {
     chr = val_match(x, "NPI-1" ~ "I", "NPI-2" ~ "O")
   ) |>
     factor_()
+}
 
+#' @autoglobal
+#' @noRd
+underscore <- function(x) {
+  greplace(x, "___owner$", "_owner")
+}
+
+#' @autoglobal
+#' @noRd
+charbin <- function(x) {
+  val_match(x, "N" ~ 0L, "Y" ~ 1L, .default = NA_integer_)
+}
+
+#' @autoglobal
+#' @noRd
+charprop <- function(x) {
+  case(x == "0" ~ 0, is_na(x) ~ NA_real_, .default = as.double(x) / 100)
 }
 
 #' @noRd
