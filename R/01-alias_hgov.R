@@ -7,8 +7,8 @@ NULL
 #' @param call `<env>` environment to use for error reporting
 #' @returns An S7 `<class_endpoint>` or `<class_temporal>` object
 #' @examples
-#' hgov_endpoint("ab_registration_completion")
-#' hgov_temporal("medical_loss_ratio")
+#' hgov_endpoint("ab_reg_comp")
+#' hgov_temporal("puf_rate")
 NULL
 
 #' @rdname hgov
@@ -20,33 +20,27 @@ hgov_endpoint <- function(alias, call = caller_env()) {
 
   x <- switch(
     alias,
-    ab_registration_completion         = "^AB Registration Completion List$",
-    ab_suspension_termination          = "^AB Suspension and Termination List$",
-    agent_broker_registration_glossary = "^Agent Broker Registration Tracker Glossary$",
-    agent_broker_registration_tracker  = "^Agent Broker Registration Tracker$",
-    authority_state                    = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
-    auto_pop_file                      = "^Auto[-]population File$",
-    benefits_cost_sharing              = "^Benefits and Cost Sharing PUF$",
-    business_rules                     = "^Business Rules PUF$",
-    catastrophic_plans                 = "^Catastrophic Plans for People with Cancelled Policies$",
-    contact_admins                     = "^Helpful Contacts Admins$",
-    counties                           = "^Counties$",
-    county_service_areas               = "^County Service Areas$",
-    direct_enrollment_partners         = "^Direct Enrollment Partners$",
-    issuer_partner_lookup              = "^Issuer[_]Partner[_]Lookup$",
-    issuer_partner_directory           = "^Issuer Partner Directory [-] Reference Text$",
-    issuer_de_partner_directory        = "^Issuer and DE Partner Directory$",
-    network_puf                        = "^Network PUF$",
-    nipr_valid_authority               = "^NIPR Valid Lines of Authority List$",
-    plan_attribute                     = "^Plan Attributes PUF$",
-    plan_id_cross                      = "^Plan ID Crosswalk PUF$",
-    response_codes                     = "^Response Codes$",
-    rolling_draft_ecp                  = "^Rolling Draft ECP List$",
-    service_area                       = "^Service Area PUF$",
-    slcsp_cnty_zip                     = "^SLCSP [-] County[-]Zip Reference Data$",
-    states                             = "^States$",
-    local_help                         = "^Find Local Help$",
-    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    auto_pop_file            = "^Auto[-]population File$",
+    ab_reg_comp              = "^AB Registration Completion List$",
+    ab_sus_term              = "^AB Suspension and Termination List$",
+    ab_reg_gloss             = "^Agent Broker Registration Tracker Glossary$",
+    ab_reg_trac              = "^Agent Broker Registration Tracker$",
+    catastrophic_plans       = "^Catastrophic Plans for People with Cancelled Policies$",
+    contact_admins           = "^Helpful Contacts Admins$",
+    counties                 = "^Counties$",
+    county_service_areas     = "^County Service Areas$",
+    issuer_partner_lookup    = "^Issuer[_]Partner[_]Lookup$",
+    issuer_partner_reference = "^Issuer Partner Directory [-] Reference Text$",
+    issuer_partner_directory = "^Issuer and DE Partner Directory$",
+    partner                  = "^Direct Enrollment Partners$",
+    nipr_valid_authority     = "^NIPR Valid Lines of Authority List$",
+    nipr_valid_state         = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
+    response_codes           = "^Response Codes$",
+    rolling_draft_ecp        = "^Rolling Draft ECP List$",
+    slcsp_cnty_zip           = "^SLCSP [-] County[-]Zip Reference Data$",
+    states                   = "^States$",
+    local_help               = "^Find Local Help$",
+    cli::cli_abort(c("x"     = "{.emph alias} {.val {alias}} is invalid."), call = call)
     )
 
   res <- select_alias(the$catalogs$hgov$main, x)
@@ -72,17 +66,16 @@ hgov_temporal <- function(alias, call = caller_env()) {
 
   x <- switch(
     alias,
-    medical_loss_ratio     = "^MLR Dataset$",
-    qhp_quality_ratings    = "^Quality PUF$",
-    hie_benefits_costshare = "^Benefits and Cost Sharing PUF$",
-    hie_business_rules     = "^Business Rules PUF$",
-    hie_machine_readable   = "^Machine Readable PUF$",
-    hie_network            = "^Network PUF$",
-    hie_plan_attributes    = "^Plan Attributes PUF$",
-    hie_plan_id_crosswalk  = "^Plan ID Crosswalk PUF$",
-    hie_rate               = "^Rate PUF$",
-    hie_service_area       = "^Service Area PUF$",
-    hie_transparency       = "^Transparency in Coverage PUF$",
+    mlr_datasets  = "^MLR Dataset$",
+    puf_benefits  = "^Benefits and Cost Sharing PUF$",
+    puf_business  = "^Business Rules PUF$",
+    puf_machine   = "^Machine Readable PUF$",
+    puf_network   = "^Network PUF$",
+    puf_plan_attr = "^Plan Attributes PUF$",
+    puf_plan_walk = "^Plan ID Crosswalk PUF$",
+    puf_rate      = "^Rate PUF$",
+    puf_service   = "^Service Area PUF$",
+    puf_tic       = "^Transparency in Coverage PUF$",
     cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
     )
 

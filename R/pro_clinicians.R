@@ -98,9 +98,9 @@ clinicians <- function(npi           = NULL,
     "adrs_id"              = add_id
   )
 
-  log_info("Loading endpoint...")
+
   x <- pro_endpoint("pdc_clinicians")
-  log_info("Querying {x@metadata$title}...")
+
   x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
@@ -125,6 +125,6 @@ clinicians <- function(npi           = NULL,
     ) |>
     rnm(pro_names("clinicians")) |>
     as_tbl()
-  log_info("Returned {nrow(x)} results")
+
   x
 }

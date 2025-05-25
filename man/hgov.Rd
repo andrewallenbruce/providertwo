@@ -22,6 +22,6 @@ An S7 \verb{<class_endpoint>} or \verb{<class_temporal>} object
 Healthcare.Gov API Endpoints
 }
 \examples{
-hgov_endpoint("ab_registration_completion")
-hgov_temporal("medical_loss_ratio")
+hgov_endpoint("ab_reg_comp")
+hgov_temporal("puf_rate")
 }

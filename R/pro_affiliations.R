@@ -62,9 +62,9 @@ affiliations <- function(npi           = NULL,
     "facility_affiliations_certification_number" = ccn_facility,
     "facility_type_certification_number"         = ccn_primary)
 
-  log_info("Loading endpoint...")
+
   x <- pro_endpoint("pdc_affiliations")
-  log_info("Querying {x@metadata$title}...")
+
   x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>
     perform_simple() |>
@@ -72,6 +72,6 @@ affiliations <- function(npi           = NULL,
     map_na_if() |>
     rnm(pro_names("affiliations")) |>
     as_tbl()
-  log_info("Returned {nrow(x)} results")
+
   x
 }

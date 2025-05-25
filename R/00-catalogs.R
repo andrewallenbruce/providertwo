@@ -209,9 +209,10 @@ catalog_caid <- function() {
             gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
             gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
             .default = title),
-          description = ifelse_(title == "Child and Adult Health Care Quality Measures",
-                                "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
-                                description)
+          description = ifelse_(
+            title == "Child and Adult Health Care Quality Measures",
+            "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+            description)
           ) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
@@ -244,18 +245,8 @@ catalog_hgov <- function() {
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
-      contact     = fmt_contactpoint(x$contactPoint)
-    ) |>
-    slt(
-      title,
-      identifier,
-      description,
-      periodicity,
-      issued,
-      modified,
-      contact,
-      distribution
-    )
+      contact     = fmt_contactpoint(x$contactPoint)) |>
+    slt(title, identifier, description, periodicity, issued, modified, contact, distribution)
 
   download <- new_tbl(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
@@ -263,42 +254,14 @@ catalog_hgov <- function() {
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
-  x <- list(
-    slt(x, -distribution),
-    rowbind(
-      sbt(download, N == 1, -N, -ext),
-      sbt(download, N > 1 & ext == "csv", -N, -ext))) |>
+  x <- list(slt(x, -distribution),
+            rowbind(sbt(download, N == 1, -N, -ext),
+                    sbt(download, N > 1 & ext == "csv", -N, -ext))) |>
     reduce(join_on_title)
 
-  qhp <- subset_detect(x, title, "QHP|SHOP|Qualifying") |>
-    mtt(
-      description = glue("{title} == {description}"),
-      year = extract_year(title),
-      year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
-      year = ifelse(is_na(year), 9999L, year),
-      title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
-      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
-      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
-      title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
-      title = stri_replace_all_regex(title, "[RP]Y\\s?[1][0-9]\\s", ""),
-      title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
-      title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
-      title = case(
-        gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
-        gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
-        gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
-        gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
-        gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
-        .default = title
-      ),
-      title = greplace(title, "  ", " "),
-      title = greplace(title, "/\\s", "/"),
-      title = str_look_remove(title, "Selections", "ahead")) |>
-    # subset_detect(title, "Excel$", n = TRUE) |>
-    colorder(year) |>
-    roworder(title, -year)
+  qhp <- subset_detect(x, title, "QHP|SHOP|Qualifying")
 
-  temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
+  temporal <- subset_detect(x, title, "[2][0-9]{3}|\\sPUF") |>
     sbt(title %!in_% get_elem(qhp, "title")) |>
     mtt(
       year  = extract_year(title),
@@ -329,15 +292,43 @@ catalog_hgov <- function() {
         gdetect(title, "Rate PUF")                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
         gdetect(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
         gdetect(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
-        .default = description),
+        .default = description
+      ),
       periodicity = "Annually [R/P1Y]"
     ) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
     roworder(title, -year)
 
+  qhp <- mtt(
+    qhp,
+    description = glue("{title} == {description}"),
+    year = extract_year(title),
+    year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
+    year = ifelse(is_na(year), 9999L, year),
+    title = gremove(title, "^[2][0-9]{3}\\s"),
+    title = gremove(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$"),
+    title = gremove(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$"),
+    title = gremove(title, "[RP]Y\\s?[2][0-9]{3}\\s"),
+    title = gremove(title, "[RP]Y\\s?[1][0-9]\\s"),
+    title = gremove(title, "\\s[0-9]{8}$"),
+    title = greplace(title, "  ", " "),
+    title = greplace(title, "/\\s", "/")
+    # title = gremove(title, "\\sSocrata|\\sZip\\sFile|\\sExcel$"),
+    # title = str_look_remove(title, "Selections", "ahead"),
+    # title = case(
+    #   gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
+    #   gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
+    #   gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
+    #   gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
+    #   gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
+    #   .default = title)
+    ) |>
+    colorder(year) |>
+    roworder(title, -year)
+
   list(
-    main = subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|Qualifying", n = TRUE) |> mtt(api = "HealthcareGov") |> colorder(api),
+    main = subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|Qualifying|\\sPUF", n = TRUE) |> mtt(api = "HealthcareGov") |> colorder(api),
     temp = mtt(temporal, api = "HealthcareGov [Temporal]") |> colorder(api) |>
       f_nest_by(.by = c(api, title, description, periodicity)) |>
       f_ungroup() |>
@@ -345,7 +336,8 @@ catalog_hgov <- function() {
     qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |> colorder(api) |>
       f_nest_by(.by = c(title)) |>
       f_ungroup() |>
-      rnm(endpoints = data))
+      rnm(endpoints = data)
+  )
 }
 
 #' @name catalogs
