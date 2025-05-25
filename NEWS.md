@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9311 (2025-05-25)
+
+* removed logger, memoise
+
+
 # providertwo 0.0.0.9310 (2025-05-24)
 
 * hgov work
