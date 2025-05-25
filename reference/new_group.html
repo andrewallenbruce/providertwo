@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9310</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9311</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,22 +85,22 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"va_timely"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "local_help | managed_care_share"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "local_help | va_timely"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ local_help        : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ local_help: &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/3ddf85bc-f71b-4417-b271-410cbf9e0905/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "HealthcareGov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Find Local Help"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "CSV output of the Assister and Agent/Broker listing dataset used within the Find Local Help application [1]. Th"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-05-24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-05-25"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Daily [R/P1D]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.healthcare.gov/datafile/localhelp/prod/helpers.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 82707</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 82706</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 166</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ record_id                                   : chr(0) </span>
@@ -126,29 +126,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ display                                     : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ display_address                             : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ address_comment                             : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ managed_care_share: &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/79692ea5-21e1-56bf-8149-97d437120c4b/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Medicaid"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Share of Medicaid Enrollees in Managed Care"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "The Share of Medicaid Enrollees in any Managed Care and in Comprehensive Managed CaAre profiles state-level enr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.medicaid.gov/sites/default/files/uploaded_resources/share-of-medicaid-enrollees-in-managed-care.2022.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ va_timely : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/ptds-r8im/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Veterans Health Administration Timely and Effective Care Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "A list of VHA hospitals with timely and effective care (process of care) measure data. VHA collects this inform"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-04-08"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ group      : chr "Hospitals"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2023-07-05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ released   : Date[1:1], format: "2025-04-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/07084088a9de9e44c51bef291a4e163a_1744668362/VA_TE.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/ptds-r8im#data-dictionary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/ptds-r8im"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1716</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                          : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ notes                                          : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_medicaid_enrollees                       : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ individuals_enrolled_any                       : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percent_of_all_medicaid_enrollees_any          : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ individuals_enrolled_comprehensive             : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percent_of_all_medicaid_enrollees_comprehensive: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                                           : chr(0) </span>
-<span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span>, quick <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_id     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ facility_name   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ address         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ citytown        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ zip_code        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ countyparish    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ telephone_number: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ _condition      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_id      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ measure_name    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sttag           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ score           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sample          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ footnote        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ start_date      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ end_date        : chr(0) </span>
+<span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"geovar_adv"</span><span class="op">)</span>, quick <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $local_help</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    record_id data_set_name    organization_name main_phone_number street_address</span>
@@ -171,24 +184,27 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   accessibility_service_offered &lt;chr&gt;, geo_location &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   email_address &lt;chr&gt;, display &lt;chr&gt;, display_address &lt;chr&gt;, …</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $managed_care_share</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    state                notes      total_medicaid_enrol…¹ individuals_enrolled…²</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> TOTALS               <span style="color: #BB0000;">NA</span>         80,263,839             65,034,032            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arkansas5            Arkansas … 1,026,621              512,041               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> District of Columbia <span style="color: #BB0000;">NA</span>         251,791                180,942               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Wyoming              <span style="color: #BB0000;">NA</span>         64,442                 391                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Pennsylvania         <span style="color: #BB0000;">NA</span>         2,753,618              2,521,421             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Massachusetts        <span style="color: #BB0000;">NA</span>         1,889,306              1,268,120             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> North Dakota         <span style="color: #BB0000;">NA</span>         93,422                 48,621                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Michigan             <span style="color: #BB0000;">NA</span>         4,448,582              4,370,138             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Virginia             <span style="color: #BB0000;">NA</span>         1,111,999              761,019               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Hawaii               <span style="color: #BB0000;">NA</span>         358,302                354,289               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated names: ¹​total_medicaid_enrollees, ²​individuals_enrolled_any</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: percent_of_all_medicaid_enrollees_any &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   individuals_enrolled_comprehensive &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   percent_of_all_medicaid_enrollees_comprehensive &lt;chr&gt;, year &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $geovar_adv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 61</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    YEAR  STATE BENE_GEO_CD BENES_MA_CNT BENE_AVG_AGE BENE_FEML_PCT BENE_MALE_PCT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2016  AK    02          573          74           0.5271        0.4729       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2016  AL    01          259683       69           0.5577        0.4423       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2016  AR    05          122718       69           0.5532        0.4468       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2016  AZ    04          448018       72           0.5653        0.4347       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2016  CA    06          2368606      74           0.5637        0.4363       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2016  CO    08          299451       73           0.5628        0.4372       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2016  CT    09          167221       73           0.5685        0.4315       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2016  DC    11          11789        73           0.617         0.383        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2016  DE    10          17198        72           0.5561        0.4439       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2016  FL    12          1674057      72           0.5525        0.4475       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 54 more variables: BENE_RACE_WHT_PCT &lt;chr&gt;, BENE_RACE_BLACK_PCT &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BENE_RACE_HSPNC_PCT &lt;chr&gt;, BENE_RACE_OTHR_PCT &lt;chr&gt;, BENE_DUAL_PCT &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BENES_IP_STAY_CNT &lt;chr&gt;, BENES_IP_PCT &lt;chr&gt;, IP_STAYS_PER_1000_BENES &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   IP_DAYS_PER_1000_BENES &lt;chr&gt;, BENES_IRF_CNT &lt;chr&gt;, BENES_IRF_PCT &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   IRF_STAYS_PER_1000_BENES &lt;chr&gt;, IRF_DAYS_PER_1000_BENES &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BENES_LTC_CNT &lt;chr&gt;, BENES_LTC_PCT &lt;chr&gt;, LTC_STAYS_PER_1000_BENES &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   LTC_DAYS_PER_1000_BENES &lt;chr&gt;, BENES_SNF_CNT &lt;chr&gt;, BENES_SNF_PCT &lt;chr&gt;, …</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
