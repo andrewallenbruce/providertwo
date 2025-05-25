@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9309</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9310</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,44 +85,48 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"qhp_bus_rule_variables"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "qhp_bus_rule_variables | managed_care_share"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "local_help | managed_care_share"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ qhp_bus_rule_variables: &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/3yfc-yz8a/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ local_help        : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/3ddf85bc-f71b-4417-b271-410cbf9e0905/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "HealthcareGov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "QHP Landscape Health Plan Business Rule Variables"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "QHP Landscape Health Plan Business Rule Variables"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2014-04-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ issued     : Date[1:1], format: "2013-11-26"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.healthcare.gov/datafile/qhp-landscape-health-plan-business-rule-variables.3yfc-yz8a.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Find Local Help"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "CSV output of the Assister and Agent/Broker listing dataset used within the Find Local Help application [1]. Th"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-05-24"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Daily [R/P1D]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.healthcare.gov/datafile/localhelp/prod/helpers.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 5891</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ standard_component_id                                           : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ issuer_id                                                       : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ issuer_legal_name                                               : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                                           : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ metal_level                                                     : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ market_coverage                                                 : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ on_or_off_exchange                                              : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ sadp_or_qhp                                                     : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ child_only_offering                                             : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ guaranteed_or_estimated_rate                                    : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ how_are_rates_for_contracts_covering_two_or_more_enrollees__e264: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ what_are_the_maximum_number_of_under_age_under_21_dependent_364a: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ what_are_the_maximum_number_of_under_age_under_21_dependent_e6fb: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ is_there_a_maximum_age_for_a_dependent                          : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ what_are_the_maximum_number_of_children_used_to_quote_a_chi_733a: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ are_domestic_partners_treated_the_same_as_secondary_subscribers : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ are_samesex_partners_treated_the_same_as_secondary_subscribers  : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ how_is_age_determined_for_rating_and_eligibility_purposes       : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ what_relationships_between_primary_and_dependent_are_allowe_e280: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ managed_care_share    : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 82707</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 166</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ record_id                                   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_set_name                               : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ organization_name                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ main_phone_number                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ street_address                              : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ city                                        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state_or_territory                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ zip_code                                    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ non_english_assistance_offered              : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ organization_acronym                        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ office_hours                                : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ toll_free_phone                             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ tty_phone                                   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ language_line_phone_for_non_english_speakers: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ location_name                               : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ website_url                                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ additional_information                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ accessibility_service_offered               : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geo_location                                : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ email_address                               : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ display                                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ display_address                             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ address_comment                             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ managed_care_share: &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/79692ea5-21e1-56bf-8149-97d437120c4b/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Medicaid"</span>
@@ -144,28 +148,28 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ individuals_enrolled_comprehensive             : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percent_of_all_medicaid_enrollees_comprehensive: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                                           : chr(0) </span>
-<span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"qhp_bus_rule_variables"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span>, quick <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $qhp_bus_rule_variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 19</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    standard_component_id issuer_id issuer_legal_name           state metal_level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10191NJ0050001        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 10191NJ0040002        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 10191NJ0070004        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 10191NJ0050003        10191     Freelancers CO-OP of New J… NJ    Platinum   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 10191NJ0120001        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 10191NJ0140002        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 10191NJ0050002        10191     Freelancers CO-OP of New J… NJ    Gold       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 10191NJ0070003        10191     Freelancers CO-OP of New J… NJ    Gold       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 10191NJ0070001        10191     Freelancers CO-OP of New J… NJ    Bronze     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 10191NJ0100002        10191     Freelancers CO-OP of New J… NJ    Silver     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: market_coverage &lt;chr&gt;, on_or_off_exchange &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sadp_or_qhp &lt;chr&gt;, child_only_offering &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   guaranteed_or_estimated_rate &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   how_are_rates_for_contracts_covering_two_or_more_enrollees__e264 &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   what_are_the_maximum_number_of_under_age_under_21_dependent_364a &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   what_are_the_maximum_number_of_under_age_under_21_dependent_e6fb &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   is_there_a_maximum_age_for_a_dependent &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">new_group</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"local_help"</span>, <span class="st">"managed_care_share"</span><span class="op">)</span>, quick <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $local_help</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 23</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    record_id data_set_name    organization_name main_phone_number street_address</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1428646   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                7085291060        <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1424965   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                7866704302        <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 21643     Certified Appli… Central Texas Co… 5129789015        1210 W. Brake…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1362234   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                8643990510        28 Plainfield…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1307876   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                6822945885        971 W 80 TH P…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 28359     Certified Appli… Community Health… 8019552388        980 Medical D…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1450279   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                3162086089        1605 E 2nd St…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1525446   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                4078790006        2796 Club Cor…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 68200     Certified Appli… JeffCare - a pro… 5048385257        3616 S. I-10 …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1373616   Agent/Broker (A… <span style="color: #BB0000;">NA</span>                5122988536        <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more variables: city &lt;chr&gt;, state_or_territory &lt;chr&gt;, zip_code &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   non_english_assistance_offered &lt;chr&gt;, organization_acronym &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   office_hours &lt;chr&gt;, toll_free_phone &lt;chr&gt;, tty_phone &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   language_line_phone_for_non_english_speakers &lt;chr&gt;, location_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   website_url &lt;chr&gt;, additional_information &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   accessibility_service_offered &lt;chr&gt;, geo_location &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   email_address &lt;chr&gt;, display &lt;chr&gt;, display_address &lt;chr&gt;, …</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $managed_care_share</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 8</span></span>
