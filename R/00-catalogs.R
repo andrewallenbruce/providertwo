@@ -267,11 +267,39 @@ catalog_hgov <- function() {
     slt(x, -distribution),
     rowbind(
       sbt(download, N == 1, -N, -ext),
-      sbt(download, N > 1 & ext == "csv", -N, -ext)
-      )) |>
+      sbt(download, N > 1 & ext == "csv", -N, -ext))) |>
     reduce(join_on_title)
 
+  qhp <- subset_detect(x, title, "QHP|SHOP|Qualifying") |>
+    mtt(
+      description = glue("{title} == {description}"),
+      year = extract_year(title),
+      year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
+      year = ifelse(is_na(year), 9999L, year),
+      title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
+      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
+      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
+      title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
+      title = stri_replace_all_regex(title, "[RP]Y\\s?[1][0-9]\\s", ""),
+      title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
+      title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
+      title = case(
+        gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
+        gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
+        gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
+        gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
+        gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
+        .default = title
+      ),
+      title = greplace(title, "  ", " "),
+      title = greplace(title, "/\\s", "/"),
+      title = str_look_remove(title, "Selections", "ahead")) |>
+    # subset_detect(title, "Excel$", n = TRUE) |>
+    colorder(year) |>
+    roworder(title, -year)
+
   temporal <- subset_detect(x, title, "[2][0-9]{3}") |>
+    sbt(title %!in_% get_elem(qhp, "title")) |>
     mtt(
       year  = extract_year(title),
       title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
@@ -284,10 +312,6 @@ catalog_hgov <- function() {
         gdetect(title, "^Benefits\\sCost")                    ~ "Benefits and Cost Sharing PUF",
         gdetect(title, "^Plan\\sCrosswalk\\sPUF")             ~ "Plan ID Crosswalk PUF",
         gdetect(title, "Transparency [Ii]n Coverage PUF")     ~ "Transparency in Coverage PUF",
-        gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
-        gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
-        gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
-        gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
         .default = title
       ),
       title = greplace(title, "  ", " "),
@@ -310,20 +334,18 @@ catalog_hgov <- function() {
     ) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
-    roworder(title, -year) |>
-    f_nest_by(.by = c(title, description, periodicity)) |>
-    f_ungroup() |>
-    rnm(endpoints = data)
+    roworder(title, -year)
 
   list(
-    main = subset_detect(x, title, "[2][0-9]{3}", n = TRUE) |>
-      mtt(api = "HealthcareGov") |>
-      colorder(api),
-    temp = subset_detect(temporal, title, "^QHP|^SHOP|^Qualifying", n = TRUE) |>
-      mtt(api = "HealthcareGov [Temporal]") |>
-      colorder(api),
-    qhp  = subset_detect(temporal, title, "^QHP|^SHOP|^Qualifying")
-  )
+    main = subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|Qualifying", n = TRUE) |> mtt(api = "HealthcareGov") |> colorder(api),
+    temp = mtt(temporal, api = "HealthcareGov [Temporal]") |> colorder(api) |>
+      f_nest_by(.by = c(api, title, description, periodicity)) |>
+      f_ungroup() |>
+      rnm(endpoints = data),
+    qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |> colorder(api) |>
+      f_nest_by(.by = c(title)) |>
+      f_ungroup() |>
+      rnm(endpoints = data))
 }
 
 #' @name catalogs

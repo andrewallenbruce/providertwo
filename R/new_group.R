@@ -426,23 +426,6 @@ select_member <- function(x, call = caller_env()) {
     service_area                       = ,
     slcsp_cnty_zip                     = ,
     states                             = ,
-    qhp_ind_med                        = ,
-    qhp_ind_dent                       = ,
-    qhp_shop_med                       = ,
-    qhp_shop_dent                      = ,
-    qhp_id_shop_med                    = ,
-    qhp_id_shop_dent                   = ,
-    qhp_id_ind_dent                    = ,
-    qhp_id_ind_med                     = ,
-    qhp_nm_ind_dent                    = ,
-    qhp_nm_ind_med                     = ,
-    qhp_bus_rule_variables             = ,
-    qhp_py19_shop_med_instruct         = ,
-    qhp_py19_ind_med_instruct          = ,
-    qhp_py19_ind_dent_instruct         = ,
-    qhp_py18_shop_med_instruct         = ,
-    qhp_py18_ind_med_instruct          = ,
-    qhp_py18_ind_dent_instruct         = ,
     local_help                         = hgov_endpoint(x),
     medical_loss_ratio                 = ,
     qhp_quality_ratings                = ,
@@ -467,8 +450,8 @@ select_member <- function(x, call = caller_env()) {
 #' @param limit        `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
 #' @examples
-#' new_group(c("qhp_bus_rule_variables", "managed_care_share"))
-#' new_group(c("qhp_bus_rule_variables", "managed_care_share"), quick = TRUE)
+#' new_group(c("local_help", "managed_care_share"))
+#' new_group(c("local_help", "managed_care_share"), quick = TRUE)
 #' @autoglobal
 #' @export
 new_group <- function(member_names,

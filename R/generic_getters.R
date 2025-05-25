@@ -90,6 +90,26 @@ method(metadata_, class_group) <- function(obj) {
 
 #' @autoglobal
 #' @noRd
+browse_link <- function(x, active = is_interactive()) {
+
+  x <- metadata_(x) |>
+    get_elem(
+      c("dictionary",
+        "site",
+        "references"))
+
+  x <- x[path_ext(delist(x)) %in_% c("", "pdf")]
+
+  if (active) {
+    cli::cli_alert_info("Opening {.href [{toupper(names(x))}]({delist(x)})} Links")
+    walk(x, browseURL)
+  } else {
+    cli::cli_alert_info("{.emph {toupper(names(l))}} Link{?s}: {.url {delist(l)}}")
+  }
+}
+
+#' @autoglobal
+#' @noRd
 api_ <- new_generic("api_", "obj", function(obj) {
   S7_dispatch()
 })

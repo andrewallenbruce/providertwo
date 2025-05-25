@@ -19,6 +19,8 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_hgov>
   "api",
+  # <browse_link>
+  "browseURL",
   # <quality_metrics>
   "category",
   # <open_dictionary>
