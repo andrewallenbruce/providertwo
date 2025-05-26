@@ -2,6 +2,7 @@
 
 export(affiliations)
 export(base_request)
+export(browse_link)
 export(caid_endpoint)
 export(caid_group)
 export(caid_temporal)
