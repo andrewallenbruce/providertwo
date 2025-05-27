@@ -93,11 +93,11 @@ method(metadata_, class_group) <- function(obj) {
 #' @param active `<logical>` whether to open links in browser (default: `TRUE` if interactive)
 #' @param call `<env>` environment to use for error reporting
 #' @returns `<list>` of catalogs
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> browse_link(active = FALSE)
 #' try(caid_endpoint("managed_longterm") |> browse_link(active = FALSE))
 #' @autoglobal
-#' @export
+#' @noRd
 browse_link <- function(x, active = is_interactive(), call = caller_env()) {
 
   x <- metadata_(x) |> get_elem(c("dictionary", "site", "references"))
