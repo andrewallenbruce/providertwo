@@ -333,10 +333,11 @@ catalog_hgov <- function() {
       f_nest_by(.by = c(api, title, description, periodicity)) |>
       f_ungroup() |>
       rnm(endpoints = data),
-    qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |> colorder(api) |>
-      f_nest_by(.by = c(title)) |>
-      f_ungroup() |>
-      rnm(endpoints = data)
+    qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |>
+      colorder(api) #|>
+      # f_nest_by(.by = c(title)) |>
+      # f_ungroup() |>
+      # rnm(endpoints = data)
   )
 }
 
