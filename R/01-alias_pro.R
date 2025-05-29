@@ -1,6 +1,22 @@
 #' @include S7_classes.R
 NULL
 
+#' @autoglobal
+#' @noRd
+pro_dimensions <- function(x, call = caller_env()) {
+
+  x <- x$identifier |>
+    request() |>
+    req_url_query(offset = 0L, limit = 1L, results = "false") |>
+    req_error(is_error = ~ FALSE) |>
+    perform_simple()
+
+  class_dimensions(
+    limit  = 2000L,
+    rows   = x$count %||% 0L,
+    fields = x$query$properties %||% new_list(length = 1L, default = x$message))
+}
+
 #' Provider API Endpoints
 #' @name provider
 #' @param alias `<chr>` endpoint or group alias
@@ -182,7 +198,7 @@ pro_endpoint <- function(alias, call = caller_env()) {
   class_endpoint(
     identifier  = x$identifier,
     metadata    = get_metadata(x),
-    dimensions  = get_dimensions(x)
+    dimensions  = pro_dimensions(x)
   )
 }
 

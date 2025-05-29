@@ -1,5 +1,26 @@
 #' @autoglobal
 #' @noRd
+care_dimensions <- function(x, call = caller_env()) {
+
+  req <- x$identifier |>
+    request() |>
+    req_url_query(offset = 0L, size = 1L) |>
+    req_error(is_error = ~ FALSE)
+
+  x <- switch(x$api,
+              `Medicare` = perform_simple(req)$meta |> get_elem(c("total_rows", "headers")),
+              `Medicare [Temporal]` = list(headers = perform_simple(req) |> names(),
+                                 total_rows = req_url_path_append(req, "stats") |>
+                                   perform_simple() |>
+                                   get_elem("total_rows")))
+  class_dimensions(
+    limit  = 5000L,
+    rows   = x$total_rows %||% 0L,
+    fields = x$headers %||% new_list(length = 1L, default = x$meta$message))
+}
+
+#' @autoglobal
+#' @noRd
 select_care <- function(x, call = caller_env()) {
   x <- switch(
     x,
@@ -41,27 +62,27 @@ select_care <- function(x, call = caller_env()) {
     care_caid_opioid_geo    = "^Medicaid Opioid Prescribing Rates [-] by Geography",
     care_caid_drug_spend    = "^Medicaid Spending by Drug",
     care_benes              = "^Medicare Monthly Enrollment$",
-    # cms_ma_enroll           = "^CMS Program Statistics [-] Medicare Advantage [&] Other Health Plan Enrollment$",
-    # cms_ma_outpatient       = "^CMS Program Statistics [-] Medicare Advantage [-] Outpatient Facility$",
-    # cms_ma_other            = "^CMS Program Statistics [-] Medicare Advantage [-] Physician, Non[-]Physician Practitioner [&] Supplier$",
-    # cms_ma_inpatient        = "^CMS Program Statistics [-] Medicare Advantage[-]Inpatient Hospital$",
-    # cms_ma_snf              = "^CMS Program Statistics [-] Medicare Advantage[-]Skilled Nursing Facility$",
-    # cms_deaths              = "^CMS Program Statistics [-] Medicare Deaths$",
-    # cms_hha                 = "^CMS Program Statistics [-] Medicare Home Health Agency$",
-    # cms_hospice             = "^CMS Program Statistics [-] Medicare Hospice$",
-    # cms_inpatient           = "^CMS Program Statistics [-] Medicare Inpatient Hospital$",
-    # cms_new_enroll          = "^CMS Program Statistics [-] Medicare Newly Enrolled$",
-    # cms_outpatient          = "^CMS Program Statistics [-] Medicare Outpatient Facility$",
-    # cms_tos                 = "^CMS Program Statistics [-] Medicare Part A [&] Part B [-] All Types of Service$",
-    # cms_partd               = "^CMS Program Statistics [-] Medicare Part D$",
-    # cms_partd_enroll        = "^CMS Program Statistics [-] Medicare Part D Enrollment$",
-    # cms_phys_npp_supp       = "^CMS Program Statistics [-] Medicare Physician, Non[-]Physician Practitioner [&] Supplier$",
-    # cms_premiums            = "^CMS Program Statistics [-] Medicare Premiums$",
-    # cms_providers           = "^CMS Program Statistics [-] Medicare Providers$",
-    # cms_snf                 = "^CMS Program Statistics [-] Medicare Skilled Nursing Facility$",
-    # cms_total_enroll        = "^CMS Program Statistics [-] Medicare Total Enrollment$",
-    # cms_dual_enroll         = "^CMS Program Statistics [-] Medicare[-]Medicaid Dual Enrollment$",
-    # cms_orig_enroll         = "^CMS Program Statistics [-] Original Medicare Enrollment$",
+    cms_ma_enroll           = "^CMS Program Statistics [-] Medicare Advantage [&] Other Health Plan Enrollment$",
+    cms_ma_outpatient       = "^CMS Program Statistics [-] Medicare Advantage [-] Outpatient Facility$",
+    cms_ma_other            = "^CMS Program Statistics [-] Medicare Advantage [-] Physician, Non[-]Physician Practitioner [&] Supplier$",
+    cms_ma_inpatient        = "^CMS Program Statistics [-] Medicare Advantage[-]Inpatient Hospital$",
+    cms_ma_snf              = "^CMS Program Statistics [-] Medicare Advantage[-]Skilled Nursing Facility$",
+    cms_deaths              = "^CMS Program Statistics [-] Medicare Deaths$",
+    cms_hha                 = "^CMS Program Statistics [-] Medicare Home Health Agency$",
+    cms_hospice             = "^CMS Program Statistics [-] Medicare Hospice$",
+    cms_inpatient           = "^CMS Program Statistics [-] Medicare Inpatient Hospital$",
+    cms_new_enroll          = "^CMS Program Statistics [-] Medicare Newly Enrolled$",
+    cms_outpatient          = "^CMS Program Statistics [-] Medicare Outpatient Facility$",
+    cms_tos                 = "^CMS Program Statistics [-] Medicare Part A [&] Part B [-] All Types of Service$",
+    cms_partd               = "^CMS Program Statistics [-] Medicare Part D$",
+    cms_partd_enroll        = "^CMS Program Statistics [-] Medicare Part D Enrollment$",
+    cms_phys_npp_supp       = "^CMS Program Statistics [-] Medicare Physician, Non[-]Physician Practitioner [&] Supplier$",
+    cms_premiums            = "^CMS Program Statistics [-] Medicare Premiums$",
+    cms_providers           = "^CMS Program Statistics [-] Medicare Providers$",
+    cms_snf                 = "^CMS Program Statistics [-] Medicare Skilled Nursing Facility$",
+    cms_total_enroll        = "^CMS Program Statistics [-] Medicare Total Enrollment$",
+    cms_dual_enroll         = "^CMS Program Statistics [-] Medicare[-]Medicaid Dual Enrollment$",
+    cms_orig_enroll         = "^CMS Program Statistics [-] Original Medicare Enrollment$",
     nhome_mds_facility      = "^Facility-Level Minimum Data Set Frequency$",
     nhome_mds_total         = "^Minimum Data Set Frequency$",
     market_cbsa             = "^Market Saturation [&] Utilization Core[-]Based Statistical Areas$",
@@ -76,8 +97,8 @@ select_care <- function(x, call = caller_env()) {
     geovar_adv              = "^Medicare Advantage Geographic Variation [-] National [&] State$",
     geovar_hrr              = "^Medicare Geographic Variation [-] by Hospital Referral Region$",
     geovar_nsc              = "^Medicare Geographic Variation [-] by National, State [&] County$",
-    # pdp_month               = "^Monthly Prescription Drug Plan Formulary and Pharmacy Network Information$",
-    # pdp_quarter             = "^Quarterly Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information$",
+    pdp_month               = "^Monthly Prescription Drug Plan Formulary and Pharmacy Network Information$",
+    pdp_quarter             = "^Quarterly Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information$",
     hha_owners              = "^Home Health Agency All Owners$",
     hha_costreport          = "^Home Health Agency Cost Report$",
     hha_enrollments         = "^Home Health Agency Enrollments$",

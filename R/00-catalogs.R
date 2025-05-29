@@ -330,7 +330,7 @@ catalog_hgov <- function() {
       mtt(api = "HealthcareGov",
           title = greplace(title, "/\\s", "/"),
           title = greplace(title, "Qualifying Health Plan", "QHP"),
-          title = str_look_remove(title, "County", "ahead"),
+          title = str_look_remove(title, "County,", "ahead"),
           title = gremove(title, "2015 ")) |>
       colorder(api),
     temp = rowbind(temporal, subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>

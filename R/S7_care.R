@@ -28,7 +28,7 @@ care_endpoint <- new_class(
       class_endpoint(),
       identifier  = x$identifier,
       metadata    = get_metadata(x),
-      dimensions  = get_dimensions(x)
+      dimensions  = care_dimensions(x)
     )
   }
 )
@@ -47,7 +47,7 @@ care_temporal <- new_class(
     new_object(
       class_temporal(),
       metadata    = get_metadata(x),
-      dimensions  = get_dimensions(x),
+      dimensions  = care_dimensions(x),
       endpoints   = x$endpoints
     )
   }
