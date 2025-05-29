@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9317</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9318</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,11 +94,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npn_valid_current_plan_year_only       : chr(0) </span>
 <span class="r-in"><span><span class="fu">hgov_temporal</span><span class="op">(</span><span class="st">"puf_rate"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "HealthcareGov [Temporal]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Rate PUF"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Annually [R/P1Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api  : chr "HealthcareGov [Temporal]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title: chr "Rate PUF"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 2418441</span>
@@ -124,13 +122,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandonedependent                    : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandtwodependents                   : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandthreeormoredependents           : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [12 × 6] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:12] 2025 2024 2023 2022 2021 2020 2019 2018 2017 2016 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:12] "https://data.healthcare.gov/api/1/datastore/query/672d5f6a-b8a7-4ebe-87f6-67db641e192d/0" "https://data.healthcare.gov/api/1/datastore/query/2638f347-5311-4655-8d2b-1466848adeae/0" "https://data.healthcare.gov/api/1/datastore/query/e6deb20e-dd27-495b-8eb1-c67db7bbd788/0" "https://data.healthcare.gov/api/1/datastore/query/3edfe68f-b783-4e98-9120-20014dd0fe49/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ issued    : Date[1:12], format: "2025-04-29" "2024-08-06" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:12], format: "2025-05-06" "2024-08-14" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ contact   : chr [1:12] "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:12] "https://data.healthcare.gov/datafile/py2025/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2024/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2023/rate_puf.csv" "https://data.healthcare.gov/datafile/py2022/rate_puf.csv" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [12 × 8] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year       : chr [1:12] "2025" "2024" "2023" "2022" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier : chr [1:12] "https://data.healthcare.gov/api/1/datastore/query/672d5f6a-b8a7-4ebe-87f6-67db641e192d/0" "https://data.healthcare.gov/api/1/datastore/query/2638f347-5311-4655-8d2b-1466848adeae/0" "https://data.healthcare.gov/api/1/datastore/query/e6deb20e-dd27-495b-8eb1-c67db7bbd788/0" "https://data.healthcare.gov/api/1/datastore/query/3edfe68f-b783-4e98-9120-20014dd0fe49/0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ description: chr [1:12] "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ periodicity: chr [1:12] "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ issued     : Date[1:12], format: "2025-04-29" "2024-08-06" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified   : Date[1:12], format: "2025-05-06" "2024-08-14" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ contact    : chr [1:12] "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download   : chr [1:12] "https://data.healthcare.gov/datafile/py2025/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2024/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2023/rate_puf.csv" "https://data.healthcare.gov/datafile/py2022/rate_puf.csv" ...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
