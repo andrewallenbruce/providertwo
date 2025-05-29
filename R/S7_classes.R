@@ -132,6 +132,7 @@ get_dimensions <- function(x, call = caller_env()) {
   req <- request(x$identifier) |>
     req_url_query(offset = 0L) |>
     req_error(body = \(resp) resp_body_json(resp)$meta$message)
+  # req_error(body = \(resp) resp_body_json(resp)$message)
 
   req <- switch(
     api,

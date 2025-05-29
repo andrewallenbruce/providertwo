@@ -27,7 +27,7 @@ open_temporal("payment_general") |> base_request()
 open_group("payment_grouped") |> base_request()
 caid_endpoint("mlr_summary") |> base_request()
 caid_temporal("healthcare_quality") |> base_request()
-hgov_endpoint("catastrophic_plans") |> base_request()
-hgov_temporal("medical_loss_ratio") |> base_request()
+hgov_endpoint("hgov_catastrophic") |> base_request()
+hgov_temporal("hgov_mlr") |> base_request()
 \dontshow{\}) # examplesIf}
 }

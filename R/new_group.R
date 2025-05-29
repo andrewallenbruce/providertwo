@@ -401,43 +401,48 @@ select_member <- function(x, call = caller_env()) {
     blood_disorder                     = ,
     state_drug_util                    = ,
     healthcare_quality                 = caid_temporal(x),
-    ab_registration_completion         = ,
-    ab_suspension_termination          = ,
-    agent_broker_registration_glossary = ,
-    agent_broker_registration_tracker  = ,
-    authority_state                    = ,
-    auto_pop_file                      = ,
-    benefits_cost_sharing              = ,
-    business_rules                     = ,
-    catastrophic_plans                 = ,
-    contact_admins                     = ,
-    counties                           = ,
-    county_service_areas               = ,
-    direct_enrollment_partners         =,
-    issuer_partner_lookup              = ,
-    issuer_partner_directory           = ,
-    issuer_de_partner_directory        = ,
-    network_puf                        = ,
-    nipr_valid_authority               = ,
-    plan_attribute                     = ,
-    plan_id_cross                      = ,
-    response_codes                     = ,
-    rolling_draft_ecp                  = ,
-    service_area                       = ,
-    slcsp_cnty_zip                     = ,
-    states                             = ,
-    local_help                         = hgov_endpoint(x),
-    medical_loss_ratio                 = ,
-    qhp_quality_ratings                = ,
-    hie_benefits_costshare             = ,
-    hie_business_rules                 = ,
-    hie_machine_readable               = ,
-    hie_network                        = ,
-    hie_plan_attributes                = ,
-    hie_plan_id_crosswalk              = ,
-    hie_rate                           = ,
-    hie_service_area                   = ,
-    hie_transparency                   = hgov_temporal(x),
+    hgov_auto_pop                      = ,
+    hgov_ab_reg_comp                   = ,
+    hgov_ab_sus_term                   = ,
+    hgov_ab_reg_gloss                  = ,
+    hgov_ab_reg_trac                   = ,
+    hgov_catastrophic                  = ,
+    hgov_contact_admin                 = ,
+    hgov_counties                      = ,
+    hgov_county_service                = ,
+    hgov_partner_lookup                = ,
+    hgov_partner_reference             = ,
+    hgov_partner_directory             = ,
+    hgov_partner_enrollment            = ,
+    hgov_nipr_authority                = ,
+    hgov_nipr_state                    = ,
+    hgov_response_codes                = ,
+    hgov_rolling_draft                 = ,
+    hgov_slcsp_county                  = ,
+    hgov_states                        = ,
+    hgov_local_help                    = ,
+    hgov_qhp_consumer                  = ,
+    hgov_qhp_aptc                      = ,
+    hgov_qhp_csr                       = ,
+    hgov_qhp_metal                     = ,
+    hgov_qhp_income                    = ,
+    hgov_qhp_ethnicity                 = ,
+    hgov_qhp_age                       = ,
+    hgov_qhp_business                  = hgov_endpoint(x),
+    hgov_mlr_datasets                  = ,
+    hgov_puf_benefits                  = ,
+    hgov_puf_business                  = ,
+    hgov_puf_machine                   = ,
+    hgov_puf_network                   = ,
+    hgov_puf_plan_attr                 = ,
+    hgov_puf_plan_walk                 = ,
+    hgov_puf_rate                      = ,
+    hgov_puf_service                   = ,
+    hgov_puf_tic                       = ,
+    hgov_qhp_ind_dnt                   = ,
+    hgov_qhp_ind_med                   = ,
+    hgov_qhp_shop_dnt                  = ,
+    hgov_qhp_shop_med                  = hgov_temporal(x),
     cli::cli_abort(c("x"               = "No matches found for {.val {x}}."), call = call)
   )
 }
@@ -450,8 +455,8 @@ select_member <- function(x, call = caller_env()) {
 #' @param limit        `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
 #' @examples
-#' new_group(c("local_help", "va_timely"))
-#' new_group(c("local_help", "geovar_adv"), quick = TRUE)
+#' new_group(c("hgov_local_help", "hgov_qhp_business"))
+#' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 #' @autoglobal
 #' @export
 new_group <- function(member_names,
@@ -467,11 +472,8 @@ new_group <- function(member_names,
     select_member(member_names)
   else
     class_group(
-      group_name %||% paste0(member_names,
-                             collapse = " | "),
-      map(member_names,
-          select_member) |>
-        set_names(member_names))
+      group_name %||% paste0(member_names, collapse = " | "),
+      map(member_names, select_member) |> set_names(member_names))
 
   if (!quick) return(ob)
 
@@ -483,13 +485,14 @@ new_group <- function(member_names,
 #' Convenience function to quickly access various CMS data endpoints.
 #' Mostly for debugging purposes.
 #'
-#' @param alias `<chr>` Alias representing the CMS data endpoint or category.
+#' @param alias  `<chr>` Alias representing the CMS data endpoint or category.
 #' @param offset `<int>` The offset for pagination. Default is `0`.
-#' @param limit `<int>` The maximum number of records to retrieve. Default is `10000`.
+#' @param limit  `<int>` The maximum number of records to retrieve. Default is `10000`.
 #' @returns A data frame containing the requested CMS data.
 #' @examples
 #' quick("revalid_group")
 #' quick("out_img_national")
+#' quick("hgov_nipr_state")
 #' @autoglobal
 #' @export
 quick <- function(alias,

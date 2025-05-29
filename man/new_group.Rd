@@ -30,6 +30,6 @@ S7 \code{class_group} object.
 Create Groups of Endpoints
 }
 \examples{
-new_group(c("local_help", "va_timely"))
-new_group(c("local_help", "geovar_adv"), quick = TRUE)
+new_group(c("hgov_local_help", "hgov_qhp_business"))
+new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 }
