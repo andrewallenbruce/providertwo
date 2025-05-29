@@ -259,10 +259,11 @@ catalog_hgov <- function() {
                     sbt(download, N > 1 & ext == "csv", -N, -ext))) |>
     reduce(join_on_title)
 
-  qhp <- subset_detect(x, title, "QHP|SHOP|Qualifying")
+  qhp <- subset_detect(x, title, "QHP|SHOP")
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}|\\sPUF") |>
     sbt(title %!in_% get_elem(qhp, "title")) |>
+    subset_detect(title, "Qualifying", n = TRUE) |>
     mtt(
       year  = extract_year(title),
       title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
@@ -279,7 +280,6 @@ catalog_hgov <- function() {
       ),
       title = greplace(title, "  ", " "),
       title = greplace(title, "/\\s", "/"),
-      title = str_look_remove(title, "County", "ahead"),
       description = case(
         gdetect(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
         gdetect(title, "Business Rules PUF")            ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
@@ -302,7 +302,7 @@ catalog_hgov <- function() {
 
   qhp <- mtt(
     qhp,
-    description = glue("{title} == {description}"),
+    description = cheapr_if_else(is_na(description), title, glue("[{title}] {description}") |> as.character()),
     year = extract_year(title),
     year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
     year = ifelse(is_na(year), 9999L, year),
@@ -313,31 +313,33 @@ catalog_hgov <- function() {
     title = gremove(title, "[RP]Y\\s?[1][0-9]\\s"),
     title = gremove(title, "\\s[0-9]{8}$"),
     title = greplace(title, "  ", " "),
-    title = greplace(title, "/\\s", "/")
-    # title = gremove(title, "\\sSocrata|\\sZip\\sFile|\\sExcel$"),
-    # title = str_look_remove(title, "Selections", "ahead"),
-    # title = case(
-    #   gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
-    #   gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
-    #   gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
-    #   gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
-    #   gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
-    #   .default = title)
+    title = greplace(title, "/\\s", "/"),
+    title = case(
+      gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
+      gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
+      gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
+      gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
+      gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
+      .default = title)
     ) |>
     colorder(year) |>
     roworder(title, -year)
 
   list(
-    main = subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|Qualifying|\\sPUF", n = TRUE) |> mtt(api = "HealthcareGov") |> colorder(api),
-    temp = mtt(temporal, api = "HealthcareGov [Temporal]") |> colorder(api) |>
+    main = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
+                   subset_detect(x, title, "Qualifying")) |>
+      mtt(api = "HealthcareGov") |>
+      colorder(api),
+    temp = mtt(temporal, api = "HealthcareGov [Temporal]") |>
+      colorder(api) |>
       f_nest_by(.by = c(api, title, description, periodicity)) |>
       f_ungroup() |>
       rnm(endpoints = data),
     qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |>
-      colorder(api) #|>
-      # f_nest_by(.by = c(title)) |>
-      # f_ungroup() |>
-      # rnm(endpoints = data)
+      colorder(api) |>
+      f_nest_by(.by = c(title)) |>
+      f_ungroup() |>
+      rnm(endpoints = data)
   )
 }
 

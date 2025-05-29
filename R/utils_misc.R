@@ -56,7 +56,8 @@ str_look <- function(pattern, look) {
     match.arg(look, c("ahead", "behind")),
     ahead  = glue("(?<={pattern}).*$"),
     behind = glue("^.*(?={pattern})")
-  )
+  ) |>
+    as.character()
 }
 
 #' @autoglobal
@@ -80,6 +81,13 @@ str_look_replace <- function(x, pattern, look, replacement) {
 #' @noRd
 str_look_remove <- function(x, pattern, look) {
   str_look_replace(x, pattern, look, replacement = "")
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+str_look_extract <- function(x, pattern, look) {
+  stri_extract_first_regex(x, pattern = str_look(pattern, look))
 }
 
 #' @autoglobal
