@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9315 (2025-05-29)
+
+* hgov catalog work
+
+
 # providertwo 0.0.0.9314 (2025-05-28)
 
 * bump cheapr, collapse minimum versions
