@@ -84,8 +84,8 @@ catalog_pro <- function() {
     as_tbl()
 
   list(
-   main = sbt(x, group != "Physician office visit costs"),
-   cost = sbt(x, group == "Physician office visit costs")
+   main = sbt(x, group != "Physician office visit costs")
+   # cost = sbt(x, group == "Physician office visit costs")
   )
 }
 
@@ -164,20 +164,14 @@ catalog_caid <- function() {
   download <- new_tbl(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
-    ext      = path_ext(download),
-    id       = groupid(title)) |>
-    fcount(id, add = TRUE)
+    ext      = path_ext(download)) |>
+    fcount(title, add = TRUE)
 
   main <- list(
     slt(x, -distribution),
-    rowbind(
-      sbt(download, N == 1),
-      sbt(download, N > 1 & ext == "csv")) |>
-      slt(-N, -id, -ext),
-    sbt(download, N > 2 & ext != "csv", -id, -N, -ext) |>
-      f_nest_by(.by = title) |>
-      f_ungroup() |>
-      rnm(resources = data)) |>
+    rowbind(sbt(download, N == 1, -N, -ext),
+            sbt(download, N > 1 & ext == "csv", -N, -ext)),
+    sbt(download, N > 2 & ext != "csv", -N, -ext) |> f_nest_by(.by = title) |> f_ungroup() |> rnm(resources = data)) |>
     reduce(join_on_title) |>
     roworder(title)
 
@@ -335,18 +329,19 @@ catalog_hgov <- function() {
                    subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(api = "HealthcareGov") |>
       colorder(api),
-    temp = mtt(temporal, api = "HealthcareGov [Temporal]") |>
-      colorder(api) |>
-      f_nest_by(.by = c(api, title, description, periodicity)) |>
-      f_ungroup() |>
-      rnm(endpoints = data),
-    qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
+    temp = rowbind(temporal, subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
       mtt(api = "HealthcareGov [Temporal]") |>
       colorder(api) |>
       f_nest_by(.by = c(api, title)) |>
       f_ungroup() |>
-      rnm(endpoints = data),
-    states = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]")
+      rnm(endpoints = data)
+    # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
+    #   mtt(api = "HealthcareGov [Temporal]") |>
+    #   colorder(api) |>
+    #   f_nest_by(.by = c(api, title)) |>
+    #   f_ungroup() |>
+    #   rnm(endpoints = data),
+    # states = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]")
   )
 }
 

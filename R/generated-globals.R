@@ -94,8 +94,6 @@ utils::globalVariables(c(
   "group",
   # <clinicians>
   "grp_assgn",
-  # <catalog_caid>
-  "id",
   # <catalog_care>
   # <catalog_pro>
   # <catalog_open>

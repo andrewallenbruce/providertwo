@@ -9,7 +9,8 @@ ifelse_ <- function(test, yes, no, na = no[NA_integer_]) {
 #' @keywords internal
 #' @noRd
 get_distribution <- function(x) {
-  get_elem(x$distribution, "data", DF.as.list = TRUE)
+  get_elem(x, "distribution") |>
+    get_elem("data", DF.as.list = TRUE)
 }
 
 #' @autoglobal
