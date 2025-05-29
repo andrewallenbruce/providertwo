@@ -60,7 +60,6 @@ catalog_care <- function() {
   )
 }
 
-# "https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf"
 #' @autoglobal
 #' @noRd
 catalog_pro <- function() {
@@ -263,8 +262,9 @@ catalog_hgov <- function() {
 
   temporal <- subset_detect(x, title, "[2][0-9]{3}|\\sPUF") |>
     sbt(title %!in_% get_elem(qhp, "title")) |>
-    subset_detect(title, "Qualifying", n = TRUE) |>
+    subset_detect(title, "Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     mtt(
+      periodicity = "Annually [R/P1Y]",
       year  = extract_year(title),
       title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
       title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
@@ -293,19 +293,20 @@ catalog_hgov <- function() {
         gdetect(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
         gdetect(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
         .default = description
-      ),
-      periodicity = "Annually [R/P1Y]"
+      )
     ) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
     roworder(title, -year)
 
-  qhp <- mtt(
-    qhp,
-    description = cheapr_if_else(is_na(description), title, glue("[{title}] {description}") |> as.character()),
+
+  qhp <- qhp |>
+    subset_detect(title, "Excel|[Zz]ip|Instructions|\\.zip$", n = TRUE) |>
+    mtt(
+    description = cheapr_if_else(is_na(description), title, description),
     year = extract_year(title),
     year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
-    year = ifelse(is_na(year), 9999L, year),
+    year = ifelse(is_na(year), substr(modified, 1, 4), year),
     title = gremove(title, "^[2][0-9]{3}\\s"),
     title = gremove(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$"),
     title = gremove(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$"),
@@ -315,11 +316,15 @@ catalog_hgov <- function() {
     title = greplace(title, "  ", " "),
     title = greplace(title, "/\\s", "/"),
     title = case(
-      gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Dental",
-      gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Medical",
-      gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Medical SHOP",
-      gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape Medical SHOP",
-      gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape Dental SHOP",
+      gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Market Dental",
+      gdetect(title, "QHP Landscape Individual Dental")     ~ "QHP Landscape Individual Market Dental",
+      gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Market Medical",
+      gdetect(title, "QHP Landscape Individual Medical")    ~ "QHP Landscape Individual Market Medical",
+      gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape SHOP Market Medical",
+      gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape SHOP Market Medical",
+      gdetect(title, "QHP Landscape Medical SHOP")          ~ "QHP Landscape SHOP Market Medical",
+      gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape SHOP Market Dental",
+      gdetect(title, "QHP Landscape Dental SHOP")           ~ "QHP Landscape SHOP Market Dental",
       .default = title)
     ) |>
     colorder(year) |>
@@ -327,7 +332,7 @@ catalog_hgov <- function() {
 
   list(
     main = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
-                   subset_detect(x, title, "Qualifying")) |>
+                   subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(api = "HealthcareGov") |>
       colorder(api),
     temp = mtt(temporal, api = "HealthcareGov [Temporal]") |>
@@ -337,7 +342,7 @@ catalog_hgov <- function() {
       rnm(endpoints = data),
     qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |>
       colorder(api) |>
-      f_nest_by(.by = c(title)) |>
+      f_nest_by(.by = c(api, title)) |>
       f_ungroup() |>
       rnm(endpoints = data)
   )

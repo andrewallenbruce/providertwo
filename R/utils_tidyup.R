@@ -23,9 +23,7 @@ make_address <- function(a1, a2) {
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
-  gremove("\\(|\\)", "",
-       gsub("\\s|-", "_", tolower(x), perl = TRUE),
-       perl = TRUE)
+  gremove(greplace(tolower(x), "\\s|-", "_"), "\\(|\\)")
 }
 
 #' @autoglobal
