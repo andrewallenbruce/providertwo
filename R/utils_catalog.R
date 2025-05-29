@@ -29,17 +29,6 @@ fmt_temporal <- function(x) {
   gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
 }
 
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
-make_join_col <- function(x, col) {
-  map(x[[ensym(col)]], function(x) get_elem(as.list(x), "data")) |>
-    flatten_column() |>
-    na_if("")
-}
-
-
 #' ISO 8601 Recurring Time Intervals
 #' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
 #' @param x `<chr>` vector of ISO8601 recurrence rules

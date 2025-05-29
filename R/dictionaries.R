@@ -1,7 +1,3 @@
-# Research Payment Data
-# Ownership Payment Data
-# General Payment Data
-# Covered Recipient Profile Supplement
 #' @autoglobal
 #' @noRd
 open_dictionary <- function() {
@@ -43,7 +39,7 @@ open_dictionary <- function() {
             description = gremove(description, "[\n\"']"),
             description = greplace(description, "[\\\\]", "-"),
             description = stri_trim_both(greplace(description, "\\s+", " ")),
-            description = remove_non_ascii(description))
+            description = rm_non_ascii(description))
       ) |>
     set_names(
       get_elem(x, "title") |>
@@ -80,7 +76,7 @@ caid_dictionary <- function() {
         endpoint    = x$title,
         field       = x$fields$name,
         title       = x$fields$title,
-        description = remove_non_ascii(greplace(x$fields$description, "\r\n", " ")),
+        description = rm_non_ascii(greplace(x$fields$description, "\r\n", " ")),
         format      = x$fields$format) |>
         map_na_if()
       }

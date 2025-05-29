@@ -16,11 +16,11 @@ catalog_care <- function() {
     contact     = fmt_contactpoint(x$contactPoint),
     references  = delist(references),
     temporal    = fmt_temporal(temporal),
-    title       = greplace(title, "  ", " "),
-    title       = remove_non_ascii(title),
+    title       = rp_dbl_space(title),
+    title       = rm_non_ascii(title),
     description = stri_trans_general(description, "latin-ascii"),
-    description = remove_non_ascii(description),
-    description = gremove(description, "[\"']"),
+    description = rm_non_ascii(description),
+    description = rm_quotes(description),
     description = gremove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
     description = gremove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. "),
     description = gremove(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+"),
@@ -63,12 +63,13 @@ catalog_care <- function() {
 #' @autoglobal
 #' @noRd
 catalog_pro <- function() {
+
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
 
   x <- mtt(
     x,
     api         = "Provider",
-    title       = remove_non_ascii(title),
+    title       = rm_non_ascii(title),
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
     issued      = as_date(issued),
@@ -101,23 +102,22 @@ catalog_open <- function() {
     year        = get_data_elem(keyword),
     year        = greplace(year, "all years", "All"),
     year        = ifelse_(title == "Provider profile ID mapping table", "All", year),
-    title       = remove_non_ascii(title),
+    title       = rm_non_ascii(title),
     title       = toTitleCase(title),
     contact     = fmt_contactpoint(x$contactPoint),
-    description = gremove(description, "[\"']"),
+    description = rm_quotes(description),
     description = greplace(description, "\r\n", " "),
     description = gremove(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$"),
-    description = greplace(description, "  ", " "),
-    description = stri_trim(description),
-    download    = get_elem(x$distribution, "data", DF.as.list = TRUE) |>
-      get_elem("downloadURL") |>
-      delist()
-    ) |>
+    description = stri_trim(rp_dbl_space(description)),
+    download    = get_distribution(x) |> get_elem("downloadURL") |> delist()) |>
     slt(year, title, description, modified, identifier, contact, download) |>
     as_tbl()
 
   list(
-    main = sbt(x, year == "All", -year) |> mtt(api = "Open Payments") |> colorder(api) |> roworder(title),
+    main = sbt(x, year == "All", -year) |>
+      mtt(api = "Open Payments") |>
+      colorder(api) |>
+      roworder(title),
     temp = sbt(x, year != "All") |>
       mtt(api = "Open Payments [Temporal]",
           year = as.integer(year),
@@ -150,13 +150,13 @@ catalog_caid <- function() {
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = fmt_contactpoint(x$contactPoint),
       title       = gremove(title, "^ "),
-      title       = remove_non_ascii(title),
-      title       = greplace(title, "  ", " "),
+      title       = rm_non_ascii(title),
+      title       = rp_dbl_space(title),
       description = stri_trans_general(description, "latin-ascii"),
-      description = remove_non_ascii(description),
-      description = gremove(description, "[\"']"),
+      description = rm_non_ascii(description),
+      description = rm_quotes(description),
       description = greplace(description, "\r\n", " "),
-      description = greplace(description, "  ", " "),
+      description = rp_dbl_space(description),
       description = ifelse_(description == "Dataset.", NA_character_, description)) |>
     slt(title, identifier, description, periodicity, modified, contact, distribution) |>
     as_tbl()
@@ -235,10 +235,10 @@ catalog_hgov <- function() {
     as_tbl() |>
     mtt(
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
-      title       = remove_non_ascii(title),
-      title       = greplace(title, "  ", " "),
-      description = remove_non_ascii(description),
-      description = gremove(description, "[\"']"),
+      title       = rm_non_ascii(title),
+      title       = rp_dbl_space(title),
+      description = rm_non_ascii(description),
+      description = rm_quotes(description),
       description = gremove(description, "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s"),
       description = greplace(description, "Dataset.", NA_character_),
       modified    = as_date(modified),
@@ -266,19 +266,19 @@ catalog_hgov <- function() {
     mtt(
       periodicity = "Annually [R/P1Y]",
       year  = extract_year(title),
-      title = stri_replace_all_regex(title, "^[2][0-9]{3}\\s", ""),
-      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$", ""),
-      title = stri_replace_all_regex(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$", ""),
-      title = stri_replace_all_regex(title, "[RP]Y\\s?[2][0-9]{3}\\s", ""),
-      title = stri_replace_all_regex(title, "\\s[0-9]{8}$", ""),
-      title = stri_replace_all_regex(title, "\\sSocrata|\\sZip\\sFile$", ""),
+      title = gremove(title, "^[2][0-9]{3}\\s"),
+      title = gremove(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$"),
+      title = gremove(title, "\\s\\s?[-]?\\s?PY[2][0-9]{3}$"),
+      title = gremove(title, "[RP]Y\\s?[2][0-9]{3}\\s"),
+      title = gremove(title, "\\s[0-9]{8}$"),
+      title = gremove(title, "\\sSocrata|\\sZip\\sFile$"),
       title = case(
         gdetect(title, "^Benefits\\sCost")                    ~ "Benefits and Cost Sharing PUF",
         gdetect(title, "^Plan\\sCrosswalk\\sPUF")             ~ "Plan ID Crosswalk PUF",
         gdetect(title, "Transparency [Ii]n Coverage PUF")     ~ "Transparency in Coverage PUF",
         .default = title
       ),
-      title = greplace(title, "  ", " "),
+      title = rp_dbl_space(title),
       title = greplace(title, "/\\s", "/"),
       description = case(
         gdetect(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
@@ -313,7 +313,7 @@ catalog_hgov <- function() {
     title = gremove(title, "[RP]Y\\s?[2][0-9]{3}\\s"),
     title = gremove(title, "[RP]Y\\s?[1][0-9]\\s"),
     title = gremove(title, "\\s[0-9]{8}$"),
-    title = greplace(title, "  ", " "),
+    title = rp_dbl_space(title),
     title = greplace(title, "/\\s", "/"),
     title = case(
       gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Market Dental",
@@ -340,11 +340,13 @@ catalog_hgov <- function() {
       f_nest_by(.by = c(api, title, description, periodicity)) |>
       f_ungroup() |>
       rnm(endpoints = data),
-    qhp = mtt(qhp, api = "HealthcareGov [Temporal]") |>
+    qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
+      mtt(api = "HealthcareGov [Temporal]") |>
       colorder(api) |>
       f_nest_by(.by = c(api, title)) |>
       f_ungroup() |>
-      rnm(endpoints = data)
+      rnm(endpoints = data),
+    states = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]")
   )
 }
 

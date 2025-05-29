@@ -36,9 +36,22 @@ gremove <- function(str, pt, ...) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-remove_non_ascii <- function(x) {
-  # x[!stri_detect_regex(x, "[^[:ascii:]]")]
-  gsub("[^\x20-\x7E]", "", x, perl = TRUE)
+rm_non_ascii <- function(x) {
+  gremove(x, "[^\x20-\x7E]")
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+rp_dbl_space <- function(x) {
+  greplace(x, "  ", " ")
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+rm_quotes <- function(x) {
+  gremove(x, "[\"']")
 }
 
 #' @autoglobal

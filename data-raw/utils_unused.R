@@ -102,3 +102,12 @@ identifier_type <- function(x) {
   case(endsWith(x, "viewer") ~ "care_endpoint",
        endsWith(x, "data")   ~ "care_temporal")
 }
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+make_join_col <- function(x, col) {
+  map(x[[ensym(col)]], function(x) get_elem(as.list(x), "data")) |>
+    flatten_column() |>
+    na_if("")
+}
