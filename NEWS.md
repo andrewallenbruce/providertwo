@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9320 (2025-05-29)
+
+* dimensions by class again, handles http errors
+
+
 # providertwo 0.0.0.9319 (2025-05-29)
 
 * hgov alias work
