@@ -213,6 +213,10 @@ identifier_ <- new_generic("identifier_", "obj", function(obj) {
   S7_dispatch()
 })
 
+method(identifier_, class_list) <- function(obj) {
+  get_elem(obj, "identifier")
+}
+
 method(identifier_, class_endpoint) <- function(obj) {
   prop(obj, "identifier")
 }

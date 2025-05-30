@@ -17,17 +17,23 @@ get_distribution <- function(x) {
 #' @keywords internal
 #' @noRd
 fmt_contactpoint <- function(x) {
-  x <- delist(get_elem(x, "^has", regex = TRUE)) |>
-    set_names(delist(get_elem(x, "fn")))
-
-  as.character(glue("{names(x)} ({x})"))
+  glue(
+    "{names(x)} ({x})",
+    x = get_elem(x, "^has", regex = TRUE) |>
+      delist() |>
+      set_names(
+        get_elem(x, "fn") |>
+          delist()
+        )
+    ) |>
+    as.character()
 }
 
 #' @autoglobal
 #' @keywords internal
 #' @noRd
 fmt_temporal <- function(x) {
-  gsub("/", paste0(" ", cli::symbol$bullet, " "), x, perl = TRUE)
+  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
 }
 
 #' ISO 8601 Recurring Time Intervals

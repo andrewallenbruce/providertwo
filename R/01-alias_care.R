@@ -2,17 +2,21 @@
 #' @noRd
 care_dimensions <- function(x, call = caller_env()) {
 
-  req <- x$identifier |>
+  req <- identifier_(x) |>
     request() |>
     req_url_query(offset = 0L, size = 1L) |>
     req_error(is_error = ~ FALSE)
 
-  x <- switch(x$api,
-              `Medicare` = perform_simple(req)$meta |> get_elem(c("total_rows", "headers")),
-              `Medicare [Temporal]` = list(headers = perform_simple(req) |> names(),
-                                 total_rows = req_url_path_append(req, "stats") |>
-                                   perform_simple() |>
-                                   get_elem("total_rows")))
+  x <- switch(
+    x$api,
+    `Medicare` = perform_simple(req)$meta |> get_elem(c("total_rows", "headers")),
+    `Medicare [Temporal]` = list(
+      headers = perform_simple(req) |> names(),
+      total_rows = req_url_path_append(req, "stats") |>
+        perform_simple() |>
+        get_elem("total_rows")
+    )
+  )
   class_dimensions(
     limit  = 5000L,
     rows   = x$total_rows %||% 0L,

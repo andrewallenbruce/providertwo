@@ -5,7 +5,7 @@ NULL
 #' @noRd
 open_dimensions <- function(x, call = caller_env()) {
 
-  x <- x$identifier |>
+  x <- identifier_(x) |>
     request() |>
     req_url_query(offset = 0L, limit = 1L, results = "false") |>
     req_error(is_error = ~ FALSE) |>
