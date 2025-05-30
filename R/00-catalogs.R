@@ -244,12 +244,11 @@ catalog_hgov <- function() {
   download <- new_tbl(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("downloadURL") |> delist(),
-    ext      = path_ext(download)) |>
-    fcount(title, add = TRUE)
+    ext      = path_ext(download))
 
   x <- list(slt(x, -distribution),
-            rowbind(sbt(download, N == 1, -N, -ext),
-                    sbt(download, N > 1 & ext == "csv", -N, -ext))) |>
+            sbt(download, ext == "csv", title, download),
+            sbt(download, ext != "csv", title, resources = download)) |>
     reduce(join_on_title)
 
   qhp <- subset_detect(x, title, "QHP|SHOP")
@@ -270,25 +269,22 @@ catalog_hgov <- function() {
         gdetect(title, "^Benefits\\sCost")                    ~ "Benefits and Cost Sharing PUF",
         gdetect(title, "^Plan\\sCrosswalk\\sPUF")             ~ "Plan ID Crosswalk PUF",
         gdetect(title, "Transparency [Ii]n Coverage PUF")     ~ "Transparency in Coverage PUF",
-        .default = title
-      ),
+        .default = title),
       title = rp_dbl_space(title),
       title = greplace(title, "/\\s", "/"),
-      description = case(
-        gdetect(title, "Benefits and Cost Sharing PUF") ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
-        gdetect(title, "Business Rules PUF")            ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
-        gdetect(title, "MLR Dataset")                   ~ "This file contains Medical Loss Ratio data for the Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
-        gdetect(title, "Machine Readable PUF")          ~ "The Machine Readable PUF (MR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The MR-PUF contains issuer-level URL locations for machine-readable network provider and formulary information.",
-        gdetect(title, "Network PUF")                   ~ "The Network PUF (Ntwrk-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Ntwrk-PUF contains issuer-level data identifying provider network URLs.",
-        gdetect(title, "Plan Attributes PUF")           ~ "The Plan Attributes PUF (Plan-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Plan-PUF contains plan variant-level data on maximum out of pocket payments, deductibles, health savings account (HSA) eligibility, and other plan attributes.",
-        gdetect(title, "Plan ID Crosswalk PUF")         ~ "The Plan ID Crosswalk PUF (CW-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The purpose of the CW-PUF is to map QHPs and SADPs offered through the Exchanges during the previous plan year to plans that will be offered through the Exchanges in the current plan year.",
-        gdetect(title, "Quality PUF")                   ~ "The Quality PUF contains yearly quality ratings data for eligible Qualified Health Plans in states on HealthCare.gov.",
-        gdetect(title, "Rate PUF")                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
-        gdetect(title, "Service Area PUF")              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
-        gdetect(title, "Transparency in Coverage PUF")  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
-        .default = description
-      )
-    ) |>
+      description = val_match(title,
+        "Benefits and Cost Sharing PUF" ~ "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
+        "Business Rules PUF"            ~ "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
+        "MLR Dataset"                   ~ "This file contains Medical Loss Ratio data for the Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
+        "Machine Readable PUF"          ~ "The Machine Readable PUF (MR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The MR-PUF contains issuer-level URL locations for machine-readable network provider and formulary information.",
+        "Network PUF"                   ~ "The Network PUF (Ntwrk-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Ntwrk-PUF contains issuer-level data identifying provider network URLs.",
+        "Plan Attributes PUF"           ~ "The Plan Attributes PUF (Plan-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Plan-PUF contains plan variant-level data on maximum out of pocket payments, deductibles, health savings account (HSA) eligibility, and other plan attributes.",
+        "Plan ID Crosswalk PUF"         ~ "The Plan ID Crosswalk PUF (CW-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The purpose of the CW-PUF is to map QHPs and SADPs offered through the Exchanges during the previous plan year to plans that will be offered through the Exchanges in the current plan year.",
+        "Quality PUF"                   ~ "The Quality PUF contains yearly quality ratings data for eligible Qualified Health Plans in states on HealthCare.gov.",
+        "Rate PUF"                      ~ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The Rate-PUF contains plan-level data on rates based on an eligible subscribers age, tobacco use, and geographic location; and family-tier rates.",
+        "Service Area PUF"              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
+        "Transparency in Coverage PUF"  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
+        .default = description)) |>
     subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
     roworder(title, -year)
@@ -297,9 +293,12 @@ catalog_hgov <- function() {
   qhp <- qhp |>
     subset_detect(title, "Excel|[Zz]ip|Instructions|\\.zip$", n = TRUE) |>
     mtt(
-    description = cheapr_if_else(is_na(description), title, description),
+    description = ifelse_(is_na(description), title, description),
     year = extract_year(title),
-    year = ifelse(is_na(year), paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(), year) |> suppressWarnings(),
+    year = ifelse(is_na(year),
+                  paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(),
+                  year) |>
+      suppressWarnings(),
     year = ifelse(is_na(year), substr(modified, 1, 4), year),
     title = gremove(title, "^[2][0-9]{3}\\s"),
     title = gremove(title, "\\s\\s?[-]?\\s?[2][0-9]{3}$"),
@@ -311,13 +310,13 @@ catalog_hgov <- function() {
     title = greplace(title, "/\\s", "/"),
     title = case(
       gdetect(title, "QHP\\sDent[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Market Dental",
-      gdetect(title, "QHP Landscape Individual Dental")     ~ "QHP Landscape Individual Market Dental",
       gdetect(title, "QHP\\sMedi[-]\\sIndi[-]\\s")          ~ "QHP Landscape Individual Market Medical",
-      gdetect(title, "QHP Landscape Individual Medical")    ~ "QHP Landscape Individual Market Medical",
       gdetect(title, "QHP\\sMedi[-]\\sSHOP[-]\\s")          ~ "QHP Landscape SHOP Market Medical",
       gdetect(title, "QHP\\sMedical\\s[-]\\sSHOP\\s[-]\\s") ~ "QHP Landscape SHOP Market Medical",
-      gdetect(title, "QHP Landscape Medical SHOP")          ~ "QHP Landscape SHOP Market Medical",
       gdetect(title, "QHP\\sDent[-]\\sSHOP[-]\\s")          ~ "QHP Landscape SHOP Market Dental",
+      gdetect(title, "QHP Landscape Individual Dental")     ~ "QHP Landscape Individual Market Dental",
+      gdetect(title, "QHP Landscape Individual Medical")    ~ "QHP Landscape Individual Market Medical",
+      gdetect(title, "QHP Landscape Medical SHOP")          ~ "QHP Landscape SHOP Market Medical",
       gdetect(title, "QHP Landscape Dental SHOP")           ~ "QHP Landscape SHOP Market Dental",
       .default = title)
     ) |>
@@ -333,7 +332,9 @@ catalog_hgov <- function() {
           title = str_look_remove(title, "County,", "ahead"),
           title = gremove(title, "2015 ")) |>
       colorder(api),
-    temp = rowbind(temporal, subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
+    temp = rowbind(
+      temporal,
+      subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
       mtt(api = "HealthcareGov [Temporal]") |>
       colorder(api) |>
       f_nest_by(.by = c(api, title)) |>

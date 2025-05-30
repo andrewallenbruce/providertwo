@@ -134,7 +134,6 @@ utils::globalVariables(c(
   # <catalog_hgov>
   "modified",
   # <catalog_caid>
-  # <catalog_hgov>
   "N",
   # <open_dictionary>
   # <tidy_resources>
