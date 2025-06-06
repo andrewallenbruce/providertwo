@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9323 (2025-06-06)
+
+* bump cheapr, fastplyr versions
+* cleanup
+
+
 # providertwo 0.0.0.9322 (2025-05-30)
 
 * identifier list method
