@@ -2,9 +2,11 @@
 
   S7::methods_register()
 
-  oldopts <- options()
-  options(nthreads = 4)
-  on.exit(oldopts)
+  opts <- options()
+  options(
+    nthreads = 4,
+    fastplyr.inform = FALSE)
+  on.exit(opts)
 
   # list_resources <<- memoise::memoise(list_resources)
   # base_request   <<- memoise::memoise(base_request)

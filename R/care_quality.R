@@ -6,7 +6,7 @@
 #' @name quality_payment
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
-#' @examplesIf interactive()
+#' @examples
 #' quality_metrics(year = 2018:2025)
 #' quality_eligibility(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
 #' quality_eligibility(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
@@ -21,7 +21,7 @@ quality_metrics <- function(year) {
 
   map(year, \(y) {
     new_tbl(
-      year     = rep(as.integer(y), 4),
+      year     = rep.int(as.integer(y), 4),
       category = c(rep("Individual", 2), rep("Group", 2)) |> factor_(),
       metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2) |> factor_(),
       mean     = request("https://qpp.cms.gov/api/eligibility/stats") |>
