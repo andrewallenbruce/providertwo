@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9324 (2025-06-06)
+
+* resolve pkg conflicts
+
+
 # providertwo 0.0.0.9323 (2025-06-06)
 
 * bump cheapr, fastplyr versions
