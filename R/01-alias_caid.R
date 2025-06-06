@@ -128,9 +128,9 @@ caid_endpoint <- function(alias, call = caller_env()) {
     cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalogs$caid$main, x)
+  res <- select_alias(the$catalog$caid$main, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   x <- c(res)
@@ -160,9 +160,9 @@ caid_temporal <- function(alias, call = caller_env()) {
     cli::cli_abort(c("x"  = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalogs$caid$temp, x)
+  res <- select_alias(the$catalog$caid$temp, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   x <- list_tidy(
     !!!c(slt(res, -endpoints)),

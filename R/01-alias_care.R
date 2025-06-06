@@ -133,9 +133,9 @@ select_care <- function(x, call = caller_env()) {
     cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalogs$care$main, x)
+  res <- select_alias(the$catalog$care$main, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   c(res)
@@ -181,9 +181,9 @@ select_care_temp <- function(x, call = caller_env()) {
     cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalogs$care$temp, x)
+  res <- select_alias(the$catalog$care$temp, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   list_tidy(
     !!!c(slt(res, -endpoints)),

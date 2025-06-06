@@ -55,7 +55,7 @@ select_endpoint <- function(x, call = caller_env()) {
 
   res <- select_alias(.catnew$endpoint, x)
 
-  if (empty(res))     cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (is_empty(res))  cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   if (nrow(res) > 1L) cli::cli_abort(c("x" = "> 1 match found for {.val {x}}."), call = call)
 
   c(res)
@@ -69,7 +69,7 @@ select_temporal <- function(x, call = caller_env()) {
 
   res <- select_alias(.catnew$temporal, x)
 
-  if (empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  if (is_empty(res)) cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
 
   list_tidy(
     !!!c(slt(res, -data)),

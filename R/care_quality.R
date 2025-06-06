@@ -10,6 +10,7 @@
 #' quality_metrics(year = 2018:2025)
 #' quality_eligibility(year = 2018, npi = c(1144544834, 1043477615, 1932365699))
 #' quality_eligibility(year = 2024, npi = c(1144544834, 1043477615, 1932365699))
+#' quality_eligibility(year = 2025, npi = c(1144544834, 1043477615, 1932365699))
 NULL
 
 #' @autoglobal
@@ -17,13 +18,15 @@ NULL
 #' @rdname quality_payment
 quality_metrics <- function(year) {
 
-  walk(year, \(year) check_number_whole(year, min = 2018, max = 2025))
+  check_required(year)
+
+  walk(year, \(year) check_number_whole(year, min = 2018, max = this_year()))
 
   map(year, \(y) {
     new_tbl(
-      year     = rep.int(as.integer(y), 4),
-      category = c(rep("Individual", 2), rep("Group", 2)) |> factor_(),
-      metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2) |> factor_(),
+      year     = rep.int(as.integer(y), 4L),
+      category = c(rep("Individual", 2L), rep("Group", 2L)) |> factor_(),
+      metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2L) |> factor_(),
       mean     = request("https://qpp.cms.gov/api/eligibility/stats") |>
         req_url_query(year = y) |>
         perform_simple() |>
@@ -40,7 +43,9 @@ quality_metrics <- function(year) {
 #' @rdname quality_payment
 quality_eligibility <- function(year, npi) {
 
-  check_number_whole(year, min = 2018, max = 2025)
+  check_required(year)
+  check_required(npi)
+  check_number_whole(year, min = 2018, max = this_year())
 
   x <- request("https://qpp.cms.gov/api/eligibility/npis/") |>
     req_url_path_append(paste(npi, collapse = ",")) |>

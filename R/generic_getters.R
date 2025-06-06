@@ -102,7 +102,7 @@ browse_link <- function(x, active = is_interactive(), call = caller_env()) {
 
   x <- metadata_(x) |> get_elem(c("dictionary", "site", "references"))
 
-  if (empty(x)) cli::cli_abort(c("x" = "{.val {x}} has no browsable links."), call = call)
+  if (is_empty(x)) cli::cli_abort(c("x" = "{.val {x}} has no browsable links."), call = call)
 
   x <- x[path_ext(delist(x)) %in_% c("", "pdf")]
 

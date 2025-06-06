@@ -15,6 +15,13 @@ extract_year <- function(x) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
+this_year <- function() {
+  as.numeric(substr(Sys.Date(), 1, 4))
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
 gdetect <- function(str, pt, ...) {
   grepl(x = str, pattern = pt, perl = TRUE, ...)
 }
@@ -151,11 +158,6 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-empty <- function(x) vec_is_empty(x)
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
 delist <- function(x) unlist(x, use.names = FALSE)
 
 #' @autoglobal
@@ -220,3 +222,245 @@ cli_results <- function(n, limit, end, api) {
 #   border_style = "round")
 #
 # writeLines(c(bx, bx))
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+ifelse_ <- function(test, yes, no, na = no[NA_integer_]) {
+  cheapr_if_else(condition = test, true = yes, false = no, na = na)
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+get_distribution <- function(x) {
+  get_elem(x, "distribution") |>
+    get_elem("data", DF.as.list = TRUE)
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+fmt_contactpoint <- function(x) {
+  glue(
+    "{names(x)} ({x})",
+    x = get_elem(x, "^has", regex = TRUE) |>
+      delist() |>
+      set_names(
+        get_elem(x, "fn") |>
+          delist()
+      )
+  ) |>
+    as.character()
+}
+
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+fmt_temporal <- function(x) {
+  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
+}
+
+#' ISO 8601 Recurring Time Intervals
+#' @source [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
+#' @param x `<chr>` vector of ISO8601 recurrence rules
+#' @returns `<chr>` vector of human-readable recurrence rule descriptions
+#' @examplesIf rlang::is_interactive()
+#' accrualPeriodicity = c(
+#'   "R/PT1S",   "R/PT1H",  "R/P1D", "R/P3.5D",
+#'   "R/P0.33W", "R/P0.5W", "R/P1W", "R/P2W",
+#'   "R/P0.33M", "R/P0.5M", "R/P1M", "R/P2M",
+#'   "R/P3M",    "R/P4M",   "R/P6M", "R/P1Y",
+#'   "R/P2Y",    "R/P3Y",   "R/P4Y", "R/P10Y")
+#' fmt_periodicity(accrualPeriodicity)
+#' @section References:
+#' - [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+#' - [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
+#' - [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+fmt_periodicity <- function(x) {
+  val_match(
+    x,
+    "R/P10Y"   ~ "Decennially [R/P10Y]",
+    "R/P4Y"    ~ "Quadrennially [R/P4Y]",
+    "R/P3Y"    ~ "Triennially [R/P3Y]",
+    "R/P2Y"    ~ "Biennially [R/P2Y]",
+    "R/P1Y"    ~ "Annually [R/P1Y]",
+    "R/P6M"    ~ "Biannually [R/P6M]",
+    "R/P4M"    ~ "Triannually [R/P4M]",
+    "R/P3M"    ~ "Quarterly [R/P3M]",
+    "R/P2M"    ~ "Bimonthly [R/P2M]",
+    "R/P1M"    ~ "Monthly [R/P1M]",
+    "R/P0.5M"  ~ "Biweekly [R/P0.5M]",
+    "R/P2W"    ~ "Biweekly [R/P2W]",
+    "R/P0.33M" ~ "Three Times a Month [R/P0.33M]",
+    "R/P1W"    ~ "Weekly [R/P1W]",
+    "R/P0.5W"  ~ "Twice a Week [R/P0.5W]",
+    "R/P3.5D"  ~ "Twice a Week [R/P3.5D]",
+    "R/P0.33W" ~ "Three Times a Week [R/P0.33W]",
+    "R/P1D"    ~ "Daily [R/P1D]",
+    "R/PT1H"   ~ "Hourly [R/PT1H]",
+    "R/PT1S"   ~ "Continuously [R/PT1S]",
+    .default = x
+  )
+}
+
+#' @autoglobal
+#' @noRd
+roxy8601 <- function(x) {
+  val_match(
+    x,
+    "R/P10Y"   ~ "Decennially (R/P10Y)",
+    "R/P4Y"    ~ "Quadrennially (R/P4Y)",
+    "R/P3Y"    ~ "Triennially (R/P3Y)",
+    "R/P2Y"    ~ "Biennially (R/P2Y)",
+    "R/P1Y"    ~ "Annually (R/P1Y)",
+    "R/P6M"    ~ "Biannually (R/P6M)",
+    "R/P4M"    ~ "Triannually (R/P4M)",
+    "R/P3M"    ~ "Quarterly (R/P3M)",
+    "R/P2M"    ~ "Bimonthly (R/P2M)",
+    "R/P1M"    ~ "Monthly (R/P1M)",
+    "R/P0.5M"  ~ "Biweekly (R/P0.5M)",
+    "R/P2W"    ~ "Biweekly (R/P2W)",
+    "R/P0.33M" ~ "Three Times a Month (R/P0.33M)",
+    "R/P1W"    ~ "Weekly (R/P1W)",
+    "R/P0.5W"  ~ "Twice a Week (R/P0.5W)",
+    "R/P3.5D"  ~ "Twice a Week (R/P3.5D)",
+    "R/P0.33W" ~ "Three Times a Week (R/P0.33W)",
+    "R/P1D"    ~ "Daily (R/P1D)",
+    "R/PT1H"   ~ "Hourly (R/PT1H)",
+    "R/PT1S"   ~ "Continuously (R/PT1S)",
+    .default   = "Unknown"
+  )
+}
+
+# care_types("single")
+# care_types("multi")
+#' @autoglobal
+#' @keywords internal
+#' @noRd
+care_types <- function(x) {
+  switch(
+    x,
+    single = list(
+      "ACO REACH Aligned Beneficiaries",
+      "ACO REACH Eligible Beneficiaries",
+      "ACO REACH Financial and Quality Results",
+      "ACO REACH Providers",
+      "COVID-19 Nursing Home Data",
+      "CPC Initiative - Participating Primary Care Practices",
+      "Comprehensive Care for Joint Replacement Model: Metropolitan Statistical Areas",
+      "Innovation Center Data and Reports",
+      "Innovation Center Innovation Advisors",
+      "Innovation Center Milestones and Updates",
+      "Innovation Center Model Awardees",
+      "Innovation Center Model Participants",
+      "Innovation Center Model Summary Information",
+      "Innovation Center Webinars and Forums",
+      "Market Saturation & Utilization Core-Based Statistical Areas",
+      "Market Saturation & Utilization State-County",
+      "Medicaid Managed Care",
+      "Medicaid Opioid Prescribing Rates - by Geography",
+      "Medicaid Spending by Drug",
+      "Medicare Advantage Geographic Variation - National & State",
+      "Medicare Clinical Laboratory Fee Schedule Private Payer Rates and Volumes",
+      "Medicare Demonstrations",
+      "Medicare Diabetes Prevention Program",
+      "Medicare Geographic Variation - by National, State & County",
+      "Medicare Monthly Enrollment",
+      "Medicare Part B Discarded Drug Units",
+      "Medicare Part B Spending by Drug",
+      "Medicare Part D Opioid Prescribing Rates - by Geography",
+      "Medicare Part D Spending by Drug",
+      "Medicare Post-Acute Care and Hospice - by Geography & Provider",
+      "Medicare Telehealth Trends",
+      "Restructured BETOS Classification System",
+      "Strong Start Awardees"
+    ),
+    multi = list(
+      "Provider of Services File - Clinical Laboratories",
+      "Provider of Services File - Hospital & Non-Hospital Facilities",
+      "Medicare Fee-for-Service Comprehensive Error Rate Testing",
+      "Physician/Supplier Procedure Summary",
+      "Accountable Care Organization Participants",
+      "Accountable Care Organizations",
+      "Hospital Provider Cost Report",
+      "Skilled Nursing Facility Cost Report",
+      "Medicare Part D Prescribers - by Geography and Drug",
+      "Medicare Part D Prescribers - by Provider",
+      "Medicare Part D Prescribers - by Provider and Drug",
+      "Medicare Physician & Other Practitioners - by Geography and Service",
+      "Medicare Physician & Other Practitioners - by Provider",
+      "Medicare Physician & Other Practitioners - by Provider and Service",
+      "Performance Year Financial and Quality Results",
+      "Deficit Reduction Act Hospital-Acquired Condition Measures",
+      "Medicare Inpatient Hospitals - by Geography and Service",
+      "Medicare Inpatient Hospitals - by Provider",
+      "Medicare Inpatient Hospitals - by Provider and Service",
+      "Accountable Care Organization Skilled Nursing Facility Affiliates",
+      "Hospital Service Area",
+      "Medicare Durable Medical Equipment, Devices & Supplies - by Geography and Service",
+      "Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider",
+      "Medicare Durable Medical Equipment, Devices & Supplies - by Referring Provider and Service",
+      "Medicare Durable Medical Equipment, Devices & Supplies - by Supplier",
+      "Medicare Durable Medical Equipment, Devices & Supplies - by Supplier and Service",
+      "County-level Aggregate Expenditure and Risk Score Data on Assignable Beneficiaries",
+      "Medicare Outpatient Hospitals - by Geography and Service",
+      "Medicare Outpatient Hospitals - by Provider and Service",
+      "Number of Accountable Care Organization Assigned Beneficiaries by County",
+      "Payroll Based Journal Daily Non-Nurse Staffing",
+      "Payroll Based Journal Daily Nurse Staffing",
+      "Minimum Data Set Frequency",
+      "Quality Payment Program Experience",
+      "Medicare Dialysis Facilities",
+      "Payroll Based Journal Employee Detail Nursing Home Staffing",
+      "Pioneer ACO Model",
+      "REACH ACOs",
+      "Hospital All Owners",
+      "Hospital Enrollments",
+      "Medicare Provider and Supplier Taxonomy Crosswalk",
+      "Revalidation Clinic Group Practice Reassignment",
+      "Revalidation Due Date List",
+      "Revalidation Reassignment List",
+      "Skilled Nursing Facility All Owners",
+      "Skilled Nursing Facility Enrollments",
+      "Value Modifier",
+      "End-Stage Renal Disease Facility Aggregation Group Performance",
+      "Federally Qualified Health Center All Owners",
+      "Federally Qualified Health Center Enrollments",
+      "Fiscal Intermediary Shared System Attending and Rendering",
+      "Home Health Agency All Owners",
+      "Home Health Agency Cost Report",
+      "Home Health Agency Enrollments",
+      "Home Infusion Therapy Providers",
+      "Hospice All Owners",
+      "Hospice Enrollments",
+      "Hospital Change of Ownership",
+      "Hospital Change of Ownership - Owner Information",
+      "Managing Clinician Aggregation Group Performance",
+      "Medicare Fee-For-Service Public Provider Enrollment",
+      "Nursing Home Affiliated Entity Performance Measures",
+      "Opioid Treatment Program Providers",
+      "Opt Out Affidavits",
+      "Order and Referring",
+      "Pending Initial Logging and Tracking Non Physicians",
+      "Pending Initial Logging and Tracking Physicians",
+      "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
+      "Rural Health Clinic All Owners",
+      "Rural Health Clinic Enrollments",
+      "Skilled Nursing Facility Change of Ownership",
+      "Skilled Nursing Facility Change of Ownership - Owner Information",
+      "Advance Investment Payment Spend Plan",
+      "Agency for Healthcare Research and Quality (AHRQ) Patient Safety Indicator 11 (PSI-11) Measure Rates",
+      "Facility-Level Minimum Data Set Frequency",
+      "Hospital Price Transparency Enforcement Activities and Outcomes",
+      "Long-Term Care Facility Characteristics",
+      "Medicare COVID-19 Hospitalization Trends",
+      "Public Reporting of Missing Digital Contact Information"
+    ),
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+  ) |>
+    unlist(use.names = FALSE)
+}

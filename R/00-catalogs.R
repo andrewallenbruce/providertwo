@@ -1,5 +1,4 @@
 #' @include utils_misc.R
-#' @include utils_catalog.R
 NULL
 
 #' @autoglobal
@@ -47,15 +46,29 @@ catalog_care <- function() {
   d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
   list_tidy(
-    main = join_on_title(slt(x, -distribution),
-                         sbt(d, format == "latest", title, download, resources)) |>
+    main = join_on_title(
+      slt(x, -distribution),
+      sbt(d, format == "latest", title, download, resources)
+    ) |>
       roworder(title),
-    temp = join_on_title(sbt(d, format != "latest" & title %!in_% care_types("single"), -format) |>
-                           roworder(title, -year) |>
-                           f_nest_by(.by = c(api, title)) |>
-                           f_ungroup() |>
-                           rnm(endpoints = data),
-      slt(main, title, description, periodicity, contact, dictionary, site, references)) |>
+    temp = join_on_title(
+      sbt(d, format != "latest" &
+            title %!in_% care_types("single"), -format) |>
+        roworder(title, -year) |>
+        f_nest_by(.by = c(api, title)) |>
+        f_ungroup() |>
+        rnm(endpoints = data),
+      slt(
+        main,
+        title,
+        description,
+        periodicity,
+        contact,
+        dictionary,
+        site,
+        references
+      )
+    ) |>
       colorder(endpoints, pos = "end")
   )
 }
@@ -83,10 +96,8 @@ catalog_pro <- function() {
     roworder(group, title) |>
     as_tbl()
 
-  list(
-   main = sbt(x, group != "Physician office visit costs")
-   # cost = sbt(x, group == "Physician office visit costs")
-  )
+  list(main = sbt(x, group != "Physician office visit costs"))
+  # cost = sbt(x, group == "Physician office visit costs")
 }
 
 #' @autoglobal
@@ -119,9 +130,9 @@ catalog_open <- function() {
       colorder(api) |>
       roworder(title),
     temp = sbt(x, year != "All") |>
-      mtt(api = "Open Payments [Temporal]",
-          year = as.integer(year),
-          title = gremove(title, "^[0-9]{4} "),
+      mtt(api         = "Open Payments [Temporal]",
+          year        = as.integer(year),
+          title       = gremove(title, "^[0-9]{4} "),
           description = val_match(
             title,
             "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
@@ -374,13 +385,13 @@ catalogs <- function() {
   )
 }
 
-the          <- new.env(parent = emptyenv())
-the$catalogs <- catalogs()
+the         <- new.env(parent = emptyenv())
+the$catalog <- catalogs()
 
 #' @autoglobal
 #' @noRd
 reset_catalog <- function() {
-  old <- the$catalogs
-  the$catalogs <- catalogs()
+  old         <- the$catalog
+  the$catalog <- catalogs()
   invisible(old)
 }

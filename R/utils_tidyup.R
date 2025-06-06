@@ -8,10 +8,8 @@ na_if <- function(x, y = "") {
 #' @autoglobal
 #' @noRd
 map_na_if <- function(i) {
-  purrr::modify_if(
-    i,
-    is.character, function(x)
-      na_if(x, y = ""))
+  modify_if(i, is.character, function(x)
+    na_if(x, y = ""))
 }
 
 #' @autoglobal
