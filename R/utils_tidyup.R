@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
 na_if <- function(x, y = "") {
-  vctrs::vec_slice(x, vec_in(x, y, needles_arg = "x", haystack_arg = "y")) <- NA
+  vctrs::vec_slice(x, vctrs::vec_in(x, y, needles_arg = "x", haystack_arg = "y")) <- NA
   x
 }
 
