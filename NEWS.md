@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9327 (2025-06-08)
+
+* removed care_* classes in favor of three basic backend classes
+
+
 # providertwo 0.0.0.9326 (2025-06-08)
 
 * catalog organization
