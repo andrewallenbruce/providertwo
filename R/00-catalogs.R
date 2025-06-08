@@ -7,30 +7,10 @@ catalog_care <- function() {
 
   x <- fload("https://data.cms.gov/data.json", query = "/dataset")
 
-  x <- mtt(
-    x,
-    api         = "Medicare",
-    modified    = as_date(modified),
-    periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(x$contactPoint),
-    references  = delist(references),
-    temporal    = fmt_temporal(temporal),
-    title       = rp_dbl_space(title),
-    title       = rm_non_ascii(title),
-    description = stri_trans_general(description, "latin-ascii"),
-    description = rm_non_ascii(description),
-    description = rm_quotes(description),
-    description = gremove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
-    description = gremove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. "),
-    description = gremove(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+"),
-    description = gremove(description, "\\n\\n.+\\n\\n"),
-    description = stri_trim(description)) |>
-    slt(api, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references, distribution) |>
-    as_tbl()
-
-  d <- rowbind(x$distribution, fill = TRUE) |>
+  d <- get_elem(x, "distribution") |>
+    rowbind(fill = TRUE) |>
     fcompute(
-      api        = "Medicare [Temporal]",
+      clog       = "care",
       year       = extract_year(title),
       title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
       format     = ifelse_(!is_na(description), description, format),
@@ -38,39 +18,42 @@ catalog_care <- function() {
       temporal   = fmt_temporal(temporal),
       identifier = accessURL,
       download   = lag_(downloadURL, n = -1L),
-      resources  = resourcesAPI
-    ) |>
+      resources  = resourcesAPI) |>
     colorder(title) |>
     as_tbl()
 
   d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
-  list_tidy(
-    main = join_on_title(
-      slt(x, -distribution),
-      sbt(d, format == "latest", title, download, resources)
-    ) |>
-      roworder(title),
-    temp = join_on_title(
-      sbt(d, format != "latest" &
-            title %!in_% care_types("single"), -format) |>
-        roworder(title, -year) |>
-        f_nest_by(.by = c(api, title)) |>
-        f_ungroup() |>
-        rnm(endpoints = data),
-      slt(
-        main,
-        title,
-        description,
-        periodicity,
-        contact,
-        dictionary,
-        site,
-        references
-      )
-    ) |>
-      colorder(endpoints, pos = "end")
-  )
+  x <- mtt(
+    x,
+    clog        = "care",
+    modified    = as_date(modified),
+    periodicity = fmt_periodicity(accrualPeriodicity),
+    contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+    references  = delist(references),
+    temporal    = fmt_temporal(temporal),
+    title       = rm_non_ascii(rp_dbl_space(title)),
+    description = rm_quotes(rm_non_ascii(stri_trans_general(description, "latin-ascii"))),
+    description = gremove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
+    description = gremove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. "),
+    description = gremove(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+"),
+    description = gremove(description, "\\n\\n.+\\n\\n"),
+    description = stri_trim(description)) |>
+    slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
+    as_tbl() |>
+    join_on_title(sbt(d, format == "latest", title, download, resources)) |>
+    roworder(title)
+
+  d <- sbt(d, title %!in_% care_types("single") & format != "latest", -format) |>
+    roworder(title, -year) |>
+    f_nest_by(.by = c(clog, title)) |>
+    f_ungroup() |>
+    rnm(endpoints = data) |>
+    join_on_title(slt(x, title, description, periodicity, contact, dictionary, site, references)) |>
+    colorder(endpoints, pos = "end")
+
+  list(end = mtt(x, api = "end") |> colorder(clog, api),
+       tmp = mtt(d, api = "tmp") |> colorder(clog, api))
 }
 
 #' @autoglobal

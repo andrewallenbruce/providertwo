@@ -23,6 +23,8 @@ utils::globalVariables(c(
   "browseURL",
   # <quality_metrics>
   "category",
+  # <catalog_care>
+  "clog",
   # <open_dictionary>
   "constraints",
   # <catalog_care>
@@ -55,7 +57,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_pro>
   "dictionary",
-  # <catalog_care>
   # <catalog_caid>
   # <catalog_hgov>
   "distribution",
@@ -121,8 +122,6 @@ utils::globalVariables(c(
   "last_updated_epoch",
   # <clinicians>
   "ln_2_sprs",
-  # <catalog_care>
-  "main",
   # <quality_metrics>
   "metric",
   # <quality_eligibility>

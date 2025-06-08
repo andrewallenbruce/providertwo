@@ -65,14 +65,14 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
     _$count
 
   if (n == 0L) {
-    cli::cli_alert_danger(
+    cli_alert_danger(
       "Query {.var {quick_cli_(query)}} returned {.emph 0} results.",
       wrap = TRUE)
     return(invisible(NULL))
   }
 
   if (n <= limit_(x)) {
-    cli::cli_alert_success("Returning {.emph {n}} results...", wrap = TRUE)
+    cli_alert_success("Returning {.emph {n}} results...", wrap = TRUE)
     return(
       identifier_(x) |>
         map(
@@ -103,8 +103,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
   }
 
   if (n > limit_(x)) {
-    cli::cli_alert_success("Returning {.emph {n}} results...", wrap = TRUE)
-
+    cli_alert_success("Returning {.emph {n}} results...", wrap = TRUE)
     base <- identifier_(x) |>
       request() |>
       req_url_query(
@@ -117,7 +116,6 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
         limit   = limit_(x),
         !!!query
       )
-
     paste0(base$url, "&offset=", offset_seq(n, limit_(x))) |>
       map(request) |>
       req_perform_parallel(on_error = "continue") |>

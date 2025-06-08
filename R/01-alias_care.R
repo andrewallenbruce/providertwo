@@ -9,8 +9,10 @@ care_dimensions <- function(x, call = caller_env()) {
 
   x <- switch(
     x$api,
-    `Medicare` = perform_simple(req)$meta |> get_elem(c("total_rows", "headers")),
-    `Medicare [Temporal]` = list(
+    end = perform_simple(req) |>
+      get_elem("meta") |>
+      get_elem(c("total_rows", "headers")),
+    tmp = list(
       headers = perform_simple(req) |> names(),
       total_rows = req_url_path_append(req, "stats") |>
         perform_simple() |>
@@ -130,16 +132,15 @@ select_care <- function(x, call = caller_env()) {
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
-    cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$care$main, x)
+  res <- select_alias(the$catalog$care$end, x)
 
-  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+  if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   c(res)
-
 }
 
 #' @autoglobal
@@ -178,12 +179,12 @@ select_care_temp <- function(x, call = caller_env()) {
     util_geography       = "^Medicare Physician [&] Other Practitioners [-] by Geography and Service$",
     util_provider        = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
-    cli::cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph alias} {.val {x}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$care$temp, x)
+  res <- select_alias(the$catalog$care$tmp, x)
 
-  if (is_empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   list_tidy(
     !!!c(slt(res, -endpoints)),

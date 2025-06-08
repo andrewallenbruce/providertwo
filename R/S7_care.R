@@ -267,13 +267,15 @@ care_group <- function(alias, call = caller_env(), ...) {
         "util_service"
       )
     ),
-    care_nhome = list(group = "Nursing Home Performance", alias = c(
-      "nhome_performance",
-      "nhome_mds_frequency",
-      "nhome_mds_facility"
-    )
+    care_nhome = list(
+      group = "Nursing Home Performance",
+      alias = c(
+        "nhome_performance",
+        "nhome_mds_frequency",
+        "nhome_mds_facility"
+      )
     ),
-    cli::cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
   )
 
   new_group(
