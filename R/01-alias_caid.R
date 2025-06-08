@@ -125,13 +125,13 @@ caid_endpoint <- function(alias, call = caller_env()) {
     unwind_transition             = "HealthCare\\.gov Transitions Marketplace Medicaid Unwinding Report",
     unwind_historic               = "Separate CHIP Enrollment by Month and State\\sHistoric CAA/Unwinding Period",
     unwind_sbm                    = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report",
-    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
   res <- select_alias(the$catalog$caid$main, x)
 
-  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+  if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   x <- c(res)
 
@@ -157,15 +157,14 @@ caid_temporal <- function(alias, call = caller_env()) {
     blood_disorder        = "^Pricing Comparison for Blood Disorder Treatments$",
     state_drug_util       = "^State Drug Utilization Data$",
     healthcare_quality    = "^Child and Adult Health Care Quality Measures$",
-    cli::cli_abort(c("x"  = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x"       = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
   res <- select_alias(the$catalog$caid$temp, x)
 
-  if (is_empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
-  x <- list_tidy(
-    !!!c(slt(res, -endpoints)),
+  x <- list_tidy(!!!c(slt(res, -endpoints)),
     endpoints   = pluck(get_elem(res, "endpoints"), 1),
     identifier  = endpoints$identifier[1]
   )
@@ -307,7 +306,7 @@ caid_group <- function(alias, call = caller_env(), ...) {
         "unwind_sbm"
       )
     ),
-    cli::cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
   )
 
   new_group(

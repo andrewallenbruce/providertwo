@@ -1,13 +1,12 @@
 #' @include S7_classes.R
-#' @include S7_care.R
 NULL
 
 #' @autoglobal
 #' @noRd
 quick_cli_ <- function(x) {
   x <- unlist(x)
-  glue::glue_col("{silver {names(x)}=}{red {bold {unname(x)}}}") |>
-    glue::glue_collapse(sep = "&")
+  glue_col("{silver {names(x)}=}{red {bold {unname(x)}}}") |>
+    glue_collapse(sep = "&")
 }
 
 #' Quick Query
@@ -62,7 +61,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
       !!!query
     ) |>
     perform_simple() |>
-    _$count
+    get_elem("query", invert = TRUE)
 
   if (n == 0L) {
     cli_alert_danger(

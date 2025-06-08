@@ -1,29 +1,3 @@
-#' @include S7_care.R
-NULL
-
-#' @autoglobal
-#' @noRd
-is_care_base <- function(x) {
-  S7_inherits(x, care_endpoint) | S7_inherits(x, care_temporal)
-}
-
-
-#' @autoglobal
-#' @noRd
-pull_resource <- function(obj) {
-
-  check_is_S7(obj)
-
-  x <- switch(
-    class(obj)[1],
-    care_endpoint = "metadata",
-    care_temporal = "endpoints")
-
-  prop(obj, x) |>
-    get_elem("resources") |>
-    as.list()
-}
-
 #' @autoglobal
 #' @noRd
 tidy_resources <- function(x) {
@@ -55,8 +29,9 @@ list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
-method(list_resources, care_endpoint) <- function(x) {
-  pull_resource(x) |>
+method(list_resources, class_endpoint) <- function(x) {
+  if (clog_(x) != "care") return(NULL)
+  resources_(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -66,8 +41,9 @@ method(list_resources, care_endpoint) <- function(x) {
     pluck(1)
 }
 
-method(list_resources, care_temporal) <- function(x) {
-  pull_resource(x) |>
+method(list_resources, class_temporal) <- function(x) {
+  if (clog_(x) != "care") return(NULL)
+  resources_(x) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -77,9 +53,6 @@ method(list_resources, care_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
-  if (!all(map_lgl(members_(x), is_care_base)))
-    stop("`members` must be a list of `care_endpoint` or `care_temporal` objects.")
-
   members_(x) |>
     map(list_resources, .progress = TRUE) |>
     name_members_(x)

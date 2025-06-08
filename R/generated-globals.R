@@ -24,6 +24,10 @@ utils::globalVariables(c(
   # <quality_metrics>
   "category",
   # <catalog_care>
+  # <catalog_pro>
+  # <catalog_open>
+  # <catalog_caid>
+  # <catalog_hgov>
   "clog",
   # <open_dictionary>
   "constraints",
@@ -71,7 +75,7 @@ utils::globalVariables(c(
   "endpoint",
   # <catalog_care>
   # <caid_temporal>
-  # <select_care_temp>
+  # <care_temporal>
   # <hgov_temporal>
   # <open_temporal>
   "endpoints",

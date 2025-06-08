@@ -88,34 +88,6 @@ method(metadata_, class_group) <- function(obj) {
   members_(obj) |> map(metadata_)
 }
 
-#' Browse Links
-#' @param x `<backend>` or `<group>` object
-#' @param active `<logical>` whether to open links in browser (default: `TRUE` if interactive)
-#' @param call `<env>` environment to use for error reporting
-#' @returns `<list>` of catalogs
-#' @examplesIf rlang::is_interactive()
-#' care_endpoint("care_enrollees") |> browse_link(active = FALSE)
-#' try(caid_endpoint("managed_longterm") |> browse_link(active = FALSE))
-#' @autoglobal
-#' @noRd
-browse_link <- function(x, active = is_interactive(), call = caller_env()) {
-
-  x <- metadata_(x) |> get_elem(c("dictionary", "site", "references"))
-
-  if (is_empty(x)) cli::cli_abort(c("x" = "{.val {x}} has no browsable links."), call = call)
-
-  x <- x[path_ext(delist(x)) %in_% c("", "pdf")]
-
-  if (active) {
-    cli::cli_alert_info("Opening {.href [{toupper(names(x))}]({delist(x)})} Links")
-    walk(x, browseURL)
-    invisible(x)
-  } else {
-    cli::cli_alert_info("{.emph {toupper(names(x))}} Link{?s}: {.url {delist(x)}}")
-    invisible(x)
-  }
-}
-
 #' @autoglobal
 #' @noRd
 api_ <- new_generic("api_", "obj", function(obj) {
@@ -128,6 +100,40 @@ method(api_, class_backend) <- function(obj) {
 
 method(api_, class_group) <- function(obj) {
   members_(obj) |> map(api_)
+}
+
+#' @autoglobal
+#' @noRd
+clog_ <- new_generic("clog_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(clog_, class_backend) <- function(obj) {
+  metadata_(obj) |> get_elem("clog")
+}
+
+method(clog_, class_group) <- function(obj) {
+  members_(obj) |> map(clog_)
+}
+
+#' @autoglobal
+#' @noRd
+resources_ <- new_generic("resources_", "obj", function(obj) {
+  S7_dispatch()
+})
+
+method(resources_, class_endpoint) <- function(obj) {
+  if (clog_(obj) != "care") return(NULL)
+  metadata_(obj) |> get_elem("resources")
+}
+
+method(resources_, class_temporal) <- function(obj) {
+  if (clog_(obj) != "care") return(NULL)
+  endpoints_(obj) |> get_elem("resources")
+}
+
+method(resources_, class_group) <- function(obj) {
+  members_(obj) |> map(resources_)
 }
 
 #--------- dimensions ------------
@@ -228,4 +234,32 @@ method(identifier_, class_temporal) <- function(obj) {
 
 method(identifier_, class_group) <- function(obj) {
   members_(obj) |> map(identifier_)
+}
+
+#' Browse Links
+#' @param x `<backend>` or `<group>` object
+#' @param active `<logical>` whether to open links in browser (default: `TRUE` if interactive)
+#' @param call `<env>` environment to use for error reporting
+#' @returns `<list>` of catalogs
+#' @examplesIf rlang::is_interactive()
+#' care_endpoint("care_enrollees") |> browse_link(active = FALSE)
+#' try(caid_endpoint("managed_longterm") |> browse_link(active = FALSE))
+#' @autoglobal
+#' @noRd
+browse_link <- function(x, active = is_interactive(), call = caller_env()) {
+
+  x <- metadata_(x) |> get_elem(c("dictionary", "site", "references"))
+
+  if (is_empty(x)) cli_abort(c("x" = "{.val {x}} has no browsable links."), call = call)
+
+  x <- x[path_ext(delist(x)) %in_% c("", "pdf")]
+
+  if (active) {
+    cli_alert_info("Opening {.href [{toupper(names(x))}]({delist(x)})} Links")
+    walk(x, browseURL)
+    invisible(x)
+  } else {
+    cli_alert_info("{.emph {toupper(names(x))}} Link{?s}: {.url {delist(x)}}")
+    invisible(x)
+  }
 }

@@ -49,7 +49,6 @@ Collate:
     '01-alias_open.R'
     '01-alias_pro.R'
     'S7_args.R'
-    'S7_care.R'
     'care_enrollees.R'
     'care_quality.R'
     'dictionaries.R'

@@ -8,7 +8,7 @@
 #' @importFrom fastplyr as_tbl f_fill f_nest_by f_ungroup list_tidy new_tbl
 #' @importFrom tools toTitleCase
 #' @importFrom purrr compact discard list_rbind map map2 map_chr map_lgl modify_if pluck reduce walk
-#' @importFrom glue glue glue_collapse
+#' @importFrom glue glue glue_collapse glue_col
 #' @importFrom fs as_fs_bytes path_ext
 #' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex stri_extract_first_regex stri_replace_all_fixed stri_replace_all_regex stri_replace_first_regex stri_trans_general stri_trim stri_trim_both
 #' @import httr2

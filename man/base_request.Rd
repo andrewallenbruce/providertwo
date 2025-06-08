@@ -16,7 +16,6 @@ An \verb{<httr2_request>} object or list of \verb{<httr2_request>} objects
 Create a new \verb{<httr2_request>} by class
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 care_endpoint("care_enrollees") |> base_request()
 care_temporal("quality_payment") |> base_request()
 care_group("care_hospital") |> base_request()
@@ -29,5 +28,4 @@ caid_endpoint("mlr_summary") |> base_request()
 caid_temporal("healthcare_quality") |> base_request()
 hgov_endpoint("hgov_catastrophic") |> base_request()
 hgov_temporal("hgov_mlr") |> base_request()
-\dontshow{\}) # examplesIf}
 }

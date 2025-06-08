@@ -64,7 +64,8 @@ catalog_pro <- function() {
 
   x <- mtt(
     x,
-    api         = "Provider",
+    clog        = "pro",
+    api         = "end",
     title       = rm_non_ascii(title),
     dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
     identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
@@ -75,7 +76,7 @@ catalog_pro <- function() {
     description = stri_trim(gremove(description, "\n")),
     download    = delist_elem(x$distribution, "downloadURL"),
     contact     = fmt_contactpoint(x$contactPoint)) |>
-    slt(api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+    slt(clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
     roworder(group, title) |>
     as_tbl()
 
@@ -109,13 +110,14 @@ catalog_open <- function() {
 
   list(
     main = sbt(x, year == "All", -year) |>
-      mtt(api = "Open Payments") |>
-      colorder(api) |>
+      mtt(clog = "open", api = "end") |>
+      colorder(clog, api) |>
       roworder(title),
     temp = sbt(x, year != "All") |>
-      mtt(api         = "Open Payments [Temporal]",
-          year        = as.integer(year),
-          title       = gremove(title, "^[0-9]{4} "),
+      mtt(clog = "open",
+          api = "tmp",
+          year = as.integer(year),
+          title = gremove(title, "^[0-9]{4} "),
           description = val_match(
             title,
             "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
@@ -123,9 +125,9 @@ catalog_open <- function() {
             "Research Payment Data"  ~ "All research-related payments from the program year",
             .default = description)
         ) |>
-      colorder(api) |>
+      colorder(clog, api) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(api, title, description, modified)) |>
+      f_nest_by(.by = c(clog, api, title, description, modified)) |>
       f_ungroup() |>
       rnm(endpoints = data)
     )
@@ -182,11 +184,12 @@ catalog_caid <- function() {
   list(
     main = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
       subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(api = "Medicaid") |>
-      colorder(api),
+      mtt(clog = "caid", api = "end") |>
+      colorder(clog, api),
     temp = subset_detect(main, title, ptn, ci = TRUE) |>
       subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(api   = "Medicaid [Temporal]",
+      mtt(clog = "caid",
+          api = "end",
           year  = extract_year(title),
           title = case(
             gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
@@ -203,9 +206,9 @@ catalog_caid <- function() {
           ) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
-      slt(api, year, title, description, periodicity, modified, identifier, download) |>
+      slt(clog, api, year, title, description, periodicity, modified, identifier, download) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(api, title, description, periodicity)) |>
+      f_nest_by(.by = c(clog, api, title, description, periodicity)) |>
       f_ungroup() |>
       rnm(endpoints = data)
     )
@@ -320,18 +323,20 @@ catalog_hgov <- function() {
   list(
     main = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
                    subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
-      mtt(api = "HealthcareGov",
+      mtt(clog = "hgov",
+          api = "end",
           title = greplace(title, "/\\s", "/"),
           title = greplace(title, "Qualifying Health Plan", "QHP"),
           title = str_look_remove(title, "County,", "ahead"),
           title = gremove(title, "2015 ")) |>
-      colorder(api),
+      colorder(clog, api),
     temp = rowbind(
       temporal,
       subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
-      mtt(api = "HealthcareGov [Temporal]") |>
-      colorder(api) |>
-      f_nest_by(.by = c(api, title)) |>
+      mtt(clog = "hgov",
+          api = "tmp") |>
+      colorder(clog, api) |>
+      f_nest_by(.by = c(clog, api, title)) |>
       f_ungroup() |>
       rnm(endpoints = data)
     # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>

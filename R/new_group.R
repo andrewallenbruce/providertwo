@@ -468,12 +468,9 @@ new_group <- function(member_names,
   check_bool(quick)
   check_character(group_name, allow_null = TRUE)
 
-  ob <- if (length(member_names) == 1)
-    select_member(member_names)
-  else
-    class_group(
-      group_name %||% paste0(member_names, collapse = " | "),
-      map(member_names, select_member) |> set_names(member_names))
+  ob <- if (length(member_names) == 1) select_member(member_names) else
+    class_group(group_name %||% paste0(member_names, collapse = " | "),
+                map(member_names, select_member) |> set_names(member_names))
 
   if (!quick) return(ob)
 
