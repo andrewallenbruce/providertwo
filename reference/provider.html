@@ -25,7 +25,7 @@ about clinicians' experience."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9326</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -294,8 +294,9 @@ services in said unit.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-04-08"</span>
@@ -364,7 +365,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_facility  : &lt;care_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_facility  : &lt;class_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "tmp"</span>
@@ -402,8 +403,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:5] "https://data.cms.gov/data-api/v1/dataset-resources/62d125ff-c959-4c5c-8a46-8cacba50bfd4" "https://data.cms.gov/data-api/v1/dataset-resources/200e7e7e-a5a6-4450-ba18-ab53d237cc45" "https://data.cms.gov/data-api/v1/dataset-resources/ebc64ad1-164c-455a-80ca-cb0753e44a46" "https://data.cms.gov/data-api/v1/dataset-resources/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_byfacility: &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - Listing by Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "A list of all dialysis facilities registered with Medicare that includes addresses and phone numbers, as well a"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
@@ -520,8 +522,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. ..  [list output truncated]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_national  : &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2rkq-ygai/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - National Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "National averages of common dialysis quality measures."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
@@ -597,8 +600,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_3_smsrworse_than_expected_us                : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_state     : &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2fpu-cgbb/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "Provider"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - State Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "State averages of common dialysis quality measures."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-03-24"</span>
