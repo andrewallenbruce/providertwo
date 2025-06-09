@@ -1,22 +1,3 @@
-#' @include S7_classes.R
-NULL
-
-#' @autoglobal
-#' @noRd
-caid_dimensions <- function(x, call = caller_env()) {
-
-  x <- identifier_(x) |>
-    request() |>
-    req_url_query(offset = 0L, limit = 1L, results = "false") |>
-    req_error(is_error = ~ FALSE) |>
-    perform_simple()
-
-  class_dimensions(
-    limit  = 8000L,
-    rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message))
-}
-
 #' Medicaid API Endpoints
 #' @name medicaid
 #' @param alias `<chr>` endpoint or group alias
@@ -128,7 +109,7 @@ caid_endpoint <- function(alias, call = caller_env()) {
     cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$caid$main, x)
+  res <- select_alias(the$catalog$caid$end, x)
 
   if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
   if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
@@ -137,8 +118,9 @@ caid_endpoint <- function(alias, call = caller_env()) {
 
   class_endpoint(
     identifier  = x$identifier,
+    # catalog     = classify_api(x$clog),
     metadata    = get_metadata(x),
-    dimensions  = caid_dimensions(x)
+    dimensions  = get_dimensions(x)
   )
 }
 
@@ -160,7 +142,7 @@ caid_temporal <- function(alias, call = caller_env()) {
     cli_abort(c("x"       = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$caid$temp, x)
+  res <- select_alias(the$catalog$caid$tmp, x)
 
   if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
@@ -171,7 +153,8 @@ caid_temporal <- function(alias, call = caller_env()) {
 
   class_temporal(
     metadata    = get_metadata(x),
-    dimensions  = caid_dimensions(x),
+    # catalog     = classify_api(x$clog),
+    dimensions  = get_dimensions(x),
     endpoints   = x$endpoints
   )
 }

@@ -3,16 +3,16 @@
 %   R/pro_clinicians.R, R/pro_utilization.R
 \name{provider}
 \alias{provider}
-\alias{pro_endpoint}
-\alias{pro_group}
+\alias{prov_endpoint}
+\alias{prov_group}
 \alias{affiliations}
 \alias{clinicians}
 \alias{utilization}
 \title{Provider API Endpoints}
 \usage{
-pro_endpoint(alias, call = caller_env())
+prov_endpoint(alias, call = caller_env())
 
-pro_group(alias, call = caller_env(), ...)
+prov_group(alias, call = caller_env(), ...)
 
 affiliations(
   npi = NULL,
@@ -182,8 +182,8 @@ about clinicians' experience.
 }
 
 \examples{
-pro_endpoint("asc_facility")
-pro_group("pro_dialysis")
+prov_endpoint("asc_facility")
+prov_group("pro_dialysis")
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 affiliations(facility_type = "Home health agency")
 affiliations(last_name = "CURRY")

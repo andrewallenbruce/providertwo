@@ -8,17 +8,15 @@ quick_ <- new_generic("quick_", "x", function(x, ..., offset, limit) {
 })
 
 method(quick_, class_endpoint) <- function(x, offset, limit) {
+
   switch(
     clog_(x),
-    care = identifier_(x) |>
-      map(
-        function(i)
-          request(i) |>
-          req_url_query(
-            offset = bound(offset, rows_(x)),
-            size   = bound(limit, limit_(x))
-          )
-      ) |>
+    care = map(identifier_(x), function(i)
+      request(i) |>
+        req_url_query(
+          offset = bound(offset, rows_(x)),
+          size   = bound(limit, limit_(x))
+        )) |>
       req_perform_parallel(on_error = "continue") |>
       map(
         function(x)
@@ -27,8 +25,12 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
           map_na_if()
       ) |>
       pluck(1) |>
-      name_fields_(x),
-    identifier_(x) |>
+      name_fields_(x
+      ),
+    caid = ,
+    prov  = ,
+    open = ,
+    hgov = identifier_(x) |>
       map(
         function(i)
           request(i) |>
@@ -73,7 +75,10 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
       list_rbind(names_to = "year") |>
       map_na_if() |>
       as_tbl(),
-    identifier_(x) |>
+    caid = ,
+    prov  = ,
+    open = ,
+    hgov = identifier_(x) |>
       map(
         function(i)
           request(i) |>
@@ -90,8 +95,8 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
       ) |>
       req_perform_parallel(on_error = "continue") |>
       name_years_(x) |>
-      map(function(resp)
-        parse_string(resp, query = "results")) |>
+      map(function(x)
+        parse_string(x, query = "results")) |>
       list_rbind(names_to = "year") |>
       map_na_if() |>
       as_tbl()

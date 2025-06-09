@@ -4,10 +4,12 @@
 \alias{base_request}
 \title{Create a new \verb{<httr2_request>} by class}
 \usage{
-base_request(x)
+base_request(x, ...)
 }
 \arguments{
 \item{x}{A \code{class_endpoint}, \code{class_temporal} or \code{class_group} object}
+
+\item{...}{Additional arguments}
 }
 \value{
 An \verb{<httr2_request>} object or list of \verb{<httr2_request>} objects
@@ -17,15 +19,15 @@ Create a new \verb{<httr2_request>} by class
 }
 \examples{
 care_endpoint("care_enrollees") |> base_request()
-care_temporal("quality_payment") |> base_request()
-care_group("care_hospital") |> base_request()
-pro_endpoint("pdc_affiliations") |> base_request()
-pro_group("pro_mips") |> base_request()
+#care_temporal("quality_payment") |> base_request()
+#care_group("care_hospital") |> base_request()
+prov_endpoint("pdc_affiliations") |> base_request()
+#prov_group("pro_mips") |> base_request()
 open_endpoint("profile_covered") |> base_request()
-open_temporal("payment_general") |> base_request()
-open_group("payment_grouped") |> base_request()
+#open_temporal("payment_general") |> base_request()
+#open_group("payment_grouped") |> base_request()
 caid_endpoint("mlr_summary") |> base_request()
-caid_temporal("healthcare_quality") |> base_request()
+#caid_temporal("healthcare_quality") |> base_request()
 hgov_endpoint("hgov_catastrophic") |> base_request()
-hgov_temporal("hgov_mlr") |> base_request()
+#hgov_temporal("hgov_mlr") |> base_request()
 }

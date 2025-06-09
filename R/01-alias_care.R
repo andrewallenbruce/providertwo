@@ -1,30 +1,3 @@
-#' @autoglobal
-#' @noRd
-care_dimensions <- function(x, call = caller_env()) {
-
-  req <- identifier_(x) |>
-    request() |>
-    req_url_query(offset = 0L, size = 1L) |>
-    req_error(is_error = ~ FALSE)
-
-  x <- switch(
-    x$api,
-    end = perform_simple(req) |>
-      get_elem("meta") |>
-      get_elem(c("total_rows", "headers")),
-    tmp = list(
-      headers = perform_simple(req) |> names(),
-      total_rows = req_url_path_append(req, "stats") |>
-        perform_simple() |>
-        get_elem("total_rows")
-    )
-  )
-  class_dimensions(
-    limit  = 5000L,
-    rows   = x$total_rows %||% 0L,
-    fields = x$headers %||% new_list(length = 1L, default = x$meta$message))
-}
-
 #' Medicare API Endpoint Classes
 #' @name medicare
 #' @param alias `<chr>` endpoint alias
@@ -148,7 +121,7 @@ care_endpoint <- function(alias, call = caller_env()) {
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
-    cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x"         = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
   res <- select_alias(the$catalog$care$end, x)
@@ -160,8 +133,9 @@ care_endpoint <- function(alias, call = caller_env()) {
 
   class_endpoint(
     identifier  = x$identifier,
+    # catalog     = classify_api(x$clog),
     metadata    = get_metadata(x),
-    dimensions  = care_dimensions(x)
+    dimensions  = get_dimensions(x)
   )
 }
 
@@ -217,9 +191,9 @@ care_temporal <- function(alias, call = caller_env()) {
 
   class_temporal(
     metadata    = get_metadata(x),
-    dimensions  = care_dimensions(x),
+    # catalog     = classify_api(x$clog),
+    dimensions  = get_dimensions(x),
     endpoints   = x$endpoints)
-
 }
 
 #' @autoglobal
@@ -449,7 +423,6 @@ care_group <- function(alias, call = caller_env(), ...) {
     ),
     cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
   )
-
   new_group(
     member_names = x$alias,
     group_name   = x$group,

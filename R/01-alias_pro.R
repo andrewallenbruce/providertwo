@@ -1,22 +1,3 @@
-#' @include S7_classes.R
-NULL
-
-#' @autoglobal
-#' @noRd
-pro_dimensions <- function(x, call = caller_env()) {
-
-  x <- identifier_(x) |>
-    request() |>
-    req_url_query(offset = 0L, limit = 1L, results = "false") |>
-    req_error(is_error = ~ FALSE) |>
-    perform_simple()
-
-  class_dimensions(
-    limit  = 2000L,
-    rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message))
-}
-
 #' Provider API Endpoints
 #' @name provider
 #' @param alias `<chr>` endpoint or group alias
@@ -24,14 +5,14 @@ pro_dimensions <- function(x, call = caller_env()) {
 #' @param ... Additional arguments passed to the group constructor
 #' @returns An S7 `<class_endpoint>` or `<class_group>` object
 #' @examples
-#' pro_endpoint("asc_facility")
-#' pro_group("pro_dialysis")
+#' prov_endpoint("asc_facility")
+#' prov_group("pro_dialysis")
 NULL
 
 #' @autoglobal
 #' @rdname provider
 #' @export
-pro_endpoint <- function(alias, call = caller_env()) {
+prov_endpoint <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
@@ -185,27 +166,27 @@ pro_endpoint <- function(alias, call = caller_env()) {
     va_behavioral             = "^Veterans Health Administration Behavioral Health Data",
     va_provider               = "^Veterans Health Administration Provider Level Data",
     va_timely                 = "^Veterans Health Administration Timely and Effective Care Data",
-    cli::cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x"           = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$pro$main, x)
+  res <- select_alias(the$catalog$prov$end, x)
 
-  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+  if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   x <- c(res)
 
   class_endpoint(
     identifier  = x$identifier,
     metadata    = get_metadata(x),
-    dimensions  = pro_dimensions(x)
+    dimensions  = get_dimensions(x)
   )
 }
 
 #' @autoglobal
 #' @rdname provider
 #' @export
-pro_group <- function(alias, call = caller_env(), ...) {
+prov_group <- function(alias, call = caller_env(), ...) {
 
   check_required(alias)
 
@@ -245,7 +226,7 @@ pro_group <- function(alias, call = caller_env(), ...) {
     pro_hospital_changes = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
     pro_hospital_voc     = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
     pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
-    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
   new_group(

@@ -99,7 +99,7 @@ clinicians <- function(npi           = NULL,
   )
 
 
-  x <- pro_endpoint("pdc_clinicians")
+  x <- prov_endpoint("pdc_clinicians")
 
   x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>

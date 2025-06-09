@@ -14,7 +14,7 @@ quick_cli_ <- function(x) {
 #' @param ... Additional arguments
 #' @returns A list of results from the API query, or `NULL` if no results are found.
 #' @examples
-#' asc <- pro_endpoint("asc_facility")
+#' asc <- prov_endpoint("asc_facility")
 #'
 #' q0 <- list(
 #' `conditions[0][property]` = "state",
@@ -40,7 +40,7 @@ quick_cli_ <- function(x) {
 #'
 #' quick_query_(asc, q0)
 #' quick_query_(asc, q1)
-#' quick_query_(asc, q2)
+#' #quick_query_(asc, q2)
 #' quick_query_(asc, q3)
 #' @autoglobal
 #' @export
@@ -60,8 +60,12 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
       limit   = 1L,
       !!!query
     ) |>
-    perform_simple() |>
-    get_elem("query", invert = TRUE)
+    perform_simple()
+
+  n <- switch(
+    clog_(x),
+    care = get_elem(n, "total_rows"),
+    prov = get_elem(n, "query", invert = TRUE))
 
   if (n == 0L) {
     cli_alert_danger(
@@ -92,7 +96,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
         req_perform_parallel(on_error = "continue") |>
         map(
           function(x)
-            parse_string(x, query = "results") |>
+            parse_string(x, query = "results") |> # TODO
             as_tbl() |>
             map_na_if()
         ) |>
@@ -112,14 +116,22 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
         results = "true",
         rowIds  = "false",
         schema  = "false",
+        size    = limit_(x),
         limit   = limit_(x),
-        !!!query
-      )
-    paste0(base$url, "&offset=", offset_seq(n, limit_(x))) |>
+        !!!query)
+
+    paste0(
+      base$url,
+      "&offset=",
+      offset_seq(
+        bound(n, 50000), # TODO
+        limit_(x))) |>   # TODO
       map(request) |>
       req_perform_parallel(on_error = "continue") |>
-      map(function(x)
-        parse_string(x, query = "results") |>
+      map(
+        function(x)
+          parse_string(x,
+            query = "/data") |>  # TODO
           as_tbl() |>
           map_na_if()) |>
       list_rbind() |>

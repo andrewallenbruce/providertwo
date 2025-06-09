@@ -18,7 +18,7 @@ A list of results from the API query, or \code{NULL} if no results are found.
 Quick Query
 }
 \examples{
-asc <- pro_endpoint("asc_facility")
+asc <- prov_endpoint("asc_facility")
 
 q0 <- list(
 `conditions[0][property]` = "state",
@@ -44,6 +44,6 @@ q3 <- list(
 
 quick_query_(asc, q0)
 quick_query_(asc, q1)
-quick_query_(asc, q2)
+#quick_query_(asc, q2)
 quick_query_(asc, q3)
 }

@@ -288,7 +288,7 @@ select_member <- function(x, call = caller_env()) {
     unplan_state                       = ,
     va_behavioral                      = ,
     va_provider                        = ,
-    va_timely                          = pro_endpoint(x),
+    va_timely                          = prov_endpoint(x),
     profile_covered                    = ,
     profile_physician                  = ,
     profile_information                = ,
@@ -443,7 +443,7 @@ select_member <- function(x, call = caller_env()) {
     hgov_qhp_ind_med                   = ,
     hgov_qhp_shop_dnt                  = ,
     hgov_qhp_shop_med                  = hgov_temporal(x),
-    cli::cli_abort(c("x"               = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x"                    = "No matches found for {.val {x}}."), call = call)
   )
 }
 

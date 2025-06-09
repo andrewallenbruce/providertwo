@@ -34,11 +34,13 @@ catalog_care <- function() {
     temporal    = fmt_temporal(temporal),
     title       = rm_non_ascii(rp_dbl_space(title)),
     description = rm_quotes(rm_non_ascii(stri_trans_general(description, "latin-ascii"))),
-    description = gremove(description, "Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$"),
-    description = gremove(description, "^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. "),
-    description = gremove(description, "On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+"),
-    description = gremove(description, "\\n\\n.+\\n\\n"),
-    description = stri_trim(description)) |>
+    description = description |>
+      gremove("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$") |>
+      gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
+      gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
+      gremove("\\n\\n.+\\n\\n") |>
+      stri_trim()
+    ) |>
     slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
     as_tbl() |>
     join_on_title(sbt(d, format == "latest", title, download, resources)) |>
@@ -58,30 +60,27 @@ catalog_care <- function() {
 
 #' @autoglobal
 #' @noRd
-catalog_pro <- function() {
-
+catalog_prov <- function() {
   x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
-
-  x <- mtt(
-    x,
-    clog        = "pro",
-    api         = "end",
-    title       = rm_non_ascii(title),
-    dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
-    identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
-    issued      = as_date(issued),
-    modified    = as_date(modified),
-    released    = as_date(released),
-    group       = flatten_column(theme),
-    description = stri_trim(gremove(description, "\n")),
-    download    = delist_elem(x$distribution, "downloadURL"),
-    contact     = fmt_contactpoint(x$contactPoint)) |>
-    slt(clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
-    roworder(group, title) |>
-    as_tbl()
-
-  list(main = sbt(x, group != "Physician office visit costs"))
-  # cost = sbt(x, group == "Physician office visit costs")
+  list(
+    end = mtt(x,
+      clog        = "prov",
+      api         = "end",
+      title       = rm_non_ascii(title),
+      dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
+      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
+      issued      = as_date(issued),
+      modified    = as_date(modified),
+      released    = as_date(released),
+      group       = flatten_column(theme),
+      description = stri_trim(gremove(description, "\n")),
+      download    = get_elem(x, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
+      contact     = fmt_contactpoint(get_elem(x, "contactPoint"))) |>
+      slt(clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+      roworder(group, title) |>
+      sbt(group != "Physician office visit costs") |>
+      as_tbl()
+  )
 }
 
 #' @autoglobal
@@ -90,47 +89,32 @@ catalog_open <- function() {
 
   x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
-  x <- mtt(
-    x,
+  x <- mtt(x,
     identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
     modified    = as_date(modified),
-    year        = get_data_elem(keyword),
-    year        = greplace(year, "all years", "All"),
+    year        = get_data_elem(keyword) |> greplace("all years", "All"),
     year        = ifelse_(title == "Provider profile ID mapping table", "All", year),
-    title       = rm_non_ascii(title),
-    title       = toTitleCase(title),
-    contact     = fmt_contactpoint(x$contactPoint),
-    description = rm_quotes(description),
-    description = greplace(description, "\r\n", " "),
-    description = gremove(description, "<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$"),
-    description = stri_trim(rp_dbl_space(description)),
+    title       = toTitleCase(rm_non_ascii(title)),
+    contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+    description = rm_quotes(description) |> greplace("\r\n", " ") |> gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |> rp_dbl_space() |> stri_trim(),
     download    = get_distribution(x) |> get_elem("downloadURL") |> delist()) |>
     slt(year, title, description, modified, identifier, contact, download) |>
     as_tbl()
 
   list(
-    main = sbt(x, year == "All", -year) |>
-      mtt(clog = "open", api = "end") |>
-      colorder(clog, api) |>
-      roworder(title),
-    temp = sbt(x, year != "All") |>
-      mtt(clog = "open",
-          api = "tmp",
-          year = as.integer(year),
-          title = gremove(title, "^[0-9]{4} "),
+    end = sbt(x, year == "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
+    tmp = sbt(x, year != "All") |> mtt(clog = "open", api = "tmp", year = as.integer(year), title = gremove(title, "^[0-9]{4} "),
           description = val_match(
             title,
             "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
             "Ownership Payment Data" ~ "All ownership and investment payments from the program year",
             "Research Payment Data"  ~ "All research-related payments from the program year",
-            .default = description)
-        ) |>
+            .default = description)) |>
       colorder(clog, api) |>
       roworder(title, -year) |>
       f_nest_by(.by = c(clog, api, title, description, modified)) |>
       f_ungroup() |>
-      rnm(endpoints = data)
-    )
+      rnm(endpoints = data))
 }
 
 #' @autoglobal
@@ -144,30 +128,28 @@ catalog_caid <- function() {
       identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
       modified    = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
-      contact     = fmt_contactpoint(x$contactPoint),
-      title       = gremove(title, "^ "),
-      title       = rm_non_ascii(title),
-      title       = rp_dbl_space(title),
-      description = stri_trans_general(description, "latin-ascii"),
-      description = rm_non_ascii(description),
-      description = rm_quotes(description),
-      description = greplace(description, "\r\n", " "),
-      description = rp_dbl_space(description),
+      contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+      title       = gremove(title, "^ ") |> rm_non_ascii() |> rp_dbl_space(),
+      description = stri_trans_general(description, "latin-ascii") |> rm_non_ascii() |> rm_quotes() |> greplace("\r\n", " ") |> rp_dbl_space(),
       description = ifelse_(description == "Dataset.", NA_character_, description)) |>
     slt(title, identifier, description, periodicity, modified, contact, distribution) |>
     as_tbl()
 
   download <- new_tbl(
-    title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
+    title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
-  main <- list(
+  x <- list(
     slt(x, -distribution),
-    rowbind(sbt(download, N == 1, -N, -ext),
-            sbt(download, N > 1 & ext == "csv", -N, -ext)),
-    sbt(download, N > 2 & ext != "csv", -N, -ext) |> f_nest_by(.by = title) |> f_ungroup() |> rnm(resources = data)) |>
+    rowbind(
+      sbt(download, N == 1, -N, -ext),
+      sbt(download, N > 1 & ext == "csv", -N, -ext)),
+    sbt(download, N > 2 & ext != "csv", -N, -ext) |>
+      f_nest_by(.by = title) |>
+      f_ungroup() |>
+      rnm(resources = data)) |>
     reduce(join_on_title) |>
     roworder(title)
 
@@ -178,32 +160,22 @@ catalog_caid <- function() {
     "^[0-9]{4} Managed Care Programs by State$|",
     "^Pricing Comparison for Blood Disorder Treatments|",
     "^Child and Adult Health Care Quality Measures|",
-    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}"
-  )
+    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
 
   list(
-    main = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
-      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(clog = "caid", api = "end") |>
-      colorder(clog, api),
-    temp = subset_detect(main, title, ptn, ci = TRUE) |>
-      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(clog = "caid",
-          api = "end",
-          year  = extract_year(title),
-          title = case(
-            gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
-            gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
-            gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
-            gdetect(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
-            gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
-            gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-            .default = title),
-          description = ifelse_(
-            title == "Child and Adult Health Care Quality Measures",
-            "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
-            description)
-          ) |>
+    end = subset_detect(x, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |> mtt(clog = "caid", api = "end") |> colorder(clog, api),
+    tmp = subset_detect(x, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |> mtt(clog = "caid", api = "end", year = extract_year(title), title = case(
+      gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
+      gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
+      gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
+      gdetect(title, "State Drug Utilization Data")                        ~ "State Drug Utilization Data",
+      gdetect(title, "Pricing Comparison")                                 ~ "Pricing Comparison for Blood Disorder Treatments",
+      gdetect(title, "Product Data for Newly Reported")                    ~ "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+      .default = title),
+      description = ifelse_(
+        title == "Child and Adult Health Care Quality Measures",
+        "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+        description)) |>
       roworder(title, year) |>
       f_fill(description, periodicity) |>
       slt(clog, api, year, title, description, periodicity, modified, identifier, download) |>
@@ -212,8 +184,6 @@ catalog_caid <- function() {
       f_ungroup() |>
       rnm(endpoints = data)
     )
-    # scorecard = subset_detect(main, title, ptn, n = TRUE, ci = TRUE) |>
-    # subset_detect(title, "CoreS|Scorecard|Auto")
 }
 
 #' @autoglobal
@@ -321,7 +291,7 @@ catalog_hgov <- function() {
     roworder(title, -year)
 
   list(
-    main = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
+    end = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
                    subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(clog = "hgov",
           api = "end",
@@ -330,7 +300,7 @@ catalog_hgov <- function() {
           title = str_look_remove(title, "County,", "ahead"),
           title = gremove(title, "2015 ")) |>
       colorder(clog, api),
-    temp = rowbind(
+    tmp = rowbind(
       temporal,
       subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
       mtt(clog = "hgov",
@@ -354,7 +324,7 @@ catalog_hgov <- function() {
 #' @description
 #' List of API catalogs:
 #'   * `catalog_care`: CMS Medicare API
-#'   * `catalog_pro`: CMS Provider API
+#'   * `catalog_prov`: CMS Provider API
 #'   * `catalog_open`: CMS Open Payments API
 #'   * `catalog_caid`: CMS Medicaid API
 #'   * `catalog_hgov`: CMS HealthCare.gov API
@@ -366,7 +336,7 @@ catalog_hgov <- function() {
 catalogs <- function() {
   list(
     care = catalog_care(),
-    pro  = catalog_pro(),
+    prov = catalog_prov(),
     open = catalog_open(),
     caid = catalog_caid(),
     hgov = catalog_hgov()

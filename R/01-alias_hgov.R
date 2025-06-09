@@ -1,22 +1,3 @@
-#' @include S7_classes.R
-NULL
-
-#' @autoglobal
-#' @noRd
-hgov_dimensions <- function(x, call = caller_env()) {
-
-  x <- identifier_(x) |>
-    request() |>
-    req_url_query(offset = 0L, limit = 1L, results = "false") |>
-    req_error(is_error = ~ FALSE) |>
-    perform_simple()
-
-  class_dimensions(
-    limit  = 500L,
-    rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message))
-}
-
 #' Healthcare.Gov API Endpoints
 #' @name hgov
 #' @param alias `<chr>` endpoint or group alias
@@ -64,20 +45,21 @@ hgov_endpoint <- function(alias, call = caller_env()) {
     hgov_qhp_ethnicity      = "QHP Selections by Race/Ethnicity and County",
     hgov_qhp_age            = "QHP Selections by Age Group and County",
     hgov_qhp_business       = "QHP Landscape Health Plan Business Rule Variables",
-    cli::cli_abort(c("x"    = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x"         = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$hgov$main, x)
+  res <- select_alias(the$catalog$hgov$end, x)
 
-  if (is_empty(res))  cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(res) > 1L) cli::cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+  if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
 
   x <- c(res)
 
   class_endpoint(
     identifier  = x$identifier,
+    # catalog     = classify_api(x$clog),
     metadata    = get_metadata(x),
-    dimensions  = hgov_dimensions(x)
+    dimensions  = get_dimensions(x)
   )
 }
 
@@ -105,12 +87,12 @@ hgov_temporal <- function(alias, call = caller_env()) {
     hgov_qhp_ind_med     = "QHP Landscape Individual Market Medical",
     hgov_qhp_shop_dnt    = "QHP Landscape SHOP Market Dental",
     hgov_qhp_shop_med    = "QHP Landscape SHOP Market Medical",
-    cli::cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
+    cli_abort(c("x" = "{.emph alias} {.val {alias}} is invalid."), call = call)
     )
 
-  res <- select_alias(the$catalog$hgov$temp, x)
+  res <- select_alias(the$catalog$hgov$tmp, x)
 
-  if (is_empty(res)) cli::cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
   x <- list_tidy(
     !!!c(slt(res, -endpoints)),
@@ -120,7 +102,8 @@ hgov_temporal <- function(alias, call = caller_env()) {
 
   class_temporal(
     metadata    = get_metadata(x),
-    dimensions  = hgov_dimensions(x),
+    # catalog     = classify_api(x$clog),
+    dimensions  = get_dimensions(x),
     endpoints   = x$endpoints
   )
 }

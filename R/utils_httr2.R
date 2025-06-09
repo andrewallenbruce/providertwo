@@ -22,7 +22,12 @@ perform_simple_request <- function(x, ...) {
 #' @autoglobal
 #' @noRd
 parse_string <- function(resp, query = NULL) {
-  if (query == "results")
-    return(fparse(resp_body_string(resp)) |> _[["results"]])
+
+  if (!is.null(query) && query == "results") {
+    return(
+      fparse(
+        resp_body_string(resp)) |>
+        _[["results"]])
+    }
   fparse(resp_body_string(resp), query = query)
 }

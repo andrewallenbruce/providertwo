@@ -63,7 +63,7 @@ affiliations <- function(npi           = NULL,
     "facility_type_certification_number"         = ccn_primary)
 
 
-  x <- pro_endpoint("pdc_affiliations")
+  x <- prov_endpoint("pdc_affiliations")
 
   x <- base_request(x) |>
     req_url_query(!!!format_query_pro(args)) |>

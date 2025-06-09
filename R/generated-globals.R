@@ -14,7 +14,7 @@ utils::globalVariables(c(
   # <clinicians>
   "adrs_id",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
@@ -24,7 +24,7 @@ utils::globalVariables(c(
   # <quality_metrics>
   "category",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
@@ -32,7 +32,7 @@ utils::globalVariables(c(
   # <open_dictionary>
   "constraints",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
@@ -52,20 +52,20 @@ utils::globalVariables(c(
   # <catalog_care>
   "describedBy",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
   # <open_dictionary>
   "description",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   "dictionary",
   # <catalog_caid>
   # <catalog_hgov>
   "distribution",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   "download",
   # <catalog_care>
@@ -95,12 +95,12 @@ utils::globalVariables(c(
   "firstApprovedDate",
   # <clinicians>
   "grd_yr",
-  # <catalog_pro>
+  # <catalog_prov>
   "group",
   # <clinicians>
   "grp_assgn",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
@@ -111,13 +111,13 @@ utils::globalVariables(c(
   "is_maqi",
   # <quality_eligibility>
   "is_new",
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_hgov>
   "issued",
   # <catalog_open>
   "keyword",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   "landingPage",
   # <quality_eligibility>
   "last_name",
@@ -131,7 +131,7 @@ utils::globalVariables(c(
   # <quality_eligibility>
   "middle_name",
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
@@ -151,7 +151,7 @@ utils::globalVariables(c(
   "periodicity",
   # <catalog_care>
   "references",
-  # <catalog_pro>
+  # <catalog_prov>
   "released",
   # <catalog_care>
   "resources",
@@ -181,11 +181,11 @@ utils::globalVariables(c(
   "telehlth",
   # <catalog_care>
   "temporal",
-  # <catalog_pro>
+  # <catalog_prov>
   "theme",
   # <select_alias>
   # <catalog_care>
-  # <catalog_pro>
+  # <catalog_prov>
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>

@@ -64,7 +64,7 @@ proUtilization <- new_class(
         "procedure_category"   = procedure,
         "count"                = count,
         "percentile"           = percentile),
-      request = pro_endpoint("pdc_utilization")
+      request = prov_endpoint("pdc_utilization")
     )
   }
 )
@@ -115,7 +115,7 @@ utilization <- function(npi         = NULL,
   ) |>
     format_query_pro()
 
-  req <- pro_endpoint("pdc_utilization") |>
+  req <- prov_endpoint("pdc_utilization") |>
     base_request() |>
     req_url_query(!!!args)
 
