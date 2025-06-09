@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9328</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,19 +71,19 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">hgov_endpoint</span><span class="op">(</span><span class="st">"hgov_ab_reg_comp"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/wb6u-x2ny/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "hgov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "AB Registration Completion List"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Access Data Dictionary Here - https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Marketplaces/"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-06-06"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2025-06-09"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ issued     : Date[1:1], format: "2016-03-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.healthcare.gov/sites/default/files/uploaded_resources/TBL_RCL_156.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.healthcare.gov/sites/default/files/uploaded_resources/TBL_RCL_154.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/wb6u-x2ny/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 1022622</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 1022696</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ pages : int 2046</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields:List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ npn                                    : chr(0) </span>
@@ -99,6 +99,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog : chr "hgov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api  : chr "tmp"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title: chr "Rate PUF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [12 × 9] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year       : chr [1:12] "2025" "2024" "2023" "2022" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier : chr [1:12] "https://data.healthcare.gov/api/1/datastore/query/672d5f6a-b8a7-4ebe-87f6-67db641e192d/0" "https://data.healthcare.gov/api/1/datastore/query/2638f347-5311-4655-8d2b-1466848adeae/0" "https://data.healthcare.gov/api/1/datastore/query/e6deb20e-dd27-495b-8eb1-c67db7bbd788/0" "https://data.healthcare.gov/api/1/datastore/query/3edfe68f-b783-4e98-9120-20014dd0fe49/0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ description: chr [1:12] "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ periodicity: chr [1:12] "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ issued     : Date[1:12], format: "2025-04-29" "2024-08-06" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified   : Date[1:12], format: "2025-05-06" "2024-08-14" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ contact    : chr [1:12] "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download   : chr [1:12] "https://data.healthcare.gov/datafile/py2025/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2024/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2023/rate_puf.csv" "https://data.healthcare.gov/datafile/py2022/rate_puf.csv" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources  : chr [1:12] NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 2418441</span>
@@ -124,16 +134,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandonedependent                    : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandtwodependents                   : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ coupleandthreeormoredependents           : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [12 × 9] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year       : chr [1:12] "2025" "2024" "2023" "2022" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier : chr [1:12] "https://data.healthcare.gov/api/1/datastore/query/672d5f6a-b8a7-4ebe-87f6-67db641e192d/0" "https://data.healthcare.gov/api/1/datastore/query/2638f347-5311-4655-8d2b-1466848adeae/0" "https://data.healthcare.gov/api/1/datastore/query/e6deb20e-dd27-495b-8eb1-c67db7bbd788/0" "https://data.healthcare.gov/api/1/datastore/query/3edfe68f-b783-4e98-9120-20014dd0fe49/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ description: chr [1:12] "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ "The Rate PUF (Rate-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The R"| __truncated__ ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ periodicity: chr [1:12] "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" "Annually [R/P1Y]" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ issued     : Date[1:12], format: "2025-04-29" "2024-08-06" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified   : Date[1:12], format: "2025-05-06" "2024-08-14" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ contact    : chr [1:12] "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (mailto:CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" "Center for Consumer Information and Insurance Oversight (CMS_FEPS@cms.hhs.gov)" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download   : chr [1:12] "https://data.healthcare.gov/datafile/py2025/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2024/Rate_PUF.csv" "https://data.healthcare.gov/datafile/py2023/rate_puf.csv" "https://data.healthcare.gov/datafile/py2022/rate_puf.csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources  : chr [1:12] NA NA NA NA ...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

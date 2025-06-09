@@ -25,7 +25,7 @@ about clinicians' experience."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9328</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,9 +72,9 @@ about clinicians' experience.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="va">alias</span>, call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prov_endpoint</span><span class="op">(</span><span class="va">alias</span>, call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">pro_group</span><span class="op">(</span><span class="va">alias</span>, call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">prov_group</span><span class="op">(</span><span class="va">alias</span>, call <span class="op">=</span> <span class="fu">caller_env</span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">affiliations</span><span class="op">(</span></span>
 <span>  npi <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -291,11 +291,10 @@ services in said unit.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">pro_endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">prov_endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
@@ -306,6 +305,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/dd03994fc93e296bb0297f1cd43cc987_1744668308/ASC_Facility.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 11288</span>
@@ -361,7 +361,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_sample              : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_rate                : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ asc20_footnote            : chr(0) </span>
-<span class="r-in"><span><span class="fu">pro_group</span><span class="op">(</span><span class="st">"pro_dialysis"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">prov_group</span><span class="op">(</span><span class="st">"pro_dialysis"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
@@ -375,6 +375,13 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024%20Data%20Dictionary.xlsx"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024_DFR_Guide%20and%20Methodology.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ endpoints : tibble [5 × 6] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:5] 2024 2023 2022 2021 2020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:5], format: "2024-02-29" "2023-03-06" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal  : chr [1:5] "2024-01-01 • 2024-12-31" "2023-01-01 • 2023-12-31" "2022-01-01 • 2022-12-31" "2021-01-01 • 2021-12-31" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:5] "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data" "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data" "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data" "https://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:5] "https://data.cms.gov/sites/default/files/2023-02/2eeb2aa7-05cd-4b7a-a4b2-62e82da03b96/dfr_facility_socrata_fy2023.csv" "https://data.cms.gov/sites/default/files/2022-02/48802694-7450-47c3-a61f-dad7d392037c/dfr_facility_socrata_fy2022.csv" "https://data.cms.gov/sites/default/files/2021-01/FY_2021_Facility_Level_Dialysis_Facility_Reports.csv" "https://data.cms.gov/sites/default/files/2020-12/7q25-ht2t.csv" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:5] "https://data.cms.gov/data-api/v1/dataset-resources/62d125ff-c959-4c5c-8a46-8cacba50bfd4" "https://data.cms.gov/data-api/v1/dataset-resources/200e7e7e-a5a6-4450-ba18-ab53d237cc45" "https://data.cms.gov/data-api/v1/dataset-resources/ebc64ad1-164c-455a-80ca-cb0753e44a46" "https://data.cms.gov/data-api/v1/dataset-resources/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 11679243</span>
@@ -394,17 +401,9 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ Measure_Score : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year          : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ Measure_ID    : chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ endpoints : tibble [5 × 6] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:5] 2024 2023 2022 2021 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:5], format: "2024-02-29" "2023-03-06" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal  : chr [1:5] "2024-01-01 • 2024-12-31" "2023-01-01 • 2023-12-31" "2022-01-01 • 2022-12-31" "2021-01-01 • 2021-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:5] "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data" "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data" "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data" "https://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:5] "https://data.cms.gov/sites/default/files/2023-02/2eeb2aa7-05cd-4b7a-a4b2-62e82da03b96/dfr_facility_socrata_fy2023.csv" "https://data.cms.gov/sites/default/files/2022-02/48802694-7450-47c3-a61f-dad7d392037c/dfr_facility_socrata_fy2022.csv" "https://data.cms.gov/sites/default/files/2021-01/FY_2021_Facility_Level_Dialysis_Facility_Reports.csv" "https://data.cms.gov/sites/default/files/2020-12/7q25-ht2t.csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:5] "https://data.cms.gov/data-api/v1/dataset-resources/62d125ff-c959-4c5c-8a46-8cacba50bfd4" "https://data.cms.gov/data-api/v1/dataset-resources/200e7e7e-a5a6-4450-ba18-ab53d237cc45" "https://data.cms.gov/data-api/v1/dataset-resources/ebc64ad1-164c-455a-80ca-cb0753e44a46" "https://data.cms.gov/data-api/v1/dataset-resources/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_byfacility: &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - Listing by Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "A list of all dialysis facilities registered with Medicare that includes addresses and phone numbers, as well a"| __truncated__</span>
@@ -415,6 +414,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/c04d84bc5c641284494bee4f20f17f9c_1742846704/DFC_FACILITY.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 7556</span>
@@ -521,9 +521,8 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ hcp_vaccination_data_collection_dates                           : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. ..  [list output truncated]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_national  : &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2rkq-ygai/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - National Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "National averages of common dialysis quality measures."</span>
@@ -534,6 +533,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/ae019f56e76839ee1da1b51f502954cc_1742846706/DFC_NATIONAL.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/2rkq-ygai#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/2rkq-ygai"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2rkq-ygai/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1</span>
@@ -599,9 +599,8 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_2_smsras_expected_us                        : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ n_for_smsr_category_3_smsrworse_than_expected_us                : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dialysis_state     : &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2fpu-cgbb/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "pro"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dialysis Facility - State Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "State averages of common dialysis quality measures."</span>
@@ -612,6 +611,7 @@ services in said unit.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/3b5f0449f531ee07c467e49abed89954_1742846705/DFC_STATE.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/2fpu-cgbb#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/2fpu-cgbb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/2fpu-cgbb/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 2000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 56</span>

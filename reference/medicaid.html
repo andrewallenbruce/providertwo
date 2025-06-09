@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9328</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,6 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">caid_endpoint</span><span class="op">(</span><span class="st">"managed_longterm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
@@ -86,6 +85,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Decennially [R/P10Y]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.medicaid.gov/sites/default/files/uploaded_resources/managed-long-term-services-and-supports-mltss-"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 399</span>
@@ -107,6 +107,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "State Drug Utilization Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "Drug utilization data are reported by states for covered outpatient drugs that are paid for by state Medicaid a"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [34 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:34] 2024 2023 2022 2021 2020 2019 2018 2017 2016 2015 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:34], format: "2025-05-14" "2025-05-14" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:34] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0" "https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0" "https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0" "https://data.medicaid.gov/api/1/datastore/query/eec7fbe6-c4c4-5915-b3d0-be5828ef4e9d/0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:34] "https://download.medicaid.gov/data/SDUD-2024.csv" "https://download.medicaid.gov/data/SDUD-2023.csv" "https://download.medicaid.gov/data/SDUD-2022.csv" "https://download.medicaid.gov/data/SDUD-2021.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 5205065</span>
@@ -127,17 +132,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ total_amount_reimbursed       : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ medicaid_amount_reimbursed    : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ non_medicaid_amount_reimbursed: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [34 × 4] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:34] 2024 2023 2022 2021 2020 2019 2018 2017 2016 2015 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:34], format: "2025-05-14" "2025-05-14" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:34] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0" "https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0" "https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0" "https://data.medicaid.gov/api/1/datastore/query/eec7fbe6-c4c4-5915-b3d0-be5828ef4e9d/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:34] "https://download.medicaid.gov/data/SDUD-2024.csv" "https://download.medicaid.gov/data/SDUD-2023.csv" "https://download.medicaid.gov/data/SDUD-2022.csv" "https://download.medicaid.gov/data/SDUD-2021.csv" ...</span>
 <span class="r-in"><span><span class="fu">caid_group</span><span class="op">(</span><span class="st">"caid_dual_status"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dual Status Information for Medicaid and CHIP Beneficiaries"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_month: &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/36ed6909-ab49-4ca5-a38e-6790138cd613/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -146,6 +145,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/DualStatus-montly.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/36ed6909-ab49-4ca5-a38e-6790138cd613/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 13356</span>
@@ -157,7 +157,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ countenrolled: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dqunusable   : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_year : &lt;class_endpoint&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/93b36a8e-4dd5-4ff4-9a8b-8c6537684705/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -166,6 +165,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/DualStatus-anul.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/93b36a8e-4dd5-4ff4-9a8b-8c6537684705/0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1113</span>

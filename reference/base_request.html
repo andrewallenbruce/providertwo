@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9328</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">base_request</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">base_request</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -54,6 +54,10 @@
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A <code>class_endpoint</code>, <code>class_temporal</code> or <code>class_group</code> object</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Additional arguments</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -66,679 +70,45 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="medicare.html">care_endpoint</a></span><span class="op">(</span><span class="st">"care_enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=5000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="medicare.html">care_temporal</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-in"><span><span class="co">#care_temporal("quality_payment") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co">#care_group("care_hospital") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="provider.html">prov_endpoint</a></span><span class="op">(</span><span class="st">"pdc_affiliations"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data?offset=0&amp;size=5000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0?count=true&amp;results=true&amp;offset=0&amp;limit=1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/4cae2e39-693d-4699-ac23-2611b29c5da7/data?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/d87865f9-70b6-41fb-be3a-db735c4a05d2/data?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="medicare.html">care_group</a></span><span class="op">(</span><span class="st">"care_hospital"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_owners</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_chow</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_chow_owner</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_enrollments</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_costreport</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_service_area</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/data-api/v1/dataset/8708ca8b-8636-44ed-8303-724cbfaf78ad/data-viewer?offset=0&amp;size=5000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="provider.html">pro_endpoint</a></span><span class="op">(</span><span class="st">"pdc_affiliations"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/27ea-46a8/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="provider.html">pro_group</a></span><span class="op">(</span><span class="st">"pro_mips"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_performance</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/a174-a962/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_patient</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/8c70-d353/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_clinician</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/7d6a-e7a6/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_group</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/0ba7-2cb0/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_virtual</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.cms.gov/provider-data/api/1/datastore/query/46dc-a66c/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=2000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#prov_group("pro_mips") |&gt; base_request()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="openpayments.html">open_endpoint</a></span><span class="op">(</span><span class="st">"profile_covered"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/23160558-6742-54ff-8b9f-cac7d514ff4e/0?count=true&amp;results=true&amp;offset=0&amp;limit=1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="openpayments.html">open_temporal</a></span><span class="op">(</span><span class="st">"payment_general"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/fb3a65aa-c901-4a38-a813-b04b00dfa2a9/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/df01c2f8-dc1f-4e79-96cb-8208beaf143c/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/0380bbeb-aea1-58b6-b708-829f92a48202/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/a08c4b30-5cf3-4948-ad40-36f404619019/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/4e54dd6c-30f8-4f86-86a7-3c109a89528e/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/f003634c-c103-568f-876c-73017fa83be0/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/74e3a32c-e8f8-595c-899c-35f9bffa828f/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu"><a href="openpayments.html">open_group</a></span><span class="op">(</span><span class="st">"payment_grouped"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/4017acfa-0eeb-4b8a-b68c-3b41e779c4a2/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/686b765e-f4b7-4d35-a050-fb5af926dbbe/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/d35243be-55cb-5087-931e-a294e0e0917f/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/1fd2be47-cb72-435a-b2df-142f38e99a05/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/0ff0961f-8295-477c-8044-85b9a0753893/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/07c1e377-eb5b-4830-ad9b-61f04258036e/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature[[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/5aad28fa-9785-492e-9a92-8d7b595bc43b/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/4fbf0094-3c7b-425a-aabe-5778052559ad/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/d2d87f39-b117-4ac8-9f36-a088fb22a25b/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/7c9ebb83-8f88-5462-ab7d-1925b0113cfc/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/78ad9c8d-d7ae-4066-bf2d-a66e3c9d6e3b/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/63c6fc23-1744-4040-babe-1af39a57c598/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/b6f534a9-ae05-4e78-9acf-c48b79fcee13/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity[[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/120f42a3-4f3c-48b2-bf32-4c852390c41a/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/72008dab-0953-4226-a4cd-9f1872e8170d/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/cedcd327-4e5d-43f9-8eb1-c11850fa7c66/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/a2714020-f599-52b0-b12b-8f5b510e547a/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/7dfe6254-2aee-454f-9ea5-df611a9a7b55/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/7f3bcc65-6f34-42de-8e63-7611e0a6f67b/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/76d91818-7015-4f94-a5b8-6f0dbf4fe206/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature[[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/8ab7b1de-c6da-4613-929e-5fbd27ea1032/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/29c23b6a-dd1e-4d82-a606-8d792c7f229e/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/171e369a-6f25-49eb-aa36-37f0a497e5ca/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/f240c437-9d8a-5be7-95a5-8ce8e0d970bf/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/532df191-473f-4bcc-9056-a6260b9437b5/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/6c8251d4-3839-444b-810b-5bf035a23326/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/c1ce263b-0625-4ce6-9e81-62a7b3708f4b/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature[[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/d3d4880a-be30-48ca-9a9b-6d8828f9c852/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/f83aed3a-7504-4fca-aabb-ac0338c79688/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/c64c40af-23a5-4419-8b64-692684483664/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/7fad5b56-2cfe-52ab-ac4d-3200780287d4/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/7f3055b6-73d8-5aff-be15-55873552e2cd/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/37fba404-224d-5bad-9c62-527d9316e516/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/6dd14c90-a6bd-52f8-9629-4d27fc02096d/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature[[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://openpaymentsdata.cms.gov/api/1/datastore/query/4013f179-6692-5ae8-8c51-ed7cc4b9bd17/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "openpaymentsdata.cms.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#open_temporal("payment_general") |&gt; base_request()</span></span></span>
+<span class="r-in"><span><span class="co">#open_group("payment_grouped") |&gt; base_request()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_endpoint</a></span><span class="op">(</span><span class="st">"mlr_summary"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/743f9f04-4473-41e2-9da2-9a89db65ee55/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/743f9f04-4473-41e2-9da2-9a89db65ee55/0?count=true&amp;results=true&amp;offset=0&amp;limit=1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_temporal</a></span><span class="op">(</span><span class="st">"healthcare_quality"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/e85033c7-367e-467e-9e81-8e85048102b8/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/dfd13757-d763-4f7a-9641-3f06ce21b4c6/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/a058ef78-e18b-4435-94aa-b70ab6ce5904/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/fbbe1734-b448-4e5a-bc94-3f8688534741/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/e36d89c0-f62e-56d5-bc7e-b0adf89262b8/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/229d6279-e614-5353-9226-f6a6f37d06c3/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/c1028fdf-2e43-5d5e-990b-51ed03428625/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[8]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/fc3c7c14-4b08-59c2-97db-0726e478dfdf/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[9]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/45a28339-17a5-55e6-8e74-e9004fc703d8/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[10]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/2b6a0ec0-efe6-5aec-9fe4-e168b8b6f553/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=8000</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.medicaid.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#caid_temporal("healthcare_quality") |&gt; base_request()</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="hgov.html">hgov_endpoint</a></span><span class="op">(</span><span class="st">"hgov_catastrophic"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/cfvf-wask/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/cfvf-wask/0?count=true&amp;results=true&amp;offset=0&amp;limit=1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-in"><span><span class="fu"><a href="hgov.html">hgov_temporal</a></span><span class="op">(</span><span class="st">"hgov_mlr"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">base_request</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/pwgg-dtft/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/kfuw-rdvm/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/abhi-yds7/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/jg62-irbb/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/bx9c-fkxn/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/pszf-56pp/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/f73t-ceqr/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[8]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/pqqm-izx7/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[9]]</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">&lt;httr2_request&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">GET</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> https://data.healthcare.gov/api/1/datastore/query/mt79-mi5w/0?count=false&amp;format=json&amp;keys=true&amp;results=true&amp;rowIds=false&amp;schema=false&amp;offset=0&amp;limit=500</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Body</span>: empty</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Policies:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • <span style="color: #00BB00;">throttle_realm</span>: "data.healthcare.gov"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#hgov_temporal("hgov_mlr") |&gt; base_request()</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

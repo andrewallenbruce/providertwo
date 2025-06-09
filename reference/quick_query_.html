@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9327</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9328</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">asc</span> <span class="op">&lt;-</span> <span class="fu"><a href="provider.html">pro_endpoint</a></span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">asc</span> <span class="op">&lt;-</span> <span class="fu"><a href="provider.html">prov_endpoint</a></span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">q0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>`conditions[0][property]` <span class="op">=</span> <span class="st">"state"</span>,</span></span>
@@ -117,28 +117,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc11_rate &lt;chr&gt;, asc11_footnote &lt;chr&gt;, asc12_total_cases &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc12_performance_category &lt;chr&gt;, asc12_rshv_rate &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc12_interval_lower_limit &lt;chr&gt;, asc12_interval_upper_limit &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">quick_query_</span><span class="op">(</span><span class="va">asc</span>, <span class="va">q2</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Returning <span style="font-style: italic;">2334</span> results...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,334 × 50</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    facility_name       facility_id npi   citytown state zip_code year  asc1_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> THE SURGERY CENTER… 05C0001831  1003… VACAVIL… CA    95687    2023  0.00     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> THE SURGERY CENTER… 05C0001831  1003… VACAVIL… CA    95687    2024… N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CARLSBAD SURGERY C… 05C0001873  1003… CARLSBAD CA    92011    2023  N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> CARLSBAD SURGERY C… 05C0001873  1003… CARLSBAD CA    92011    2024… N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> NEWPORT PLAZA SURG… 05C0001672  1003… COSTA M… CA    92627    2023  0.00     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> NEWPORT PLAZA SURG… 05C0001672  1003… COSTA M… CA    92627    2024… N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ON BEACH SURGERY C… 55C0001110  1003… BUENA P… CA    90621    2023  0.00     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ON BEACH SURGERY C… 55C0001110  1003… BUENA P… CA    90621    2024… N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> BEVERLY HILLS ENDO… 05C0002277  1003… BEVERLY… CA    90211    2023  N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> BEVERLY HILLS ENDO… 05C0002277  1003… BEVERLY… CA    90211    2024… N/A      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,324 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 42 more variables: asc1_footnote &lt;chr&gt;, asc2_rate &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc2_footnote &lt;chr&gt;, asc3_rate &lt;chr&gt;, asc3_footnote &lt;chr&gt;, asc4_rate &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc4_footnote &lt;chr&gt;, asc9_rate &lt;chr&gt;, asc9_footnote &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc11_rate &lt;chr&gt;, asc11_footnote &lt;chr&gt;, asc12_total_cases &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc12_performance_category &lt;chr&gt;, asc12_rshv_rate &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   asc12_interval_lower_limit &lt;chr&gt;, asc12_interval_upper_limit &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="co">#quick_query_(asc, q2)</span></span></span>
 <span class="r-in"><span><span class="fu">quick_query_</span><span class="op">(</span><span class="va">asc</span>, <span class="va">q3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Returning <span style="font-style: italic;">1879</span> results...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,879 × 50</span></span>
