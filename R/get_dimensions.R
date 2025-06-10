@@ -35,7 +35,10 @@ care_dimensions <- function(x, call = caller_env()) {
   class_dimensions(
     limit  = 5000L,
     rows   = x$total_rows %||% 0L,
-    fields = x$headers %||% new_list(length = 1L, default = x$meta$message)
+    fields = x$headers %||% new_list(
+      length = 1L,
+      default = x$meta$message %||% "An Error Has Occurred"
+    )
   )
 }
 
@@ -53,7 +56,10 @@ caid_dimensions <- function(x, call = caller_env()) {
   class_dimensions(
     limit  = 8000L,
     rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message)
+    fields = x$query$properties %||% new_list(
+      length = 1L,
+      default = x$message %||% "An Error Has Occurred"
+    )
   )
 }
 
@@ -71,7 +77,10 @@ prov_dimensions <- function(x, call = caller_env()) {
   class_dimensions(
     limit  = 2000L,
     rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message)
+    fields = x$query$properties %||% new_list(
+      length = 1L,
+      default = x$message %||% "An Error Has Occurred"
+    )
   )
 }
 
@@ -89,7 +98,10 @@ open_dimensions <- function(x, call = caller_env()) {
   class_dimensions(
     limit  = 500L,
     rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message)
+    fields = x$query$properties %||% new_list(
+      length = 1L,
+      default = x$message %||% "An Error Has Occurred"
+    )
   )
 }
 
@@ -107,6 +119,9 @@ hgov_dimensions <- function(x, call = caller_env()) {
   class_dimensions(
     limit  = 500L,
     rows   = x$count %||% 0L,
-    fields = x$query$properties %||% new_list(length = 1L, default = x$message)
+    fields = x$query$properties %||% new_list(
+      length = 1L,
+      default = x$message %||% "An Error Has Occurred"
+    )
   )
 }

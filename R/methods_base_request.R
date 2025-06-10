@@ -23,17 +23,17 @@ method(default_query, class_backend) <- function(x) {
 #' @returns An `<httr2_request>` object or list of `<httr2_request>` objects
 #' @examples
 #' care_endpoint("care_enrollees") |> base_request()
-#' #care_temporal("quality_payment") |> base_request()
-#' #care_group("care_hospital") |> base_request()
+#' care_temporal("quality_payment") |> base_request()
+#' care_group("care_hospital") |> base_request()
 #' prov_endpoint("pdc_affiliations") |> base_request()
-#' #prov_group("pro_mips") |> base_request()
+#' prov_group("pro_mips") |> base_request()
 #' open_endpoint("profile_covered") |> base_request()
-#' #open_temporal("payment_general") |> base_request()
-#' #open_group("payment_grouped") |> base_request()
+#' open_temporal("payment_general") |> base_request()
+#' open_group("payment_grouped") |> base_request()
 #' caid_endpoint("mlr_summary") |> base_request()
-#' #caid_temporal("healthcare_quality") |> base_request()
+#' caid_temporal("healthcare_quality") |> base_request()
 #' hgov_endpoint("hgov_catastrophic") |> base_request()
-#' #hgov_temporal("hgov_mlr") |> base_request()
+#' hgov_temporal("hgov_mlr") |> base_request()
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x")
@@ -42,30 +42,18 @@ method(base_request, class_endpoint) <- function(x) {
   identifier_(x) |>
     request() |>
     req_throttle(capacity = 30, fill_time_s = 60) |>
-    req_url_query(splice(default_query(x)))
+    req_url_query(splice(default_query(x))) |>
+    req_error(is_error = ~ FALSE)
 }
 
 method(base_request, class_temporal) <- function(x) {
-  switch(
-    clog_(x),
-    care = map(identifier_(x), function(i) request(i) |>
+  identifier_(x) |>
+    map(
+      function(i)
+        request(i) |>
         req_throttle(capacity = 30, fill_time_s = 60) |>
-        req_url_query(
-          offset = 0L,
-          size   = limit_(x))),
-    map(identifier_(x), function(i) request(i) |>
-        req_throttle(capacity = 30, fill_time_s = 60) |>
-        req_url_query(
-          count   = "false",
-          format  = "json",
-          keys    = "true",
-          results = "true",
-          rowIds  = "false",
-          schema  = "false",
-          offset  = 0L,
-          limit   = limit_(x)
-        )
-      )
+        req_url_query(splice(default_query(x))) |>
+        req_error(is_error = ~ FALSE)
     )
 }
 

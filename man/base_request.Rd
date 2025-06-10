@@ -19,15 +19,15 @@ Create a new \verb{<httr2_request>} by class
 }
 \examples{
 care_endpoint("care_enrollees") |> base_request()
-#care_temporal("quality_payment") |> base_request()
-#care_group("care_hospital") |> base_request()
+care_temporal("quality_payment") |> base_request()
+care_group("care_hospital") |> base_request()
 prov_endpoint("pdc_affiliations") |> base_request()
-#prov_group("pro_mips") |> base_request()
+prov_group("pro_mips") |> base_request()
 open_endpoint("profile_covered") |> base_request()
-#open_temporal("payment_general") |> base_request()
-#open_group("payment_grouped") |> base_request()
+open_temporal("payment_general") |> base_request()
+open_group("payment_grouped") |> base_request()
 caid_endpoint("mlr_summary") |> base_request()
-#caid_temporal("healthcare_quality") |> base_request()
+caid_temporal("healthcare_quality") |> base_request()
 hgov_endpoint("hgov_catastrophic") |> base_request()
-#hgov_temporal("hgov_mlr") |> base_request()
+hgov_temporal("hgov_mlr") |> base_request()
 }

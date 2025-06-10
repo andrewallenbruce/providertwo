@@ -347,6 +347,7 @@ catalogs <- function() {
   )
 }
 
+options(fastplyr.inform = FALSE)
 the         <- new.env(parent = emptyenv())
 the$catalog <- catalogs()
 
