@@ -34,7 +34,7 @@ open_dictionary <- function() {
       parse_string(resp, query = "/data") |>
         get_elem("fields") |>
         map_na_if() |>
-        as_tbl() |>
+        as_fibble() |>
         mtt(description = stri_trans_general(description, "latin-ascii"),
             description = gremove(description, "[\n\"']"),
             description = greplace(description, "[\\\\]", "-"),
@@ -72,7 +72,7 @@ caid_dictionary <- function() {
 
       x <- parse_string(resp, query = "/data")
 
-      new_tbl(
+      fibble(
         endpoint    = x$title,
         field       = x$fields$name,
         title       = x$fields$title,

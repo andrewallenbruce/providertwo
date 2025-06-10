@@ -53,7 +53,7 @@ npi_nppes <- function(npi            = NULL,
       perform_simple() |>
       _[["results"]] |>
       slt(-created_epoch, -last_updated_epoch) |>
-      as_tbl()
+      as_fibble()
 }
 
 #' @autoglobal
@@ -71,7 +71,7 @@ npi_nppes <- function(npi            = NULL,
       resps_successes() |>
       resps_data(\(resp) parse_string(resp, query = "results")) |>
       slt(-created_epoch, -last_updated_epoch) |>
-      as_tbl() |>
+      as_fibble() |>
       rrapply(
         condition = \(x) !is.null(x),
         deflt     = NA_character_,

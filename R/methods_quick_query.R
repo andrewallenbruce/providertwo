@@ -97,7 +97,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
         map(
           function(x)
             parse_string(x, query = "results") |> # TODO
-            as_tbl() |>
+            as_fibble() |>
             map_na_if()
         ) |>
         pluck(1) |>
@@ -132,7 +132,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
         function(x)
           parse_string(x,
             query = "/data") |>  # TODO
-          as_tbl() |>
+          as_fibble() |>
           map_na_if()) |>
       list_rbind() |>
       name_fields_(x)

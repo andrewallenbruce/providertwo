@@ -71,7 +71,6 @@ affiliations <- function(npi           = NULL,
     _[["results"]] |>
     map_na_if() |>
     rnm(pro_names("affiliations")) |>
-    as_tbl()
-
+    as_fibble()
   x
 }

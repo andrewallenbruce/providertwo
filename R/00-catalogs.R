@@ -1,4 +1,5 @@
 #' @include utils_misc.R
+#' @include fastplyr.R
 NULL
 
 #' @autoglobal
@@ -20,7 +21,7 @@ catalog_care <- function() {
       download   = lag_(downloadURL, n = -1L),
       resources  = resourcesAPI) |>
     colorder(title) |>
-    as_tbl()
+    as_fibble()
 
   d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
 
@@ -42,14 +43,13 @@ catalog_care <- function() {
       stri_trim()
     ) |>
     slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
-    as_tbl() |>
+    as_fibble() |>
     join_on_title(sbt(d, format == "latest", title, download, resources)) |>
     roworder(title)
 
   d <- sbt(d, title %!in_% care_types("single") & format != "latest", -format) |>
     roworder(title, -year) |>
-    f_nest_by(.by = c(clog, title)) |>
-    f_ungroup() |>
+    fnest(by = c("clog", "title")) |>
     rnm(endpoints = data) |>
     join_on_title(slt(x, title, description, periodicity, contact, dictionary, site, references)) |>
     colorder(endpoints, pos = "end")
@@ -76,10 +76,9 @@ catalog_prov <- function() {
       description = stri_trim(gremove(description, "\n")),
       download    = get_elem(x, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
       contact     = fmt_contactpoint(get_elem(x, "contactPoint"))) |>
-      slt(clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+      sbt(group != "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
       roworder(group, title) |>
-      sbt(group != "Physician office visit costs") |>
-      as_tbl()
+      as_fibble()
   )
 }
 
@@ -99,7 +98,7 @@ catalog_open <- function() {
     description = rm_quotes(description) |> greplace("\r\n", " ") |> gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |> rp_dbl_space() |> stri_trim(),
     download    = get_distribution(x) |> get_elem("downloadURL") |> delist()) |>
     slt(year, title, description, modified, identifier, contact, download) |>
-    as_tbl()
+    as_fibble()
 
   list(
     end = sbt(x, year == "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
@@ -112,8 +111,7 @@ catalog_open <- function() {
             .default = description)) |>
       colorder(clog, api) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(clog, api, title, description, modified)) |>
-      f_ungroup() |>
+      fnest(by = c("clog", "api", "title", "description", "modified")) |>
       rnm(endpoints = data))
 }
 
@@ -133,9 +131,9 @@ catalog_caid <- function() {
       description = stri_trans_general(description, "latin-ascii") |> rm_non_ascii() |> rm_quotes() |> greplace("\r\n", " ") |> rp_dbl_space(),
       description = ifelse_(description == "Dataset.", NA_character_, description)) |>
     slt(title, identifier, description, periodicity, modified, contact, distribution) |>
-    as_tbl()
+    as_fibble()
 
-  download <- new_tbl(
+  download <- fibble(
     title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download)) |>
@@ -147,8 +145,7 @@ catalog_caid <- function() {
       sbt(download, N == 1, -N, -ext),
       sbt(download, N > 1 & ext == "csv", -N, -ext)),
     sbt(download, N > 2 & ext != "csv", -N, -ext) |>
-      f_nest_by(.by = title) |>
-      f_ungroup() |>
+      fnest(by = "title") |>
       rnm(resources = data)) |>
     reduce(join_on_title) |>
     roworder(title)
@@ -163,8 +160,17 @@ catalog_caid <- function() {
     "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
 
   list(
-    end = subset_detect(x, title, ptn, n = TRUE, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |> mtt(clog = "caid", api = "end") |> colorder(clog, api),
-    tmp = subset_detect(x, title, ptn, ci = TRUE) |> subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |> mtt(clog = "caid", api = "end", year = extract_year(title), title = case(
+    end = subset_detect(x, title, ptn, n = TRUE, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(clog = "caid",
+          api = "end") |>
+      colorder(clog, api),
+    tmp = subset_detect(x, title, ptn, ci = TRUE) |>
+      subset_detect(title, "CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(clog = "caid",
+          api = "end",
+          year = extract_year(title),
+          title = case(
       gdetect(title, "Child and Adult Health Care Quality Measures")       ~ "Child and Adult Health Care Quality Measures",
       gdetect(title, "[0-9]{4} Manage")                                    ~ "Managed Care Programs by State",
       gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") ~ "NADAC",
@@ -177,11 +183,10 @@ catalog_caid <- function() {
         "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
         description)) |>
       roworder(title, year) |>
-      f_fill(description, periodicity) |>
+      ffill(description, periodicity) |>
       slt(clog, api, year, title, description, periodicity, modified, identifier, download) |>
       roworder(title, -year) |>
-      f_nest_by(.by = c(clog, api, title, description, periodicity)) |>
-      f_ungroup() |>
+      fnest(by = c("clog", "api", "title", "description", "periodicity")) |>
       rnm(endpoints = data)
     )
 }
@@ -193,7 +198,7 @@ catalog_hgov <- function() {
   x <- fload("https://data.healthcare.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
   x <- x |>
-    as_tbl() |>
+    as_fibble() |>
     mtt(
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
       title       = rm_non_ascii(title),
@@ -208,7 +213,7 @@ catalog_hgov <- function() {
       contact     = fmt_contactpoint(x$contactPoint)) |>
     slt(title, identifier, description, periodicity, issued, modified, contact, distribution)
 
-  download <- new_tbl(
+  download <- fibble(
     title    = cheapr_rep_each(x$title, fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("downloadURL") |> delist(),
     ext      = path_ext(download))
@@ -292,9 +297,9 @@ catalog_hgov <- function() {
 
   list(
     end = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
-                   subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
-      mtt(clog = "hgov",
-          api = "end",
+                  subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
+      mtt(clog  = "hgov",
+          api   = "end",
           title = greplace(title, "/\\s", "/"),
           title = greplace(title, "Qualifying Health Plan", "QHP"),
           title = str_look_remove(title, "County,", "ahead"),
@@ -306,8 +311,7 @@ catalog_hgov <- function() {
       mtt(clog = "hgov",
           api = "tmp") |>
       colorder(clog, api) |>
-      f_nest_by(.by = c(clog, api, title)) |>
-      f_ungroup() |>
+      fnest(by = c("clog", "api", "title")) |>
       rnm(endpoints = data)
     # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     #   mtt(api = "HealthcareGov [Temporal]") |>

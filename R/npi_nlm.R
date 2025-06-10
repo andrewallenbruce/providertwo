@@ -49,13 +49,14 @@ npi_nlm <- function(terms, npi = NULL) {
         fparse(query = "/3") |>
         as_df() |>
         set_names(c("full_name", "npi", "specialty", "full_address")) |>
-        as_tbl()
+        as_fibble()
       )
   }
 
   if (n >= 7500L)
-    cli::cli_warn(c("!" = "{.strong {.val {n}}} Results Found",
-                    "v" = "Returning API limit of {.kbd 7500}."))
+    cli_warn(
+      c("!" = "{.strong {.val {n}}} Results Found",
+        "v" = "Returning API limit of {.kbd 7500}."))
 
   req <- map(
     glue('{nlm_url("idv")}offset={offset_seq(n = if (n >= 7500L) 7499L else n, 500L)}'),
@@ -79,5 +80,5 @@ npi_nlm <- function(terms, npi = NULL) {
         as_df()) |>
     rowbind() |>
     set_names(c("full_name", "npi", "specialty", "full_address")) |>
-    as_tbl()
+    as_fibble()
 }

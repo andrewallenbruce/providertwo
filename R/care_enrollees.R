@@ -60,7 +60,7 @@ enrollees <- function(npi                   = NULL,
     get_elem(c("data", "headers"))
 
     x$data |>
-    as_tbl() |>
+    as_fibble() |>
     set_names(x$meta) |>
     map_na_if() |>
     rnm(care_names("enrollees"))

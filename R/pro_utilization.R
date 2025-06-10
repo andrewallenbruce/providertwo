@@ -137,6 +137,6 @@ utilization <- function(npi         = NULL,
       _[["results"]] |>
       map_na_if() |>
       rnm(pro_names("utilization")) |>
-      as_tbl()
+      as_fibble()
   }
 }

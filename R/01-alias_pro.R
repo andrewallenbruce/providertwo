@@ -177,7 +177,7 @@ prov_endpoint <- function(alias, call = caller_env()) {
   x <- c(res)
 
   class_endpoint(
-    identifier  = x$identifier,
+    identifier  = identifier_(x),
     metadata    = get_metadata(x),
     dimensions  = get_dimensions(x)
   )
@@ -228,10 +228,9 @@ prov_group <- function(alias, call = caller_env(), ...) {
     pro_reduction        = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr")),
     cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
-
   new_group(
-    member_names = x$alias,
-    group_name   = x$group,
+    member_names = get_elem(x, "alias"),
+    group_name   = get_elem(x, "group"),
     ...
   )
 }

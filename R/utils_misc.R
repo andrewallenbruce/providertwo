@@ -158,12 +158,16 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-delist <- function(x) unlist(x, use.names = FALSE)
+delist <- function(x) {
+  unlist(x, use.names = FALSE)
+  }
 
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-as_date <- function(x, ..., fmt = "%Y-%m-%d") as.Date(x, ..., format = fmt)
+as_date <- function(x, ..., fmt = "%Y-%m-%d") {
+  as.Date(x, ..., format = fmt)
+  }
 
 #' @autoglobal
 #' @noRd
@@ -205,7 +209,7 @@ fmt_num <- function(x) prettyNum(x, big.mark = ",")
 #' @autoglobal
 #' @noRd
 cli_results <- function(n, limit, end, api) {
-  cli::cli_inform(
+  cli_inform(
     c(
       "{.pkg {cli::symbol$square_small_filled}} {end} {.kbd {api}}",
       "{.pkg {cli::symbol$square_small_filled}} {n} RW{?S} {.kbd {offset_size(n, limit)} PG{?S}}"
@@ -460,7 +464,7 @@ care_types <- function(x) {
       "Medicare COVID-19 Hospitalization Trends",
       "Public Reporting of Missing Digital Contact Information"
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   ) |>
     unlist(use.names = FALSE)
 }

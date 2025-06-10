@@ -235,7 +235,7 @@ care_types <- function(x) {
       "Medicare COVID-19 Hospitalization Trends",
       "Public Reporting of Missing Digital Contact Information"
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   ) |>
     unlist(use.names = FALSE)
 }

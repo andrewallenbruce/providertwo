@@ -37,9 +37,9 @@ tidy_resources <- function(x) {
       ext      = tolower(path_ext(downloadURL)),
       download = downloadURL
     ) |>
-    f_fill(year) |>
+    ffill(year) |>
     roworder(-year, ext, -size) |>
-    as_tbl()
+    as_fibble()
 }
 
 #' List resources

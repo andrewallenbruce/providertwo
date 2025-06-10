@@ -62,7 +62,7 @@ method(tidyup, openDashboard) <- function(x) {
     roworder(metric, -year) |>
     colorder(year) |>
     mtt(count = as.integer(count)) |>
-    as_tbl()
+    as_fibble()
 
   x$count$record <- x$count$record |>
     rnm(dashnames) |>
@@ -89,7 +89,7 @@ method(tidyup, openDashboard) <- function(x) {
     roworder(type, -year) |>
     colorder(year, type, entity) |>
     mtt(count = as.integer(count)) |>
-    as_tbl()
+    as_fibble()
 
   x$invest <- mtt(
     x$invest,
@@ -138,7 +138,7 @@ method(tidyup, openNational) <- function(x) {
   )
 
   x <- prop(x, "response") |>
-    as_tbl() |>
+    as_fibble() |>
     mtt(recipient_type = clean_names(recipient_type)) |>
     rsplit(~ recipient_type)
 

@@ -36,7 +36,6 @@ utils::globalVariables(c(
   # <catalog_open>
   # <catalog_caid>
   # <catalog_hgov>
-  # <open_endpoint>
   # <open_temporal>
   "contact",
   # <npi_nppes>

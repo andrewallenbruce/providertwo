@@ -124,7 +124,6 @@ clinicians <- function(npi           = NULL,
       -ln_2_sprs
     ) |>
     rnm(pro_names("clinicians")) |>
-    as_tbl()
-
+    as_fibble()
   x
 }

@@ -23,7 +23,7 @@ quality_metrics <- function(year) {
   walk(year, \(year) check_number_whole(year, min = 2018, max = this_year()))
 
   map(year, \(y) {
-    new_tbl(
+    fibble(
       year     = rep.int(as.integer(y), 4L),
       category = c(rep("Individual", 2L), rep("Group", 2L)) |> factor_(),
       metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2L) |> factor_(),
@@ -54,7 +54,7 @@ quality_eligibility <- function(year, npi) {
     req_error(body = \(resp) resp_body_json(resp)$error$message) |>
     perform_simple() |>
     _[["data"]] |>
-    as_tbl()
+    as_fibble()
 
   x |>
     mtt(
@@ -130,6 +130,6 @@ qpp_name <- function(x, call = caller_env()) {
       provider_middle_name                       = "middle_name",
       profile_display_indicator                  = "display"
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

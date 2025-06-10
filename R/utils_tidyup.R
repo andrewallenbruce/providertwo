@@ -79,7 +79,7 @@ care_names <- function(x, call = caller_env()) {
       LAST_NAME          = "last_name",
       ORG_NAME           = "org_name"
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }
 
@@ -124,6 +124,6 @@ pro_names <- function(x, call = caller_env()) {
       provider_middle_name                       = "middle_name",
       profile_display_indicator                  = "display"
     ),
-    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   )
 }

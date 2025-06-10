@@ -21,12 +21,11 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
       map(
         function(x)
           parse_string(x, query = "/data") |>
-          as_tbl() |>
+          as_fibble() |>
           map_na_if()
       ) |>
       pluck(1) |>
-      name_fields_(x
-      ),
+      name_fields_(x),
     caid = ,
     prov  = ,
     open = ,
@@ -49,7 +48,7 @@ method(quick_, class_endpoint) <- function(x, offset, limit) {
       map(
         function(x)
           parse_string(x, query = "results") |>
-          as_tbl() |>
+          as_fibble() |>
           map_na_if()
       ) |>
       pluck(1) |>
@@ -74,9 +73,9 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
       map(parse_string) |>
       list_rbind(names_to = "year") |>
       map_na_if() |>
-      as_tbl(),
+      as_fibble(),
     caid = ,
-    prov  = ,
+    prov = ,
     open = ,
     hgov = identifier_(x) |>
       map(
@@ -99,7 +98,7 @@ method(quick_, class_temporal) <- function(x, offset, limit) {
         parse_string(x, query = "results")) |>
       list_rbind(names_to = "year") |>
       map_na_if() |>
-      as_tbl()
+      as_fibble()
   )
 }
 
