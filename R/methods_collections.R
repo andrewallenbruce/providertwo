@@ -1,3 +1,29 @@
+#' Create Collection of Endpoints
+#' @param alias `<chr>` Alias representing the CMS data endpoint.
+#' @param call `<env>` Environment to use for error reporting.
+#' @returns S7 `class_collection` object.
+#' @examplesIf rlang::is_interactive()
+#' new_collection("caid_demographics")
+#' new_collection("caid_unwind")
+#' @autoglobal
+#' @export
+new_collection <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
+  if (is_empty(caid_list[["group"]][alias][[alias]])) {
+    cli_abort(
+      c("x" = "{.emph group alias} {.val {alias}} is invalid."),
+      call = call)
+  }
+
+  x <- caid_list[["group"]][alias][[alias]]
+
+  class_collection(
+    group   = x[["group"]],
+    members = set_names(map(x[["alias"]], caid_endpoint), x[["alias"]]))
+}
+
 # ------- care_list ------
 #' @autoglobal
 #' @noRd
@@ -105,7 +131,7 @@ care_list <- list(
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$"
-    ),
+  ),
   temporal = list(
     quality_payment         = "^Quality Payment Program Experience$",
     procedure_summary       = "^Physician[/]Supplier Procedure Summary$",
@@ -137,7 +163,7 @@ care_list <- list(
     util_geography          = "^Medicare Physician [&] Other Practitioners [-] by Geography and Service$",
     util_provider           = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service            = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$"
-    ),
+  ),
   group = list(
     care_hha                = list(group = "Home Health Agencies", alias = c("hha_owners", "hha_cost_report", "hha_enrollments")),
     care_hospice            = list(group = "Hospices", alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")),
@@ -156,7 +182,7 @@ care_list <- list(
     partb_drug              = list(group = "Medicare Part B Drugs", alias = c("partb_drug_discard", "partb_drug_spend")),
     partd_drug              = list(group = "Medicare Part D Drugs", alias = c("partd_opioid", "partd_drug_spend")),
     care_market             = list(group = "Market Saturation & Utilization", alias = c("market_cbsa", "market_state_cnty"))
-    ),
+  ),
   troup = list(
     care_inpatient          = list(group = "Medicare Inpatient Hospitals", alias = c("inpatient_geography", "inpatient_provider", "inpatient_service")),
     care_outpatient         = list(group = "Medicare Outpatient Hospitals", alias = c("outpatient_geography", "outpatient_service")),
@@ -165,7 +191,7 @@ care_list <- list(
     care_nhome_staff        = list(group = "Nursing Home Payroll-Based Journal Staffing", alias = c("nhome_staff_nonurse", "nhome_staff_nurse", "nhome_staff_employee")),
     care_utilization        = list(group = "Medicare Physician & Other Practitioners", alias = c("util_geography", "util_provider", "util_service")),
     care_nhome              = list(group = "Nursing Home Performance", alias = c("nhome_performance", "nhome_mds_frequency", "nhome_mds_facility"))
-    )
+  )
 )
 
 # ------- caid_list ------

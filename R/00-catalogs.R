@@ -201,12 +201,8 @@ catalog_hgov <- function() {
     as_fibble() |>
     mtt(
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
-      title       = rm_non_ascii(title),
-      title       = rp_dbl_space(title),
-      description = rm_non_ascii(description),
-      description = rm_quotes(description),
-      description = gremove(description, "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s"),
-      description = greplace(description, "Dataset.", NA_character_),
+      title       = rm_non_ascii(title) |> rp_dbl_space(),
+      description = rm_non_ascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
@@ -223,11 +219,11 @@ catalog_hgov <- function() {
             sbt(download, ext != "csv", title, resources = download)) |>
     reduce(join_on_title)
 
-  qhp <- subset_detect(x, title, "QHP|SHOP")
+  qhp <- select_alias(x, "QHP|SHOP")
 
-  temporal <- subset_detect(x, title, "[2][0-9]{3}|\\sPUF") |>
+  temporal <- select_alias(x, "[2][0-9]{3}|\\sPUF") |>
     sbt(title %!in_% get_elem(qhp, "title")) |>
-    subset_detect(title, "Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
+    select_alias("Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     mtt(
       periodicity = "Annually [R/P1Y]",
       year  = extract_year(title),
@@ -257,19 +253,20 @@ catalog_hgov <- function() {
         "Service Area PUF"              ~ "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
         "Transparency in Coverage PUF"  ~ "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
         .default = description)) |>
-    subset_detect(title, "\\.zip$|Excel$", n = TRUE) |>
+    select_alias("\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
     roworder(title, -year)
 
 
   qhp <- qhp |>
-    subset_detect(title, "Excel|[Zz]ip|Instructions|\\.zip$", n = TRUE) |>
+    select_alias("Excel|[Zz]ip|Instructions|\\.zip$", n = TRUE) |>
     mtt(
     description = ifelse_(is_na(description), title, description),
     year = extract_year(title),
-    year = ifelse(is_na(year),
-                  paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(),
-                  year) |>
+    year = ifelse(
+      is_na(year),
+      paste0("20", stri_extract_first_regex(title, "[0-9]{2}")) |> as.integer(),
+      year) |>
       suppressWarnings(),
     year = ifelse(is_na(year), substr(modified, 1, 4), year),
     title = gremove(title, "^[2][0-9]{3}\\s"),
@@ -296,8 +293,9 @@ catalog_hgov <- function() {
     roworder(title, -year)
 
   list(
-    end = rowbind(subset_detect(x, title, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
-                  subset_detect(x, title, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
+    end = rowbind(
+      select_alias(x, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
+      select_alias(x, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(clog  = "hgov",
           api   = "end",
           title = greplace(title, "/\\s", "/"),
@@ -307,18 +305,14 @@ catalog_hgov <- function() {
       colorder(clog, api),
     tmp = rowbind(
       temporal,
-      subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
+      select_alias(qhp, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
       mtt(clog = "hgov",
           api = "tmp") |>
       colorder(clog, api) |>
       fnest(by = c("clog", "api", "title")) |>
       rnm(endpoints = data)
-    # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
-    #   mtt(api = "HealthcareGov [Temporal]") |>
-    #   colorder(api) |>
-    #   f_nest_by(.by = c(api, title)) |>
-    #   f_ungroup() |>
-    #   rnm(endpoints = data),
+    # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |> mtt(api = "HealthcareGov [Temporal]") |>
+    # colorder(api) |> f_nest_by(.by = c(api, title)) |> f_ungroup() |> rnm(endpoints = data),
     # states = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]")
   )
 }

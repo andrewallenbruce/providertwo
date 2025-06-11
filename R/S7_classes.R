@@ -109,3 +109,11 @@ class_group <- new_class(
     if (!all(map_lgl(self@members, S7_inherits, class_backend))) "all @members must be a `class_backend` object"
   }
 )
+
+#' @noRd
+#' @autoglobal
+class_collection <- new_class(
+  name       = "class_collection",
+  package    = NULL,
+  parent     = class_group
+)

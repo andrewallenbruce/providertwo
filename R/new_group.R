@@ -1,3 +1,33 @@
+#' Create Groups of Endpoints
+#' @param member_names `<chr>` Alias representing the CMS data endpoint.
+#' @param group_name   `<chr>` Name of the group.
+#' @param quick        `<lgl>` call `quick_()` method on group if `TRUE`.
+#' @param offset       `<int>` Offset for pagination.
+#' @param limit        `<int>` Limit for pagination.
+#' @returns S7 `class_group` object.
+#' @examples
+#' new_group(c("hgov_local_help", "hgov_qhp_business"))
+#' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
+#' @autoglobal
+#' @export
+new_group <- function(member_names,
+                      group_name = NULL,
+                      quick      = FALSE,
+                      offset     = 0,
+                      limit      = 10) {
+  check_required(member_names)
+  check_bool(quick)
+  check_character(group_name, allow_null = TRUE)
+
+  ob <- if (length(member_names) == 1) select_member(member_names) else
+    class_group(group_name %||% paste0(member_names, collapse = " | "),
+                map(member_names, select_member) |> set_names(member_names))
+
+  if (!quick) return(ob)
+
+  quick_(ob, offset = offset, limit  = limit)
+}
+
 #' @autoglobal
 #' @noRd
 make_quick_entry <- function(x) {
@@ -445,36 +475,6 @@ select_member <- function(x, call = caller_env()) {
     hgov_qhp_shop_med                  = hgov_temporal(x),
     cli_abort(c("x"                    = "No matches found for {.val {x}}."), call = call)
   )
-}
-
-#' Create Groups of Endpoints
-#' @param member_names `<chr>` Alias representing the CMS data endpoint.
-#' @param group_name   `<chr>` Name of the group.
-#' @param quick        `<lgl>` call `quick_()` method on group if `TRUE`.
-#' @param offset       `<int>` Offset for pagination.
-#' @param limit        `<int>` Limit for pagination.
-#' @returns S7 `class_group` object.
-#' @examples
-#' new_group(c("hgov_local_help", "hgov_qhp_business"))
-#' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
-#' @autoglobal
-#' @export
-new_group <- function(member_names,
-                      group_name = NULL,
-                      quick      = FALSE,
-                      offset     = 0,
-                      limit      = 10) {
-  check_required(member_names)
-  check_bool(quick)
-  check_character(group_name, allow_null = TRUE)
-
-  ob <- if (length(member_names) == 1) select_member(member_names) else
-    class_group(group_name %||% paste0(member_names, collapse = " | "),
-                map(member_names, select_member) |> set_names(member_names))
-
-  if (!quick) return(ob)
-
-  quick_(ob, offset = offset, limit  = limit)
 }
 
 #' Quickly access CMS data

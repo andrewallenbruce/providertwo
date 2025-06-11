@@ -4,8 +4,10 @@ NULL
 #' @autoglobal
 #' @noRd
 quick_cli_ <- function(x) {
-  x <- unlist(x)
-  glue_col("{silver {names(x)}=}{red {bold {unname(x)}}}") |>
+  glue_col(
+    "{silver {names(x)}=}",
+    "{red {bold {unname(x)}}}",
+    x = unlist(x)) |>
     glue_collapse(sep = "&")
 }
 
@@ -58,7 +60,7 @@ method(quick_query_, class_endpoint) <- function(x, query = NULL) {
       schema  = "false",
       offset  = 0L,
       limit   = 1L,
-      !!!query
+      splice(query)
     ) |>
     perform_simple()
 

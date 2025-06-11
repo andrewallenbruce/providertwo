@@ -1,8 +1,8 @@
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-select_alias <- function(x, alias) {
-  subset_detect(x, title, alias)
+select_alias <- function(x, alias, ...) {
+  subset_detect(i = x, j = title, p = alias, ...)
 }
 
 #' @autoglobal
