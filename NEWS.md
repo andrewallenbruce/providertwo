@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9332 (2025-06-11)
+
+* query_nresults methods
+
+
 # providertwo 0.0.0.9331 (2025-06-11)
 
 * new `class_collection()`, a subclass of `class_group()`, for predefined (by alias) groups of endpoints that are inherently related to each other.
