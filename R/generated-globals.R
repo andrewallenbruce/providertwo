@@ -34,7 +34,6 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_prov>
   # <catalog_open>
-  # <catalog_caid>
   # <catalog_hgov>
   # <open_temporal>
   "contact",
@@ -60,12 +59,12 @@ utils::globalVariables(c(
   # <catalog_care>
   # <catalog_prov>
   "dictionary",
-  # <catalog_caid>
   # <catalog_hgov>
   "distribution",
   # <catalog_care>
   # <catalog_prov>
   # <catalog_open>
+  # <catalog_caid>
   "download",
   # <catalog_care>
   # <tidy_resources>
@@ -82,7 +81,6 @@ utils::globalVariables(c(
   "enroll_year",
   # <quality_eligibility>
   "entity",
-  # <catalog_caid>
   # <catalog_hgov>
   # <tidy_resources>
   "ext",
@@ -135,8 +133,6 @@ utils::globalVariables(c(
   # <catalog_caid>
   # <catalog_hgov>
   "modified",
-  # <catalog_caid>
-  "N",
   # <open_dictionary>
   # <tidy_resources>
   "name",

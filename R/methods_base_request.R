@@ -21,7 +21,7 @@ method(default_query, class_backend) <- function(x) {
 #' @param x A `class_endpoint`, `class_temporal` or `class_group` object
 #' @param ... Additional arguments
 #' @returns An `<httr2_request>` object or list of `<httr2_request>` objects
-#' @examples
+#' @examplesIf interactive()
 #' care_endpoint("care_enrollees") |> base_request()
 #' care_temporal("quality_payment") |> base_request()
 #' care_group("care_hospital") |> base_request()
@@ -90,14 +90,14 @@ method(query_nresults, class_endpoint) <- function(x, query = NULL) {
       base_request(x) |>
         req_url_query(splice(query)) |>
         perform_simple() |>
-        _$count
+        _[["count"]]
     )
   }
   base_request(x) |>
     req_url_path_append("stats") |>
     req_url_query(splice(query)) |>
     perform_simple() |>
-    _$total_rows
+    get_elem("found_rows")
 }
 
 method(query_nresults, class_temporal) <- function(x, query = NULL) {
@@ -109,6 +109,7 @@ method(query_nresults, class_temporal) <- function(x, query = NULL) {
           req_url_query(i, splice(query))) |>
         req_perform_parallel(on_error = "continue") |>
         map(function(e) resp_simple_json(e) |> _[["count"]]) |>
+        unlist(use.names = FALSE) |>
         name_years_(x)
     )
   }
@@ -117,7 +118,9 @@ method(query_nresults, class_temporal) <- function(x, query = NULL) {
       req_url_path_append(i, "stats") |>
       req_url_query(splice(query))) |>
     req_perform_parallel(on_error = "continue") |>
-    map(function(e) resp_simple_json(e) |> _[["total_rows"]]) |>
+    map(function(e)
+      get_elem(resp_simple_json(e), "found_rows")) |>
+    unlist(use.names = FALSE) |>
     name_years_(x)
 }
 

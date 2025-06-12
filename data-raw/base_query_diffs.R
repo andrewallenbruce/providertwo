@@ -35,18 +35,19 @@ list(count = "true", results = "true", offset = 0L, limit = 1L)
 
 # CARE ENDPOINT:
 #    == Query `stats` for results count
-request("https://data.cms.gov/data-api/v1/dataset/9887a515-7552-4693-bf58-735c77af46d7/data") |>
+request("https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer") |>
   req_url_path_append("stats") |>
   req_url_query(offset = 0L, size = 1L) |>
   req_perform() |>
   resp_body_json(simplifyVector = TRUE) |>
+  _$data |>
   unlist()
 #    == Output is a data.frame (with column names)
-request("https://data.cms.gov/data-api/v1/dataset/9887a515-7552-4693-bf58-735c77af46d7/data") |>
+request("https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer") |>
   req_url_query(offset = 0L, size = 1L) |>
   req_perform() |>
   resp_body_json(simplifyVector = TRUE) |>
-  fastplyr::as_tbl()
+  get_elem(c("data", "headers"))
 
 
 # CARE TEMPORAL:

@@ -14,7 +14,7 @@ catalog_care <- function() {
       clog       = "care",
       year       = extract_year(title),
       title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
-      format     = ifelse_(!is_na(description), description, format),
+      format     = iif(!is_na(description), description, format, nThread = 4L),
       modified   = as_date(modified),
       temporal   = fmt_temporal(temporal),
       identifier = accessURL,
@@ -23,7 +23,7 @@ catalog_care <- function() {
     colorder(title) |>
     as_fibble()
 
-  d <- sset(d, row_na_counts(d) < 4) |> funique(cols = c("title", "year", "format"))
+  d <- sset(d, row_na_counts(d) < 4)
 
   x <- mtt(
     x,
@@ -44,7 +44,7 @@ catalog_care <- function() {
     ) |>
     slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
     as_fibble() |>
-    join_on_title(sbt(d, format == "latest", title, download, resources)) |>
+    join_on_title(sbt(d, format %==% "latest", title, download, resources)) |>
     roworder(title)
 
   d <- sbt(d, title %!in_% care_types("single") & format != "latest", -format) |>
@@ -76,7 +76,7 @@ catalog_prov <- function() {
       description = stri_trim(gremove(description, "\n")),
       download    = get_elem(x, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
       contact     = fmt_contactpoint(get_elem(x, "contactPoint"))) |>
-      sbt(group != "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+      sbt(group %!=% "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
       roworder(group, title) |>
       as_fibble()
   )
@@ -92,7 +92,7 @@ catalog_open <- function() {
     identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
     modified    = as_date(modified),
     year        = get_data_elem(keyword) |> greplace("all years", "All"),
-    year        = ifelse_(title == "Provider profile ID mapping table", "All", year),
+    year        = iif(title == "Provider profile ID mapping table", "All", year, nThread = 4L),
     title       = toTitleCase(rm_non_ascii(title)),
     contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
     description = rm_quotes(description) |> greplace("\r\n", " ") |> gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |> rp_dbl_space() |> stri_trim(),
@@ -101,8 +101,8 @@ catalog_open <- function() {
     as_fibble()
 
   list(
-    end = sbt(x, year == "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
-    tmp = sbt(x, year != "All") |> mtt(clog = "open", api = "tmp", year = as.integer(year), title = gremove(title, "^[0-9]{4} "),
+    end = sbt(x, year %==% "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
+    tmp = sbt(x, year %!=% "All") |> mtt(clog = "open", api = "tmp", year = as.integer(year), title = gremove(title, "^[0-9]{4} "),
           description = val_match(
             title,
             "General Payment Data"   ~ "All general (non-research, non-ownership related) payments from the program year",
@@ -121,6 +121,8 @@ catalog_caid <- function() {
 
   x <- fload("https://data.medicaid.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
 
+  xcols <- c("title", "identifier", "description", "periodicity", "modified", "contact", "distribution")
+
   x <- x |>
     mtt(
       identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
@@ -129,22 +131,21 @@ catalog_caid <- function() {
       contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
       title       = gremove(title, "^ ") |> rm_non_ascii() |> rp_dbl_space(),
       description = stri_trans_general(description, "latin-ascii") |> rm_non_ascii() |> rm_quotes() |> greplace("\r\n", " ") |> rp_dbl_space(),
-      description = ifelse_(description == "Dataset.", NA_character_, description)) |>
-    slt(title, identifier, description, periodicity, modified, contact, distribution) |>
+      description = iif(description == "Dataset.", NA_character_, description)) |>
+    ss(j = xcols) |>
     as_fibble()
 
-  download <- fibble(
+  dl <- fibble(
     title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_distribution(x))),
     download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
   x <- list(
-    slt(x, -distribution),
-    rowbind(
-      sbt(download, N == 1, -N, -ext),
-      sbt(download, N > 1 & ext == "csv", -N, -ext)),
-    sbt(download, N > 2 & ext != "csv", -N, -ext) |>
+    ss(x, j = xcols[-length(xcols)]),
+    rowbind(ss(dl, which_(dl$N == 1), 1:2),
+            ss(dl, which_(dl$ext == "csv" & dl$N > 1), 1:2)),
+    ss(dl, which_(dl$ext != "csv" & dl$N > 2), 1:2) |>
       fnest(by = "title") |>
       rnm(resources = data)) |>
     reduce(join_on_title) |>
@@ -344,6 +345,14 @@ catalogs <- function() {
 options(fastplyr.inform = FALSE)
 the         <- new.env(parent = emptyenv())
 the$catalog <- catalogs()
+
+# m <- fastmap::fastmap()
+# m$mset(.list = providertwo:::catalogs())
+# m$get("care")
+# m$keys()
+# m$size()
+# m$as_list()
+# m$reset()
 
 #' @autoglobal
 #' @noRd

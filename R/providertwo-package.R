@@ -2,7 +2,8 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom collapse %==% add_vars colorder fcompute fcount fmax fnobs funique get_elem groupid join mtt pivot rnm rowbind roworder rsplit sbt slt ss vlengths
+#' @importFrom kit iif
+#' @importFrom collapse %==% %!=% add_vars colorder fcompute fcount fmax fnobs funique get_elem groupid join mtt pivot rnm rowbind roworder rsplit sbt slt ss vlengths
 #' @importFrom cli cli_abort cli_alert_info cli_alert_warning cli_alert_success cli_alert_danger cli_warn cli_inform
 #' @importFrom vctrs `vec_slice<-` vec_in
 #' @importFrom tools toTitleCase
@@ -14,8 +15,8 @@
 #' @import S7
 #' @import RcppSimdJson
 #' @import rrapply
-#' @rawNamespace import(rlang, except = c(is_na, new_list))
 #' @rawNamespace import(cheapr, except = c(list_assign))
+#' @rawNamespace import(rlang, except = c(is_na, new_list))
 #' @rawNamespace if (getRversion() < "4.3.0") importFrom("S7", "@")
 ## usethis namespace: end
 NULL
