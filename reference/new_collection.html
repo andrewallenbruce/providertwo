@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9333</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9334</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,10 +67,395 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
-<span class="r-in"><span><span class="fu">new_collection</span><span class="op">(</span><span class="st">"caid_demographics"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">new_collection</span><span class="op">(</span><span class="st">"caid_demographics"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicaid and CHIP Enrollee Demographics"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_wellvisit  : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid and CHIP enrollees who received a well-child visit"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/well-child-visits-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/289182e5-44c8-4fcc-96c4-4af69be9863f/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_mental     : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid and CHIP enrollees who received mental health or SUD services"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/mh-and-sud-services-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8062e2f4-4c0a-41c9-8217-979468a80986/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_disability : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Medicaid enrollees who qualify for benefits based on disability"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid enrollees who are eligible for benefits based "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/disability-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b12e390f-1721-47c0-bb38-b0b1805e0446/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_prematurity: &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Prematurity and severe maternal morbidity among Medicaid- and CHIP-covered live births"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and rates of Medicaid- and Childrens Health Insurance Program (CHIP)-cover"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/preterm-birth-and-smm-2020-2022-01172025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/ee3b9534-0d19-4c1b-bf74-43f898d5de7c/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_deliveries            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_deliveries: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ rate_of_deliveries             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_language   : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Primary language spoken by the Medicaid and CHIP population"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-18"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/primary-language-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/3df86994-c0e4-4106-a404-e95e87c824e6/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_ethnicity  : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Race and ethnicity of the national Medicaid and CHIP population"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/race-and-ethnicity-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/b9e18d80-c765-4fb9-95e7-81951e01a6a3/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_rural      : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Rural Medicaid and CHIP enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/rural-residence-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/73fdbf7c-569e-427b-9bff-eeed34a51dcb/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ demo_waiver     : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Section 1915(c) waiver program participants"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes annual counts and percentages of Medicaid and Childrens Health Insurance Program (CHIP) "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2025-01-17"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/1915c-waiver-2020-2022-01162025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/4d4eaf55-33d3-4468-80b4-63553f4530ae/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ year                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ geography                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation_topic           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ subpopulation                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ category                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_enrollees            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ denominator_count_of_enrollees: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_enrollees       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_version                  : chr(0) </span>
 <span class="r-in"><span><span class="fu">new_collection</span><span class="op">(</span><span class="st">"caid_unwind"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ unwind_marketplace: &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "HealthCare.gov Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-08-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/healthcare.gov-data-july-2024-release.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/9a83ba5e-05f5-47f5-82de-f3a59233a912/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 204</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ metric                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2023_net_count            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2023_net_percentage       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2023_net_count              : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2023_net_percentage         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2023_net_count             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2023_net_percentage        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2023_net_count             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2023_net_percentage        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2023_net_count           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2023_net_percentage      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2023_net_count        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2023_net_percentage   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ october_2023_net_count          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ october_2023_net_percentage     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ november_2023_net_count         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ november_2023_net_percentage    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ december_2023_net_count         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ december_2023_net_percentage    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ january_2024_net_count          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ january_2024_net_percentage     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ february_2024_net_count         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ february_2024_net_percentage    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ march_2024_net_count            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ march_2024_net_percentage       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_net_count            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_net_percentage       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_cumulative_count     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_cumulative_2024_percentage: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ unwind_transition : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "HealthCare.gov Transitions Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/healthcare.gov-transitions-data-december-2024-release.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 59527</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_record_note                                                : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ metric                                                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ time_period                                                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ release_through                                                 : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ count_of_individuals_whose_medicaid_or_chip_coverage_was_te_dd11: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ percentage_of_individuals_whose_medicaid_or_chip_coverage_w_da6e: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cumulative_count_of_individuals_whose_medicaid_or_chip_cove_28d9: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ cumulative_percentage_of_individuals_whose_medicaid_or_chip_6ac2: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ unwind_historic   : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Separate CHIP Enrollment by Month and State Historic CAA/Unwinding Period"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "&lt;p&gt;This historic dataset with total enrollment in separate CHIP programs by month and state was created to fulf"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/chip-caa-reporting-metrics-long-table-november-2024-release.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ reporting_period: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ release_date    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ value           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ data_notes      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ unwind_sbm        : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "State-based Marketplace (SBM) Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/sbm-marketplace-december-2024-release.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields:List of 59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ state                                      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ metric                                     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2023_count                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2023_percentage_applications         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2023_percentage_account_transfers    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2023_count                             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2023_percentage_applications           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2023_percentage_account_transfers      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2023_count                            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2023_percentage_applications          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2023_percentage_account_transfers     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2023_count                            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2023_percentage_applications          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2023_percentage_account_transfers     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2023_count                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2023_percentage_applications        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2023_percentage_account_transfers   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2023_count                       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2023_percentage_applications     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2023_percentage_account_transfers: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ october_2023_count                         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ october_2023_percentage_applications       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ october_2023_percentage_account_transfers  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ november_2023_count                        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ november_2023_percentage_applications      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ november_2023_percentage_account_transfers : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ december_2023_count                        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ december_2023_percentage_applications      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ december_2023_percentage_account_transfers : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ january_2024_count                         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ january_2024_percentage_applications       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ january_2024_percentage_account_transfers  : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ february_2024_count                        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ february_2024_percentage_applications      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ february_2024_percentage_account_transfers : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ march_2024_count                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ march_2024_percentage_applications         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ march_2024_percentage_account_transfers    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_count                           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_percentage_applications         : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ april_2024_percentage_account_transfers    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2024_count                             : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2024_percentage_applications           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ may_2024_percentage_account_transfers      : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2024_count                            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2024_percentage_applications          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ june_2024_percentage_account_transfers     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2024_count                            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2024_percentage_applications          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ july_2024_percentage_account_transfers     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2024_count                          : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2024_percentage_applications        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ august_2024_percentage_account_transfers   : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2024_count                       : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2024_percentage_applications     : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ september_2024_percentage_account_transfers: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_count                                : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_percentage_applications              : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ total_percentage_account_transfers         : chr(0) </span>
+<span class="r-in"><span><span class="fu">new_collection</span><span class="op">(</span><span class="st">"caid_services"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="query_nresults.html">query_nresults</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_acute</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 25440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_behavior</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 31800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_perinatal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_screening</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_contraceptive</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6360</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_dental</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_pregnancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6360</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_telehealth</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_vaccination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_bloodlead</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $service_respiratory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 28620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
