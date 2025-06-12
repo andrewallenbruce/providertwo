@@ -11,23 +11,28 @@ new_collection <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
-  if (is_empty(caid_list[["group"]][alias][[alias]])) {
+  x <- aka$collection[alias][[alias]]
+
+  if (is_empty(x)) {
     cli_abort(
       c("x" = "{.emph group alias} {.val {alias}} is invalid."),
       call = call)
   }
 
-  x <- caid_list[["group"]][alias][[alias]]
-
   class_collection(
-    group   = x[["group"]],
-    members = set_names(map(x[["alias"]], caid_endpoint), x[["alias"]]))
+    x[["name"]],
+    set_names(
+      map(
+        x[["alias"]],
+        caid_endpoint),
+      x[["alias"]])
+    )
 }
 
 # ------- care_list ------
 #' @autoglobal
 #' @noRd
-care_list <- list(
+aka_care <- list(
   endpoint = list(
     ahqr_psi11              = "^Agency for Healthcare Research and Quality \\(AHRQ\\) Patient Safety Indicator 11 \\(PSI[-]11\\) Measure Rates$",
     aip_plan                = "^Advance Investment Payment Spend Plan$",
@@ -164,40 +169,37 @@ care_list <- list(
     util_provider           = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service            = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$"
   ),
-  group = list(
-    care_hha                = list(group = "Home Health Agencies", alias = c("hha_owners", "hha_cost_report", "hha_enrollments")),
-    care_hospice            = list(group = "Hospices", alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")),
-    care_hospital           = list(group = "Hospitals", alias = c("hospital_owners", "hospital_chow", "hospital_chow_owner", "hospital_enrollments", "hospital_cost_report", "hospital_service_area")),
-    rhc                     = list(group = "Rural Health Clinics", alias = c("rhc_owners", "rhc_enrollments")),
-    fqhc                    = list(group = "Federally Qualified Health Centers", alias = c("fqhc_owners", "fqhc_enrollments")),
-    pending                 = list(group = "Pending Initial Logging and Tracking", alias = c("pilat_non_physician", "pilat_physician")),
-    reassignment            = list(group = "Revalidation Reassignment Lists", alias = c("revalid_group", "revalid_due", "revalid_list")),
-    care_snf                = list(group = "Skilled Nursing Facilities", alias = c("snf_owners", "snf_chow", "snf_chow_owner", "snf_cost_report", "snf_enrollments")),
-    care_aco                = list(group = "Accountable Care Organizations", alias = c("aco_reach_aligned", "aco_reach_eligible", "aco_reach_results", "aco_reach_providers", "aco_reach_orgs", "aco_pioneer", "aco_participants", "aco_snf_affiliate", "aco_organizations", "aco_bene_cnty")),
-    cms_stats               = list(group = "CMS Program Statistics", alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
-    care_caid               = list(group = "Medicaid", alias = c("care_caid_managed_care", "care_caid_opioid_geo", "care_caid_drug_spend")),
-    care_geovar             = list(group = "Medicare Geographic Variation", alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")),
-    care_pdp                = list(group = "Prescription Drug Plan Formulary, Pharmacy Network, and Pricing Information", alias = c("pdp_month", "pdp_quarter")),
-    bene_survey             = list(group = "Medicare Current Beneficiary Survey", alias = c("bene_survey_covid", "bene_survey_cost", "bene_survey_file")),
-    partb_drug              = list(group = "Medicare Part B Drugs", alias = c("partb_drug_discard", "partb_drug_spend")),
-    partd_drug              = list(group = "Medicare Part D Drugs", alias = c("partd_opioid", "partd_drug_spend")),
-    care_market             = list(group = "Market Saturation & Utilization", alias = c("market_cbsa", "market_state_cnty"))
-  ),
-  troup = list(
-    care_inpatient          = list(group = "Medicare Inpatient Hospitals", alias = c("inpatient_geography", "inpatient_provider", "inpatient_service")),
-    care_outpatient         = list(group = "Medicare Outpatient Hospitals", alias = c("outpatient_geography", "outpatient_service")),
-    care_prescribers        = list(group = "Medicare Part D Prescribers", alias = c("prx_geography", "prx_provider", "prx_drug")),
-    care_dme_suppliers      = list(group = "Medicare Durable Medical Equipment, Devices & Supplies", alias = c("dme_geography", "dme_provider", "dme_service", "dme_supplier", "dme_supplier_service")),
-    care_nhome_staff        = list(group = "Nursing Home Payroll-Based Journal Staffing", alias = c("nhome_staff_nonurse", "nhome_staff_nurse", "nhome_staff_employee")),
-    care_utilization        = list(group = "Medicare Physician & Other Practitioners", alias = c("util_geography", "util_provider", "util_service")),
-    care_nhome              = list(group = "Nursing Home Performance", alias = c("nhome_performance", "nhome_mds_frequency", "nhome_mds_facility"))
+  collection = list(
+    care_hha                = list(name = "Home Health Agencies",                 alias = c("hha_owners", "hha_cost_report", "hha_enrollments")),
+    care_hospice            = list(name = "Hospices",                             alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")),
+    care_hospital           = list(name = "Hospitals",                            alias = c("hospital_owners", "hospital_chow", "hospital_chow_owner", "hospital_enrollments", "hospital_cost_report", "hospital_service_area")),
+    rhc                     = list(name = "Rural Health Clinics",                 alias = c("rhc_owners", "rhc_enrollments")),
+    fqhc                    = list(name = "Federally Qualified Health Centers",   alias = c("fqhc_owners", "fqhc_enrollments")),
+    pending                 = list(name = "Pending Initial Logging and Tracking", alias = c("pilat_non_physician", "pilat_physician")),
+    reassignment            = list(name = "Revalidation Reassignment Lists",      alias = c("revalid_group", "revalid_due", "revalid_list")),
+    care_snf                = list(name = "Skilled Nursing Facilities",           alias = c("snf_owners", "snf_chow", "snf_chow_owner", "snf_cost_report", "snf_enrollments")),
+    care_aco                = list(name = "Accountable Care Organizations",       alias = c("aco_reach_aligned", "aco_reach_eligible", "aco_reach_results", "aco_reach_providers", "aco_reach_orgs", "aco_pioneer", "aco_participants", "aco_snf_affiliate", "aco_organizations", "aco_bene_cnty")),
+    # cms_stats               = list(name = "CMS Program Statistics",               alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
+    care_caid               = list(name = "Medicaid",                             alias = c("care_caid_managed_care", "care_caid_opioid_geo", "care_caid_drug_spend")),
+    care_geovar             = list(name = "Medicare Geographic Variation",        alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")),
+    care_pdp                = list(name = "Pharmacy Network/Formulary/Pricing",   alias = c("pdp_month", "pdp_quarter")),
+    bene_survey             = list(name = "Medicare Current Beneficiary Survey",  alias = c("bene_survey_covid", "bene_survey_cost", "bene_survey_file")),
+    partb_drug              = list(name = "Medicare Part B Drugs",                alias = c("partb_drug_discard", "partb_drug_spend")),
+    partd_drug              = list(name = "Medicare Part D Drugs",                alias = c("partd_opioid", "partd_drug_spend")),
+    care_market             = list(name = "Market Saturation & Utilization",      alias = c("market_cbsa", "market_state_cnty")),
+    care_inpatient          = list(name = "Medicare Inpatient Hospitals",         alias = c("inpatient_geography", "inpatient_provider", "inpatient_service")),
+    care_outpatient         = list(name = "Medicare Outpatient Hospitals",               alias = c("outpatient_geography", "outpatient_service")),
+    care_prescribers        = list(name = "Medicare Part D Prescribers",                 alias = c("prx_geography", "prx_provider", "prx_drug")),
+    care_dme_suppliers      = list(name = "Medicare DME, Devices & Supplies",            alias = c("dme_geography", "dme_provider", "dme_service", "dme_supplier", "dme_supplier_service")),
+    care_nhome_staff        = list(name = "Nursing Home Payroll-Based Journal Staffing", alias = c("nhome_staff_nonurse", "nhome_staff_nurse", "nhome_staff_employee")),
+    care_utilization        = list(name = "Medicare Physician & Other Practitioners",    alias = c("util_geography", "util_provider", "util_service")),
+    care_nhome              = list(name = "Nursing Home Performance",                    alias = c("nhome_performance", "nhome_mds_frequency", "nhome_mds_facility"))
   )
 )
 
-# ------- caid_list ------
 #' @autoglobal
 #' @noRd
-caid_list <- list(
+aka_caid <- list(
   endpoint = list(
     aca_ful                       = "ACA Federal Upper Limits",
     caid_drug_rebate              = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
@@ -295,9 +297,9 @@ caid_list <- list(
     state_drug_util               = "^State Drug Utilization Data$",
     healthcare_quality            = "^Child and Adult Health Care Quality Measures$"
   ),
-  group = list(
+  collection = list(
     caid_demographics = list(
-      group = "Medicaid and CHIP Enrollee Demographics",
+      name  = "Medicaid and CHIP Enrollee Demographics",
       alias = c(
         "demo_wellvisit",
         "demo_mental",
@@ -310,7 +312,7 @@ caid_list <- list(
       )
     ),
     caid_services = list(
-      group = "Services Provided to the Medicaid and CHIP Population",
+      name = "Services Provided to the Medicaid and CHIP Population",
       alias = c(
         "service_acute",
         "service_behavior",
@@ -326,7 +328,7 @@ caid_list <- list(
       )
     ),
     caid_benes = list(
-      group = "Beneficiaries Receiving A Service",
+      name = "Beneficiaries Receiving A Service",
       alias = c(
         "benes_behavior",
         "benes_physical",
@@ -339,14 +341,14 @@ caid_list <- list(
       )
     ),
     caid_finance = list(
-      group = "Medicaid Financial Management Data",
+      name = "Medicaid Financial Management Data",
       alias = c(
         "caid_finance_mgmt",
         "caid_finance_nation"
       )
     ),
     caid_nadac_group = list(
-      group = "NADAC (National Average Drug Acquisition Cost)",
+      name = "NADAC (National Average Drug Acquisition Cost)",
       alias = c(
         "caid_nadac",
         "caid_nadac_first",
@@ -354,14 +356,14 @@ caid_list <- list(
       )
     ),
     caid_benefit_pkg = list(
-      group = "Benefit Package for Medicaid and CHIP Beneficiaries",
+      name = "Benefit Package for Medicaid and CHIP Beneficiaries",
       alias = c(
         "benefit_pkg_month",
         "benefit_pkg_year"
       )
     ),
     caid_drug = list(
-      group = "Medicaid Drug Datasets",
+      name = "Medicaid Drug Datasets",
       alias = c(
         "drug_amp_mon",
         "drug_amp_qtr",
@@ -373,21 +375,21 @@ caid_list <- list(
       )
     ),
     caid_dual_status = list(
-      group = "Dual Status Information for Medicaid and CHIP Beneficiaries",
+      name = "Dual Status Information for Medicaid and CHIP Beneficiaries",
       alias = c(
         "dual_status_month",
         "dual_status_year"
       )
     ),
     caid_meg = list(
-      group = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
+      name = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
       alias = c(
         "meg_month",
         "meg_year"
       )
     ),
     caid_cms64 = list(
-      group = "Medicaid CMS-64",
+      name = "Medicaid CMS-64",
       alias = c(
         "cms64_caa",
         "cms64_ffcra",
@@ -395,7 +397,7 @@ caid_list <- list(
       )
     ),
     caid_managed_care = list(
-      group = "Medicaid Managed Care Enrollment",
+      name = "Medicaid Managed Care Enrollment",
       alias = c(
         "managed_care_summary",
         "managed_care_program_state",
@@ -409,7 +411,7 @@ caid_list <- list(
       )
     ),
     caid_unwind = list(
-      group = "Medicaid Unwinding Report",
+      name = "Medicaid Unwinding Report",
       alias = c(
         "unwind_marketplace",
         "unwind_transition",
@@ -420,10 +422,9 @@ caid_list <- list(
   )
 )
 
-# ------- open_list ------
 #' @autoglobal
 #' @noRd
-open_list <- list(
+aka_open <- list(
   endpoint = list(
     profile_covered               = "^Covered Recipient Profile Supplement$",
     profile_physician             = "^Physician \\(Distinct\\) Profile Information$",
@@ -447,18 +448,16 @@ open_list <- list(
     grouped_entity_covered_nature = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
     grouped_state_nature          = "^State Payment Totals Grouped by Nature of Payment for all Years$"
   ),
-  group = list(
-    profile                       = list(group = "Open Payments Profiles", alias = c("profile_covered", "profile_physician", "profile_information", "profile_mapping", "profile_entity", "profile_teaching")),
-    summary                       = list(group = "Open Payments Summaries", alias = c("summary_dashboard", "summary_state", "summary_nature", "summary_national", "summary_specialty"))),
-  troup = list(
-    payment_grouped               = list(group = "Open Payments by Year (Grouped)", alias = c("grouped_covered_nature", "grouped_covered_entity", "grouped_entity_nature", "grouped_entity_covered_nature", "grouped_state_nature")),
-    payment_detailed              = list(group = "Open Payments by Year (Detailed)", alias = c("payment_general", "payment_ownership", "payment_research")))
+  collection = list(
+    profile                       = list(name = "Open Payments Profiles",           alias = c("profile_covered", "profile_physician", "profile_information", "profile_mapping", "profile_entity", "profile_teaching")),
+    summary                       = list(name = "Open Payments Summaries",          alias = c("summary_dashboard", "summary_state", "summary_nature", "summary_national", "summary_specialty")),
+    payment_grouped               = list(name = "Open Payments by Year (Grouped)",  alias = c("grouped_covered_nature", "grouped_covered_entity", "grouped_entity_nature", "grouped_entity_covered_nature", "grouped_state_nature")),
+    payment_detailed              = list(name = "Open Payments by Year (Detailed)", alias = c("payment_general", "payment_ownership", "payment_research")))
 )
 
-# ------- pro_list ------
 #' @autoglobal
 #' @noRd
-pro_list <- list(
+aka_prov <- list(
   endpoint = list(
     asc_facility              = "^Ambulatory Surgical Center Quality Measures [-] Facility",
     asc_national              = "^Ambulatory Surgical Center Quality Measures [-] National",
@@ -609,53 +608,52 @@ pro_list <- list(
     va_provider               = "^Veterans Health Administration Provider Level Data",
     va_timely                 = "^Veterans Health Administration Timely and Effective Care Data"
   ),
-  group = list(
-    pro_cahps_spice           = list(group = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
-    pro_cahps_hhc             = list(group = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
-    pro_cahps_ich             = list(group = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
-    pro_cahps_oas             = list(group = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey", alias = c("cahps_oas_footnotes", "cahps_oas_asc_facility", "cahps_oas_asc_national", "cahps_oas_asc_state", "cahps_oas_hosp_facility", "cahps_oas_hosp_national", "cahps_oas_hosp_state")),
-    pro_mips                  = list(group = "PY 2022 MIPS Public Reporting", alias = c("mips_performance", "mips_patient", "mips_clinician", "mips_group", "mips_virtual")),
-    pro_drs                   = list(group = "Provider Data Catalog", alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")),
-    pro_ltch                  = list(group = "Long-Term Care Hospitals", alias = c("ltch_general", "ltch_provider", "ltch_national")),
-    pro_irf                   = list(group = "Inpatient Rehabilitation Facilities", alias = c("irf_conditions", "irf_general", "irf_provider", "irf_national")),
-    pro_hospice               = list(group = "Hospices", alias = c("hospice_general", "hospice_provider", "hospice_state", "hospice_zip", "hospice_national")),
-    pro_hhc_vbp               = list(group = "Expanded Home Health Value-Based Purchasing (HHVBP) Model", alias = c("hhvbp_agency", "hhvbp_cohort")),
-    pro_home_health           = list(group = "Home Health Care Agencies", alias = c("hhc_range", "hhc_national", "hhc_state", "hhc_zip", "hhc_agency")),
-    pro_snf_vbp               = list(group = "FY 2025 SNF VBP", alias = c("snf_vbp_performance", "snf_vbp_facility")),
-    pro_snf_quality           = list(group = "SNF Quality Measures", alias = c("snf_quality_nation", "snf_quality_provider", "snf_quality_swing")),
-    pro_nursing               = list(group = "Nursing Homes", alias = c("nursing_ownership", "nursing_penalties", "nursing_provider", "nursing_citation", "nursing_fire", "nursing_deficiencies", "nursing_inspection", "nursing_quality_mds", "nursing_quality_claims", "nursing_state_avg", "nursing_state_cut", "nursing_interval")),
-    pro_complication          = list(group = "Complications and Deaths", alias = c("complication_hospital", "complication_state", "complication_national")),
-    pro_complication_pch      = list(group = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital", alias = c("complication_pch_hospital", "complication_pch_national")),
-    pro_asc_quality           = list(group = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
-    pro_equity                = list(group = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
-    pro_hai                   = list(group = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
-    pro_dialysis              = list(group = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
-    pro_esrd                  = list(group = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
-    pro_hvbp                  = list(group = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
-    pro_ipf                   = list(group = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
-    pro_mspb                  = list(group = "Medicare Spending Per Beneficiary", alias = c("mspb_claim", "mspb_hospital", "mspb_decimal", "mspb_national", "mspb_state")),
-    pro_out_img               = list(group = "Outpatient Imaging Efficiency", alias = c("out_img_hospital", "out_img_national", "out_img_state")),
-    pro_pch_pall              = list(group = "Palliative Care: PPS-Exempt Cancer Hospital", alias = c("pch_pall_hospital", "pch_pall_national")),
-    pro_pch_hcahps            = list(group = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital", alias = c("hcahps_pch_hospital", "hcahps_pch_national", "hcahps_pch_state")),
-    pro_hcahps                = list(group = "Patient Survey (HCAHPS)", alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")),
-    pro_timely                = list(group = "Timely and Effective Care", alias = c("timely_hospital", "timely_national", "timely_state")),
-    pro_unplan                = list(group = "Unplanned Hospital Visits", alias = c("unplan_hospital", "unplan_national", "unplan_state")),
-    pro_va                    = list(group = "Veterans Health Administration", alias = c("va_behavioral", "va_provider", "va_timely")),
-    pro_hospital_changes      = list(group = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
-    pro_hospital_voc          = list(group = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
-    pro_reduction             = list(group = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr"))
+  collection = list(
+    pro_cahps_spice           = list(name = "CAHPS Hospice Survey Data", alias = c("cahps_hospice_nation", "cahps_hospice_provider", "cahps_hospice_state")),
+    pro_cahps_hhc             = list(name = "Home Health Care Patient Survey Data (HHCAHPS)", alias = c("cahps_hhc_patient", "cahps_hhc_measure", "cahps_hhc_national", "cahps_hhc_state")),
+    pro_cahps_ich             = list(name = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey", alias = c("cahps_ich_esrd", "cahps_ich_facility", "cahps_ich_national", "cahps_ich_state")),
+    pro_cahps_oas             = list(name = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey", alias = c("cahps_oas_footnotes", "cahps_oas_asc_facility", "cahps_oas_asc_national", "cahps_oas_asc_state", "cahps_oas_hosp_facility", "cahps_oas_hosp_national", "cahps_oas_hosp_state")),
+    pro_mips                  = list(name = "PY 2022 MIPS Public Reporting", alias = c("mips_performance", "mips_patient", "mips_clinician", "mips_group", "mips_virtual")),
+    pro_drs                   = list(name = "Provider Data Catalog", alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")),
+    pro_ltch                  = list(name = "Long-Term Care Hospitals", alias = c("ltch_general", "ltch_provider", "ltch_national")),
+    pro_irf                   = list(name = "Inpatient Rehabilitation Facilities", alias = c("irf_conditions", "irf_general", "irf_provider", "irf_national")),
+    pro_hospice               = list(name = "Hospices", alias = c("hospice_general", "hospice_provider", "hospice_state", "hospice_zip", "hospice_national")),
+    pro_hhc_vbp               = list(name = "Expanded Home Health Value-Based Purchasing (HHVBP) Model", alias = c("hhvbp_agency", "hhvbp_cohort")),
+    pro_home_health           = list(name = "Home Health Care Agencies", alias = c("hhc_range", "hhc_national", "hhc_state", "hhc_zip", "hhc_agency")),
+    pro_snf_vbp               = list(name = "FY 2025 SNF VBP", alias = c("snf_vbp_performance", "snf_vbp_facility")),
+    pro_snf_quality           = list(name = "SNF Quality Measures", alias = c("snf_quality_nation", "snf_quality_provider", "snf_quality_swing")),
+    pro_nursing               = list(name = "Nursing Homes", alias = c("nursing_ownership", "nursing_penalties", "nursing_provider", "nursing_citation", "nursing_fire", "nursing_deficiencies", "nursing_inspection", "nursing_quality_mds", "nursing_quality_claims", "nursing_state_avg", "nursing_state_cut", "nursing_interval")),
+    pro_complication          = list(name = "Complications and Deaths", alias = c("complication_hospital", "complication_state", "complication_national")),
+    pro_complication_pch      = list(name = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital", alias = c("complication_pch_hospital", "complication_pch_national")),
+    pro_asc_quality           = list(name = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
+    pro_equity                = list(name = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
+    pro_hai                   = list(name = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
+    pro_dialysis              = list(name = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
+    pro_esrd                  = list(name = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
+    pro_hvbp                  = list(name = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
+    pro_ipf                   = list(name = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
+    pro_mspb                  = list(name = "Medicare Spending Per Beneficiary", alias = c("mspb_claim", "mspb_hospital", "mspb_decimal", "mspb_national", "mspb_state")),
+    pro_out_img               = list(name = "Outpatient Imaging Efficiency", alias = c("out_img_hospital", "out_img_national", "out_img_state")),
+    pro_pch_pall              = list(name = "Palliative Care: PPS-Exempt Cancer Hospital", alias = c("pch_pall_hospital", "pch_pall_national")),
+    pro_pch_hcahps            = list(name = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital", alias = c("hcahps_pch_hospital", "hcahps_pch_national", "hcahps_pch_state")),
+    pro_hcahps                = list(name = "Patient Survey (HCAHPS)", alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")),
+    pro_timely                = list(name = "Timely and Effective Care", alias = c("timely_hospital", "timely_national", "timely_state")),
+    pro_unplan                = list(name = "Unplanned Hospital Visits", alias = c("unplan_hospital", "unplan_national", "unplan_state")),
+    pro_va                    = list(name = "Veterans Health Administration", alias = c("va_behavioral", "va_provider", "va_timely")),
+    pro_hospital_changes      = list(name = "Hospital FY2021 Changes in Payment", alias = c("hospital_drg_net", "hospital_drg_dist", "hospital_pmt_pct", "hospital_pmt_vbi")),
+    pro_hospital_voc          = list(name = "Payment and Value of Care", alias = c("hospital_voc_nation", "hospital_voc_hosp", "hospital_pmt_state", "hospital_pmt_nation")),
+    pro_reduction             = list(name = "Hospital-Acquired Condition & Readmission Reduction Programs", alias = c("reduction_hac", "reduction_hrr"))
   )
 )
 
-# ------- hgov_list ------
 #' @autoglobal
 #' @noRd
-hgov_list <- list(
+aka_hgov <- list(
   endpoint = list(
     ab_registration_completion         = "^AB Registration Completion List$",
     ab_suspension_termination          = "^AB Suspension and Termination List$",
-    agent_broker_registration_glossary = "^Agent Broker Registration Tracker Glossary$",
-    agent_broker_registration_tracker  = "^Agent Broker Registration Tracker$",
+    ab_registration_glossary = "^Agent Broker Registration Tracker Glossary$",
+    ab_registration_tracker  = "^Agent Broker Registration Tracker$",
     authority_state                    = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
     auto_pop_file                      = "^Auto[-]population File$",
     benefits_cost_sharing              = "^Benefits and Cost Sharing PUF$",
@@ -711,10 +709,48 @@ hgov_list <- list(
   )
 )
 
-# alias <- list(
-#   care = list(endpoint = care_list$endpoint, temporal = care_list$temporal),
-#   pro  = list(endpoint = pro_list$endpoint),
-#   open = list(endpoint = open_list$endpoint, temporal = open_list$temporal),
-#   caid = list(endpoint = caid_list$endpoint, temporal = caid_list$temporal),
-#   hgov = list(endpoint = hgov_list$endpoint, temporal = hgov_list$temporal)
+aka <- new.env(parent = emptyenv())
+aka$endpoint <- cheapr::list_combine(aka_care$endpoint,
+                                     aka_prov$endpoint,
+                                     aka_open$endpoint,
+                                     aka_caid$endpoint,
+                                     aka_hgov$endpoint)
+aka$collection <- cheapr::list_combine(aka_care$collection,
+                                       aka_prov$collection,
+                                       aka_open$collection,
+                                       aka_caid$collection)
+
+aka$temporal <- cheapr::list_combine(aka_care$temporal,
+                                     aka_open$temporal,
+                                     aka_caid$temporal,
+                                     aka_hgov$temporal)
+
+#' @autoglobal
+#' @noRd
+reset_aka <- function() {
+  old         <- the$catalog
+  the$catalog <- catalogs()
+  invisible(old)
+}
+
+# aka <- list(
+#   endpoint = cheapr::list_combine(
+#     aka_care$endpoint,
+#     aka_prov$endpoint,
+#     aka_open$endpoint,
+#     aka_caid$endpoint,
+#     aka_hgov$endpoint
+#   ),
+#   temporal = cheapr::list_combine(
+#     aka_care$temporal,
+#     aka_open$temporal,
+#     aka_caid$temporal,
+#     aka_hgov$temporal
+#   ),
+#   collection = cheapr::list_combine(
+#     aka_care$collection,
+#     aka_prov$collection,
+#     aka_open$collection,
+#     aka_caid$collection
+#   )
 # )

@@ -94,6 +94,10 @@ api_ <- new_generic("api_", "obj", function(obj) {
   S7_dispatch()
 })
 
+method(api_, class_list) <- function(obj) {
+  obj |> get_elem("api")
+}
+
 method(api_, class_backend) <- function(obj) {
   metadata_(obj) |> get_elem("api")
 }
@@ -107,6 +111,10 @@ method(api_, class_group) <- function(obj) {
 clog_ <- new_generic("clog_", "obj", function(obj) {
   S7_dispatch()
 })
+
+method(clog_, class_list) <- function(obj) {
+  obj |> get_elem("clog")
+}
 
 method(clog_, class_backend) <- function(obj) {
   metadata_(obj) |> get_elem("clog")

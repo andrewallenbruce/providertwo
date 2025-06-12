@@ -12,7 +12,7 @@ method(default_query, class_backend) <- function(x) {
     caid = ,
     hgov = ,
     open = ,
-    prov = list(count = "true", results = "true", offset = 0L, limit = 1L)
+    prov = list(count = "true", results = "false", offset = 0L, limit = 1L)
   )
 }
 
@@ -59,4 +59,71 @@ method(base_request, class_temporal) <- function(x) {
 
 method(base_request, class_group) <- function(x) {
   members_(x) |> map(base_request)
+}
+
+#' @name query_nresults
+#' @title Request the number of results for a query
+#' @param x An `<int>` vector
+#' @param ... Additional arguments
+#' @returns An `<int>` vector
+#' @examples
+#' care_endpoint("care_enrollees") |> query_nresults()
+#' care_temporal("quality_payment") |> query_nresults()
+#' care_group("care_hospital") |> query_nresults()
+#' prov_endpoint("pdc_affiliations") |> query_nresults()
+#' prov_group("pro_mips") |> query_nresults()
+#' open_endpoint("profile_covered") |> query_nresults()
+#' open_temporal("payment_general") |> query_nresults()
+#' open_group("payment_grouped") |> query_nresults()
+#' caid_endpoint("mlr_summary") |> query_nresults()
+#' caid_temporal("healthcare_quality") |> query_nresults()
+#' hgov_endpoint("hgov_catastrophic") |> query_nresults()
+#' hgov_temporal("hgov_mlr") |> query_nresults()
+#' @autoglobal
+#' @export
+query_nresults <- new_generic("query_nresults", "x")
+
+method(query_nresults, class_endpoint) <- function(x, query = NULL) {
+
+  if (clog_(x) != "care") {
+    return(
+      base_request(x) |>
+        req_url_query(splice(query)) |>
+        perform_simple() |>
+        _$count
+    )
+  }
+  base_request(x) |>
+    req_url_path_append("stats") |>
+    req_url_query(splice(query)) |>
+    perform_simple() |>
+    _$total_rows
+}
+
+method(query_nresults, class_temporal) <- function(x, query = NULL) {
+
+  if (clog_(x) != "care") {
+    return(
+      base_request(x) |>
+        map(function(i)
+          req_url_query(i, splice(query))) |>
+        req_perform_parallel(on_error = "continue") |>
+        map(function(e) resp_simple_json(e) |> _[["count"]]) |>
+        name_years_(x)
+    )
+  }
+  base_request(x) |>
+    map(function(i)
+      req_url_path_append(i, "stats") |>
+      req_url_query(splice(query))) |>
+    req_perform_parallel(on_error = "continue") |>
+    map(function(e) resp_simple_json(e) |> _[["total_rows"]]) |>
+    name_years_(x)
+}
+
+method(query_nresults, class_group) <- function(x, query = NULL) {
+  members_(x) |>
+    map(function(x)
+      query_nresults(x, query = query), .progress = TRUE) |>
+    name_members_(x)
 }

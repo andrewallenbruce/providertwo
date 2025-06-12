@@ -1,21 +1,5 @@
 caid_list$endpoint[["unwin_sbm"]]
 
-aka <- list(
-    endpoint = list_combine(
-      care_list$endpoint,
-      pro_list$endpoint,
-      open_list$endpoint,
-      caid_list$endpoint,
-      hgov_list$endpoint
-    ),
-    temporal = list_combine(
-      care_list$temporal,
-      open_list$temporal,
-      caid_list$temporal,
-      hgov_list$temporal
-    )
-  )
-
 aka$endpoint$ahqr_psi11
 
 select_alias(the$catalogs$care$end, aka$endpoint$ahqr_psi11)
@@ -23,6 +7,13 @@ select_alias(the$catalogs$care$end, aka$endpoint$ahqr_psi11)
 `%|||%` <- function(x, y) {
   if (!is.null(x)) y else NULL
 }
+care_temporal("quality_payment") |> query_nresults()
+open_temporal("payment_general") |> query_nresults()
+caid_temporal("healthcare_quality") |> query_nresults()
+hgov_temporal("hgov_mlr") |> query_nresults()
+
+care_endpoint("care_enrollees") |> query_nresults()
+prov_endpoint("pdc_affiliations") |> query_nresults()
 
 quick("care_dialysis")
 quick("managed_longterm")
@@ -30,13 +21,15 @@ quick("hgov_ab_reg_comp")
 quick("profile_covered")
 quick("asc_facility")
 
-x <- care_endpoint("care_dialysis") |> quick_query_()
+care_endpoint("care_dialysis") |> quick_query_()
 caid_endpoint("managed_longterm")@identifier |> quick_query_()
 hgov_endpoint("hgov_ab_reg_comp")
 open_endpoint("profile_covered")
 prov_endpoint("asc_facility")@identifier
 
 caid_temporal("nadac_year")@endpoints$identifier[1]
+
+new_collection("caid_demographics") |> query_nresults()
 
 list(count = "true", results = "true", offset = 0L, limit = 1L)
 
