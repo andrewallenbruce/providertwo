@@ -318,6 +318,8 @@ catalog_hgov <- function() {
   )
 }
 
+options(fastplyr.inform = FALSE)
+
 #' @name catalogs
 #' @title API Catalogs
 #' @description
@@ -342,7 +344,6 @@ catalogs <- function() {
   )
 }
 
-options(fastplyr.inform = FALSE)
 the         <- new.env(parent = emptyenv())
 the$catalog <- catalogs()
 
