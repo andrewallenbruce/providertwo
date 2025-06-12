@@ -6,14 +6,16 @@ NULL
 default_query <- new_generic("default_query", "x")
 
 method(default_query, class_backend) <- function(x) {
-  switch(
-    clog_(x),
-    care = list(offset = 0L, size = 1L),
-    caid = ,
-    hgov = ,
-    open = ,
-    prov = list(count = "true", results = "false", offset = 0L, limit = 1L)
-  )
+
+  if (clog_(x) != "care")
+    return(list2(
+      count   = "true",
+      results = "false",
+      offset  = 0L,
+      limit   = 1L
+    ))
+
+  list2(offset = 0L, size = 1L)
 }
 
 #' @name base_request
@@ -38,27 +40,55 @@ method(default_query, class_backend) <- function(x) {
 #' @export
 base_request <- new_generic("base_request", "x")
 
-method(base_request, class_endpoint) <- function(x) {
+method(base_request, class_endpoint) <- function(x, query = NULL, years = NULL) {
   identifier_(x) |>
     request() |>
     req_throttle(capacity = 30, fill_time_s = 60) |>
-    req_url_query(splice(default_query(x))) |>
+    req_url_query(splice(default_query(x)), splice(query)) |>
     req_error(is_error = ~ FALSE)
 }
 
-method(base_request, class_temporal) <- function(x) {
-  identifier_(x) |>
-    map(
-      function(i)
-        request(i) |>
+method(base_request, class_temporal) <- function(x, query = NULL, years = NULL) {
+  if (is_empty(years)) {
+    return(
+      identifier_(x) |>
+        map(
+          function(i)
+            request(i) |>
+            req_throttle(capacity = 30, fill_time_s = 60) |>
+            req_url_query(splice(default_query(x)), splice(query)) |>
+            req_error(is_error = ~ FALSE)
+        )
+    )
+  }
+
+  if (all(years %!in_% years_(x))) {
+    cli_abort(
+      c(" " = "{metadata_(x)$title}",
+        "x" = paste0("Invalid {.arg years}: ",
+        "{.val {years[which_(years %!in_% years_(x))]}}."),
+        ">" = "Valid: {.pkg {paste0(range(years_(x)), collapse = '-')}}"
+        ),
+      call = caller_env())
+  }
+
+  list_tidy(
+    urls_years = set_names(identifier_(x), years_(x))[as.character(years)],
+    requests   = map(urls_years, function(i) request(i) |>
         req_throttle(capacity = 30, fill_time_s = 60) |>
-        req_url_query(splice(default_query(x))) |>
+        req_url_query(splice(default_query(x), splice(query))) |>
         req_error(is_error = ~ FALSE)
     )
+  )
 }
 
-method(base_request, class_group) <- function(x) {
-  members_(x) |> map(base_request)
+method(base_request, class_group) <- function(x, query = NULL, years = NULL) {
+  map2(
+    members_(x),
+    list2(query = query, years = years),
+    function(m, q) {
+      base_request(m, splice(q))
+    })
 }
 
 #' @name query_nresults
@@ -83,30 +113,27 @@ method(base_request, class_group) <- function(x) {
 #' @export
 query_nresults <- new_generic("query_nresults", "x")
 
-method(query_nresults, class_endpoint) <- function(x, query = NULL) {
+method(query_nresults, class_endpoint) <- function(x) {
 
   if (clog_(x) != "care") {
     return(
       base_request(x) |>
-        req_url_query(splice(query)) |>
         perform_simple() |>
         _[["count"]]
-    )
+      )
   }
+
   base_request(x) |>
     req_url_path_append("stats") |>
-    req_url_query(splice(query)) |>
     perform_simple() |>
     get_elem("found_rows")
 }
 
-method(query_nresults, class_temporal) <- function(x, query = NULL) {
+method(query_nresults, class_temporal) <- function(x) {
 
   if (clog_(x) != "care") {
     return(
       base_request(x) |>
-        map(function(i)
-          req_url_query(i, splice(query))) |>
         req_perform_parallel(on_error = "continue") |>
         map(function(e) resp_simple_json(e) |> _[["count"]]) |>
         unlist(use.names = FALSE) |>
@@ -114,19 +141,15 @@ method(query_nresults, class_temporal) <- function(x, query = NULL) {
     )
   }
   base_request(x) |>
-    map(function(i)
-      req_url_path_append(i, "stats") |>
-      req_url_query(splice(query))) |>
+    map(function(i) req_url_path_append(i, "stats")) |>
     req_perform_parallel(on_error = "continue") |>
-    map(function(e)
-      get_elem(resp_simple_json(e), "found_rows")) |>
+    map(function(e) get_elem(resp_simple_json(e), "found_rows")) |>
     unlist(use.names = FALSE) |>
     name_years_(x)
 }
 
-method(query_nresults, class_group) <- function(x, query = NULL) {
+method(query_nresults, class_group) <- function(x) {
   members_(x) |>
-    map(function(x)
-      query_nresults(x, query = query), .progress = TRUE) |>
+    map(query_nresults, .progress = TRUE) |>
     name_members_(x)
 }

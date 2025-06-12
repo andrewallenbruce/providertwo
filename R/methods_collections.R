@@ -2,9 +2,10 @@
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
 #' @param call `<env>` Environment to use for error reporting.
 #' @returns S7 `class_collection` object.
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' new_collection("caid_demographics")
 #' new_collection("caid_unwind")
+#' new_collection("caid_services") |> query_nresults()
 #' @autoglobal
 #' @export
 new_collection <- function(alias, call = caller_env()) {
@@ -19,14 +20,8 @@ new_collection <- function(alias, call = caller_env()) {
       call = call)
   }
 
-  class_collection(
-    x[["name"]],
-    set_names(
-      map(
-        x[["alias"]],
-        caid_endpoint),
-      x[["alias"]])
-    )
+  class_collection(x$name,
+    set_names(map(x$alias, caid_endpoint), x$alias))
 }
 
 # ------- care_list ------
