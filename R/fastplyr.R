@@ -1,3 +1,5 @@
+options(fastplyr.inform = FALSE)
+
 #' @autoglobal
 #' @noRd
 fibble <- function(...) {

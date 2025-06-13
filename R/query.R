@@ -179,55 +179,29 @@ is_in <- function(x, negate = FALSE) {
        input    = as.character(x))
 }
 
-# query_in_main <- function(args,
-#                           operator = c("IN", "NOT IN")) {
-#
-#   operator <- match.arg(operator)
-#   args     <- args[cheapr::which_(cheapr::lengths_(args, names = TRUE) > 1)]
-#
-#   glue::as_glue(
-#     c(
-#       glue::glue(
-#         "filter[{seq_along(args)}][condition][path]={names(args)}
-#          filter[{seq_along(args)}][condition][operator]={operator}"
-#       ),
-#       glue::glue(
-#         "filter[{seq_along(args)}][condition][value]",
-#         "[{seq_along(delist(args))}]={delist(args)}"
-#       )
-#     )
-#   )
-# }
-#
-# query_in_main(args = list(NPI = npi_ex))
-#
-# query_in_pro <- function(args,
-#                          operator = c("IN", "NOT IN")) {
-#
-#   operator <- match.arg(operator)
-#   args     <- args[cheapr::which_(cheapr::lengths_(args, names = TRUE) > 1)]
-#
-#   glue::as_glue(
-#     c(
-#       glue::glue(
-#         "conditions[{seq_along0(args)}][property]={names(args)},\n",
-#         "conditions[{seq_along0(args)}][operator]={operator}"
-#       ),
-#       glue::glue(
-#         "conditions[{seq_along0(args)}][value]",
-#         "[{seq_along(delist(args))}]={delist(args)}"
-#       )
-#     )
-#   )
-# }
-#
-#
-# query_in_pro(args = list(NPI = npi_ex)) |>
-#   glue_collapse(sep = ",\n") |>
-#   c() |>
-#   parse_expr() |>
-#   eval_bare()
-#
-# glue('c({query})') |>
-#   parse_expr() |>
-#   eval_bare()
+# args = list(
+#   state = c("GA", "MD"),
+#   last_name = "SMITH",
+#   npi = 1234567890)
+
+#' @autoglobal
+#' @noRd
+query_formatter <- function(args) {
+
+  fmt_q <- function(x, m) {
+
+    p <- paste0("filter[<<i>>][path]=", m, "&")
+    o <- paste0("filter[<<i>>][operator]=", "=", "&")
+    v <- unlist(x, use.names = FALSE)
+    v <- if (length(v) > 1)
+      paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
+    else
+      paste0("filter[<<i>>][value]=", v, "&")
+
+    c(p, o, v)
+  }
+
+  imap(args, fmt_q) |>
+    unname() |>
+    imap(\(x, idx) greplace(x, "<<i>>", idx) |> paste0(collapse = ""))
+}

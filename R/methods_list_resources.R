@@ -32,7 +32,7 @@ tidy_resources <- function(x) {
   x |>
     fcompute(
       year     = extract_year(name),
-      file     = rp_dbl_space(greplace(name, " [0-9]{4}|[0-9]{4} ", "")),
+      file     = rm_space(gremove(name, " [0-9]{4}|[0-9]{4} ")),
       size     = as_fs_bytes(fileSize),
       ext      = tolower(path_ext(downloadURL)),
       download = downloadURL

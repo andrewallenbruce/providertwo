@@ -178,6 +178,7 @@ utils::globalVariables(c(
   "temporal",
   # <catalog_prov>
   "theme",
+  # <ss_title>
   # <select_alias>
   # <catalog_care>
   # <catalog_prov>

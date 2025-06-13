@@ -62,22 +62,27 @@ method(base_request, class_temporal) <- function(x, query = NULL, years = NULL) 
     )
   }
 
-  if (all(years %!in_% years_(x))) {
+  yrs_valid <- years %in_% years_(x)
+
+  if (!all(yrs_valid)) {
     cli_abort(
       c(" " = "{metadata_(x)$title}",
         "x" = paste0("Invalid {.arg years}: ",
-        "{.val {years[which_(years %!in_% years_(x))]}}."),
+        "{.val {years[which_(yrs_valid, TRUE)]}}."),
         ">" = "Valid: {.pkg {paste0(range(years_(x)), collapse = '-')}}"
         ),
       call = caller_env())
   }
 
-  list_tidy(
-    urls_years = set_names(identifier_(x), years_(x))[as.character(years)],
-    requests   = map(urls_years, function(i) request(i) |>
+  urls <- name_years_(identifier_(x), x)[as.character(years)]
+
+  flist(
+    years = names(urls) |> as.integer(),
+    requests = map(urls, function(i) request(i) |>
         req_throttle(capacity = 30, fill_time_s = 60) |>
-        req_url_query(splice(default_query(x), splice(query))) |>
-        req_error(is_error = ~ FALSE)
+          req_url_query(splice(default_query(x))) |>
+          req_url_query(splice(query)) |>
+          req_error(is_error = ~ FALSE)
     )
   )
 }
@@ -150,6 +155,6 @@ method(query_nresults, class_temporal) <- function(x) {
 
 method(query_nresults, class_group) <- function(x) {
   members_(x) |>
-    map(query_nresults, .progress = TRUE) |>
+    map(\(x) query_nresults(x), .progress = TRUE) |>
     name_members_(x)
 }

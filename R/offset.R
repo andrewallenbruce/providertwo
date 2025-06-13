@@ -54,5 +54,6 @@ offset_size <- function(n, limit) {
 #' @noRd
 bound <- function(lower, upper) {
   check_number_whole(lower, min = 0)
-  cheapr_if_else(lower > upper, upper, lower)
+  check_number_whole(upper, min = 1)
+  iif(lower > upper, upper, lower, nThread = 4L, tprom = TRUE)
 }
