@@ -64,10 +64,26 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
+class_clog <- new_class(
+  name     = "class_clog",
+  package  = NULL,
+  properties = list(
+    id = class_character
+  )
+)
+
+#' @noRd
+#' @autoglobal
 class_backend <- new_class(
   name     = "class_backend",
   package  = NULL,
-  abstract = TRUE)
+  abstract = TRUE,
+  properties    = list(
+    catalog     = class_clog,
+    metadata    = class_list,
+    dimensions  = class_dimensions
+  )
+)
 
 #' @noRd
 #' @autoglobal
@@ -76,9 +92,7 @@ class_endpoint <- new_class(
   package       = NULL,
   parent        = class_backend,
   properties    = list(
-    metadata    = class_list,
-    identifier  = class_character,
-    dimensions  = class_dimensions
+    identifier  = class_character
   )
 )
 
@@ -89,9 +103,7 @@ class_temporal <- new_class(
   package       = NULL,
   parent        = class_backend,
   properties    = list(
-    metadata    = class_list,
-    endpoints   = class_list,
-    dimensions  = class_dimensions
+    endpoints   = class_list
   )
 )
 

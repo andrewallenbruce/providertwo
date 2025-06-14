@@ -5,6 +5,44 @@ seq_along0 <- function(x) {
   # 0L:(length(x) - 1L)
 }
 
+#' Format Queries
+#' @examples
+#' args = list(state = c("GA", "MD"),
+#'             last_name = "SMITH",
+#'             npi = 1234567890,
+#'             PECOS = NULL)
+#'
+#' query_formatter(args)
+#'
+#' @param args named `<list>` of `<chr>` arguments
+#' @returns `<list>` of formatted query `<exprs>`
+#' @autoglobal
+#' @rdname query-format
+#' @export
+query_formatter <- function(args) {
+
+  args <- discard(args, is.null)
+
+  imap(args, function(x, m) {
+
+    p <- paste0("filter[<<i>>][path]=", m, "&")
+    o <- paste0("filter[<<i>>][operator]=", "=", "&")
+    v <- unlist(x, use.names = FALSE)
+    v <- if (length(v) > 1)
+      paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
+    else
+      paste0("filter[<<i>>][value]=", v, "&")
+
+    c(p, o, v)
+    }) |>
+    unname() |>
+    imap(function(x, idx) {
+
+      greplace(x, "<<i>>", idx) |>
+        paste0(collapse = "")
+      })
+}
+
 #' Format Public API Queries
 #'
 #' @param args named `<list>` or vector of `<chr>` arguments
@@ -119,89 +157,87 @@ NULL
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-greater_than <- function(x, equals = FALSE) {
-  list(field    = character(0L),
-       operator = if (equals) ">=" else ">",
-       input    = as.character(x))
+greater_than_ <- function(x, or_equals = FALSE) {
+  list(filter = character(0L),
+       operator = if (or_equals) ">=" else ">",
+       value = as.character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-less_than <- function(x, equals = FALSE) {
-  list(field    = character(0L),
-       operator = if (equals) "<=" else "<",
-       input    = as.character(x))
+less_than_ <- function(x, or_equals = FALSE) {
+  list(filter = character(0L),
+       operator = if (or_equals) "<=" else "<",
+       value = as.character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-starts_with <- function(x) {
-  list(field    = character(0L),
+starts_with_ <- function(x) {
+  list(filter = character(0L),
        operator = "STARTS_WITH",
-       input    = as.character(x))
+       value = as.character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-ends_with <- function(x) {
-  list(field    = character(0L),
+ends_with_ <- function(x) {
+  list(filter = character(0L),
        operator = "ENDS_WITH",
-       input    = as.character(x))
+       value = as.character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-contains <- function(x) {
-  list(field    = character(0L),
+contains_ <- function(x) {
+  list(filter = character(0L),
        operator = "CONTAINS",
-       input    = as_character(x))
+       value = as_character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-between <- function(x, negate = FALSE) {
-  list(field    = character(0L),
-       operator = if (negate) "NOT BETWEEN" else "BETWEEN",
-       input    = as.character(x))
+between_ <- function(x, not = FALSE) {
+  list(filter = character(0L),
+       operator = if (not) "NOT BETWEEN" else "BETWEEN",
+       value = as.character(x))
 }
 
 #' @autoglobal
 #' @rdname query-helpers
 #' @noRd
-is_in <- function(x, negate = FALSE) {
-  list(field    = character(0L),
-       operator = if (negate) "NOT IN" else "IN",
-       input    = as.character(x))
+in_ <- function(x, not = FALSE) {
+  list(filter = character(0L),
+       operator = if (not) "NOT IN" else "IN",
+       value = as.character(x))
 }
 
-# args = list(
-#   state = c("GA", "MD"),
-#   last_name = "SMITH",
-#   npi = 1234567890)
-
-#' @autoglobal
-#' @noRd
-query_formatter <- function(args) {
-
-  fmt_q <- function(x, m) {
-
-    p <- paste0("filter[<<i>>][path]=", m, "&")
-    o <- paste0("filter[<<i>>][operator]=", "=", "&")
-    v <- unlist(x, use.names = FALSE)
-    v <- if (length(v) > 1)
-      paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
-    else
-      paste0("filter[<<i>>][value]=", v, "&")
-
-    c(p, o, v)
-  }
-
-  imap(args, fmt_q) |>
-    unname() |>
-    imap(\(x, idx) greplace(x, "<<i>>", idx) |> paste0(collapse = ""))
-}
+# frm <- list(state ~ in_(c("NY", "CA")))
+#
+# rlang::f_rhs(frm[[1]]) |>
+#   rlang::eval_bare() |>
+#   purrr::list_assign(filter = rlang::as_name(rlang::f_lhs(frm[[1]])))
+#
+#
+# frm <- list(state = ~starts_with("NY"))
+#
+#
+# rlang::is_formula(frm$state, lhs = FALSE)
+# rlang::is_bare_formula(frm$state, scoped = TRUE, lhs = FALSE)
+# rlang::f_rhs(frm)
+#
+#
+# frm2 <- list(
+#   state ~ starts_with("NY"),
+#   state = ~is_in(c("CA", "GA", "NY")),
+#   npi = 1234567890
+# )
+#
+# which_(map_lgl(frm2, rlang::is_formula))
+#
+# is_formula(frm2$state, lhs = FALSE)

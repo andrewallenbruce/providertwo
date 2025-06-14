@@ -35,7 +35,6 @@ utils::globalVariables(c(
   # <catalog_prov>
   # <catalog_open>
   # <catalog_hgov>
-  # <open_temporal>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>

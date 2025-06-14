@@ -177,6 +177,7 @@ prov_endpoint <- function(alias, call = caller_env()) {
   x <- c(res)
 
   class_endpoint(
+    catalog     = class_clog(clog_(x)),
     identifier  = identifier_(x),
     metadata    = get_metadata(x),
     dimensions  = get_dimensions(x)

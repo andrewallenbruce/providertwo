@@ -41,6 +41,7 @@ open_endpoint <- function(alias, call = caller_env()) {
   x <- c(res)
 
   class_endpoint(
+    catalog     = class_clog(clog_(x)),
     identifier  = identifier_(x),
     metadata    = get_metadata(x),
     dimensions  = get_dimensions(x)
@@ -73,14 +74,15 @@ open_temporal <- function(alias, call = caller_env()) {
 
   x <- flist(
     !!!c(slt(res, -endpoints)),
-    endpoints   = pluck(get_elem(res, "endpoints"), 1) |> slt(-contact),
-    identifier  = endpoints$identifier[1]
+    endpoints   = pluck(get_elem(res, "endpoints"), 1),
+    identifier  = pluck(get_elem(endpoints, "identifier"), 1)
   )
 
   class_temporal(
+    catalog     = class_clog(clog_(x)),
     metadata    = get_metadata(x),
     dimensions  = get_dimensions(x),
-    endpoints   = x$endpoints
+    endpoints   = get_elem(x, "endpoints")
   )
 }
 
