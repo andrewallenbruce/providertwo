@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9336 (2025-06-14)
+
+* query formatting
+
+
 # providertwo 0.0.0.9335 (2025-06-13)
 
 * sketch of query_formatter
