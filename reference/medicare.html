@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9335</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9336</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,8 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">care_endpoint</span><span class="op">(</span><span class="st">"care_dialysis"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
@@ -90,7 +92,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024%20Data%20Dictionary.xlsx"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ references : chr "https://data.cms.gov/sites/default/files/2024-02/FY2024_DFR_Guide%20and%20Methodology.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 11679243</span>
@@ -110,8 +111,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ Measure_Score : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ year          : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ Measure_ID    : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer"</span>
 <span class="r-in"><span><span class="fu">care_temporal</span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "tmp"</span>
@@ -121,13 +125,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Data"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ site       : chr "https://data.cms.gov/quality-of-care/quality-payment-program-experience"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ references : chr "https://data.cms.gov/sites/default/files/2024-04/2022%20QPP%20Experience%20Report%20Public%20Use%20Files%20Methodology.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [6 × 6] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2022 2021 2020 2019 2018 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2024-05-08" "2023-06-12" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal  : chr [1:6] "2022-01-01 • 2022-12-31" "2021-01-01 • 2021-12-31" "2020-01-01 • 2020-12-31" "2019-01-01 • 2019-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data" "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data" "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data" "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:6] "https://data.cms.gov/sites/default/files/2023-05/0bac88bc-a4c8-4dff-bdbf-660d24e6a689/2021_puf_QPPAR-18260.csv" "https://data.cms.gov/sites/default/files/2023-04/fb3758dd-6ace-4ddb-863b-1b895cef4d7e/2020_puf_qppar_QPPAR-17660.csv" "https://data.cms.gov/sites/default/files/2023-04/f9ef9f64-91d8-49a2-a1be-5a48bbdcc1e9/2019_puf_qppar_QPPAR-17661.csv" "https://data.cms.gov/sites/default/files/2023-04/d2a19b56-7a5f-49c7-b78d-4d0dd49b9391/2018_puf_qppar-QPPAR-17662.csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/b3438273-b4a6-44ca-8fb2-9e6026b74642" "https://data.cms.gov/data-api/v1/dataset-resources/8c2ab3e4-597e-43c9-9d94-7223c66d7f25" "https://data.cms.gov/data-api/v1/dataset-resources/48a484e6-ff02-4284-8666-6045b3cac17f" "https://data.cms.gov/data-api/v1/dataset-resources/5776e77d-a844-49fd-b697-a2b01bdacdc7" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 624200</span>
@@ -233,11 +230,20 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure score 9                               : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ pi measure id 10                                 : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. ..  [list output truncated]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [6 × 6] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2022 2021 2020 2019 2018 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2024-05-08" "2023-06-12" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal  : chr [1:6] "2022-01-01 • 2022-12-31" "2021-01-01 • 2021-12-31" "2020-01-01 • 2020-12-31" "2019-01-01 • 2019-12-31" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data" "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data" "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data" "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:6] "https://data.cms.gov/sites/default/files/2023-05/0bac88bc-a4c8-4dff-bdbf-660d24e6a689/2021_puf_QPPAR-18260.csv" "https://data.cms.gov/sites/default/files/2023-04/fb3758dd-6ace-4ddb-863b-1b895cef4d7e/2020_puf_qppar_QPPAR-17660.csv" "https://data.cms.gov/sites/default/files/2023-04/f9ef9f64-91d8-49a2-a1be-5a48bbdcc1e9/2019_puf_qppar_QPPAR-17661.csv" "https://data.cms.gov/sites/default/files/2023-04/d2a19b56-7a5f-49c7-b78d-4d0dd49b9391/2018_puf_qppar-QPPAR-17662.csv" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/b3438273-b4a6-44ca-8fb2-9e6026b74642" "https://data.cms.gov/data-api/v1/dataset-resources/8c2ab3e4-597e-43c9-9d94-7223c66d7f25" "https://data.cms.gov/data-api/v1/dataset-resources/48a484e6-ff02-4284-8666-6045b3cac17f" "https://data.cms.gov/data-api/v1/dataset-resources/5776e77d-a844-49fd-b697-a2b01bdacdc7" ...</span>
 <span class="r-in"><span><span class="fu">care_group</span><span class="op">(</span><span class="st">"care_hospital"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Hospitals"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_owners      : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -251,7 +257,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2025-05/90b341cf-89fd-41c6-bf8a-a74e0fc4d1a7/Hospital_All_Owners_Data_Dictionary.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-all-owners"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 148341</span>
@@ -295,7 +300,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE - OWNER                 : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE TEXT - OWNER            : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OWNED BY ANOTHER ORG OR IND - OWNER: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/029c119f-f79c-49be-9100-344d31d10344/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_chow        : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -309,7 +317,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2023-01/Hospital_CHOW_Data_Dictionary_2022.12.30.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 715</span>
@@ -338,7 +345,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ASSOCIATE ID - SELLER          : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ ORGANIZATION NAME - SELLER     : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ DOING BUSINESS AS NAME - SELLER: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/c04031db-54ce-461c-85d1-d2613d71f167/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_chow_owner  : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -352,7 +362,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Owners_Data_Dictionary.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-change-of-ownership-owner-information"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_CHOW_Data_Guidance.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 21289</span>
@@ -392,7 +401,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ NON PROFIT - OWNER                 : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE - OWNER                 : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ OTHER TYPE TEXT - OWNER            : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/60625dc8-b621-45f0-9423-077fd133b13e/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_enrollments : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -406,7 +418,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2023-07/Hospital_Enrollments_Data_Dictionary.pdf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/hospital-enrollments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/sites/default/files/2024-10/Hospital_Data_Guidance.pdf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 9246</span>
@@ -451,7 +462,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ REH CONVERSION FLAG           : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ REH CONVERSION DATE           : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ CAH OR HOSPITAL CCN           : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/f6f6505c-e8b0-4d57-b258-e2b94133aaf2/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_costreport  : &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -465,7 +479,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2024-03/9756088d-5280-4090-80b9-449d31ef25a3/Cost%20Report%20Data%20Di"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/resources/hospital-provider-cost-report-methodology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 6064</span>
@@ -571,7 +584,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ Disproportionate Share Adjustment                                      : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ Allowable DSH Percentage                                               : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. ..  [list output truncated]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/44060663-47d8-4ced-a115-b53b4c270acb/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ hospital_service_area: &lt;class_endpoint&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "care"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
@@ -585,7 +601,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ dictionary : chr "https://data.cms.gov/resources/hospital-service-area-data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ site       : chr "https://data.cms.gov/provider-summary-by-type-of-service/medicare-inpatient-hospitals/hospital-service-area"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ references : chr "https://data.cms.gov/resources/hospital-service-area-methodology"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/8708ca8b-8636-44ed-8303-724cbfaf78ad/data-viewer"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1139666</span>
@@ -596,6 +611,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_DAYS_OF_CARE : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_CHARGES      : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ TOTAL_CASES        : chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ identifier: chr "https://data.cms.gov/data-api/v1/dataset/8708ca8b-8636-44ed-8303-724cbfaf78ad/data-viewer"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
