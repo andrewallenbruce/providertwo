@@ -1,12 +1,14 @@
+options(fastplyr.inform = FALSE)
+
 #' @include utils_misc.R
 #' @include fastplyr.R
 NULL
 
 #' @autoglobal
 #' @noRd
-catalog_care <- function() {
+clog_care <- function(x) {
 
-  x <- fload("https://data.cms.gov/data.json", query = "/dataset")
+  x <- x$care
 
   d <- get_elem(x, "distribution") |>
     rowbind(fill = TRUE) |>
@@ -42,7 +44,6 @@ catalog_care <- function() {
       gremove("\\n\\n.+\\n\\n")
     ) |>
     slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
-    as_fibble() |>
     join_on_title(sbt(d, format %==% "latest", title, download, resources)) |>
     roworder(title)
 
@@ -59,10 +60,13 @@ catalog_care <- function() {
 
 #' @autoglobal
 #' @noRd
-catalog_prov <- function() {
-  x <- fload("https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items")
+clog_prov <- function(x) {
+
+  x <- x$prov
+
   list(
-    end = mtt(x,
+    end = mtt(
+      x,
       clog        = "prov",
       api         = "end",
       title       = rm_nonascii(title),
@@ -76,28 +80,32 @@ catalog_prov <- function() {
       download    = get_elem(x, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
       contact     = fmt_contactpoint(get_elem(x, "contactPoint"))) |>
       sbt(group %!=% "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
-      roworder(group, title) |>
-      as_fibble()
+      roworder(group, title)
   )
 }
 
 #' @autoglobal
 #' @noRd
-catalog_open <- function() {
+clog_open <- function(x) {
 
-  x <- fload("https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
+  x <- x$open
 
   x <- mtt(x,
-    identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
-    modified    = as_date(modified),
-    year        = get_data_elem(keyword) |> greplace("all years", "All"),
-    year        = iif(title == "Provider profile ID mapping table", "All", year, nThread = 4L),
-    title       = toTitleCase(rm_nonascii(title)),
-    contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
-    description = rm_quotes(description) |> greplace("\r\n", " ") |> gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |> rm_space(),
-    download    = get_distribution(x) |> get_elem("downloadURL") |> delist()) |>
-    slt(year, title, description, modified, identifier, contact, download) |>
-    as_fibble()
+      identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
+      modified    = as_date(modified),
+      year        = unlist(x$keyword, use.names = FALSE),
+      year        = iif(year == "all years" | title == "Provider profile ID mapping table", "All", year, nThread = 4L),
+      title       = toTitleCase(rm_nonascii(title)),
+      contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+      description = rm_quotes(description) |>
+        rm_nonascii() |>
+        greplace("\r\n", " ") |>
+        gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
+        rm_space(),
+      download    = get_elem(x, "distribution", DF.as.list = TRUE) |>
+        get_elem("downloadURL", DF.as.list = TRUE) |>
+        unlist(use.names = FALSE)) |>
+    slt(year, title, description, modified, identifier, contact, download)
 
   list(
     end = sbt(x, year %==% "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
@@ -118,9 +126,9 @@ catalog_open <- function() {
 
 #' @autoglobal
 #' @noRd
-catalog_caid <- function() {
+clog_caid <- function(x) {
 
-  x <- fload("https://data.medicaid.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
+  x <- x$caid
 
   xcols <- c("title", "identifier", "description", "periodicity", "modified", "contact", "distribution")
 
@@ -133,12 +141,13 @@ catalog_caid <- function() {
       title       = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
       description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space(),
       description = iif(description == "Dataset.", NA_character_, description)) |>
-    ss(j = xcols) |>
-    as_fibble()
+    ss(j = xcols)
 
   dl <- fibble(
-    title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_distribution(x))),
-    download = get_distribution(x) |> get_elem("^downloadURL$", regex = TRUE) |> delist(),
+    title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_elem(x, "distribution", DF.as.list = TRUE))),
+    download = get_elem(x, "distribution", DF.as.list = TRUE) |>
+      get_elem("^downloadURL$", DF.as.list = TRUE, regex = TRUE) |>
+      unlist(use.names = FALSE),
     ext      = path_ext(download)) |>
     fcount(title, add = TRUE)
 
@@ -195,12 +204,11 @@ catalog_caid <- function() {
 
 #' @autoglobal
 #' @noRd
-catalog_hgov <- function() {
+clog_hgov <- function(x) {
 
-  x <- fload("https://data.healthcare.gov/api/1/metastore/schemas/dataset/items?show-reference-ids")
+  x <- x$hgov
 
   x <- x |>
-    as_fibble() |>
     mtt(
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
       title       = rm_nonascii(title) |> rm_space(),
@@ -211,14 +219,16 @@ catalog_hgov <- function() {
       contact     = fmt_contactpoint(x$contactPoint)) |>
     slt(title, identifier, description, periodicity, issued, modified, contact, distribution)
 
-  download <- fibble(
-    title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_distribution(x))),
-    download = get_distribution(x) |> get_elem("downloadURL") |> delist(),
+  dl <- fibble(
+    title    = cheapr_rep_each(get_elem(x, "title"), fnobs(get_elem(x, "distribution", DF.as.list = TRUE))),
+    download = get_elem(x, "distribution", DF.as.list = TRUE) |>
+      get_elem("^downloadURL$", DF.as.list = TRUE, regex = TRUE) |>
+      unlist(use.names = FALSE),
     ext      = path_ext(download))
 
   x <- list(slt(x, -distribution),
-            sbt(download, ext == "csv", title, download),
-            sbt(download, ext != "csv", title, resources = download)) |>
+            sbt(dl, ext == "csv", title, download),
+            sbt(dl, ext != "csv", title, resources = download)) |>
     reduce(join_on_title)
 
   qhp <- ss_title(x, "QHP|SHOP")
@@ -235,13 +245,13 @@ catalog_hgov <- function() {
         gremove("[RP]Y\\s?[2][0-9]{3}\\s") |>
         gremove("\\s[0-9]{8}$") |>
         gremove("\\sSocrata|\\sZip\\sFile$"),
-      title = kit::nif(
+      title = nif(
         gdetect(title, "^Benefits\\sCost")                    , "Benefits and Cost Sharing PUF",
         gdetect(title, "^Plan\\sCrosswalk\\sPUF")             , "Plan ID Crosswalk PUF",
         gdetect(title, "Transparency [Ii]n Coverage PUF")     , "Transparency in Coverage PUF",
         default = title),
       title = rm_space(title) |> greplace("/\\s", "/"),
-      description = kit::nswitch(title,
+      description = nswitch(title,
         "Benefits and Cost Sharing PUF" , "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
         "Business Rules PUF"            , "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
         "MLR Dataset"                   , "This file contains Medical Loss Ratio data for the Reporting Year, including the issuers MLR, the MLR standard, and the average rebate per family by state and market.",
@@ -264,10 +274,10 @@ catalog_hgov <- function() {
   qhp <- qhp |>
     ss_title("Excel|[Zz]ip|Instructions|\\.zip$", n = TRUE) |>
     mtt(
-    description = kit::iif(is_na(description), title, description, nThread = 4L),
-    year = extract_year(title),
-    year = ifelse_(is_na(year), paste0("20", gextract(title, "[0-9]{2}")), year),
-    year = kit::iif(is_na(year), substr(modified, 1, 4), year, nThread = 4L),
+      description = iif(is.na(description), title, description, nThread = 4L),
+      year = extract_year(title),
+      year = ifelse_(is.na(year), paste0("20", gextract(title, "[0-9]{2}")), year),
+      year = iif(is.na(year), substr(modified, 1, 4), year, nThread = 4L),
     title = gremove(title, "^[2][0-9]{3}\\s") |>
       gremove("\\s\\s?[-]?\\s?[2][0-9]{3}$") |>
       gremove("\\s\\s?[-]?\\s?PY[2][0-9]{3}$") |>
@@ -297,7 +307,10 @@ catalog_hgov <- function() {
       ss_title(x, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(clog  = "hgov",
           api   = "end",
-          title = greplace(title, "/\\s", "/") |> greplace("Qualifying Health Plan", "QHP") |> str_look_remove("County,", "ahead") |> gremove("2015 ")) |>
+          title = greplace(title, "/\\s", "/") |>
+            greplace("Qualifying Health Plan", "QHP") |>
+            str_look_remove("County,", "ahead") |>
+            gremove("2015 ")) |>
       colorder(clog, api),
     tmp = rowbind(
       temporal,
@@ -305,36 +318,50 @@ catalog_hgov <- function() {
       mtt(clog = "hgov", api = "tmp") |>
       colorder(clog, api) |>
       fnest(by = c("clog", "api", "title")) |>
-      rnm(endpoints = data)
+      rnm(endpoints = data))
     # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |> mtt(api = "HealthcareGov [Temporal]") |>
     # colorder(api) |> f_nest_by(.by = c(api, title)) |> f_ungroup() |> rnm(endpoints = data),
     # states = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]")
-  )
 }
-
-options(fastplyr.inform = FALSE)
 
 #' @name catalogs
 #' @title API Catalogs
 #' @description
 #' List of API catalogs:
-#'   * `catalog_care`: CMS Medicare API
-#'   * `catalog_prov`: CMS Provider API
-#'   * `catalog_open`: CMS Open Payments API
-#'   * `catalog_caid`: CMS Medicaid API
-#'   * `catalog_hgov`: CMS HealthCare.gov API
+#'   * `care`: CMS Medicare API
+#'   * `prov`: CMS Provider API
+#'   * `open`: CMS Open Payments API
+#'   * `caid`: CMS Medicaid API
+#'   * `hgov`: CMS HealthCare.gov API
 #' @returns `<list>` of catalogs
 #' @examples
 #' catalogs()
 #' @autoglobal
 #' @export
 catalogs <- function() {
+
+  x <- c(care = "https://data.cms.gov/data.json",
+         prov = "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items",
+         open = "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items",
+         caid = "https://data.medicaid.gov/api/1/metastore/schemas/dataset/items",
+         hgov = "https://data.healthcare.gov/api/1/metastore/schemas/dataset/items") |>
+    map(request) |>
+    req_perform_parallel(on_error = "continue") |>
+    map2(c("/dataset", rep(NA_character_, 4)),
+         function(x, q){
+           resp_body_string(x) |>
+           fparse(query = if (!is.na(q)) q else NULL) |>
+             as_fibble()
+         }) |>
+    set_names(c("care", "prov", "open", "caid", "hgov"))
+
+
   list(
-    care = catalog_care(),
-    prov = catalog_prov(),
-    open = catalog_open(),
-    caid = catalog_caid(),
-    hgov = catalog_hgov()
+    care = clog_care(x),
+    prov = clog_prov(x),
+    open = clog_open(x),
+    caid = clog_caid(x),
+    hgov = clog_hgov(x)
   )
 }
 
