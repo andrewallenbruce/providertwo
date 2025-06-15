@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9338 (2025-06-15)
+
+* catalog tweaking
+
+
 # providertwo 0.0.0.9337 (2025-06-14)
 
 * catalog load functions refactored
