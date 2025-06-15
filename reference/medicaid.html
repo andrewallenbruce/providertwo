@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9337</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9338</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,14 +79,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ catalog   : &lt;class_clog&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ id: chr "caid"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ modified   : Date[1:1], format: "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ download   : chr "https://data.medicaid.gov/sites/default/files/uploaded_resources/mdrp-newly-rprt-drug-6192023-to-6252023.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ rows  : int 399</span>
@@ -131,11 +130,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ total_amount_reimbursed       : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ medicaid_amount_reimbursed    : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ non_medicaid_amount_reimbursed: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [34 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ endpoints : tibble [34 × 3] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:34] 2024 2023 2022 2021 2020 2019 2018 2017 2016 2015 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:34], format: "2025-05-14" "2025-05-14" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:34] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0" "https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0" "https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0" "https://data.medicaid.gov/api/1/datastore/query/eec7fbe6-c4c4-5915-b3d0-be5828ef4e9d/0" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:34] "https://data.medicaid.gov/sites/default/files/uploaded_resources/mdrp-newly-rprt-drug-10-16-2023-to-10-22-2023.csv" "https://data.medicaid.gov/sites/default/files/uploaded_resources/mdrp-newly-rpt-drugs-aug-20210816-to-20210822.csv" "https://download.medicaid.gov/data/scorecard/core-set/2.10.6/20241023/state.csv" "https://download.medicaid.gov/data/coreset-viz/3.1.1/20250110/measure_value.csv" ...</span>
 <span class="r-in"><span><span class="fu">caid_group</span><span class="op">(</span><span class="st">"caid_dual_status"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_group&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ group  : chr "Dual Status Information for Medicaid and CHIP Beneficiaries"</span>
@@ -143,14 +141,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_month: &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "caid"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Month"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set includes monthly enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/StateDrugUtilizationData2009.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 13356</span>
@@ -165,14 +162,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ dual_status_year : &lt;class_endpoint&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ catalog   : &lt;class_clog&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ id: chr "caid"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ metadata  :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ clog       : chr "caid"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ api        : chr "end"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ title      : chr "Dual Status Information for Medicaid and CHIP Beneficiaries by Year"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ description: chr "This data set presents annual enrollment counts of Medicaid and CHIP beneficiaries by dual eligibility status f"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ download   : chr "https://download.medicaid.gov/data/StateDrugUtilizationData2016.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ rows  : int 1113</span>
