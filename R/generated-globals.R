@@ -34,7 +34,6 @@ utils::globalVariables(c(
   # <clog_care>
   # <clog_prov>
   # <clog_open>
-  # <clog_hgov>
   "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -96,6 +95,8 @@ utils::globalVariables(c(
   "group",
   # <clinicians>
   "grp_assgn",
+  # <clog_hgov>
+  "id",
   # <clog_care>
   # <clog_prov>
   # <clog_open>
@@ -131,6 +132,10 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "modified",
+  # <clog_hgov>
+  "n",
+  # <clog_caid>
+  "N",
   # <open_dictionary>
   # <tidy_resources>
   "name",
@@ -140,7 +145,6 @@ utils::globalVariables(c(
   "num_org_mem",
   # <clog_care>
   # <clog_caid>
-  # <clog_hgov>
   "periodicity",
   # <clog_care>
   "references",

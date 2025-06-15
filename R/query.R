@@ -23,24 +23,63 @@ query_formatter <- function(args) {
 
   args <- discard(args, is.null)
 
-  imap(args, function(x, m) {
+  q_fmt <- function(x) {
 
-    p <- paste0("filter[<<i>>][path]=", m, "&")
-    o <- paste0("filter[<<i>>][operator]=", "=", "&")
-    v <- unlist(x, use.names = FALSE)
-    v <- if (length(v) > 1)
-      paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
-    else
-      paste0("filter[<<i>>][value]=", v, "&")
+    x <- if (fmax(list_lengths(x)) > 1) {
 
-    c(p, o, v)
+      g <- x[list_lengths(x) > 1]
+
+      x[list_lengths(x) > 1] <- set_names(
+        paste0(
+          unlist(g, use.names = FALSE),
+          collapse = ","),
+        names(g))
+
+      x } else { x }
+
+    qv <- format(unlist(x, use.names = FALSE), justify = 'left')
+
+    qn <- format(names(x), justify = 'right')
+
+    glue("{qn} = {qv}")
+  }
+
+  q_gen <- function(a) {
+
+    purrr::imap(a, function(x, m) {
+
+      p <- paste0("filter[<<i>>][path]=", m, "&")
+      o <- paste0("filter[<<i>>][operator]=", "=", "&")
+      v <- unlist(x, use.names = FALSE)
+      v <- if (length(v) > 1)
+        paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
+      else
+        paste0("filter[<<i>>][value]=", v, "&")
+
+      c(p, o, v)
     }) |>
-    unname() |>
-    imap(function(x, idx) {
+      unname() |>
+      purrr::imap(function(x, idx) {
 
-      greplace(x, "<<i>>", idx) |>
-        paste0(collapse = "")
+        greplace(x, "<<i>>", idx) |>
+          paste0(collapse = "")
       })
+
+  }
+
+  cat(q_fmt(args), sep = "\n")
+
+  cat("\n")
+
+  map(q_gen(args), \(x)
+      strsplit(x, "&") |>
+        unlist() |>
+        append("\n")) |>
+    unlist() |>
+    cat(sep = "\n")
+
+  invisible(q_gen(args))
+
 }
 
 #' Format Public API Queries
