@@ -1,4 +1,4 @@
-options(fastplyr.inform = FALSE)
+# options(fastplyr.inform = FALSE)
 
 #' @include utils_misc.R
 #' @include fastplyr.R
@@ -276,7 +276,7 @@ clog_hgov <- function(x) {
     fastplyr::f_enframe(name = "id", value = "download") |>
     mtt(id = as.integer(id),
         ext = path_ext(download)) |>
-    join(w, on = "id") |>
+    join(w, on = "id", verbose = 0, multiple = TRUE) |>
     slt(-distribution) |>
     colorder(id, title, ext, download, n) |>
     fcount(id, add = TRUE)

@@ -90,7 +90,8 @@ join_on_title <- function(a, b) {
     x = a,
     y = b,
     on = "title",
-    verbose = 0
+    verbose = 0,
+    multiple = TRUE
   )
 }
 
