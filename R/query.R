@@ -5,6 +5,87 @@ seq_along0 <- function(x) {
   # 0L:(length(x) - 1L)
 }
 
+# x <- list(
+# first_name ~ starts_with_("Andr"),
+# last_name ~ contains_("Jason"),
+# state = ~in_(c("CA", "GA", "NY")),
+# npi = 1234567890)
+#' @autoglobal
+#' @noRd
+is_named <- function(x) {
+  rlang::have_name(x)
+}
+
+#' @autoglobal
+#' @noRd
+is_unnamed <- function(x) {
+  !is_named(x)
+}
+
+#' @autoglobal
+#' @noRd
+is_two_sided_formula <- function(x) {
+  purrr::map_lgl(x, rlang::is_formula, lhs = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+is_right_sided_formula <- function(x) {
+  purrr::map_lgl(x, rlang::is_formula, lhs = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+is_unnamed_two_sided_formula <- function(x) {
+  is_unnamed(x) & is_two_sided_formula(x)
+}
+
+#' @autoglobal
+#' @noRd
+is_named_right_sided_formula <- function(x) {
+  is_named(x) & is_right_sided_formula(x)
+}
+
+#' @autoglobal
+#' @noRd
+fmt_two_sided <- function(x) {
+
+  idx <- is_unnamed_two_sided_formula(x)
+
+  if (any(idx)) {
+
+    tmp <- x[idx]
+
+    rhs <- purrr::map(tmp, rlang::f_rhs)
+
+    lhs <- purrr::map(tmp,
+      \(x) rlang::as_string(rlang::f_lhs(x))) |>
+      purrr::list_c()
+
+    x[idx] <- rhs
+
+    names(x)[idx] <- lhs
+  }
+  x
+}
+
+#' @autoglobal
+#' @noRd
+fmt_one_sided <- function(x) {
+
+  idx <- is_named_right_sided_formula(x)
+
+  if (any(idx)) {
+
+    tmp <- x[idx]
+
+    rhs <- purrr::map(tmp, rlang::f_rhs)
+
+    x[idx] <- rhs
+  }
+  x
+}
+
 #' Format Queries
 #' @examples
 #' args = list(state = c("GA", "MD"),
@@ -57,6 +138,7 @@ query_formatter <- function(args) {
         paste0("filter[<<i>>][value]=", v, "&")
 
       c(p, o, v)
+
     }) |>
       unname() |>
       purrr::imap(function(x, idx) {
@@ -71,7 +153,7 @@ query_formatter <- function(args) {
 
   cat("\n")
 
-  map(q_gen(args), \(x)
+  purrr::map(q_gen(args), \(x)
       strsplit(x, "&") |>
         unlist() |>
         append("\n")) |>

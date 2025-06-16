@@ -52,6 +52,7 @@ Collate:
     'S7_classes.R'
     'care_enrollees.R'
     'care_quality.R'
+    'cli.R'
     'dictionaries.R'
     'generated-globals.R'
     'generic_getters.R'
