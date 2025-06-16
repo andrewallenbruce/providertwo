@@ -10,57 +10,53 @@ seq_along0 <- function(x) {
 # last_name ~ contains_("Jason"),
 # state = ~in_(c("CA", "GA", "NY")),
 # npi = 1234567890)
-#' @autoglobal
-#' @noRd
-is_named <- function(x) {
-  rlang::have_name(x)
-}
 
 #' @autoglobal
 #' @noRd
 is_unnamed <- function(x) {
-  !is_named(x)
+  !have_name(x)
 }
 
 #' @autoglobal
 #' @noRd
-is_two_sided_formula <- function(x) {
-  purrr::map_lgl(x, rlang::is_formula, lhs = TRUE)
+is_formula_full <- function(x) {
+  map_lgl(x, is_formula, lhs = TRUE)
 }
 
 #' @autoglobal
 #' @noRd
-is_right_sided_formula <- function(x) {
-  purrr::map_lgl(x, rlang::is_formula, lhs = FALSE)
+is_formula_rhs <- function(x) {
+  map_lgl(x, is_formula, lhs = FALSE)
 }
 
 #' @autoglobal
 #' @noRd
-is_unnamed_two_sided_formula <- function(x) {
-  is_unnamed(x) & is_two_sided_formula(x)
+is_unnamed_formula_full <- function(x) {
+  is_unnamed(x) & is_formula_full(x)
 }
 
 #' @autoglobal
 #' @noRd
-is_named_right_sided_formula <- function(x) {
-  is_named(x) & is_right_sided_formula(x)
+is_named_formula_rhs <- function(x) {
+  have_name(x) & is_formula_rhs(x)
 }
 
 #' @autoglobal
 #' @noRd
-fmt_two_sided <- function(x) {
+format_unnamed_formula <- function(x) {
 
-  idx <- is_unnamed_two_sided_formula(x)
+  idx <- is_unnamed_formula_full(x)
 
   if (any(idx)) {
 
     tmp <- x[idx]
 
-    rhs <- purrr::map(tmp, rlang::f_rhs)
+    rhs <- map(tmp, f_rhs)
 
-    lhs <- purrr::map(tmp,
-      \(x) rlang::as_string(rlang::f_lhs(x))) |>
-      purrr::list_c()
+    lhs <- map(
+      tmp, function(x)
+        as_string(f_lhs(x))) |>
+      list_c()
 
     x[idx] <- rhs
 
@@ -71,19 +67,80 @@ fmt_two_sided <- function(x) {
 
 #' @autoglobal
 #' @noRd
-fmt_one_sided <- function(x) {
+format_named_formula <- function(x) {
 
-  idx <- is_named_right_sided_formula(x)
+  idx <- is_named_formula_rhs(x)
 
   if (any(idx)) {
 
     tmp <- x[idx]
 
-    rhs <- purrr::map(tmp, rlang::f_rhs)
+    rhs <- map(tmp, f_rhs)
 
     x[idx] <- rhs
   }
   x
+}
+
+#' @autoglobal
+#' @noRd
+format_query <- function(x) {
+
+  i <- list_lengths(x) > 1
+
+  if (any(i)) {
+
+    g <- x[i]
+
+    x[i] <- paste0(unlist(g, use.names = FALSE), collapse = ",")
+
+    names(x[i]) <- names(g)
+
+    }
+
+  pr <- format(unlist(x, use.names = FALSE), justify = 'left')
+
+  nm <- format(names(x), justify = 'right')
+
+  glue("{nm} = {pr}")
+}
+
+generate_query <- function(a) {
+
+  imap(a, function(x, m) {
+
+    p <- paste0("filter[<<i>>][path]=", m, "&")
+    o <- paste0("filter[<<i>>][operator]=", "=", "&")
+    v <- unlist(x, use.names = FALSE)
+
+    if (length(v) > 1)
+
+      v <- paste0(
+        "filter[<<i>>][value][",
+        seq_along(v),
+        "]=",
+        v,
+        "&"
+        )
+
+    if (length(v) == 1)
+      v <- paste0(
+        "filter[<<i>>][value]=",
+        v,
+        "&"
+        )
+
+    c(p, o, v)
+
+  }) |>
+    unname() |>
+    imap(function(x, idx) {
+
+      greplace(x, "<<i>>", idx) |>
+        paste0(collapse = "")
+
+    })
+
 }
 
 #' Format Queries
@@ -104,63 +161,23 @@ query_formatter <- function(args) {
 
   args <- discard(args, is.null)
 
-  q_fmt <- function(x) {
-
-    x <- if (fmax(list_lengths(x)) > 1) {
-
-      g <- x[list_lengths(x) > 1]
-
-      x[list_lengths(x) > 1] <- set_names(
-        paste0(
-          unlist(g, use.names = FALSE),
-          collapse = ","),
-        names(g))
-
-      x } else { x }
-
-    qv <- format(unlist(x, use.names = FALSE), justify = 'left')
-
-    qn <- format(names(x), justify = 'right')
-
-    glue("{qn} = {qv}")
-  }
-
-  q_gen <- function(a) {
-
-    purrr::imap(a, function(x, m) {
-
-      p <- paste0("filter[<<i>>][path]=", m, "&")
-      o <- paste0("filter[<<i>>][operator]=", "=", "&")
-      v <- unlist(x, use.names = FALSE)
-      v <- if (length(v) > 1)
-        paste0("filter[<<i>>][value][", seq_along(v), "]=", v, "&")
-      else
-        paste0("filter[<<i>>][value]=", v, "&")
-
-      c(p, o, v)
-
-    }) |>
-      unname() |>
-      purrr::imap(function(x, idx) {
-
-        greplace(x, "<<i>>", idx) |>
-          paste0(collapse = "")
-      })
-
-  }
-
-  cat(q_fmt(args), sep = "\n")
+  cat(format_query(args), sep = "\n")
 
   cat("\n")
 
-  purrr::map(q_gen(args), \(x)
+  qry <- generate_query(args)
+
+  map(
+    qry,
+    function(x) {
       strsplit(x, "&") |>
         unlist() |>
-        append("\n")) |>
+        append("\n")
+      }) |>
     unlist() |>
     cat(sep = "\n")
 
-  invisible(q_gen(args))
+  invisible(qry)
 
 }
 
