@@ -1,20 +1,45 @@
-#' @autoglobal
-#' @noRd
-seq_along0 <- function(x) {
-  seq_along(x) - 1
-  # 0L:(length(x) - 1L)
-}
-
 # x <- list(
 # first_name ~ starts_with_("Andr"),
-# last_name ~ contains_("Jason"),
-# state = ~in_(c("CA", "GA", "NY")),
-# npi = 1234567890)
+# last_name ~ contains_("J"),
+# state = ~ in_(c("CA", "GA", "NY")),
+# state = in_(c("CA", "GA", "NY")),
+# npi = npi_ex$k,
+# npi = npi_ex$k[1],
+# ccn = "01256",
+# pac = NULL)
+#
+# is_unnamed_formula(x)
+# is_named_formula(x)
+# !is_unnamed_formula(x) & !is_named_formula(x) & is_length_one(x)
+# !is_unnamed_formula(x) & !is_named_formula(x) & is_length_two(x)
 
 #' @autoglobal
 #' @noRd
-is_unnamed <- function(x) {
-  !have_name(x)
+check_names_unique <- function(x, call = caller_env()) {
+
+  if (!is_dictionaryish(x)) {
+
+    m <- sbt(
+      counts(names(x[have_name(x)])),
+      count > 1)[["key"]]
+
+    cli_abort(
+      c("x" = "{.field {m}} {is/are?} used multiple times."),
+      call = call)
+  }
+  x
+}
+
+#' @autoglobal
+#' @noRd
+is_length_one <- function(x) {
+  map_lgl(x, \(x) length(x) == 1L)
+}
+
+#' @autoglobal
+#' @noRd
+is_length_two <- function(x) {
+  map_lgl(x, \(x) length(x) > 1L)
 }
 
 #' @autoglobal
@@ -31,21 +56,21 @@ is_formula_rhs <- function(x) {
 
 #' @autoglobal
 #' @noRd
-is_unnamed_formula_full <- function(x) {
-  is_unnamed(x) & is_formula_full(x)
+is_unnamed_formula <- function(x) {
+  !have_name(x) & is_formula_full(x)
 }
 
 #' @autoglobal
 #' @noRd
-is_named_formula_rhs <- function(x) {
+is_named_formula <- function(x) {
   have_name(x) & is_formula_rhs(x)
 }
 
 #' @autoglobal
 #' @noRd
-format_unnamed_formula <- function(x) {
+convert_unnamed_formula <- function(x) {
 
-  idx <- is_unnamed_formula_full(x)
+  idx <- is_unnamed_formula(x)
 
   if (any(idx)) {
 
@@ -67,9 +92,9 @@ format_unnamed_formula <- function(x) {
 
 #' @autoglobal
 #' @noRd
-format_named_formula <- function(x) {
+convert_named_formula <- function(x) {
 
-  idx <- is_named_formula_rhs(x)
+  idx <- is_named_formula(x)
 
   if (any(idx)) {
 
@@ -141,6 +166,13 @@ generate_query <- function(a) {
 
     })
 
+}
+
+#' @autoglobal
+#' @noRd
+seq_along0 <- function(x) {
+  seq_along(x) - 1
+  # 0L:(length(x) - 1L)
 }
 
 #' Format Queries

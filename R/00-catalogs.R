@@ -30,7 +30,7 @@ catalogs <- function() {
     map2(c("/dataset", rep(NA_character_, 4)),
          function(x, q){
            resp_body_string(x) |>
-             fparse(query = if (!is.na(q)) q else NULL) |>
+             fparse(query = if (is.na(q)) NULL else q) |>
              as_fibble()
          }) |>
     set_names(c("care", "prov", "open", "caid", "hgov"))
@@ -49,14 +49,11 @@ catalogs <- function() {
 #' @noRd
 clog_care <- function(x) {
 
-  x = x$care
-
   cols <- c("title", "clog", "year", "format", "description", "modified", "temporal", "identifier", "download", "resources")
 
-  d <- get_elem(x, "distribution", DF.as.list = TRUE) |>
+  d <- get_elem(x$care, "distribution", DF.as.list = TRUE) |>
     rowbind(fill = TRUE) |>
     fcompute(
-      clog       = "care",
       year       = extract_year(title),
       title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
       format     = iif(!is.na(description), description, format, nThread = 4L),
@@ -70,12 +67,10 @@ clog_care <- function(x) {
 
   d <- sset(d, row_na_counts(d) < 4)
 
-  x <- mtt(
-    x,
-    clog        = "care",
+  x <- mtt(x$care,
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+    contact     = fmt_contactpoint(get_elem(x$care, "contactPoint")),
     references  = delist(references),
     temporal    = fmt_temporal(temporal),
     title       = rm_nonascii(rm_space(title)),
@@ -85,30 +80,28 @@ clog_care <- function(x) {
       gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
       gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
       gremove("\\n\\n.+\\n\\n")) |>
-    slt(clog, title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
+    slt(title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
     join_on_title(sbt(d, format == "latest", title, download, resources)) |>
     roworder(title)
 
   d <- sbt(d, title %!in_% care_types("single") & format != "latest", -format) |>
     roworder(title, -year) |>
-    fnest(by = c("clog", "title")) |>
+    fnest(by = c("title")) |>
     rnm(endpoints = data) |>
     join_on_title(slt(x, title, description, periodicity, contact, dictionary, site, references)) |>
     colorder(endpoints, pos = "end")
 
-  list(end = mtt(x, api = "end") |> colorder(clog, api),
-       tmp = mtt(d, api = "tmp") |> colorder(clog, api))
+  list(end = mtt(x, clog = "care", api = "end") |> colorder(clog, api),
+       tmp = mtt(d, clog = "care", api = "tmp") |> colorder(clog, api))
 }
 
 #' @autoglobal
 #' @noRd
 clog_prov <- function(x) {
 
-  x = x$prov
-
   list(
     end = mtt(
-      x,
+      x$prov,
       clog        = "prov",
       api         = "end",
       title       = rm_nonascii(title),
@@ -119,8 +112,8 @@ clog_prov <- function(x) {
       released    = as_date(released),
       group       = flatten_column(theme),
       description = gremove(description, "\n"),
-      download    = get_elem(x, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
-      contact     = fmt_contactpoint(get_elem(x, "contactPoint"))) |>
+      download    = get_elem(x$prov, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
+      contact     = get_elem(x$prov, "contactPoint") |> fmt_contactpoint()) |>
       sbt(group %!=% "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
       roworder(group, title)
   )
@@ -130,28 +123,34 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x = x$open
-
-  x <- mtt(x,
+  x <- mtt(x$open,
       identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
       modified    = as_date(modified),
-      year        = unlist(x$keyword, use.names = FALSE),
+      year        = unlist(x$open$keyword, use.names = FALSE),
       year        = iif(year == "all years" | title == "Provider profile ID mapping table", "All", year, nThread = 4L),
       title       = toTitleCase(rm_nonascii(title)),
-      contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+      contact     = get_elem(x$open, "contactPoint") |> fmt_contactpoint(),
       description = rm_quotes(description) |>
         rm_nonascii() |>
         greplace("\r\n", " ") |>
         gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
         rm_space(),
-      download    = get_elem(x, "distribution", DF.as.list = TRUE) |>
+      download    = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
         get_elem("downloadURL", DF.as.list = TRUE) |>
         unlist(use.names = FALSE)) |>
     slt(year, title, description, modified, identifier, contact, download)
 
   list(
-    end = sbt(x, year %==% "All", -year) |> mtt(clog = "open", api = "end") |> colorder(clog, api) |> roworder(title),
-    tmp = sbt(x, year %!=% "All") |> mtt(clog = "open", api = "tmp", year = as.integer(year), title = gremove(title, "^[0-9]{4} "),
+    end = sbt(x, year %==% "All", -year) |>
+      mtt(clog = "open",
+          api = "end") |>
+      colorder(clog, api) |>
+      roworder(title),
+    tmp = sbt(x, year %!=% "All") |>
+      mtt(clog = "open",
+          api = "tmp",
+          year = as.integer(year),
+          title = gremove(title, "^[0-9]{4} "),
           description = nswitch(
             title,
             "General Payment Data"   , "All general (non-research, non-ownership related) payments from the program year",
@@ -170,11 +169,9 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  x = x$caid
-
   cols <- c("title", "identifier", "description", "periodicity", "modified", "contact")
 
-  w <- get_elem(x, "distribution", DF.as.list = TRUE) |>
+  w <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
     get_elem("^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)
 
   dl <- fibble(
@@ -186,12 +183,11 @@ clog_caid <- function(x) {
         N = ifelse_(is.na(title), NA_integer_, N)) |>
     roworder(title)
 
-  x <- x |>
-    mtt(
+  x <- mtt(x$caid,
       identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
       modified    = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
-      contact     = fmt_contactpoint(get_elem(x, "contactPoint")),
+      contact     = get_elem(x$caid, "contactPoint") |> fmt_contactpoint(),
       title       = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
       description = iif(description == "Dataset.", NA_character_, description),
       description = rm_nonascii(description) |>
@@ -250,52 +246,48 @@ clog_caid <- function(x) {
 #' @noRd
 clog_hgov <- function(x) {
 
-  x = x$hgov
-
   cols <- c("title", "identifier", "description", "periodicity", "issued", "modified", "contact")
 
-  w <- cheapr::col_c(
-    title = get_elem(x, "title"),
-    distribution = get_elem(x, "distribution")) |>
+  d <- cheapr::col_c(
+    title = get_elem(x$hgov, "title"),
+    distribution = get_elem(x$hgov, "distribution")) |>
     as_fibble()|>
     fastplyr::f_mutate(
       n = purrr::map_int(distribution, \(x) nrow(x)),
       id = fastplyr::f_consecutive_id(title))
 
-  w$distribution <- set_names(w$distribution, w$id)
+  d$distribution <- set_names(d$distribution, d$id)
 
-  nm <- \(x) substr(x, 1, 3)
-
-  w <- purrr::imap(
-    w$distribution,
-    \(x, idx) glue("w$distribution$`{idx}`[['downloadURL']]") |>
-      rlang::parse_expr() |>
-      rlang::eval_bare()) |>
+  d <- imap(d$distribution, function(x, idx) {
+    glue("d$distribution$`{idx}`[['downloadURL']]") |>
+      parse_expr() |>
+      eval_bare()
+    }) |>
     unlist() |>
-    set_names(nm) |>
+    set_names(strtrim, 3) |>
     fastplyr::f_enframe(name = "id", value = "download") |>
     mtt(id = as.integer(id),
         ext = path_ext(download)) |>
-    join(w, on = "id", verbose = 0, multiple = TRUE) |>
+    join(d, on = "id", verbose = 0, multiple = TRUE) |>
     slt(-distribution) |>
     colorder(id, title, ext, download, n) |>
     fcount(id, add = TRUE)
 
 
-  x <- x |>
-    mtt(
+  x <- mtt(x$hgov,
       identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
       title       = rm_nonascii(title) |> rm_space(),
       description = rm_nonascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
       modified    = as_date(modified),
       issued      = as_date(issued),
       periodicity = fmt_periodicity(accrualPeriodicity),
-      contact     = fmt_contactpoint(x$contactPoint)) |>
+      contact     = fmt_contactpoint(x$hgov$contactPoint)) |>
     slt(cols)
 
-  x <- list(x,
-            sbt(w, ext == "csv", title, download),
-            sbt(w, ext != "csv", title, resources = download)) |>
+  x <- list(
+    x,
+    sbt(d, ext == "csv", title, download),
+    sbt(d, ext != "csv", title, resources = download)) |>
     reduce(join_on_title)
 
   qhp <- ss_title(x, "QHP|SHOP")
