@@ -43,7 +43,7 @@ quick_cli_ <- function(x) {
 #' quick_query_(asc, q0)
 #' quick_query_(asc, q1)
 #' #quick_query_(asc, q2)
-#' quick_query_(asc, q3)
+#' #quick_query_(asc, q3)
 #' @autoglobal
 #' @export
 quick_query_ <- new_generic("quick_query_", "x")

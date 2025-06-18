@@ -22,6 +22,6 @@ Mostly for debugging purposes.
 }
 \examples{
 quick("revalid_group")
-quick("out_img_national")
+quick("out_img_national", limit = 10)
 quick("hgov_nipr_state")
 }

@@ -488,7 +488,7 @@ select_member <- function(x, call = caller_env()) {
 #' @returns A data frame containing the requested CMS data.
 #' @examples
 #' quick("revalid_group")
-#' quick("out_img_national")
+#' quick("out_img_national", limit = 10)
 #' quick("hgov_nipr_state")
 #' @autoglobal
 #' @export

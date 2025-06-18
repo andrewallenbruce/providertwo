@@ -94,10 +94,14 @@ hgov_temporal <- function(alias, call = caller_env()) {
 
   if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
 
+  end <- yank(get_elem(res, "endpoints"))
+
+  if (all_na(gv(end, "resources"))) gv(end, "resources") <- NULL
+
   x <- flist(
     !!!c(slt(res, -endpoints)),
-    endpoints   = pluck(get_elem(res, "endpoints"), 1),
-    identifier  = pluck(get_elem(endpoints, "identifier"), 1)
+    endpoints   = end,
+    identifier  = yank(get_elem(endpoints, "identifier"))
   )
 
   class_temporal(

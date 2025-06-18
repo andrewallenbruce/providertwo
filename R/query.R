@@ -12,22 +12,21 @@
 # is_named_formula(x)
 # !is_unnamed_formula(x) & !is_named_formula(x) & is_length_one(x)
 # !is_unnamed_formula(x) & !is_named_formula(x) & is_length_two(x)
-
+# check_names_unique(x)
 #' @autoglobal
 #' @noRd
 check_names_unique <- function(x, call = caller_env()) {
 
-  if (!is_dictionaryish(x)) {
+  x <- names(x[have_name(x)])
 
-    m <- sbt(
-      counts(names(x[have_name(x)])),
-      count > 1)[["key"]]
+  if (any_duplicated(x)) {
+
+    i <- which_(fduplicated(x))
 
     cli_abort(
-      c("x" = "{.field {m}} {is/are?} used multiple times."),
+      c("x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."),
       call = call)
   }
-  x
 }
 
 #' @autoglobal
@@ -309,105 +308,3 @@ eval_params <- function(args, fields) {
     eval_bare() |>
     compact()
 }
-
-#' Query Formatting Helpers
-#'
-#' @name query-helpers
-#' @param x      `<chr>`  input
-#' @param equals `<lgl>`  append "="; default is `FALSE`
-#' @param negate `<lgl>`  prepend "NOT"; default is `FALSE`
-#' @returns      `<list>` of query parameters
-#' @examplesIf rlang::is_interactive()
-#' greater_than(1)
-#' starts_with("foo")
-#' is_in(state.abb[10:15])
-#' @noRd
-NULL
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-greater_than_ <- function(x, or_equals = FALSE) {
-  list(filter = character(0L),
-       operator = if (or_equals) ">=" else ">",
-       value = as.character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-less_than_ <- function(x, or_equals = FALSE) {
-  list(filter = character(0L),
-       operator = if (or_equals) "<=" else "<",
-       value = as.character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-starts_with_ <- function(x) {
-  list(filter = character(0L),
-       operator = "STARTS_WITH",
-       value = as.character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-ends_with_ <- function(x) {
-  list(filter = character(0L),
-       operator = "ENDS_WITH",
-       value = as.character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-contains_ <- function(x) {
-  list(filter = character(0L),
-       operator = "CONTAINS",
-       value = as_character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-between_ <- function(x, not = FALSE) {
-  list(filter = character(0L),
-       operator = if (not) "NOT BETWEEN" else "BETWEEN",
-       value = as.character(x))
-}
-
-#' @autoglobal
-#' @rdname query-helpers
-#' @noRd
-in_ <- function(x, not = FALSE) {
-  list(filter = character(0L),
-       operator = if (not) "NOT IN" else "IN",
-       value = as.character(x))
-}
-
-# frm <- list(state ~ in_(c("NY", "CA")))
-#
-# rlang::f_rhs(frm[[1]]) |>
-#   rlang::eval_bare() |>
-#   purrr::list_assign(filter = rlang::as_name(rlang::f_lhs(frm[[1]])))
-#
-#
-# frm <- list(state = ~starts_with("NY"))
-#
-#
-# rlang::is_formula(frm$state, lhs = FALSE)
-# rlang::is_bare_formula(frm$state, scoped = TRUE, lhs = FALSE)
-# rlang::f_rhs(frm)
-#
-#
-# frm2 <- list(
-#   state ~ starts_with("NY"),
-#   state = ~is_in(c("CA", "GA", "NY")),
-#   npi = 1234567890
-# )
-#
-# which_(map_lgl(frm2, rlang::is_formula))
-#
-# is_formula(frm2$state, lhs = FALSE)

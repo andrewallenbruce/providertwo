@@ -64,6 +64,27 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
+class_identifier <- new_class(
+  name     = "class_identifier",
+  package  = NULL,
+  properties = list(
+    url = class_character
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_endpoints <- new_class(
+  name     = "class_endpoints",
+  package  = NULL,
+  properties = list(
+    url = class_data.frame
+  )
+)
+
+
+#' @noRd
+#' @autoglobal
 class_clog <- new_class(
   name     = "class_clog",
   package  = NULL,

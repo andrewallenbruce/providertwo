@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+yank <- function(x) {
+  pluck(x, 1)
+}
+
+#' @autoglobal
+#' @noRd
 ss_title <- function(x, re, ...) {
   subset_detect(i = x, j = title, p = re, ...)
 }

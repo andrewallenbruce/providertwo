@@ -5,7 +5,7 @@ get_dimensions <- function(x, call = caller_env()) {
     clog_(x),
     care = care_dims(x),
     caid = def_dims(x, 8000L),
-    prov = def_dims(x, 2000L),
+    prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),
     hgov = def_dims(x, 500L),
     cli_abort(c("x" = "{.emph class} {.val {x}} is not a catalog type."), call = call)

@@ -45,5 +45,5 @@ q3 <- list(
 quick_query_(asc, q0)
 quick_query_(asc, q1)
 #quick_query_(asc, q2)
-quick_query_(asc, q3)
+#quick_query_(asc, q3)
 }

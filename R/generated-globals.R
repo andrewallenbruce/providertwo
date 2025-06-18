@@ -35,8 +35,6 @@ utils::globalVariables(c(
   # <clog_prov>
   # <clog_open>
   "contact",
-  # <check_names_unique>
-  "count",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
