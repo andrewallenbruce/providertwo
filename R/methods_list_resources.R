@@ -45,7 +45,7 @@ tidy_resources <- function(x) {
 #' List resources
 #' @param x `class_endpoint` or `class_temporal` object
 #' @returns A list of available API resources, either for download or to browse online.
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> list_resources()
 #' care_temporal("quality_payment") |> list_resources()
 #' care_group("care_hha") |> list_resources()

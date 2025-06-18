@@ -18,6 +18,7 @@ A list of results from the API query, or \code{NULL} if no results are found.
 Quick Query
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 asc <- prov_endpoint("asc_facility")
 
 q0 <- list(
@@ -46,4 +47,5 @@ quick_query_(asc, q0)
 quick_query_(asc, q1)
 #quick_query_(asc, q2)
 #quick_query_(asc, q3)
+\dontshow{\}) # examplesIf}
 }

@@ -30,6 +30,8 @@ S7 \code{class_group} object.
 Create Groups of Endpoints
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 new_group(c("hgov_local_help", "hgov_qhp_business"))
 new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
+\dontshow{\}) # examplesIf}
 }

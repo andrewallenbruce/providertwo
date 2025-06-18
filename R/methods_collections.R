@@ -2,7 +2,7 @@
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
 #' @param call `<env>` Environment to use for error reporting.
 #' @returns S7 `class_collection` object.
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' new_collection("caid_demographics")
 #' new_collection("caid_unwind")
 #' new_collection("caid_services") |> query_nresults()

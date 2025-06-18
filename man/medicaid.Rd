@@ -27,7 +27,9 @@ An S7 \verb{<class_endpoint>}, \verb{<class_temporal>} or \verb{<class_group>} o
 Medicaid API Endpoints
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 caid_endpoint("managed_longterm")
 caid_temporal("state_drug_util")
 caid_group("caid_dual_status")
+\dontshow{\}) # examplesIf}
 }

@@ -5,6 +5,20 @@ NULL
 #' @noRd
 default_query <- new_generic("default_query", "x")
 
+method(default_query, class_list) <- function(x) {
+
+  if (clog_(x) != "care")
+    return(list2(
+      count   = "true",
+      results = "false",
+      offset  = 0L,
+      limit   = 1L
+    ))
+
+  list2(offset = 0L, size = 1L)
+}
+
+
 method(default_query, class_backend) <- function(x) {
 
   if (clog_(x) != "care")
@@ -101,7 +115,7 @@ method(base_request, class_group) <- function(x, query = NULL, years = NULL) {
 #' @param x An `<int>` vector
 #' @param ... Additional arguments
 #' @returns An `<int>` vector
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> query_nresults()
 #' care_temporal("quality_payment") |> query_nresults()
 #' care_group("care_hospital") |> query_nresults()

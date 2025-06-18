@@ -5,7 +5,7 @@
 #' @param offset       `<int>` Offset for pagination.
 #' @param limit        `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' new_group(c("hgov_local_help", "hgov_qhp_business"))
 #' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 #' @autoglobal
@@ -15,17 +15,32 @@ new_group <- function(member_names,
                       quick      = FALSE,
                       offset     = 0,
                       limit      = 10) {
+
   check_required(member_names)
   check_bool(quick)
   check_character(group_name, allow_null = TRUE)
 
-  ob <- if (length(member_names) == 1) select_member(member_names) else
-    class_group(group_name %||% paste0(member_names, collapse = " | "),
-                map(member_names, select_member) |> set_names(member_names))
+  ob <- ifelse_(
+    length(member_names) == 1,
+    select_member(member_names),
+    class_group(
+      group   = group_name %||% paste0(member_names, collapse = " | "),
+      members = set_names(map(
+        member_names,
+        select_member),
+        member_names)
+      )
+    )
+
+  # ob <- if (length(member_names) == 1) select_member(member_names)
+  # else class_group(
+  #   group_name %||% paste0(member_names, collapse = " | "),
+  #   map(member_names, select_member) |>
+  #     set_names(member_names))
 
   if (!quick) return(ob)
 
-  quick_(ob, offset = offset, limit  = limit)
+  quick_(ob, offset = offset, limit = limit)
 }
 
 #' @autoglobal
@@ -486,9 +501,9 @@ select_member <- function(x, call = caller_env()) {
 #' @param offset `<int>` The offset for pagination. Default is `0`.
 #' @param limit  `<int>` The maximum number of records to retrieve. Default is `10000`.
 #' @returns A data frame containing the requested CMS data.
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' quick("revalid_group")
-#' quick("out_img_national", limit = 10)
+#' quick("out_img_national")
 #' quick("hgov_nipr_state")
 #' @autoglobal
 #' @export

@@ -17,7 +17,7 @@ get_dimensions <- function(x, call = caller_env()) {
 req_dims <- function(x) {
   identifier_(x) |>
     request() |>
-    req_url_query(offset = 0L, size = 1L) |>
+    req_url_query(splice(default_query(x))) |>
     req_error(is_error = ~ FALSE)
 }
 
@@ -29,7 +29,7 @@ def_fields <- function(x) {
 
 #' @autoglobal
 #' @noRd
-def_dims <- function(x, limit, call = caller_env()) {
+def_dims <- function(x, limit) {
   x <- req_dims(x) |> perform_simple()
 
   class_dimensions(
@@ -39,26 +39,41 @@ def_dims <- function(x, limit, call = caller_env()) {
   )
 }
 
+#' @autoglobal
+#' @noRd
+set_fields <- function(x) {
+
+  # x %||% return(def_fields(x$meta$message))
+
+  new_list(
+    length(x),
+    character(0)) |>
+    set_names(x)
+}
 
 #' @autoglobal
 #' @noRd
-care_dims <- function(x, req = req_dims(x), call = caller_env()) {
+care_dims <- function(x) {
 
   x <- switch(
     api_(x),
-    end = perform_simple(req) |>
+    end = req_dims(x) |>
+      perform_simple() |>
       get_elem("meta") |>
       get_elem(c("total_rows", "headers")),
     tmp = list(
-      headers = perform_simple(req) |> names(),
-      total_rows = req_url_path_append(req, "stats") |>
+      headers = req_dims(x) |>
+        perform_simple() |>
+        names(),
+      total_rows = req_dims(x) |>
+        req_url_path_append("stats") |>
         perform_simple() |>
         get_elem("total_rows")
     )
   )
-  class_dimensions(
+  class_dimensions2(
     limit  = 5000L,
     rows   = x$total_rows %||% 0L,
-    fields = x$headers %||% def_fields(x$meta$message)
+    fields = set_fields(x$headers) %||% def_fields(x$meta$message)
   )
 }

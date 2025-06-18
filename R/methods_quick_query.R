@@ -15,7 +15,7 @@ quick_cli_ <- function(x) {
 #' @param x An S7 `<endpoint>` object
 #' @param ... Additional arguments
 #' @returns A list of results from the API query, or `NULL` if no results are found.
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' asc <- prov_endpoint("asc_facility")
 #'
 #' q0 <- list(

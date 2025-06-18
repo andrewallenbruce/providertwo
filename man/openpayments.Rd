@@ -27,7 +27,9 @@ An S7 \verb{<class_endpoint>}, \verb{<class_temporal>} or \verb{<class_group>} o
 Open Payments API Endpoints
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 open_endpoint("profile_covered")
 open_temporal("grouped_state_nature")
 open_group("payment_detailed")
+\dontshow{\}) # examplesIf}
 }

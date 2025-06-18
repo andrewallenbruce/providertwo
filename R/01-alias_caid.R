@@ -4,7 +4,7 @@
 #' @param call `<env>` environment to use for error reporting
 #' @param ... Additional arguments passed to the group constructor
 #' @returns An S7 `<class_endpoint>`, `<class_temporal>` or `<class_group>` object
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' caid_endpoint("managed_longterm")
 #' caid_temporal("state_drug_util")
 #' caid_group("caid_dual_status")

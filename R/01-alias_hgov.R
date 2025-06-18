@@ -3,7 +3,7 @@
 #' @param alias `<chr>` endpoint or group alias
 #' @param call `<env>` environment to use for error reporting
 #' @returns An S7 `<class_endpoint>` or `<class_temporal>` object
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' hgov_endpoint("hgov_ab_reg_comp")
 #' hgov_temporal("hgov_puf_rate")
 NULL

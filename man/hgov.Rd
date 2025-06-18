@@ -22,6 +22,8 @@ An S7 \verb{<class_endpoint>} or \verb{<class_temporal>} object
 Healthcare.Gov API Endpoints
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 hgov_endpoint("hgov_ab_reg_comp")
 hgov_temporal("hgov_puf_rate")
+\dontshow{\}) # examplesIf}
 }

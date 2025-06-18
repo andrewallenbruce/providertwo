@@ -1,19 +1,25 @@
-#' Medicare API Endpoint Classes
-#' @name medicare
-#' @param alias `<chr>` endpoint alias
-#' @param call `<env>` environment to use for error reporting
-#' @param ... Additional arguments passed to the group constructor
-#' @returns An S7 `<care_endpoint>`, or `<care_temporal>` object
-#' @examplesIf rlang::is_interactive()
-#' care_endpoint("care_dialysis")
-#' care_temporal("quality_payment")
-#' care_group("care_hospital")
-NULL
+#' @autoglobal
+#' @noRd
+select_care <- function(alias, call = caller_env()) {
+
+  x <- care_switch(alias)
+  r <- select_alias(eval(x$catalog), x$regex)
+
+  if (is_empty(r))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+  if (nrow(r) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+
+  r <- c(r)
+
+  class_care(
+    identifier  = class_endpoint2(identifier_(x)),
+    metadata    = get_metadata(x),
+    dimensions  = care_dims(x)
+  )
+}
 
 #' @autoglobal
-#' @rdname medicare
-#' @export
-care_endpoint <- function(alias, call = caller_env()) {
+#' @noRd
+care_switch <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
@@ -124,25 +130,38 @@ care_endpoint <- function(alias, call = caller_env()) {
     cli_abort(c("x"         = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
 
-  res <- select_alias(the$catalog$care$end, x)
-
-  if (is_empty(res))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
-
-  x <- c(res)
-
-  class_endpoint(
-    catalog     = class_clog(clog_(x)),
-    identifier  = identifier_(x),
-    metadata    = get_metadata(x),
-    dimensions  = get_dimensions(x)
+  list(
+    alias = alias,
+    regex = x,
+    catalog = str2lang("the$catalog$care$end")
   )
 }
 
 #' @autoglobal
-#' @rdname medicare
-#' @export
-care_temporal <- function(alias, call = caller_env()) {
+#' @noRd
+select_care2 <- function(alias, call = caller_env()) {
+
+  x <- care_switch2(alias)
+  r <- select_alias(eval(x$catalog), x$regex)
+
+  if (is_empty(r)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
+
+  r <- flist(
+    !!!c(slt(r, -endpoints)),
+    endpoints   = yank(get_elem(r, "endpoints")),
+    identifier  = yank(get_elem(endpoints, "identifier"))
+  )
+
+  class_care(
+    identifier  = class_endpoints(get_elem(r, "endpoints")),
+    metadata    = get_metadata(r),
+    dimensions  = care_dims(r)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+care_switch2 <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
@@ -180,28 +199,17 @@ care_temporal <- function(alias, call = caller_env()) {
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
     cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
   )
-
-  res <- select_alias(the$catalog$care$tmp, x)
-
-  if (is_empty(res)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-
-  x <- flist(
-    !!!c(slt(res, -endpoints)),
-    endpoints   = pluck(get_elem(res, "endpoints"), 1),
-    identifier  = pluck(get_elem(endpoints, "identifier"), 1)
+  list(
+    alias = alias,
+    regex = x,
+    catalog = str2lang("the$catalog$care$tmp")
   )
-
-  class_temporal(
-    catalog     = class_clog(clog_(x)),
-    metadata    = get_metadata(x),
-    dimensions  = get_dimensions(x),
-    endpoints   = get_elem(x, "endpoints"))
 }
 
 #' @autoglobal
 #' @rdname medicare
 #' @export
-care_group <- function(alias, call = caller_env(), ...) {
+care_group2 <- function(alias, call = caller_env(), ...) {
 
   check_required(alias)
 

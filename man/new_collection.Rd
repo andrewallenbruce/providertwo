@@ -18,7 +18,9 @@ S7 \code{class_collection} object.
 Create Collection of Endpoints
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 new_collection("caid_demographics")
 new_collection("caid_unwind")
 new_collection("caid_services") |> query_nresults()
+\dontshow{\}) # examplesIf}
 }

@@ -75,6 +75,7 @@ utils::globalVariables(c(
   # <care_temporal>
   # <hgov_temporal>
   # <open_temporal>
+  # <select_care2>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",

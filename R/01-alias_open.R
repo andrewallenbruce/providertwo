@@ -4,7 +4,7 @@
 #' @param call `<env>` environment to use for error reporting
 #' @param ... Additional arguments passed to the group constructor
 #' @returns An S7 `<class_endpoint>`, `<class_temporal>` or `<class_group>` object
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' open_endpoint("profile_covered")
 #' open_temporal("grouped_state_nature")
 #' open_group("payment_detailed")

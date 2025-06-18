@@ -182,8 +182,10 @@ about clinicians' experience.
 }
 
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 prov_endpoint("asc_facility")
 prov_group("pro_dialysis")
+\dontshow{\}) # examplesIf}
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 affiliations(facility_type = "Home health agency")
 affiliations(last_name = "CURRY")

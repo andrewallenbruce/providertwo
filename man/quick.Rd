@@ -21,7 +21,9 @@ Convenience function to quickly access various CMS data endpoints.
 Mostly for debugging purposes.
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 quick("revalid_group")
-quick("out_img_national", limit = 10)
+quick("out_img_national")
 quick("hgov_nipr_state")
+\dontshow{\}) # examplesIf}
 }
