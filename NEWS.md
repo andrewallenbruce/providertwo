@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9343 (2025-06-18)
+
+* CHECKPOINT: Last commit before implementing rewritten S7 API
+
+
 # providertwo 0.0.0.9342 (2025-06-17)
 
 * provider API limit changed to 1500
