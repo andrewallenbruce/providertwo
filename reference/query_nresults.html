@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9342</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9343</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,84 +67,20 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="medicare.html">care_endpoint</a></span><span class="op">(</span><span class="st">"care_enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2922752</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="medicare.html">care_endpoint</a></span><span class="op">(</span><span class="st">"care_enrollees"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="medicare.html">care_temporal</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2022    2021    2020    2019    2018    2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  624200  698730  921517  944376  881959 1054657 </span>
 <span class="r-in"><span><span class="fu"><a href="medicare.html">care_group</a></span><span class="op">(</span><span class="st">"care_hospital"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_owners</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 148170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_chow</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 715</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_chow_owner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 21289</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_enrollments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9244</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_costreport</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6064</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hospital_service_area</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1139666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="provider.html">prov_endpoint</a></span><span class="op">(</span><span class="st">"pdc_affiliations"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1574317</span>
 <span class="r-in"><span><span class="fu"><a href="provider.html">prov_group</a></span><span class="op">(</span><span class="st">"pro_mips"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_performance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 624209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_patient</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 432</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_clinician</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 523282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 193488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $mips_virtual</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="openpayments.html">open_endpoint</a></span><span class="op">(</span><span class="st">"profile_covered"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1530412</span>
 <span class="r-in"><span><span class="fu"><a href="openpayments.html">open_temporal</a></span><span class="op">(</span><span class="st">"payment_general"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2023     2022     2021     2020     2019     2018     2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14607336 13286061 11537959  5840459 10557471 10937801 11426731 </span>
 <span class="r-in"><span><span class="fu"><a href="openpayments.html">open_group</a></span><span class="op">(</span><span class="st">"payment_grouped"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2023    2022    2021    2020    2019    2018    2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1184051 1103602  975090  646228  879342  893072  915385 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_covered_entity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2023    2022    2021    2020    2019    2018    2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4416875 4005745 3457083 2005936 2980135 3039728 3123435 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2023 2022 2021 2020 2019 2018 2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6192 6447 6079 5813 6535 6342 6150 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_entity_covered_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2023    2022    2021    2020    2019    2018    2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4588015 4160825 3558798 2051798 3166809 3224118 3330504 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $grouped_state_nature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2023  2022  2021  2020  2019  2018  2017 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16758 16758 16758 11172 11172 11172 11172 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_endpoint</a></span><span class="op">(</span><span class="st">"mlr_summary"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1719</span>
 <span class="r-in"><span><span class="fu"><a href="medicaid.html">caid_temporal</a></span><span class="op">(</span><span class="st">"healthcare_quality"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2023 2022 2021 2020 2019 2018 2017 2016 2015 2014 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5662 4206 3830 3450 3096 2826 2058 1967 1716 1464 </span>
 <span class="r-in"><span><span class="fu"><a href="hgov.html">hgov_endpoint</a></span><span class="op">(</span><span class="st">"hgov_catastrophic"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 585</span>
 <span class="r-in"><span><span class="fu"><a href="hgov.html">hgov_temporal</a></span><span class="op">(</span><span class="st">"hgov_mlr"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">query_nresults</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2019 2018 2017 2016 2015 2014 2013 2012 2011 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1270 1231 1903 2148 2091 2577 3369 3062 3672 </span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

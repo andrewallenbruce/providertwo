@@ -9,7 +9,7 @@ Mostly for debugging purposes."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9342</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9343</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,52 +74,11 @@ Mostly for debugging purposes.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"revalid_group"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5,000 × 15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Group PAC ID` `Group Enrollment ID` `Group Legal Business Name`            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 6305933532     O20071103000162       'a' Street Clinic Of Chiropractic, Pllc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1850813254     O20250314001303       1 Care Partners Llc                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1850813254     O20250325000280       1 Care Partners Llc                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 3274795547     O20120502000499       1 Community Wellness &amp; Health Inc      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1658693460     O20141205001656       1 Cp Place Pllc                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1658693460     O20141205001656       1 Cp Place Pllc                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 5890010177     O20150209000022       1 Hour Eyedocs, Llc                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 6204378193     O20240606002709       1 Identity Counseling, Llc             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 4789081530     O20210922000917       1 Love Wellness Society Llc            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 4789081530     O20210922000917       1 Love Wellness Society Llc            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4,990 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: `Group State Code` &lt;chr&gt;, `Group Due Date` &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `Group Reassignments and Physician Assistants` &lt;chr&gt;, `Record Type` &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `Individual Enrollment ID` &lt;chr&gt;, `Individual NPI` &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `Individual First Name` &lt;chr&gt;, `Individual Last Name` &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `Individual State Code` &lt;chr&gt;, `Individual Specialty Description` &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   `Individual Due Date` &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"out_img_national"</span>, limit <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   measure_id measure_name                     score footnote start_date end_date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OP_10      Abdomen CT Use of Contrast Mate… 5.8   <span style="color: #BB0000;">NA</span>       07/01/2022 06/30/2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OP_13      Outpatients who got cardiac ima… 3.7   <span style="color: #BB0000;">NA</span>       07/01/2022 06/30/2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OP_39      Breast Cancer Screening Recall … 9     <span style="color: #BB0000;">NA</span>       07/01/2022 06/30/2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OP_8       MRI Lumbar Spine for Low Back P… 36.2  <span style="color: #BB0000;">NA</span>       07/01/2022 06/30/2…</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># rlang::is_interactive()</span></span></span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"revalid_group"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"out_img_national"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">quick</span><span class="op">(</span><span class="st">"hgov_nipr_state"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 31 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    resident_state  appointment_level_loa                     approved_class_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Arizona (AZ)    <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>Insurance Produce…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> California (CA) <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>RESIDENT INSURANC…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Colorado (CO)   <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>Resident producer<span style="color: #949494;">"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Delaware (DE)   <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>Insurance Produce…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Florida (FL)    <span style="color: #949494;">"</span>0240 HEALTH;\n0215 LIFE VA AND HLTH;\n0… <span style="color: #949494;">"</span>Agent<span style="color: #949494;">"</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Hawaii (HI)     <span style="color: #949494;">"</span>Accident &amp; Health or Sickness<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>Insurance Produce…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Idaho (ID)      <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Indiana (IN)    <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Iowa (IA)       <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kansas (KS)     <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>                                     <span style="color: #949494;">"</span>N/A<span style="color: #949494;">"</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 21 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: approved_license_level_loa &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   licensing_authority &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
