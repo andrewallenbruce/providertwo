@@ -12,7 +12,7 @@ new_collection <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
-  x <- aka$collection[alias][[alias]]
+  x <- aka$get(alias)
 
   if (is_empty(x)) {
     cli_abort(
@@ -20,8 +20,9 @@ new_collection <- function(alias, call = caller_env()) {
       call = call)
   }
 
-  class_collection(x$name,
-    set_names(map(x$alias, caid_endpoint), x$alias))
+  class_collection(
+    group = "Collection",
+    set_names(map(x, caid_endpoint), x))
 }
 
 # ------- care_list ------
@@ -704,28 +705,26 @@ aka_hgov <- list(
   )
 )
 
-aka <- new.env(parent = emptyenv())
-aka$endpoint <- cheapr::list_combine(aka_care$endpoint,
-                                     aka_prov$endpoint,
-                                     aka_open$endpoint,
-                                     aka_caid$endpoint,
-                                     aka_hgov$endpoint)
-aka$collection <- cheapr::list_combine(aka_care$collection,
-                                       aka_prov$collection,
-                                       aka_open$collection,
-                                       aka_caid$collection)
-
-aka$temporal <- cheapr::list_combine(aka_care$temporal,
-                                     aka_open$temporal,
-                                     aka_caid$temporal,
-                                     aka_hgov$temporal)
+# aka <- new.env(parent = emptyenv())
+# aka$endpoint <- cheapr::list_combine(aka_care$endpoint,
+#                                      aka_prov$endpoint,
+#                                      aka_open$endpoint,
+#                                      aka_caid$endpoint,
+#                                      aka_hgov$endpoint)
+# aka$collection <- cheapr::list_combine(aka_care$collection,
+#                                        aka_prov$collection,
+#                                        aka_open$collection,
+#                                        aka_caid$collection)
+#
+# aka$temporal <- cheapr::list_combine(aka_care$temporal,
+#                                      aka_open$temporal,
+#                                      aka_caid$temporal,
+#                                      aka_hgov$temporal)
 
 #' @autoglobal
 #' @noRd
-reset_aka <- function() {
-  old         <- the$catalog
-  the$catalog <- catalogs()
-  invisible(old)
+aka_reset <- function() {
+  aka$reset()
 }
 
 # aka <- list(
@@ -734,7 +733,11 @@ reset_aka <- function() {
 #     aka_prov$endpoint,
 #     aka_open$endpoint,
 #     aka_caid$endpoint,
-#     aka_hgov$endpoint
+#     aka_hgov$endpoint,
+#     aka_care$temporal,
+#     aka_open$temporal,
+#     aka_caid$temporal,
+#     aka_hgov$temporal
 #   ),
 #   temporal = cheapr::list_combine(
 #     aka_care$temporal,
@@ -743,9 +746,35 @@ reset_aka <- function() {
 #     aka_hgov$temporal
 #   ),
 #   collection = cheapr::list_combine(
-#     aka_care$collection,
-#     aka_prov$collection,
-#     aka_open$collection,
-#     aka_caid$collection
+#     get_elem(aka_care$collection, "alias"),
+#     get_elem(aka_prov$collection, "alias"),
+#     get_elem(aka_open$collection, "alias"),
+#     get_elem(aka_caid$collection, "alias")
 #   )
 # )
+
+aka <- fastmap::fastmap()
+aka$mset(
+  .list = cheapr::list_combine(
+    aka_care$endpoint,
+    aka_prov$endpoint,
+    aka_open$endpoint,
+    aka_caid$endpoint,
+    aka_hgov$endpoint,
+    aka_care$temporal,
+    aka_open$temporal,
+    aka_caid$temporal,
+    aka_hgov$temporal,
+    get_elem(aka_care$collection, "alias"),
+    get_elem(aka_prov$collection, "alias"),
+    get_elem(aka_open$collection, "alias"),
+    get_elem(aka_caid$collection, "alias")
+  )
+)
+
+# aka$get("hie_transparency")
+# aka$keys()
+# aka$size()
+# aka$as_list()
+# aka$reset()
+# aka$get("care_nhome")

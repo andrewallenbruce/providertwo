@@ -56,27 +56,31 @@ list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
+method(list_resources, class_care) <- function(x) {
+  x@resources
+}
+
 method(list_resources, class_endpoint) <- function(x) {
-  if (clog_(x) != "care") return(invisible(NULL))
-  resources_(x) |>
-    map(request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    map(function(resp)
-      parse_string(resp, query = "/data") |>
-        tidy_resources()) |>
-    pluck(1L)
+  x
+  # |>
+  #   map(request) |>
+  #   req_perform_parallel(on_error = "continue") |>
+  #   resps_successes() |>
+  #   map(function(resp)
+  #     parse_string(resp, query = "/data") |>
+  #       tidy_resources()) |>
+  #   pluck(1L)
 }
 
 method(list_resources, class_temporal) <- function(x) {
-  if (clog_(x) != "care") return(invisible(NULL))
-  resources_(x) |>
-    map(request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    resps_data(function(resp)
-      parse_string(resp, query = "/data")) |>
-    tidy_resources()
+  x$resources
+  # |>
+  #   map(request) |>
+  #   req_perform_parallel(on_error = "continue") |>
+  #   resps_successes() |>
+  #   resps_data(function(resp)
+  #     parse_string(resp, query = "/data")) |>
+  #   tidy_resources()
 }
 
 method(list_resources, class_group) <- function(x) {

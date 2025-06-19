@@ -386,14 +386,6 @@ clog_hgov <- function(x) {
 the         <- new.env(parent = emptyenv())
 the$catalog <- catalogs()
 
-# m <- fastmap::fastmap()
-# m$mset(.list = providertwo:::catalogs())
-# m$get("care")
-# m$keys()
-# m$size()
-# m$as_list()
-# m$reset()
-
 #' @autoglobal
 #' @noRd
 reset_catalog <- function() {

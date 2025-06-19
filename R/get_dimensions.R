@@ -1,24 +1,50 @@
 #' @noRd
 #' @autoglobal
-get_dimensions <- function(x, call = caller_env()) {
+get_metadata <- function(x) {
+  compact(list(
+    # clog        = null_if(x$clog),
+    # api         = null_if(x$api),
+    title       = null_if(x$title),
+    description = null_if(x$description),
+    modified    = null_if(x$modified),
+    group       = null_if(x$group),
+    issued      = null_if(x$issued),
+    released    = null_if(x$released),
+    temporal    = null_if(x$temporal),
+    periodicity = null_if(x$periodicity),
+    download    = null_if(x$download),
+    resources   = unlist_if(null_if(x$resources)),
+    dictionary  = null_if(x$dictionary),
+    site        = null_if(x$site),
+    references  = null_if(x$references)
+  ))
+}
+
+#' @noRd
+#' @autoglobal
+get_dimensions <- function(x, clog, api = NULL, call = caller_env()) {
+
+  if (clog == "care" && is.null(api)) {
+    cli_abort(
+      c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
+      call = call)
+  }
+
   switch(
-    clog_(x),
-    care = care_dims(x),
+    clog,
+    care = care_dims(x, api),
     caid = def_dims(x, 8000L),
     prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),
     hgov = def_dims(x, 500L),
-    cli_abort(c("x" = "{.emph class} {.val {x}} is not a catalog type."), call = call)
+    cli_abort(c("x" = "{.field clog} = {.val {x}} is invalid."), call = call)
   )
 }
 
 #' @autoglobal
 #' @noRd
-req_dims <- function(x) {
-  identifier_(x) |>
-    request() |>
-    req_url_query(splice(default_query(x))) |>
-    req_error(is_error = ~ FALSE)
+set_fields <- function(x) {
+  set_names(new_list(length(x), character(0)), x)
 }
 
 #' @autoglobal
@@ -30,48 +56,47 @@ def_fields <- function(x) {
 #' @autoglobal
 #' @noRd
 def_dims <- function(x, limit) {
-  x <- req_dims(x) |> perform_simple()
+
+  x <- x$identifier |>
+    request() |>
+    req_url_query(
+      count   = "true",
+      results = "false",
+      offset  = 0L,
+      limit   = 1L
+    ) |>
+    req_error(is_error = ~ FALSE) |>
+    perform_simple()
 
   class_dimensions(
     limit  = limit,
     rows   = x$count %||% 0L,
-    fields = x$query$properties %||% def_fields(x$message)
+    fields = set_fields(x$query$properties) %||% def_fields(x$message)
   )
 }
 
 #' @autoglobal
 #' @noRd
-set_fields <- function(x) {
+care_dims <- function(x, api) {
 
-  # x %||% return(def_fields(x$meta$message))
-
-  new_list(
-    length(x),
-    character(0)) |>
-    set_names(x)
-}
-
-#' @autoglobal
-#' @noRd
-care_dims <- function(x) {
+  x <- x$identifier |>
+    request() |>
+    req_url_query(offset = 0L, size = 1L) |>
+    req_error(is_error = ~ FALSE)
 
   x <- switch(
-    api_(x),
-    end = req_dims(x) |>
-      perform_simple() |>
+    api,
+    end = perform_simple(x) |>
       get_elem("meta") |>
       get_elem(c("total_rows", "headers")),
     tmp = list(
-      headers = req_dims(x) |>
-        perform_simple() |>
-        names(),
-      total_rows = req_dims(x) |>
-        req_url_path_append("stats") |>
+      headers = perform_simple(x) |> names(),
+      total_rows = req_url_path_append(x, "stats") |>
         perform_simple() |>
         get_elem("total_rows")
     )
   )
-  class_dimensions2(
+  class_dimensions(
     limit  = 5000L,
     rows   = x$total_rows %||% 0L,
     fields = set_fields(x$headers) %||% def_fields(x$meta$message)
