@@ -13,52 +13,68 @@ NULL
 #' @autoglobal
 #' @rdname medicare
 #' @export
-care_endpoint <- function(alias, call = caller_env()) {
+new_endpoint <- function(alias) {
 
-  x    <- care_endpoint_switch(alias)
-  clog <- str2lang("the$catalog$care$end")
+  x <- aka$endpoint$get(alias) %||%
+    cli_abort(c("x" = "{.field alias} {.val {alias}} invalid."))
 
-  if (is.na(x)) {
+  y <- categorize_api(alias)
 
-    x    <- care_temporal_switch(alias)
-    clog <- str2lang("the$catalog$care$tmp")
+  r <- select_alias(eval(str2lang(y[["e"]])), x)
 
-  }
+  if (is_empty(r))  cli_abort(c("x" = "{.val {x}} has 0 matches."))
+  if (nrow(r) > 1L) cli_abort(c("x" = "{.val {x}} has multiple matches."))
 
-  if (is.na(x)) cli_abort(c("x" = "{.val {alias}} is not a valid care alias."), call = call)
+  class_fn <- y[["clog"]]
+  r <- c(r)
 
-  r <- select_alias(eval(clog), x)
-
-  clog <- yank(strsplit(paste0(
-    as.character(clog)[-1], collapse = "$"),
-    "$", fixed = TRUE)) |> _[3:4]
-
-  if (is_empty(r))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(r) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
-
-  r <- switch(
-    clog[2],
-    tmp = flist(!!!c(slt(r, -endpoints)),
-                endpoints  = yank(get_elem(r, "endpoints")),
-                identifier = yank(get_elem(endpoints, "identifier"))),
-    end = c(r)
-  )
-
-  class_care(
-    metadata    = get_metadata(r),
-    dimensions  = get_dimensions(r, clog[1], clog[2]),
-    identifier  = switch(
-      clog[2],
-      tmp = class_temporal(r$endpoints),
-      end = class_endpoint(r$identifier)
-      ),
-    resources  = switch(
-      clog[2],
-      tmp = class_temporal(slt(r$endpoints, year, resources)),
-      end = class_endpoint(r$identifier$resources)
-      )
+  class_fn(
+    metadata = get_metadata(r),
+    dimensions = get_dimensions(r, clog[1], clog[2]),
+    identifier = class_endpoint(r$identifier),
+    resources = class_endpoint(r$resources)
     )
 }
+
+#' @autoglobal
+#' @noRd
+categorize_api <- function(x) {
+  if (x %in_% aka$clog$get("care")) .c(e, clog) %=% c("the$catalog$care$end", "class_care")
+  if (x %in_% aka$clog$get("prov")) .c(e, clog) %=% c("the$catalog$prov$end", "class_prov")
+  if (x %in_% aka$clog$get("open")) .c(e, clog) %=% c("the$catalog$open$end", "class_open")
+  if (x %in_% aka$clog$get("caid")) .c(e, clog) %=% c("the$catalog$caid$end", "class_caid")
+  if (x %in_% aka$clog$get("hgov")) .c(e, clog) %=% c("the$catalog$hgov$end", "class_hgov")
+
+  c(e = e, clog = clog)
+}
+
+# class_care(
+#   metadata    = get_metadata(r),
+#   dimensions  = get_dimensions(r, clog[1], clog[2]),
+#   identifier  = switch(
+#     clog[2],
+#     tmp = class_temporal(r$endpoints),
+#     end = class_endpoint(r$identifier)
+#   ),
+#   resources  = switch(
+#     clog[2],
+#     tmp = class_temporal(slt(r$endpoints, year, resources)),
+#     end = class_endpoint(r$resources)
+#   )
+# )
+
+# r <- switch(
+#   clog[2],
+#   tmp = flist(!!!c(slt(r, -endpoints)),
+#               endpoints  = yank(get_elem(r, "endpoints")),
+#               identifier = yank(get_elem(endpoints, "identifier"))),
+#   end = c(r)
+# )
+
+
+# clog <- yank(strsplit(paste0(
+#   as.character(clog)[-1], collapse = "$"),
+#   "$", fixed = TRUE)) |> _[3:4]
 
 #' @autoglobal
 #' @noRd
@@ -446,7 +462,7 @@ care_collection <- function(alias, call = caller_env(), ...) {
 
   class_collection(
     name    = x$group,
-    members = set_names(map(x$alias, select_care), x$alias)
+    members = set_names(map(x$alias, care_endpoint), x$alias)
   )
 
 }

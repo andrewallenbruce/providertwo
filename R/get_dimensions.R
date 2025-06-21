@@ -2,8 +2,8 @@
 #' @autoglobal
 get_metadata <- function(x) {
   compact(list(
-    # clog        = null_if(x$clog),
-    # api         = null_if(x$api),
+    clog        = null_if(x$clog),
+    api         = null_if(x$api),
     title       = null_if(x$title),
     description = null_if(x$description),
     modified    = null_if(x$modified),
@@ -22,7 +22,7 @@ get_metadata <- function(x) {
 
 #' @noRd
 #' @autoglobal
-get_dimensions <- function(x, clog, api = NULL, call = caller_env()) {
+get_dimensions <- function(x, clog) {
 
   if (clog == "care" && is.null(api)) {
     cli_abort(
@@ -59,12 +59,6 @@ def_dims <- function(x, limit) {
 
   x <- x$identifier |>
     request() |>
-    req_url_query(
-      count   = "true",
-      results = "false",
-      offset  = 0L,
-      limit   = 1L
-    ) |>
     req_error(is_error = ~ FALSE) |>
     perform_simple()
 
@@ -77,24 +71,35 @@ def_dims <- function(x, limit) {
 
 #' @autoglobal
 #' @noRd
-care_dims <- function(x, api) {
+care_end_dims <- function(x) {
 
   x <- x$identifier |>
     request() |>
-    req_url_query(offset = 0L, size = 1L) |>
+    req_error(is_error = ~ FALSE) |>
+    perform_simple(x) |>
+    get_elem("meta") |>
+    get_elem(c("total_rows", "headers"))
+
+  class_dimensions(
+    limit  = 5000L,
+    rows   = x$total_rows %||% 0L,
+    fields = set_fields(x$headers) %||% def_fields(x$meta$message)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+care_tmp_dims <- function(x) {
+
+  x <- x$identifier |>
+    request() |>
     req_error(is_error = ~ FALSE)
 
-  x <- switch(
-    api,
-    end = perform_simple(x) |>
-      get_elem("meta") |>
-      get_elem(c("total_rows", "headers")),
-    tmp = list(
-      headers = perform_simple(x) |> names(),
-      total_rows = req_url_path_append(x, "stats") |>
-        perform_simple() |>
-        get_elem("total_rows")
-    )
+  x <- list(
+    headers = perform_simple(x) |> names(),
+    total_rows = req_url_path_append(x, "stats") |>
+      perform_simple() |>
+      get_elem("total_rows")
   )
   class_dimensions(
     limit  = 5000L,

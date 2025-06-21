@@ -1,31 +1,3 @@
-#' Create Collection of Endpoints
-#' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @param call `<env>` Environment to use for error reporting.
-#' @returns S7 `class_collection` object.
-#' @examplesIf rlang::is_interactive()
-#' new_collection("caid_demographics")
-#' new_collection("caid_unwind")
-#' new_collection("caid_services") |> query_nresults()
-#' @autoglobal
-#' @export
-new_collection <- function(alias, call = caller_env()) {
-
-  check_required(alias)
-
-  x <- aka$get(alias)
-
-  if (is_empty(x)) {
-    cli_abort(
-      c("x" = "{.emph group alias} {.val {alias}} is invalid."),
-      call = call)
-  }
-
-  class_collection(
-    group = "Collection",
-    set_names(map(x, caid_endpoint), x))
-}
-
-# ------- care_list ------
 #' @autoglobal
 #' @noRd
 aka_care <- list(
@@ -175,7 +147,7 @@ aka_care <- list(
     reassignment            = list(name = "Revalidation Reassignment Lists",      alias = c("revalid_group", "revalid_due", "revalid_list")),
     care_snf                = list(name = "Skilled Nursing Facilities",           alias = c("snf_owners", "snf_chow", "snf_chow_owner", "snf_cost_report", "snf_enrollments")),
     care_aco                = list(name = "Accountable Care Organizations",       alias = c("aco_reach_aligned", "aco_reach_eligible", "aco_reach_results", "aco_reach_providers", "aco_reach_orgs", "aco_pioneer", "aco_participants", "aco_snf_affiliate", "aco_organizations", "aco_bene_cnty")),
-    # cms_stats               = list(name = "CMS Program Statistics",               alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
+    cms_stats               = list(name = "CMS Program Statistics",               alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
     care_caid               = list(name = "Medicaid",                             alias = c("care_caid_managed_care", "care_caid_opioid_geo", "care_caid_drug_spend")),
     care_geovar             = list(name = "Medicare Geographic Variation",        alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")),
     care_pdp                = list(name = "Pharmacy Network/Formulary/Pricing",   alias = c("pdp_month", "pdp_quarter")),
@@ -648,8 +620,8 @@ aka_hgov <- list(
   endpoint = list(
     ab_registration_completion         = "^AB Registration Completion List$",
     ab_suspension_termination          = "^AB Suspension and Termination List$",
-    ab_registration_glossary = "^Agent Broker Registration Tracker Glossary$",
-    ab_registration_tracker  = "^Agent Broker Registration Tracker$",
+    ab_registration_glossary           = "^Agent Broker Registration Tracker Glossary$",
+    ab_registration_tracker            = "^Agent Broker Registration Tracker$",
     authority_state                    = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
     auto_pop_file                      = "^Auto[-]population File$",
     benefits_cost_sharing              = "^Benefits and Cost Sharing PUF$",
@@ -690,91 +662,17 @@ aka_hgov <- list(
     qhp_py18_ind_dent_instruct         = "^QHP PY18 Dental Individual Landscape Instructions$",
     local_help                         = "^Find Local Help$"
   ),
-  temporal = list(
-    medical_loss_ratio     = "^MLR Dataset$",
-    qhp_quality_ratings    = "^Quality PUF$",
-    hie_benefits_costshare = "^Benefits and Cost Sharing PUF$",
-    hie_business_rules     = "^Business Rules PUF$",
-    hie_machine_readable   = "^Machine Readable PUF$",
-    hie_network            = "^Network PUF$",
-    hie_plan_attributes    = "^Plan Attributes PUF$",
-    hie_plan_id_crosswalk  = "^Plan ID Crosswalk PUF$",
-    hie_rate               = "^Rate PUF$",
-    hie_service_area       = "^Service Area PUF$",
-    hie_transparency       = "^Transparency in Coverage PUF$"
+  temporal                             = list(
+    medical_loss_ratio                 = "^MLR Dataset$",
+    qhp_quality_ratings                = "^Quality PUF$",
+    hie_benefits_costshare             = "^Benefits and Cost Sharing PUF$",
+    hie_business_rules                 = "^Business Rules PUF$",
+    hie_machine_readable               = "^Machine Readable PUF$",
+    hie_network                        = "^Network PUF$",
+    hie_plan_attributes                = "^Plan Attributes PUF$",
+    hie_plan_id_crosswalk              = "^Plan ID Crosswalk PUF$",
+    hie_rate                           = "^Rate PUF$",
+    hie_service_area                   = "^Service Area PUF$",
+    hie_transparency                   = "^Transparency in Coverage PUF$"
   )
 )
-
-# aka <- new.env(parent = emptyenv())
-# aka$endpoint <- cheapr::list_combine(aka_care$endpoint,
-#                                      aka_prov$endpoint,
-#                                      aka_open$endpoint,
-#                                      aka_caid$endpoint,
-#                                      aka_hgov$endpoint)
-# aka$collection <- cheapr::list_combine(aka_care$collection,
-#                                        aka_prov$collection,
-#                                        aka_open$collection,
-#                                        aka_caid$collection)
-#
-# aka$temporal <- cheapr::list_combine(aka_care$temporal,
-#                                      aka_open$temporal,
-#                                      aka_caid$temporal,
-#                                      aka_hgov$temporal)
-
-#' @autoglobal
-#' @noRd
-aka_reset <- function() {
-  aka$reset()
-}
-
-# aka <- list(
-#   endpoint = cheapr::list_combine(
-#     aka_care$endpoint,
-#     aka_prov$endpoint,
-#     aka_open$endpoint,
-#     aka_caid$endpoint,
-#     aka_hgov$endpoint,
-#     aka_care$temporal,
-#     aka_open$temporal,
-#     aka_caid$temporal,
-#     aka_hgov$temporal
-#   ),
-#   temporal = cheapr::list_combine(
-#     aka_care$temporal,
-#     aka_open$temporal,
-#     aka_caid$temporal,
-#     aka_hgov$temporal
-#   ),
-#   collection = cheapr::list_combine(
-#     get_elem(aka_care$collection, "alias"),
-#     get_elem(aka_prov$collection, "alias"),
-#     get_elem(aka_open$collection, "alias"),
-#     get_elem(aka_caid$collection, "alias")
-#   )
-# )
-
-aka <- fastmap::fastmap()
-aka$mset(
-  .list = cheapr::list_combine(
-    aka_care$endpoint,
-    aka_prov$endpoint,
-    aka_open$endpoint,
-    aka_caid$endpoint,
-    aka_hgov$endpoint,
-    aka_care$temporal,
-    aka_open$temporal,
-    aka_caid$temporal,
-    aka_hgov$temporal,
-    get_elem(aka_care$collection, "alias"),
-    get_elem(aka_prov$collection, "alias"),
-    get_elem(aka_open$collection, "alias"),
-    get_elem(aka_caid$collection, "alias")
-  )
-)
-
-# aka$get("hie_transparency")
-# aka$keys()
-# aka$size()
-# aka$as_list()
-# aka$reset()
-# aka$get("care_nhome")

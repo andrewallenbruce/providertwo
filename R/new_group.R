@@ -32,15 +32,36 @@ new_group <- function(member_names,
       )
     )
 
-  # ob <- if (length(member_names) == 1) select_member(member_names)
-  # else class_group(
-  #   group_name %||% paste0(member_names, collapse = " | "),
-  #   map(member_names, select_member) |>
-  #     set_names(member_names))
-
   if (!quick) return(ob)
 
   quick_(ob, offset = offset, limit = limit)
+}
+
+#' Create Collection of Endpoints
+#' @param alias `<chr>` Alias representing the CMS data endpoint.
+#' @param call `<env>` Environment to use for error reporting.
+#' @returns S7 `class_collection` object.
+#' @examplesIf rlang::is_interactive()
+#' new_collection("caid_demographics")
+#' new_collection("caid_unwind")
+#' new_collection("caid_services") |> query_nresults()
+#' @autoglobal
+#' @export
+new_collection <- function(alias, call = caller_env()) {
+
+  check_required(alias)
+
+  x <- aka$get(alias)
+
+  if (is_empty(x)) {
+    cli_abort(
+      c("x" = "{.emph group alias} {.val {alias}} is invalid."),
+      call = call)
+  }
+
+  class_collection(
+    group = "Collection",
+    set_names(map(x, caid_endpoint), x))
 }
 
 #' @autoglobal

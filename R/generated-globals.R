@@ -13,7 +13,6 @@ utils::globalVariables(c(
   "adr_ln_2",
   # <clinicians>
   "adrs_id",
-  # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
@@ -23,7 +22,6 @@ utils::globalVariables(c(
   "browseURL",
   # <quality_metrics>
   "category",
-  # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
@@ -31,7 +29,6 @@ utils::globalVariables(c(
   "clog",
   # <open_dictionary>
   "constraints",
-  # <clog_care>
   # <clog_prov>
   # <clog_open>
   "contact",
@@ -54,7 +51,6 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "description",
-  # <clog_care>
   # <clog_prov>
   "dictionary",
   # <clog_hgov>
@@ -72,10 +68,9 @@ utils::globalVariables(c(
   "endpoint",
   # <clog_care>
   # <caid_temporal>
-  # <care_temporal>
   # <hgov_temporal>
   # <open_temporal>
-  # <select_care>
+  # <care_endpoint>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",
@@ -144,7 +139,6 @@ utils::globalVariables(c(
   "nationalProviderIdentifierType",
   # <clinicians>
   "num_org_mem",
-  # <clog_care>
   # <clog_caid>
   "periodicity",
   # <clog_care>
@@ -152,6 +146,7 @@ utils::globalVariables(c(
   # <clog_prov>
   "released",
   # <clog_care>
+  # <care_endpoint>
   "resources",
   # <clog_care>
   "resourcesAPI",
@@ -163,8 +158,6 @@ utils::globalVariables(c(
   "sec_spec_3",
   # <clinicians>
   "sec_spec_4",
-  # <clog_care>
-  "site",
   # <tidy_resources>
   "size",
   # <quality_eligibility>
@@ -194,6 +187,7 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
+  # <care_endpoint>
   # <open_dictionary>
   # <tidy_resources>
   "year",

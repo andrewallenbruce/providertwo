@@ -18,8 +18,8 @@ List resources
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 care_endpoint("care_enrollees") |> list_resources()
-care_temporal("quality_payment") |> list_resources()
-care_group("care_hha") |> list_resources()
-care_group("care_inpatient") |> list_resources()
+care_endpoint("quality_payment") |> list_resources()
+care_collection("care_hha") |> list_resources()
+care_collection("care_inpatient") |> list_resources()
 \dontshow{\}) # examplesIf}
 }

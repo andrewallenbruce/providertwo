@@ -2,11 +2,11 @@
 % Please edit documentation in R/02-alias_care.R
 \name{medicare}
 \alias{medicare}
-\alias{care_endpoint}
+\alias{new_endpoint}
 \alias{care_collection}
 \title{Medicare API Endpoints}
 \usage{
-care_endpoint(alias, call = caller_env())
+new_endpoint(alias)
 
 care_collection(alias, call = caller_env(), ...)
 }

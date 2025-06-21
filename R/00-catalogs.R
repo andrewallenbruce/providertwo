@@ -2,6 +2,7 @@
 
 #' @include utils_misc.R
 #' @include fastplyr.R
+#' @include aka.R
 NULL
 
 #' @name catalogs
@@ -49,8 +50,6 @@ catalogs <- function() {
 #' @noRd
 clog_care <- function(x) {
 
-  cols <- c("title", "clog", "year", "format", "description", "modified", "temporal", "identifier", "download", "resources")
-
   d <- get_elem(x$care, "distribution", DF.as.list = TRUE) |>
     rowbind(fill = TRUE) |>
     fcompute(
@@ -65,9 +64,11 @@ clog_care <- function(x) {
     roworder(title, -year) |>
     as_fibble()
 
-  d <- sset(d, row_na_counts(d) < 4)
+  d <- tfm(sset(d, row_na_counts(d) < 3),
+           identifier = paste0(identifier, "?offset=0&size=1"))
 
   x <- mtt(x$care,
+    identifier  = paste0(identifier, "?offset=0&size=1"),
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
     contact     = fmt_contactpoint(get_elem(x$care, "contactPoint")),
@@ -79,20 +80,25 @@ clog_care <- function(x) {
       gremove("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$") |>
       gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
       gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
-      gremove("\\n\\n.+\\n\\n")) |>
-    slt(title, description, modified, periodicity, temporal, contact, identifier, dictionary = describedBy, site = landingPage, references) |>
-    join_on_title(sbt(d, format == "latest", title, download, resources)) |>
-    roworder(title)
+      gremove("\\n\\n.+\\n\\n"),
+    dictionary = describedBy,
+    site       = landingPage,
+    .keep      = "references") |>
+    join_on_title(sbt(d, format == "latest", c(title, download, resources))) |>
+    roworder(title) |>
+    colorder(title, description)
 
   d <- sbt(d, title %!in_% care_types("single") & format != "latest", -format) |>
     roworder(title, -year) |>
     fnest(by = c("title")) |>
     rnm(endpoints = data) |>
-    join_on_title(slt(x, title, description, periodicity, contact, dictionary, site, references)) |>
+    join_on_title(slt(x,
+    c("title", "description", "periodicity", "contact", "dictionary", "site", "references"))) |>
     colorder(endpoints, pos = "end")
 
-  list(end = mtt(x, clog = "care", api = "end") |> colorder(clog, api),
-       tmp = mtt(d, clog = "care", api = "tmp") |> colorder(clog, api))
+  fin <- \(i, a) mtt(i, clog = "care", api = a)
+
+  list(end = fin(x, "end"), tmp = fin(d, "tmp"))
 }
 
 #' @autoglobal
@@ -106,7 +112,7 @@ clog_prov <- function(x) {
       api         = "end",
       title       = rm_nonascii(title),
       dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
-      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0"),
+      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
@@ -124,7 +130,7 @@ clog_prov <- function(x) {
 clog_open <- function(x) {
 
   x <- mtt(x$open,
-      identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0"),
+      identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
       modified    = as_date(modified),
       year        = unlist(x$open$keyword, use.names = FALSE),
       year        = iif(year == "all years" | title == "Provider profile ID mapping table", "All", year, nThread = 4L),
@@ -184,7 +190,7 @@ clog_caid <- function(x) {
     roworder(title)
 
   x <- mtt(x$caid,
-      identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0"),
+      identifier  = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
       modified    = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
       contact     = get_elem(x$caid, "contactPoint") |> fmt_contactpoint(),
@@ -275,7 +281,7 @@ clog_hgov <- function(x) {
 
 
   x <- mtt(x$hgov,
-      identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
+      identifier  = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
       title       = rm_nonascii(title) |> rm_space(),
       description = rm_nonascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
       modified    = as_date(modified),
@@ -393,3 +399,45 @@ reset_catalog <- function() {
   the$catalog <- catalogs()
   invisible(old)
 }
+
+aka            <- list()
+aka$endpoint   <- fastmap::fastmap()
+aka$temporal   <- fastmap::fastmap()
+aka$collection <- fastmap::fastmap()
+aka$clog       <- fastmap::fastmap()
+
+aka$endpoint$mset(
+  .list = list_combine(
+    aka_prov$endpoint,
+    aka_hgov$endpoint,
+    aka_caid$endpoint,
+    aka_care$endpoint,
+    aka_open$endpoint
+  )
+)
+
+aka$temporal$mset(
+  .list = list_combine(
+    aka_hgov$temporal,
+    aka_caid$temporal,
+    aka_care$temporal,
+    aka_open$temporal
+  )
+)
+
+aka$collection$mset(
+  .list = list_combine(
+    aka_prov$collection,
+    aka_caid$collection,
+    aka_care$collection,
+    aka_open$collection
+  )
+)
+
+aka$clog$mset(.list = list(
+  prov = c(names(aka_prov$endpoint), names(aka_prov$collection)),
+  hgov = c(names(aka_hgov$endpoint), names(aka_hgov$temporal)),
+  caid = c(names(aka_caid$endpoint), names(aka_caid$temporal)),
+  care = c(names(aka_care$endpoint), names(aka_care$temporal)),
+  open = c(names(aka_open$endpoint), names(aka_open$temporal))
+))
