@@ -47,18 +47,21 @@ tidy_resources <- function(x) {
 #' @returns A list of available API resources, either for download or to browse online.
 #' @examplesIf rlang::is_interactive()
 #' care_endpoint("care_enrollees") |> list_resources()
-#' care_temporal("quality_payment") |> list_resources()
-#' care_group("care_hha") |> list_resources()
-#' care_group("care_inpatient") |> list_resources()
+#' care_endpoint("quality_payment") |> list_resources()
+#' care_collection("care_hha") |> list_resources()
+#' care_collection("care_inpatient") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
   S7_dispatch()
 })
 
+method(list_resources, class_care) <- function(x) {
+  prop(x, "resources")
+}
+
 method(list_resources, class_endpoint) <- function(x) {
-  if (clog_(x) != "care") return(invisible(NULL))
-  resources_(x) |>
+  x |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -69,8 +72,7 @@ method(list_resources, class_endpoint) <- function(x) {
 }
 
 method(list_resources, class_temporal) <- function(x) {
-  if (clog_(x) != "care") return(invisible(NULL))
-  resources_(x) |>
+  x@x$resources |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -80,7 +82,7 @@ method(list_resources, class_temporal) <- function(x) {
 }
 
 method(list_resources, class_group) <- function(x) {
-  members_(x) |>
-    map(list_resources, .progress = TRUE) |>
-    name_members_(x)
+  prop(x, "members") |>
+    map(\(x) prop(x, "resources")) |>
+    map(list_resources)
 }

@@ -19,7 +19,7 @@ check_names_unique <- function(x, call = caller_env()) {
 
   x <- names(x[have_name(x)])
 
-  if (any_duplicated(x)) {
+  if (anyDuplicated(x)) {
 
     i <- which_(fduplicated(x))
 
@@ -32,6 +32,7 @@ check_names_unique <- function(x, call = caller_env()) {
 #' @autoglobal
 #' @noRd
 is_length_one <- function(x) {
+  # list_lengths(x) == 1L
   map_lgl(x, \(x) length(x) == 1L)
 }
 
@@ -116,7 +117,12 @@ format_query <- function(x) {
 
     g <- x[i]
 
-    x[i] <- paste0(unlist(g, use.names = FALSE), collapse = ",")
+    x[i] <- paste0(
+      "[",
+      paste0(
+        unlist(g, use.names = FALSE),
+        collapse = " ,"),
+      "]")
 
     names(x[i]) <- names(g)
 
@@ -132,6 +138,8 @@ format_query <- function(x) {
 generate_query <- function(a) {
 
   imap(a, function(x, m) {
+
+    # encodeString(x, quote = '"')
 
     p <- paste0("filter[<<i>>][path]=", m, "&")
     o <- paste0("filter[<<i>>][operator]=", "=", "&")

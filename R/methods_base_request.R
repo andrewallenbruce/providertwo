@@ -1,37 +1,6 @@
 #' @include S7_classes.R
 NULL
 
-#' @autoglobal
-#' @noRd
-default_query <- new_generic("default_query", "x")
-
-method(default_query, class_list) <- function(x) {
-
-  if (clog_(x) != "care")
-    return(list2(
-      count   = "true",
-      results = "false",
-      offset  = 0L,
-      limit   = 1L
-    ))
-
-  list2(offset = 0L, size = 1L)
-}
-
-
-method(default_query, class_backend) <- function(x) {
-
-  if (clog_(x) != "care")
-    return(list2(
-      count   = "true",
-      results = "false",
-      offset  = 0L,
-      limit   = 1L
-    ))
-
-  list2(offset = 0L, size = 1L)
-}
-
 #' @name base_request
 #' @title Create a new `<httr2_request>` by class
 #' @param x A `class_endpoint`, `class_temporal` or `class_group` object
@@ -58,7 +27,7 @@ method(base_request, class_endpoint) <- function(x, query = NULL, years = NULL) 
   identifier_(x) |>
     request() |>
     req_throttle(capacity = 30, fill_time_s = 60) |>
-    req_url_query(splice(default_query(x)), splice(query)) |>
+    req_url_query(splice(query)) |>
     req_error(is_error = ~ FALSE)
 }
 
@@ -70,7 +39,7 @@ method(base_request, class_temporal) <- function(x, query = NULL, years = NULL) 
           function(i)
             request(i) |>
             req_throttle(capacity = 30, fill_time_s = 60) |>
-            req_url_query(splice(default_query(x)), splice(query)) |>
+            req_url_query(splice(query)) |>
             req_error(is_error = ~ FALSE)
         )
     )
@@ -94,7 +63,6 @@ method(base_request, class_temporal) <- function(x, query = NULL, years = NULL) 
     years = names(urls) |> as.integer(),
     requests = map(urls, function(i) request(i) |>
         req_throttle(capacity = 30, fill_time_s = 60) |>
-          req_url_query(splice(default_query(x))) |>
           req_url_query(splice(query)) |>
           req_error(is_error = ~ FALSE)
     )

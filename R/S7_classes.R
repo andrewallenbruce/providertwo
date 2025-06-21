@@ -1,40 +1,5 @@
 #' @noRd
 #' @autoglobal
-null_if <- function(x) {
-  if (is.null(x)) return(NULL)
-  if (is_na(x)) NULL else x
-}
-
-#' @noRd
-#' @autoglobal
-unlist_if <- function(x) {
-  if (is.list(x)) unlist(x, use.names = FALSE) else x
-}
-
-#' @noRd
-#' @autoglobal
-get_metadata <- function(x) {
-  compact(list(
-    clog        = null_if(x$clog),
-    api         = null_if(x$api),
-    title       = null_if(x$title),
-    description = null_if(x$description),
-    modified    = null_if(x$modified),
-    group       = null_if(x$group),
-    issued      = null_if(x$issued),
-    released    = null_if(x$released),
-    temporal    = null_if(x$temporal),
-    periodicity = null_if(x$periodicity),
-    download    = null_if(x$download),
-    resources   = unlist_if(null_if(x$resources)),
-    dictionary  = null_if(x$dictionary),
-    site        = null_if(x$site),
-    references  = null_if(x$references)
-  ))
-}
-
-#' @noRd
-#' @autoglobal
 class_dimensions <- new_class(
   name       = "class_dimensions",
   package    = NULL,
@@ -46,29 +11,7 @@ class_dimensions <- new_class(
       getter = function(self)
         offset_size(self@rows, self@limit)
     ),
-    fields = new_property(
-      class_character | class_list,
-      getter = function(self)
-        set_names(
-          new_list(
-            length(self@fields),
-            character(0)),
-          self@fields),
-      setter = function(self, value) {
-        self@fields <- value
-        self
-      }
-    )
-  )
-)
-
-#' @noRd
-#' @autoglobal
-class_clog <- new_class(
-  name     = "class_clog",
-  package  = NULL,
-  properties = list(
-    id = class_character
+    fields = class_list
   )
 )
 
@@ -77,34 +20,79 @@ class_clog <- new_class(
 class_backend <- new_class(
   name     = "class_backend",
   package  = NULL,
-  abstract = TRUE,
-  properties    = list(
-    catalog     = class_clog,
-    metadata    = class_list,
-    dimensions  = class_dimensions
-  )
+  abstract = TRUE
 )
 
 #' @noRd
 #' @autoglobal
 class_endpoint <- new_class(
-  name          = "class_endpoint",
-  package       = NULL,
-  parent        = class_backend,
-  properties    = list(
-    identifier  = class_character
-  )
+  name       = "class_endpoint",
+  package    = NULL,
+  parent     = class_backend,
+  properties = list(x = class_character)
 )
 
 #' @noRd
 #' @autoglobal
 class_temporal <- new_class(
-  name          = "class_temporal",
-  package       = NULL,
-  parent        = class_backend,
-  properties    = list(
-    endpoints   = class_list
+  name       = "class_temporal",
+  package    = NULL,
+  parent     = class_backend,
+  properties = list(x = class_data.frame)
+)
+
+#' @noRd
+#' @autoglobal
+class_catalog <- new_class(
+  name         = "class_catalog",
+  package      = NULL,
+  abstract     = TRUE,
+  properties   = list(
+    metadata   = class_list,
+    dimensions = class_dimensions,
+    identifier = class_endpoint | class_temporal
   )
+)
+
+#' @noRd
+#' @autoglobal
+class_care <- new_class(
+  name = "class_care",
+  package = NULL,
+  parent = class_catalog,
+  properties = list(resources = class_endpoint | class_temporal)
+)
+
+#' @noRd
+#' @autoglobal
+class_caid <- new_class(
+  name = "class_caid",
+  package = NULL,
+  parent = class_catalog
+)
+
+#' @noRd
+#' @autoglobal
+class_prov <- new_class(
+  name = "class_prov",
+  package = NULL,
+  parent = class_catalog
+)
+
+#' @noRd
+#' @autoglobal
+class_open <- new_class(
+  name = "class_open",
+  package = NULL,
+  parent = class_catalog
+)
+
+#' @noRd
+#' @autoglobal
+class_hgov <- new_class(
+  name = "class_hgov",
+  package = NULL,
+  parent = class_catalog
 )
 
 #' @noRd
@@ -113,13 +101,13 @@ class_group <- new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
-    group    = class_character,
-    members  = class_list
-  ),
-  validator = function(self) {
-    if (!all(have_name(self@members))) "all @members must be named"
-    if (!all(map_lgl(self@members, S7_inherits, class_backend))) "all @members must be a `class_backend` object"
-  }
+    name    = class_character,
+    members = class_list
+  ) #,
+  # validator = function(self) {
+  #   if (!all(have_name(self@members))) "all @members must be named"
+  #   if (!all(map_lgl(self@members, S7_inherits, class_backend))) "all @members must be a `class_backend` object"
+  # }
 )
 
 #' @noRd

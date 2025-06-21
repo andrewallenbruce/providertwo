@@ -1,29 +1,88 @@
+#' Medicare API Endpoints
+#' @name medicare
+#' @param alias `<chr>` endpoint alias
+#' @param call `<env>` environment to use for error reporting
+#' @param ... Additional arguments passed to the group constructor
+#' @returns An S7 `<class_care>` object
+#' @examplesIf rlang::is_interactive()
+#' care_endpoint("care_dialysis")
+#' care_endpoint("quality_payment")
+#' care_collection("care_hospital")
+NULL
+
 #' @autoglobal
-#' @noRd
-select_care <- function(alias, call = caller_env()) {
+#' @rdname medicare
+#' @export
+new_endpoint <- function(alias) {
 
-  x <- care_switch(alias)
-  r <- select_alias(eval(x$catalog), x$regex)
+  x <- aka$endpoint$get(alias) %||%
+    cli_abort(c("x" = "{.field alias} {.val {alias}} invalid."))
 
-  if (is_empty(r))  cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-  if (nrow(r) > 1L) cli_abort(c("x" = "{.val {x}} returned more than 1 match."), call = call)
+  y <- categorize_api(alias)
 
+  r <- select_alias(eval(str2lang(y[["e"]])), x)
+
+  if (is_empty(r))  cli_abort(c("x" = "{.val {x}} has 0 matches."))
+  if (nrow(r) > 1L) cli_abort(c("x" = "{.val {x}} has multiple matches."))
+
+  class_fn <- y[["clog"]]
   r <- c(r)
 
-  class_care(
-    identifier  = class_endpoint2(identifier_(x)),
-    metadata    = get_metadata(x),
-    dimensions  = care_dims(x)
-  )
+  class_fn(
+    metadata = get_metadata(r),
+    dimensions = get_dimensions(r, clog[1], clog[2]),
+    identifier = class_endpoint(r$identifier),
+    resources = class_endpoint(r$resources)
+    )
 }
 
 #' @autoglobal
 #' @noRd
-care_switch <- function(alias, call = caller_env()) {
+categorize_api <- function(x) {
+  if (x %in_% aka$clog$get("care")) .c(e, clog) %=% c("the$catalog$care$end", "class_care")
+  if (x %in_% aka$clog$get("prov")) .c(e, clog) %=% c("the$catalog$prov$end", "class_prov")
+  if (x %in_% aka$clog$get("open")) .c(e, clog) %=% c("the$catalog$open$end", "class_open")
+  if (x %in_% aka$clog$get("caid")) .c(e, clog) %=% c("the$catalog$caid$end", "class_caid")
+  if (x %in_% aka$clog$get("hgov")) .c(e, clog) %=% c("the$catalog$hgov$end", "class_hgov")
+
+  c(e = e, clog = clog)
+}
+
+# class_care(
+#   metadata    = get_metadata(r),
+#   dimensions  = get_dimensions(r, clog[1], clog[2]),
+#   identifier  = switch(
+#     clog[2],
+#     tmp = class_temporal(r$endpoints),
+#     end = class_endpoint(r$identifier)
+#   ),
+#   resources  = switch(
+#     clog[2],
+#     tmp = class_temporal(slt(r$endpoints, year, resources)),
+#     end = class_endpoint(r$resources)
+#   )
+# )
+
+# r <- switch(
+#   clog[2],
+#   tmp = flist(!!!c(slt(r, -endpoints)),
+#               endpoints  = yank(get_elem(r, "endpoints")),
+#               identifier = yank(get_elem(endpoints, "identifier"))),
+#   end = c(r)
+# )
+
+
+# clog <- yank(strsplit(paste0(
+#   as.character(clog)[-1], collapse = "$"),
+#   "$", fixed = TRUE)) |> _[3:4]
+
+#' @autoglobal
+#' @noRd
+care_endpoint_switch <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
-  x <- switch(
+  switch(
     alias,
     ahqr_psi11              = "^Agency for Healthcare Research and Quality \\(AHRQ\\) Patient Safety Indicator 11 \\(PSI[-]11\\) Measure Rates$",
     aip_plan                = "^Advance Investment Payment Spend Plan$",
@@ -127,45 +186,17 @@ care_switch <- function(alias, call = caller_env()) {
     snf_chow_owner          = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
     snf_cost_report         = "^Skilled Nursing Facility Cost Report$",
     snf_enrollments         = "^Skilled Nursing Facility Enrollments$",
-    cli_abort(c("x"         = "{.emph alias} {.val {alias}} is invalid."), call = call)
-  )
-
-  list(
-    alias = alias,
-    regex = x,
-    catalog = str2lang("the$catalog$care$end")
+    NA_character_
   )
 }
 
 #' @autoglobal
 #' @noRd
-select_care2 <- function(alias, call = caller_env()) {
-
-  x <- care_switch2(alias)
-  r <- select_alias(eval(x$catalog), x$regex)
-
-  if (is_empty(r)) cli_abort(c("x" = "{.val {x}} returned no matches."), call = call)
-
-  r <- flist(
-    !!!c(slt(r, -endpoints)),
-    endpoints   = yank(get_elem(r, "endpoints")),
-    identifier  = yank(get_elem(endpoints, "identifier"))
-  )
-
-  class_care(
-    identifier  = class_endpoints(get_elem(r, "endpoints")),
-    metadata    = get_metadata(r),
-    dimensions  = care_dims(r)
-  )
-}
-
-#' @autoglobal
-#' @noRd
-care_switch2 <- function(alias, call = caller_env()) {
+care_temporal_switch <- function(alias, call = caller_env()) {
 
   check_required(alias)
 
-  x <- switch(
+  switch(
     alias,
     quality_payment      = "^Quality Payment Program Experience$",
     procedure_summary    = "^Physician[/]Supplier Procedure Summary$",
@@ -197,19 +228,14 @@ care_switch2 <- function(alias, call = caller_env()) {
     util_geography       = "^Medicare Physician [&] Other Practitioners [-] by Geography and Service$",
     util_provider        = "^Medicare Physician [&] Other Practitioners [-] by Provider$",
     util_service         = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$",
-    cli_abort(c("x"      = "{.emph alias} {.val {alias}} is invalid."), call = call)
-  )
-  list(
-    alias = alias,
-    regex = x,
-    catalog = str2lang("the$catalog$care$tmp")
+    NA_character_
   )
 }
 
 #' @autoglobal
 #' @rdname medicare
 #' @export
-care_group2 <- function(alias, call = caller_env(), ...) {
+care_collection <- function(alias, call = caller_env(), ...) {
 
   check_required(alias)
 
@@ -433,9 +459,10 @@ care_group2 <- function(alias, call = caller_env(), ...) {
     ),
     cli_abort(c("x" = "{.emph group alias} {.val {alias}} is invalid."), call = call)
   )
-  new_group(
-    member_names = get_elem(x, "alias"),
-    group_name   = get_elem(x, "group"),
-    ...
+
+  class_collection(
+    name    = x$group,
+    members = set_names(map(x$alias, care_endpoint), x$alias)
   )
+
 }

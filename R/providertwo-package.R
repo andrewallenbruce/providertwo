@@ -3,7 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom kit iif nif nswitch
-#' @importFrom collapse %==% %!=% add_vars any_duplicated av colorder fcompute fcount fduplicated fmax fnobs funique get_elem get_vars `gv<-` gv groupid join mtt pivot rnm rowbind roworder rsplit sbt slt ss vlengths
+#' @importFrom collapse %=% %==% %!=% .c add_vars any_duplicated av colorder fcompute fcount fduplicated fmax fnobs funique get_elem get_vars `gv<-` gv groupid join mtt pivot rnm rowbind roworder rsplit sbt slt ss tfm vlengths
 #' @importFrom cli cli_abort cli_alert_info cli_alert_warning cli_alert_success cli_alert_danger cli_warn cli_inform
 #' @importFrom vctrs `vec_slice<-` vec_in
 #' @importFrom tools toTitleCase

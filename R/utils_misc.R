@@ -1,3 +1,16 @@
+#' @noRd
+#' @autoglobal
+null_if <- function(x) {
+  if (is.null(x)) return(NULL)
+  if (is_na(x)) NULL else x
+}
+
+#' @noRd
+#' @autoglobal
+unlist_if <- function(x) {
+  if (is.list(x)) unlist(x, use.names = FALSE) else x
+}
+
 #' @autoglobal
 #' @noRd
 yank <- function(x) {
