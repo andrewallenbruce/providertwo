@@ -2,8 +2,8 @@
 #' @autoglobal
 get_metadata <- function(x) {
   compact(list(
-    clog        = null_if(x$clog),
-    api         = null_if(x$api),
+    # clog        = null_if(x$clog),
+    # api         = null_if(x$api),
     title       = null_if(x$title),
     description = null_if(x$description),
     modified    = null_if(x$modified),
@@ -22,7 +22,7 @@ get_metadata <- function(x) {
 
 #' @noRd
 #' @autoglobal
-get_dimensions <- function(x, clog) {
+get_dimensions <- function(x, clog, api) {
 
   if (clog == "care" && is.null(api)) {
     cli_abort(
@@ -32,7 +32,7 @@ get_dimensions <- function(x, clog) {
 
   switch(
     clog,
-    care = care_dims(x, api),
+    care = if (api == "end") care_end_dims(x) else care_tmp_dims(x),
     caid = def_dims(x, 8000L),
     prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),

@@ -3,19 +3,12 @@
 \name{medicare}
 \alias{medicare}
 \alias{new_endpoint}
-\alias{care_collection}
 \title{Medicare API Endpoints}
 \usage{
 new_endpoint(alias)
-
-care_collection(alias, call = caller_env(), ...)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint alias}
-
-\item{call}{\verb{<env>} environment to use for error reporting}
-
-\item{...}{Additional arguments passed to the group constructor}
 }
 \value{
 An S7 \verb{<class_care>} object
@@ -25,8 +18,7 @@ Medicare API Endpoints
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-care_endpoint("care_dialysis")
-care_endpoint("quality_payment")
-care_collection("care_hospital")
+new_endpoint("care_dialysis")
+new_endpoint("quality_payment")
 \dontshow{\}) # examplesIf}
 }

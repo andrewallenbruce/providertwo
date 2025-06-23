@@ -111,12 +111,12 @@ aka_care <- list(
     dialysis_facility       = "^Medicare Dialysis Facilities$",
     aco_shared_savings      = "^Performance Year Financial and Quality Results$",
     opioid_treatment        = "^Opioid Treatment Program Providers$",
-    hospital_costreport     = "^Hospital Provider Cost Report$",
-    snf_costreport          = "^Skilled Nursing Facility Cost Report$",
-    hha_costreport          = "^Home Health Agency Cost Report$",
-    nhome_performance       = "^Nursing Home Affiliated Entity Performance Measures$",
-    nhome_mds_frequency     = "^Minimum Data Set Frequency$",
-    nhome_mds_facility      = "^Facility[-]Level Minimum Data Set Frequency$",
+    hospital_costrep        = "^Hospital Provider Cost Report$",
+    snf_costrep             = "^Skilled Nursing Facility Cost Report$",
+    hha_costrep             = "^Home Health Agency Cost Report$",
+    nh_performance          = "^Nursing Home Affiliated Entity Performance Measures$",
+    nh_mds_frequency        = "^Minimum Data Set Frequency$",
+    nh_mds_facility         = "^Facility[-]Level Minimum Data Set Frequency$",
     inpatient_geography     = "^Medicare Inpatient Hospitals [-] by Geography and Service$",
     inpatient_provider      = "^Medicare Inpatient Hospitals [-] by Provider$",
     inpatient_service       = "^Medicare Inpatient Hospitals [-] by Provider and Service$",
@@ -138,30 +138,30 @@ aka_care <- list(
     util_service            = "^Medicare Physician [&] Other Practitioners [-] by Provider and Service$"
   ),
   collection = list(
-    care_hha                = list(name = "Home Health Agencies",                 alias = c("hha_owners", "hha_cost_report", "hha_enrollments")),
-    care_hospice            = list(name = "Hospices",                             alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")),
-    care_hospital           = list(name = "Hospitals",                            alias = c("hospital_owners", "hospital_chow", "hospital_chow_owner", "hospital_enrollments", "hospital_cost_report", "hospital_service_area")),
-    rhc                     = list(name = "Rural Health Clinics",                 alias = c("rhc_owners", "rhc_enrollments")),
-    fqhc                    = list(name = "Federally Qualified Health Centers",   alias = c("fqhc_owners", "fqhc_enrollments")),
-    pending                 = list(name = "Pending Initial Logging and Tracking", alias = c("pilat_non_physician", "pilat_physician")),
-    reassignment            = list(name = "Revalidation Reassignment Lists",      alias = c("revalid_group", "revalid_due", "revalid_list")),
-    care_snf                = list(name = "Skilled Nursing Facilities",           alias = c("snf_owners", "snf_chow", "snf_chow_owner", "snf_cost_report", "snf_enrollments")),
-    care_aco                = list(name = "Accountable Care Organizations",       alias = c("aco_reach_aligned", "aco_reach_eligible", "aco_reach_results", "aco_reach_providers", "aco_reach_orgs", "aco_pioneer", "aco_participants", "aco_snf_affiliate", "aco_organizations", "aco_bene_cnty")),
-    cms_stats               = list(name = "CMS Program Statistics",               alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
-    care_caid               = list(name = "Medicaid",                             alias = c("care_caid_managed_care", "care_caid_opioid_geo", "care_caid_drug_spend")),
-    care_geovar             = list(name = "Medicare Geographic Variation",        alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")),
-    care_pdp                = list(name = "Pharmacy Network/Formulary/Pricing",   alias = c("pdp_month", "pdp_quarter")),
-    bene_survey             = list(name = "Medicare Current Beneficiary Survey",  alias = c("bene_survey_covid", "bene_survey_cost", "bene_survey_file")),
-    partb_drug              = list(name = "Medicare Part B Drugs",                alias = c("partb_drug_discard", "partb_drug_spend")),
-    partd_drug              = list(name = "Medicare Part D Drugs",                alias = c("partd_opioid", "partd_drug_spend")),
-    care_market             = list(name = "Market Saturation & Utilization",      alias = c("market_cbsa", "market_state_cnty")),
-    care_inpatient          = list(name = "Medicare Inpatient Hospitals",         alias = c("inpatient_geography", "inpatient_provider", "inpatient_service")),
+    care_hha                = list(name = "Home Health Agencies",                        alias = c("hha_owners", "hha_costreport", "hha_enrollments")),
+    care_hospice            = list(name = "Hospices",                                    alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")),
+    care_hospital           = list(name = "Hospitals",                                   alias = c("hospital_owners", "hospital_chow", "hospital_chow_owner", "hospital_enrollments", "hospital_costreport", "hospital_service_area")),
+    rhc                     = list(name = "Rural Health Clinics",                        alias = c("rhc_owners", "rhc_enrollments")),
+    fqhc                    = list(name = "Federally Qualified Health Centers",          alias = c("fqhc_owners", "fqhc_enrollments")),
+    pending                 = list(name = "Pending Initial Logging and Tracking",        alias = c("pilat_non_physician", "pilat_physician")),
+    reassignment            = list(name = "Revalidation Reassignment Lists",             alias = c("revalid_group", "revalid_due", "revalid_list")),
+    care_snf                = list(name = "Skilled Nursing Facilities",                  alias = c("snf_owners", "snf_chow", "snf_chow_owner", "snf_cost_report", "snf_enrollments")),
+    care_aco                = list(name = "Accountable Care Organizations",              alias = c("aco_reach_aligned", "aco_reach_eligible", "aco_reach_results", "aco_reach_providers", "aco_reach_orgs", "aco_pioneer", "aco_participants", "aco_snf_affiliate", "aco_organizations", "aco_bene_cnty")),
+    cms_stats               = list(name = "CMS Program Statistics",                      alias = c("cms_ma_enroll", "cms_ma_outpatient", "cms_ma_other", "cms_ma_inpatient", "cms_ma_snf", "cms_deaths", "cms_hha", "cms_hospice", "cms_inpatient", "cms_new_enroll", "cms_outpatient", "cms_tos", "cms_partd","cms_partd_enroll", "cms_phys_npp_supp", "cms_premiums", "cms_providers", "cms_snf", "cms_total_enroll", "cms_dual_enroll", "cms_orig_enroll")),
+    care_caid               = list(name = "Medicaid",                                    alias = c("care_caid_managed_care", "care_caid_opioid_geo", "care_caid_drug_spend")),
+    care_geovar             = list(name = "Medicare Geographic Variation",               alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")),
+    care_pdp                = list(name = "Pharmacy Network/Formulary/Pricing",          alias = c("pdp_month", "pdp_quarter")),
+    bene_survey             = list(name = "Medicare Current Beneficiary Survey",         alias = c("bene_survey_covid", "bene_survey_cost", "bene_survey_file")),
+    partb_drug              = list(name = "Medicare Part B Drugs",                       alias = c("partb_drug_discard", "partb_drug_spend")),
+    partd_drug              = list(name = "Medicare Part D Drugs",                       alias = c("partd_opioid", "partd_drug_spend")),
+    care_market             = list(name = "Market Saturation & Utilization",             alias = c("market_cbsa", "market_state_cnty")),
+    care_inpatient          = list(name = "Medicare Inpatient Hospitals",                alias = c("inpatient_geography", "inpatient_provider", "inpatient_service")),
     care_outpatient         = list(name = "Medicare Outpatient Hospitals",               alias = c("outpatient_geography", "outpatient_service")),
     care_prescribers        = list(name = "Medicare Part D Prescribers",                 alias = c("prx_geography", "prx_provider", "prx_drug")),
     care_dme_suppliers      = list(name = "Medicare DME, Devices & Supplies",            alias = c("dme_geography", "dme_provider", "dme_service", "dme_supplier", "dme_supplier_service")),
     care_nhome_staff        = list(name = "Nursing Home Payroll-Based Journal Staffing", alias = c("nhome_staff_nonurse", "nhome_staff_nurse", "nhome_staff_employee")),
     care_utilization        = list(name = "Medicare Physician & Other Practitioners",    alias = c("util_geography", "util_provider", "util_service")),
-    care_nhome              = list(name = "Nursing Home Performance",                    alias = c("nhome_performance", "nhome_mds_frequency", "nhome_mds_facility"))
+    care_nhome              = list(name = "Nursing Home Performance",                    alias = c("nh_performance", "nh_mds_frequency", "nh_mds_facility"))
   )
 )
 
@@ -459,7 +459,7 @@ aka_prov <- list(
     complication_state        = "^Complications and Deaths [-] State",
     complication_pch_hospital = "^Complications and Unplanned Hospital Visits [-] PPS-Exempt Cancer Hospital [-] Hospital",
     complication_pch_national = "^Complications and Unplanned Hospital Visits [-] PPS-Exempt Cancer Hospital [-] National",
-    dialysis_facility         = "^Dialysis Facility [-] Listing by Facility$",
+    dialysis_by_facility      = "^Dialysis Facility [-] Listing by Facility$",
     dialysis_national         = "^Dialysis Facility [-] National Averages$",
     dialysis_state            = "^Dialysis Facility [-] State Averages$",
     esrd_depression           = "^ESRD QIP [-] Clinical Depression Screening and Follow-up",
@@ -596,7 +596,7 @@ aka_prov <- list(
     pro_asc_quality           = list(name = "Ambulatory Surgical Center Quality Measures", alias = c("asc_facility", "asc_national", "asc_state")),
     pro_equity                = list(name = "Health Equity", alias = c("he_hospital", "he_national", "he_state")),
     pro_hai                   = list(name = "Healthcare Associated Infections", alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")),
-    pro_dialysis              = list(name = "Dialysis Facilities", alias = c("dialysis_facility", "dialysis_national", "dialysis_state")),
+    pro_dialysis              = list(name = "Dialysis Facilities", alias = c("dialysis_by_facility", "dialysis_national", "dialysis_state")),
     pro_esrd                  = list(name = "ESRD QIP", alias = c("esrd_depression", "esrd_complete", "esrd_adequacy", "esrd_footnotes", "esrd_hypercalcemia", "esrd_medication", "esrd_infection", "esrd_event", "esrd_waitlist", "esrd_hospitalization", "esrd_readmission", "esrd_transfusion", "esrd_performance", "esrd_ultrafiltration", "esrd_vascular")),
     pro_hvbp                  = list(name = "Hospital Value-Based Purchasing (HVBP)", alias = c("hvbp_outcomes", "hvbp_efficiency", "hvbp_engagement", "hvbp_safety", "hvbp_performance")),
     pro_ipf                   = list(name = "Inpatient Psychiatric Facility Quality Measure Data", alias = c("ipf_national", "ipf_facility", "ipf_state")),
@@ -676,3 +676,51 @@ aka_hgov <- list(
     hie_transparency                   = "^Transparency in Coverage PUF$"
   )
 )
+
+#' @autoglobal
+#' @noRd
+aka_names <- mph_init(
+  names(c(
+    aka_prov$endpoint,
+    aka_hgov$endpoint,
+    aka_caid$endpoint,
+    aka_care$endpoint,
+    aka_open$endpoint,
+    aka_hgov$temporal,
+    aka_caid$temporal,
+    aka_care$temporal,
+    aka_open$temporal,
+    aka_prov$collection,
+    aka_caid$collection,
+    aka_care$collection,
+    aka_open$collection
+  )))
+
+#' @autoglobal
+#' @noRd
+aka_regex <- funique(
+  unlist(
+    c(
+      aka_prov$endpoint,
+      aka_hgov$endpoint,
+      aka_caid$endpoint,
+      aka_care$endpoint,
+      aka_open$endpoint,
+      aka_hgov$temporal,
+      aka_caid$temporal,
+      aka_care$temporal,
+      aka_open$temporal,
+      aka_prov$collection,
+      aka_caid$collection,
+      aka_care$collection,
+      aka_open$collection
+    ),
+    use.names = FALSE
+  ))
+
+#' @autoglobal
+#' @noRd
+alias_regex <- function(x) {
+  aka_regex[oomph::mph_match(x, aka_names)]
+}
+

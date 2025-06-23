@@ -29,7 +29,7 @@ class_endpoint <- new_class(
   name       = "class_endpoint",
   package    = NULL,
   parent     = class_backend,
-  properties = list(x = class_character)
+  properties = list(url = class_character)
 )
 
 #' @noRd
@@ -38,7 +38,7 @@ class_temporal <- new_class(
   name       = "class_temporal",
   package    = NULL,
   parent     = class_backend,
-  properties = list(x = class_data.frame)
+  properties = list(urls = class_data.frame)
 )
 
 #' @noRd
