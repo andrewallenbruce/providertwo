@@ -38,7 +38,7 @@ class_temporal <- new_class(
   name       = "class_temporal",
   package    = NULL,
   parent     = class_backend,
-  properties = list(urls = class_data.frame)
+  properties = list(url = class_data.frame)
 )
 
 #' @noRd
@@ -60,7 +60,9 @@ class_care <- new_class(
   name = "class_care",
   package = NULL,
   parent = class_catalog,
-  properties = list(resources = class_endpoint | class_temporal)
+  properties = list(
+    resources = class_endpoint | class_temporal
+  )
 )
 
 #' @noRd
@@ -76,7 +78,10 @@ class_caid <- new_class(
 class_prov <- new_class(
   name = "class_prov",
   package = NULL,
-  parent = class_catalog
+  parent = class_catalog,
+  properties = list(
+    identifier = class_endpoint
+  )
 )
 
 #' @noRd

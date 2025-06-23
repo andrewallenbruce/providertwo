@@ -24,10 +24,7 @@ alias_info <- function(x) {
 #' new_endpoint("grouped_state_nature")
 #' new_endpoint("asc_facility")
 #' new_endpoint("pro_dialysis")
-NULL
-
 #' @autoglobal
-#' @rdname medicare
 #' @export
 new_endpoint <- function(alias) {
 
