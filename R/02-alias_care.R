@@ -38,15 +38,35 @@ new_endpoint <- function(alias) {
 
 #' @autoglobal
 #' @noRd
-categorize_api <- function(x) {
-  if (x %in_% aka$clog$get("care")) .c(e, clog) %=% c("the$catalog$care$end", "class_care")
-  if (x %in_% aka$clog$get("prov")) .c(e, clog) %=% c("the$catalog$prov$end", "class_prov")
-  if (x %in_% aka$clog$get("open")) .c(e, clog) %=% c("the$catalog$open$end", "class_open")
-  if (x %in_% aka$clog$get("caid")) .c(e, clog) %=% c("the$catalog$caid$end", "class_caid")
-  if (x %in_% aka$clog$get("hgov")) .c(e, clog) %=% c("the$catalog$hgov$end", "class_hgov")
+catalog_type <- function(x) {
 
-  c(e = e, clog = clog)
+  nif(
+    !is.na(oomph::mph_match(x, type$care)), "care",
+    !is.na(oomph::mph_match(x, type$caid)), "caid",
+    !is.na(oomph::mph_match(x, type$prov)), "prov",
+    !is.na(oomph::mph_match(x, type$open)), "open",
+    !is.na(oomph::mph_match(x, type$hgov)), "hgov",
+    default = NA_character_)
+
 }
+
+#' @autoglobal
+#' @noRd
+api_type <- function(x) {
+
+  nif(
+    !is.na(oomph::mph_match(x, type$endpoint)), "endpoint",
+    !is.na(oomph::mph_match(x, type$temporal)), "temporal",
+    !is.na(oomph::mph_match(x, type$collection)), "collection",
+    default = NA_character_)
+
+}
+
+# if (x %in_% aka$clog$get("care")) .c(e, clog) %=% c("the$catalog$care$end", "class_care")
+# if (x %in_% aka$clog$get("prov")) .c(e, clog) %=% c("the$catalog$prov$end", "class_prov")
+# if (x %in_% aka$clog$get("open")) .c(e, clog) %=% c("the$catalog$open$end", "class_open")
+# if (x %in_% aka$clog$get("caid")) .c(e, clog) %=% c("the$catalog$caid$end", "class_caid")
+# if (x %in_% aka$clog$get("hgov")) .c(e, clog) %=% c("the$catalog$hgov$end", "class_hgov")
 
 # class_care(
 #   metadata    = get_metadata(r),
