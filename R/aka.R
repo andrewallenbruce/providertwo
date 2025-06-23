@@ -698,8 +698,7 @@ aka_names <- mph_init(
 
 #' @autoglobal
 #' @noRd
-aka_regex <- funique(
-  unlist(
+aka_regex <- unlist(
     c(
       aka_prov$endpoint,
       aka_hgov$endpoint,
@@ -716,7 +715,7 @@ aka_regex <- funique(
       aka_open$collection
     ),
     use.names = FALSE
-  ))
+  )
 
 #' @autoglobal
 #' @noRd
@@ -724,3 +723,86 @@ alias_regex <- function(x) {
   aka_regex[oomph::mph_match(x, aka_names)]
 }
 
+#' @autoglobal
+#' @noRd
+api_type <- list(
+  endpoint = mph_init(names(
+    c(
+      aka_prov$endpoint,
+      aka_hgov$endpoint,
+      aka_caid$endpoint,
+      aka_care$endpoint,
+      aka_open$endpoint
+    )
+  )),
+  temporal = mph_init(names(
+    c(
+      aka_hgov$temporal,
+      aka_caid$temporal,
+      aka_care$temporal,
+      aka_open$temporal
+    )
+  )),
+  collection = mph_init(names(
+    c(
+      aka_prov$collection,
+      aka_caid$collection,
+      aka_care$collection,
+      aka_open$collection
+    )
+  ))
+)
+
+#' @autoglobal
+#' @noRd
+clog_type <- list(
+  care = mph_init(names(
+    c(aka_care$endpoint,
+      aka_care$temporal,
+      aka_care$collection)
+  )),
+  prov = mph_init(names(
+    c(aka_prov$endpoint,
+      aka_prov$collection)
+  )),
+  open = mph_init(names(
+    c(aka_open$endpoint,
+      aka_open$temporal,
+      aka_open$collection)
+  )),
+  caid = mph_init(names(
+    c(aka_caid$endpoint,
+      aka_caid$temporal,
+      aka_caid$collection)
+  )),
+  hgov = mph_init(names(c(
+    aka_hgov$endpoint,
+    aka_hgov$temporal
+  )))
+)
+
+#' @autoglobal
+#' @noRd
+catalog_type <- function(x) {
+
+  nif(
+    !is.na(mph_match(x, clog_type$care)), "care",
+    !is.na(mph_match(x, clog_type$caid)), "caid",
+    !is.na(mph_match(x, clog_type$prov)), "prov",
+    !is.na(mph_match(x, clog_type$open)), "open",
+    !is.na(mph_match(x, clog_type$hgov)), "hgov",
+    default = NA_character_)
+
+}
+
+#' @autoglobal
+#' @noRd
+api_type <- function(x) {
+
+  nif(
+    !is.na(mph_match(x, api_type$endpoint)),   "end",
+    !is.na(mph_match(x, api_type$temporal)),   "tmp",
+    !is.na(mph_match(x, api_type$collection)), "col",
+    default = NA_character_)
+
+}

@@ -90,8 +90,8 @@ proUtilization <- new_class(
 #' utilization(npi = "1043245657")
 #' utilization(npi = "1003001785")
 #' @autoglobal
-#' @rdname provider
-#' @export
+# @rdname provider
+#' @noRd
 utilization <- function(npi         = NULL,
                         pac         = NULL,
                         last_name   = NULL,

@@ -96,9 +96,10 @@ clog_care <- function(x) {
     c("title", "description", "periodicity", "contact", "dictionary", "site", "references"))) |>
     colorder(endpoints, pos = "end")
 
-  fin <- \(i, a) mtt(i, clog = "care", api = a)
+  # fin <- \(i, a) mtt(i, clog = "care", api = a)
+  # list(end = fin(x, "end"), tmp = fin(d, "tmp"))
 
-  list(end = fin(x, "end"), tmp = fin(d, "tmp"))
+  list(end = x, tmp = d)
 }
 
 #' @autoglobal
@@ -108,8 +109,8 @@ clog_prov <- function(x) {
   list(
     end = mtt(
       x$prov,
-      clog        = "prov",
-      api         = "end",
+      # clog        = "prov",
+      # api         = "end",
       title       = rm_nonascii(title),
       dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
       identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
@@ -120,7 +121,9 @@ clog_prov <- function(x) {
       description = gremove(description, "\n"),
       download    = get_elem(x$prov, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
       contact     = get_elem(x$prov, "contactPoint") |> fmt_contactpoint()) |>
-      sbt(group %!=% "Physician office visit costs", clog, api, title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
+      sbt(group %!=% "Physician office visit costs",
+          # clog, api,
+          title, group, description, issued, modified, released, identifier, contact, download, site = landingPage, dictionary) |>
       roworder(group, title)
   )
 }
@@ -129,7 +132,8 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x <- mtt(x$open,
+  x <- mtt(
+    x$open,
       identifier  = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0", "?count=true&results=false&offset=0&limit=1"),
       modified    = as_date(modified),
       year        = unlist(x$open$keyword, use.names = FALSE),
@@ -148,13 +152,13 @@ clog_open <- function(x) {
 
   list(
     end = sbt(x, year %==% "All", -year) |>
-      mtt(clog = "open",
-          api = "end") |>
-      colorder(clog, api) |>
+      # mtt(clog = "open",
+      #     api = "end") |>
+      # colorder(clog, api) |>
       roworder(title),
     tmp = sbt(x, year %!=% "All") |>
-      mtt(clog = "open",
-          api = "tmp",
+      mtt(
+        # clog = "open", api = "tmp",
           year = as.integer(year),
           title = gremove(title, "^[0-9]{4} "),
           description = nswitch(
@@ -165,9 +169,11 @@ clog_open <- function(x) {
             default = description,
             nThread = 4L)
           ) |>
-      colorder(clog, api) |>
+      # colorder(clog, api) |>
       roworder(title, -year) |>
-      fnest(by = c("clog", "api", "title", "description", "modified")) |>
+      fnest(by = c(
+        # "clog", "api",
+        "title", "description", "modified")) |>
       rnm(endpoints = data))
 }
 
@@ -217,13 +223,13 @@ clog_caid <- function(x) {
 
   list(
     end = ss_title(x, ptn, n = TRUE) |>
-      ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(clog = "caid",
-          api = "end") |>
-      colorder(clog, api),
+      ss_title("CoreS|Scorecard|Auto", n = TRUE),
+      # mtt(clog = "caid",
+      #     api = "end") |>
+      # colorder(clog, api),
     tmp = ss_title(x, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(clog = "caid",
-          api = "end",
+      mtt(
+        # clog = "caid", api = "end",
           year = extract_year(title),
           title = nif(
       gdetect(title, "Child and Adult Health Care Quality Measures")       , "Child and Adult Health Care Quality Measures",
@@ -240,9 +246,13 @@ clog_caid <- function(x) {
       ) |>
       roworder(title, year) |>
       ffill(description, periodicity) |>
-      slt(clog, api, year, title, description, periodicity, modified, identifier) |>
+      slt(
+        # clog, api,
+        year, title, description, periodicity, modified, identifier) |>
       roworder(title, -year) |>
-      fnest(by = c("clog", "api", "title", "description", "periodicity")) |>
+      fnest(by = c(
+        # "clog", "api",
+        "title", "description", "periodicity")) |>
       rnm(endpoints = data),
     download = dl
     )
@@ -370,19 +380,21 @@ clog_hgov <- function(x) {
     end = rowbind(
       ss_title(x, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
       ss_title(x, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
-      mtt(clog  = "hgov",
-          api   = "end",
+      mtt(
+        # clog  = "hgov", api   = "end",
           title = greplace(title, "/\\s", "/") |>
             greplace("Qualifying Health Plan", "QHP") |>
             str_look_remove("County,", "ahead") |>
-            gremove("2015 ")) |>
-      colorder(clog, api),
+            gremove("2015 ")),
+      # colorder(clog, api),
     tmp = rowbind(
       temporal,
       ss_title(qhp, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
-      mtt(clog = "hgov", api = "tmp") |>
-      colorder(clog, api) |>
-      fnest(by = c("clog", "api", "title")) |>
+      # mtt(clog = "hgov", api = "tmp") |>
+      # colorder(clog, api) |>
+      fnest(by = c(
+        # "clog", "api",
+        "title")) |>
       rnm(endpoints = data))
     # qhp = subset_detect(qhp, title, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE) |> mtt(api = "HealthcareGov [Temporal]") |>
     # colorder(api) |> f_nest_by(.by = c(api, title)) |> f_ungroup() |> rnm(endpoints = data),
@@ -399,62 +411,3 @@ reset_catalog <- function() {
   the$catalog <- catalogs()
   invisible(old)
 }
-
-type <- list()
-type$care <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_care$endpoint,
-    aka_care$temporal,
-    aka_care$collection
-    ))))
-
-type$prov <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_prov$endpoint,
-    aka_prov$collection
-    ))))
-
-type$open <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_open$endpoint,
-    aka_open$temporal,
-    aka_open$collection
-  ))))
-
-type$caid <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_caid$endpoint,
-    aka_caid$temporal,
-    aka_caid$collection
-  ))))
-
-type$hgov <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_hgov$endpoint,
-    aka_hgov$temporal
-  ))))
-
-type$endpoint <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_prov$endpoint,
-    aka_hgov$endpoint,
-    aka_caid$endpoint,
-    aka_care$endpoint,
-    aka_open$endpoint
-  ))))
-
-type$temporal <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_hgov$temporal,
-    aka_caid$temporal,
-    aka_care$temporal,
-    aka_open$temporal
-  ))))
-
-type$collection <- oomph::mph_init(
-  collapse::funique(names(c(
-    aka_prov$collection,
-    aka_caid$collection,
-    aka_care$collection,
-    aka_open$collection
-  ))))

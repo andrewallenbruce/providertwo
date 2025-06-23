@@ -28,7 +28,7 @@
 #' enrollees(pac = "2860305554")
 #' enrollees(state = "GA")
 #' @autoglobal
-#' @export
+#' @noRd
 enrollees <- function(npi                   = NULL,
                       pac                   = NULL,
                       enid                  = NULL,
