@@ -16,7 +16,7 @@
 #' @source [API Documentation](https://npiregistry.cms.hhs.gov/api-page)
 #' @autoglobal
 #' @rdname nppes
-#' @export
+#' @noRd
 npi_nppes <- function(npi            = NULL,
                       entity         = NULL,
                       first          = NULL,
@@ -108,7 +108,7 @@ nlm_url <- function(api) {
 #' @source [API Documentation: Organizations](https://clinicaltables.nlm.nih.gov/apidoc/npi_org/v3/doc.html)
 #' @autoglobal
 #' @rdname nppes
-#' @export
+#' @noRd
 npi_nlm <- function(terms, npi = NULL) {
 
   req <- nlm_url("idv") |>
