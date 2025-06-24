@@ -2,8 +2,6 @@
 #' @autoglobal
 get_metadata <- function(x) {
   compact(list(
-    # clog        = null_if(x$clog),
-    # api         = null_if(x$api),
     title       = null_if(x$title),
     description = null_if(x$description),
     modified    = null_if(x$modified),
@@ -22,17 +20,18 @@ get_metadata <- function(x) {
 
 #' @noRd
 #' @autoglobal
-get_dimensions <- function(x, clog, api) {
-
+get_dimensions <- function(x, clog, api, call = caller_env()) {
   if (clog == "care" && is.null(api)) {
-    cli_abort(
-      c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
-      call = call)
+    cli_abort(c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
+              call = call)
   }
 
   switch(
     clog,
-    care = if (api == "end") care_end_dims(x) else care_tmp_dims(x),
+    care = if (api == "end")
+      care_end_dims(x)
+    else
+      care_tmp_dims(x),
     caid = def_dims(x, 8000L),
     prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),
@@ -56,7 +55,6 @@ def_fields <- function(x) {
 #' @autoglobal
 #' @noRd
 def_dims <- function(x, limit) {
-
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE) |>
@@ -72,7 +70,6 @@ def_dims <- function(x, limit) {
 #' @autoglobal
 #' @noRd
 care_end_dims <- function(x) {
-
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE) |>
@@ -90,7 +87,6 @@ care_end_dims <- function(x) {
 #' @autoglobal
 #' @noRd
 care_tmp_dims <- function(x) {
-
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE)

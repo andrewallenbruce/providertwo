@@ -19,6 +19,7 @@ Imports:
     fastplyr (>= 0.5.0),
     oomph (>= 0.1.1),
     fs (>= 1.6.6),
+    memoise (>= 2.0.1),
     glue (>= 1.8.0),
     httr2 (>= 1.1.2),
     kit (>= 0.0.2),
@@ -41,16 +42,13 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Collate: 
-    'aka.R'
-    'fastplyr.R'
-    'utils_misc.R'
-    '00-catalogs.R'
     '01-new_end.R'
     'S7_args.R'
-    'S7_classes.R'
+    'aka_end.R'
     'aka_grp.R'
-    'care_enrollees.R'
-    'care_quality.R'
+    'utils_misc.R'
+    'catalogs.R'
+    'classes.R'
     'cli.R'
     'dictionaries.R'
     'generated-globals.R'
@@ -58,18 +56,14 @@ Collate:
     'get_dimensions.R'
     'import-standalone-obj-type.R'
     'import-standalone-types-check.R'
+    'list_resources.R'
     'methods_base_request.R'
-    'methods_list_resources.R'
     'methods_quick.R'
     'methods_quick_query.R'
-    'npi_nlm.R'
-    'npi_nppes.R'
+    'npi.R'
     'offset.R'
-    'open_summary.R'
-    'pro_affiliations.R'
-    'pro_clinicians.R'
-    'pro_utilization.R'
     'providertwo-package.R'
+    'qpp.R'
     'query.R'
     'query_helpers.R'
     'utils_checks.R'

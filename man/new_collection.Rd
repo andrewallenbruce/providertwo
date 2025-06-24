@@ -4,12 +4,10 @@
 \alias{new_collection}
 \title{Create Collection of Endpoints}
 \usage{
-new_collection(alias, call = caller_env())
+new_collection(alias)
 }
 \arguments{
 \item{alias}{\verb{<chr>} Alias representing the CMS data endpoint.}
-
-\item{call}{\verb{<env>} Environment to use for error reporting.}
 }
 \value{
 S7 \code{class_collection} object.

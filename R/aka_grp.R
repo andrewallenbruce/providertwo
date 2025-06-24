@@ -684,7 +684,7 @@ group_regex <- function(x, call = caller_env()) {
   if (!is_api_group(x))
     cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
 
-  grp_regex[mph_match(x, grp_names)]
+  grp_regex[mph_match(x, grp_names)] |> unname() |> yank()
 }
 
 #' @autoglobal

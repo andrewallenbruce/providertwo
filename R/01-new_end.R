@@ -40,15 +40,16 @@ new_endpoint <- function(alias) {
   if (nrow(res) > 1L) cli_abort(c("x" = "{.val {x$regex}} has multiple matches."))
 
   # end <- yank(get_elem(res, "endpoints"))
-  #
   # if (all_na(gv(end, "resources"))) gv(end, "resources") <- NULL
 
   a <- switch(
     x$api,
     end = c(res),
-    tmp = flist(!!!c(slt(res, -endpoints)),
-                endpoints = yank(get_elem(res, "endpoints")),
-                identifier = yank(get_elem(endpoints, "identifier")))
+    tmp = flist(
+      !!!c(slt(res, -endpoints)),
+      endpoints = yank(get_elem(res, "endpoints")),
+      identifier = yank(get_elem(endpoints, "identifier"))
+    )
   )
 
   switch(
@@ -101,8 +102,8 @@ new_endpoint <- function(alias) {
 }
 
 #' Create Collection of Endpoints
+#'
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @param call `<env>` Environment to use for error reporting.
 #' @returns S7 `class_collection` object.
 #' @examplesIf rlang::is_interactive()
 #' new_collection("caid_demographics")
@@ -110,57 +111,27 @@ new_endpoint <- function(alias) {
 #' new_collection("caid_services")
 #' @autoglobal
 #' @export
-new_collection <- function(alias, call = caller_env()) {
-
-  check_required(alias)
-  check_character(alias, allow_na = FALSE, allow_null = FALSE)
+new_collection <- function(alias) {
 
   x <- group_regex(alias)
 
-  if (is_empty(x)) {
-    cli_abort(
-      c("x" = "Collection {.emph alias} {.val {alias}} is invalid."),
-      call = call)
-  }
-
   class_collection(
-    group = "Collection",
-    set_names(map(x, new_endpoint), x))
+    name = x$name,
+    members = set_names(map(x$alias, new_endpoint), x$alias))
 }
 
 #' Create Groups of Endpoints
 #'
-#' @param members `<chr>` Alias representing the CMS data endpoint.
-#' @param name    `<chr>` Name of the group.
-#' @param quick   `<lgl>` call `quick_()` method on group if `TRUE`.
-#' @param offset  `<int>` Offset for pagination.
-#' @param limit   `<int>` Limit for pagination.
+#' @param aliases `<chr>` Alias representing the CMS data endpoint.
+#' @param description    `<chr>` Name of the group.
 #' @returns S7 `class_group` object.
 #' @examplesIf rlang::is_interactive()
+#' new_group(c("cahps_hhc_patient", "hgov_qhp_business"))
 #' new_group(c("hgov_local_help", "hgov_qhp_business"))
-#' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 #' @autoglobal
 #' @export
-new_group <- function(members,
-                      name = NULL,
-                      quick = FALSE,
-                      offset = 0,
-                      limit = 10) {
-
-  check_required(members)
-  check_character(name, allow_na = FALSE, allow_null = FALSE)
-
-  obj <- ifelse_(
-    length(members) == 1L,
-    new_endpoint(name),
-    class_group(
-      name = name %||% paste0(members, collapse = " | "),
-      members = set_names(map(members, new_endpoint), members)))
-
-  check_bool(quick)
-  if (!quick) return(ob)
-
-  check_number_whole(offset, min = 0)
-  check_number_whole(limit, min = 1)
-  quick_(obj, offset = offset, limit = limit)
+new_group <- function(aliases, description = NULL) {
+  class_group(
+    name = description %||% paste0(aliases, collapse = " | "),
+    members = set_names(map(aliases, new_endpoint), aliases))
 }

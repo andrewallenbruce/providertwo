@@ -1,8 +1,4 @@
-# options(fastplyr.inform = FALSE)
-
 #' @include utils_misc.R
-#' @include fastplyr.R
-#' @include aka.R
 NULL
 
 #' @name catalogs
@@ -464,9 +460,6 @@ clog_hgov <- function(x) {
       fnest(by = "title") |>
       rnm(endpoints = "data"))
 }
-
-the         <- new.env(parent = emptyenv())
-the$catalog <- catalogs()
 
 #' @autoglobal
 #' @noRd

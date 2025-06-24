@@ -1,4 +1,4 @@
-#' @include S7_classes.R
+#' @include classes.R
 NULL
 
 #' @autoglobal

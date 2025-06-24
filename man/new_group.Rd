@@ -4,18 +4,12 @@
 \alias{new_group}
 \title{Create Groups of Endpoints}
 \usage{
-new_group(members, name = NULL, quick = FALSE, offset = 0, limit = 10)
+new_group(aliases, description = NULL)
 }
 \arguments{
-\item{members}{\verb{<chr>} Alias representing the CMS data endpoint.}
+\item{aliases}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
-\item{name}{\verb{<chr>} Name of the group.}
-
-\item{quick}{\verb{<lgl>} call \code{quick_()} method on group if \code{TRUE}.}
-
-\item{offset}{\verb{<int>} Offset for pagination.}
-
-\item{limit}{\verb{<int>} Limit for pagination.}
+\item{description}{\verb{<chr>} Name of the group.}
 }
 \value{
 S7 \code{class_group} object.
@@ -25,7 +19,7 @@ Create Groups of Endpoints
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+new_group(c("cahps_hhc_patient", "hgov_qhp_business"))
 new_group(c("hgov_local_help", "hgov_qhp_business"))
-new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 \dontshow{\}) # examplesIf}
 }

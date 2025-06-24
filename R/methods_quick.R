@@ -1,4 +1,4 @@
-#' @include S7_classes.R
+#' @include classes.R
 NULL
 
 #' @autoglobal
@@ -131,7 +131,7 @@ quick <- function(alias,
   check_required(alias)
 
   quick_(
-    select_member(alias),
+    new_endpoint(alias),
     offset = offset,
     limit  = limit)
 }
