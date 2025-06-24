@@ -17,7 +17,8 @@ API Endpoints
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-new_endpoint("care_dialysis")
+new_endpoint("care_dial_end")
+new_endpoint("care_dial_tmp")
 new_endpoint("quality_payment")
 new_endpoint("managed_longterm")
 new_endpoint("state_drug_util")
@@ -26,6 +27,6 @@ new_endpoint("hgov_puf_rate")
 new_endpoint("profile_covered")
 new_endpoint("grouped_state_nature")
 new_endpoint("asc_facility")
-new_endpoint("pro_dialysis")
+new_endpoint("prov_dialysis")
 \dontshow{\}) # examplesIf}
 }

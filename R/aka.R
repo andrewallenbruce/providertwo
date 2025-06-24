@@ -109,7 +109,7 @@ aka_care <- list(
   temporal = list(
     quality_payment = "^Quality Payment Program Experience$",
     px_summary = "^Physician[/]Supplier Procedure Summary$",
-    care_dialysis_tmp = "^Medicare Dialysis Facilities$",
+    care_dial_tmp = "^Medicare Dialysis Facilities$",
     aco_shared = "^Performance Year Financial and Quality Results$",
     opioid_treat = "^Opioid Treatment Program Providers$",
     hosp_costrep_tmp = "^Hospital Provider Cost Report$",
@@ -515,12 +515,6 @@ aka_regex <- unlist(
     use.names = FALSE
   )
 
-#' @autoglobal
-#' @noRd
-alias_regex <- function(x) {
-  aka_regex[mph_match(x, aka_names)]
-}
-
 # ---- apitype ----
 #' @autoglobal
 #' @noRd
@@ -571,37 +565,6 @@ clogtype <- list(
 
 #' @autoglobal
 #' @noRd
-catalog_type <- function(x) {
-  x <- nif(
-    is_clog_care(x), "care",
-    is_clog_caid(x), "caid",
-    is_clog_prov(x), "prov",
-    is_clog_open(x), "open",
-    is_clog_hgov(x), "hgov",
-    default = NA_character_)
-
-  if (is.na(x)) cli_abort(
-    c("x" = "{.val {x}} is invalid."), call = call)
-
-  x
-}
-
-#' @autoglobal
-#' @noRd
-api_type <- function(x) {
-  x <- nif(
-    is_api_endpoint(x), "end",
-    is_api_temporal(x), "tmp",
-    default = NA_character_)
-
-  if (is.na(x)) cli_abort(
-    c("x" = "{.val {x}} is invalid."), call = call)
-
-  x
-}
-
-#' @autoglobal
-#' @noRd
 is_clog_care <- function(x) {
   !is.na(mph_match(x, clogtype$care))
 }
@@ -648,3 +611,35 @@ is_collection_api <- function(x) {
   !is.na(mph_match(x, apitype$collection))
 }
 
+#' @autoglobal
+#' @noRd
+alias_regex <- function(x) {
+  aka_regex[mph_match(x, aka_names)]
+}
+
+#' @autoglobal
+#' @noRd
+catalog_type <- function(x, call = caller_env()) {
+  res <- nif(
+    is_clog_care(x), "care",
+    is_clog_caid(x), "caid",
+    is_clog_prov(x), "prov",
+    is_clog_open(x), "open",
+    is_clog_hgov(x), "hgov")
+
+  if (is.na(res)) cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
+
+  res
+}
+
+#' @autoglobal
+#' @noRd
+api_type <- function(x, call = caller_env()) {
+  res <- nif(
+    is_api_endpoint(x), "end",
+    is_api_temporal(x), "tmp")
+
+  if (is.na(res)) cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
+
+  res
+}

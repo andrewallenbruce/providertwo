@@ -260,8 +260,10 @@ get_distribution <- function(x) {
 #' @keywords internal
 #' @noRd
 fmt_contactpoint <- function(x) {
-  glue(
-    "{names(x)} ({x})",
+
+  x <- get_elem(x, "contactPoint")
+
+  glue("{names(x)} ({x})",
     x = get_elem(x, "^has", regex = TRUE) |>
       delist() |>
       set_names(

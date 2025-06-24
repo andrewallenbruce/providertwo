@@ -656,8 +656,7 @@ grp_care = list(
   )
 )
 
-
-# ---- aka_names ----
+# ---- grp_names ----
 #' @autoglobal
 #' @noRd
 grp_names <- mph_init(
@@ -668,7 +667,7 @@ grp_names <- mph_init(
     grp_open
   )))
 
-# ---- aka_regex ----
+# ---- grp_regex ----
 #' @autoglobal
 #' @noRd
 grp_regex <- c(
@@ -680,7 +679,11 @@ grp_regex <- c(
 
 #' @autoglobal
 #' @noRd
-group_regex <- function(x) {
+group_regex <- function(x, call = caller_env()) {
+
+  if (!is_api_group(x))
+    cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
+
   grp_regex[mph_match(x, grp_names)]
 }
 

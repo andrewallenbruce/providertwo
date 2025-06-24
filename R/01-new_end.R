@@ -14,7 +14,8 @@ alias_info <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 object
 #' @examplesIf rlang::is_interactive()
-#' new_endpoint("care_dialysis")
+#' new_endpoint("care_dial_end")
+#' new_endpoint("care_dial_tmp")
 #' new_endpoint("quality_payment")
 #' new_endpoint("managed_longterm")
 #' new_endpoint("state_drug_util")
@@ -23,7 +24,7 @@ alias_info <- function(x) {
 #' new_endpoint("profile_covered")
 #' new_endpoint("grouped_state_nature")
 #' new_endpoint("asc_facility")
-#' new_endpoint("pro_dialysis")
+#' new_endpoint("prov_dialysis")
 #' @autoglobal
 #' @export
 new_endpoint <- function(alias) {
