@@ -54,9 +54,10 @@ grp_caid = list(
   caid_nadac_group = list(
     name = "NADAC (National Average Drug Acquisition Cost)",
     alias = c(
-      "caid_nadac",
-      "caid_nadac_first",
-      "caid_nadac_compare"
+      "nadac_end",
+      "nadac_first",
+      "nadac_compare",
+      "nadac_tmp"
     )
   ),
   caid_pkg = list(
@@ -101,7 +102,7 @@ grp_caid = list(
     )
   ),
   caid_managed = list(
-    name = "Medicaid Managed Care Enrollment",
+    name = "Managed Care Enrollment",
     alias = c(
       "managed_summary",
       "managed_state",
@@ -111,7 +112,8 @@ grp_caid = list(
       "managed_feat_pop",
       "managed_feat_qa",
       "managed_bene_month",
-      "managed_bene_year"
+      "managed_bene_year",
+      "managed_mltss"
     )
   ),
   caid_unwind = list(
@@ -162,7 +164,11 @@ grp_open = list(
   ),
   payment_detailed = list(
     name = "Open Payments by Year (Detailed)",
-    alias = c("payment_general", "payment_ownership", "payment_research")
+    alias = c(
+      "payment_general",
+      "payment_ownership",
+      "payment_research"
+    )
   )
 )
 
@@ -416,7 +422,10 @@ grp_prov = list(
   ),
   prov_reduction = list(
     name = "Hospital-Acquired Condition & Readmission Reduction Programs",
-    alias = c("reduction_hac", "reduction_hrr")
+    alias = c(
+      "reduction_hac",
+      "reduction_hrr"
+    )
   )
 )
 
@@ -426,62 +435,88 @@ grp_prov = list(
 grp_care = list(
   care_hha = list(
     name = "Home Health Agencies",
-    alias = c("hha_owners", "hha_costreport", "hha_enrollments")
+    alias = c(
+      "hha_owner",
+      "hha_costrep_tmp",
+      "hha_enroll"
+    )
   ),
   care_hospice = list(
     name = "Hospices",
-    alias = c("hospice_owners", "hospice_enrollments", "hospice_acute")
+    alias = c(
+      "spice_owner",
+      "spice_enroll",
+      "spice_acute"
+    )
   ),
   care_hospital = list(
     name = "Hospitals",
     alias = c(
-      "hospital_owners",
-      "hospital_chow",
-      "hospital_chow_owner",
-      "hospital_enrollments",
-      "hospital_costreport",
-      "hospital_service_area"
+      "hosp_owner",
+      "hosp_chow",
+      "hosp_chow_owner",
+      "hosp_enroll",
+      "hosp_costrep_tmp",
+      "hosp_service"
     )
   ),
   care_rhc = list(
     name = "Rural Health Clinics",
-    alias = c("rhc_owners", "rhc_enrollments")
+    alias = c(
+      "rhc_owner",
+      "rhc_enroll"
+    )
   ),
   care_fqhc = list(
     name = "Federally Qualified Health Centers",
-    alias = c("fqhc_owners", "fqhc_enrollments")
+    alias = c(
+      "fqhc_owner",
+      "fqhc_enroll"
+    )
   ),
   care_pend = list(
     name = "Pending Initial Logging and Tracking",
-    alias = c("pilat_non_physician", "pilat_physician")
+    alias = c(
+      "pilat_non",
+      "pilat_phys"
+    )
   ),
   care_reval = list(
-    name = "Revalidation Reassignment Lists",
-    alias = c("revalid_group", "revalid_due", "revalid_list")
+    name = "Revalidation Reassignments",
+    alias = c(
+      "reval_group",
+      "reval_due",
+      "reval_list"
+    )
   ),
   care_snf = list(
     name = "Skilled Nursing Facilities",
     alias = c(
-      "snf_owners",
+      "snf_owner",
       "snf_chow",
       "snf_chow_owner",
-      "snf_cost_report",
-      "snf_enrollments"
+      "snf_costrep_tmp",
+      "snf_enroll"
     )
   ),
   care_aco = list(
     name = "Accountable Care Organizations",
     alias = c(
-      "aco_reach_aligned",
-      "aco_reach_eligible",
-      "aco_reach_results",
-      "aco_reach_providers",
-      "aco_reach_orgs",
-      "aco_pioneer",
-      "aco_participants",
-      "aco_snf_affiliate",
-      "aco_organizations",
-      "aco_bene_cnty"
+      "aco_parts",
+      "aco_snfs",
+      "aco_orgs",
+      "aco_bene_cnty",
+      "aco_shared"
+    )
+  ),
+  care_aco_reach = list(
+    name = "Accountable Care Organizations",
+    alias = c(
+      "aco_reach_align",
+      "aco_reach_elig",
+      "aco_reach_result",
+      "aco_reach_prov",
+      "aco_reach_orgs"
     )
   ),
   care_stats = list(
@@ -511,78 +546,113 @@ grp_care = list(
     )
   ),
   care_caid = list(
-    name = "Medicaid",
+    name = "Medicare Medicaid",
     alias = c(
-      "care_caid_managed_care",
-      "care_caid_opioid_geo",
-      "care_caid_drug_spend"
+      "care_caid_managed",
+      "care_caid_opioid",
+      "care_caid_spend"
     )
   ),
   care_geo = list(
     name = "Medicare Geographic Variation",
-    alias = c("geovar_adv", "geovar_hrr", "geovar_nsc")
+    alias = c(
+      "geo_ma",
+      "geo_hrr",
+      "geo_nsc"
+    )
   ),
   care_pdp = list(
     name = "Pharmacy Network/Formulary/Pricing",
-    alias = c("pdp_month", "pdp_quarter")
+    alias = c(
+      "pdp_month",
+      "pdp_quarter"
+    )
   ),
   care_survey = list(
     name = "Medicare Current Beneficiary Survey",
-    alias = c("bene_survey_covid", "bene_survey_cost", "bene_survey_file")
+    alias = c(
+      "care_survey_covid",
+      "care_survey_cost",
+      "care_survey"
+    )
   ),
   care_drugb = list(
     name = "Medicare Part B Drugs",
-    alias = c("partb_drug_discard", "partb_drug_spend")
+    alias = c(
+      "drug_discard_ptb",
+      "drug_spend_ptb"
+    )
   ),
   care_drugd = list(
     name = "Medicare Part D Drugs",
-    alias = c("partd_opioid", "partd_drug_spend")
+    alias = c(
+      "drug_opioid_ptd",
+      "drug_spend_ptd"
+    )
   ),
   care_market = list(
     name = "Market Saturation & Utilization",
-    alias = c("market_cbsa", "market_state_cnty")
+    alias = c(
+      "mkt_cbsa",
+      "mkt_state"
+    )
   ),
   care_in = list(
     name = "Medicare Inpatient Hospitals",
     alias = c(
-      "inpatient_geography",
-      "inpatient_provider",
-      "inpatient_service"
+      "in_geo",
+      "in_prov",
+      "in_serv"
     )
   ),
   care_out = list(
     name = "Medicare Outpatient Hospitals",
-    alias = c("outpatient_geography", "outpatient_service")
+    alias = c(
+      "out_geo",
+      "out_serv"
+    )
   ),
   care_prx = list(
     name = "Medicare Part D Prescribers",
-    alias = c("prx_geography", "prx_provider", "prx_drug")
+    alias = c(
+      "prx_geo",
+      "prx_prov",
+      "prx_drug"
+    )
   ),
   care_dme = list(
     name = "Medicare DME, Devices & Supplies",
     alias = c(
-      "dme_geography",
-      "dme_provider",
-      "dme_service",
-      "dme_supplier",
-      "dme_supplier_service"
+      "dme_geo",
+      "dme_prov",
+      "dme_serv",
+      "dme_supp",
+      "dme_supserv"
     )
   ),
   care_pbj = list(
     name = "Nursing Home Payroll-Based Journal Staffing",
     alias = c(
-      "nhome_staff_nonurse",
-      "nhome_staff_nurse",
-      "nhome_staff_employee"
+      "pbj_non",
+      "pbj_nurse",
+      "pbj_emp"
     )
   ),
-  care_utilization = list(
+  care_util = list(
     name = "Medicare Physician & Other Practitioners",
-    alias = c("util_geography", "util_provider", "util_service")
+    alias = c(
+      "util_geo",
+      "util_prov",
+      "util_serv"
+    )
   ),
   care_nhome = list(
     name = "Nursing Home Performance",
-    alias = c("nh_performance", "nh_mds_frequency", "nh_mds_facility")
+    alias = c(
+      "nh_perf_tmp",
+      "nh_mds_freq_tmp",
+      "nh_mds_fac_tmp"
+    )
   )
 )
 

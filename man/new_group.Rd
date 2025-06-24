@@ -4,18 +4,12 @@
 \alias{new_group}
 \title{Create Groups of Endpoints}
 \usage{
-new_group(
-  member_names,
-  group_name = NULL,
-  quick = FALSE,
-  offset = 0,
-  limit = 10
-)
+new_group(members, name = NULL, quick = FALSE, offset = 0, limit = 10)
 }
 \arguments{
-\item{member_names}{\verb{<chr>} Alias representing the CMS data endpoint.}
+\item{members}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
-\item{group_name}{\verb{<chr>} Name of the group.}
+\item{name}{\verb{<chr>} Name of the group.}
 
 \item{quick}{\verb{<lgl>} call \code{quick_()} method on group if \code{TRUE}.}
 

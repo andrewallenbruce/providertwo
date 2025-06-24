@@ -28,6 +28,9 @@ alias_info <- function(x) {
 #' @export
 new_endpoint <- function(alias) {
 
+  check_required(alias)
+  check_character(alias, allow_na = FALSE, allow_null = FALSE)
+
   x   <- alias_info(alias)
 
   res <- select_alias(eval(x$str), x$regex)
@@ -109,55 +112,54 @@ new_endpoint <- function(alias) {
 new_collection <- function(alias, call = caller_env()) {
 
   check_required(alias)
+  check_character(alias, allow_na = FALSE, allow_null = FALSE)
 
-  x <- aka$get(alias)
+  x <- group_regex(alias)
 
   if (is_empty(x)) {
     cli_abort(
-      c("x" = "{.emph group alias} {.val {alias}} is invalid."),
+      c("x" = "Collection {.emph alias} {.val {alias}} is invalid."),
       call = call)
   }
 
   class_collection(
     group = "Collection",
-    set_names(map(x, caid_endpoint), x))
+    set_names(map(x, new_endpoint), x))
 }
 
 #' Create Groups of Endpoints
-#' @param member_names `<chr>` Alias representing the CMS data endpoint.
-#' @param group_name   `<chr>` Name of the group.
-#' @param quick        `<lgl>` call `quick_()` method on group if `TRUE`.
-#' @param offset       `<int>` Offset for pagination.
-#' @param limit        `<int>` Limit for pagination.
+#'
+#' @param members `<chr>` Alias representing the CMS data endpoint.
+#' @param name    `<chr>` Name of the group.
+#' @param quick   `<lgl>` call `quick_()` method on group if `TRUE`.
+#' @param offset  `<int>` Offset for pagination.
+#' @param limit   `<int>` Limit for pagination.
 #' @returns S7 `class_group` object.
 #' @examplesIf rlang::is_interactive()
 #' new_group(c("hgov_local_help", "hgov_qhp_business"))
 #' new_group(c("hgov_local_help", "hgov_qhp_business"), quick = TRUE)
 #' @autoglobal
 #' @export
-new_group <- function(member_names,
-                      group_name = NULL,
-                      quick      = FALSE,
-                      offset     = 0,
-                      limit      = 10) {
+new_group <- function(members,
+                      name = NULL,
+                      quick = FALSE,
+                      offset = 0,
+                      limit = 10) {
 
-  check_required(member_names)
-  check_bool(quick)
-  check_character(group_name, allow_null = TRUE)
+  check_required(members)
+  check_character(name, allow_na = FALSE, allow_null = FALSE)
 
-  ob <- ifelse_(
-    length(member_names) == 1,
-    select_member(member_names),
+  obj <- ifelse_(
+    length(members) == 1L,
+    new_endpoint(name),
     class_group(
-      group   = group_name %||% paste0(member_names, collapse = " | "),
-      members = set_names(map(
-        member_names,
-        select_member),
-        member_names)
-    )
-  )
+      name = name %||% paste0(members, collapse = " | "),
+      members = set_names(map(members, new_endpoint), members)))
 
+  check_bool(quick)
   if (!quick) return(ob)
 
-  quick_(ob, offset = offset, limit = limit)
+  check_number_whole(offset, min = 0)
+  check_number_whole(limit, min = 1)
+  quick_(obj, offset = offset, limit = limit)
 }

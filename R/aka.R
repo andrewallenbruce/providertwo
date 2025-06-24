@@ -62,8 +62,8 @@ aka_care <- list(
     cms_total_enroll = "^CMS Program Statistics [-] Medicare Total Enrollment$",
     cms_dual_enroll = "^CMS Program Statistics [-] Medicare[-]Medicaid Dual Enrollment$",
     cms_orig_enroll = "^CMS Program Statistics [-] Original Medicare Enrollment$",
-    care_nh_mds_fac = "^Facility-Level Minimum Data Set Frequency$",
-    care_nh_mds = "^Minimum Data Set Frequency$",
+    nh_mds_fac_end = "^Facility-Level Minimum Data Set Frequency$",
+    nh_mds_end = "^Minimum Data Set Frequency$",
     mkt_cbsa = "^Market Saturation [&] Utilization Core[-]Based Statistical Areas$",
     mkt_state = "^Market Saturation [&] Utilization State[-]County$",
     drug_discard_ptb = "^Medicare Part B Discarded Drug Units$",
@@ -95,15 +95,15 @@ aka_care <- list(
     rhc_enroll = "^Rural Health Clinic Enrollments$",
     fqhc_owner = "^Federally Qualified Health Center All Owners$",
     fqhc_enroll = "^Federally Qualified Health Center Enrollments$",
-    pilat_non_phys = "^Pending Initial Logging and Tracking Non Physicians$",
-    pilat_physician = "^Pending Initial Logging and Tracking Physicians$",
+    pilat_non = "^Pending Initial Logging and Tracking Non Physicians$",
+    pilat_phys = "^Pending Initial Logging and Tracking Physicians$",
     reval_group = "^Revalidation Clinic Group Practice Reassignment$",
     reval_due = "^Revalidation Due Date List$",
     reval_list = "^Revalidation Reassignment List$",
     snf_owner = "^Skilled Nursing Facility All Owners$",
     snf_chow = "^Skilled Nursing Facility Change of Ownership$",
     snf_chow_owner = "^Skilled Nursing Facility Change of Ownership [-] Owner Information$",
-    snf_cost_report = "^Skilled Nursing Facility Cost Report$",
+    snf_costrep_end = "^Skilled Nursing Facility Cost Report$",
     snf_enroll = "^Skilled Nursing Facility Enrollments$"
   ),
   temporal = list(
@@ -112,12 +112,12 @@ aka_care <- list(
     care_dialysis_tmp = "^Medicare Dialysis Facilities$",
     aco_shared = "^Performance Year Financial and Quality Results$",
     opioid_treat = "^Opioid Treatment Program Providers$",
-    hosp_costrep = "^Hospital Provider Cost Report$",
-    snf_costrep = "^Skilled Nursing Facility Cost Report$",
-    hha_costrep = "^Home Health Agency Cost Report$",
-    nh_perf = "^Nursing Home Affiliated Entity Performance Measures$",
-    nh_mds_freq = "^Minimum Data Set Frequency$",
-    nh_mds_fac = "^Facility[-]Level Minimum Data Set Frequency$",
+    hosp_costrep_tmp = "^Hospital Provider Cost Report$",
+    snf_costrep_tmp = "^Skilled Nursing Facility Cost Report$",
+    hha_costrep_tmp = "^Home Health Agency Cost Report$",
+    nh_perf_tmp = "^Nursing Home Affiliated Entity Performance Measures$",
+    nh_mds_freq_tmp = "^Minimum Data Set Frequency$",
+    nh_mds_fac_tmp = "^Facility[-]Level Minimum Data Set Frequency$",
     in_geo = "^Medicare Inpatient Hospitals [-] by Geography and Service$",
     in_prov = "^Medicare Inpatient Hospitals [-] by Provider$",
     in_serv = "^Medicare Inpatient Hospitals [-] by Provider and Service$",
@@ -153,13 +153,12 @@ aka_caid <- list(
     caid_pi = "PI dataset",
     caid_tiles = "category_tiles",
     mlr_summary = "MLR Summary Reports",
-    managed_mltss = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
     dsh_require = "Disproportionate Share Hospital \\(DSH\\) Payments [-] Annual Reporting Requirements",
     pharmacy_index = "Division of Pharmacy Releases Index dataset",
     puf_cahps_nam = "NAM CAHPS 2014 Public Use",
-    caid_nadac = "^NADAC$",
-    caid_nadac_first = "^First Time NADAC Rates$",
-    caid_nadac_compare = "^NADAC Comparison$",
+    nadac_end = "^NADAC$",
+    nadac_first = "^First Time NADAC Rates$",
+    nadac_compare = "^NADAC Comparison$",
     caid_fin_mgmt = "Medicaid Financial Management Data$",
     caid_fin_nation = "Medicaid Financial Management Data National Totals",
     caid_chip_bene_month = "Program Information for Medicaid and CHIP Beneficiaries by Month",
@@ -218,6 +217,7 @@ aka_caid <- list(
     cms64_caa = "Medicaid CMS-64 CAA 2023 Increased FMAP Expenditure Data Collected through MBES/CBES",
     cms64_ffcra = "Medicaid CMS-64 FFCRA Increased FMAP Expenditure",
     cms64_adult = "Medicaid CMS-64 New Adult Group Expenditures",
+    managed_mltss = "Managed Long Term Services and Supports \\(MLTSS\\) Enrollees",
     managed_summary = "Managed Care Enrollment Summary",
     managed_state = "^Managed Care Programs\\sby\\sState$",
     managed_program = "Managed Care Enrollment by Program and Plan",
@@ -234,7 +234,7 @@ aka_caid <- list(
     unwind_sbm = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report"
   ),
   temporal = list(
-    nadac_by_year = "^NADAC$",
+    nadac_tmp = "^NADAC$",
     managed_by_state = "^Managed Care Programs by State$",
     drug_rebate_week = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program$",
     blood_disorder = "^Pricing Comparison for Blood Disorder Treatments$",
@@ -433,62 +433,51 @@ aka_prov <- list(
 #' @noRd
 aka_hgov <- list(
   endpoint = list(
-    ab_reg_comp = "^AB Registration Completion List$",
-    ab_sus_term = "^AB Suspension and Termination List$",
-    ab_reg_gloss = "^Agent Broker Registration Tracker Glossary$",
-    ab_reg_track = "^Agent Broker Registration Tracker$",
-    ab_aut_state = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
-    ab_aut_nipr = "^NIPR Valid Lines of Authority List$",
-    auto_pop = "^Auto[-]population File$",
-    catastropy_plan = "^Catastrophic Plans for People with Cancelled Policies$",
-    hgov_county = "^Counties$",
-    hgov_service = "^County Service Areas$",
-    hgov_county_zip = "^SLCSP [-] County[-]Zip Reference Data$",
-    hgov_state = "^States$",
-    hgov_code = "^Response Codes$",
-    hgov_local = "^Find Local Help$",
-    hgov_admin = "^Helpful Contacts Admins$",
-    ip_lookup = "^Issuer[_]Partner[_]Lookup$",
-    ip_reference = "^Issuer Partner Directory [-] Reference Text$",
-    ip_de_directory = "^Issuer and DE Partner Directory$",
-    ip_de_partners = "^Direct Enrollment Partners$",
-    puf_benefit_cost = "^Benefits and Cost Sharing PUF$",
-    puf_business_rules = "^Business Rules PUF$",
-    puf_network = "^Network PUF$",
-    puf_plan_attribute = "^Plan Attributes PUF$",
-    puf_plan_id_cross = "^Plan ID Crosswalk PUF$",
-    puf_service_area = "^Service Area PUF$",
-    roll_ecp = "^Rolling Draft ECP List$",
-    qhp_ind_med = "^QHP Landscape Individual Market Medical$",
-    qhp_ind_dent = "^QHP Landscape Individual Market Dental$",
-    qhp_shop_med = "^QHP Landscape SHOP Market Medical$",
-    qhp_shop_dent = "^QHP Landscape SHOP Market Dental$",
-    qhp_id_shop_med = "^QHP Landscape ID SHOP Market Medical$",
-    qhp_id_shop_dent = "^QHP Landscape ID SHOP Market Dental$",
-    qhp_id_ind_dent = "^QHP Landscape ID Individual Market Dental$",
-    qhp_id_ind_med = "^QHP Landscape ID Individual Market Medical$",
-    qhp_nm_ind_dent = "^QHP Landscape NM Individual Market Dental$",
-    qhp_nm_ind_med = "^QHP Landscape NM Individual Market Medical$",
-    qhp_bus_rule_variables = "^QHP Landscape Health Plan Business Rule Variables$",
-    qhp_py19_shop_med_instruct = "^QHP PY19 Medical SHOP Landscape Instructions$",
-    qhp_py19_ind_med_instruct = "^QHP PY19 Medical Individual Landscape Instructions$",
-    qhp_py19_ind_dent_instruct = "^QHP PY19 Dental Individual Landscape Instructions$",
-    qhp_py18_shop_med_instruct = "^QHP PY18 Medical SHOP Landscape Instructions$",
-    qhp_py18_ind_med_instruct = "^QHP PY18 Medical Individual Landscape Instructions$",
-    qhp_py18_ind_dent_instruct = "^QHP PY18 Dental Individual Landscape Instructions$"
+    hgov_auto_pop           = "^Auto[-]population File$",
+    hgov_ab_reg_comp        = "^AB Registration Completion List$",
+    hgov_ab_sus_term        = "^AB Suspension and Termination List$",
+    hgov_ab_reg_gloss       = "^Agent Broker Registration Tracker Glossary$",
+    hgov_ab_reg_trac        = "^Agent Broker Registration Tracker$",
+    hgov_catastrophic       = "^Catastrophic Plans for People with Cancelled Policies$",
+    hgov_contact_admin      = "^Helpful Contacts Admins$",
+    hgov_counties           = "^Counties$",
+    hgov_county_service     = "^County Service Areas$",
+    hgov_partner_lookup     = "^Issuer[_]Partner[_]Lookup$",
+    hgov_partner_reference  = "^Issuer Partner Directory [-] Reference Text$",
+    hgov_partner_directory  = "^Issuer and DE Partner Directory$",
+    hgov_partner_enrollment = "^Direct Enrollment Partners$",
+    hgov_nipr_authority     = "^NIPR Valid Lines of Authority List$",
+    hgov_nipr_state         = "^Marketplace Agent[/]Broker NIPR Valid Lines of Authority[,] by State$",
+    hgov_response_codes     = "^Response Codes$",
+    hgov_rolling_draft      = "^Rolling Draft ECP List$",
+    hgov_slcsp_county       = "^SLCSP [-] County[-]Zip Reference Data$",
+    hgov_states             = "^States$",
+    hgov_local_help         = "^Find Local Help$",
+    hgov_qhp_consumer       = "QHP Selections by Type of Consumer and County",
+    hgov_qhp_aptc           = "QHP Selections by APTC and County",
+    hgov_qhp_csr            = "QHP Selections by CSR and County",
+    hgov_qhp_metal          = "QHP Selections by Metal Level and County",
+    hgov_qhp_income         = "QHP Selections by Household Income as a Percent of the Federal Poverty Level and County",
+    hgov_qhp_ethnicity      = "QHP Selections by Race/Ethnicity and County",
+    hgov_qhp_age            = "QHP Selections by Age Group and County",
+    hgov_qhp_business       = "QHP Landscape Health Plan Business Rule Variables"
   ),
   temporal = list(
-    medical_loss_ratio = "^MLR Dataset$",
-    qhp_quality_ratings = "^Quality PUF$",
-    hie_benefits_costshare = "^Benefits and Cost Sharing PUF$",
-    hie_business_rules = "^Business Rules PUF$",
-    hie_machine_readable = "^Machine Readable PUF$",
-    hie_network = "^Network PUF$",
-    hie_plan_attributes = "^Plan Attributes PUF$",
-    hie_plan_id_crosswalk = "^Plan ID Crosswalk PUF$",
-    hie_rate = "^Rate PUF$",
-    hie_service_area = "^Service Area PUF$",
-    hie_transparency = "^Transparency in Coverage PUF$"
+    hgov_mlr             = "^MLR Dataset$",
+    hgov_puf_benefits    = "^Benefits and Cost Sharing PUF$",
+    hgov_puf_business    = "^Business Rules PUF$",
+    hgov_puf_machine     = "^Machine Readable PUF$",
+    hgov_puf_network     = "^Network PUF$",
+    hgov_puf_plan_attr   = "^Plan Attributes PUF$",
+    hgov_puf_plan_walk   = "^Plan ID Crosswalk PUF$",
+    hgov_puf_rate        = "^Rate PUF$",
+    hgov_puf_service     = "^Service Area PUF$",
+    hgov_puf_tic         = "^Transparency in Coverage PUF$",
+    # THESE CONTAIN ZIP FILES NOT ENDPOINTS
+    hgov_qhp_ind_dnt     = "QHP Landscape Individual Market Dental",
+    hgov_qhp_ind_med     = "QHP Landscape Individual Market Medical",
+    hgov_qhp_shop_dnt    = "QHP Landscape SHOP Market Dental",
+    hgov_qhp_shop_med    = "QHP Landscape SHOP Market Medical"
   )
 )
 
@@ -583,24 +572,32 @@ clogtype <- list(
 #' @autoglobal
 #' @noRd
 catalog_type <- function(x) {
-  nif(
+  x <- nif(
     is_clog_care(x), "care",
     is_clog_caid(x), "caid",
     is_clog_prov(x), "prov",
     is_clog_open(x), "open",
     is_clog_hgov(x), "hgov",
-    default = NA_character_
-    )
+    default = NA_character_)
+
+  if (is.na(x)) cli_abort(
+    c("x" = "{.val {x}} is invalid."), call = call)
+
+  x
 }
 
 #' @autoglobal
 #' @noRd
 api_type <- function(x) {
-  nif(
+  x <- nif(
     is_api_endpoint(x), "end",
     is_api_temporal(x), "tmp",
-    default = NA_character_
-    )
+    default = NA_character_)
+
+  if (is.na(x)) cli_abort(
+    c("x" = "{.val {x}} is invalid."), call = call)
+
+  x
 }
 
 #' @autoglobal
