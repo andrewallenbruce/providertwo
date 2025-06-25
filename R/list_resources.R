@@ -28,8 +28,15 @@ tidy_resources <- function(x) {
     as_fibble()
 }
 
+method(list_resources, class_group) <- function(x) {
+  prop(x, "members") |>
+    map(list_resources)
+}
+
 method(list_resources, class_catalog) <- function(x) {
-  cli::cli_alert_warning("{.fn list_resources} requires a {.cls class_care} object.")
+  cli::cli_alert_warning(
+    "{.fn list_resources} requires {.obj_type_friendly {class_care()}}, not {.obj_type_friendly {x}}.",
+    wrap = TRUE)
   invisible(NULL)
 }
 
@@ -58,9 +65,4 @@ method(list_resources, class_temporal) <- function(x) {
     resps_data(function(resp)
       parse_string(resp, query = "/data")) |>
     tidy_resources()
-}
-
-method(list_resources, class_group) <- function(x) {
-  prop(x, "members") |>
-    map(list_resources)
 }

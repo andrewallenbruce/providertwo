@@ -2,17 +2,22 @@
 # first_name ~ starts_with_("Andr"),
 # last_name ~ contains_("J"),
 # state = ~ in_(c("CA", "GA", "NY")),
-# state = in_(c("CA", "GA", "NY")),
+# country = in_(c("CA", "GA", "NY")),
 # npi = npi_ex$k,
-# npi = npi_ex$k[1],
+# npi_owner = npi_ex$k[1],
 # ccn = "01256",
 # pac = NULL)
+#
+# x
 #
 # is_unnamed_formula(x)
 # is_named_formula(x)
 # !is_unnamed_formula(x) & !is_named_formula(x) & is_length_one(x)
 # !is_unnamed_formula(x) & !is_named_formula(x) & is_length_two(x)
+#
 # check_names_unique(x)
+# check_unnamed_formulas(x)
+
 #' @autoglobal
 #' @noRd
 check_names_unique <- function(x, call = caller_env()) {
@@ -23,8 +28,26 @@ check_names_unique <- function(x, call = caller_env()) {
 
     i <- which_(fduplicated(x))
 
-    cli_abort(
-      c("x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."),
+    cli_abort(c(
+      "x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."
+      ),
+      call = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_unnamed_formulas <- function(x, call = caller_env()) {
+
+  if (any(is_unnamed_full_formula(x))) {
+
+    x <- map(x[is_unnamed_full_formula(x)], \(x) as_label(x)) |>
+      unlist(use.names = FALSE) |>
+      set_names("*")
+
+    cli_abort(c(
+      "x" = "{.emph Unnamed formulas} detected:",
+      cli::col_yellow(cli::format_bullets_raw(x))),
       call = call)
   }
 }
@@ -44,33 +67,33 @@ is_length_two <- function(x) {
 
 #' @autoglobal
 #' @noRd
-is_formula_full <- function(x) {
+is_full_formula <- function(x) {
   map_lgl(x, is_formula, lhs = TRUE)
 }
 
 #' @autoglobal
 #' @noRd
-is_formula_rhs <- function(x) {
+is_rhs_formula <- function(x) {
   map_lgl(x, is_formula, lhs = FALSE)
 }
 
 #' @autoglobal
 #' @noRd
-is_unnamed_formula <- function(x) {
-  !have_name(x) & is_formula_full(x)
+is_unnamed_full_formula <- function(x) {
+  !have_name(x) & is_full_formula(x)
 }
 
 #' @autoglobal
 #' @noRd
-is_named_formula <- function(x) {
-  have_name(x) & is_formula_rhs(x)
+is_named_rhs_formula <- function(x) {
+  have_name(x) & is_rhs_formula(x)
 }
 
 #' @autoglobal
 #' @noRd
 convert_unnamed_formula <- function(x) {
 
-  idx <- is_unnamed_formula(x)
+  idx <- is_unnamed_full_formula(x)
 
   if (any(idx)) {
 
@@ -94,7 +117,7 @@ convert_unnamed_formula <- function(x) {
 #' @noRd
 convert_named_formula <- function(x) {
 
-  idx <- is_named_formula(x)
+  idx <- is_named_rhs_formula(x)
 
   if (any(idx)) {
 
@@ -135,6 +158,8 @@ format_query <- function(x) {
   glue("{nm} = {pr}")
 }
 
+#' @autoglobal
+#' @noRd
 generate_query <- function(a) {
 
   imap(a, function(x, m) {
