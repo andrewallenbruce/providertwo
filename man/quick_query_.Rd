@@ -19,7 +19,7 @@ Quick Query
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-asc <- prov_endpoint("asc_facility")
+asc <- new_endpoint("asc_facility")
 
 q0 <- list(
 `conditions[0][property]` = "state",

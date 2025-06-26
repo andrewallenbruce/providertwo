@@ -16,7 +16,7 @@ quick_cli_ <- function(x) {
 #' @param ... Additional arguments
 #' @returns A list of results from the API query, or `NULL` if no results are found.
 #' @examplesIf rlang::is_interactive()
-#' asc <- prov_endpoint("asc_facility")
+#' asc <- new_endpoint("asc_facility")
 #'
 #' q0 <- list(
 #' `conditions[0][property]` = "state",

@@ -10,6 +10,21 @@ cli_results <- function(n, limit, end, api) {
   )
 }
 
+#' @autoglobal
+#' @noRd
+cli_aka <- function(aka) {
+
+  x <- unlist(aka)
+  i <- x[collapse::radixorder(names(x), sort = TRUE)]
+
+  glue_col(
+    "{bgBlack {format(names(x), justify = 'right')}}",
+    # " {red {cli::symbol$pointer}} ",
+    " {silver {strtrim(unname(x), width = 60)}}",
+    x = i)
+
+}
+
 # x <- new_endpoint("profile_mapping")
 #
 # cli::boxx(
@@ -56,7 +71,14 @@ cli_results <- function(n, limit, end, api) {
 # stringi::stri_enc_toascii(clisymbols::symbol$bullet)
 
 #
-# list_aliases <- function(aka, type) {
+# cli::boxx(
+#   label = strwrap(x@metadata$description, width = 40, initial = paste(cli::symbol$bullet, " ")),
+#   header = x@metadata$title,
+#   footer = "Open Payments",
+#   width = 40,
+#   border_style = "round",
+#   border_col = "grey")
+
 #   list(
 #     caid = aka_caid$endpoint,
 #     care = aka_care$endpoint,
@@ -78,24 +100,3 @@ cli_results <- function(n, limit, end, api) {
 #     open = grp_open,
 #     prov = grp_prov
 #   )
-#
-# }
-#
-# x <- unlist(aka_care$endpoint)
-# i <- collapse::radixorder(names(x), sort = TRUE)
-#
-# cli::cli_alert_info("{.cls class_care} {.field Endpoint} {.emph aliases}")
-# glue_col(
-#     "{yellow {format(names(x), justify = 'left')}}",
-#     " {clisymbols::symbol$bullet} ",
-#     "{silver {strtrim(unname(x), width = 60)}}",
-#     x = set_names(unname(x)[i], names(x)[i])
-#     )
-#
-# cli::boxx(
-#   label = strwrap(x@metadata$description, width = 40, initial = paste(cli::symbol$bullet, " ")),
-#   header = x@metadata$title,
-#   footer = "Open Payments",
-#   width = 40,
-#   border_style = "round",
-#   border_col = "grey")

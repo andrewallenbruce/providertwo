@@ -55,14 +55,15 @@ check_unnamed_formulas <- function(x, call = caller_env()) {
 #' @autoglobal
 #' @noRd
 is_length_one <- function(x) {
-  # list_lengths(x) == 1L
-  map_lgl(x, \(x) length(x) == 1L)
+  # map_lgl(x, \(x) length(x) == 1L)
+  list_lengths(x, names = TRUE) == 1L
 }
 
 #' @autoglobal
 #' @noRd
 is_length_two <- function(x) {
-  map_lgl(x, \(x) length(x) > 1L)
+  # map_lgl(x, \(x) length(x) > 1L)
+  list_lengths(x, names = TRUE) > 1L
 }
 
 #' @autoglobal
@@ -93,11 +94,11 @@ is_named_rhs_formula <- function(x) {
 #' @noRd
 convert_unnamed_formula <- function(x) {
 
-  idx <- is_unnamed_full_formula(x)
+  i <- is_unnamed_full_formula(x)
 
-  if (any(idx)) {
+  if (any(i)) {
 
-    tmp <- x[idx]
+    tmp <- x[i]
 
     rhs <- map(tmp, f_rhs)
 
@@ -106,9 +107,9 @@ convert_unnamed_formula <- function(x) {
         as_string(f_lhs(x))) |>
       list_c()
 
-    x[idx] <- rhs
+    x[i] <- rhs
 
-    names(x)[idx] <- lhs
+    names(x)[i] <- lhs
   }
   x
 }
@@ -117,15 +118,15 @@ convert_unnamed_formula <- function(x) {
 #' @noRd
 convert_named_formula <- function(x) {
 
-  idx <- is_named_rhs_formula(x)
+  i <- is_named_rhs_formula(x)
 
-  if (any(idx)) {
+  if (any(i)) {
 
-    tmp <- x[idx]
+    tmp <- x[i]
 
     rhs <- map(tmp, f_rhs)
 
-    x[idx] <- rhs
+    x[i] <- rhs
   }
   x
 }
@@ -134,9 +135,9 @@ convert_named_formula <- function(x) {
 #' @noRd
 format_query <- function(x) {
 
-  i <- list_lengths(x) > 1
+  if (any(is_length_two(x))) {
 
-  if (any(i)) {
+    i <- is_length_two(x)
 
     g <- x[i]
 
@@ -144,7 +145,7 @@ format_query <- function(x) {
       "[",
       paste0(
         unlist(g, use.names = FALSE),
-        collapse = " ,"),
+        collapse = ", "),
       "]")
 
     names(x[i]) <- names(g)
@@ -158,22 +159,35 @@ format_query <- function(x) {
   glue("{nm} = {pr}")
 }
 
+# q2 <- list(
+#   `conditions[0][property]` = "state",
+#   `conditions[0][operator]` = "IN",
+#   `conditions[0][value][1]` = "CA",
+#   `conditions[0][value][2]` = "GA",
+#   `conditions[0][value][3]` = "NY")
 #' @autoglobal
 #' @noRd
-generate_query <- function(a) {
+generate_query <- function(a, type = "def") {
+    # encodeString(x, quote = '"')
+
+  type <- match.arg(type, c("def", "care"))
+
+  key <- switch(
+    type,
+    care = list(VERB = "filter",     FIELD = "path"),
+    def  = list(VERB = "conditions", FIELD = "property"))
 
   imap(a, function(x, m) {
 
-    # encodeString(x, quote = '"')
-
-    p <- paste0("filter[<<i>>][path]=", m, "&")
-    o <- paste0("filter[<<i>>][operator]=", "=", "&")
+    p <- paste0(key$VERB, "[<<i>>][", key$FIELD, "]=", m, "&")
+    o <- paste0(key$VERB, "[<<i>>][operator]=", "=", "&")
     v <- unlist(x, use.names = FALSE)
 
     if (length(v) > 1)
 
       v <- paste0(
-        "filter[<<i>>][value][",
+        key$VERB,
+        "[<<i>>][value][",
         seq_along(v),
         "]=",
         v,
@@ -182,7 +196,8 @@ generate_query <- function(a) {
 
     if (length(v) == 1)
       v <- paste0(
-        "filter[<<i>>][value]=",
+        key$VERB,
+        "[<<i>>][value]=",
         v,
         "&"
         )
@@ -193,7 +208,7 @@ generate_query <- function(a) {
     unname() |>
     imap(function(x, idx) {
 
-      greplace(x, "<<i>>", idx) |>
+      greplace(x, "<<i>>", if (type == "def") idx - 1 else idx) |>
         paste0(collapse = "")
 
     })
