@@ -42,7 +42,6 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Collate: 
-    '01-new_end.R'
     'S7_args.R'
     'aka_end.R'
     'aka_grp.R'
@@ -51,6 +50,7 @@ Collate:
     'classes.R'
     'cli.R'
     'dictionaries.R'
+    'endpoint.R'
     'generated-globals.R'
     'generic_getters.R'
     'get_dimensions.R'

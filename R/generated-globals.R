@@ -35,8 +35,8 @@ utils::globalVariables(c(
   "downloadURL",
   # <open_dictionary>
   "endpoint",
-  # <new_endpoint>
   # <clog_care>
+  # <fmt_tmp>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",
@@ -128,12 +128,12 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "title",
-  # <new_endpoint>
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
+  # <new_endpoint>
   # <tidy_resources>
   "year",
   # <quality_eligibility>

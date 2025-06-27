@@ -2,6 +2,24 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+names_map <- function(x,
+                      f,
+                      ...,
+                      .para = FALSE,
+                      .prog = FALSE,
+                      .nm = x) {
+  map(
+    .x = x,
+    .f = f,
+    ...,
+    .parallel = .para,
+    .progress = .prog
+  ) |>
+    set_names(nm = .nm)
+}
+
+#' @autoglobal
+#' @noRd
 fibble <- function(...) {
   fastplyr::new_tbl(...)
 }
