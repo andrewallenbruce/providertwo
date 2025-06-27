@@ -15,7 +15,7 @@ cli_results <- function(n, limit, end, api) {
 cli_aka <- function(aka) {
 
   x <- unlist(aka)
-  i <- x[collapse::radixorder(names(x), sort = TRUE)]
+  i <- x[radixorder(names(x), sort = TRUE)]
 
   glue_col(
     "{bgBlack {format(names(x), justify = 'right')}}",

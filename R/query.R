@@ -3,6 +3,7 @@
 # last_name ~ contains_("J"),
 # state = ~ in_(c("CA", "GA", "NY")),
 # country = in_(c("CA", "GA", "NY")),
+# state_owner = c("GA", "MD"),
 # npi = npi_ex$k,
 # npi_owner = npi_ex$k[1],
 # ccn = "01256",
@@ -56,14 +57,14 @@ check_unnamed_formulas <- function(x, call = caller_env()) {
 #' @noRd
 is_length_one <- function(x) {
   # map_lgl(x, \(x) length(x) == 1L)
-  list_lengths(x, names = TRUE) == 1L
+  list_lengths(x) == 1L
 }
 
 #' @autoglobal
 #' @noRd
 is_length_two <- function(x) {
   # map_lgl(x, \(x) length(x) > 1L)
-  list_lengths(x, names = TRUE) > 1L
+  list_lengths(x) > 1L
 }
 
 #' @autoglobal
@@ -94,17 +95,16 @@ is_named_rhs_formula <- function(x) {
 #' @noRd
 convert_unnamed_formula <- function(x) {
 
-  i <- is_unnamed_full_formula(x)
+  if (any(is_unnamed_full_formula(x))) {
 
-  if (any(i)) {
+    i <- is_unnamed_full_formula(x)
 
     tmp <- x[i]
 
     rhs <- map(tmp, f_rhs)
 
-    lhs <- map(
-      tmp, function(x)
-        as_string(f_lhs(x))) |>
+    lhs <- map(tmp, function(x)
+      f_lhs(x) |> as_string()) |>
       list_c()
 
     x[i] <- rhs
@@ -118,9 +118,9 @@ convert_unnamed_formula <- function(x) {
 #' @noRd
 convert_named_formula <- function(x) {
 
-  i <- is_named_rhs_formula(x)
+  if (any(is_named_rhs_formula(x))) {
 
-  if (any(i)) {
+    i <- is_named_rhs_formula(x)
 
     tmp <- x[i]
 
@@ -137,26 +137,21 @@ format_query <- function(x) {
 
   if (any(is_length_two(x))) {
 
-    i <- is_length_two(x)
+    two <- x[is_length_two(x)]
 
-    g <- x[i]
+    x[is_length_two(x)] <- paste0("[", paste0(unlist(two, use.names = FALSE), collapse = ", "), "]")
 
-    x[i] <- paste0(
-      "[",
-      paste0(
-        unlist(g, use.names = FALSE),
-        collapse = ", "),
-      "]")
+    # names(x[is_length_two(x)]) <- names(two)
 
-    names(x[i]) <- names(g)
+  }
 
-    }
+  if (any(map_lgl(x, is.null))) x[map_lgl(x, is.null)] <- cli::col_red("NULL")
 
-  pr <- format(unlist(x, use.names = FALSE), justify = 'left')
+  VALUE <- format(unlist(x, use.names = FALSE), justify = "left")
 
-  nm <- format(names(x), justify = 'right')
+  FIELD <- format(names(x), justify = "right")
 
-  glue("{nm} = {pr}")
+  glue("{FIELD} = {VALUE}")
 }
 
 # q2 <- list(
@@ -167,17 +162,17 @@ format_query <- function(x) {
 #   `conditions[0][value][3]` = "NY")
 #' @autoglobal
 #' @noRd
-generate_query <- function(a, type = "def") {
+generate_query <- function(args, type = "def") {
     # encodeString(x, quote = '"')
 
-  type <- match.arg(type, c("def", "care"))
+  args <- discard(args, is.null)
 
   key <- switch(
-    type,
+    match.arg(type, c("def", "care")),
     care = list(VERB = "filter",     FIELD = "path"),
     def  = list(VERB = "conditions", FIELD = "property"))
 
-  imap(a, function(x, m) {
+  imap(args, function(x, m) {
 
     p <- paste0(key$VERB, "[<<i>>][", key$FIELD, "]=", m, "&")
     o <- paste0(key$VERB, "[<<i>>][operator]=", "=", "&")
@@ -185,22 +180,11 @@ generate_query <- function(a, type = "def") {
 
     if (length(v) > 1)
 
-      v <- paste0(
-        key$VERB,
-        "[<<i>>][value][",
-        seq_along(v),
-        "]=",
-        v,
-        "&"
-        )
+      v <- paste0(key$VERB, "[<<i>>][value][", seq_along(v), "]=", v, "&")
 
     if (length(v) == 1)
-      v <- paste0(
-        key$VERB,
-        "[<<i>>][value]=",
-        v,
-        "&"
-        )
+
+      v <- paste0(key$VERB, "[<<i>>][value]=", v, "&")
 
     c(p, o, v)
 
@@ -238,21 +222,18 @@ seq_along0 <- function(x) {
 #' @export
 query_formatter <- function(args) {
 
-  args <- discard(args, is.null)
-
   cat(format_query(args), sep = "\n")
-
   cat("\n")
+
+  args <- discard(args, is.null)
 
   qry <- generate_query(args)
 
-  map(
-    qry,
-    function(x) {
-      strsplit(x, "&") |>
-        unlist() |>
-        append("\n")
-      }) |>
+  map(qry, function(x) {
+    strsplit(x, "&") |>
+      unlist() |>
+      append("\n")
+  }) |>
     unlist() |>
     cat(sep = "\n")
 
