@@ -1,3 +1,12 @@
+# q2 <- list(
+#   `conditions[0][property]` = "state",
+#   `conditions[0][operator]` = "IN",
+#   `conditions[0][value][1]` = "CA",
+#   `conditions[0][value][2]` = "GA",
+#   `conditions[0][value][3]` = "NY")
+#
+# encodeString(x, quote = '"')
+#
 # x <- list(
 # first_name ~ starts_with_("Andr"),
 # last_name ~ contains_("J"),
@@ -55,67 +64,6 @@ check_unnamed_formulas <- function(x, call = caller_env()) {
 
 #' @autoglobal
 #' @noRd
-is_length_one <- function(x) {
-  # map_lgl(x, \(x) length(x) == 1L)
-  list_lengths(x) == 1L
-}
-
-#' @autoglobal
-#' @noRd
-is_length_two <- function(x) {
-  # map_lgl(x, \(x) length(x) > 1L)
-  list_lengths(x) > 1L
-}
-
-#' @autoglobal
-#' @noRd
-is_full_formula <- function(x) {
-  map_lgl(x, is_formula, lhs = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-is_rhs_formula <- function(x) {
-  map_lgl(x, is_formula, lhs = FALSE)
-}
-
-#' @autoglobal
-#' @noRd
-is_unnamed_full_formula <- function(x) {
-  !have_name(x) & is_full_formula(x)
-}
-
-#' @autoglobal
-#' @noRd
-is_named_rhs_formula <- function(x) {
-  have_name(x) & is_rhs_formula(x)
-}
-
-#' @autoglobal
-#' @noRd
-convert_unnamed_formula <- function(x) {
-
-  if (any(is_unnamed_full_formula(x))) {
-
-    i <- is_unnamed_full_formula(x)
-
-    tmp <- x[i]
-
-    rhs <- map(tmp, f_rhs)
-
-    lhs <- map(tmp, function(x)
-      f_lhs(x) |> as_string()) |>
-      list_c()
-
-    x[i] <- rhs
-
-    names(x)[i] <- lhs
-  }
-  x
-}
-
-#' @autoglobal
-#' @noRd
 convert_named_formula <- function(x) {
 
   if (any(is_named_rhs_formula(x))) {
@@ -133,7 +81,7 @@ convert_named_formula <- function(x) {
 
 #' @autoglobal
 #' @noRd
-format_query <- function(x) {
+query_cli <- function(x) {
 
   if (any(is_length_two(x))) {
 
@@ -154,16 +102,9 @@ format_query <- function(x) {
   glue("{FIELD} = {VALUE}")
 }
 
-# q2 <- list(
-#   `conditions[0][property]` = "state",
-#   `conditions[0][operator]` = "IN",
-#   `conditions[0][value][1]` = "CA",
-#   `conditions[0][value][2]` = "GA",
-#   `conditions[0][value][3]` = "NY")
 #' @autoglobal
 #' @noRd
 generate_query <- function(args, type = "def") {
-    # encodeString(x, quote = '"')
 
   args <- discard(args, is.null)
 
@@ -199,13 +140,6 @@ generate_query <- function(args, type = "def") {
 
 }
 
-#' @autoglobal
-#' @noRd
-seq_along0 <- function(x) {
-  seq_along(x) - 1
-  # 0L:(length(x) - 1L)
-}
-
 #' Format Queries
 #' @examples
 #' args = list(state = c("GA", "MD"),
@@ -222,7 +156,7 @@ seq_along0 <- function(x) {
 #' @export
 query_formatter <- function(args) {
 
-  cat(format_query(args), sep = "\n")
+  cat(query_cli(args), sep = "\n")
   cat("\n")
 
   args <- discard(args, is.null)
@@ -239,101 +173,4 @@ query_formatter <- function(args) {
 
   invisible(qry)
 
-}
-
-#' Format Public API Queries
-#'
-#' @param args named `<list>` or vector of `<chr>` arguments
-#'
-#' @param operator `<chr>` logical operator; acceptable options are:
-#'                         `=`, `>=`, `<=`, `>`, `<`, `<>`, `STARTS_WITH`,
-#'                         `ENDS_WITH`, `CONTAINS`, `IN`, `NOT IN`, `BETWEEN`,
-#'                         `NOT BETWEEN`, `IS NULL`, `IS NOT NULL`
-#'
-#' @returns `<list>` of formatted query `<exprs>`
-#'
-#' @examplesIf rlang::is_interactive()
-#' format_query_care(list("NPI" = "1417918293", "PECOS" = NULL))
-#'
-#' format_query_care(list(NPI = "1417918293", PECOS = "001132"))
-#'
-#' format_query_pro(list("NPI" = "1417918293", "PECOS" = NULL))
-#'
-#' format_query_pro(list(NPI = "1417918293", PECOS = "001132"))
-#'
-#' @name query-format
-#' @noRd
-NULL
-
-#' @autoglobal
-#' @rdname query-format
-#' @noRd
-format_query_care <- function(args, operator = "=") {
-
-  args  <- discard(args, is.null)
-
-  query <- glue(
-    '
-  "filter[{i}][path]" = "{PATH}",
-  "filter[{i}][operator]" = "{OPERATOR}",
-  "filter[{i}][value]" = "{VALUE}"
-  ',
-    i                 = seq_along(args),
-    PATH              = names(args),
-    OPERATOR          = operator,
-    VALUE             = args) |>
-    glue_collapse(sep = ",\n")
-
-  glue('c({query})') |>
-    parse_expr() |>
-    eval_bare()
-}
-
-#' @autoglobal
-#' @rdname query-format
-#' @noRd
-format_query_pro <- function(args, operator = "=") {
-
-  args  <- discard(args, is.null)
-
-  query <- glue(
-    '
-  "conditions[{i}][property]" = "{PROPERTY}",
-  "conditions[{i}][operator]" = "{OPERATOR}",
-  "conditions[{i}][value]" = "{VALUE}"
-  ',
-    i                 = seq_along0(args),
-    PROPERTY          = names(args),
-    OPERATOR          = operator,
-    VALUE             = args) |>
-    glue_collapse(sep = ",\n")
-
-  glue('c({query})') |>
-    parse_expr() |>
-    eval_bare()
-}
-
-#' @autoglobal
-#' @noRd
-process_params <- function(arg_names, field_names) {
-
-  nms <- set_names(arg_names, field_names)
-
-  parse_expr(
-    paste0(
-      "list2(",
-      glue_collapse(
-        glue('{names(nms)} = {unname(nms)}'),
-        sep = ", "),
-      ")")
-  )
-}
-
-#' @autoglobal
-#' @noRd
-eval_params <- function(args, fields) {
-
-  process_params(args, fields) |>
-    eval_bare() |>
-    compact()
 }
