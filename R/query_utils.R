@@ -7,16 +7,34 @@ seq_along0 <- function(x) {
 
 #' @autoglobal
 #' @noRd
-is_length_one <- function(x) {
+is_len_one <- function(x) {
   # map_lgl(x, \(x) length(x) == 1L)
   list_lengths(x) == 1L
 }
 
 #' @autoglobal
 #' @noRd
-is_length_two <- function(x) {
+is_len_two <- function(x) {
   # map_lgl(x, \(x) length(x) > 1L)
   list_lengths(x) > 1L
+}
+
+#' @autoglobal
+#' @noRd
+is_nil <- function(x) {
+  map_lgl(x, is.null)
+}
+
+#' @autoglobal
+#' @noRd
+is_not_nil <- function(x) {
+  map_lgl(x, Negate(is.null))
+}
+
+#' @autoglobal
+#' @noRd
+is_len_one_not_nil <- function(x) {
+  is_len_one(x) & is_not_nil(x)
 }
 
 #' @autoglobal
@@ -33,13 +51,13 @@ is_rhs_formula <- function(x) {
 
 #' @autoglobal
 #' @noRd
-is_unnamed_full_formula <- function(x) {
+is_unnamed_formula <- function(x) {
   !have_name(x) & is_full_formula(x)
 }
 
 #' @autoglobal
 #' @noRd
-is_named_rhs_formula <- function(x) {
+is_named_rhs <- function(x) {
   have_name(x) & is_rhs_formula(x)
 }
 
@@ -51,9 +69,9 @@ is_named_rhs_formula <- function(x) {
 #' @noRd
 convert_unnamed_formula <- function(x) {
 
-  if (any(is_unnamed_full_formula(x))) {
+  if (any(is_unnamed_formula(x))) {
 
-    i <- is_unnamed_full_formula(x)
+    i <- is_unnamed_formula(x)
 
     tmp <- x[i]
 

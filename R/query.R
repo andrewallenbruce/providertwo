@@ -32,15 +32,13 @@
 #' @noRd
 check_names_unique <- function(x, call = caller_env()) {
 
-  x <- names(x[have_name(x)])
+  if (anyDuplicated(names(x[have_name(x)]))) {
 
-  if (anyDuplicated(x)) {
-
+    x <- names(x[have_name(x)])
     i <- which_(fduplicated(x))
 
-    cli_abort(c(
-      "x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."
-      ),
+    cli_abort(
+      c("x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."),
       call = call)
   }
 }
@@ -49,9 +47,9 @@ check_names_unique <- function(x, call = caller_env()) {
 #' @noRd
 check_unnamed_formulas <- function(x, call = caller_env()) {
 
-  if (any(is_unnamed_full_formula(x))) {
+  if (any(is_unnamed_formula(x))) {
 
-    x <- map(x[is_unnamed_full_formula(x)], \(x) as_label(x)) |>
+    x <- map(x[is_unnamed_formula(x)], \(x) as_label(x)) |>
       unlist(use.names = FALSE) |>
       set_names("*")
 
@@ -66,40 +64,68 @@ check_unnamed_formulas <- function(x, call = caller_env()) {
 #' @noRd
 convert_named_formula <- function(x) {
 
-  if (any(is_named_rhs_formula(x))) {
+  if (any(is_named_rhs(x))) {
 
-    i <- is_named_rhs_formula(x)
+    x[is_named_rhs(x)] <- map(
+      x[is_named_rhs(x)],
+      f_rhs)
 
-    tmp <- x[i]
-
-    rhs <- map(tmp, f_rhs)
-
-    x[i] <- rhs
   }
   x
 }
 
 #' @autoglobal
 #' @noRd
+brackets <- function(x) {
+  paste0(
+    cli::col_silver("["),
+    paste0(x, collapse = cli::col_silver(", ")),
+    cli::col_silver("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
 query_cli <- function(x) {
 
-  if (any(is_length_two(x))) {
+  if (any(is_named_rhs(x))) {
 
-    two <- x[is_length_two(x)]
-
-    x[is_length_two(x)] <- paste0("[", paste0(unlist(two, use.names = FALSE), collapse = ", "), "]")
-
-    # names(x[is_length_two(x)]) <- names(two)
+    x[is_named_rhs(x)] <- map(
+      x[is_named_rhs(x)], function(x) {
+        cli::col_green(deparse1(f_rhs(x)))
+        })
 
   }
 
-  if (any(map_lgl(x, is.null))) x[map_lgl(x, is.null)] <- cli::col_red("NULL")
+  if (any(is_len_two(x))) {
+
+    x[is_len_two(x)] <- brackets(
+      cli::col_yellow(
+        unlist(
+          x[is_len_two(x)],
+          use.names = FALSE)
+        )
+      )
+  }
+
+  if (any(is_nil(x))) x[is_nil(x)] <- cli::col_red("NULL")
+
+  if (any(is_len_one_not_nil(x))) {
+
+    x[is_len_one_not_nil(x)] <- cli::col_yellow(
+      unlist(
+        x[is_len_one_not_nil(x)],
+        use.names = FALSE)
+      )
+  }
 
   VALUE <- format(unlist(x, use.names = FALSE), justify = "left")
 
   FIELD <- format(names(x), justify = "right")
 
-  glue("{FIELD} = {VALUE}")
+  eq <- cli::col_black("=")
+
+  glue("{FIELD} {eq} {VALUE}")
 }
 
 #' @autoglobal
