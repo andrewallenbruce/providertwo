@@ -1,11 +1,12 @@
 #' List resources
-#' @param x `class_endpoint` or `class_temporal` object
-#' @returns A list of available API resources, either for download or to browse online.
+#'
+#' @param x `class_care` object
+#' @returns A list of available API resources.
 #' @examplesIf rlang::is_interactive()
-#' new_endpoint("care_enroll_prov") |> list_resources()
-#' new_endpoint("quality_payment") |> list_resources()
-#' new_collection("care_hha") |> list_resources()
-#' new_collection("care_in") |> list_resources()
+#' endpoint("care_enroll_prov") |> list_resources()
+#' endpoint("quality_payment") |> list_resources()
+#' collection("care_hha") |> list_resources()
+#' collection("care_in") |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "x", function(x) {
@@ -35,7 +36,7 @@ method(list_resources, class_group) <- function(x) {
 
 method(list_resources, class_catalog) <- function(x) {
   cli::cli_alert_warning(
-    "{.fn list_resources} requires {.obj_type_friendly {class_care()}}, not {.obj_type_friendly {x}}.",
+    "{.fn list_resources} requires {.cls class_care}, not {.obj_type_friendly {x}}.",
     wrap = TRUE)
   invisible(NULL)
 }

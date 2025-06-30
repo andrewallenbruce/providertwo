@@ -20,13 +20,12 @@ get_metadata <- function(x) {
 
 #' @noRd
 #' @autoglobal
-get_dimensions <- function(x,
-                           clog,
-                           api = NULL,
-                           call = caller_env()) {
+get_dimensions <- function(x, clog, api = NULL, call = caller_env()) {
+
   if (clog == "care" && is.null(api)) {
-    cli_abort(c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
-              call = call)
+    cli_abort(
+      c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
+      call = call)
   }
 
   switch(

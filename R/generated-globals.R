@@ -7,8 +7,14 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
+  # <endpoint>
+  "aka",
+  # <endpoint>
+  "api",
   # <quality_metrics>
   "category",
+  # <endpoint>
+  "clg",
   # <open_dictionary>
   "constraints",
   # <npi_nppes>
@@ -33,8 +39,6 @@ utils::globalVariables(c(
   # <clog_care>
   # <tidy_resources>
   "downloadURL",
-  # <open_dictionary>
-  "endpoint",
   # <clog_care>
   # <fmt_tmp>
   "endpoints",
@@ -45,14 +49,14 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
+  # <generate_query>
+  "FIELD",
   # <tidy_resources>
   "fileSize",
   # <quality_eligibility>
   "first_name",
   # <quality_eligibility>
   "firstApprovedDate",
-  # <clog_prov>
-  "group",
   # <clog_hgov>
   "id",
   # <clog_care>
@@ -95,16 +99,22 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
+  # <collection>
+  # <group>
+  "new_endpoint",
   # <clog_caid>
   "periodicity",
   # <clog_care>
   "references",
   # <clog_prov>
   "released",
-  # <new_endpoint>
+  # <endpoint>
   "resources",
   # <clog_care>
   "resourcesAPI",
+  # <alias_info>
+  # <endpoint>
+  "rex",
   # <tidy_resources>
   "size",
   # <quality_eligibility>
@@ -128,12 +138,14 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "title",
+  # <generate_query>
+  "VERB",
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
-  # <new_endpoint>
+  # <endpoint>
   # <tidy_resources>
   "year",
   # <quality_eligibility>

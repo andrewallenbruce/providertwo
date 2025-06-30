@@ -7,19 +7,19 @@
 list_resources(x)
 }
 \arguments{
-\item{x}{\code{class_endpoint} or \code{class_temporal} object}
+\item{x}{\code{class_care} object}
 }
 \value{
-A list of available API resources, either for download or to browse online.
+A list of available API resources.
 }
 \description{
 List resources
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-new_endpoint("care_enroll_prov") |> list_resources()
-new_endpoint("quality_payment") |> list_resources()
-new_collection("care_hha") |> list_resources()
-new_collection("care_in") |> list_resources()
+endpoint("care_enroll_prov") |> list_resources()
+endpoint("quality_payment") |> list_resources()
+collection("care_hha") |> list_resources()
+collection("care_in") |> list_resources()
 \dontshow{\}) # examplesIf}
 }

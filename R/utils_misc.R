@@ -2,6 +2,16 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
+`%|%` <- function(x, y) {
+  if (is.na(x)) y else x
+}
+
+#' @autoglobal
+#' @noRd
 names_map <- function(x,
                       f,
                       ...,
@@ -93,6 +103,21 @@ yank <- function(x) {
 
 #' @autoglobal
 #' @noRd
+pdetect <- function(x, p, n = FALSE, ci = FALSE) {
+  stri_detect_regex(str     = x,
+                    pattern = p,
+                    negate  = n,
+                    case_insensitive = ci)
+}
+
+#' @autoglobal
+#' @noRd
+subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
+  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
+}
+
+#' @autoglobal
+#' @noRd
 ss_title <- function(x, re, ...) {
   subset_detect(i = x, j = title, p = re, ...)
 }
@@ -100,7 +125,7 @@ ss_title <- function(x, re, ...) {
 #' @autoglobal
 #' @noRd
 select_alias <- function(x, alias, ...) {
-  subset_detect(i = x, j = title, p = alias, ...)
+  subset_detect(i = eval(str2lang(x)), j = title, p = alias, ...)
 }
 
 #' @autoglobal
@@ -247,21 +272,6 @@ delist_elem <- function(x, el) {
 #' @noRd
 smush_elem <- function(i, el) {
   map_chr(get_elem(i, el), function(x) paste0(x, collapse = ", "))
-}
-
-#' @autoglobal
-#' @noRd
-pdetect <- function(x, p, n = FALSE, ci = FALSE) {
-  stri_detect_regex(str     = x,
-                    pattern = p,
-                    negate  = n,
-                    case_insensitive = ci)
-}
-
-#' @autoglobal
-#' @noRd
-subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
-  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
 }
 
 #' @autoglobal

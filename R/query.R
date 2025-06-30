@@ -130,40 +130,42 @@ query_cli <- function(x) {
 
 #' @autoglobal
 #' @noRd
-generate_query <- function(args, type = "def") {
+generate_query <- function(args, type = "default") {
 
-  args <- discard(args, is.null)
+  type <- match.arg(type, c("default", "care"))
 
-  key <- switch(
-    match.arg(type, c("def", "care")),
-    care = list(VERB = "filter",     FIELD = "path"),
-    def  = list(VERB = "conditions", FIELD = "property"))
+  .c(VERB, FIELD) %=% switch(
+    type,
+    default = list(VERB = "conditions", FIELD = "property"),
+    care    = list(VERB = "filter", FIELD = "path")
+  )
 
-  imap(args, function(x, m) {
+  discard(args, is.null) |>
+    imap(
+      function(x, m) {
 
-    p <- paste0(key$VERB, "[<<i>>][", key$FIELD, "]=", m, "&")
-    o <- paste0(key$VERB, "[<<i>>][operator]=", "=", "&")
+    p <- paste0(VERB, "[<<i>>][", FIELD, "]=", m)
+    o <- paste0(VERB, "[<<i>>][operator]=", "=")
     v <- unlist(x, use.names = FALSE)
 
     if (length(v) > 1)
 
-      v <- paste0(key$VERB, "[<<i>>][value][", seq_along(v), "]=", v, "&")
+      v <- paste0(VERB, "[<<i>>][value][", seq_along(v), "]=", v)
 
     if (length(v) == 1)
 
-      v <- paste0(key$VERB, "[<<i>>][value]=", v, "&")
+      v <- paste0(VERB, "[<<i>>][value]=", v)
 
     c(p, o, v)
 
   }) |>
     unname() |>
-    imap(function(x, idx) {
+    imap(
+      function(x, idx) {
 
-      greplace(x, "<<i>>", if (type == "def") idx - 1 else idx) |>
-        paste0(collapse = "")
+      greplace(x, "<<i>>", if (type == "default") idx - 1 else idx)
 
     })
-
 }
 
 #' Format Queries
@@ -184,8 +186,6 @@ query_formatter <- function(args) {
 
   cat(query_cli(args), sep = "\n")
   cat("\n")
-
-  args <- discard(args, is.null)
 
   qry <- generate_query(args)
 
