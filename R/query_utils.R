@@ -1,17 +1,5 @@
 #' @autoglobal
 #' @noRd
-fmt_right <- function(x) {
-  format(x, justify = "right")
-}
-
-#' @autoglobal
-#' @noRd
-fmt_left <- function(x) {
-  format(x, justify = "left")
-}
-
-#' @autoglobal
-#' @noRd
 seq_along0 <- function(x) {
   seq_along(x) - 1
   # 0L:(length(x) - 1L)
@@ -139,45 +127,6 @@ convert_named_rhs <- function(x) {
         eval_bare()
     )
   }
-  x
-}
-
-# x <- list(
-#   state = ~ in_(c("CA", "GA", "NY")),
-#   last_name = ~ contains_("J")
-#   )
-# x
-# convert_modifier(x)
-#' @autoglobal
-#' @noRd
-convert_modifier <- function(x) {
-
-  x <- convert_named_rhs(x)
-
-  if (any(is_modifier(x))) {
-
-    i  <- x[is_modifier(x)]
-
-    list(
-      name = names(i),
-      operator = get_elem(i, "O") |> unlist(use.names = FALSE),
-      value = get_elem(i, "V") |> unlist(use.names = FALSE)
-    )
-
-    # map(l, function(x) {
-    #   list2(
-    #     "{x['name']}" := x['value'],
-    #     operator = x['operator']
-    #   )
-    #
-    # })
-
-    # list2(
-    #   "{name}" := value,
-    #   operator = operator
-    # )
-
-    }
   x
 }
 

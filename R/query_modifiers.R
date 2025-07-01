@@ -42,7 +42,7 @@ modifier_ <- function(operator, value) {
   arg_match0(operator, values = allowed)
 
   mod <- list(operator = operator,
-              value = value)
+              value    = value)
 
   class(mod) <- "modifier"
 
