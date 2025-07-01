@@ -5,8 +5,6 @@
 #   `conditions[0][value][2]` = "GA",
 #   `conditions[0][value][3]` = "NY")
 #
-# encodeString(x, quote = '"')
-#
 # x <- list(
 # first_name ~ starts_with_("Andr"),
 # last_name ~ contains_("J"),
@@ -27,62 +25,6 @@
 #
 # check_names_unique(x)
 # check_unnamed_formulas(x)
-
-#' @autoglobal
-#' @noRd
-check_names_unique <- function(x, call = caller_env()) {
-
-  if (anyDuplicated(names(x[have_name(x)]))) {
-
-    x <- names(x[have_name(x)])
-    i <- which_(fduplicated(x))
-
-    cli_abort(
-      c("x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."),
-      call = call)
-  }
-}
-
-#' @autoglobal
-#' @noRd
-check_unnamed_formulas <- function(x, call = caller_env()) {
-
-  if (any(is_unnamed_formula(x))) {
-
-    x <- map(x[is_unnamed_formula(x)], \(x) as_label(x)) |>
-      unlist(use.names = FALSE) |>
-      set_names("*")
-
-    cli_abort(c(
-      "x" = "{.emph Unnamed formulas} detected:",
-      cli::col_yellow(cli::format_bullets_raw(x))),
-      call = call)
-  }
-}
-
-#' @autoglobal
-#' @noRd
-convert_named_formula <- function(x) {
-
-  if (any(is_named_rhs(x))) {
-
-    x[is_named_rhs(x)] <- map(
-      x[is_named_rhs(x)],
-      f_rhs)
-
-  }
-  x
-}
-
-#' @autoglobal
-#' @noRd
-brackets <- function(x) {
-  paste0(
-    cli::col_silver("["),
-    paste0(x, collapse = cli::col_silver(", ")),
-    cli::col_silver("]")
-  )
-}
 
 #' @autoglobal
 #' @noRd
@@ -119,25 +61,25 @@ query_cli <- function(x) {
       )
   }
 
-  VALUE <- format(unlist(x, use.names = FALSE), justify = "left")
+  VALUE <- fmt_left(unlist(x, use.names = FALSE))
 
-  FIELD <- format(names(x), justify = "right")
+  FIELD <- fmt_right(names(x))
 
-  eq <- cli::col_black("=")
+  EQUAL <- cli::col_black("=")
 
-  glue("{FIELD} {eq} {VALUE}")
+  glue("{FIELD} {EQUAL} {VALUE}")
 }
 
 #' @autoglobal
 #' @noRd
 generate_query <- function(args, type = "default") {
 
-  type <- match.arg(type, c("default", "care"))
+  type <- match.arg(type, c("default", "medicare"))
 
   .c(VERB, FIELD) %=% switch(
     type,
-    default = list(VERB = "conditions", FIELD = "property"),
-    care    = list(VERB = "filter", FIELD = "path")
+    default  = list(VERB = "conditions", FIELD = "property"),
+    medicare = list(VERB = "filter", FIELD = "path")
   )
 
   discard(args, is.null) |>

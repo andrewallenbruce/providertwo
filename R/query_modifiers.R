@@ -1,4 +1,4 @@
-#' Query Formatting Helpers
+#' Query Modifiers
 #'
 #' @name query-helpers
 #' @param operator `<chr>`  operator to use; default is `"="`
@@ -15,9 +15,9 @@
 NULL
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
-query_modifier_ <- function(operator, value) {
+modifier_ <- function(operator, value) {
 
   check_required(value)
 
@@ -41,86 +41,96 @@ query_modifier_ <- function(operator, value) {
 
   arg_match0(operator, values = allowed)
 
-  list(FIELD    = character(0L),
-       OPERATOR = operator,
-       VALUE    = as.character(value))
+  mod <- list(FIELD    = character(0L),
+              OPERATOR = operator,
+              VALUE    = as.character(value))
+
+  class(mod) <- "modifier"
+
+  mod
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
+#' @noRd
+is_modifier <- function(x) {
+  inherits(x, "modifier")
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
 #' @noRd
 greater_than_ <- function(x, or_equal = FALSE) {
 
   check_number_decimal(x)
   check_bool(or_equal)
 
-  query_modifier_(
+  modifier_(
     operator = ifelse(!or_equal, ">", ">="),
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 less_than_ <- function(x, or_equal = FALSE) {
 
   check_number_decimal(x)
   check_bool(or_equal)
 
-  query_modifier_(
+  modifier_(
     operator = ifelse(!or_equal, "<", "<="),
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 starts_with_ <- function(x) {
-  query_modifier_(
+  modifier_(
     operator = "STARTS_WITH",
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 ends_with_ <- function(x) {
-  query_modifier_(
+  modifier_(
     operator = "ENDS_WITH",
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 contains_ <- function(x) {
-  query_modifier_(
+  modifier_(
     operator = "CONTAINS",
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 between_ <- function(x, negate = FALSE) {
 
   check_number_decimal(x)
   check_bool(negate)
 
-  query_modifier_(
+  modifier_(
     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
     value    = x)
 }
 
 #' @autoglobal
-#' @rdname query-helpers
+#' @rdname query-modifiers
 #' @noRd
 in_ <- function(x, negate = FALSE) {
 
-  check_number_decimal(x)
   check_bool(negate)
 
-  query_modifier_(
+  modifier_(
     operator = ifelse(!negate, "IN", "NOT IN"),
     value    = x)
 }
