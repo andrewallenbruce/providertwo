@@ -41,19 +41,12 @@ modifier_ <- function(operator, value) {
 
   arg_match0(operator, values = allowed)
 
-  mod <- list(O = operator,
-              V = value)
+  mod <- list(operator = operator,
+              value = value)
 
   class(mod) <- "modifier"
 
   mod
-}
-
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-is_modifier <- function(x) {
-  map_lgl(x, \(x) inherits(x, "modifier"))
 }
 
 #' @autoglobal
@@ -66,7 +59,7 @@ greater_than_ <- function(x, or_equal = FALSE) {
 
   modifier_(
     operator = ifelse(!or_equal, ">", ">="),
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -79,7 +72,7 @@ less_than_ <- function(x, or_equal = FALSE) {
 
   modifier_(
     operator = ifelse(!or_equal, "<", "<="),
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -88,7 +81,7 @@ less_than_ <- function(x, or_equal = FALSE) {
 starts_with_ <- function(x) {
   modifier_(
     operator = "STARTS_WITH",
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -97,7 +90,7 @@ starts_with_ <- function(x) {
 ends_with_ <- function(x) {
   modifier_(
     operator = "ENDS_WITH",
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -106,7 +99,7 @@ ends_with_ <- function(x) {
 contains_ <- function(x) {
   modifier_(
     operator = "CONTAINS",
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -119,7 +112,7 @@ between_ <- function(x, negate = FALSE) {
 
   modifier_(
     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
-    value    = enexpr(x))
+    value    = x)
 }
 
 #' @autoglobal
@@ -131,5 +124,5 @@ in_ <- function(x, negate = FALSE) {
 
   modifier_(
     operator = ifelse(!negate, "IN", "NOT IN"),
-    value    = enexpr(x))
+    value    = x)
 }

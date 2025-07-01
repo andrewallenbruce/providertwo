@@ -73,6 +73,13 @@ is_named_rhs <- function(x) {
   have_name(x) & is_rhs_formula(x)
 }
 
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+is_modifier <- function(x) {
+  inherits(x, "modifier")
+}
+
 # x <- list(
 #   first ~ starts_with_("Andr"),
 #   first = ~starts_with_("Andr"),
@@ -99,7 +106,7 @@ check_names_unique <- function(x, call = caller_env()) {
 # check_unnamed_formula(x)
 #' @autoglobal
 #' @noRd
-check_unnamed_formula <- function(x, call = caller_env()) {
+check_unnamed_formulas <- function(x, call = caller_env()) {
 
   if (any(is_unnamed_formula(x))) {
     x <- map(
@@ -121,10 +128,11 @@ check_unnamed_formula <- function(x, call = caller_env()) {
 # convert_named_formula(x)
 #' @autoglobal
 #' @noRd
-convert_named_formula <- function(x) {
+convert_named_rhs <- function(x) {
+
   if (any(is_named_rhs(x))) {
-    # x[is_named_rhs(x)] <- map(x[is_named_rhs(x)], f_rhs)
-    x[is_named_rhs(x)] <- map(
+
+      x[is_named_rhs(x)] <- map(
       x[is_named_rhs(x)],
       function(x)
         f_rhs(x) |>
@@ -144,7 +152,7 @@ convert_named_formula <- function(x) {
 #' @noRd
 convert_modifier <- function(x) {
 
-  x <- convert_named_formula(x)
+  x <- convert_named_rhs(x)
 
   if (any(is_modifier(x))) {
 
@@ -171,16 +179,6 @@ convert_modifier <- function(x) {
 
     }
   x
-}
-
-#' @autoglobal
-#' @noRd
-brackets <- function(x) {
-  paste0(
-    cli::col_silver("["),
-    paste0(x, collapse = cli::col_silver(", ")),
-    cli::col_silver("]")
-  )
 }
 
 # x <- list(last_name ~ contains_("J"))

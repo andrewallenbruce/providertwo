@@ -28,6 +28,16 @@
 
 #' @autoglobal
 #' @noRd
+brackets <- function(x) {
+  paste0(
+    cli::col_silver("["),
+    paste0(x, collapse = cli::col_silver(", ")),
+    cli::col_silver("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
 query_cli <- function(x) {
 
   if (any(is_named_rhs(x))) {
@@ -92,17 +102,19 @@ query_keywords <- function(type) {
 }
 
 # x <- list(
-#   # first_name ~ starts_with_("Andr"),
-#   # last_name ~ contains_("J"),
+#   first_name ~ starts_with_("Andr"),
+#   last_name ~ contains_("J"),
 #   state = ~ in_(c("CA", "GA", "NY")),
-#   # country = in_(c("CA", "GA", "NY")),
-#   # state_owner = c("GA", "MD"),
-#   # npi = npi_ex$k,
-#   # npi_owner = npi_ex$k[1],
-#   # ccn = "01256",
-#   # pac = NULL
+#   country = in_(c("CA", "GA", "NY")),
+#   state_owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   npi_owner = npi_ex$k[1],
+#   ccn = "01256",
+#   pac = NULL
 # )
-# x
+# generate_query(x)
+# generate_query(x, type = "medicare")
+#
 # args = list(
 #   state = c("GA", "MD"),
 #   last_name = "SMITH",
@@ -110,20 +122,24 @@ query_keywords <- function(type) {
 #   npi = 1234567890,
 #   PECOS = NULL
 # )
-# args <- convert_named_formula(args)
 # generate_query(args)
+# generate_query(args, type = "medicare")
 #' @autoglobal
 #' @noRd
 generate_query <- function(args, type = "default") {
 
+  check_names_unique(args)
+  check_unnamed_formulas(args)
+
   .c(VERB, FIELD, OPERATOR, VALUE, IDX) %=% query_keywords(type)
 
   discard(args, is.null) |>
+    convert_named_rhs() |>
     imap(
       function(x, name) {
 
     p <- paste0(VERB, IDX, FIELD, name)
-    o <- paste0(VERB, IDX, OPERATOR, "=")
+    o <- paste0(VERB, IDX, OPERATOR, if (is_modifier(x)) x[["operator"]] else "=")
     v <- unlist(x, use.names = FALSE)
 
     if (length(v) > 1)
