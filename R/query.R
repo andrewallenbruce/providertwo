@@ -72,31 +72,46 @@ query_cli <- function(x) {
 
 #' @autoglobal
 #' @noRd
-generate_query <- function(args, type = "default") {
-
+query_keywords <- function(type) {
   type <- match.arg(type, c("default", "medicare"))
 
-  .c(VERB, FIELD) %=% switch(
+  switch(
     type,
-    default  = list(VERB = "conditions", FIELD = "property"),
-    medicare = list(VERB = "filter", FIELD = "path")
+    default  = list(VERB      = "conditions",
+                    FIELD     = "[property]=",
+                    OPERATOR  = "[operator]=",
+                    VALUE     = "[value]",
+                    IDX       = "[<<i>>]"),
+    medicare = list(VERB      = "filter",
+                    FIELD     = "[path]=",
+                    OPERATOR  = "[operator]=",
+                    VALUE     = "[value]",
+                    IDX       = "[<<i>>]")
   )
+
+}
+
+#' @autoglobal
+#' @noRd
+generate_query <- function(args, type = "default") {
+
+  .c(VERB, FIELD, OPERATOR, VALUE, IDX) %=% query_keywords(type)
 
   discard(args, is.null) |>
     imap(
       function(x, m) {
 
-    p <- paste0(VERB, "[<<i>>][", FIELD, "]=", m)
-    o <- paste0(VERB, "[<<i>>][operator]=", "=")
+    p <- paste0(VERB, IDX, FIELD, m)
+    o <- paste0(VERB, IDX, OPERATOR, "=")
     v <- unlist(x, use.names = FALSE)
 
     if (length(v) > 1)
 
-      v <- paste0(VERB, "[<<i>>][value][", seq_along(v), "]=", v)
+      v <- paste0(VERB, IDX, VALUE, "[", seq_along(v), "]=", v)
 
     if (length(v) == 1)
 
-      v <- paste0(VERB, "[<<i>>][value]=", v)
+      v <- paste0(VERB, IDX, VALUE, "=", v)
 
     c(p, o, v)
 
@@ -105,7 +120,7 @@ generate_query <- function(args, type = "default") {
     imap(
       function(x, idx) {
 
-      greplace(x, "<<i>>", if (type == "default") idx - 1 else idx)
+      greplace(x, IDX, if (type == "default") idx - 1 else idx)
 
     })
 }

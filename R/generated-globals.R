@@ -65,6 +65,8 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
+  # <generate_query>
+  "IDX",
   # <quality_eligibility>
   "is_maqi",
   # <quality_eligibility>
@@ -102,6 +104,8 @@ utils::globalVariables(c(
   # <collection>
   # <group>
   "new_endpoint",
+  # <generate_query>
+  "OPERATOR",
   # <clog_caid>
   "periodicity",
   # <clog_care>
@@ -138,6 +142,8 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "title",
+  # <generate_query>
+  "VALUE",
   # <generate_query>
   "VERB",
   # <clog_care>

@@ -72,7 +72,7 @@ care_end_dims <- function(x) {
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE) |>
-    perform_simple(x) |>
+    perform_simple() |>
     get_elem("meta") |>
     get_elem(c("total_rows", "headers"))
 
