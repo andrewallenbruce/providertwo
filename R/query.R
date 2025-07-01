@@ -91,6 +91,27 @@ query_keywords <- function(type) {
 
 }
 
+# x <- list(
+#   # first_name ~ starts_with_("Andr"),
+#   # last_name ~ contains_("J"),
+#   state = ~ in_(c("CA", "GA", "NY")),
+#   # country = in_(c("CA", "GA", "NY")),
+#   # state_owner = c("GA", "MD"),
+#   # npi = npi_ex$k,
+#   # npi_owner = npi_ex$k[1],
+#   # ccn = "01256",
+#   # pac = NULL
+# )
+# x
+# args = list(
+#   state = c("GA", "MD"),
+#   last_name = "SMITH",
+#   country = ~ in_(c("CA", "GA", "NY")),
+#   npi = 1234567890,
+#   PECOS = NULL
+# )
+# args <- convert_named_formula(args)
+# generate_query(args)
 #' @autoglobal
 #' @noRd
 generate_query <- function(args, type = "default") {
@@ -99,9 +120,9 @@ generate_query <- function(args, type = "default") {
 
   discard(args, is.null) |>
     imap(
-      function(x, m) {
+      function(x, name) {
 
-    p <- paste0(VERB, IDX, FIELD, m)
+    p <- paste0(VERB, IDX, FIELD, name)
     o <- paste0(VERB, IDX, OPERATOR, "=")
     v <- unlist(x, use.names = FALSE)
 
@@ -120,7 +141,7 @@ generate_query <- function(args, type = "default") {
     imap(
       function(x, idx) {
 
-      greplace(x, IDX, if (type == "default") idx - 1 else idx)
+      greplace(x, "<<i>>", if (type == "default") idx - 1 else idx)
 
     })
 }
