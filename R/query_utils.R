@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+brackets <- function(x) {
+  paste0("[", x, "]")
+}
+
+#' @autoglobal
+#' @noRd
 seq_along0 <- function(x) {
   seq_along(x) - 1
   # 0L:(length(x) - 1L)
