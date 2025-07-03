@@ -164,23 +164,25 @@ create_query <- function(..., .type) {
 #   pac = NULL,
 #   .type = "medicare"
 # )
+#' @autoglobal
+#' @noRd
 new_query <- function(..., .type) {
-
   # args <- dots_list(..., .homonyms = "error")
 
-  cat(query_cli(...), sep = "\n")
-  cat("\n")
+  # cat(query_cli(...), sep = "\n")
+  # cat("\n")
 
   qry <- create_query(..., .type = .type)
 
   map(qry, function(x) {
-    strsplit(x, "&") |>
-      unlist() |>
+    unlist(x) |>
       append("\n")
   }) |>
     unlist() |>
     cat(sep = "\n")
 
-  invisible(qry)
+  invisible(map(x, \(x) paste0(x, collapse = "&")) |>
+              unlist(use.names = FALSE) |>
+              paste0(collapse = "&"))
 
 }

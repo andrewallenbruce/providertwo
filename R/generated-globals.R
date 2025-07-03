@@ -154,6 +154,8 @@ utils::globalVariables(c(
   # <generate_query>
   # <create_query>
   "VERB",
+  # <new_query>
+  "x",
   # <clog_care>
   # <clog_open>
   # <clog_caid>
