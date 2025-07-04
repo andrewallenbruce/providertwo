@@ -14,6 +14,28 @@
 #' @noRd
 NULL
 
+# list(
+#   first_name = starts_with_("Andr"),
+#   middle_name = ends_with_("e"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = not_in_("USA"),
+#   state_owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   zip = is_("30303"),
+#   rate = greater_or_equal_(1000),
+#   rate2 = less_than_(1000),
+#   rate2 = less_or_equal_(1000),
+#   rate3 = greater_than_(1000),
+#   rate3 = not_between_(2000),
+#   rate4 = between_(2000),
+#   rate5 = not_in_(c(1000, 2000)),
+#   rate6 = is_not_(1000),
+#   rate7 = blank_(""),
+#   rate8 = not_blank_("")
+# )
+
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
@@ -25,7 +47,7 @@ modifier_ <- function(operator, value) {
 
   allowed <- c(
     "=",
-    "!=",
+    "<>",
     "<",
     "<=",
     ">",
@@ -36,13 +58,14 @@ modifier_ <- function(operator, value) {
     "STARTS_WITH",
     "ENDS_WITH",
     "BETWEEN",
-    "NOT BETWEEN"
+    "NOT BETWEEN",
+    "IS NULL",
+    "IS NOT NULL"
   )
 
   arg_match0(operator, values = allowed)
 
-  mod <- list(operator = operator,
-              value    = value)
+  mod <- list(operator = operator, value = value)
 
   class(mod) <- "modifier"
 
@@ -52,77 +75,110 @@ modifier_ <- function(operator, value) {
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-greater_than_ <- function(x, or_equal = FALSE) {
-
+greater_than_ <- function(x) {
   check_number_decimal(x)
-  check_bool(or_equal)
-
-  modifier_(
-    operator = ifelse(!or_equal, ">", ">="),
-    value    = x)
+  modifier_(operator = ">", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-less_than_ <- function(x, or_equal = FALSE) {
-
+greater_or_equal_ <- function(x) {
   check_number_decimal(x)
-  check_bool(or_equal)
+  modifier_(operator = ">=", value = x)
+}
 
-  modifier_(
-    operator = ifelse(!or_equal, "<", "<="),
-    value    = x)
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+less_than_ <- function(x) {
+  check_number_decimal(x)
+  modifier_(operator = "<", value = x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+less_or_equal_ <- function(x) {
+  check_number_decimal(x)
+  modifier_(operator = "<=", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
 starts_with_ <- function(x) {
-  modifier_(
-    operator = "STARTS_WITH",
-    value    = x)
+  modifier_(operator = "STARTS_WITH", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
 ends_with_ <- function(x) {
-  modifier_(
-    operator = "ENDS_WITH",
-    value    = x)
+  modifier_(operator = "ENDS_WITH", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
 contains_ <- function(x) {
-  modifier_(
-    operator = "CONTAINS",
-    value    = x)
+  modifier_(operator = "CONTAINS", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-between_ <- function(x, negate = FALSE) {
-
+between_ <- function(x) {
   check_number_decimal(x)
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
-    value    = x)
+  modifier_(operator = "BETWEEN", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-in_ <- function(x, negate = FALSE) {
+not_between_ <- function(x) {
+  check_number_decimal(x)
+  modifier_(operator = "NOT BETWEEN", value = x)
+}
 
-  check_bool(negate)
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+in_ <- function(x) {
+  modifier_(operator = "IN", value = x)
+}
 
-  modifier_(
-    operator = ifelse(!negate, "IN", "NOT IN"),
-    value    = x)
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+not_in_ <- function(x) {
+  modifier_(operator = "NOT IN", value = x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+is_ <- function(x) {
+  modifier_(operator = "=", value = x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+is_not_ <- function(x) {
+  modifier_(operator = "<>", value = x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+blank_ <- function(x) {
+  modifier_(operator = "IS NULL", value = x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+not_blank_ <- function(x) {
+  modifier_(operator = "IS NOT NULL", value = x)
 }

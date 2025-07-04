@@ -11,7 +11,6 @@ utils::globalVariables(c(
   "aka",
   # <endpoint>
   "api",
-  # <generate_query>
   # <create_query>
   "BDX",
   # <quality_metrics>
@@ -52,7 +51,6 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
-  # <generate_query>
   # <create_query>
   "FIELD",
   # <tidy_resources>
@@ -69,7 +67,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <generate_query>
   # <create_query>
   "IDX",
   # <quality_eligibility>
@@ -109,7 +106,6 @@ utils::globalVariables(c(
   # <collection>
   # <group>
   "new_endpoint",
-  # <generate_query>
   # <create_query>
   "OPERATOR",
   # <clog_caid>
@@ -148,14 +144,10 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "title",
-  # <generate_query>
   # <create_query>
   "VALUE",
-  # <generate_query>
   # <create_query>
   "VERB",
-  # <new_query>
-  "x",
   # <clog_care>
   # <clog_open>
   # <clog_caid>

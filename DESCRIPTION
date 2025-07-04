@@ -65,7 +65,6 @@ Collate:
     'providertwo-package.R'
     'qpp.R'
     'query.R'
-    'query_cli.R'
     'query_modifiers.R'
     'query_utils.R'
     'utils_checks.R'
