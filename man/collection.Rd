@@ -2,7 +2,7 @@
 % Please edit documentation in R/endpoint.R
 \name{collection}
 \alias{collection}
-\title{Create Collection of Endpoints}
+\title{Load Collection of Endpoints}
 \usage{
 collection(alias)
 }
@@ -10,10 +10,10 @@ collection(alias)
 \item{alias}{\verb{<chr>} Alias representing the CMS data endpoint.}
 }
 \value{
-S7 \code{class_collection} object.
+S7 \verb{<class_collection>} object.
 }
 \description{
-Create Collection of Endpoints
+Load Collection of Endpoints
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

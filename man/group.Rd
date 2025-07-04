@@ -2,20 +2,21 @@
 % Please edit documentation in R/endpoint.R
 \name{group}
 \alias{group}
-\title{Create Groups of Endpoints}
+\title{Create Group of Endpoints}
 \usage{
-group(alias, desc = NULL)
+group(alias, description = NULL)
 }
 \arguments{
 \item{alias}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
-\item{desc}{\verb{<chr>} Name of the group.}
+\item{description}{\verb{<chr>} Group description. Defaults to \code{NULL}, which will use
+the aliases as the description.}
 }
 \value{
-S7 \code{class_group} object.
+S7 \verb{<class_group>} object.
 }
 \description{
-Create Groups of Endpoints
+Create Group of Endpoints
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

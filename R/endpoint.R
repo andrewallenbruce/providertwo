@@ -55,26 +55,44 @@ alias_lookup <- function(x) {
 
   check_alias_results(x)
 
-  list_combine(
-    list_modify(
-      x,
-      list(
-        aka = NULL,
-        tbl = NULL,
-        exp = NULL,
-        rex = NULL)
-      ),
-    switch(
-      x$api,
-      end = c(x$tbl),
-      tmp = fmt_tmp(x$tbl)
-      )
-    )
+  list_combine(list_modify(x, list(
+    aka = NULL,
+    tbl = NULL,
+    exp = NULL,
+    rex = NULL
+  )), switch(x$api, end = c(x$tbl), tmp = fmt_tmp(x$tbl)))
 }
 
-#' API Endpoints
+#' @autoglobal
+#' @noRd
+get_identifier <- function(x) {
+  switch(
+    x$api,
+    end = class_endpoint(x$identifier),
+    tmp = class_temporal(x$endpoints))
+}
+
+#' @autoglobal
+#' @noRd
+get_care_identifier <- function(x) {
+  switch(
+    x$api,
+    end = class_endpoint(x$identifier),
+    tmp = class_temporal(slt(x$endpoints, -resources)))
+}
+
+#' @autoglobal
+#' @noRd
+get_care_resources <- function(x) {
+  switch(
+    x$api,
+    end = class_endpoint(x$resources),
+    tmp = class_temporal(slt(x$endpoints, year, resources)))
+}
+
+#' Load API Endpoint
 #' @param alias `<chr>` endpoint alias
-#' @returns An S7 object
+#' @returns S7 `<class_[Catalog Name]>` object.
 #' @examplesIf rlang::is_interactive()
 #' endpoint("care_dial_end")
 #' endpoint("care_dial_tmp")
@@ -98,58 +116,35 @@ endpoint <- function(alias) {
     care = class_care(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = switch(
-        x$api,
-        end = class_endpoint(x$identifier),
-        tmp = class_temporal(slt(x$endpoints, -resources))),
-      resources = switch(
-        x$api,
-        end = class_endpoint(x$resources),
-        tmp = class_temporal(slt(x$endpoints, year, resources)))
+      identifier = get_care_identifier(x),
+      resources  = get_care_resources(x)
     ),
     caid = class_caid(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = switch(
-        x$api,
-        end = class_endpoint(x$identifier),
-        tmp = class_temporal(x$endpoints)
-      )
+      identifier = get_identifier(x)
     ),
     prov = class_prov(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = switch(
-        x$api,
-        end = class_endpoint(x$identifier),
-        tmp = class_temporal(x$endpoints)
-      )
+      identifier = get_identifier(x)
     ),
     open = class_open(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = switch(
-        x$api,
-        end = class_endpoint(x$identifier),
-        tmp = class_temporal(x$endpoints)
-      )
+      identifier = get_identifier(x)
     ),
     hgov = class_hgov(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = switch(
-        x$api,
-        end = class_endpoint(x$identifier),
-        tmp = class_temporal(x$endpoints)
-      )
+      identifier = get_identifier(x)
     )
   )
 }
 
-#' Create Collection of Endpoints
-#'
+#' Load Collection of Endpoints
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @returns S7 `class_collection` object.
+#' @returns S7 `<class_collection>` object.
 #' @examplesIf rlang::is_interactive()
 #' collection("caid_demographics")
 #' collection("caid_unwind")
@@ -157,28 +152,34 @@ endpoint <- function(alias) {
 #' @autoglobal
 #' @export
 collection <- function(alias) {
+
   check_required(alias)
+
   x <- group_regex(alias)
 
-  class_collection(name = x$name,
-                   members = names_map(x$alias, endpoint))
+  class_collection(
+    name = x$name,
+    members = names_map(x$alias, endpoint)
+    )
 }
 
-#' Create Groups of Endpoints
-#'
+#' Create Group of Endpoints
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @param desc `<chr>` Name of the group.
-#' @returns S7 `class_group` object.
+#' @param description `<chr>` Group description. Defaults to `NULL`, which will use
+#'    the aliases as the description.
+#' @returns S7 `<class_group>` object.
 #' @examplesIf rlang::is_interactive()
 #' group(c("cahps_hhc_patient", "hgov_qhp_business"))
 #' group(c("hgov_local_help", "hgov_qhp_business"))
 #' group(c("asc_facility", "care_dial_end"))
 #' @autoglobal
 #' @export
-group <- function(alias, desc = NULL) {
+group <- function(alias, description = NULL) {
+
   check_required(alias)
+
   class_group(
-    name    = desc %||% paste0(alias, collapse = " | "),
+    name    = description %||% paste0(alias, collapse = " | "),
     members = names_map(alias, endpoint)
   )
 }

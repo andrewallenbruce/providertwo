@@ -2,7 +2,7 @@
 % Please edit documentation in R/endpoint.R
 \name{endpoint}
 \alias{endpoint}
-\title{API Endpoints}
+\title{Load API Endpoint}
 \usage{
 endpoint(alias)
 }
@@ -10,10 +10,10 @@ endpoint(alias)
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-An S7 object
+S7 \verb{<class_[Catalog Name]>} object.
 }
 \description{
-API Endpoints
+Load API Endpoint
 }
 \examples{
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
