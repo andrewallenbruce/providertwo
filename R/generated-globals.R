@@ -7,16 +7,10 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
-  # <endpoint>
-  "aka",
-  # <endpoint>
-  "api",
   # <create_query>
   "BDX",
   # <quality_metrics>
   "category",
-  # <endpoint>
-  "clg",
   # <open_dictionary>
   "constraints",
   # <npi_nppes>
@@ -103,9 +97,6 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
-  # <collection>
-  # <group>
-  "new_endpoint",
   # <create_query>
   "OPERATOR",
   # <clog_caid>
@@ -118,8 +109,7 @@ utils::globalVariables(c(
   "resources",
   # <clog_care>
   "resourcesAPI",
-  # <alias_info>
-  # <endpoint>
+  # <alias_lookup>
   "rex",
   # <tidy_resources>
   "size",
@@ -136,13 +126,13 @@ utils::globalVariables(c(
   # <clog_prov>
   "theme",
   # <ss_title>
-  # <select_alias>
   # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
+  # <select_alias>
   "title",
   # <create_query>
   "VALUE",

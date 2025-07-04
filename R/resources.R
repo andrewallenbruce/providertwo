@@ -1,15 +1,18 @@
 #' List resources
 #'
-#' @param x `class_care` object
+#' @param obj `<class_care>` object
+#'
 #' @returns A list of available API resources.
+#'
 #' @examplesIf rlang::is_interactive()
 #' endpoint("care_enroll_prov") |> list_resources()
 #' endpoint("quality_payment") |> list_resources()
 #' collection("care_hha") |> list_resources()
 #' collection("care_in") |> list_resources()
+#'
 #' @autoglobal
 #' @export
-list_resources <- new_generic("list_resources", "x", function(x) {
+list_resources <- new_generic("list_resources", "obj", function(obj) {
   S7_dispatch()
 })
 
@@ -29,36 +32,37 @@ tidy_resources <- function(x) {
     as_fibble()
 }
 
-method(list_resources, class_group) <- function(x) {
-  prop(x, "members") |>
+method(list_resources, class_group) <- function(obj) {
+  prop(obj, "members") |>
     map(list_resources)
 }
 
-method(list_resources, class_catalog) <- function(x) {
+method(list_resources, class_catalog) <- function(obj) {
   cli::cli_alert_warning(
-    "{.fn list_resources} requires {.cls class_care}, not {.obj_type_friendly {x}}.",
-    wrap = TRUE)
+    "{.fn list_resources} needs a {.cls class_care} object, not {.obj_type_friendly {obj}}.",
+    wrap = TRUE
+  )
   invisible(NULL)
 }
 
-method(list_resources, class_care) <- function(x) {
-  prop(x, "resources") |>
+method(list_resources, class_care) <- function(obj) {
+  prop(obj, "resources") |>
     list_resources()
 }
 
-method(list_resources, class_endpoint) <- function(x) {
-  prop(x, "url") |>
+method(list_resources, class_endpoint) <- function(obj) {
+  prop(obj, "url") |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
     map(function(resp)
       parse_string(resp, query = "/data") |>
         tidy_resources()) |>
-    pluck(1L)
+    yank()
 }
 
-method(list_resources, class_temporal) <- function(x) {
-  prop(x, "url") |>
+method(list_resources, class_temporal) <- function(obj) {
+  prop(obj, "url") |>
     get_elem("resources") |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>

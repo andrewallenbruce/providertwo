@@ -131,7 +131,7 @@ quick <- function(alias,
   check_required(alias)
 
   quick_(
-    new_endpoint(alias),
+    endpoint(alias),
     offset = offset,
     limit  = limit)
 }

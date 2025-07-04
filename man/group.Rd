@@ -21,5 +21,6 @@ Create Groups of Endpoints
 \dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 group(c("cahps_hhc_patient", "hgov_qhp_business"))
 group(c("hgov_local_help", "hgov_qhp_business"))
+group(c("asc_facility", "care_dial_end"))
 \dontshow{\}) # examplesIf}
 }

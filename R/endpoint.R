@@ -1,42 +1,37 @@
 #' @autoglobal
 #' @noRd
-alias_info <- function(x) {
+check_alias_results <- function(x, call = caller_env()) {
+  if (is_empty(x$tbl)) {
+    cli_abort(
+      c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches."),
+      call = call)
+  }
 
-  check_required(x)
-  check_character(x, allow_na = FALSE, allow_null = FALSE)
+  if (nrow(x$tbl) > 1L) {
+    cli_abort(
+      c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches:",
+        cli::col_yellow(cli::format_bullets_raw(x$tbl$title))
+      ),
+      call = call
+    )
+  }
 
-  flist(
-    aka = x,
-    api = api_type(x),
-    clg = catalog_type(x),
-    rex = alias_regex(x),
-    exp = glue("the$catalog${clg}${api}"),
-    i   = select_alias(exp, rex)
-  )
 }
 
 #' @autoglobal
 #' @noRd
-check_alias_results <- function(x, aka, rex) {
-
-  if (is_empty(x)) {
-    cli_abort(c("x" = "{.field {aka}} ({.val {rex}}) had {nrow(x)} matches."))
-  }
-
-  if (nrow(x) > 1L) {
-    cli_abort(c(
-      "x" = "{.field {aka}} ({.val {rex}}) had {nrow(x)} matches:",
-      cli::col_yellow(cli::format_bullets_raw(x$title))))
-  }
-
+select_alias <- function(x, alias, ...) {
+  subset_detect(i = eval(str2lang(x)),
+                j = title,
+                p = alias,
+                ...)
 }
 
 #' @autoglobal
 #' @noRd
 fmt_tmp <- function(x) {
-  # end <- yank(get_elem(res, "endpoints"))
-  # if (all_na(gv(end, "resources"))) gv(end, "resources") <- NULL
-  # Contries[-match(c("France", "Mali"), Contries)]
+  # if (all_na(gv(end, "resources")))
+  # gv(end, "resources") <- NULL
   flist(
     !!!c(x[names(x) %!=% "endpoints"]),
     endpoints  = yank(x$endpoints),
@@ -46,12 +41,34 @@ fmt_tmp <- function(x) {
 
 #' @autoglobal
 #' @noRd
-as_api <- function(api, end, tmp) {
-  switch(
-    api,
-    end = class_endpoint(end),
-    tmp = class_temporal(tmp),
-    cli_abort(c("x" = "{.field {api}} unrecognized."))
+alias_lookup <- function(x) {
+  check_required(x)
+
+  x <- flist(
+    aka = x,
+    api = api_type(x),
+    clg = catalog_type(x),
+    rex = alias_regex(x),
+    exp = glue("the$catalog${clg}${api}"),
+    tbl = select_alias(exp, rex)
+  )
+
+  check_alias_results(x)
+
+  list_combine(
+    list_modify(
+      x,
+      list(
+        aka = NULL,
+        tbl = NULL,
+        exp = NULL,
+        rex = NULL)
+      ),
+    switch(
+      x$api,
+      end = c(x$tbl),
+      tmp = fmt_tmp(x$tbl)
+      )
     )
 }
 
@@ -74,54 +91,56 @@ as_api <- function(api, end, tmp) {
 #' @export
 endpoint <- function(alias) {
 
-  .c(aka, api, clg, rex, exp, i) %=% alias_info(alias)
-
-  check_alias_results(i, aka, rex)
-
-  i <- switch(api, end = c(i), tmp = fmt_tmp(i))
+  x <- alias_lookup(alias)
 
   switch(
-    clg,
+    x$clg,
     care = class_care(
-      metadata   = get_metadata(i),
-      dimensions = get_dimensions(i, clg, api),
-      identifier = switch(api,
-        end = class_endpoint(i$identifier),
-        tmp = class_temporal(slt(i$endpoints, -resources))),
-      resources  = switch(api,
-        end = class_endpoint(i$resources),
-        tmp = class_temporal(slt(i$endpoints, year, resources)))
+      metadata   = get_metadata(x),
+      dimensions = get_dimensions(x),
+      identifier = switch(
+        x$api,
+        end = class_endpoint(x$identifier),
+        tmp = class_temporal(slt(x$endpoints, -resources))),
+      resources = switch(
+        x$api,
+        end = class_endpoint(x$resources),
+        tmp = class_temporal(slt(x$endpoints, year, resources)))
     ),
     caid = class_caid(
-      metadata   = get_metadata(i),
-      dimensions = get_dimensions(i, clg),
-      identifier = switch(api,
-        end = class_endpoint(i$identifier),
-        tmp = class_temporal(i$endpoints)
+      metadata   = get_metadata(x),
+      dimensions = get_dimensions(x),
+      identifier = switch(
+        x$api,
+        end = class_endpoint(x$identifier),
+        tmp = class_temporal(x$endpoints)
       )
     ),
     prov = class_prov(
-      metadata   = get_metadata(i),
-      dimensions = get_dimensions(i, clg),
-      identifier = switch(api,
-        end = class_endpoint(i$identifier),
-        tmp = class_temporal(i$endpoints)
+      metadata   = get_metadata(x),
+      dimensions = get_dimensions(x),
+      identifier = switch(
+        x$api,
+        end = class_endpoint(x$identifier),
+        tmp = class_temporal(x$endpoints)
       )
     ),
     open = class_open(
-      metadata   = get_metadata(i),
-      dimensions = get_dimensions(i, clg),
-      identifier = switch(api,
-        end = class_endpoint(i$identifier),
-        tmp = class_temporal(i$endpoints)
+      metadata   = get_metadata(x),
+      dimensions = get_dimensions(x),
+      identifier = switch(
+        x$api,
+        end = class_endpoint(x$identifier),
+        tmp = class_temporal(x$endpoints)
       )
     ),
     hgov = class_hgov(
-      metadata   = get_metadata(i),
-      dimensions = get_dimensions(i, clg),
-      identifier = switch(api,
-        end = class_endpoint(i$identifier),
-        tmp = class_temporal(i$endpoints)
+      metadata   = get_metadata(x),
+      dimensions = get_dimensions(x),
+      identifier = switch(
+        x$api,
+        end = class_endpoint(x$identifier),
+        tmp = class_temporal(x$endpoints)
       )
     )
   )
@@ -138,10 +157,11 @@ endpoint <- function(alias) {
 #' @autoglobal
 #' @export
 collection <- function(alias) {
+  check_required(alias)
   x <- group_regex(alias)
 
-  class_collection(name    = x$name,
-                   members = names_map(x$alias, new_endpoint))
+  class_collection(name = x$name,
+                   members = names_map(x$alias, endpoint))
 }
 
 #' Create Groups of Endpoints
@@ -152,11 +172,13 @@ collection <- function(alias) {
 #' @examplesIf rlang::is_interactive()
 #' group(c("cahps_hhc_patient", "hgov_qhp_business"))
 #' group(c("hgov_local_help", "hgov_qhp_business"))
+#' group(c("asc_facility", "care_dial_end"))
 #' @autoglobal
 #' @export
 group <- function(alias, desc = NULL) {
+  check_required(alias)
   class_group(
     name    = desc %||% paste0(alias, collapse = " | "),
-    members = names_map(alias, new_endpoint)
+    members = names_map(alias, endpoint)
   )
 }

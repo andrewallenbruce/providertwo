@@ -1,36 +1,9 @@
 #' @noRd
 #' @autoglobal
-get_metadata <- function(x) {
-  compact(list(
-    title       = null_if(x$title),
-    description = null_if(x$description),
-    modified    = null_if(x$modified),
-    group       = null_if(x$group),
-    issued      = null_if(x$issued),
-    released    = null_if(x$released),
-    temporal    = null_if(x$temporal),
-    periodicity = null_if(x$periodicity),
-    download    = null_if(x$download),
-    resources   = unlist_if(null_if(x$resources)),
-    dictionary  = null_if(x$dictionary),
-    site        = null_if(x$site),
-    references  = null_if(x$references)
-  ))
-}
-
-#' @noRd
-#' @autoglobal
-get_dimensions <- function(x, clog, api = NULL, call = caller_env()) {
-
-  if (clog == "care" && is.null(api)) {
-    cli_abort(
-      c("x" = "{.field clog} = {.val care} requires {.field api} arg."),
-      call = call)
-  }
-
+get_dimensions <- function(x, call = caller_env()) {
   switch(
-    clog,
-    care = ifelse(api == "end", care_end_dims(x), care_tmp_dims(x)),
+    x$clg,
+    care = if (x$api == "end") care_end_dims(x) else care_tmp_dims(x),
     caid = def_dims(x, 8000L),
     prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),

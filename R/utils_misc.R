@@ -6,25 +6,16 @@ options(fastplyr.inform = FALSE)
   if (is.null(x)) y else x
 }
 
+#' @autoglobal
+#' @noRd
 `%|%` <- function(x, y) {
   if (is.na(x)) y else x
 }
 
 #' @autoglobal
 #' @noRd
-names_map <- function(x,
-                      f,
-                      ...,
-                      .para = FALSE,
-                      .prog = FALSE,
-                      .nm = x) {
-  map(
-    .x = x,
-    .f = f,
-    ...,
-    .parallel = .para,
-    .progress = .prog
-  ) |>
+names_map <- function(x, f, ..., .nm = x) {
+  map(.x = x, .f = f, ...) |>
     set_names(nm = .nm)
 }
 
@@ -82,19 +73,6 @@ fnest <- function(x,
     fastplyr::f_ungroup()
 }
 
-#' @noRd
-#' @autoglobal
-null_if <- function(x) {
-  if (is.null(x)) return(NULL)
-  if (is_na(x)) NULL else x
-}
-
-#' @noRd
-#' @autoglobal
-unlist_if <- function(x) {
-  if (is.list(x)) unlist(x, use.names = FALSE) else x
-}
-
 #' @autoglobal
 #' @noRd
 yank <- function(x) {
@@ -120,12 +98,6 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 #' @noRd
 ss_title <- function(x, re, ...) {
   subset_detect(i = x, j = title, p = re, ...)
-}
-
-#' @autoglobal
-#' @noRd
-select_alias <- function(x, alias, ...) {
-  subset_detect(i = eval(str2lang(x)), j = title, p = alias, ...)
 }
 
 #' @autoglobal
