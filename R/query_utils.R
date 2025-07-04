@@ -1,13 +1,19 @@
 #' @autoglobal
 #' @noRd
-fmt_right <- function(x) {
+just_right <- function(x) {
   format(x, justify = "right")
 }
 
 #' @autoglobal
 #' @noRd
-fmt_left <- function(x) {
+just_left <- function(x) {
   format(x, justify = "left")
+}
+
+#' @autoglobal
+#' @noRd
+lone_not_null_cli <- function(x) {
+  cli::col_yellow(unlist(x, use.names = FALSE))
 }
 
 #' @autoglobal
@@ -15,9 +21,19 @@ fmt_left <- function(x) {
 brackets_cli <- function(x) {
   paste0(
     cli::col_silver("["),
-    paste0(x, collapse = cli::col_silver(", ")),
+    paste0(
+      cli::col_yellow((unlist(x, use.names = FALSE))
+    ),
+    collapse = cli::col_silver(", ")),
     cli::col_silver("]")
   )
+}
+
+#' @autoglobal
+#' @noRd
+calls_cli <- function(x) {
+  map(x[are_calls(x)], function(x)
+    cli::col_green(deparse1(x)))
 }
 
 #' @autoglobal
@@ -65,7 +81,7 @@ are_calls <- function(x) {
 
 #' @autoglobal
 #' @noRd
-are_length_one_not_null <- function(x) {
+are_lone_not_null <- function(x) {
   are_length_one(x) & are_not_null(x)
 }
 
@@ -74,6 +90,30 @@ are_length_one_not_null <- function(x) {
 #' @noRd
 is_modifier <- function(x) {
   inherits(x, "modifier")
+}
+
+#' @autoglobal
+#' @noRd
+any_calls <- function(x) {
+  any(are_calls(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_length_two <- function(x) {
+  any(are_length_two(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_null <- function(x) {
+  any(are_null(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_lone_not_null <- function(x) {
+  any(are_lone_not_null(x))
 }
 
 #' @autoglobal
@@ -108,24 +148,8 @@ query_keywords <- function(type) {
 
 #' @autoglobal
 #' @noRd
-any_calls <- function(x) {
-  any(are_calls(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_length_two <- function(x) {
-  any(are_length_two(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_null <- function(x) {
-  any(are_null(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_length_one_not_null <- function(x) {
-  any(are_length_one_not_null(x))
+flatten_query <- function(x) {
+  map(x, \(x) paste0(x, collapse = "&")) |>
+    unlist(use.names = FALSE) |>
+    paste0(collapse = "&")
 }

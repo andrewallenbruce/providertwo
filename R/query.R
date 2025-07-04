@@ -1,11 +1,3 @@
-#' @autoglobal
-#' @noRd
-flatten_query <- function(x) {
-  map(x, \(x) paste0(x, collapse = "&")) |>
-    unlist(use.names = FALSE) |>
-    paste0(collapse = "&")
-}
-
 # create_query(
 #   first_name = starts_with_("Andr"),
 #   last_name = contains_("J"),
@@ -53,7 +45,7 @@ create_query <- function(..., .type) {
       })
 }
 
-# query_cli2(
+# query_cli(
 #   first_name = starts_with_("Andr"),
 #   last_name = contains_("J"),
 #   state = in_(c("CA", "GA", "NY")),
@@ -61,54 +53,35 @@ create_query <- function(..., .type) {
 #   state_owner = c("GA", "MD"),
 #   npi = npi_ex$k,
 #   ccn = "01256",
-#   pac = NULL,
-#   .type = "medicare"
+#   pac = NULL
 # )
 #' @autoglobal
 #' @noRd
-query_cli2 <- function(...) {
+query_cli <- function(...) {
 
   x <- enexprs(...)
 
   if (any_calls(x)) {
-
-    x[are_calls(x)] <- map(
-      x[are_calls(x)],
-      function(x) {
-        cli::col_green(deparse1(x))
-      })
-
+    x[are_calls(x)] <- calls_cli(x[are_calls(x)])
   }
 
   if (any_length_two(x)) {
-
-    x[are_length_two(x)] <- brackets_cli(
-      cli::col_yellow(
-        unlist(
-          x[are_length_two(x)],
-          use.names = FALSE)
-      )
-    )
+    x[are_length_two(x)] <- brackets_cli(x[are_length_two(x)])
   }
 
   if (any_null(x)) x[are_null(x)] <- cli::col_red("NULL")
 
-  if (any_length_one_not_null(x)) {
-
-    x[are_length_one_not_null(x)] <- cli::col_yellow(
-      unlist(
-        x[are_length_one_not_null(x)],
-        use.names = FALSE)
-    )
+  if (any_lone_not_null(x)) {
+    x[are_lone_not_null(x)] <- lone_not_null_cli(x[are_lone_not_null(x)])
   }
 
-  VALUE <- fmt_left(unlist(x, use.names = FALSE))
+  FIELD  <- just_right(names(x))
 
-  FIELD <- fmt_right(names(x))
+  EQUALS <- cli::col_black("=")
 
-  EQUAL <- cli::col_black("=")
+  VALUE  <- just_left(unlist(x, use.names = FALSE))
 
-  glue("{FIELD} {EQUAL} {VALUE}")
+  glue("{FIELD} {EQUALS} {VALUE}")
 }
 
 # new_query(
@@ -128,7 +101,7 @@ new_query <- function(..., .type) {
 
   if (is_missing(.type)) .type <- "default"
 
-  cat(query_cli2(...), sep = "\n")
+  cat(query_cli(...), sep = "\n")
   cat("\n")
 
   qry <- create_query(..., .type = .type)
