@@ -3,11 +3,11 @@
 get_dimensions <- function(x, call = caller_env()) {
   switch(
     x$clg,
-    care = if (x$pnt == "endpoint") care_end_dims(x) else care_tmp_dims(x),
-    caid = def_dims(x, 8000L),
-    prov = def_dims(x, 1500L),
-    open = def_dims(x, 500L),
-    hgov = def_dims(x, 500L),
+    care = switch(x$pnt, current = dims_cur(x), temporal = dims_tmp(x)),
+    caid = dims(x, 8000L),
+    prov = dims(x, 1500L),
+    open = dims(x, 500L),
+    hgov = dims(x, 500L),
     cli::cli_abort(c("x" = "{.val {x$clg}} is invalid."), call = call)
   )
 }
@@ -26,7 +26,7 @@ def_fields <- function(x) {
 
 #' @autoglobal
 #' @noRd
-def_dims <- function(x, limit) {
+dims <- function(x, limit) {
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE) |>
@@ -41,7 +41,7 @@ def_dims <- function(x, limit) {
 
 #' @autoglobal
 #' @noRd
-care_end_dims <- function(x) {
+dims_cur <- function(x) {
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE) |>
@@ -58,7 +58,7 @@ care_end_dims <- function(x) {
 
 #' @autoglobal
 #' @noRd
-care_tmp_dims <- function(x) {
+dims_tmp <- function(x) {
   x <- x$identifier |>
     request() |>
     req_error(is_error = ~ FALSE)

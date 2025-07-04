@@ -44,13 +44,6 @@ brackets <- function(x) {
 
 #' @autoglobal
 #' @noRd
-seq_along0 <- function(x) {
-  seq_along(x) - 1
-  # 0L:(length(x) - 1L)
-}
-
-#' @autoglobal
-#' @noRd
 are_length_one <- function(x) {
   list_lengths(x) == 1L
 }
@@ -153,3 +146,8 @@ flatten_query <- function(x) {
     unlist(use.names = FALSE) |>
     paste0(collapse = "&")
 }
+
+# seq_along0 <- function(x) {
+#   seq_along(x) - 1
+#   0L:(length(x) - 1L)
+# }

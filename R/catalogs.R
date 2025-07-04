@@ -104,7 +104,7 @@ clog_care <- function(x) {
     join_on_title(slt(x, cols)) |>
     colorder(endpoints, pos = "end")
 
-  list(end = x, tmp = d)
+  list(current = x, temporal = d)
 }
 
 #' @autoglobal
@@ -126,7 +126,7 @@ clog_prov <- function(x) {
   )
 
   list(
-    end = mtt(
+    current = mtt(
       x$prov,
       title       = rm_nonascii(title),
       dictionary  = paste0(
@@ -196,8 +196,8 @@ clog_open <- function(x) {
     slt(cols)
 
   list(
-    end = sbt(x, year %==% "All", -year) |> roworder(title),
-    tmp = sbt(x, year %!=% "All") |>
+    current = sbt(x, year %==% "All", -year) |> roworder(title),
+    temporal = sbt(x, year %!=% "All") |>
       mtt(
         year = as.integer(year),
         title = gremove(title, "^[0-9]{4} "),
@@ -284,8 +284,8 @@ clog_caid <- function(x) {
     "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
 
   list(
-    end = ss_title(x, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
-    tmp = ss_title(x, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
+    current = ss_title(x, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
+    temporal = ss_title(x, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
       mtt(year = extract_year(title),
           title = nif(
       gdetect(title, "Child and Adult Health Care Quality Measures")       , "Child and Adult Health Care Quality Measures",
@@ -446,7 +446,7 @@ clog_hgov <- function(x) {
     roworder(title, -year)
 
   list(
-    end = rowbind(
+    current = rowbind(
       ss_title(x, "[2][0-9]{3}|QHP|SHOP|\\sPUF", n = TRUE),
       ss_title(x, "Qualifying|QHP Landscape Health Plan Business Rule Variables")) |>
       mtt(
@@ -454,7 +454,7 @@ clog_hgov <- function(x) {
             greplace("Qualifying Health Plan", "QHP") |>
             str_look_remove("County,", "ahead") |>
             gremove("2015 ")),
-    tmp = rowbind(
+    temporal = rowbind(
       temporal,
       ss_title(qhp, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
       fnest(by = "title") |>

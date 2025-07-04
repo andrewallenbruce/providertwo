@@ -144,7 +144,6 @@ clog_type <- function(x, call = caller_env()) {
 #' @noRd
 point_type <- function(x, call = caller_env()) {
   res <- nif(is_current(x), "current", is_temporal(x), "temporal")
-
   res %|% cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
 }
 

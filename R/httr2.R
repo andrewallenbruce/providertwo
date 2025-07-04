@@ -24,10 +24,8 @@ perform_simple_request <- function(x, ...) {
 parse_string <- function(resp, query = NULL) {
 
   if (!is.null(query) && query == "results") {
-    return(
-      fparse(
-        resp_body_string(resp)) |>
-        _[["results"]])
-    }
+    return(fparse(resp_body_string(resp)) |> _[["results"]])
+  }
+
   fparse(resp_body_string(resp), query = query)
 }

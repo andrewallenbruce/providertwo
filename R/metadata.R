@@ -39,11 +39,8 @@ get_metadata <- function(x) {
 get_identifier <- function(x) {
   switch(
     x$pnt,
-    endpoint = class_current(x$identifier),
-    temporal = switch(
-      x$clg,
-      care = class_temporal(slt(x$endpoints, -resources)),
-      class_temporal(x$endpoints))
+    current = class_current(x$identifier),
+    temporal = switch(x$clg, care = class_temporal(slt(x$endpoints, -resources)), class_temporal(x$endpoints))
   )
 }
 
@@ -52,6 +49,6 @@ get_identifier <- function(x) {
 get_resources <- function(x) {
   switch(
     x$pnt,
-    endpoint = class_current(x$resources),
+    current = class_current(x$resources),
     temporal = class_temporal(slt(x$endpoints, year, resources)))
 }

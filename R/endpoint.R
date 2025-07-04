@@ -67,7 +67,7 @@ alias_lookup <- function(x) {
       ),
     switch(
       x$pnt,
-      endpoint = c(x$tbl),
+      current = c(x$tbl),
       temporal = c_temp(x$tbl)
       )
     )
