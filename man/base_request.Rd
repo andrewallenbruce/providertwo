@@ -17,13 +17,3 @@ An \verb{<httr2_request>} object or list of \verb{<httr2_request>} objects
 \description{
 Create a new \verb{<httr2_request>} by class
 }
-\examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-endpoint("quality_payment")
-collection("care_hospital")
-endpoint("pdc_affiliations")
-endpoint("mlr_summary")
-endpoint("hgov_catastrophic")
-endpoint("hgov_mlr")
-\dontshow{\}) # examplesIf}
-}

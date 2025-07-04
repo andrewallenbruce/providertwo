@@ -6,13 +6,6 @@ NULL
 #' @param x A `class_endpoint`, `class_temporal` or `class_group` object
 #' @param ... Additional arguments
 #' @returns An `<httr2_request>` object or list of `<httr2_request>` objects
-#' @examplesIf interactive()
-#' endpoint("quality_payment")
-#' collection("care_hospital")
-#' endpoint("pdc_affiliations")
-#' endpoint("mlr_summary")
-#' endpoint("hgov_catastrophic")
-#' endpoint("hgov_mlr")
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x")
