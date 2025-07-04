@@ -5,36 +5,41 @@ NULL
 # ---- end_nms ----
 #' @autoglobal
 #' @noRd
-end_nms <- mph_init(
-  names(c(
-    end_prov$current,
-    end_hgov$current,
-    end_caid$current,
-    end_care$current,
-    end_open$current,
-    end_hgov$temporal,
-    end_caid$temporal,
-    end_care$temporal,
-    end_open$temporal
-  )))
+rlang::on_load({
+  end_nms <- mph_init(names(
+    c(
+      end_prov$current,
+      end_hgov$current,
+      end_caid$current,
+      end_care$current,
+      end_open$current,
+      end_hgov$temporal,
+      end_caid$temporal,
+      end_care$temporal,
+      end_open$temporal
+    )
+  ))
+})
 
 # ---- end_rex ----
 #' @autoglobal
 #' @noRd
-end_rex <- unlist(
-  c(
-    end_prov$current,
-    end_hgov$current,
-    end_caid$current,
-    end_care$current,
-    end_open$current,
-    end_hgov$temporal,
-    end_caid$temporal,
-    end_care$temporal,
-    end_open$temporal
-  ),
-  use.names = FALSE
-)
+rlang::on_load({
+  end_rex <- unlist(
+    c(
+      end_prov$current,
+      end_hgov$current,
+      end_caid$current,
+      end_care$current,
+      end_open$current,
+      end_hgov$temporal,
+      end_caid$temporal,
+      end_care$temporal,
+      end_open$temporal
+    ),
+    use.names = FALSE
+  )
+})
 
 
 #' @autoglobal
@@ -45,46 +50,44 @@ alias_rex <- function(x) {
 
 #' @autoglobal
 #' @noRd
-point <- list(
-  current = mph_init(names(
+rlang::on_load({
+  point <- list(current = mph_init(names(
     c(
       end_prov$current,
       end_hgov$current,
       end_caid$current,
       end_care$current,
       end_open$current
-    ))),
-  temporal = mph_init(names(
+    )
+  )), temporal = mph_init(names(
     c(
       end_hgov$temporal,
       end_caid$temporal,
       end_care$temporal,
       end_open$temporal
-    ))))
+    )
+  )))
+})
 
 #' @autoglobal
 #' @noRd
-clog <- list(
-  care = mph_init(names(c(
-    end_care$current,
-    end_care$temporal
-  ))),
-  prov = mph_init(names(
-    end_prov$current
+rlang::on_load({
+  clog <- list(
+    care = mph_init(names(
+      c(end_care$current, end_care$temporal)
     )),
-  open = mph_init(names(c(
-    end_open$current,
-    end_open$temporal
-  ))),
-  caid = mph_init(names(c(
-    end_caid$current,
-    end_caid$temporal
-  ))),
-  hgov = mph_init(names(c(
-    end_hgov$current,
-    end_hgov$temporal
-  )))
-)
+    prov = mph_init(names(end_prov$current)),
+    open = mph_init(names(
+      c(end_open$current, end_open$temporal)
+    )),
+    caid = mph_init(names(
+      c(end_caid$current, end_caid$temporal)
+    )),
+    hgov = mph_init(names(
+      c(end_hgov$current, end_hgov$temporal)
+    ))
+  )
+})
 
 #' @autoglobal
 #' @noRd
@@ -147,27 +150,19 @@ point_type <- function(x, call = caller_env()) {
   res %|% cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
 }
 
-
 # ---- col_nms ----
 #' @autoglobal
 #' @noRd
-col_nms <- mph_init(
-  names(c(
-    col_prov,
-    col_caid,
-    col_care,
-    col_open
-  )))
+rlang::on_load({
+  col_nms <- mph_init(names(c(col_prov, col_caid, col_care, col_open)))
+})
 
 # ---- col_rex ----
 #' @autoglobal
 #' @noRd
-col_rex <- c(
-  col_prov,
-  col_caid,
-  col_care,
-  col_open
-)
+rlang::on_load({
+  col_rex <- c(col_prov, col_caid, col_care, col_open)
+})
 
 #' @autoglobal
 #' @noRd

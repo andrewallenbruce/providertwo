@@ -16,17 +16,10 @@ S7 \verb{<class_[Catalog Name]>} object.
 Load API Endpoint
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 endpoint("care_dial_end")
 endpoint("care_dial_tmp")
-endpoint("quality_payment")
-endpoint("managed_longterm")
-endpoint("state_drug_util")
+endpoint("managed_mltss")
 endpoint("hgov_ab_reg_comp")
-endpoint("hgov_puf_rate")
-endpoint("profile_covered")
-endpoint("grouped_state_nature")
 endpoint("asc_facility")
 endpoint("dialysis_by_facility")
-\dontshow{\}) # examplesIf}
 }

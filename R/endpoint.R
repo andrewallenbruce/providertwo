@@ -76,16 +76,11 @@ alias_lookup <- function(x) {
 #' Load API Endpoint
 #' @param alias `<chr>` endpoint alias
 #' @returns S7 `<class_[Catalog Name]>` object.
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' endpoint("care_dial_end")
 #' endpoint("care_dial_tmp")
-#' endpoint("quality_payment")
-#' endpoint("managed_longterm")
-#' endpoint("state_drug_util")
+#' endpoint("managed_mltss")
 #' endpoint("hgov_ab_reg_comp")
-#' endpoint("hgov_puf_rate")
-#' endpoint("profile_covered")
-#' endpoint("grouped_state_nature")
 #' endpoint("asc_facility")
 #' endpoint("dialysis_by_facility")
 #' @autoglobal

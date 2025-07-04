@@ -2,6 +2,7 @@
 
   S7::methods_register()
   catalogs <<- memoise::memoise(catalogs)
+  rlang::run_on_load()
 
 }
 

@@ -15,35 +15,34 @@ quick_cli_ <- function(x) {
 #' @param x An S7 `<endpoint>` object
 #' @param ... Additional arguments
 #' @returns A list of results from the API query, or `NULL` if no results are found.
-#' @examplesIf rlang::is_interactive()
-#' asc <- endpoint("asc_facility")
-#'
-#' q0 <- list(
-#' `conditions[0][property]` = "state",
-#' `conditions[0][operator]` = "=",
-#' `conditions[0][value]` = "ZZ")
-#'
-#' q1 <- list(
-#' `conditions[0][property]` = "state",
-#' `conditions[0][operator]` = "=",
-#' `conditions[0][value]` = "NY")
-#'
-#' q2 <- list(
-#'   `conditions[0][property]` = "state",
-#'   `conditions[0][operator]` = "IN",
-#'   `conditions[0][value][1]` = "CA",
-#'   `conditions[0][value][2]` = "GA",
-#'   `conditions[0][value][3]` = "NY")
-#'
-#' q3 <- list(
-#'   `conditions[0][property]` = "asc2_rate",
-#'   `conditions[0][operator]` = "<",
-#'   `conditions[0][value]` = "0.02")
-#'
-#' quick_query_(asc, q0)
-#' quick_query_(asc, q1)
-#' #quick_query_(asc, q2)
-#' #quick_query_(asc, q3)
+# asc <- endpoint("asc_facility")
+#
+# q0 <- list(
+# `conditions[0][property]` = "state",
+# `conditions[0][operator]` = "=",
+# `conditions[0][value]` = "ZZ")
+#
+# q1 <- list(
+# `conditions[0][property]` = "state",
+# `conditions[0][operator]` = "=",
+# `conditions[0][value]` = "NY")
+#
+# q2 <- list(
+#   `conditions[0][property]` = "state",
+#   `conditions[0][operator]` = "IN",
+#   `conditions[0][value][1]` = "CA",
+#   `conditions[0][value][2]` = "GA",
+#   `conditions[0][value][3]` = "NY")
+#
+# q3 <- list(
+#   `conditions[0][property]` = "asc2_rate",
+#   `conditions[0][operator]` = "<",
+#   `conditions[0][value]` = "0.02")
+#
+# quick_query_(asc, q0)
+# quick_query_(asc, q1)
+# quick_query_(asc, q2)
+# quick_query_(asc, q3)
 #' @autoglobal
 #' @export
 quick_query_ <- new_generic("quick_query_", "x")

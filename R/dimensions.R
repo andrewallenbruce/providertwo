@@ -3,7 +3,12 @@
 get_dimensions <- function(x, call = caller_env()) {
   switch(
     x$clg,
-    care = switch(x$pnt, current = dims_cur(x), temporal = dims_tmp(x)),
+    care = switch(
+      x$pnt,
+      current  = dims_cur(x),
+      temporal = dims_tmp(x),
+      cli::cli_abort(c("x" = "{.val {x$pnt}} is invalid."), call = call)
+      ),
     caid = dims(x, 8000L),
     prov = dims(x, 1500L),
     open = dims(x, 500L),

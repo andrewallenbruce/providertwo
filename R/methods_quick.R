@@ -118,12 +118,11 @@ method(quick_, class_group) <- function(x, offset, limit) {
 #' @param offset `<int>` The offset for pagination. Default is `0`.
 #' @param limit  `<int>` The maximum number of records to retrieve. Default is `10000`.
 #' @returns A data frame containing the requested CMS data.
-#' @examplesIf rlang::is_interactive()
-#' quick("revalid_group")
-#' quick("out_img_national")
-#' quick("hgov_nipr_state")
+# quick("revalid_group")
+# quick("out_img_national")
+# quick("hgov_nipr_state")
 #' @autoglobal
-#' @export
+#' @noRd
 quick <- function(alias,
                   offset = 0,
                   limit  = 1e4) {

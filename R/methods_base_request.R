@@ -7,18 +7,12 @@ NULL
 #' @param ... Additional arguments
 #' @returns An `<httr2_request>` object or list of `<httr2_request>` objects
 #' @examplesIf interactive()
-#' care_endpoint("care_enrollees") |> base_request()
-#' care_temporal("quality_payment") |> base_request()
-#' care_group("care_hospital") |> base_request()
-#' prov_endpoint("pdc_affiliations") |> base_request()
-#' prov_group("pro_mips") |> base_request()
-#' open_endpoint("profile_covered") |> base_request()
-#' open_temporal("payment_general") |> base_request()
-#' open_group("payment_grouped") |> base_request()
-#' caid_endpoint("mlr_summary") |> base_request()
-#' caid_temporal("healthcare_quality") |> base_request()
-#' hgov_endpoint("hgov_catastrophic") |> base_request()
-#' hgov_temporal("hgov_mlr") |> base_request()
+#' endpoint("quality_payment")
+#' collection("care_hospital")
+#' endpoint("pdc_affiliations")
+#' endpoint("mlr_summary")
+#' endpoint("hgov_catastrophic")
+#' endpoint("hgov_mlr")
 #' @autoglobal
 #' @export
 base_request <- new_generic("base_request", "x")
@@ -83,19 +77,6 @@ method(base_request, class_group) <- function(x, query = NULL, years = NULL) {
 #' @param x An `<int>` vector
 #' @param ... Additional arguments
 #' @returns An `<int>` vector
-#' @examplesIf rlang::is_interactive()
-#' care_endpoint("care_enrollees") |> query_nresults()
-#' care_temporal("quality_payment") |> query_nresults()
-#' care_group("care_hospital") |> query_nresults()
-#' prov_endpoint("pdc_affiliations") |> query_nresults()
-#' prov_group("pro_mips") |> query_nresults()
-#' open_endpoint("profile_covered") |> query_nresults()
-#' open_temporal("payment_general") |> query_nresults()
-#' open_group("payment_grouped") |> query_nresults()
-#' caid_endpoint("mlr_summary") |> query_nresults()
-#' caid_temporal("healthcare_quality") |> query_nresults()
-#' hgov_endpoint("hgov_catastrophic") |> query_nresults()
-#' hgov_temporal("hgov_mlr") |> query_nresults()
 #' @autoglobal
 #' @export
 query_nresults <- new_generic("query_nresults", "x")
