@@ -17,19 +17,10 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
-class_backend <- new_class(
-  name     = "class_backend",
-  package  = NULL,
-  abstract = TRUE
-)
-
-#' @noRd
-#' @autoglobal
-class_endpoint <- new_class(
-  name       = "class_endpoint",
+class_current <- new_class(
+  name       = "class_current",
   package    = NULL,
-  parent     = class_backend,
-  properties = list(url = class_character)
+  parent     = class_character
 )
 
 #' @noRd
@@ -37,20 +28,19 @@ class_endpoint <- new_class(
 class_temporal <- new_class(
   name       = "class_temporal",
   package    = NULL,
-  parent     = class_backend,
-  properties = list(url = class_data.frame)
+  parent     = class_list
 )
 
 #' @noRd
 #' @autoglobal
-class_catalog <- new_class(
-  name         = "class_catalog",
+class_endpoint <- new_class(
+  name         = "class_endpoint",
   package      = NULL,
   abstract     = TRUE,
   properties   = list(
     metadata   = class_list,
     dimensions = class_dimensions,
-    identifier = class_endpoint | class_temporal
+    identifier = class_current | class_temporal
   )
 )
 
@@ -59,9 +49,20 @@ class_catalog <- new_class(
 class_care <- new_class(
   name = "class_care",
   package = NULL,
-  parent = class_catalog,
+  parent = class_endpoint,
   properties = list(
-    resources = class_endpoint | class_temporal
+    resources = class_current | class_temporal
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_prov <- new_class(
+  name = "class_prov",
+  package = NULL,
+  parent = class_endpoint,
+  properties = list(
+    identifier = class_current
   )
 )
 
@@ -70,18 +71,7 @@ class_care <- new_class(
 class_caid <- new_class(
   name = "class_caid",
   package = NULL,
-  parent = class_catalog
-)
-
-#' @noRd
-#' @autoglobal
-class_prov <- new_class(
-  name = "class_prov",
-  package = NULL,
-  parent = class_catalog,
-  properties = list(
-    identifier = class_endpoint
-  )
+  parent = class_endpoint
 )
 
 #' @noRd
@@ -89,7 +79,7 @@ class_prov <- new_class(
 class_open <- new_class(
   name = "class_open",
   package = NULL,
-  parent = class_catalog
+  parent = class_endpoint
 )
 
 #' @noRd
@@ -97,7 +87,7 @@ class_open <- new_class(
 class_hgov <- new_class(
   name = "class_hgov",
   package = NULL,
-  parent = class_catalog
+  parent = class_endpoint
 )
 
 #' @noRd

@@ -37,7 +37,7 @@ method(list_resources, class_group) <- function(obj) {
     map(list_resources)
 }
 
-method(list_resources, class_catalog) <- function(obj) {
+method(list_resources, class_endpoint) <- function(obj) {
   cli::cli_alert_warning(
     "{.fn list_resources} needs a {.cls class_care} object, not {.obj_type_friendly {obj}}.",
     wrap = TRUE
@@ -50,8 +50,8 @@ method(list_resources, class_care) <- function(obj) {
     list_resources()
 }
 
-method(list_resources, class_endpoint) <- function(obj) {
-  prop(obj, "url") |>
+method(list_resources, class_current) <- function(obj) {
+  S7_data(obj) |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>
@@ -62,7 +62,7 @@ method(list_resources, class_endpoint) <- function(obj) {
 }
 
 method(list_resources, class_temporal) <- function(obj) {
-  prop(obj, "url") |>
+  S7_data(obj) |>
     get_elem("resources") |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>

@@ -68,7 +68,7 @@ alias_lookup <- function(x) {
 get_identifier <- function(x) {
   switch(
     x$api,
-    end = class_endpoint(x$identifier),
+    end = class_current(x$identifier),
     tmp = class_temporal(x$endpoints))
 }
 
@@ -77,7 +77,7 @@ get_identifier <- function(x) {
 get_care_identifier <- function(x) {
   switch(
     x$api,
-    end = class_endpoint(x$identifier),
+    end = class_current(x$identifier),
     tmp = class_temporal(slt(x$endpoints, -resources)))
 }
 
@@ -86,7 +86,7 @@ get_care_identifier <- function(x) {
 get_care_resources <- function(x) {
   switch(
     x$api,
-    end = class_endpoint(x$resources),
+    end = class_current(x$resources),
     tmp = class_temporal(slt(x$endpoints, year, resources)))
 }
 
