@@ -9,8 +9,8 @@ group(alias, description = NULL)
 \arguments{
 \item{alias}{\verb{<chr>} Alias representing the CMS data endpoint.}
 
-\item{description}{\verb{<chr>} Group description. Defaults to \code{NULL}, which will use
-the aliases as the description.}
+\item{description}{\verb{<chr>} Group description. Defaults to \code{NULL},
+which will use the aliases as the description.}
 }
 \value{
 S7 \verb{<class_group>} object.

@@ -3,7 +3,6 @@
 
 ## usethis namespace: start
 #' @importFrom kit iif nif nswitch
-#' @importFrom oomph mph_init mph_match
 #' @importFrom collapse %=% %==% %!=% .c add_vars any_duplicated av colorder fcompute fcount fduplicated fmax fnobs funique get_elem get_vars `gv<-` gv groupid join mtt pivot radixorder rnm rowbind roworder rsplit sbt slt ss tfm vlengths
 #' @importFrom cli cli_abort cli_alert_info cli_alert_warning cli_alert_success cli_alert_danger cli_warn cli_inform
 #' @importFrom vctrs `vec_slice<-` vec_in
@@ -12,6 +11,7 @@
 #' @importFrom glue glue glue_collapse glue_col
 #' @importFrom fs as_fs_bytes path_ext
 #' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex stri_extract_first_regex stri_replace_all_fixed stri_replace_all_regex stri_replace_first_regex stri_trans_general stri_trim stri_trim_both
+#' @import oomph
 #' @import httr2
 #' @import S7
 #' @import RcppSimdJson

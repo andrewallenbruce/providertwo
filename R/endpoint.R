@@ -29,9 +29,8 @@ select_alias <- function(x, alias, ...) {
 
 #' @autoglobal
 #' @noRd
-fmt_tmp <- function(x) {
-  # if (all_na(gv(end, "resources")))
-  # gv(end, "resources") <- NULL
+c_temp <- function(x) {
+  # if (all_na(gv(end, "resources"))) gv(end, "resources") <- NULL
   flist(
     !!!c(x[names(x) %!=% "endpoints"]),
     endpoints  = yank(x$endpoints),
@@ -42,52 +41,36 @@ fmt_tmp <- function(x) {
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
+
   check_required(x)
 
   x <- flist(
     aka = x,
-    api = api_type(x),
-    clg = catalog_type(x),
-    rex = alias_regex(x),
-    exp = glue("the$catalog${clg}${api}"),
+    pnt = point_type(x),
+    clg = clog_type(x),
+    rex = alias_rex(x),
+    exp = glue("the$catalog${clg}${pnt}"),
     tbl = select_alias(exp, rex)
   )
 
   check_alias_results(x)
 
-  list_combine(list_modify(x, list(
-    aka = NULL,
-    tbl = NULL,
-    exp = NULL,
-    rex = NULL
-  )), switch(x$api, end = c(x$tbl), tmp = fmt_tmp(x$tbl)))
-}
-
-#' @autoglobal
-#' @noRd
-get_identifier <- function(x) {
-  switch(
-    x$api,
-    end = class_current(x$identifier),
-    tmp = class_temporal(x$endpoints))
-}
-
-#' @autoglobal
-#' @noRd
-get_care_identifier <- function(x) {
-  switch(
-    x$api,
-    end = class_current(x$identifier),
-    tmp = class_temporal(slt(x$endpoints, -resources)))
-}
-
-#' @autoglobal
-#' @noRd
-get_care_resources <- function(x) {
-  switch(
-    x$api,
-    end = class_current(x$resources),
-    tmp = class_temporal(slt(x$endpoints, year, resources)))
+  list_combine(
+    list_modify(
+      x,
+      list(
+        aka = NULL,
+        tbl = NULL,
+        exp = NULL,
+        rex = NULL
+        )
+      ),
+    switch(
+      x$pnt,
+      endpoint = c(x$tbl),
+      temporal = c_temp(x$tbl)
+      )
+    )
 }
 
 #' Load API Endpoint
@@ -116,8 +99,8 @@ endpoint <- function(alias) {
     care = class_care(
       metadata   = get_metadata(x),
       dimensions = get_dimensions(x),
-      identifier = get_care_identifier(x),
-      resources  = get_care_resources(x)
+      identifier = get_identifier(x),
+      resources  = get_resources(x)
     ),
     caid = class_caid(
       metadata   = get_metadata(x),
@@ -155,7 +138,7 @@ collection <- function(alias) {
 
   check_required(alias)
 
-  x <- group_regex(alias)
+  x <- collect_rex(alias)
 
   class_collection(
     name = x$name,
@@ -165,8 +148,8 @@ collection <- function(alias) {
 
 #' Create Group of Endpoints
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @param description `<chr>` Group description. Defaults to `NULL`, which will use
-#'    the aliases as the description.
+#' @param description `<chr>` Group description. Defaults to `NULL`,
+#'    which will use the aliases as the description.
 #' @returns S7 `<class_group>` object.
 #' @examplesIf rlang::is_interactive()
 #' group(c("cahps_hhc_patient", "hgov_qhp_business"))

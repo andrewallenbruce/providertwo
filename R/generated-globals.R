@@ -36,7 +36,7 @@ utils::globalVariables(c(
   # <tidy_resources>
   "downloadURL",
   # <clog_care>
-  # <fmt_tmp>
+  # <c_temp>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",
@@ -105,8 +105,8 @@ utils::globalVariables(c(
   "references",
   # <clog_prov>
   "released",
-  # <get_care_identifier>
-  # <get_care_resources>
+  # <get_identifier>
+  # <get_resources>
   "resources",
   # <clog_care>
   "resourcesAPI",
@@ -144,7 +144,7 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
-  # <get_care_resources>
+  # <get_resources>
   # <tidy_resources>
   "year",
   # <quality_eligibility>

@@ -3,12 +3,12 @@
 get_dimensions <- function(x, call = caller_env()) {
   switch(
     x$clg,
-    care = if (x$api == "end") care_end_dims(x) else care_tmp_dims(x),
+    care = if (x$pnt == "endpoint") care_end_dims(x) else care_tmp_dims(x),
     caid = def_dims(x, 8000L),
     prov = def_dims(x, 1500L),
     open = def_dims(x, 500L),
     hgov = def_dims(x, 500L),
-    cli_abort(c("x" = "{.field clog} = {.val {x}} is invalid."), call = call)
+    cli::cli_abort(c("x" = "{.val {x$clg}} is invalid."), call = call)
   )
 }
 

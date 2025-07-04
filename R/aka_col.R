@@ -1,7 +1,7 @@
 # ---- caid ----
 #' @autoglobal
 #' @noRd
-grp_caid = list(
+col_caid = list(
   caid_demographics = list(
     name  = "Medicaid and CHIP Enrollee Demographics",
     alias = c(
@@ -130,7 +130,7 @@ grp_caid = list(
 # ---- open ----
 #' @autoglobal
 #' @noRd
-grp_open = list(
+col_open = list(
   profile = list(
     name = "Open Payments Profiles",
     alias = c(
@@ -175,7 +175,7 @@ grp_open = list(
 # ---- prov ----
 #' @autoglobal
 #' @noRd
-grp_prov = list(
+col_prov = list(
   prov_cahps_spice = list(
     name = "CAHPS Hospice Survey Data",
     alias = c(
@@ -432,7 +432,7 @@ grp_prov = list(
 # ---- prov ----
 #' @autoglobal
 #' @noRd
-grp_care = list(
+col_care = list(
   care_hha = list(
     name = "Home Health Agencies",
     alias = c(
@@ -655,41 +655,3 @@ grp_care = list(
     )
   )
 )
-
-# ---- grp_names ----
-#' @autoglobal
-#' @noRd
-grp_names <- mph_init(
-  names(c(
-    grp_prov,
-    grp_caid,
-    grp_care,
-    grp_open
-  )))
-
-# ---- grp_regex ----
-#' @autoglobal
-#' @noRd
-grp_regex <- c(
-    grp_prov,
-    grp_caid,
-    grp_care,
-    grp_open
-)
-
-#' @autoglobal
-#' @noRd
-group_regex <- function(x, call = caller_env()) {
-
-  if (!is_api_group(x))
-    cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
-
-  grp_regex[mph_match(x, grp_names)] |> unname() |> yank()
-}
-
-#' @autoglobal
-#' @noRd
-is_api_group <- function(x) {
-  !is.na(mph_match(x, grp_names))
-}
-

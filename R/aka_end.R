@@ -1,8 +1,8 @@
 # ---- care ----
 #' @autoglobal
 #' @noRd
-aka_care <- list(
-  endpoint = list(
+end_care <- list(
+  current = list(
     ahqr_psi = "^Agency for Healthcare Research and Quality \\(AHRQ\\) Patient Safety Indicator 11 \\(PSI[-]11\\) Measure Rates$",
     aip_plan = "^Advance Investment Payment Spend Plan$",
     cpc_prime = "^CPC Initiative [-] Participating Primary Care Practices$",
@@ -143,8 +143,8 @@ aka_care <- list(
 # ---- caid ----
 #' @autoglobal
 #' @noRd
-aka_caid <- list(
-  endpoint = list(
+end_caid <- list(
+  current = list(
     aca_ful = "ACA Federal Upper Limits",
     caid_drug_rebate = "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
     caid_enroll_month = "Monthly Enrollment - Test",
@@ -246,8 +246,8 @@ aka_caid <- list(
 # ---- open ----
 #' @autoglobal
 #' @noRd
-aka_open <- list(
-  endpoint = list(
+end_open <- list(
+  current = list(
     profile_covered = "^Covered Recipient Profile Supplement$",
     profile_physician = "^Physician \\(Distinct\\) Profile Information$",
     profile_information = "^Profile Information$",
@@ -275,8 +275,8 @@ aka_open <- list(
 # ---- prov ----
 #' @autoglobal
 #' @noRd
-aka_prov <- list(
-  endpoint = list(
+end_prov <- list(
+  current = list(
     asc_facility = "^Ambulatory Surgical Center Quality Measures [-] Facility",
     asc_national = "^Ambulatory Surgical Center Quality Measures [-] National",
     asc_state = "^Ambulatory Surgical Center Quality Measures [-] State",
@@ -431,8 +431,8 @@ aka_prov <- list(
 # ---- hgov ----
 #' @autoglobal
 #' @noRd
-aka_hgov <- list(
-  endpoint = list(
+end_hgov <- list(
+  current = list(
     hgov_auto_pop           = "^Auto[-]population File$",
     hgov_ab_reg_comp        = "^AB Registration Completion List$",
     hgov_ab_sus_term        = "^AB Suspension and Termination List$",
@@ -480,166 +480,3 @@ aka_hgov <- list(
     hgov_qhp_shop_med    = "QHP Landscape SHOP Market Medical"
   )
 )
-
-# ---- aka_names ----
-#' @autoglobal
-#' @noRd
-aka_names <- mph_init(
-  names(c(
-    aka_prov$endpoint,
-    aka_hgov$endpoint,
-    aka_caid$endpoint,
-    aka_care$endpoint,
-    aka_open$endpoint,
-    aka_hgov$temporal,
-    aka_caid$temporal,
-    aka_care$temporal,
-    aka_open$temporal
-  )))
-
-# ---- aka_regex ----
-#' @autoglobal
-#' @noRd
-aka_regex <- unlist(
-    c(
-      aka_prov$endpoint,
-      aka_hgov$endpoint,
-      aka_caid$endpoint,
-      aka_care$endpoint,
-      aka_open$endpoint,
-      aka_hgov$temporal,
-      aka_caid$temporal,
-      aka_care$temporal,
-      aka_open$temporal
-    ),
-    use.names = FALSE
-  )
-
-# ---- apitype ----
-#' @autoglobal
-#' @noRd
-apitype <- list(
-  endpoint = mph_init(names(
-    c(
-      aka_prov$endpoint,
-      aka_hgov$endpoint,
-      aka_caid$endpoint,
-      aka_care$endpoint,
-      aka_open$endpoint
-    )
-  )),
-  temporal = mph_init(names(
-    c(
-      aka_hgov$temporal,
-      aka_caid$temporal,
-      aka_care$temporal,
-      aka_open$temporal
-    )
-  ))
-)
-
-# ---- clogtype ----
-#' @autoglobal
-#' @noRd
-clogtype <- list(
-  care = mph_init(names(
-    c(aka_care$endpoint,
-      aka_care$temporal)
-  )),
-  prov = mph_init(names(
-    c(aka_prov$endpoint)
-  )),
-  open = mph_init(names(
-    c(aka_open$endpoint,
-      aka_open$temporal)
-  )),
-  caid = mph_init(names(
-    c(aka_caid$endpoint,
-      aka_caid$temporal)
-  )),
-  hgov = mph_init(names(c(
-    aka_hgov$endpoint,
-    aka_hgov$temporal
-  )))
-)
-
-#' @autoglobal
-#' @noRd
-is_clog_care <- function(x) {
-  !is.na(mph_match(x, clogtype$care))
-}
-
-#' @autoglobal
-#' @noRd
-is_clog_caid <- function(x) {
-  !is.na(mph_match(x, clogtype$caid))
-}
-
-#' @autoglobal
-#' @noRd
-is_clog_prov <- function(x) {
-  !is.na(mph_match(x, clogtype$prov))
-}
-
-#' @autoglobal
-#' @noRd
-is_clog_open <- function(x) {
-  !is.na(mph_match(x, clogtype$open))
-}
-
-#' @autoglobal
-#' @noRd
-is_clog_hgov <- function(x) {
-  !is.na(mph_match(x, clogtype$hgov))
-}
-
-#' @autoglobal
-#' @noRd
-is_api_endpoint <- function(x) {
-  !is.na(mph_match(x, apitype$endpoint))
-}
-
-#' @autoglobal
-#' @noRd
-is_api_temporal <- function(x) {
-  !is.na(mph_match(x, apitype$temporal))
-}
-
-#' @autoglobal
-#' @noRd
-is_collection_api <- function(x) {
-  !is.na(mph_match(x, apitype$collection))
-}
-
-#' @autoglobal
-#' @noRd
-alias_regex <- function(x) {
-  aka_regex[mph_match(x, aka_names)]
-}
-
-#' @autoglobal
-#' @noRd
-catalog_type <- function(x, call = caller_env()) {
-  res <- nif(
-    is_clog_care(x), "care",
-    is_clog_caid(x), "caid",
-    is_clog_prov(x), "prov",
-    is_clog_open(x), "open",
-    is_clog_hgov(x), "hgov")
-
-  if (is.na(res)) cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
-
-  res
-}
-
-#' @autoglobal
-#' @noRd
-api_type <- function(x, call = caller_env()) {
-  res <- nif(
-    is_api_endpoint(x), "end",
-    is_api_temporal(x), "tmp")
-
-  if (is.na(res)) cli_abort(c("x" = "{.val {x}} is invalid."), call = call)
-
-  res
-}

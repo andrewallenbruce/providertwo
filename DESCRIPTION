@@ -43,8 +43,9 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Collate: 
     'S7_args.R'
+    'aka_col.R'
     'aka_end.R'
-    'aka_grp.R'
+    'aka_mph.R'
     'utils_misc.R'
     'catalogs.R'
     'classes.R'

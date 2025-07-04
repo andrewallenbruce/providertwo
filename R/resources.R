@@ -39,9 +39,8 @@ method(list_resources, class_group) <- function(obj) {
 
 method(list_resources, class_endpoint) <- function(obj) {
   cli::cli_alert_warning(
-    "{.fn list_resources} needs a {.cls class_care} object, not {.obj_type_friendly {obj}}.",
-    wrap = TRUE
-  )
+    paste0("{.fn list_resources} needs a {.cls class_care}",
+      " object, not {.obj_type_friendly {obj}}."))
   invisible(NULL)
 }
 
