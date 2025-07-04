@@ -17,12 +17,12 @@ Imports:
     cli (>= 3.6.5),
     collapse (>= 2.1.2),
     fastplyr (>= 0.5.0),
-    oomph (>= 0.1.1),
     fs (>= 1.6.6),
-    memoise (>= 2.0.1),
     glue (>= 1.8.0),
     httr2 (>= 1.1.2),
     kit (>= 0.0.2),
+    memoise (>= 2.0.1),
+    oomph,
     purrr (>= 1.0.4),
     RcppSimdJson (>= 0.1.13),
     rlang (>= 1.1.6),
@@ -32,6 +32,8 @@ Imports:
     vctrs (>= 0.6.5)
 Suggests: 
     testthat (>= 3.2.3)
+Remotes:
+    coolbutuseless/oomph
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
