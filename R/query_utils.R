@@ -31,9 +31,24 @@ brackets_cli <- function(x) {
 
 #' @autoglobal
 #' @noRd
+brackets_cli2 <- function(x) {
+  paste0(
+    cli::col_black("["),
+    cli::col_silver(x),
+    cli::col_black("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
 calls_cli <- function(x) {
-  map(x[are_calls(x)], function(x)
-    cli::col_green(deparse1(x)))
+  map(x[are_calls(x)], function(x) cli::col_yellow(deparse1(x)))
+}
+
+#' @autoglobal
+#' @noRd
+mods_cli <- function(x) {
+  map(x[are_mods(x)], function(x) cli::col_red(deparse1(x)))
 }
 
 #' @autoglobal
@@ -68,8 +83,36 @@ are_not_null <- function(x) {
 
 #' @autoglobal
 #' @noRd
+is_mod <- function(x) {
+  is_call(x, name = c(
+    "between_",
+    "blank_",
+    "contains_",
+    "ends_with_",
+    "greater_or_equal_",
+    "greater_than_",
+    "in_",
+    "is_",
+    "is_not_",
+    "less_or_equal_",
+    "less_than_",
+    "not_between_",
+    "not_blank_",
+    "not_in_",
+    "starts_with_"
+  ))
+}
+
+#' @autoglobal
+#' @noRd
+are_mods <- function(x) {
+  map_lgl(x, is_mod)
+}
+
+#' @autoglobal
+#' @noRd
 are_calls <- function(x) {
-  map_lgl(x, is_call)
+  map_lgl(x, \(x) purrr::negate(is_mod)(x) & is_call(x))
 }
 
 #' @autoglobal
@@ -83,6 +126,12 @@ are_lone_not_null <- function(x) {
 #' @noRd
 is_modifier <- function(x) {
   inherits(x, "modifier")
+}
+
+#' @autoglobal
+#' @noRd
+any_mods <- function(x) {
+  any(are_mods(x))
 }
 
 #' @autoglobal

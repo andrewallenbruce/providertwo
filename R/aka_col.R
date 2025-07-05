@@ -224,7 +224,7 @@ col_prov = list(
       "mips_virtual"
     )
   ),
-  prov_drs = list(
+  prov_pdc = list(
     name = "Provider Data Catalog",
     alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")
   ),

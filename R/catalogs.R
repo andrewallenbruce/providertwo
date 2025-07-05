@@ -111,35 +111,11 @@ clog_care <- function(x) {
 #' @noRd
 clog_prov <- function(x) {
 
-  cols <- c(
-    "title",
-    "group",
-    "description",
-    "issued",
-    "modified",
-    "released",
-    "identifier",
-    "contact",
-    "download",
-    "site",
-    "dictionary"
-  )
-
   list(
-    current = mtt(
-      x$prov,
+    current = mtt(x$prov,
       title       = rm_nonascii(title),
-      dictionary  = paste0(
-        "https://data.cms.gov/provider-data/dataset/",
-        identifier,
-        "#data-dictionary"
-      ),
-      identifier  = paste0(
-        "https://data.cms.gov/provider-data/api/1/datastore/query/",
-        identifier,
-        "/0",
-        "?count=true&results=false&offset=0&limit=1"
-      ),
+      dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
+      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1&"),
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
@@ -147,9 +123,8 @@ clog_prov <- function(x) {
       description = gremove(description, "\n"),
       download    = get_elem(x$prov, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
       contact     = fmt_contactpoint(x$prov),
-      site        = landingPage
-    ) |>
-      sbt(group %!=% "Physician office visit costs", cols) |>
+      site        = landingPage) |>
+      sbt(group %!=% "Physician office visit costs", c("title", "group", "description", "issued", "modified", "released", "identifier", "contact", "download", "site", "dictionary")) |>
       roworder(group, title)
   )
 }
@@ -158,42 +133,22 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  cols <- c("year",
-            "title",
-            "description",
-            "modified",
-            "identifier",
-            "contact",
-            "download")
-
-  x <- mtt(
-    x$open,
-    identifier  = paste0(
-      "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
-      identifier,
-      "/0",
-      "?count=true&results=false&offset=0&limit=1"
-    ),
-    modified    = as_date(modified),
-    year        = unlist(x$open$keyword, use.names = FALSE),
-    year        = iif(
-      year == "all years" |
-        title == "Provider profile ID mapping table",
-      "All",
-      year,
-      nThread = 4L
-    ),
-    title       = toTitleCase(rm_nonascii(title)),
-    contact     = fmt_contactpoint(x$open),
+  x <- mtt(x$open,
+    identifier = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1&"),
+    modified = as_date(modified),
+    year = unlist(x$open$keyword, use.names = FALSE),
+    year = iif(year == "all years" | title == "Provider profile ID mapping table", "All", year, nThread = 4L),
+    title = toTitleCase(rm_nonascii(title)),
+    contact = fmt_contactpoint(x$open),
     description = rm_quotes(description) |>
         rm_nonascii() |>
         greplace("\r\n", " ") |>
         gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
         rm_space(),
-      download    = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
+      download = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
         get_elem("downloadURL", DF.as.list = TRUE) |>
         unlist(use.names = FALSE)) |>
-    slt(cols)
+    slt(c("year", "title", "description", "modified", "identifier", "contact", "download"))
 
   list(
     current = sbt(x, year %==% "All", -year) |> roworder(title),
@@ -223,47 +178,27 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  cols <- c("title",
-            "identifier",
-            "description",
-            "periodicity",
-            "modified",
-            "contact")
-
   w <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
     get_elem("^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)
 
   dl <- fibble(
     title = map(w, "title") |> unlist(use.names = FALSE),
     download = map(w, "downloadURL") |> unlist(use.names = FALSE),
-    ext = path_ext(download)
-  ) |>
+    ext = path_ext(download)) |>
     fcount(title, add = TRUE) |>
-    mtt(
-      title = ifelse_(title == "CSV", NA_character_, title),
-      N = ifelse_(is.na(title), NA_integer_, N)
-    ) |>
+    mtt(title = ifelse_(title == "CSV", NA_character_, title),
+        N = ifelse_(is.na(title), NA_integer_, N)) |>
     roworder(title)
 
-  x <- mtt(
-    x$caid,
-    identifier  = paste0(
-      "https://data.medicaid.gov/api/1/datastore/query/",
-      identifier,
-      "/0",
-      "?count=true&results=false&offset=0&limit=1"
-    ),
-    modified    = as_date(modified),
+  x <- mtt(x$caid,
+    identifier = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1&"),
+    modified = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(x$caid),
-    title       = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
+    contact = fmt_contactpoint(x$caid),
+    title = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
     description = iif(description == "Dataset.", NA_character_, description),
-    description = rm_nonascii(description) |>
-      rm_quotes() |>
-      greplace("\r\n", " ") |>
-      rm_space()
-  ) |>
-    slt(cols)
+    description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()) |>
+    slt(c("title", "identifier", "description", "periodicity", "modified", "contact"))
 
   # x <- list(x, rowbind(ss(dl, which_(dl$N == 1)) |>
   # fcount(title, sort = TRUE, decreasing = TRUE),
@@ -298,8 +233,7 @@ clog_caid <- function(x) {
       description = iif(title == "Child and Adult Health Care Quality Measures",
                         "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
                         description,
-                        nThread = 4L)
-      ) |>
+                        nThread = 4L)) |>
       roworder(title, year) |>
       ffill(description, periodicity) |>
       slt("year", "title", "description", "periodicity", "modified", "identifier") |>
@@ -314,18 +248,8 @@ clog_caid <- function(x) {
 #' @noRd
 clog_hgov <- function(x) {
 
-  cols <- c("title",
-            "identifier",
-            "description",
-            "periodicity",
-            "issued",
-            "modified",
-            "contact")
-
-  d <- col_c(
-    title = get_elem(x$hgov, "title"),
-    distribution = get_elem(x$hgov, "distribution")
-  ) |>
+  d <- col_c(title = get_elem(x$hgov, "title"),
+             distribution = get_elem(x$hgov, "distribution")) |>
     as_fibble() |>
     fastplyr::f_mutate(n = map_int(distribution, \(x) nrow(x)),
                        id = fastplyr::f_consecutive_id(title))
@@ -351,28 +275,20 @@ clog_hgov <- function(x) {
     fcount(id, add = TRUE)
 
 
-  x <- mtt(
-    x$hgov,
-    identifier  = paste0(
-      "https://data.healthcare.gov/api/1/datastore/query/",
-      identifier,
-      "/0",
-      "?count=true&results=false&offset=0&limit=1"
-    ),
-    title       = rm_nonascii(title) |> rm_space(),
-    description = rm_nonascii(description) |> rm_quotes() |> gremove(
-      "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s"
-    ) |> greplace("Dataset.", NA_character_),
-    modified    = as_date(modified),
-    issued      = as_date(issued),
-    periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(x$hgov)
-  ) |>
-    slt(cols)
+  x <- mtt(x$hgov,
+           identifier = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1&"),
+           title = rm_nonascii(title) |> rm_space(),
+           description = rm_nonascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
+           modified    = as_date(modified),
+           issued      = as_date(issued),
+           periodicity = fmt_periodicity(accrualPeriodicity),
+           contact     = fmt_contactpoint(x$hgov)) |>
+    slt(c("title", "identifier", "description", "periodicity", "issued", "modified", "contact"))
 
-  x <- list(x,
-            sbt(d, ext == "csv", "title", "download"),
-            sbt(d, ext != "csv", "title", resources = "download")) |>
+  x <- list(
+    x,
+    sbt(d, ext == "csv", "title", "download"),
+    sbt(d, ext != "csv", "title", resources = "download")) |>
     reduce(join_on_title)
 
   qhp <- ss_title(x, "QHP|SHOP")
@@ -408,8 +324,7 @@ clog_hgov <- function(x) {
         "Service Area PUF"              , "The Service Area PUF (SA-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The SA-PUF contains issuer-level data on geographic service areas including state, county, and zip code.",
         "Transparency in Coverage PUF"  , "The Transparency in Coverage PUF (TC-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The PUF contains data on issuer and plan-level claims, appeals, and active URL data.",
         default = description,
-        nThread = 4L)
-      ) |>
+        nThread = 4L)) |>
     ss_title("\\.zip$|Excel$", n = TRUE) |>
     colorder(year) |>
     roworder(title, -year)
