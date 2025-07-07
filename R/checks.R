@@ -34,7 +34,7 @@ sum_digits <- function(x) {
 #' @autoglobal
 #' @noRd
 is_10_digits <- function(x) {
-  n_digits(x) != 10
+  n_digits(x) == 10
 }
 
 #' @autoglobal
@@ -45,13 +45,7 @@ are_10_digits <- function(x) {
 
 #' @autoglobal
 #' @noRd
-are_10_digits <- function(x) {
-  map_lgl(x, is_10_digits)
-}
-
-#' @autoglobal
-#' @noRd
-all_10_digits <- function(x) {
+all_are_10_digits <- function(x) {
   all(are_10_digits(x))
 }
 
@@ -76,27 +70,32 @@ luhn <- function(x) {
 
   check_10_digits(x)
 
-  original <- x
-  nine     <- rm_last_digit(x)
-  x        <- as.numeric(yank(strsplit(as.character(nine), "")))
+  orig <- x
+  nine <- rm_last_digit(x)
+  x    <- as.numeric(yank(strsplit(as.character(nine), "")))
 
   insitu::br_rev(x)
-  insitu::br_mul(x, 2, idx = c(1L, 3L, 5L, 7L, 9L))
-  insitu::br_sub(x, 9, idx = which_(x > 9L))
-  x        <- sum(x)
+  insitu::br_mul(x, 2, idx = c(1, 3, 5, 7, 9))
+  insitu::br_sub(x, 9, idx = which_(x > 9))
+  x    <- sum(x)
   insitu::br_add(x, 24)
 
-  checksum <- x / 10
-  insitu::br_ceil(checksum)
-  insitu::br_mul(checksum, 10)
-  insitu::br_sub(checksum, y = x)
+  chk  <- insitu::duplicate(x)
 
-  identical(as.numeric(paste0(nine, checksum)), original)
+  insitu::br_div(chk, 10)
+  insitu::br_ceil(chk)
+  insitu::br_mul(chk, 10)
+  insitu::br_sub(chk, y = x)
+
+  identical(
+    as.numeric(paste0(nine, chk)),
+    orig
+    )
 }
 
 # check_luhn(1234567890)
 # check_luhn(c(1417918293, 1234567890))
-# check_luhn(npi_ex$v)
+# check_luhn(npi_all())
 #' @autoglobal
 #' @noRd
 check_luhn <- function(x) {
