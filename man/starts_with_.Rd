@@ -30,5 +30,13 @@ contains_("baz")
 Other modifiers: 
 \code{\link{greater_than_}()},
 \code{\link{in_}()}
+
+Other modifiers: 
+\code{\link{greater_than_}()},
+\code{\link{in_}()}
+
+Other modifiers: 
+\code{\link{greater_than_}()},
+\code{\link{in_}()}
 }
 \concept{modifiers}

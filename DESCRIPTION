@@ -72,7 +72,6 @@ Collate:
     'providertwo-package.R'
     'qpp.R'
     'query.R'
-    'query_class.R'
     'query_modifiers.R'
     'query_utils.R'
     'resources.R'

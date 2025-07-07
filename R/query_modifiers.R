@@ -66,6 +66,7 @@ greater_than_ <- function(x, or_equals = FALSE) {
 
 #' @rdname greater_than_
 #' @autoglobal
+#' @family modifiers
 #' @export
 less_than_ <- function(x, or_equals = FALSE) {
 
@@ -95,6 +96,7 @@ starts_with_ <- function(x) {
 
 #' @rdname starts_with_
 #' @autoglobal
+#' @family modifiers
 #' @export
 ends_with_ <- function(x) {
   check_character(x, allow_na = FALSE)
@@ -103,6 +105,7 @@ ends_with_ <- function(x) {
 
 #' @rdname starts_with_
 #' @autoglobal
+#' @family modifiers
 #' @export
 contains_ <- function(x) {
   check_character(x, allow_na = FALSE)
@@ -137,6 +140,7 @@ in_ <- function(x, negate = FALSE) {
 
 #' @rdname in_
 #' @autoglobal
+#' @family modifiers
 #' @export
 equals_ <- function(x, negate = FALSE) {
 
@@ -149,6 +153,7 @@ equals_ <- function(x, negate = FALSE) {
 
 #' @rdname in_
 #' @autoglobal
+#' @family modifiers
 #' @export
 is_blank_ <- function(negate = FALSE) {
 
@@ -157,6 +162,19 @@ is_blank_ <- function(negate = FALSE) {
   modifier_(
     operator = ifelse(!negate, "IS NULL", "IS NOT NULL"),
     value    = NULL)
+}
+
+#' @autoglobal
+#' @family modifiers
+#' @export
+print.modifier <- function(x, ...) {
+  cli::cli_text(cli::col_cyan("<modifier>"))
+  cli::cli_text("{cli::col_silver('operator:')} {cli::col_yellow(glue::backtick(x$operator))}")
+  if (!is.null(x$value)) {
+    cli::cli_text("{cli::col_silver('value:')} {cli::col_yellow(x$value)}")
+  } else {
+    cli::cli_text("{cli::col_silver('value:')} {cli::col_red('NULL')}")
+  }
 }
 
 # between_ <- function(x, negate = FALSE) {

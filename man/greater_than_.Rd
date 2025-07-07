@@ -31,5 +31,9 @@ less_than_(1000, or_equals = TRUE)
 Other modifiers: 
 \code{\link{in_}()},
 \code{\link{starts_with_}()}
+
+Other modifiers: 
+\code{\link{in_}()},
+\code{\link{starts_with_}()}
 }
 \concept{modifiers}

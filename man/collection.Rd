@@ -2,8 +2,7 @@
 % Please edit documentation in R/endpoint.R
 \name{collection}
 \alias{collection}
-\title{Endpoint Collection
-Load a collection of endpoints by alias.}
+\title{Load a collection of endpoints by alias}
 \usage{
 collection(alias)
 }
@@ -14,10 +13,8 @@ collection(alias)
 An S7 \verb{<class_collection>} object.
 }
 \description{
-Endpoint Collection
-Load a collection of endpoints by alias.
+Load a collection of endpoints by alias
 }
 \examples{
 collection("caid_unwind")
-collection("caid_services")
 }

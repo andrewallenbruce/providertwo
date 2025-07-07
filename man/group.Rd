@@ -2,8 +2,7 @@
 % Please edit documentation in R/endpoint.R
 \name{group}
 \alias{group}
-\title{Endpoint Group
-Load a group of endpoints by alias.}
+\title{Load a group of endpoints by alias}
 \usage{
 group(alias, description = NULL, call = caller_env())
 }
@@ -19,13 +18,9 @@ which will use the aliases as the description.}
 S7 \verb{<class_group>} object.
 }
 \description{
-Endpoint Group
-Load a group of endpoints by alias.
+Load a group of endpoints by alias
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-group(c("cahps_hhc_patient", "hgov_qhp_business"))
-group(c("hgov_local_help", "hgov_qhp_business"))
 group(c("asc_facility", "care_dial_end"))
-\dontshow{\}) # examplesIf}
+try(group("asc_facility"))
 }

@@ -37,5 +37,13 @@ is_blank_(negate = TRUE)
 Other modifiers: 
 \code{\link{greater_than_}()},
 \code{\link{starts_with_}()}
+
+Other modifiers: 
+\code{\link{greater_than_}()},
+\code{\link{starts_with_}()}
+
+Other modifiers: 
+\code{\link{greater_than_}()},
+\code{\link{starts_with_}()}
 }
 \concept{modifiers}

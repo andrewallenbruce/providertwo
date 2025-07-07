@@ -7,7 +7,7 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
-  # <process_query>
+  # <query>
   "BDX",
   # <quality_metrics>
   "category",
@@ -51,7 +51,7 @@ utils::globalVariables(c(
   "first_name",
   # <quality_eligibility>
   "firstApprovedDate",
-  # <process_query>
+  # <query>
   "FLD",
   # <clog_hgov>
   "id",
@@ -61,7 +61,7 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <process_query>
+  # <query>
   "IDX",
   # <quality_eligibility>
   "is_maqi",
@@ -97,7 +97,7 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
-  # <process_query>
+  # <query>
   "OPR",
   # <clog_caid>
   "periodicity",
@@ -135,9 +135,9 @@ utils::globalVariables(c(
   # <open_dictionary>
   # <select_alias>
   "title",
-  # <process_query>
+  # <query>
   "VAL",
-  # <process_query>
+  # <query>
   "VRB",
   # <clog_care>
   # <clog_open>

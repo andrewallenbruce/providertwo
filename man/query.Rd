@@ -4,7 +4,7 @@
 \alias{query}
 \title{Create a Query Object}
 \usage{
-query(..., .type = "default")
+query(..., .type = c("default", "medicare"))
 }
 \arguments{
 \item{...}{Query arguments. See details for valid query modifiers.}
