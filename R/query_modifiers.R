@@ -1,12 +1,12 @@
 #' Query Modifiers
 #'
 #' @name query-helpers
-#' @param operator `<chr>`  operator to use; default is `"="`
-#' @param value    `<any>`  value to compare against
-#' @param x        `<chr>`  input
-#' @param or_equal `<lgl>`  append "="; default is `FALSE`
-#' @param negate   `<lgl>`  prepend "NOT"; default is `FALSE`
-#' @returns        `<list>` of query parameters
+#' @param operator  `<chr>`  operator to use; default is `"="`
+#' @param value     `<any>`  value to compare against
+#' @param x         `<chr>`  input
+#' @param or_equals `<lgl>`  append "="; default is `FALSE`
+#' @param negate    `<lgl>`  prepend "NOT"; default is `FALSE`
+#' @returns         `<list>` of query parameters
 #' @examplesIf rlang::is_interactive()
 #' greater_than_(1)
 #' starts_with_("foo")
@@ -24,9 +24,9 @@ NULL
 #   npi = npi_ex$k,
 #   ccn = "01256",
 #   zip = is_("30303"),
-#   rate = greater_or_equal_(1000),
+#   rate = greater_or_equals_(1000),
 #   rate2 = less_than_(1000),
-#   rate2 = less_or_equal_(1000),
+#   rate2 = less_or_equals_(1000),
 #   rate3 = greater_than_(1000),
 #   rate3 = not_between_(2000),
 #   rate4 = between_(2000),
@@ -75,33 +75,27 @@ modifier_ <- function(operator, value) {
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-greater_than_ <- function(x) {
+greater_than_ <- function(x, or_equals = FALSE) {
+
   check_number_decimal(x)
-  modifier_(operator = ">", value = x)
+  check_bool(or_equals)
+
+  modifier_(
+    operator = ifelse(!or_equals, ">", ">="),
+    value    = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-greater_or_equal_ <- function(x) {
-  check_number_decimal(x)
-  modifier_(operator = ">=", value = x)
-}
+less_than_ <- function(x, or_equals = FALSE) {
 
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-less_than_ <- function(x) {
   check_number_decimal(x)
-  modifier_(operator = "<", value = x)
-}
+  check_bool(or_equals)
 
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-less_or_equal_ <- function(x) {
-  check_number_decimal(x)
-  modifier_(operator = "<=", value = x)
+  modifier_(
+    operator = ifelse(!or_equals, "<", "<="),
+    value    = x)
 }
 
 #' @autoglobal
@@ -128,59 +122,49 @@ contains_ <- function(x) {
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-between_ <- function(x) {
+between_ <- function(x, negate = FALSE) {
   check_number_decimal(x)
-  modifier_(operator = "BETWEEN", value = x)
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
+    value    = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-not_between_ <- function(x) {
-  check_number_decimal(x)
-  modifier_(operator = "NOT BETWEEN", value = x)
+in_ <- function(x, negate = FALSE) {
+
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "IN", "NOT IN"),
+    value    = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-in_ <- function(x) {
-  modifier_(operator = "IN", value = x)
+equals_ <- function(x, negate = FALSE) {
+
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "=", "<>"),
+    value    = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-not_in_ <- function(x) {
-  modifier_(operator = "NOT IN", value = x)
-}
+is_blank_ <- function(negate = FALSE) {
 
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-is_ <- function(x) {
-  modifier_(operator = "=", value = x)
-}
+  check_bool(negate)
 
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-is_not_ <- function(x) {
-  modifier_(operator = "<>", value = x)
-}
-
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-is_blank_ <- function() {
-  modifier_(operator = "IS NULL", value = NULL)
-}
-
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-not_blank_ <- function(x) {
-  modifier_(operator = "IS NOT NULL", value = NULL)
+  modifier_(
+    operator = ifelse(!negate, "IS NULL", "IS NOT NULL"),
+    value    = NULL)
 }
 
 #' @autoglobal

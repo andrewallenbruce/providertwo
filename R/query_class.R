@@ -22,9 +22,16 @@ process_query <- function(..., .type) {
   imap(args, function(x, name) {
 
     fields    <- paste0(VRB, BDX, FLD, name)
-    operators <- paste0(VRB, BDX, OPR, ifelse(is_modifier(x), x[["operator"]], "="))
-    values    <- ifelse(is_modifier(x), x[["value"]], unlist(x, use.names = FALSE))
-    values    <- paste0(VRB, BDX, VAL, brack_along(values), "=", values)
+    operators <- paste0(VRB, BDX, OPR, if (is_modifier(x)) x[["operator"]] else "=")
+    values    <- if (is_modifier(x)) x[["value"]] else unlist(x, use.names = FALSE)
+
+    if (length(values) > 1)
+
+      values <- paste0(VRB, BDX, VAL, "[", seq_along(values), "]=", values)
+
+    if (length(values) == 1)
+
+      values <- paste0(VRB, BDX, VAL, "=", values)
 
     c(fields, operators, values)
 
@@ -33,7 +40,7 @@ process_query <- function(..., .type) {
     imap(function(x, i) greplace(x, IDX, ifelse(.type == "default", i - 1, i)))
 }
 
-# class_query(
+# query(
 #   first_name = starts_with_("Andr"),
 #   last_name = contains_("J"),
 #   state = in_(c("CA", "GA", "NY")),
@@ -44,10 +51,20 @@ process_query <- function(..., .type) {
 #   pac = NULL,
 #   .type = "medicare"
 # )
+# query(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = in_(c("CA", "GA", "NY")),
+#   state_owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL
+# )
 #' @noRd
 #' @autoglobal
-class_query <- new_class(
-  name = "class_query",
+query <- new_class(
+  name = "query",
   package = NULL,
   properties = list(
     input = class_list,
