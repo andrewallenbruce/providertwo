@@ -1,4 +1,4 @@
-#' @include S7_classes.R
+#' @include classes.R
 NULL
 
 #' @autoglobal
@@ -107,4 +107,30 @@ method(quick_, class_group) <- function(x, offset, limit) {
     map(function(x)
       quick_(x, offset, limit), .progress = TRUE) |>
     name_members_(x)
+}
+
+#' Quickly access CMS data
+#'
+#' Convenience function to quickly access various CMS data endpoints.
+#' Mostly for debugging purposes.
+#'
+#' @param alias  `<chr>` Alias representing the CMS data endpoint or category.
+#' @param offset `<int>` The offset for pagination. Default is `0`.
+#' @param limit  `<int>` The maximum number of records to retrieve. Default is `10000`.
+#' @returns A data frame containing the requested CMS data.
+# quick("revalid_group")
+# quick("out_img_national")
+# quick("hgov_nipr_state")
+#' @autoglobal
+#' @noRd
+quick <- function(alias,
+                  offset = 0,
+                  limit  = 1e4) {
+
+  check_required(alias)
+
+  quick_(
+    endpoint(alias),
+    offset = offset,
+    limit  = limit)
 }

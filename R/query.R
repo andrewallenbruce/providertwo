@@ -1,310 +1,130 @@
-# x <- list(
-# first_name ~ starts_with_("Andr"),
-# last_name ~ contains_("J"),
-# state = ~ in_(c("CA", "GA", "NY")),
-# state = in_(c("CA", "GA", "NY")),
-# npi = npi_ex$k,
-# npi = npi_ex$k[1],
-# ccn = "01256",
-# pac = NULL)
-#
-# is_unnamed_formula(x)
-# is_named_formula(x)
-# !is_unnamed_formula(x) & !is_named_formula(x) & is_length_one(x)
-# !is_unnamed_formula(x) & !is_named_formula(x) & is_length_two(x)
-# check_names_unique(x)
+# create_query(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = not_in_(c("CA", "GA", "NY")),
+#   owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL,
+#   .type = "medicare"
+# )
 #' @autoglobal
 #' @noRd
-check_names_unique <- function(x, call = caller_env()) {
+create_query <- function(..., .type) {
 
-  x <- names(x[have_name(x)])
+  args <- dots_list(..., .homonyms = "error")
 
-  if (any_duplicated(x)) {
+  .c(VERB, FIELD, OPERATOR, VALUE, IDX, BDX) %=% query_keywords(type = .type)
 
-    i <- which_(fduplicated(x))
+  discard(args, is.null) |>
+    imap(
+      function(x, name) {
 
-    cli_abort(
-      c("x" = "Field{?s} {.field {x[i]}} appea{?rs/rs/r} multiple times."),
-      call = call)
-  }
-}
+        p <- paste0(VERB, BDX, FIELD, name)
+        o <- paste0(VERB, BDX, OPERATOR, if (is_modifier(x)) x[["operator"]] else "=")
+        v <- if (is_modifier(x)) x[["value"]] else unlist(x, use.names = FALSE)
 
-#' @autoglobal
-#' @noRd
-is_length_one <- function(x) {
-  map_lgl(x, \(x) length(x) == 1L)
-}
+        if (length(v) > 1)
 
-#' @autoglobal
-#' @noRd
-is_length_two <- function(x) {
-  map_lgl(x, \(x) length(x) > 1L)
-}
+          v <- paste0(VERB, BDX, VALUE, "[", seq_along(v), "]=", v)
 
-#' @autoglobal
-#' @noRd
-is_formula_full <- function(x) {
-  map_lgl(x, is_formula, lhs = TRUE)
-}
+        if (length(v) == 1)
 
-#' @autoglobal
-#' @noRd
-is_formula_rhs <- function(x) {
-  map_lgl(x, is_formula, lhs = FALSE)
-}
+          v <- paste0(VERB, BDX, VALUE, "=", v)
 
-#' @autoglobal
-#' @noRd
-is_unnamed_formula <- function(x) {
-  !have_name(x) & is_formula_full(x)
-}
+        c(p, o, v)
 
-#' @autoglobal
-#' @noRd
-is_named_formula <- function(x) {
-  have_name(x) & is_formula_rhs(x)
-}
-
-#' @autoglobal
-#' @noRd
-convert_unnamed_formula <- function(x) {
-
-  idx <- is_unnamed_formula(x)
-
-  if (any(idx)) {
-
-    tmp <- x[idx]
-
-    rhs <- map(tmp, f_rhs)
-
-    lhs <- map(
-      tmp, function(x)
-        as_string(f_lhs(x))) |>
-      list_c()
-
-    x[idx] <- rhs
-
-    names(x)[idx] <- lhs
-  }
-  x
-}
-
-#' @autoglobal
-#' @noRd
-convert_named_formula <- function(x) {
-
-  idx <- is_named_formula(x)
-
-  if (any(idx)) {
-
-    tmp <- x[idx]
-
-    rhs <- map(tmp, f_rhs)
-
-    x[idx] <- rhs
-  }
-  x
-}
-
-#' @autoglobal
-#' @noRd
-format_query <- function(x) {
-
-  i <- list_lengths(x) > 1
-
-  if (any(i)) {
-
-    g <- x[i]
-
-    x[i] <- paste0(unlist(g, use.names = FALSE), collapse = ",")
-
-    names(x[i]) <- names(g)
-
-    }
-
-  pr <- format(unlist(x, use.names = FALSE), justify = 'left')
-
-  nm <- format(names(x), justify = 'right')
-
-  glue("{nm} = {pr}")
-}
-
-generate_query <- function(a) {
-
-  imap(a, function(x, m) {
-
-    p <- paste0("filter[<<i>>][path]=", m, "&")
-    o <- paste0("filter[<<i>>][operator]=", "=", "&")
-    v <- unlist(x, use.names = FALSE)
-
-    if (length(v) > 1)
-
-      v <- paste0(
-        "filter[<<i>>][value][",
-        seq_along(v),
-        "]=",
-        v,
-        "&"
-        )
-
-    if (length(v) == 1)
-      v <- paste0(
-        "filter[<<i>>][value]=",
-        v,
-        "&"
-        )
-
-    c(p, o, v)
-
-  }) |>
-    unname() |>
-    imap(function(x, idx) {
-
-      greplace(x, "<<i>>", idx) |>
-        paste0(collapse = "")
-
-    })
-
-}
-
-#' @autoglobal
-#' @noRd
-seq_along0 <- function(x) {
-  seq_along(x) - 1
-  # 0L:(length(x) - 1L)
-}
-
-#' Format Queries
-#' @examples
-#' args = list(state = c("GA", "MD"),
-#'             last_name = "SMITH",
-#'             npi = 1234567890,
-#'             PECOS = NULL)
-#'
-#' query_formatter(args)
-#'
-#' @param args named `<list>` of `<chr>` arguments
-#' @returns `<list>` of formatted query `<exprs>`
-#' @autoglobal
-#' @rdname query-format
-#' @export
-query_formatter <- function(args) {
-
-  args <- discard(args, is.null)
-
-  cat(format_query(args), sep = "\n")
-
-  cat("\n")
-
-  qry <- generate_query(args)
-
-  map(
-    qry,
-    function(x) {
-      strsplit(x, "&") |>
-        unlist() |>
-        append("\n")
       }) |>
-    unlist() |>
-    cat(sep = "\n")
+    unname() |>
+    imap(
+      function(x, idx) {
 
-  invisible(qry)
+        greplace(x, IDX, if (.type == "default") idx - 1 else idx)
 
+      })
 }
 
-#' Format Public API Queries
-#'
-#' @param args named `<list>` or vector of `<chr>` arguments
-#'
-#' @param operator `<chr>` logical operator; acceptable options are:
-#'                         `=`, `>=`, `<=`, `>`, `<`, `<>`, `STARTS_WITH`,
-#'                         `ENDS_WITH`, `CONTAINS`, `IN`, `NOT IN`, `BETWEEN`,
-#'                         `NOT BETWEEN`, `IS NULL`, `IS NOT NULL`
-#'
-#' @returns `<list>` of formatted query `<exprs>`
-#'
-#' @examplesIf rlang::is_interactive()
-#' format_query_care(list("NPI" = "1417918293", "PECOS" = NULL))
-#'
-#' format_query_care(list(NPI = "1417918293", PECOS = "001132"))
-#'
-#' format_query_pro(list("NPI" = "1417918293", "PECOS" = NULL))
-#'
-#' format_query_pro(list(NPI = "1417918293", PECOS = "001132"))
-#'
-#' @name query-format
-#' @noRd
-NULL
-
-#' @autoglobal
-#' @rdname query-format
-#' @noRd
-format_query_care <- function(args, operator = "=") {
-
-  args  <- discard(args, is.null)
-
-  query <- glue(
-    '
-  "filter[{i}][path]" = "{PATH}",
-  "filter[{i}][operator]" = "{OPERATOR}",
-  "filter[{i}][value]" = "{VALUE}"
-  ',
-    i                 = seq_along(args),
-    PATH              = names(args),
-    OPERATOR          = operator,
-    VALUE             = args) |>
-    glue_collapse(sep = ",\n")
-
-  glue('c({query})') |>
-    parse_expr() |>
-    eval_bare()
-}
-
-#' @autoglobal
-#' @rdname query-format
-#' @noRd
-format_query_pro <- function(args, operator = "=") {
-
-  args  <- discard(args, is.null)
-
-  query <- glue(
-    '
-  "conditions[{i}][property]" = "{PROPERTY}",
-  "conditions[{i}][operator]" = "{OPERATOR}",
-  "conditions[{i}][value]" = "{VALUE}"
-  ',
-    i                 = seq_along0(args),
-    PROPERTY          = names(args),
-    OPERATOR          = operator,
-    VALUE             = args) |>
-    glue_collapse(sep = ",\n")
-
-  glue('c({query})') |>
-    parse_expr() |>
-    eval_bare()
-}
+# x <- exprs(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = not_in_(c("CA", "GA", "NY")),
+#   owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL
+# )
 
 #' @autoglobal
 #' @noRd
-process_params <- function(arg_names, field_names) {
+params_cli <- function(...) {
 
-  nms <- set_names(arg_names, field_names)
+  x <- enexprs(...)
 
-  parse_expr(
-    paste0(
-      "list2(",
-      glue_collapse(
-        glue('{names(nms)} = {unname(nms)}'),
-        sep = ", "),
-      ")")
-  )
+  if (any_mods(x)) x[are_mods(x)] <- mods_cli(x[are_mods(x)])
+
+  if (any_calls(x)) x[are_calls(x)] <- calls_cli(x[are_calls(x)])
+
+  if (any_length_two(x)) {
+    x[are_length_two(x)] <- brackets_cli(x[are_length_two(x)])
+  }
+
+  if (any_null(x)) x[are_null(x)] <- NULL #cli::col_silver("NULL")
+
+  if (any_lone_not_null(x)) {
+    x[are_lone_not_null(x)] <- lone_not_null_cli(x[are_lone_not_null(x)])
+  }
+
+  NUM    <- brackets_cli2(just_left(seq_along(names(x))))
+
+  FIELD  <- just_right(names(x))
+
+  EQUALS <- cli::col_black(cli::symbol$double_line)
+
+  VALUE  <- just_left(unlist(x, use.names = FALSE))
+
+  g <- glue("{NUM} {FIELD} {EQUALS} {VALUE}")
+
+  cat(g, sep = "\n")
+
+  invisible(g)
 }
 
+# new_query(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = in_(c("CA", "GA", "NY")),
+#   state_owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL,
+#   .type = "medicare"
+# )
 #' @autoglobal
 #' @noRd
-eval_params <- function(args, fields) {
+new_query <- function(..., .type) {
 
-  process_params(args, fields) |>
-    eval_bare() |>
-    compact()
+  if (is_missing(.type)) .type <- "default"
+
+  cli::cli_h3(cli::col_yellow("Parameter Inputs:"))
+  g <- params_cli(...)
+
+  q <- create_query(..., .type = .type)
+
+  cli::cli_h3(cli::col_yellow("Query Output:"))
+  # map(q, function(x) unlist(x, use.names = FALSE) |> append("\n")) |>
+  #   unlist(use.names = FALSE) |>
+  #   cli::col_silver() |>
+  #   cat(sep = "\n")
+  strwrap(
+    strsplit(flatten_query(q), "&") |>
+      unlist(),
+    width = 70,
+    prefix = paste0(cli::symbol$full_block, cli::symbol$upper_block_1, " ")
+  ) |> cli::col_silver() |> cat(sep = "\n")
+
+  invisible(flatten_query(q))
+
 }

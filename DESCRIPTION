@@ -20,7 +20,10 @@ Imports:
     fs (>= 1.6.6),
     glue (>= 1.8.0),
     httr2 (>= 1.1.2),
+    insitu,
     kit (>= 0.0.2),
+    memoise (>= 2.0.1),
+    oomph,
     purrr (>= 1.0.4),
     RcppSimdJson (>= 0.1.13),
     rlang (>= 1.1.6),
@@ -30,6 +33,9 @@ Imports:
     vctrs (>= 0.6.5)
 Suggests: 
     testthat (>= 3.2.3)
+Remotes:
+    coolbutuseless/insitu,
+    coolbutuseless/oomph
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE
@@ -40,44 +46,36 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 RoxygenNote: 7.3.2
 Collate: 
-    'fastplyr.R'
+    'aka_col.R'
+    'aka_end.R'
+    'aka_mph.R'
+    'args.R'
     'utils_misc.R'
-    '00-catalogs.R'
-    '01-alias_caid.R'
-    '01-alias_care.R'
-    '01-alias_hgov.R'
-    '01-alias_open.R'
-    '01-alias_pro.R'
-    '02-alias_care.R'
-    'S7_args.R'
-    'S7_classes.R'
-    'S7_new.R'
-    'care_enrollees.R'
-    'care_quality.R'
+    'catalogs.R'
+    'checks.R'
+    'classes.R'
     'cli.R'
     'dictionaries.R'
+    'dimensions.R'
+    'endpoint.R'
+    'fields.R'
     'generated-globals.R'
     'generic_getters.R'
-    'get_dimensions.R'
+    'httr2.R'
     'import-standalone-obj-type.R'
     'import-standalone-types-check.R'
+    'metadata.R'
     'methods_base_request.R'
-    'methods_collections.R'
-    'methods_list_resources.R'
     'methods_quick.R'
     'methods_quick_query.R'
-    'new_group.R'
-    'npi_nlm.R'
-    'npi_nppes.R'
-    'offset.R'
-    'open_summary.R'
-    'pro_affiliations.R'
-    'pro_clinicians.R'
-    'pro_utilization.R'
+    'npi.R'
     'providertwo-package.R'
+    'qpp.R'
     'query.R'
-    'query_helpers.R'
-    'utils_checks.R'
-    'utils_httr2.R'
-    'utils_tidyup.R'
+    'query_class.R'
+    'query_modifiers.R'
+    'query_utils.R'
+    'resources.R'
+    'tidyup_names.R'
+    'tidyup_utils.R'
     'zzz.R'

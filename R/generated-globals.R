@@ -7,42 +7,16 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
-  # <clinicians>
-  "adr_ln_1",
-  # <clinicians>
-  "adr_ln_2",
-  # <clinicians>
-  "adrs_id",
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
-  # <clog_caid>
-  # <clog_hgov>
-  "api",
-  # <browse_link>
-  "browseURL",
+  # <create_query>
+  # <process_query>
+  "BDX",
   # <quality_metrics>
   "category",
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
-  # <clog_caid>
-  # <clog_hgov>
-  "clog",
   # <open_dictionary>
   "constraints",
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
-  "contact",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
-  # <clog_care>
-  # <clog_open>
-  # <clog_caid>
-  # <clog_hgov>
-  "data",
   # <quality_eligibility>
   "date_approved",
   # <clog_care>
@@ -54,28 +28,16 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   "description",
-  # <clog_care>
-  # <clog_prov>
-  "dictionary",
   # <clog_hgov>
   "distribution",
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   "download",
   # <clog_care>
   # <tidy_resources>
   "downloadURL",
-  # <open_dictionary>
-  "endpoint",
   # <clog_care>
-  # <caid_temporal>
-  # <care_temporal>
-  # <hgov_temporal>
-  # <open_temporal>
-  # <select_care2>
+  # <c_temp>
   "endpoints",
   # <quality_eligibility>
   "enroll_year",
@@ -84,18 +46,16 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
+  # <create_query>
+  "FIELD",
   # <tidy_resources>
   "fileSize",
   # <quality_eligibility>
   "first_name",
   # <quality_eligibility>
   "firstApprovedDate",
-  # <clinicians>
-  "grd_yr",
-  # <clog_prov>
-  "group",
-  # <clinicians>
-  "grp_assgn",
+  # <process_query>
+  "FLD",
   # <clog_hgov>
   "id",
   # <clog_care>
@@ -104,8 +64,9 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <clinicians>
-  "ind_assgn",
+  # <create_query>
+  # <process_query>
+  "IDX",
   # <quality_eligibility>
   "is_maqi",
   # <quality_eligibility>
@@ -121,8 +82,6 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
-  # <clinicians>
-  "ln_2_sprs",
   # <quality_metrics>
   "metric",
   # <quality_eligibility>
@@ -142,29 +101,23 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
-  # <clinicians>
-  "num_org_mem",
-  # <clog_care>
+  # <create_query>
+  "OPERATOR",
+  # <process_query>
+  "OPR",
   # <clog_caid>
   "periodicity",
   # <clog_care>
   "references",
   # <clog_prov>
   "released",
-  # <clog_care>
+  # <get_identifier>
+  # <get_resources>
   "resources",
   # <clog_care>
   "resourcesAPI",
-  # <clinicians>
-  "sec_spec_1",
-  # <clinicians>
-  "sec_spec_2",
-  # <clinicians>
-  "sec_spec_3",
-  # <clinicians>
-  "sec_spec_4",
-  # <clog_care>
-  "site",
+  # <alias_lookup>
+  "rex",
   # <tidy_resources>
   "size",
   # <quality_eligibility>
@@ -175,26 +128,33 @@ utils::globalVariables(c(
   "specialty_description",
   # <quality_eligibility>
   "specialty_type",
-  # <clinicians>
-  "telehlth",
   # <clog_care>
   "temporal",
   # <clog_prov>
   "theme",
   # <ss_title>
-  # <select_alias>
   # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
+  # <select_alias>
   "title",
+  # <process_query>
+  "VAL",
+  # <create_query>
+  "VALUE",
+  # <create_query>
+  "VERB",
+  # <process_query>
+  "VRB",
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
+  # <get_resources>
   # <tidy_resources>
   "year",
   # <quality_eligibility>

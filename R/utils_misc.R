@@ -1,3 +1,78 @@
+options(fastplyr.inform = FALSE)
+
+#' @autoglobal
+#' @noRd
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
+#' @autoglobal
+#' @noRd
+`%|%` <- function(x, y) {
+  if (is.na(x)) y else x
+}
+
+#' @autoglobal
+#' @noRd
+names_map <- function(x, f, ..., .nm = x) {
+  map(.x = x, .f = f, ...) |>
+    set_names(nm = .nm)
+}
+
+#' @autoglobal
+#' @noRd
+fibble <- function(...) {
+  fastplyr::new_tbl(...)
+}
+
+#' @autoglobal
+#' @noRd
+as_fibble <- function(x) {
+  fastplyr::as_tbl(x)
+}
+
+#' @autoglobal
+#' @noRd
+flist <- function(...) {
+  fastplyr::list_tidy(...)
+}
+
+#' @autoglobal
+#' @noRd
+ffill <- function(x,
+                  ...,
+                  by = NULL,
+                  cols = NULL,
+                  direction = "forwards",
+                  limit = Inf,
+                  new_names = "{.col}") {
+  fastplyr::f_fill(
+    data = x,
+    ...,
+    .by = by,
+    .cols = cols,
+    .direction = direction,
+    .fill_limit = limit,
+    .new_names = new_names
+  )
+}
+
+#' @autoglobal
+#' @noRd
+fnest <- function(x,
+                  ...,
+                  add = FALSE,
+                  by = NULL,
+                  cols = NULL) {
+  fastplyr::f_nest_by(
+    data = x,
+    ...,
+    .add = add,
+    .by = by,
+    .cols = cols) |>
+    fastplyr::f_ungroup()
+}
+
 #' @autoglobal
 #' @noRd
 yank <- function(x) {
@@ -6,14 +81,23 @@ yank <- function(x) {
 
 #' @autoglobal
 #' @noRd
-ss_title <- function(x, re, ...) {
-  subset_detect(i = x, j = title, p = re, ...)
+pdetect <- function(x, p, n = FALSE, ci = FALSE) {
+  stri_detect_regex(str     = x,
+                    pattern = p,
+                    negate  = n,
+                    case_insensitive = ci)
 }
 
 #' @autoglobal
 #' @noRd
-select_alias <- function(x, alias, ...) {
-  subset_detect(i = x, j = title, p = alias, ...)
+subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
+  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
+}
+
+#' @autoglobal
+#' @noRd
+ss_title <- function(x, re, ...) {
+  subset_detect(i = x, j = title, p = re, ...)
 }
 
 #' @autoglobal
@@ -164,21 +248,6 @@ smush_elem <- function(i, el) {
 
 #' @autoglobal
 #' @noRd
-pdetect <- function(x, p, n = FALSE, ci = FALSE) {
-  stri_detect_regex(str     = x,
-                    pattern = p,
-                    negate  = n,
-                    case_insensitive = ci)
-}
-
-#' @autoglobal
-#' @noRd
-subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
-  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
-}
-
-#' @autoglobal
-#' @noRd
 delist <- function(x) {
   unlist(x, use.names = FALSE)
 }
@@ -247,8 +316,10 @@ get_distribution <- function(x) {
 #' @keywords internal
 #' @noRd
 fmt_contactpoint <- function(x) {
-  glue(
-    "{names(x)} ({x})",
+
+  x <- get_elem(x, "contactPoint")
+
+  glue("{names(x)} ({x})",
     x = get_elem(x, "^has", regex = TRUE) |>
       delist() |>
       set_names(
@@ -465,7 +536,7 @@ care_types <- function(x) {
       "Medicare COVID-19 Hospitalization Trends",
       "Public Reporting of Missing Digital Contact Information"
     ),
-    cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
+    cli::cli_abort(c("x" = "No matches found for {.val {x}}."), call = call)
   ) |>
     unlist(use.names = FALSE)
 }

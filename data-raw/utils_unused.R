@@ -111,3 +111,19 @@ make_join_col <- function(x, col) {
     flatten_column() |>
     na_if("")
 }
+
+#' @autoglobal
+#' @noRd
+luhn_check <- function(x) {
+
+  i <- c(1L, 3L, 5L, 7L, 9L)
+  d <- cheapr_rev(as.integer(strsplit(delist(as.character(x)), "")[[1]][1:9]))
+
+  d[i] <- d[i] * 2L
+  d[i] <- ifelse(d[i] > 9L, d[i] - 9L, d[i])
+
+  d <- sum(d) + 24L
+  d <- (ceiling(d / 10) * 10) - d
+
+  identical(paste0(substr(x, 1, 9), d), x)
+}

@@ -1,0 +1,210 @@
+#' @autoglobal
+#' @noRd
+just_right <- function(x) {
+  format(x, justify = "right")
+}
+
+#' @autoglobal
+#' @noRd
+just_left <- function(x) {
+  format(x, justify = "left")
+}
+
+#' @autoglobal
+#' @noRd
+lone_not_null_cli <- function(x) {
+  cli::col_yellow(unlist(x, use.names = FALSE))
+}
+
+#' @autoglobal
+#' @noRd
+brackets_cli <- function(x) {
+  paste0(
+    cli::col_silver("["),
+    paste0(
+      cli::col_yellow((unlist(x, use.names = FALSE))
+    ),
+    collapse = cli::col_silver(", ")),
+    cli::col_silver("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
+brackets_cli2 <- function(x) {
+  paste0(
+    cli::col_black("["),
+    cli::col_silver(x),
+    cli::col_black("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
+calls_cli <- function(x) {
+  map(x[are_calls(x)], function(x) cli::col_yellow(deparse1(x)))
+}
+
+#' @autoglobal
+#' @noRd
+mods_cli <- function(x) {
+  map(x[are_mods(x)], function(x) cli::col_red(deparse1(x)))
+}
+
+#' @autoglobal
+#' @noRd
+brackets <- function(x) {
+  paste0("[", x, "]")
+}
+
+#' @autoglobal
+#' @noRd
+brack_along <- function(x) {
+  if (length(x) > 1) {
+    brackets(seq_along(x))
+  } else {
+    NULL
+  }
+}
+
+#' @autoglobal
+#' @noRd
+are_length_one <- function(x) {
+  list_lengths(x) == 1L
+}
+
+#' @autoglobal
+#' @noRd
+are_length_two <- function(x) {
+  list_lengths(x) > 1L
+}
+
+#' @autoglobal
+#' @noRd
+are_null <- function(x) {
+  map_lgl(x, is.null)
+}
+
+#' @autoglobal
+#' @noRd
+are_not_null <- function(x) {
+  map_lgl(x, Negate(is.null))
+}
+
+#' @autoglobal
+#' @noRd
+is_mod <- function(x) {
+  is_call(x, name = c(
+    "between_",
+    "blank_",
+    "contains_",
+    "ends_with_",
+    "greater_or_equal_",
+    "greater_than_",
+    "in_",
+    "is_",
+    "is_not_",
+    "less_or_equal_",
+    "less_than_",
+    "not_between_",
+    "not_blank_",
+    "not_in_",
+    "starts_with_"
+  ))
+}
+
+#' @autoglobal
+#' @noRd
+are_mods <- function(x) {
+  map_lgl(x, is_mod)
+}
+
+#' @autoglobal
+#' @noRd
+are_calls <- function(x) {
+  map_lgl(x, \(x) purrr::negate(is_mod)(x) & is_call(x))
+}
+
+#' @autoglobal
+#' @noRd
+are_lone_not_null <- function(x) {
+  are_length_one(x) & are_not_null(x)
+}
+
+#' @autoglobal
+#' @rdname query-modifiers
+#' @noRd
+is_modifier <- function(x) {
+  inherits(x, "modifier")
+}
+
+#' @autoglobal
+#' @noRd
+any_mods <- function(x) {
+  any(are_mods(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_calls <- function(x) {
+  any(are_calls(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_length_two <- function(x) {
+  any(are_length_two(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_null <- function(x) {
+  any(are_null(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_lone_not_null <- function(x) {
+  any(are_lone_not_null(x))
+}
+
+#' @autoglobal
+#' @noRd
+query_keywords <- function(type) {
+  if (is_missing(type)) type <- "default"
+
+  idx_ <- "<<i>>"
+
+  switch(
+    type,
+    default = list(
+      VRB = "conditions",
+      FLD = "[property]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
+    ),
+    medicare = list(
+      VRB = "filter",
+      FLD = "[path]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
+flatten_query <- function(x) {
+  map(x, \(x) paste0(x, collapse = "&")) |>
+    unlist(use.names = FALSE) |>
+    paste0(collapse = "&")
+}
+
+# seq_along0 <- function(x) {
+#   seq_along(x) - 1
+#   0L:(length(x) - 1L)
+# }

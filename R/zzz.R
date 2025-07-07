@@ -1,9 +1,10 @@
 .onLoad <- function(libname, pkgname) {
 
   S7::methods_register()
-
-  # list_resources <<- memoise::memoise(list_resources)
-  # base_request   <<- memoise::memoise(base_request)
-  # quick          <<- memoise::memoise(quick)
+  catalogs <<- memoise::memoise(catalogs)
+  rlang::run_on_load()
 
 }
+
+the         <- new.env(parent = emptyenv())
+the$catalog <- catalogs()
