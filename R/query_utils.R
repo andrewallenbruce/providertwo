@@ -59,6 +59,16 @@ brackets <- function(x) {
 
 #' @autoglobal
 #' @noRd
+brack_along <- function(x) {
+  if (length(x) > 1) {
+    brackets(seq_along(x))
+  } else {
+    NULL
+  }
+}
+
+#' @autoglobal
+#' @noRd
 are_length_one <- function(x) {
   list_lengths(x) == 1L
 }
@@ -161,31 +171,29 @@ any_lone_not_null <- function(x) {
 #' @autoglobal
 #' @noRd
 query_keywords <- function(type) {
-
   if (is_missing(type)) type <- "default"
 
   idx_ <- "<<i>>"
 
   switch(
     type,
-    default  = list(
-      VERB      = "conditions",
-      FIELD     = "[property]=",
-      OPERATOR  = "[operator]=",
-      VALUE     = "[value]",
-      IDX       = idx_,
-      BDX       = brackets(idx_)
+    default = list(
+      VRB = "conditions",
+      FLD = "[property]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
     ),
     medicare = list(
-      VERB      = "filter",
-      FIELD     = "[path]=",
-      OPERATOR  = "[operator]=",
-      VALUE     = "[value]",
-      IDX       = idx_,
-      BDX       = brackets(idx_)
+      VRB = "filter",
+      FLD = "[path]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
     )
   )
-
 }
 
 #' @autoglobal

@@ -172,13 +172,51 @@ is_not_ <- function(x) {
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
-blank_ <- function(x) {
-  modifier_(operator = "IS NULL", value = x)
+is_blank_ <- function() {
+  modifier_(operator = "IS NULL", value = NULL)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
 #' @noRd
 not_blank_ <- function(x) {
-  modifier_(operator = "IS NOT NULL", value = x)
+  modifier_(operator = "IS NOT NULL", value = NULL)
+}
+
+#' @autoglobal
+#' @noRd
+`%AND%` <- function(lhs, rhs) {
+  # group AND
+  #
+  # filter[g1][group][conjunction]=AND
+  # filter[1][condition][memberOf]=g1
+  # filter[2][condition][memberOf]=g1
+  #
+  # filter[1][condition][path]=first_name
+  # filter[1][condition][operator]==
+  # filter[1][condition][value]=Janis
+  #
+  # filter[2][condition][path]=last_name
+  # filter[2][condition][operator]=STARTS_WITH
+  # filter[2][condition][value]=J
+
+}
+
+#' @autoglobal
+#' @noRd
+`%OR%` <- function(lhs, rhs) {
+  # group OR
+  #
+  # filter[g1][group][conjunction]=OR
+  # filter[1][condition][memberOf]=g1
+  # filter[2][condition][memberOf]=g1
+  #
+  # filter[1][condition][path]=PROVIDER_TYPE_DESC
+  # filter[1][condition][operator]=CONTAINS
+  # filter[1][condition][value]=PRACTITIONER
+  #
+  # filter[2][condition][path]=STATE_CD
+  # filter[2][condition][operator]==
+  # filter[2][condition][value]=MD
+
 }

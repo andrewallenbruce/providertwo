@@ -1,4 +1,4 @@
-# q <- create_query(
+# create_query(
 #   first_name = starts_with_("Andr"),
 #   last_name = contains_("J"),
 #   state = in_(c("CA", "GA", "NY")),
@@ -45,7 +45,7 @@ create_query <- function(..., .type) {
       })
 }
 
-# g <- params_cli(
+# x <- exprs(
 #   first_name = starts_with_("Andr"),
 #   last_name = contains_("J"),
 #   state = in_(c("CA", "GA", "NY")),
@@ -55,6 +55,7 @@ create_query <- function(..., .type) {
 #   ccn = "01256",
 #   pac = NULL
 # )
+
 #' @autoglobal
 #' @noRd
 params_cli <- function(...) {
@@ -127,12 +128,3 @@ new_query <- function(..., .type) {
   invisible(flatten_query(q))
 
 }
-
-# purrr::imap_chr(g, \(x, idx) paste0(idx, ": ", x)) |> cat(sep = "\n")
-# cli::cli_div(theme = list(ol = list("margin-left" = 2)))
-# cli::cli_ol()
-# cli::cli_li("one")
-# cli::cli_ul(c("foo", "bar", "foobar"))
-# cli::cli_li("two")
-# cli::cli_end()
-# cli::cli_end()
