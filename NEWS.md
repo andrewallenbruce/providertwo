@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9347 (2025-07-07)
+
+* query -> class_query
+
+
 # providertwo 0.0.0.9346 (2025-07-07)
 
 * fixed bug in process_query
