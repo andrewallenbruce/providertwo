@@ -40,27 +40,35 @@ process_query <- function(..., .type) {
     imap(function(x, i) greplace(x, IDX, ifelse(.type == "default", i - 1, i)))
 }
 
-# query(
-#   first_name = starts_with_("Andr"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = in_(c("CA", "GA", "NY")),
-#   state_owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   pac = NULL,
-#   .type = "medicare"
-# )
-# query(
-#   first_name = starts_with_("Andr"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = in_(c("CA", "GA", "NY")),
-#   state_owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   pac = NULL
-# )
+#' Create a Query Object
+#' @param ... Query arguments. See details for valid query modifiers.
+#' @param .type Query type, `"default"` or `"medicare"`.
+#' @returns S7 `<query>` object.
+#' @examples
+#' query(
+#'   first_name = starts_with_("Andr"),
+#'   last_name = contains_("J"),
+#'   state = in_(c("CA", "GA", "NY")),
+#'   city = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   state_owner = c("GA", "MD"),
+#'   npi = npi_ex$k,
+#'   ccn = "01256",
+#'   pac = NULL,
+#'   .type = "medicare")
+#'
+#' query(
+#'   first_name = starts_with_("Andr"),
+#'   last_name = contains_("J"),
+#'   state = in_(c("CA", "GA", "NY")),
+#'   city = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   state_own = c("GA", "MD"),
+#'   npi = npi_ex$k,
+#'   ccn = "01256",
+#'   pac = NULL)
+#' @autoglobal
+#' @export
+
+
 #' @noRd
 #' @autoglobal
 query <- new_class(
@@ -77,8 +85,9 @@ query <- new_class(
     )
   ),
   constructor = function(..., .type = "default") {
-    new_object(S7_object(),
-               input = enexprs(...),
-               raw   = process_query(..., .type))
+    new_object(
+      S7_object(),
+      input = enexprs(...),
+      raw   = process_query(..., .type))
   }
 )

@@ -357,6 +357,44 @@ create_query <- function(..., .type) {
       })
 }
 
+# new_query(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = in_(c("CA", "GA", "NY")),
+#   state_owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL,
+#   .type = "medicare"
+# )
+#' @autoglobal
+#' @noRd
+new_query <- function(..., .type) {
+
+  if (is_missing(.type)) .type <- "default"
+
+  cli::cli_h3(cli::col_yellow("Parameter Inputs:"))
+  g <- params_cli(...)
+
+  q <- process_query(..., .type = .type)
+
+  cli::cli_h3(cli::col_yellow("Query Output:"))
+  # map(q, function(x) unlist(x, use.names = FALSE) |> append("\n")) |>
+  #   unlist(use.names = FALSE) |>
+  #   cli::col_silver() |>
+  #   cat(sep = "\n")
+  strwrap(
+    strsplit(flatten_query(q), "&") |>
+      unlist(),
+    width = 70,
+    prefix = paste0(cli::symbol$full_block, cli::symbol$upper_block_1, " ")
+  ) |> cli::col_silver() |> cat(sep = "\n")
+
+  invisible(flatten_query(q))
+
+}
+
 q2 <- list(
   `conditions[0][property]` = "state",
   `conditions[0][operator]` = "IN",

@@ -1,44 +1,35 @@
 #' Query Modifiers
 #'
-#' @name query-helpers
-#' @param operator  `<chr>`  operator to use; default is `"="`
-#' @param value     `<any>`  value to compare against
+#' @name query-modifiers
 #' @param x         `<chr>`  input
 #' @param or_equals `<lgl>`  append "="; default is `FALSE`
 #' @param negate    `<lgl>`  prepend "NOT"; default is `FALSE`
-#' @returns         `<list>` of query parameters
-#' @examplesIf rlang::is_interactive()
-#' greater_than_(1)
+#' @returns         `<list>` of class `"modifier"`
+#' @examples
 #' starts_with_("foo")
+#' ends_with_("bar")
+#' contains_("baz")
+#'
 #' in_(state.abb[10:15])
-#' @noRd
+#' in_(state.abb[10:15], negate = TRUE)
+#'
+#' equals_(1000)
+#' equals_(1000, negate = TRUE)
+#'
+#' greater_than_(1000)
+#' greater_than_(1000, or_equals = TRUE)
+#'
+#' less_than_(1000)
+#' less_than_(1000, or_equals = TRUE)
+#'
+#' is_blank_()
+#' is_blank_(negate = TRUE)
 NULL
-
-# list(
-#   first_name = starts_with_("Andr"),
-#   middle_name = ends_with_("e"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = not_in_("USA"),
-#   state_owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   zip = is_("30303"),
-#   rate = greater_or_equals_(1000),
-#   rate2 = less_than_(1000),
-#   rate2 = less_or_equals_(1000),
-#   rate3 = greater_than_(1000),
-#   rate3 = not_between_(2000),
-#   rate4 = between_(2000),
-#   rate5 = not_in_(c(1000, 2000)),
-#   rate6 = is_not_(1000),
-#   rate7 = blank_(""),
-#   rate8 = not_blank_("")
-# )
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @keywords internal
+#' @export
 modifier_ <- function(operator, value) {
 
   check_required(value)
@@ -74,7 +65,7 @@ modifier_ <- function(operator, value) {
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 greater_than_ <- function(x, or_equals = FALSE) {
 
   check_number_decimal(x)
@@ -87,7 +78,7 @@ greater_than_ <- function(x, or_equals = FALSE) {
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 less_than_ <- function(x, or_equals = FALSE) {
 
   check_number_decimal(x)
@@ -100,40 +91,37 @@ less_than_ <- function(x, or_equals = FALSE) {
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 starts_with_ <- function(x) {
   modifier_(operator = "STARTS_WITH", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 ends_with_ <- function(x) {
   modifier_(operator = "ENDS_WITH", value = x)
 }
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 contains_ <- function(x) {
   modifier_(operator = "CONTAINS", value = x)
 }
 
-#' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-between_ <- function(x, negate = FALSE) {
-  check_number_decimal(x)
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
-    value    = x)
-}
+# between_ <- function(x, negate = FALSE) {
+#   check_number_decimal(x)
+#   check_bool(negate)
+#
+#   modifier_(
+#     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
+#     value    = x)
+# }
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 in_ <- function(x, negate = FALSE) {
 
   check_bool(negate)
@@ -145,7 +133,7 @@ in_ <- function(x, negate = FALSE) {
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 equals_ <- function(x, negate = FALSE) {
 
   check_bool(negate)
@@ -157,7 +145,7 @@ equals_ <- function(x, negate = FALSE) {
 
 #' @autoglobal
 #' @rdname query-modifiers
-#' @noRd
+#' @export
 is_blank_ <- function(negate = FALSE) {
 
   check_bool(negate)
@@ -183,7 +171,6 @@ is_blank_ <- function(negate = FALSE) {
   # filter[2][condition][path]=last_name
   # filter[2][condition][operator]=STARTS_WITH
   # filter[2][condition][value]=J
-
 }
 
 #' @autoglobal
@@ -202,5 +189,4 @@ is_blank_ <- function(negate = FALSE) {
   # filter[2][condition][path]=STATE_CD
   # filter[2][condition][operator]==
   # filter[2][condition][value]=MD
-
 }

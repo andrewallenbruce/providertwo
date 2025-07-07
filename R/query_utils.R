@@ -208,3 +208,49 @@ flatten_query <- function(x) {
 #   seq_along(x) - 1
 #   0L:(length(x) - 1L)
 # }
+
+# x <- exprs(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = not_in_(c("CA", "GA", "NY")),
+#   owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL
+# )
+
+#' @autoglobal
+#' @noRd
+params_cli <- function(...) {
+
+  x <- enexprs(...)
+
+  if (any_mods(x)) x[are_mods(x)] <- mods_cli(x[are_mods(x)])
+
+  if (any_calls(x)) x[are_calls(x)] <- calls_cli(x[are_calls(x)])
+
+  if (any_length_two(x)) {
+    x[are_length_two(x)] <- brackets_cli(x[are_length_two(x)])
+  }
+
+  if (any_null(x)) x[are_null(x)] <- NULL #cli::col_silver("NULL")
+
+  if (any_lone_not_null(x)) {
+    x[are_lone_not_null(x)] <- lone_not_null_cli(x[are_lone_not_null(x)])
+  }
+
+  NUM    <- brackets_cli2(just_left(seq_along(names(x))))
+
+  FIELD  <- just_right(names(x))
+
+  EQUALS <- cli::col_black(cli::symbol$double_line)
+
+  VALUE  <- just_left(unlist(x, use.names = FALSE))
+
+  g <- glue("{NUM} {FIELD} {EQUALS} {VALUE}")
+
+  cat(g, sep = "\n")
+
+  invisible(g)
+}
