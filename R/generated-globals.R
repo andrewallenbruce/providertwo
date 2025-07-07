@@ -7,7 +7,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
-  # <create_query>
   # <process_query>
   "BDX",
   # <quality_metrics>
@@ -46,8 +45,6 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
-  # <create_query>
-  "FIELD",
   # <tidy_resources>
   "fileSize",
   # <quality_eligibility>
@@ -64,7 +61,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <create_query>
   # <process_query>
   "IDX",
   # <quality_eligibility>
@@ -101,8 +97,6 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
-  # <create_query>
-  "OPERATOR",
   # <process_query>
   "OPR",
   # <clog_caid>
@@ -143,10 +137,6 @@ utils::globalVariables(c(
   "title",
   # <process_query>
   "VAL",
-  # <create_query>
-  "VALUE",
-  # <create_query>
-  "VERB",
   # <process_query>
   "VRB",
   # <clog_care>

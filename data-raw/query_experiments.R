@@ -310,6 +310,53 @@ convert_modifier <- function(x) {
   x
 }
 
+# create_query(
+#   first_name = starts_with_("Andr"),
+#   last_name = contains_("J"),
+#   state = in_(c("CA", "GA", "NY")),
+#   country = not_in_(c("CA", "GA", "NY")),
+#   owner = c("GA", "MD"),
+#   npi = npi_ex$k,
+#   ccn = "01256",
+#   pac = NULL,
+#   .type = "medicare"
+# )
+#' @autoglobal
+#' @noRd
+create_query <- function(..., .type) {
+
+  args <- dots_list(..., .homonyms = "error")
+
+  .c(VERB, FIELD, OPERATOR, VALUE, IDX, BDX) %=% query_keywords(type = .type)
+
+  discard(args, is.null) |>
+    imap(
+      function(x, name) {
+
+        p <- paste0(VERB, BDX, FIELD, name)
+        o <- paste0(VERB, BDX, OPERATOR, if (is_modifier(x)) x[["operator"]] else "=")
+        v <- if (is_modifier(x)) x[["value"]] else unlist(x, use.names = FALSE)
+
+        if (length(v) > 1)
+
+          v <- paste0(VERB, BDX, VALUE, "[", seq_along(v), "]=", v)
+
+        if (length(v) == 1)
+
+          v <- paste0(VERB, BDX, VALUE, "=", v)
+
+        c(p, o, v)
+
+      }) |>
+    unname() |>
+    imap(
+      function(x, idx) {
+
+        greplace(x, IDX, if (.type == "default") idx - 1 else idx)
+
+      })
+}
+
 q2 <- list(
   `conditions[0][property]` = "state",
   `conditions[0][operator]` = "IN",
