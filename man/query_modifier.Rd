@@ -31,12 +31,12 @@ is_blank_(negate = FALSE)
 \arguments{
 \item{x}{input}
 
-\item{or_equals}{\verb{<lgl>} append "="; default is \code{FALSE}}
+\item{or_equals}{\verb{<lgl>} append \code{=}}
 
-\item{negate}{\verb{<lgl>} prepend "NOT"; default is \code{FALSE}}
+\item{negate}{\verb{<lgl>} prepend \code{NOT}}
 }
 \value{
-object of class \verb{<modifier>}
+An object of class \verb{<modifier>}
 }
 \description{
 Helpers for use in constructing conditions in queries.
@@ -47,14 +47,15 @@ in the \strong{JSON:API} format.
 }
 \examples{
 greater_than_(1000)
-greater_than_(1000, or_equals = TRUE)
+greater_than_(0.125, or_equals = TRUE)
 less_than_(1000)
-less_than_(1000, or_equals = TRUE)
+less_than_(0.125, or_equals = TRUE)
 starts_with_("foo")
 ends_with_("bar")
 contains_("baz")
 in_(state.abb[10:15])
 in_(state.abb[10:15], negate = TRUE)
+in_(state.name)
 equals_(1000)
 equals_(1000, negate = TRUE)
 is_blank_()

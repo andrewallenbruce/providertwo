@@ -12,14 +12,12 @@ modifier_(operator, value)
 \item{value}{\verb{<any>} value to compare against}
 }
 \value{
-object of class \code{"modifier"}
+An object of class \code{"modifier"}
 }
 \description{
 Query Modifier Constructor
 }
 \examples{
-modifier_(
-  operator = ">",
-  value    = 1000)
+modifier_(operator = ">", value = 1000)
 }
 \keyword{internal}

@@ -53,12 +53,6 @@ mods_cli <- function(x) {
 
 #' @autoglobal
 #' @noRd
-brackets <- function(x) {
-  paste0("[", x, "]")
-}
-
-#' @autoglobal
-#' @noRd
 brack_along <- function(x) {
   if (length(x) > 1) {
     brackets(seq_along(x))
@@ -132,13 +126,6 @@ are_lone_not_null <- function(x) {
 }
 
 #' @autoglobal
-#' @rdname query-modifiers
-#' @noRd
-is_modifier <- function(x) {
-  inherits(x, "modifier")
-}
-
-#' @autoglobal
 #' @noRd
 any_mods <- function(x) {
   any(are_mods(x))
@@ -166,42 +153,6 @@ any_null <- function(x) {
 #' @noRd
 any_lone_not_null <- function(x) {
   any(are_lone_not_null(x))
-}
-
-#' @autoglobal
-#' @noRd
-query_keywords <- function(type) {
-  if (is_missing(type)) type <- "default"
-
-  idx_ <- "<<i>>"
-
-  switch(
-    type,
-    default = list(
-      VRB = "conditions",
-      FLD = "[property]=",
-      OPR = "[operator]=",
-      VAL = "[value]",
-      IDX = idx_,
-      BDX = brackets(idx_)
-    ),
-    medicare = list(
-      VRB = "filter",
-      FLD = "[path]=",
-      OPR = "[operator]=",
-      VAL = "[value]",
-      IDX = idx_,
-      BDX = brackets(idx_)
-    )
-  )
-}
-
-#' @autoglobal
-#' @noRd
-flatten_query <- function(x) {
-  map(x, \(x) paste0(x, collapse = "&")) |>
-    unlist(use.names = FALSE) |>
-    paste0(collapse = "&")
 }
 
 # seq_along0 <- function(x) {

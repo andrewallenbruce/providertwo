@@ -1,3 +1,45 @@
+#' @autoglobal
+#' @noRd
+brackets <- function(x) {
+  paste0("[", x, "]")
+}
+
+#' @autoglobal
+#' @noRd
+query_keywords <- function(type) {
+  if (is_missing(type)) type <- "default"
+
+  idx_ <- "<<i>>"
+
+  switch(
+    type,
+    default = list(
+      VRB = "conditions",
+      FLD = "[property]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
+    ),
+    medicare = list(
+      VRB = "filter",
+      FLD = "[path]=",
+      OPR = "[operator]=",
+      VAL = "[value]",
+      IDX = idx_,
+      BDX = brackets(idx_)
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
+flatten_query <- function(x) {
+  map(x, \(x) paste0(x, collapse = "&")) |>
+    unlist(use.names = FALSE) |>
+    paste0(collapse = "&")
+}
+
 #' Create a Query Object
 #'
 #' @param ... Query arguments. See details for valid query modifiers.

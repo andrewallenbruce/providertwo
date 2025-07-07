@@ -8,58 +8,16 @@
 #' in the __JSON:API__ format.
 #'
 #' @param x input
-#' @param or_equals `<lgl>` append "="; default is `FALSE`
-#' @param negate `<lgl>` prepend "NOT"; default is `FALSE`
+#' @param or_equals `<lgl>` append `=`
+#' @param negate `<lgl>` prepend `NOT`
 #' @name query_modifier
-#' @returns object of class `<modifier>`
+#' @returns An object of class `<modifier>`
 NULL
-
-#' Query Modifier Constructor
-#'
-#' @param operator `<chr>` comparison operator
-#' @param value `<any>` value to compare against
-#' @returns object of class `"modifier"`
-#'
-#' @examples
-#' modifier_(
-#'   operator = ">",
-#'   value    = 1000)
-#' @autoglobal
-#' @keywords internal
-#' @export
-modifier_ <- function(operator, value) {
-
-  check_required(value)
-
-  allowed <- c(
-    "=",
-    "<>",
-    "<",
-    "<=",
-    ">",
-    ">=",
-    "IN",
-    "NOT IN",
-    "CONTAINS",
-    "STARTS_WITH",
-    "ENDS_WITH",
-    "BETWEEN",
-    "NOT BETWEEN",
-    "IS NULL",
-    "IS NOT NULL"
-  )
-
-  arg_match0(operator, values = allowed)
-
-  structure(
-    list(operator = operator, value = value),
-    class = "modifier")
-}
 
 #' @rdname query_modifier
 #' @examples
 #' greater_than_(1000)
-#' greater_than_(1000, or_equals = TRUE)
+#' greater_than_(0.125, or_equals = TRUE)
 #' @autoglobal
 #' @export
 greater_than_ <- function(x, or_equals = FALSE) {
@@ -75,7 +33,7 @@ greater_than_ <- function(x, or_equals = FALSE) {
 #' @rdname query_modifier
 #' @examples
 #' less_than_(1000)
-#' less_than_(1000, or_equals = TRUE)
+#' less_than_(0.125, or_equals = TRUE)
 #' @autoglobal
 #' @export
 less_than_ <- function(x, or_equals = FALSE) {
@@ -122,6 +80,7 @@ contains_ <- function(x) {
 #' @examples
 #' in_(state.abb[10:15])
 #' in_(state.abb[10:15], negate = TRUE)
+#' in_(state.name)
 #' @autoglobal
 #' @export
 in_ <- function(x, negate = FALSE) {
@@ -163,20 +122,67 @@ is_blank_ <- function(negate = FALSE) {
     value    = NULL)
 }
 
+#' Query Modifier Constructor
+#'
+#' @param operator `<chr>` comparison operator
+#' @param value `<any>` value to compare against
+#' @returns An object of class `"modifier"`
+#' @examples
+#' modifier_(operator = ">", value = 1000)
+#' @autoglobal
+#' @keywords internal
+#' @export
+modifier_ <- function(operator, value) {
+
+  check_required(value)
+
+  allowed <- c(
+    "=",
+    "<>",
+    "<",
+    "<=",
+    ">",
+    ">=",
+    "IN",
+    "NOT IN",
+    "CONTAINS",
+    "STARTS_WITH",
+    "ENDS_WITH",
+    "BETWEEN",
+    "NOT BETWEEN",
+    "IS NULL",
+    "IS NOT NULL"
+  )
+
+  arg_match0(operator, values = allowed)
+
+  structure(
+    list(operator = operator, value = value),
+    class = "modifier")
+}
+
+#' Identify Query Modifier
+#' @param x input
+#' @returns `<lgl>` TRUE or FALSE
+#' @examples
+#' is_modifier(greater_than_(1000))
+#' @autoglobal
+#' @keywords internal
+#' @export
+is_modifier <- function(x) {
+  inherits(x, "modifier")
+}
+
 #' @method print modifier
 #' @autoglobal
 #' @export
 print.modifier <- function(x, ...) {
+
   cli::cli_text(cli::col_cyan("<modifier>"))
-  cli::cli_text(c(
-    cli::col_silver("operator: "),
-    cli::col_yellow(x$operator)
-  ))
+  cli::cli_text(c(cli::col_silver("Operator: "), cli::col_red(x$operator)))
+
   if (!is.null(x$value)) {
-    cli::cli_text(c(
-      cli::col_silver("value:"),
-      cli::col_yellow(x$value)
-      ))
+    cli::cli_text(c(cli::col_silver("Value(s): "), cli::col_yellow("{x$value}")))
   }
 }
 
