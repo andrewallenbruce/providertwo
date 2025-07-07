@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9349</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9350</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,16 +71,16 @@
 
 
 <dt id="arg-or-equals">or_equals<a class="anchor" aria-label="anchor" href="#arg-or-equals"></a></dt>
-<dd><p><code>&lt;lgl&gt;</code> append "="; default is <code>FALSE</code></p></dd>
+<dd><p><code>&lt;lgl&gt;</code> append <code>=</code></p></dd>
 
 
 <dt id="arg-negate">negate<a class="anchor" aria-label="anchor" href="#arg-negate"></a></dt>
-<dd><p><code>&lt;lgl&gt;</code> prepend "NOT"; default is <code>FALSE</code></p></dd>
+<dd><p><code>&lt;lgl&gt;</code> prepend <code>NOT</code></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>object of class <code>&lt;modifier&gt;</code></p>
+    <p>An object of class <code>&lt;modifier&gt;</code></p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -92,54 +92,60 @@ in the <strong>JSON:API</strong> format.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">greater_than_</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
-<span class="r-in"><span><span class="fu">greater_than_</span><span class="op">(</span><span class="fl">1000</span>, or_equals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-in"><span><span class="fu">greater_than_</span><span class="op">(</span><span class="fl">0.125</span>, or_equals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">&gt;=</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&gt;=</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">0.125</span></span>
 <span class="r-in"><span><span class="fu">less_than_</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">&lt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
-<span class="r-in"><span><span class="fu">less_than_</span><span class="op">(</span><span class="fl">1000</span>, or_equals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&lt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-in"><span><span class="fu">less_than_</span><span class="op">(</span><span class="fl">0.125</span>, or_equals <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">&lt;=</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&lt;=</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">0.125</span></span>
 <span class="r-in"><span><span class="fu">starts_with_</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">STARTS_WITH</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">foo</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">STARTS_WITH</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">foo</span></span>
 <span class="r-in"><span><span class="fu">ends_with_</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">ENDS_WITH</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">bar</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">ENDS_WITH</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">bar</span></span>
 <span class="r-in"><span><span class="fu">contains_</span><span class="op">(</span><span class="st">"baz"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">CONTAINS</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">baz</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">CONTAINS</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">baz</span></span>
 <span class="r-in"><span><span class="fu">in_</span><span class="op">(</span><span class="va">state.abb</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">IN</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">GAHIIDILINIA</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IN</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">GA, HI, ID, IL, IN, and IA</span></span>
 <span class="r-in"><span><span class="fu">in_</span><span class="op">(</span><span class="va">state.abb</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">NOT IN</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">GAHIIDILINIA</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">NOT IN</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">GA, HI, ID, IL, IN, and IA</span></span>
+<span class="r-in"><span><span class="fu">in_</span><span class="op">(</span><span class="va">state.name</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IN</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">Alabama, Alaska, Arizona, Arkansas, California, Colorado,</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana,</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Iowa, Kansas, Kentucky, Louisiana, …, Wisconsin, and Wyoming</span></span>
 <span class="r-in"><span><span class="fu">equals_</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">=</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">=</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000</span></span>
 <span class="r-in"><span><span class="fu">equals_</span><span class="op">(</span><span class="fl">1000</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">&lt;&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">value:</span><span style="color: #BBBB00;">1000</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&lt;&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000</span></span>
 <span class="r-in"><span><span class="fu">is_blank_</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">IS NULL</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IS NULL</span></span>
 <span class="r-in"><span><span class="fu">is_blank_</span><span class="op">(</span>negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">operator: </span><span style="color: #BBBB00;">IS NOT NULL</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IS NOT NULL</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
