@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_modifiers.R
 \name{modifier_}
 \alias{modifier_}
-\title{Query Modifiers}
+\title{Query Modifier Constructor}
 \usage{
 modifier_(operator, value)
 }
@@ -12,10 +12,10 @@ modifier_(operator, value)
 \item{value}{\verb{<any>} value to compare against}
 }
 \value{
-\verb{<list>} of class \code{"modifier"}
+object of class \code{"modifier"}
 }
 \description{
-Query Modifiers
+Query Modifier Constructor
 }
 \examples{
 modifier_(

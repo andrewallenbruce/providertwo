@@ -1,28 +1,3 @@
-# query(
-#   first_name = starts_with_("Andr"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = in_(c("CA", "GA", "NY")),
-#   state_owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   pac = NULL,
-#   .type = "default"
-# )
-#
-# query(
-#   first_name = starts_with_("Andr"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = in_(c("CA", "GA", "NY")),
-#   state_owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   pac = NULL,
-#   .type = "medicare"
-# )
-
-
 #' Create a Query Object
 #'
 #' @param ... Query arguments. See details for valid query modifiers.
@@ -84,25 +59,3 @@ query <- function(..., .type = c("default", "medicare")) {
     input  = enexprs(...),
     output = out)
 }
-
-# query <- new_class(
-#   name = "query",
-#   package = NULL,
-#   properties = list(
-#     input  = class_list,
-#     output = class_list,
-#     string = new_property(
-#       class_character,
-#       getter = function(self) {
-#         flatten_query(self@output)
-#       }
-#     )
-#   ),
-#   constructor = function(..., .type) {
-#     new_object(
-#       S7_object(),
-#       input  = enexprs(...),
-#       output = process_query(..., .type = .type))
-#   }
-# )
-
