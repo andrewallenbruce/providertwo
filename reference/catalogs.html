@@ -49,7 +49,7 @@ hgov: CMS HealthCare.gov API
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>API Catalogs</h1>
-      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/00-catalogs.R" class="external-link"><code>R/00-catalogs.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/andrewallenbruce/providertwo/blob/master/R/catalogs.R" class="external-link"><code>R/catalogs.R</code></a></small>
       <div class="d-none name"><code>catalogs.Rd</code></div>
     </div>
 
@@ -102,127 +102,125 @@ hgov: CMS HealthCare.gov API
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Run `options(fastplyr.inform = FALSE)` to disable this message</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This message is displayed once per session.</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $care$end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 14</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title         description modified   periodicity temporal contact</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> care  end   ACO REACH Al… The Accoun… 2025-05-21 Annually [… 2021-01… ACO RE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> care  end   ACO REACH El… Accountabl… 2025-05-21 Annually [… 2021-01… ACO RE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> care  end   ACO REACH Fi… The Accoun… 2025-05-21 Annually [… 2021-01… ACO RE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> care  end   ACO REACH Pr… The Accoun… 2025-05-21 Annually [… 2021-01… ACO RE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> care  end   Accountable … The Accoun… 2025-05-16 Annually [… 2014-01… Shared…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> care  end   Accountable … The Accoun… 2025-05-16 Annually [… 2017-01… Shared…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> care  end   Accountable … TheAccount… 2025-05-16 Annually [… 2014-01… Shared…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> care  end   Advance Inve… The Advanc… 2025-03-18 Annually [… 2024-01… Shared…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> care  end   Agency for H… The Agency… 2020-12-08 Annually [… 2015-01… Defici…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> care  end   CMS Program … The CMS Pr… 2025-05-14 Annually [… 2013-01… CMS Pr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $care$current</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 139 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title        description references identifier modified   periodicity contact</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACO REACH A… The Accoun… https://d… https://d… 2025-05-21 Annually [… ACO RE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ACO REACH E… Accountabl… https://d… https://d… 2025-05-21 Annually [… ACO RE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ACO REACH F… The Accoun… https://d… https://d… 2025-05-21 Annually [… ACO RE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ACO REACH P… The Accoun… https://d… https://d… 2025-05-21 Annually [… ACO RE…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Accountable… The Accoun… https://d… https://d… 2025-05-16 Annually [… Shared…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Accountable… The Accoun… https://d… https://d… 2025-05-16 Annually [… Shared…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Accountable… TheAccount… https://d… https://d… 2025-05-16 Annually [… Shared…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Advance Inv… The Advanc… https://d… https://d… 2025-03-18 Annually [… Shared…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Agency for … The Agency… https://d… https://d… 2020-12-08 Annually [… Defici…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> CMS Program… The CMS Pr… https://d… https://d… 2025-05-14 Annually [… CMS Pr…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 129 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: identifier &lt;chr&gt;, dictionary &lt;chr&gt;, site &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   references &lt;chr&gt;, download &lt;chr&gt;, resources &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: temporal &lt;chr&gt;, dictionary &lt;chr&gt;, site &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   download &lt;chr&gt;, resources &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $care$tmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 79 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title description periodicity contact dictionary site  references</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> care  tmp   Acco… The Accoun… Annually [… Shared… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> care  tmp   Acco… The Accoun… Annually [… Shared… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> care  tmp   Acco… TheAccount… Annually [… Shared… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> care  tmp   Adva… The Advanc… Annually [… Shared… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> care  tmp   Agen… The Agency… Annually [… Defici… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> care  tmp   Coun… The Shared… Annually [… Shared… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> care  tmp   Defi… The Public… Annually [… Defici… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> care  tmp   End-… The End-St… Biannually… ETC Mo… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> care  tmp   Faci… The Facili… Quarterly … NH Fac… https://d… http… https://d…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> care  tmp   Fede… TheFederal… Quarterly … Provid… https://d… http… https://d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $care$temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 79 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title   description periodicity contact dictionary site  references endpoints</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Accoun… The Accoun… Annually [… Shared… https://d… http… https://d…  <span style="color: #949494;">[13 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Accoun… The Accoun… Annually [… Shared… https://d… http… https://d…  <span style="color: #949494;">[10 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Accoun… TheAccount… Annually [… Shared… https://d… http… https://d…  <span style="color: #949494;">[13 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Advanc… The Advanc… Annually [… Shared… https://d… http… https://d…   <span style="color: #949494;">[2 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Agency… The Agency… Annually [… Defici… https://d… http… https://d…   <span style="color: #949494;">[2 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> County… The Shared… Annually [… Shared… https://d… http… https://d…  <span style="color: #949494;">[10 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Defici… The Public… Annually [… Defici… https://d… http… https://d…  <span style="color: #949494;">[10 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> End-St… The End-St… Biannually… ETC Mo… https://d… http… https://d…   <span style="color: #949494;">[6 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Facili… The Facili… Quarterly … NH Fac… https://d… http… https://d…   <span style="color: #949494;">[6 × 6]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Federa… TheFederal… Quarterly … Provid… https://d… http… https://d…   <span style="color: #949494;">[7 × 6]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 69 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: endpoints &lt;list&lt;tibble[,6]&gt;&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $prov</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $prov$end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 152 × 13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title          group description issued     modified   released  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> prov  end   Dialysis Faci… Dial… <span style="color: #949494;">"</span>A list of… 2020-03-14 2025-03-24 2025-04-23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> prov  end   Dialysis Faci… Dial… <span style="color: #949494;">"</span> National… 2020-03-14 2025-03-24 2025-04-23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> prov  end   Dialysis Faci… Dial… <span style="color: #949494;">"</span>State ave… 2020-03-14 2025-03-24 2025-04-23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> prov  end   ESRD QIP - Cl… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> prov  end   ESRD QIP - Co… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> prov  end   ESRD QIP - Co… Dial… <span style="color: #949494;">"</span>This data… 2025-01-15 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> prov  end   ESRD QIP - Di… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> prov  end   ESRD QIP - Fo… Dial… <span style="color: #949494;">"</span>This tabl… 2021-01-20 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> prov  end   ESRD QIP - Hy… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> prov  end   ESRD QIP - In… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $prov$current</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 152 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title   group description issued     modified   released   identifier contact</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Dialys… Dial… <span style="color: #949494;">"</span>A list of… 2020-03-14 2025-03-24 2025-04-23 https://d… Dialys…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Dialys… Dial… <span style="color: #949494;">"</span> National… 2020-03-14 2025-03-24 2025-04-23 https://d… Dialys…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Dialys… Dial… <span style="color: #949494;">"</span>State ave… 2020-03-14 2025-03-24 2025-04-23 https://d… Dialys…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2025-01-15 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This tabl… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ESRD Q… Dial… <span style="color: #949494;">"</span>This data… 2021-01-20 2024-12-03 2025-01-15 https://d… ESRD Q…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 142 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: identifier &lt;chr&gt;, contact &lt;chr&gt;, download &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   site &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: download &lt;chr&gt;, site &lt;chr&gt;, dictionary &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $open</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $open$end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title          description modified   identifier contact download</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> open  end   Covered Recip… The Covere… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> open  end   National Leve… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> open  end   National Leve… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> open  end   Payments Grou… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> open  end   Physician (Di… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> open  end   Profile Infor… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> open  end   Provider Prof… Maps secon… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> open  end   Reporting Ent… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> open  end   State Level P… This datas… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> open  end   State Payment… Groups pay… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> open  end   Summary Dashb… Summary da… 2025-01-30 https://o… Open P… https:/…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> open  end   Teaching Hosp… This datas… 2025-01-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $open$current</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title                      description modified   identifier contact download</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Covered Recipient Profile… The Covere… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> National Level Payment To… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> National Level Payment To… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Payments Grouped by Cover… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Payments Grouped by Cover… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Payments Grouped by Physi… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Payments Grouped by Repor… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Payments Grouped by Repor… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Payments Grouped by Repor… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Payments Grouped by Teach… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Physician (Distinct) Prof… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Profile Information        This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Provider Profile ID Mappi… Maps secon… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Reporting Entity Profile … This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> State Level Payment Total… This datas… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> State Payment Totals and … Groups pay… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> Summary Dashboard - all Y… Summary da… 2025-06-30 https://o… Open P… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> Teaching Hospital Profile… This datas… 2025-06-30 https://o… Open P… https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $open$tmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   clog  api   title                             description modified   endpoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> open  tmp   General Payment Data              All genera… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> open  tmp   Ownership Payment Data            All owners… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> open  tmp   Payments Grouped by Covered Reci… This datas… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> open  tmp   Payments Grouped by Covered Reci… This datas… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> open  tmp   Payments Grouped by Reporting En… This datas… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> open  tmp   Payments Grouped by Reporting En… This datas… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> open  tmp   Research Payment Data             All resear… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> open  tmp   State Payment Totals Grouped by … Groups pay… 2025-01-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $open$temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                                         description modified   endpoints</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> General Payment Data                          All genera… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Ownership Payment Data                        All owners… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Payments Grouped by Covered Recipient and Na… This datas… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Payments Grouped by Covered Recipient and Re… This datas… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Payments Grouped by Reporting Entities and N… This datas… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Payments Grouped by Reporting Entities, Cove… This datas… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Research Payment Data                         All resear… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> State Payment Totals Grouped by Nature of Pa… Groups pay… 2025-06-30   <span style="color: #949494;">[7 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title       identifier description periodicity modified   contact</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> caid  end   Drug Produ… https://d… <span style="color: #949494;">"</span>Active dr… Decenniall… 2025-05-07 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> caid  end   State Medi… https://d… <span style="color: #949494;">"</span>All state… Monthly [R… 2025-05-30 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> caid  end   Drug Manuf… https://d… <span style="color: #949494;">"</span>Drug Manu… Decenniall… 2025-05-07 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> caid  end   Medicaid E… https://d… <span style="color: #949494;">"</span>Total Med… Decenniall… 2024-12-11 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> caid  end   Managed Ca… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Jeff C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> caid  end   Managed Ca… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> caid  end   Managed Lo… https://d… <span style="color: #949494;">"</span>1. Enroll… Decenniall… 2024-10-16 Jeff C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> caid  end   Managed Ca… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> caid  end   Managed Ca… https://d… <span style="color: #949494;">"</span>Number of… Decenniall… 2024-10-16 Medica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> caid  end   Medicaid C… https://d… <span style="color: #949494;">"</span>This data… Decenniall… 2024-10-28 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$current</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title                   identifier description periodicity modified   contact</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Drug Products in the M… https://d… <span style="color: #949494;">"</span>Active dr… Decenniall… 2025-05-07 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> State Medicaid and CHI… https://d… <span style="color: #949494;">"</span>All state… Monthly [R… 2025-06-27 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Drug Manufacturer Cont… https://d… <span style="color: #949494;">"</span>Drug Manu… Decenniall… 2025-05-07 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Medicaid Enrollment - … https://d… <span style="color: #949494;">"</span>Total Med… Decenniall… 2024-12-11 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Managed Care Enrollmen… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Jeff C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Managed Care Enrollmen… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Managed Long Term Serv… https://d… <span style="color: #949494;">"</span>1. Enroll… Decenniall… 2024-10-16 Jeff C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Managed Care Enrollmen… https://d… <span style="color: #949494;">"</span>The Medic… Decenniall… 2024-10-16 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Managed Care Features … https://d… <span style="color: #949494;">"</span>Number of… Decenniall… 2024-10-16 Medica…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Medicaid CMS-64 New Ad… https://d… <span style="color: #949494;">"</span>This data… Decenniall… 2024-10-28 Medica…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 84 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$tmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   clog  api   title                            description periodicity endpoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> caid  end   Child and Adult Health Care Qua… Performanc… Annually […  <span style="color: #949494;">[10 × 3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> caid  end   Managed Care Programs by State   Provides p… Decenniall…   <span style="color: #949494;">[1 × 3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> caid  end   NADAC                            National A… Decenniall…  <span style="color: #949494;">[13 × 3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> caid  end   Pricing Comparison for Blood Di… The Refere… Decenniall…   <span style="color: #949494;">[7 × 3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> caid  end   Product Data for Newly Reported… The data b… Decenniall… <span style="color: #949494;">[100 × 3]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> caid  end   State Drug Utilization Data      Drug utili… Decenniall…  <span style="color: #949494;">[34 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $caid$temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   title                                        description periodicity endpoints</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Child and Adult Health Care Quality Measures Performanc… Annually […  <span style="color: #949494;">[10 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Managed Care Programs by State               Provides p… Decenniall…   <span style="color: #949494;">[1 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> NADAC                                        National A… Decenniall…  <span style="color: #949494;">[13 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Pricing Comparison for Blood Disorder Treat… The Refere… Decenniall…   <span style="color: #949494;">[8 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Product Data for Newly Reported Drugs in th… The data b… Decenniall… <span style="color: #949494;">[102 × 3]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> State Drug Utilization Data                  Drug utili… Decenniall…  <span style="color: #949494;">[34 × 3]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $caid$download</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 423 × 4</span></span>
@@ -242,42 +240,42 @@ hgov: CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hgov</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hgov$end</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title    identifier description periodicity issued     modified  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> hgov  end   Agent B… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-07-31 2025-06-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> hgov  end   AB Regi… https://d… Access Dat… Decenniall… 2016-03-30 2025-06-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> hgov  end   AB Susp… https://d… Access Dat… Decenniall… 2016-05-03 2025-06-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> hgov  end   Issuer_… https://d… The datase… Decenniall… 2020-06-05 2025-01-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> hgov  end   Rolling… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2016-08-22 2024-08-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> hgov  end   Auto-po… https://d… ECP Autofi… Decenniall… 2016-08-22 2024-08-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> hgov  end   Issuer … https://d… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          2019-10-09 2020-09-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> hgov  end   NIPR Va… https://d… This datas… Decenniall… 2016-11-17 2020-08-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> hgov  end   Direct … https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-09-27 2024-08-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> hgov  end   Issuer … https://d… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          2019-10-09 2019-11-22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hgov$current</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued     modified   contact</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Agent Broke… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-07-31 2025-07-03 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AB Registra… https://d… Access Dat… Decenniall… 2016-03-30 2025-07-03 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AB Suspensi… https://d… Access Dat… Decenniall… 2016-05-03 2025-07-03 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Issuer_Part… https://d… The datase… Decenniall… 2020-06-05 2025-01-13 Domini…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rolling Dra… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Auto-popula… https://d… ECP Autofi… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Issuer Part… https://d… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          2019-10-09 2020-09-29 Hiko N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NIPR Valid … https://d… This datas… Decenniall… 2016-11-17 2020-08-10 diaz_j…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Direct Enro… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-09-27 2024-08-07 Hiko N…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Issuer and … https://d… <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>          2019-10-09 2019-11-22 Hiko N…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: contact &lt;chr&gt;, download &lt;chr&gt;, resources &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: download &lt;chr&gt;, resources &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hgov$tmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    clog  api   title                                            endpoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;list&lt;tibble[,9]&gt;&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> hgov  tmp   Benefits and Cost Sharing PUF                     <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> hgov  tmp   Business Rules PUF                                <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> hgov  tmp   MLR Dataset                                        <span style="color: #949494;">[9 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> hgov  tmp   Machine Readable PUF                               <span style="color: #949494;">[4 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> hgov  tmp   Network PUF                                       <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> hgov  tmp   Plan Attributes PUF                               <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> hgov  tmp   Plan ID Crosswalk PUF                             <span style="color: #949494;">[11 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> hgov  tmp   QHP Landscape Individual Market Dental             <span style="color: #949494;">[9 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> hgov  tmp   QHP Landscape Individual Market Medical            <span style="color: #949494;">[9 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> hgov  tmp   QHP Landscape SHOP Market Dental                   <span style="color: #949494;">[9 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> hgov  tmp   QHP Landscape SHOP Market Medical                 <span style="color: #949494;">[10 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> hgov  tmp   Quality PUF                                        <span style="color: #949494;">[8 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> hgov  tmp   Rate PUF                                          <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> hgov  tmp   Service Area PUF                                  <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> hgov  tmp   Transparency in Coverage PUF                       <span style="color: #949494;">[5 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hgov$temporal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    title                                            endpoints</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;list&lt;tibble[,9]&gt;&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Benefits and Cost Sharing PUF                     <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Business Rules PUF                                <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MLR Dataset                                        <span style="color: #949494;">[9 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Machine Readable PUF                               <span style="color: #949494;">[4 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Network PUF                                       <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Plan Attributes PUF                               <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Plan ID Crosswalk PUF                             <span style="color: #949494;">[11 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> QHP Landscape Individual Market Dental             <span style="color: #949494;">[9 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> QHP Landscape Individual Market Medical            <span style="color: #949494;">[9 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> QHP Landscape SHOP Market Dental                   <span style="color: #949494;">[9 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> QHP Landscape SHOP Market Medical                 <span style="color: #949494;">[10 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Quality PUF                                        <span style="color: #949494;">[8 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Rate PUF                                          <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Service Area PUF                                  <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> Transparency in Coverage PUF                       <span style="color: #949494;">[5 × 9]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
