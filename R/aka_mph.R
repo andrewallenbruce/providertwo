@@ -140,14 +140,14 @@ clog_type <- function(x, call = caller_env()) {
              is_open(x), "open",
              is_hgov(x), "hgov")
 
-  res %|% cli_abort(c("x" = "{.val {x}} does not belong to a catalog."), call = call)
+  res %|% cli::cli_abort(c("x" = "{.val {x}} does not belong to a catalog."), call = call)
 }
 
 #' @autoglobal
 #' @noRd
 point_type <- function(x, call = caller_env()) {
   res <- nif(is_current(x), "current", is_temporal(x), "temporal")
-  res %|% cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
+  res %|% cli::cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
 }
 
 # ---- col_nms ----
@@ -173,8 +173,14 @@ is_collection <- function(x) {
 #' @autoglobal
 #' @noRd
 collect_rex <- function(x, call = caller_env()) {
-  if (!is_collection(x))
-    cli_abort(c("x" = "{.val {x}} is not a valid collection."), call = call)
+
+  # !is_collection(x) %T% cli::cli_abort(c("x" = "{.val {x}} is not a valid collection."), call = call)
+
+  if (!is_collection(x)) {
+    cli::cli_abort(
+      c("x" = "{.val {x}} is not a valid collection."),
+      call = call)
+  }
 
   col_rex[mph_match(x, col_nms)] |> unname() |> yank()
 }

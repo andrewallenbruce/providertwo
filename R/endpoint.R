@@ -2,13 +2,13 @@
 #' @noRd
 check_alias_results <- function(x, call = caller_env()) {
   if (is_empty(x$tbl)) {
-    cli_abort(
+    cli::cli_abort(
       c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches."),
       call = call)
   }
 
   if (nrow(x$tbl) > 1L) {
-    cli_abort(
+    cli::cli_abort(
       c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches:",
         cli::col_yellow(cli::format_bullets_raw(x$tbl$title))
       ),
@@ -73,9 +73,10 @@ alias_lookup <- function(x) {
     )
 }
 
-#' Load API Endpoint
+#' Endpoint from Catalog
+#' Load an endpoint by alias.
 #' @param alias `<chr>` endpoint alias
-#' @returns S7 `<class_[Catalog Name]>` object.
+#' @returns An S7 `<class_care/caid/prov/open/hgov>` object.
 #' @examples
 #' endpoint("care_dial_end")
 #' endpoint("care_dial_tmp")
@@ -120,11 +121,11 @@ endpoint <- function(alias) {
   )
 }
 
-#' Load Collection of Endpoints
-#' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @returns S7 `<class_collection>` object.
-#' @examplesIf rlang::is_interactive()
-#' collection("caid_demographics")
+#' Endpoint Collection
+#' Load a collection of endpoints by alias.
+#' @param alias `<chr>` collection alias
+#' @returns An S7 `<class_collection>` object.
+#' @examples
 #' collection("caid_unwind")
 #' collection("caid_services")
 #' @autoglobal
@@ -141,10 +142,12 @@ collection <- function(alias) {
     )
 }
 
-#' Create Group of Endpoints
+#' Endpoint Group
+#' Load a group of endpoints by alias.
 #' @param alias `<chr>` Alias representing the CMS data endpoint.
 #' @param description `<chr>` Group description. Defaults to `NULL`,
 #'    which will use the aliases as the description.
+#' @param call `<env>` Environment from which to call the function.
 #' @returns S7 `<class_group>` object.
 #' @examplesIf rlang::is_interactive()
 #' group(c("cahps_hhc_patient", "hgov_qhp_business"))
@@ -152,9 +155,16 @@ collection <- function(alias) {
 #' group(c("asc_facility", "care_dial_end"))
 #' @autoglobal
 #' @export
-group <- function(alias, description = NULL) {
+group <- function(alias, description = NULL, call = caller_env()) {
 
   check_required(alias)
+
+  if (length(alias) == 1L) {
+    cli::cli_abort(
+      c("A {.cls class_group} must have more than one {.arg alias}.",
+        "i" = "Use {.fn endpoint} to load a single endpoint."),
+      call = call)
+  }
 
   class_group(
     name    = description %||% paste0(alias, collapse = " | "),

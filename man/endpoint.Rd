@@ -2,7 +2,8 @@
 % Please edit documentation in R/endpoint.R
 \name{endpoint}
 \alias{endpoint}
-\title{Load API Endpoint}
+\title{Endpoint from Catalog
+Load an endpoint by alias.}
 \usage{
 endpoint(alias)
 }
@@ -10,10 +11,11 @@ endpoint(alias)
 \item{alias}{\verb{<chr>} endpoint alias}
 }
 \value{
-S7 \verb{<class_[Catalog Name]>} object.
+An S7 \verb{<class_care/caid/prov/open/hgov>} object.
 }
 \description{
-Load API Endpoint
+Endpoint from Catalog
+Load an endpoint by alias.
 }
 \examples{
 endpoint("care_dial_end")

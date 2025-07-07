@@ -1,40 +1,19 @@
 #' Query Modifiers
 #'
-#' @name query-modifiers
-#' @param x         `<chr>`  input
-#' @param or_equals `<lgl>`  append "="; default is `FALSE`
-#' @param negate    `<lgl>`  prepend "NOT"; default is `FALSE`
-#' @returns         `<list>` of class `"modifier"`
+#' @param operator `<chr>` comparison operator
+#' @param value `<any>` value to compare against
+#' @returns `<list>` of class `"modifier"`
+#'
 #' @examples
-#' starts_with_("foo")
-#' ends_with_("bar")
-#' contains_("baz")
-#'
-#' in_(state.abb[10:15])
-#' in_(state.abb[10:15], negate = TRUE)
-#'
-#' equals_(1000)
-#' equals_(1000, negate = TRUE)
-#'
-#' greater_than_(1000)
-#' greater_than_(1000, or_equals = TRUE)
-#'
-#' less_than_(1000)
-#' less_than_(1000, or_equals = TRUE)
-#'
-#' is_blank_()
-#' is_blank_(negate = TRUE)
-NULL
-
+#' modifier_(
+#'   operator = ">",
+#'   value    = 1000)
 #' @autoglobal
-#' @rdname query-modifiers
 #' @keywords internal
 #' @export
 modifier_ <- function(operator, value) {
 
   check_required(value)
-
-  if (is_missing(operator)) operator <- "="
 
   allowed <- c(
     "=",
@@ -56,15 +35,24 @@ modifier_ <- function(operator, value) {
 
   arg_match0(operator, values = allowed)
 
-  mod <- list(operator = operator, value = value)
-
-  class(mod) <- "modifier"
-
-  mod
+  structure(
+    list(operator = operator, value = value),
+    class = "modifier")
 }
 
+#' Numeric Modifiers
+#'
+#' @param x `<num>`  input
+#' @param or_equals `<lgl>` append "="; default is `FALSE`
+#' @returns `<list>` of class `"modifier"`
+#' @examples
+#' greater_than_(1000)
+#' greater_than_(1000, or_equals = TRUE)
+#'
+#' less_than_(1000)
+#' less_than_(1000, or_equals = TRUE)
 #' @autoglobal
-#' @rdname query-modifiers
+#' @family modifiers
 #' @export
 greater_than_ <- function(x, or_equals = FALSE) {
 
@@ -76,8 +64,8 @@ greater_than_ <- function(x, or_equals = FALSE) {
     value    = x)
 }
 
+#' @rdname greater_than_
 #' @autoglobal
-#' @rdname query-modifiers
 #' @export
 less_than_ <- function(x, or_equals = FALSE) {
 
@@ -89,38 +77,54 @@ less_than_ <- function(x, or_equals = FALSE) {
     value    = x)
 }
 
+#' Character Modifiers
+#'
+#' @param x `<chr>` input
+#' @returns `<list>` of class `"modifier"`
+#' @examples
+#' starts_with_("foo")
+#' ends_with_("bar")
+#' contains_("baz")
 #' @autoglobal
-#' @rdname query-modifiers
+#' @family modifiers
 #' @export
 starts_with_ <- function(x) {
+  check_character(x, allow_na = FALSE)
   modifier_(operator = "STARTS_WITH", value = x)
 }
 
+#' @rdname starts_with_
 #' @autoglobal
-#' @rdname query-modifiers
 #' @export
 ends_with_ <- function(x) {
+  check_character(x, allow_na = FALSE)
   modifier_(operator = "ENDS_WITH", value = x)
 }
 
+#' @rdname starts_with_
 #' @autoglobal
-#' @rdname query-modifiers
 #' @export
 contains_ <- function(x) {
+  check_character(x, allow_na = FALSE)
   modifier_(operator = "CONTAINS", value = x)
 }
 
-# between_ <- function(x, negate = FALSE) {
-#   check_number_decimal(x)
-#   check_bool(negate)
-#
-#   modifier_(
-#     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
-#     value    = x)
-# }
-
+#' General Modifiers
+#'
+#' @param x `<chr>` input
+#' @param negate `<lgl>` prepend "NOT"; default is `FALSE`
+#' @returns `<list>` of class `"modifier"`
+#' @examples
+#' in_(state.abb[10:15])
+#' in_(state.abb[10:15], negate = TRUE)
+#'
+#' equals_(1000)
+#' equals_(1000, negate = TRUE)
+#'
+#' is_blank_()
+#' is_blank_(negate = TRUE)
 #' @autoglobal
-#' @rdname query-modifiers
+#' @family modifiers
 #' @export
 in_ <- function(x, negate = FALSE) {
 
@@ -131,8 +135,8 @@ in_ <- function(x, negate = FALSE) {
     value    = x)
 }
 
+#' @rdname in_
 #' @autoglobal
-#' @rdname query-modifiers
 #' @export
 equals_ <- function(x, negate = FALSE) {
 
@@ -143,8 +147,8 @@ equals_ <- function(x, negate = FALSE) {
     value    = x)
 }
 
+#' @rdname in_
 #' @autoglobal
-#' @rdname query-modifiers
 #' @export
 is_blank_ <- function(negate = FALSE) {
 
@@ -154,6 +158,15 @@ is_blank_ <- function(negate = FALSE) {
     operator = ifelse(!negate, "IS NULL", "IS NOT NULL"),
     value    = NULL)
 }
+
+# between_ <- function(x, negate = FALSE) {
+#   check_number_decimal(x)
+#   check_bool(negate)
+#
+#   modifier_(
+#     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
+#     value    = x)
+# }
 
 #' @autoglobal
 #' @noRd

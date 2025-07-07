@@ -2,23 +2,22 @@
 % Please edit documentation in R/endpoint.R
 \name{collection}
 \alias{collection}
-\title{Load Collection of Endpoints}
+\title{Endpoint Collection
+Load a collection of endpoints by alias.}
 \usage{
 collection(alias)
 }
 \arguments{
-\item{alias}{\verb{<chr>} Alias representing the CMS data endpoint.}
+\item{alias}{\verb{<chr>} collection alias}
 }
 \value{
-S7 \verb{<class_collection>} object.
+An S7 \verb{<class_collection>} object.
 }
 \description{
-Load Collection of Endpoints
+Endpoint Collection
+Load a collection of endpoints by alias.
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-collection("caid_demographics")
 collection("caid_unwind")
 collection("caid_services")
-\dontshow{\}) # examplesIf}
 }

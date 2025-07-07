@@ -11,9 +11,9 @@
 # )
 #' @noRd
 #' @autoglobal
-process_query <- function(..., .type) {
+process_query <- function(..., .type = c("default", "medicare")) {
 
-  if (is_missing(.type)) .type <- "default"
+  arg_match(.type)
 
   args <- discard(dots_list(..., .homonyms = "error"), is.null)
 
@@ -71,20 +71,20 @@ query <- new_class(
   name = "query",
   package = NULL,
   properties = list(
-    input = class_list,
-    raw   = class_list,
-    valid = new_property(
+    input  = class_list,
+    output = class_list,
+    string = new_property(
       class_character,
       getter = function(self) {
-        flatten_query(self@raw)
+        flatten_query(self@output)
       }
     )
   ),
-  constructor = function(..., .type = "default") {
+  constructor = function(..., .type) {
     new_object(
       S7_object(),
-      input = enexprs(...),
-      raw   = process_query(..., .type))
+      input  = enexprs(...),
+      output = process_query(..., .type = .type))
   }
 )
 
