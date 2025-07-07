@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9344 (2025-07-07)
+
+* query cleanup
+
+
 # providertwo 0.0.0.9343 (2025-06-18)
 
 * CHECKPOINT: Last commit before implementing rewritten S7 API
