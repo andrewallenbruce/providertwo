@@ -112,3 +112,20 @@ class_collection <- new_class(
   package    = NULL,
   parent     = class_group
 )
+
+#' @noRd
+#' @autoglobal
+class_query <- new_class(
+  name = "class_query",
+  package = NULL,
+  properties = list(
+    input  = class_list,
+    output = class_list,
+    string = new_property(
+      class_character,
+      getter = function(self) {
+        flatten_query(self@output)
+      }
+    )
+  )
+)

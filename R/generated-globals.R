@@ -8,7 +8,6 @@ utils::globalVariables(c(
   # <clog_hgov>
   "accrualPeriodicity",
   # <process_query>
-  # <process_query>
   "BDX",
   # <quality_metrics>
   "category",
@@ -53,7 +52,6 @@ utils::globalVariables(c(
   # <quality_eligibility>
   "firstApprovedDate",
   # <process_query>
-  # <process_query>
   "FLD",
   # <clog_hgov>
   "id",
@@ -63,7 +61,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <process_query>
   # <process_query>
   "IDX",
   # <quality_eligibility>
@@ -100,7 +97,6 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
-  # <process_query>
   # <process_query>
   "OPR",
   # <clog_caid>
@@ -140,9 +136,7 @@ utils::globalVariables(c(
   # <select_alias>
   "title",
   # <process_query>
-  # <process_query>
   "VAL",
-  # <process_query>
   # <process_query>
   "VRB",
   # <clog_care>

@@ -12,7 +12,7 @@ query(..., .type = "default")
 \item{.type}{Query type, \code{"default"} or \code{"medicare"}.}
 }
 \value{
-S7 \verb{<query>} object.
+S7 \verb{<class_query>} object.
 }
 \description{
 Create a Query Object
@@ -37,5 +37,6 @@ query(
   state_own = c("GA", "MD"),
   npi = npi_ex$k,
   ccn = "01256",
-  pac = NULL)
+  pac = NULL,
+  .type = "default")
 }
