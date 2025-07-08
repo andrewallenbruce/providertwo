@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9351</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9352</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,8 @@
 <span></span>
 <span><span class="fu">less_than_</span><span class="op">(</span><span class="va">x</span>, or_equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">between_</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, care <span class="op">=</span> <span class="cn">FALSE</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">starts_with_</span><span class="op">(</span><span class="va">x</span>, care <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ends_with_</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -57,22 +59,16 @@
 <span></span>
 <span><span class="fu">like_</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">match_</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">in_</span><span class="op">(</span><span class="va">x</span>, care <span class="op">=</span> <span class="cn">FALSE</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">in_</span><span class="op">(</span><span class="va">x</span>, negate <span class="op">=</span> <span class="cn">FALSE</span>, care <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">equals_</span><span class="op">(</span><span class="va">x</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">is_null_</span><span class="op">(</span>negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">is_empty_</span><span class="op">(</span>negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">equals_</span><span class="op">(</span><span class="va">x</span>, negate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dl><dt id="arg-x-y">x, y<a class="anchor" aria-label="anchor" href="#arg-x-y"></a></dt>
 <dd><p>input</p></dd>
 
 
@@ -120,6 +116,21 @@ in the <a href="https://www.drupal.org/docs/core-modules-and-themes/core-modules
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&lt;=</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">0.125</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">care</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
+<span class="r-in"><span><span class="fu">between_</span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1100</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">between</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000 and 1100</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
+<span class="r-in"><span><span class="fu">between_</span><span class="op">(</span><span class="fl">0.125</span>, <span class="fl">2</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># should ignore `negate`</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">between</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">0.125 and 2</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
+<span class="r-in"><span><span class="fu">between_</span><span class="op">(</span><span class="fl">0.125</span>, <span class="fl">2</span>, care <span class="op">=</span> <span class="cn">TRUE</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">NOT+BETWEEN</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">0.125 and 2</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">care</span><span style="color: #000000;">]</span></span>
 <span class="r-in"><span><span class="fu">starts_with_</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">starts+with</span></span>
@@ -148,11 +159,6 @@ in the <a href="https://www.drupal.org/docs/core-modules-and-themes/core-modules
 <span class="r-in"><span><span class="fu">like_</span><span class="op">(</span><span class="st">"baz"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">like</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">baz</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
-<span class="r-in"><span><span class="fu">match_</span><span class="op">(</span><span class="st">"baz"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">match</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">baz</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
 <span class="r-in"><span><span class="fu">in_</span><span class="op">(</span><span class="va">state.abb</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span></span>
@@ -185,22 +191,6 @@ in the <a href="https://www.drupal.org/docs/core-modules-and-themes/core-modules
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">&lt;&gt;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Value(s): </span><span style="color: #BBBB00;">1000</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">caid</span><span style="color: #000000;">][</span><span style="color: #555555;">care</span><span style="color: #000000;">][</span><span style="color: #555555;">hgov</span><span style="color: #000000;">][</span><span style="color: #555555;">open</span><span style="color: #000000;">][</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
-<span class="r-in"><span><span class="fu">is_null_</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IS+NULL</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">care</span><span style="color: #000000;">]</span></span>
-<span class="r-in"><span><span class="fu">is_null_</span><span class="op">(</span>negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">IS+NOT+NULL</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">care</span><span style="color: #000000;">]</span></span>
-<span class="r-in"><span><span class="fu">is_empty_</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">is_empty</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
-<span class="r-in"><span><span class="fu">is_empty_</span><span class="op">(</span>negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">&lt;modifier&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Operator: </span><span style="color: #BB0000;">not_empty</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Allowed: </span><span style="color: #000000;">[</span><span style="color: #555555;">prov</span><span style="color: #000000;">]</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
