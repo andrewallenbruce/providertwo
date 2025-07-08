@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9351 (2025-07-08)
+
+* allowed operators per catalog updated
+
+
 # providertwo 0.0.0.9350 (2025-07-07)
 
 - Same as previous version.
