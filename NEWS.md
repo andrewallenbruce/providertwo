@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9354 (2025-07-08)
+
+* restored download links in medicaid catalog
+
+
 # providertwo 0.0.0.9353 (2025-07-08)
 
 * deparse calls in query
