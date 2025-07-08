@@ -7,7 +7,7 @@
 #' Query modifiers are a small DSL for use in constructing query conditions,
 #' in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
 #'
-#' @param x input
+#' @param x,y input
 #' @param or_equal `<lgl>` append `=`
 #' @param negate `<lgl>` prepend `NOT`
 #' @param care `<lgl>` use uppercase operators for `care` endpoint
@@ -47,6 +47,26 @@ less_than_ <- function(x, or_equal = FALSE) {
     operator = ifelse(!or_equal, "<", "<="),
     value    = x,
     allow    = c("caid", "prov", "open", "hgov", "care"))
+}
+
+#' @rdname query_modifier
+#' @examples
+#' between_(1000, 1100)
+#' between_(0.125, 2, negate = TRUE) # should ignore `negate`
+#' between_(0.125, 2, care = TRUE, negate = TRUE)
+#' @autoglobal
+#' @export
+between_ <- function(x, y, care = FALSE, negate = FALSE) {
+
+  check_number_decimal(x)
+  check_number_decimal(y)
+  check_bool(care)
+  check_bool(negate)
+
+  modifier_(
+    operator = if (!care) "between" else ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
+    value    = c(x, y),
+    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
 }
 
 #' @rdname query_modifier
@@ -112,26 +132,13 @@ like_ <- function(x) {
 
 #' @rdname query_modifier
 #' @examples
-#' match_("baz")
-#' @autoglobal
-#' @export
-match_ <- function(x) {
-
-  modifier_(
-    operator = "match",
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov"))
-}
-
-#' @rdname query_modifier
-#' @examples
 #' in_(state.abb[10:15])
 #' in_(state.abb[10:15], negate = TRUE)
 #' in_(state.abb[1:5], care = TRUE)
 #' in_(state.abb[1:5], care = TRUE, negate = TRUE)
 #' @autoglobal
 #' @export
-in_ <- function(x, negate = FALSE, care = FALSE) {
+in_ <- function(x, care = FALSE, negate = FALSE) {
 
   check_bool(negate)
   check_bool(care)
@@ -160,10 +167,25 @@ equals_ <- function(x, negate = FALSE) {
 
 #' @rdname query_modifier
 #' @examples
+#' # Not working for any endpoint yet
+#' match_("baz")
+#' @autoglobal
+#' @noRd
+match_ <- function(x) {
+
+  modifier_(
+    operator = "match",
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov"))
+}
+
+#' @rdname query_modifier
+#' @examples
+#' # Not working for any endpoint yet
 #' is_null_()
 #' is_null_(negate = TRUE)
 #' @autoglobal
-#' @export
+#' @noRd
 is_null_ <- function(negate = FALSE) {
 
   check_bool(negate)
@@ -176,10 +198,11 @@ is_null_ <- function(negate = FALSE) {
 
 #' @rdname query_modifier
 #' @examples
+#' # Not working for any endpoint yet
 #' is_empty_()
 #' is_empty_(negate = TRUE)
 #' @autoglobal
-#' @export
+#' @noRd
 is_empty_ <- function(negate = FALSE) {
 
   check_bool(negate)
@@ -347,15 +370,6 @@ print.modifier <- function(x, ...) {
 #     fastplyr::f_add_count(operator, sort = TRUE) |>
 #     print(n = Inf)
 #
-# }
-
-# between_ <- function(x, negate = FALSE) {
-#   check_number_decimal(x)
-#   check_bool(negate)
-#
-#   modifier_(
-#     operator = ifelse(!negate, "BETWEEN", "NOT BETWEEN"),
-#     value    = x)
 # }
 
 

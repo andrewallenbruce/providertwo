@@ -4,20 +4,20 @@
 \alias{query_modifier}
 \alias{greater_than_}
 \alias{less_than_}
+\alias{between_}
 \alias{starts_with_}
 \alias{ends_with_}
 \alias{contains_}
 \alias{like_}
-\alias{match_}
 \alias{in_}
 \alias{equals_}
-\alias{is_null_}
-\alias{is_empty_}
 \title{Query Modifiers}
 \usage{
 greater_than_(x, or_equal = FALSE)
 
 less_than_(x, or_equal = FALSE)
+
+between_(x, y, care = FALSE, negate = FALSE)
 
 starts_with_(x, care = FALSE)
 
@@ -27,18 +27,12 @@ contains_(x, care = FALSE)
 
 like_(x)
 
-match_(x)
-
-in_(x, negate = FALSE, care = FALSE)
+in_(x, care = FALSE, negate = FALSE)
 
 equals_(x, negate = FALSE)
-
-is_null_(negate = FALSE)
-
-is_empty_(negate = FALSE)
 }
 \arguments{
-\item{x}{input}
+\item{x, y}{input}
 
 \item{or_equal}{\verb{<lgl>} append \code{=}}
 
@@ -61,21 +55,19 @@ greater_than_(1000)
 greater_than_(0.125, or_equal = TRUE)
 less_than_(1000)
 less_than_(0.125, or_equal = TRUE)
+between_(1000, 1100)
+between_(0.125, 2, negate = TRUE) # should ignore `negate`
+between_(0.125, 2, care = TRUE, negate = TRUE)
 starts_with_("foo")
 starts_with_("foo", care = TRUE)
 ends_with_("bar")
 contains_("baz")
 contains_("baz", care = TRUE)
 like_("baz")
-match_("baz")
 in_(state.abb[10:15])
 in_(state.abb[10:15], negate = TRUE)
 in_(state.abb[1:5], care = TRUE)
 in_(state.abb[1:5], care = TRUE, negate = TRUE)
 equals_(1000)
 equals_(1000, negate = TRUE)
-is_null_()
-is_null_(negate = TRUE)
-is_empty_()
-is_empty_(negate = TRUE)
 }
