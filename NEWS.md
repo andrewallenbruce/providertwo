@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9353 (2025-07-08)
+
+* deparse calls in query
+
+
 # providertwo 0.0.0.9352 (2025-07-08)
 
 * between_ modifier is working
