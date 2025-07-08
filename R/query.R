@@ -96,6 +96,7 @@ query <- function(..., .type = c("default", "medicare")) {
     imap(function(x, i) greplace(x, IDX, ifelse(.type == "default", i - 1, i)))
 
   i <- discard(enexprs(...), is.null)
+
   if (any_calls(i)) i[are_calls(i)] <- deparse_calls(i)
 
   class_query(input = i, output = out)

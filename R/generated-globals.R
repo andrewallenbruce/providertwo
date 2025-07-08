@@ -90,8 +90,6 @@ utils::globalVariables(c(
   "modified",
   # <clog_hgov>
   "n",
-  # <clog_caid>
-  "N",
   # <open_dictionary>
   # <tidy_resources>
   "name",
@@ -112,6 +110,8 @@ utils::globalVariables(c(
   "resourcesAPI",
   # <alias_lookup>
   "rex",
+  # <clog_caid>
+  "rowid",
   # <tidy_resources>
   "size",
   # <quality_eligibility>
@@ -135,6 +135,8 @@ utils::globalVariables(c(
   # <open_dictionary>
   # <select_alias>
   "title",
+  # <clog_caid>
+  "title2",
   # <query>
   "VAL",
   # <query>

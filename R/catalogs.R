@@ -158,12 +158,9 @@ clog_open <- function(x) {
         title = gremove(title, "^[0-9]{4} "),
         description = nswitch(
           title,
-          "General Payment Data"   ,
-          "All general (non-research, non-ownership related) payments from the program year",
-          "Ownership Payment Data" ,
-          "All ownership and investment payments from the program year",
-          "Research Payment Data"  ,
-          "All research-related payments from the program year",
+          "General Payment Data", "All general (non-research, non-ownership related) payments from the program year",
+          "Ownership Payment Data", "All ownership and investment payments from the program year",
+          "Research Payment Data", "All research-related payments from the program year",
           default = description,
           nThread = 4L
         )
@@ -178,19 +175,53 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  w <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
+  d <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
     get_elem("^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)
 
-  dl <- fibble(
-    title = map(w, "title") |> unlist(use.names = FALSE),
-    download = map(w, "downloadURL") |> unlist(use.names = FALSE),
-    ext = path_ext(download)) |>
-    fcount(title, add = TRUE) |>
-    mtt(title = ifelse_(title == "CSV", NA_character_, title),
-        N = ifelse_(is.na(title), NA_integer_, N)) |>
-    roworder(title)
+  d <- set_names(d, seq_along(d))
 
-  x <- mtt(x$caid,
+  i <- list_lengths(d)
+
+  d1 <- d[i == 1]
+  d2 <- d[i > 1]
+
+  i2 <- list_lengths(get_elem(d2, "title", DF.as.list = TRUE))
+
+  title1    <- get_elem(d2, "title", DF.as.list = TRUE)[i2 == 1]
+  download1 <- get_elem(d2, "downloadURL", DF.as.list = TRUE)[i2 == 1]
+
+  title17    <- get_elem(d2, "title", DF.as.list = TRUE)[i2 > 1]
+  download17 <- get_elem(d2, "downloadURL", DF.as.list = TRUE)[i2 > 1]
+
+  downloads <- rowbind(
+    fill = TRUE,
+    fastplyr::new_tbl(
+      rowid = names(title1) |> as.integer(),
+      title2 = unlist(title1, use.names = FALSE),
+      download = unlist(download1, use.names = FALSE)) |>
+      mtt(title2 = ifelse(title2 == "CSV", NA_character_, title2)),
+
+    fastplyr::new_tbl(
+      rowid = cheapr::cheapr_rep_each(as.integer(names(title17)), list_lengths(title17)),
+      title2 = unlist(title17, use.names = FALSE),
+      download = unlist(download17, use.names = FALSE)) |>
+      mtt(title2 = ifelse(title2 == "CSV", NA_character_, title2)),
+    fastplyr::new_tbl(
+      rowid = names(d1) |> as.integer(),
+      download = unlist(d1, use.names = FALSE))
+  ) |>
+    roworder(rowid) |>
+    join(
+      as_fibble(x$caid) |>
+        slt(title, identifier) |>
+        mtt(rowid = seq_along(identifier)),
+      on = "rowid",
+      verbose = 0,
+      multiple = TRUE
+    ) |>
+    colorder(rowid, title, title2, download)
+
+  e <- mtt(x$caid,
     identifier = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1&"),
     modified = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
@@ -200,14 +231,7 @@ clog_caid <- function(x) {
     description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()) |>
     slt(c("title", "identifier", "description", "periodicity", "modified", "contact"))
 
-  # x <- list(x, rowbind(ss(dl, which_(dl$N == 1)) |>
-  # fcount(title, sort = TRUE, decreasing = TRUE),
-  # ss(dl, which_(dl$ext == "csv" & dl$N > 1), 1:2)),
-  # ss(dl, which_(dl$ext != "csv"), 1:2) |>
-  # fnest(by = "title") |>
-  # rnm(resources = data)) |>
-  # reduce(join_on_title) |>
-  # roworder(title)
+  e <- join_on_title(e, downloads)
 
   ptn <- paste0(
     "State Drug Utilization Data [0-9]{4}|",
@@ -219,8 +243,8 @@ clog_caid <- function(x) {
     "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
 
   list(
-    current = ss_title(x, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
-    temporal = ss_title(x, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
+    current = ss_title(e, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
+    temporal = ss_title(e, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
       mtt(year = extract_year(title),
           title = nif(
       gdetect(title, "Child and Adult Health Care Quality Measures")       , "Child and Adult Health Care Quality Measures",
@@ -239,8 +263,7 @@ clog_caid <- function(x) {
       slt("year", "title", "description", "periodicity", "modified", "identifier") |>
       roworder(title, -year) |>
       fnest(by = c("title", "description", "periodicity")) |>
-      rnm(endpoints = "data"),
-    download = dl
+      rnm(endpoints = "data")
     )
 }
 
