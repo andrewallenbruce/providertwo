@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9352 (2025-07-08)
+
+* between_ modifier is working
+
+
 # providertwo 0.0.0.9351 (2025-07-08)
 
 * allowed operators per catalog updated
