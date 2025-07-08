@@ -7,31 +7,42 @@
 \alias{starts_with_}
 \alias{ends_with_}
 \alias{contains_}
+\alias{like_}
+\alias{match_}
 \alias{in_}
 \alias{equals_}
-\alias{is_blank_}
+\alias{is_null_}
+\alias{is_empty_}
 \title{Query Modifiers}
 \usage{
-greater_than_(x, or_equals = FALSE)
+greater_than_(x, or_equal = FALSE)
 
-less_than_(x, or_equals = FALSE)
+less_than_(x, or_equal = FALSE)
 
-starts_with_(x)
+starts_with_(x, care = FALSE)
 
 ends_with_(x)
 
-contains_(x)
+contains_(x, care = FALSE)
 
-in_(x, negate = FALSE)
+like_(x)
+
+match_(x)
+
+in_(x, negate = FALSE, care = FALSE)
 
 equals_(x, negate = FALSE)
 
-is_blank_(negate = FALSE)
+is_null_(negate = FALSE)
+
+is_empty_(negate = FALSE)
 }
 \arguments{
 \item{x}{input}
 
-\item{or_equals}{\verb{<lgl>} append \code{=}}
+\item{or_equal}{\verb{<lgl>} append \code{=}}
+
+\item{care}{\verb{<lgl>} use uppercase operators for \code{care} endpoint}
 
 \item{negate}{\verb{<lgl>} prepend \code{NOT}}
 }
@@ -43,21 +54,28 @@ Helpers for use in constructing conditions in queries.
 }
 \details{
 Query modifiers are a small DSL for use in constructing query conditions,
-in the \strong{JSON:API} format.
+in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
 greater_than_(1000)
-greater_than_(0.125, or_equals = TRUE)
+greater_than_(0.125, or_equal = TRUE)
 less_than_(1000)
-less_than_(0.125, or_equals = TRUE)
+less_than_(0.125, or_equal = TRUE)
 starts_with_("foo")
+starts_with_("foo", care = TRUE)
 ends_with_("bar")
 contains_("baz")
+contains_("baz", care = TRUE)
+like_("baz")
+match_("baz")
 in_(state.abb[10:15])
 in_(state.abb[10:15], negate = TRUE)
-in_(state.name)
+in_(state.abb[1:5], care = TRUE)
+in_(state.abb[1:5], care = TRUE, negate = TRUE)
 equals_(1000)
 equals_(1000, negate = TRUE)
-is_blank_()
-is_blank_(negate = TRUE)
+is_null_()
+is_null_(negate = TRUE)
+is_empty_()
+is_empty_(negate = TRUE)
 }

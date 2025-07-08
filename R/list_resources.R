@@ -4,10 +4,9 @@
 #'
 #' @returns A list of available API resources.
 #'
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' endpoint("care_enroll_prov") |> list_resources()
 #' endpoint("quality_payment") |> list_resources()
-#' collection("care_hha") |> list_resources()
 #' collection("care_in") |> list_resources()
 #'
 #' @autoglobal

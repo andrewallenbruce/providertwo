@@ -144,8 +144,8 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
-  # <get_resources>
   # <tidy_resources>
+  # <get_resources>
   "year",
   # <quality_eligibility>
   "years_in_medicare",

@@ -48,25 +48,27 @@ flatten_query <- function(x) {
 #' @examples
 #' query(
 #'   first_name = starts_with_("Andr"),
-#'   last_name = contains_("J"),
-#'   state = in_(c("CA", "GA", "NY")),
-#'   city = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
-#'   state_owner = c("GA", "MD"),
-#'   npi = npi_ex$k,
-#'   ccn = "01256",
-#'   pac = NULL,
-#'   .type = "medicare")
+#'   last_name  = contains_("J"),
+#'   state      = in_(c("CA", "GA", "NY")),
+#'   city       = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   state_own  = c("GA", "MD"),
+#'   npi        = npi_ex$k,
+#'   ccn        = "01256",
+#'   pac        = NULL,
+#'   .type      = "default")
 #'
-#' query(
-#'   first_name = starts_with_("Andr"),
-#'   last_name = contains_("J"),
-#'   state = in_(c("CA", "GA", "NY")),
-#'   city = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
-#'   state_own = c("GA", "MD"),
-#'   npi = npi_ex$k,
-#'   ccn = "01256",
-#'   pac = NULL,
-#'   .type = "default")
+#' # Will evaluate arguments spliced from a list
+#' args <- list(
+#'   first_name  = starts_with_("Andr"),
+#'   last_name   = contains_("J"),
+#'   state       = in_(c("CA", "GA", "NY")),
+#'   city        = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   state_owner = c("GA", "MD"),
+#'   npi         = npi_ex$k,
+#'   ccn         = "01256",
+#'   pac         = NULL)
+#'
+#' query(!!!args, .type = "medicare")
 #' @autoglobal
 #' @export
 query <- function(..., .type = c("default", "medicare")) {
@@ -98,6 +100,6 @@ query <- function(..., .type = c("default", "medicare")) {
     imap(function(x, i) greplace(x, IDX, ifelse(.type == "default", i - 1, i)))
 
   class_query(
-    input  = enexprs(...),
+    input  = discard(enexprs(...), is.null),
     output = out)
 }

@@ -5,11 +5,12 @@
 #'
 #' @details
 #' Query modifiers are a small DSL for use in constructing query conditions,
-#' in the __JSON:API__ format.
+#' in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
 #'
 #' @param x input
-#' @param or_equals `<lgl>` append `=`
+#' @param or_equal `<lgl>` append `=`
 #' @param negate `<lgl>` prepend `NOT`
+#' @param care `<lgl>` use uppercase operators for `care` endpoint
 #' @name query_modifier
 #' @returns An object of class `<modifier>`
 NULL
@@ -17,43 +18,51 @@ NULL
 #' @rdname query_modifier
 #' @examples
 #' greater_than_(1000)
-#' greater_than_(0.125, or_equals = TRUE)
+#' greater_than_(0.125, or_equal = TRUE)
 #' @autoglobal
 #' @export
-greater_than_ <- function(x, or_equals = FALSE) {
+greater_than_ <- function(x, or_equal = FALSE) {
 
   check_number_decimal(x)
-  check_bool(or_equals)
+  check_bool(or_equal)
 
   modifier_(
-    operator = ifelse(!or_equals, ">", ">="),
-    value    = x)
+    operator = ifelse(!or_equal, ">", ">="),
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov", "care"))
 }
 
 #' @rdname query_modifier
 #' @examples
 #' less_than_(1000)
-#' less_than_(0.125, or_equals = TRUE)
+#' less_than_(0.125, or_equal = TRUE)
 #' @autoglobal
 #' @export
-less_than_ <- function(x, or_equals = FALSE) {
+less_than_ <- function(x, or_equal = FALSE) {
 
   check_number_decimal(x)
-  check_bool(or_equals)
+  check_bool(or_equal)
 
   modifier_(
-    operator = ifelse(!or_equals, "<", "<="),
-    value    = x)
+    operator = ifelse(!or_equal, "<", "<="),
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov", "care"))
 }
 
 #' @rdname query_modifier
 #' @examples
 #' starts_with_("foo")
+#' starts_with_("foo", care = TRUE)
 #' @autoglobal
 #' @export
-starts_with_ <- function(x) {
-  check_character(x, allow_na = FALSE)
-  modifier_(operator = "STARTS_WITH", value = x)
+starts_with_ <- function(x, care = FALSE) {
+
+  check_bool(care)
+
+  modifier_(
+    operator = if (!care) "starts+with" else "STARTS_WITH",
+    value    = x,
+    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
 }
 
 #' @rdname query_modifier
@@ -62,34 +71,75 @@ starts_with_ <- function(x) {
 #' @autoglobal
 #' @export
 ends_with_ <- function(x) {
+
   check_character(x, allow_na = FALSE)
-  modifier_(operator = "ENDS_WITH", value = x)
+
+  modifier_(
+    operator = "ENDS_WITH",
+    value    = x,
+    allow    = "care")
+
 }
 
 #' @rdname query_modifier
 #' @examples
 #' contains_("baz")
+#' contains_("baz", care = TRUE)
 #' @autoglobal
 #' @export
-contains_ <- function(x) {
-  check_character(x, allow_na = FALSE)
-  modifier_(operator = "CONTAINS", value = x)
+contains_ <- function(x, care = FALSE) {
+
+  check_bool(care)
+
+  modifier_(
+    operator = if (!care) "contains" else "CONTAINS",
+    value    = x,
+    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
+}
+
+#' @rdname query_modifier
+#' @examples
+#' like_("baz")
+#' @autoglobal
+#' @export
+like_ <- function(x) {
+
+  modifier_(
+    operator = "like",
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov"))
+}
+
+#' @rdname query_modifier
+#' @examples
+#' match_("baz")
+#' @autoglobal
+#' @export
+match_ <- function(x) {
+
+  modifier_(
+    operator = "match",
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov"))
 }
 
 #' @rdname query_modifier
 #' @examples
 #' in_(state.abb[10:15])
 #' in_(state.abb[10:15], negate = TRUE)
-#' in_(state.name)
+#' in_(state.abb[1:5], care = TRUE)
+#' in_(state.abb[1:5], care = TRUE, negate = TRUE)
 #' @autoglobal
 #' @export
-in_ <- function(x, negate = FALSE) {
+in_ <- function(x, negate = FALSE, care = FALSE) {
 
   check_bool(negate)
+  check_bool(care)
 
   modifier_(
-    operator = ifelse(!negate, "IN", "NOT IN"),
-    value    = x)
+    operator = if (!care) ifelse(!negate, "in", "not+in") else ifelse(!negate, "IN", "NOT+IN"),
+    value    = x,
+    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
 }
 
 #' @rdname query_modifier
@@ -104,60 +154,71 @@ equals_ <- function(x, negate = FALSE) {
 
   modifier_(
     operator = ifelse(!negate, "=", "<>"),
-    value    = x)
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov", "care"))
 }
 
 #' @rdname query_modifier
 #' @examples
-#' is_blank_()
-#' is_blank_(negate = TRUE)
+#' is_null_()
+#' is_null_(negate = TRUE)
 #' @autoglobal
 #' @export
-is_blank_ <- function(negate = FALSE) {
+is_null_ <- function(negate = FALSE) {
 
   check_bool(negate)
 
   modifier_(
-    operator = ifelse(!negate, "IS NULL", "IS NOT NULL"),
-    value    = NULL)
+    operator = ifelse(!negate, "IS+NULL", "IS+NOT+NULL"),
+    value    = NULL,
+    allow    = "care")
+}
+
+#' @rdname query_modifier
+#' @examples
+#' is_empty_()
+#' is_empty_(negate = TRUE)
+#' @autoglobal
+#' @export
+is_empty_ <- function(negate = FALSE) {
+
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "is_empty", "not_empty"),
+    value    = NULL,
+    allow    = "prov")
 }
 
 #' Query Modifier Constructor
 #'
 #' @param operator `<chr>` comparison operator
 #' @param value `<any>` value to compare against
+#' @param allow `<chr>` allowed endpoint class(es) for this modifier
 #' @returns An object of class `"modifier"`
 #' @examples
-#' modifier_(operator = ">", value = 1000)
+#' modifier_(">", 1000, "all")
 #' @autoglobal
 #' @keywords internal
 #' @export
-modifier_ <- function(operator, value) {
+modifier_ <- function(operator, value, allow) {
 
-  check_required(value)
+  check_required(operator)
+  check_required(allow)
 
-  allowed <- c(
-    "=",
-    "<>",
-    "<",
-    "<=",
-    ">",
-    ">=",
-    "IN",
-    "NOT IN",
-    "CONTAINS",
-    "STARTS_WITH",
-    "ENDS_WITH",
-    "BETWEEN",
-    "NOT BETWEEN",
-    "IS NULL",
-    "IS NOT NULL"
-  )
+  all  <- c("=", "<>", "<", "<=", ">", ">=")
+  ohcp <- c("like", "between", "in", "not+in", "contains", "starts+with", "match")
+  prov <- c("is_empty", "not_empty")
+  care <- c("NOT+BETWEEN", "BETWEEN", "IN", "NOT+IN", "CONTAINS",
+            "STARTS_WITH", "ENDS_WITH", "IS+NULL", "IS+NOT+NULL")
 
-  arg_match0(operator, values = allowed)
+  arg_match0(operator, values = cheapr::cheapr_c(all, ohcp, prov, care))
 
   structure(
-    list(operator = operator, value = value),
+    list(
+      operator = operator,
+      value    = value,
+      allow    = allow),
     class = "modifier")
 }
 
@@ -184,7 +245,109 @@ print.modifier <- function(x, ...) {
   if (!is.null(x$value)) {
     cli::cli_text(c(cli::col_silver("Value(s): "), cli::col_yellow("{x$value}")))
   }
+  cli::cli_text(c(cli::col_silver("Allowed: "), brackets_cli2(sort(x$allow))))
 }
+
+# operators <- function(x) {
+#   open <- c(
+#     "=",
+#     "<>",
+#     "<",
+#     "<=",
+#     ">", ">=",
+#     "like",
+#     "between",
+#     "in",
+#     "not+in",
+#     "contains",
+#     "starts+with",
+#     "match"
+#   )
+#
+#   hgov <- c(
+#     "=",
+#     "<>",
+#     "<",
+#     "<=",
+#     ">",
+#     ">=",
+#     "like",
+#     "between",
+#     "in",
+#     "not+in",
+#     "contains",
+#     "starts+with",
+#     "match"
+#   )
+#
+#   caid <- c(
+#     "=",
+#     "<>",
+#     "<",
+#     "<=",
+#     ">",
+#     ">=",
+#     "in",
+#     "not+in",
+#     "contains",
+#     "starts+with",
+#     "between",
+#     "like",
+#     "match"
+#   )
+#
+#   prov <- c(
+#     "=",
+#     "<>",
+#     "<",
+#     "<=",
+#     ">",
+#     ">=",
+#     "in",
+#     "not+in",
+#     "contains",
+#     "starts+with",
+#     "between",
+#     "is_empty",
+#     "not_empty",
+#     "like",
+#     "match"
+#   )
+#
+#   care <- c(
+#     "=",
+#     "<>",
+#     "<",
+#     "<=",
+#     ">",
+#     ">=",
+#     "IN",
+#     "NOT+IN",
+#     "CONTAINS",
+#     "STARTS_WITH",
+#     "ENDS_WITH",
+#     "BETWEEN",
+#     "NOT+BETWEEN",
+#     "IS+NULL",
+#     "IS+NOT+NULL"
+#   )
+#
+#   clog_rep <- function(x, name) {
+#     cheapr::cheapr_rep_len(name, length(x))
+#   }
+#
+#   fastplyr::new_tbl(
+#     catalog = c(clog_rep(open, "open"),
+#                 clog_rep(hgov, "hgov"),
+#                 clog_rep(caid, "caid"),
+#                 clog_rep(prov, "prov"),
+#                 clog_rep(care, "care")),
+#     operator = c(open, hgov, caid, prov, care) # |> tolower()
+#   ) |>
+#     fastplyr::f_add_count(operator, sort = TRUE) |>
+#     print(n = Inf)
+#
+# }
 
 # between_ <- function(x, negate = FALSE) {
 #   check_number_decimal(x)

@@ -4,12 +4,14 @@
 \alias{modifier_}
 \title{Query Modifier Constructor}
 \usage{
-modifier_(operator, value)
+modifier_(operator, value, allow)
 }
 \arguments{
 \item{operator}{\verb{<chr>} comparison operator}
 
 \item{value}{\verb{<any>} value to compare against}
+
+\item{allow}{\verb{<chr>} allowed endpoint class(es) for this modifier}
 }
 \value{
 An object of class \code{"modifier"}
@@ -18,6 +20,6 @@ An object of class \code{"modifier"}
 Query Modifier Constructor
 }
 \examples{
-modifier_(operator = ">", value = 1000)
+modifier_(">", 1000, "all")
 }
 \keyword{internal}

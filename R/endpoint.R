@@ -49,7 +49,7 @@ alias_lookup <- function(x) {
     pnt = point_type(x),
     clg = clog_type(x),
     rex = alias_rex(x),
-    exp = glue("the$catalog${clg}${pnt}"),
+    exp = glue("the$clog${clg}${pnt}"),
     tbl = select_alias(exp, rex)
   )
 
