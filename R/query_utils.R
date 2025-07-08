@@ -53,6 +53,18 @@ mods_cli <- function(x) {
 
 #' @autoglobal
 #' @noRd
+deparse_mods <- function(x) {
+  map(x[are_mods(x)], \(x) deparse1(x))
+}
+
+#' @autoglobal
+#' @noRd
+deparse_calls <- function(x) {
+  map(x[are_calls(x)], \(x) deparse1(x))
+}
+
+#' @autoglobal
+#' @noRd
 brack_along <- function(x) {
   if (length(x) > 1) {
     brackets(seq_along(x))
@@ -88,23 +100,20 @@ are_not_null <- function(x) {
 #' @autoglobal
 #' @noRd
 is_mod <- function(x) {
-  is_call(x, name = c(
-    "between_",
-    "blank_",
-    "contains_",
-    "ends_with_",
-    "greater_or_equal_",
-    "greater_than_",
-    "in_",
-    "is_",
-    "is_not_",
-    "less_or_equal_",
-    "less_than_",
-    "not_between_",
-    "not_blank_",
-    "not_in_",
-    "starts_with_"
-  ))
+  is_call(
+    x,
+    name = c(
+      "between_",
+      "contains_",
+      "ends_with_",
+      "equals_",
+      "greater_than_",
+      "in_",
+      "less_than_",
+      "like_",
+      "starts_with_"
+    )
+  )
 }
 
 #' @autoglobal
@@ -116,8 +125,18 @@ are_mods <- function(x) {
 #' @autoglobal
 #' @noRd
 are_calls <- function(x) {
-  map_lgl(x, \(x) purrr::negate(is_mod)(x) & is_call(x))
+  map_lgl(x, is_call)
 }
+
+#' @autoglobal
+#' @noRd
+any_calls <- function(x) {
+  any(are_calls(x))
+}
+
+# are_calls <- function(x) {
+#   map_lgl(x, \(x) purrr::negate(is_mod)(x) & is_call(x))
+# }
 
 #' @autoglobal
 #' @noRd
@@ -129,12 +148,6 @@ are_lone_not_null <- function(x) {
 #' @noRd
 any_mods <- function(x) {
   any(are_mods(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_calls <- function(x) {
-  any(are_calls(x))
 }
 
 #' @autoglobal

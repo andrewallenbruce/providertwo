@@ -26,19 +26,15 @@ query(
   state_own  = c("GA", "MD"),
   npi        = npi_ex$k,
   ccn        = "01256",
-  pac        = NULL,
-  .type      = "default")
+  rate       = between_(0.45, 0.67))
 
-# Will evaluate arguments spliced from a list
-args <- list(
-  first_name  = starts_with_("Andr"),
-  last_name   = contains_("J"),
-  state       = in_(c("CA", "GA", "NY")),
-  city        = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
-  state_owner = c("GA", "MD"),
-  npi         = npi_ex$k,
-  ccn         = "01256",
-  pac         = NULL)
-
-query(!!!args, .type = "medicare")
+query(
+  first_name = starts_with_("Andr"),
+  last_name  = contains_("J"),
+  state      = in_(c("CA", "GA", "NY")),
+  city       = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+  state_own  = c("GA", "MD"),
+  npi        = npi_ex$k,
+  ccn        = "01256",
+  .type      = "medicare")
 }
