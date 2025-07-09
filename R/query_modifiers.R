@@ -60,6 +60,9 @@ between_ <- function(x, y, care = FALSE, negate = FALSE) {
 
   check_number_decimal(x)
   check_number_decimal(y)
+
+  if (x >= y) cli::cli_abort("`x` must be less than `y`.", call. = FALSE)
+
   check_bool(care)
   check_bool(negate)
 

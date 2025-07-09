@@ -6,38 +6,29 @@ brackets <- function(x) {
 
 #' @autoglobal
 #' @noRd
-query_keywords <- function(type) {
-  if (is_missing(type)) type <- "default"
-
-  idx_ <- "<<i>>"
-
-  switch(
-    type,
-    default = list(
-      VRB = "conditions",
-      FLD = "[property]=",
-      OPR = "[operator]=",
-      VAL = "[value]",
-      IDX = idx_,
-      BDX = brackets(idx_)
-    ),
-    medicare = list(
-      VRB = "filter",
-      FLD = "[path]=",
-      OPR = "[operator]=",
-      VAL = "[value]",
-      IDX = idx_,
-      BDX = brackets(idx_)
-    )
-  )
-}
-
-#' @autoglobal
-#' @noRd
 flatten_query <- function(x) {
   map(x, \(x) paste0(x, collapse = "&")) |>
     unlist(use.names = FALSE) |>
     paste0(collapse = "&")
+}
+
+#' @autoglobal
+#' @noRd
+query_keywords <- function(type) {
+
+  if (is_missing(type)) type <- "default"
+
+  list_combine(
+    switch(
+      type,
+      default  = list(VRB = "conditions", FLD = "[property]="),
+      medicare = list(VRB = "filter",     FLD = "[path]=")
+    ),
+    OPR = "[operator]=",
+    VAL = "[value]",
+    IDX = "<<i>>",
+    BDX = brackets("<<i>>")
+  )
 }
 
 #' Create a Query Object
@@ -69,39 +60,37 @@ flatten_query <- function(x) {
 #'   ccn        = "01256",
 #'   .type      = "medicare")
 #'
-#' @autoglobal#'
+#' @autoglobal
 #' @export
 query <- function(..., .type = c("default", "medicare")) {
-
   .type <- arg_match(.type)
 
   args <- discard(dots_list(..., .homonyms = "error"), is.null)
 
-  .c(VRB, FLD, OPR, VAL, IDX, BDX) %=% query_keywords(type = .type)
+  k <- query_keywords(type = .type)
+  v <- paste0(k$VRB, k$BDX)
 
-  out <- imap(args, function(x, name) {
+  o <- imap(args, function(x, name) {
+    val <- if (is_modifier(x))
+      x[["value"]]
+    else
+      unlist(x, use.names = FALSE)
 
-    fields    <- paste0(VRB, BDX, FLD, name)
-    operators <- paste0(VRB, BDX, OPR, if (is_modifier(x)) x[["operator"]] else "=")
-    values    <- if (is_modifier(x)) x[["value"]] else unlist(x, use.names = FALSE)
-
-    if (length(values) > 1)
-
-      values <- paste0(VRB, BDX, VAL, "[", seq_along(values), "]=", values)
-
-    if (length(values) == 1)
-
-      values <- paste0(VRB, BDX, VAL, "=", values)
-
-    c(fields, operators, values)
-
-    }) |>
+    c(
+      paste0(v, k$FLD, name),
+      paste0(v, k$OPR, ifelse(is_modifier(x), x[["operator"]], "=")),
+      if (length(val) > 1)
+        paste0(v, k$VAL, "[", seq_along(val), "]=", val)
+      else
+        paste0(v, k$VAL, "=", val)
+    )
+  }) |>
     unname() |>
-    imap(function(x, i) greplace(x, IDX, ifelse(.type == "default", i - 1, i)))
+    imap(function(x, idx)
+      greplace(x, k$IDX, idx - 1))
 
   i <- discard(enexprs(...), is.null)
+  # if (any_calls(i)) i[are_calls(i)] <- deparse_calls(i)
 
-  if (any_calls(i)) i[are_calls(i)] <- deparse_calls(i)
-
-  class_query(input = i, output = out)
+  class_query(input = i, output = o)
 }
