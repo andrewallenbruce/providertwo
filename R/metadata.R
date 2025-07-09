@@ -8,6 +8,8 @@ null_if <- function(x) {
 #' @noRd
 #' @autoglobal
 unlist_if <- function(x) {
+  if (is.null(x)) return(NULL)
+  if (is.na(x)) return(NULL)
   if (is.list(x)) unlist(x, use.names = FALSE) else x
 }
 
@@ -40,7 +42,10 @@ get_identifier <- function(x) {
   switch(
     x$pnt,
     current = class_current(x$identifier),
-    temporal = switch(x$clg, care = class_temporal(slt(x$endpoints, -resources)), class_temporal(x$endpoints))
+    temporal = switch(
+      x$clg,
+      care = class_temporal(slt(x$endpoints, -resources)),
+      class_temporal(x$endpoints))
   )
 }
 

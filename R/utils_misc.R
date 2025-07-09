@@ -14,18 +14,6 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
-`%F%` <- function(x, y) {
-  if (isFALSE(x)) y else x
-}
-
-#' @autoglobal
-#' @noRd
-`%T%` <- function(x, y) {
-  if (isTRUE(x)) y else x
-}
-
-#' @autoglobal
-#' @noRd
 names_map <- function(x, f, ..., .nm = x) {
   map(.x = x, .f = f, ...) |>
     set_names(nm = .nm)

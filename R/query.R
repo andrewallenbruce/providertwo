@@ -68,7 +68,7 @@ query <- function(..., .type = c("default", "medicare")) {
   args <- discard(dots_list(..., .homonyms = "error"), is.null)
 
   k <- query_keywords(type = .type)
-  v <- paste0(k$VRB, k$BDX)
+  v <- paste0(k$VRB, k$BDX, if (.type == "medicare") "[condition]" else NULL)
 
   o <- imap(args, function(x, name) {
     val <- if (is_modifier(x))
@@ -91,6 +91,5 @@ query <- function(..., .type = c("default", "medicare")) {
 
   i <- discard(enexprs(...), is.null)
   # if (any_calls(i)) i[are_calls(i)] <- deparse_calls(i)
-
   class_query(input = i, output = o)
 }

@@ -1,3 +1,14 @@
+#' @autoglobal
+#' @noRd
+# get_dimensions2 <- new_generic("get_dimensions2", "obj", function(obj) {
+#   S7_dispatch()
+# })
+#
+# method(get_dimensions2, class_care) <- function(obj) {
+#   prop(obj, "identifier") |>
+#     get_dimensions2()
+# }
+
 #' @noRd
 #' @autoglobal
 get_dimensions <- function(x, call = caller_env()) {
