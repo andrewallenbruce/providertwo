@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9359 (2025-07-09)
+
+* export query count method
+
+
 # providertwo 0.0.0.9358 (2025-07-09)
 
 - Same as previous version.
