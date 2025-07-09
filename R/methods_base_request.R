@@ -71,7 +71,7 @@ method(base_request, class_group) <- function(x, query = NULL, years = NULL) {
 #' @param ... Additional arguments
 #' @returns An `<int>` vector
 #' @autoglobal
-#' @export
+#' @noRd
 query_nresults <- new_generic("query_nresults", "x")
 
 method(query_nresults, class_endpoint) <- function(x) {
