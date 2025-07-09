@@ -15,7 +15,7 @@
 #'       `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
 #'       .type = "medicare"))
 #' @autoglobal
-#' @noRd
+#' @export
 query_count <- new_generic("query_count", "obj")
 
 method(query_count, class_group) <- function(obj, query = NULL) {
