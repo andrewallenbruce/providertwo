@@ -165,54 +165,6 @@ equals_ <- function(x, negate = FALSE) {
     allow    = c("caid", "prov", "open", "hgov", "care"))
 }
 
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' match_("baz")
-#' @autoglobal
-#' @noRd
-match_ <- function(x) {
-
-  modifier_(
-    operator = "match",
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov"))
-}
-
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' is_null_()
-#' is_null_(negate = TRUE)
-#' @autoglobal
-#' @noRd
-is_null_ <- function(negate = FALSE) {
-
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "IS+NULL", "IS+NOT+NULL"),
-    value    = NULL,
-    allow    = "care")
-}
-
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' is_empty_()
-#' is_empty_(negate = TRUE)
-#' @autoglobal
-#' @noRd
-is_empty_ <- function(negate = FALSE) {
-
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "is_empty", "not_empty"),
-    value    = NULL,
-    allow    = "prov")
-}
-
 #' Query Modifier Constructor
 #'
 #' @param operator `<chr>` comparison operator
@@ -245,7 +197,7 @@ modifier_ <- function(operator, value, allow) {
     class = "modifier")
 }
 
-#' Identify Query Modifier
+#' Query modifier check
 #' @param x input
 #' @returns `<lgl>` TRUE or FALSE
 #' @examples
@@ -257,6 +209,9 @@ is_modifier <- function(x) {
   inherits(x, "modifier")
 }
 
+#' Print method for query modifier
+#' @param ... additional arguments
+#' @rdname query_modifier
 #' @method print modifier
 #' @autoglobal
 #' @export
@@ -389,18 +344,67 @@ print.modifier <- function(x, ...) {
   # filter[2][condition][value]=J
 # }
 
-# `%OR%` <- function(lhs, rhs) {
-  # group OR
-  #
-  # filter[g1][group][conjunction]=OR
-  # filter[1][condition][memberOf]=g1
-  # filter[2][condition][memberOf]=g1
-  #
-  # filter[1][condition][path]=PROVIDER_TYPE_DESC
-  # filter[1][condition][operator]=CONTAINS
-  # filter[1][condition][value]=PRACTITIONER
-  #
-  # filter[2][condition][path]=STATE_CD
-  # filter[2][condition][operator]==
-  # filter[2][condition][value]=MD
+# `%or%` <- function(lhs, rhs) {
+#
+# filter[g1][group][conjunction]=OR
+# filter[1][condition][memberOf]=g1
+# filter[2][condition][memberOf]=g1
+#
+# filter[1][condition][path]=PROVIDER_TYPE_DESC
+# filter[1][condition][operator]=CONTAINS
+# filter[1][condition][value]=PRACTITIONER
+#
+# filter[2][condition][path]=STATE_CD
+# filter[2][condition][operator]==
+# filter[2][condition][value]=MD
 # }
+
+
+
+#' @rdname query_modifier
+#' @examples
+#' # Not working for any endpoint yet
+#' match_("baz")
+#' @autoglobal
+#' @noRd
+match_ <- function(x) {
+
+  modifier_(
+    operator = "match",
+    value    = x,
+    allow    = c("caid", "prov", "open", "hgov"))
+}
+
+#' @rdname query_modifier
+#' @examples
+#' # Not working for any endpoint yet
+#' is_null_()
+#' is_null_(negate = TRUE)
+#' @autoglobal
+#' @noRd
+is_null_ <- function(negate = FALSE) {
+
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "IS+NULL", "IS+NOT+NULL"),
+    value    = NULL,
+    allow    = "care")
+}
+
+#' @rdname query_modifier
+#' @examples
+#' # Not working for any endpoint yet
+#' is_empty_()
+#' is_empty_(negate = TRUE)
+#' @autoglobal
+#' @noRd
+is_empty_ <- function(negate = FALSE) {
+
+  check_bool(negate)
+
+  modifier_(
+    operator = ifelse(!negate, "is_empty", "not_empty"),
+    value    = NULL,
+    allow    = "prov")
+}

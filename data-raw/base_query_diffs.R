@@ -42,7 +42,9 @@ request("https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755
   resp_body_json(simplifyVector = TRUE) |>
   _$data |>
   unlist()
-#    == Output is a data.frame (with column names)
+#    WRONG == Output is a data.frame (with column names)
+#    == Outputs a matrix (NO column names)
+#    == x$meta$headers path contains column names
 request("https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer") |>
   req_url_query(offset = 0L, size = 1L) |>
   req_perform() |>

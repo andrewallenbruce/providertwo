@@ -7,7 +7,7 @@
 query(..., .type = c("default", "medicare"))
 }
 \arguments{
-\item{...}{Query arguments. See details for valid query modifiers.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions where the names are API fields.}
 
 \item{.type}{Query type, \code{"default"} or \code{"medicare"}.}
 }
@@ -37,4 +37,5 @@ query(
   npi        = npi_ex$k,
   ccn        = "01256",
   .type      = "medicare")
+
 }

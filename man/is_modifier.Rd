@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_modifiers.R
 \name{is_modifier}
 \alias{is_modifier}
-\title{Identify Query Modifier}
+\title{Query modifier check}
 \usage{
 is_modifier(x)
 }
@@ -13,7 +13,7 @@ is_modifier(x)
 \verb{<lgl>} TRUE or FALSE
 }
 \description{
-Identify Query Modifier
+Query modifier check
 }
 \examples{
 is_modifier(greater_than_(1000))

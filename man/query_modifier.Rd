@@ -11,6 +11,7 @@
 \alias{like_}
 \alias{in_}
 \alias{equals_}
+\alias{print.modifier}
 \title{Query Modifiers}
 \usage{
 greater_than_(x, or_equal = FALSE)
@@ -30,6 +31,8 @@ like_(x)
 in_(x, care = FALSE, negate = FALSE)
 
 equals_(x, negate = FALSE)
+
+\method{print}{modifier}(x, ...)
 }
 \arguments{
 \item{x, y}{input}
@@ -39,6 +42,8 @@ equals_(x, negate = FALSE)
 \item{care}{\verb{<lgl>} use uppercase operators for \code{care} endpoint}
 
 \item{negate}{\verb{<lgl>} prepend \code{NOT}}
+
+\item{...}{additional arguments}
 }
 \value{
 An object of class \verb{<modifier>}

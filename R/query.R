@@ -42,9 +42,12 @@ flatten_query <- function(x) {
 
 #' Create a Query Object
 #'
-#' @param ... Query arguments. See details for valid query modifiers.
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
+#'
 #' @param .type Query type, `"default"` or `"medicare"`.
+#'
 #' @returns S7 `<class_query>` object.
+#'
 #' @examples
 #' query(
 #'   first_name = starts_with_("Andr"),
@@ -65,7 +68,8 @@ flatten_query <- function(x) {
 #'   npi        = npi_ex$k,
 #'   ccn        = "01256",
 #'   .type      = "medicare")
-#' @autoglobal
+#'
+#' @autoglobal#'
 #' @export
 query <- function(..., .type = c("default", "medicare")) {
 

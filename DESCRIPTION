@@ -73,6 +73,7 @@ Collate:
     'providertwo-package.R'
     'qpp.R'
     'query.R'
+    'query_count.R'
     'query_modifiers.R'
     'query_utils.R'
     'tidyup_names.R'
