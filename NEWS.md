@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9360 (2025-07-10)
+
+* Converting query mods to S7 classes
+
+
 # providertwo 0.0.0.9359 (2025-07-09)
 
 * export query count method
