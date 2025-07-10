@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9360</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9361</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ncount</span><span class="op">(</span><span class="va">obj</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ncount</span><span class="op">(</span><span class="va">obj</span>, <span class="va">url</span>, qstr <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -53,7 +53,15 @@
 
 
 <dl><dt id="arg-obj">obj<a class="anchor" aria-label="anchor" href="#arg-obj"></a></dt>
-<dd><p>An object of class <code>&lt;class_care&gt;</code>, <code>&lt;class_group&gt;</code>, or <code>&lt;class_collection&gt;</code>.</p></dd>
+<dd><p>An object of class <code>&lt;class_endpoint&gt;</code> or <code>&lt;class_temporal&gt;</code>.</p></dd>
+
+
+<dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>
+<dd><p>An object of class <code>&lt;class_query&gt;</code>. If <code>NULL</code>, the default query for the endpoint is used.</p></dd>
+
+
+<dt id="arg-qstr">qstr<a class="anchor" aria-label="anchor" href="#arg-qstr"></a></dt>
+<dd><p>A <code>&lt;chr&gt;</code> string representing the query to be passed to the API. If <code>NULL</code>, the default query for the endpoint is used.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -68,37 +76,27 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">end_dial</span> <span class="op">&lt;-</span> <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"care_dial_end"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">qr_state</span> <span class="op">&lt;-</span> <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">in_</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>, care <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                  .type <span class="op">=</span> <span class="st">"medicare"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">end_rhc</span>  <span class="op">&lt;-</span> <span class="fu"><a href="collection.html">collection</a></span><span class="op">(</span><span class="st">"care_rhc"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">qry</span>      <span class="op">&lt;-</span> <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              STATE <span class="op">=</span> <span class="fu"><a href="query_modifier.html">in_</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>, care <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              `STATE - OWNER` <span class="op">=</span> <span class="fu"><a href="query_modifier.html">in_</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>, care <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              .type <span class="op">=</span> <span class="st">"medicare"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">ncount</span><span class="op">(</span><span class="va">end_dial</span>, <span class="va">qr_state</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #000000; font-weight: bold;">Results </span><span style="color: #555555;">■■■■■■■■</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">2.4M</span> (0.2 %)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Query</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">state</span> <span style="color: #555555;">═</span> <span style="color: #BBBB00;">in_(c("CA", "GA", "NY"), care = TRUE)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Endpoint</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">Medicare Dialysis Facilities</span></span>
+<span class="r-in"><span><span class="fu">ncount</span><span class="op">(</span><span class="va">end_dial</span>, <span class="fu"><a href="identifier.html">identifier</a></span><span class="op">(</span><span class="va">end_dial</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $endpoint</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Dialysis Facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11985275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11985275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $qstring</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer?filter[0][condition][path]=STATE&amp;filter[0][condition][operator]=IN&amp;filter[0][condition][value][1]=CA&amp;filter[0][condition][value][2]=GA&amp;filter[0][condition][value][3]=NY&amp;filter[1][condition][path]=STATE - OWNER&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">end_rhc</span> <span class="op">&lt;-</span> <span class="fu"><a href="collection.html">collection</a></span><span class="op">(</span><span class="st">"care_rhc"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">qr_own</span>  <span class="op">&lt;-</span> <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>STATE <span class="op">=</span> <span class="fu"><a href="query_modifier.html">in_</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>, care <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                `STATE - OWNER` <span class="op">=</span> <span class="fu"><a href="query_modifier.html">in_</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>, care <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                .type <span class="op">=</span> <span class="st">"medicare"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">ncount</span><span class="op">(</span><span class="va">end_rhc</span>, <span class="va">qr_own</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #000000; font-weight: bold;">Results </span><span style="color: #555555;">■■■■■■■■</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">645</span> (0.01 %)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Query</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">STATE</span> <span style="color: #555555;">═</span> <span style="color: #BBBB00;">in_(c("CA", "GA", "NY"), care = TRUE)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">STATE - OWNER</span> <span style="color: #555555;">═</span> <span style="color: #BBBB00;">in_(c("CA", "GA", "NY"), care = TRUE)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Endpoint</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">Rural Health Clinic All Owners</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #000000; font-weight: bold;">Results </span><span style="color: #555555;">■■■■■■■■</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">398</span> (0.07 %)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Query</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">STATE</span> <span style="color: #555555;">═</span> <span style="color: #BBBB00;">in_(c("CA", "GA", "NY"), care = TRUE)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">STATE - OWNER</span> <span style="color: #555555;">═</span> <span style="color: #BBBB00;">in_(c("CA", "GA", "NY"), care = TRUE)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">════════</span><span style="font-style: italic;"> Endpoint</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">Rural Health Clinic Enrollments</span></span>
+<span class="r-in"><span><span class="co">#ncount(end_rhc, identifier(end_rhc), qry)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
