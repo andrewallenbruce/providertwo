@@ -7,47 +7,62 @@
 #' @returns An `<int>` representing the number of results found.
 #'
 #' @examples
-#' endpoint("care_dial_end") |>
-#' query_count(query(
-#' state = in_(c("CA", "GA", "NY"),
-#' care = TRUE),
-#' .type = "medicare"))
+#' end_dial <- endpoint("care_dial_end")
+#' qr_state <- query(state = in_(c("CA", "GA", "NY"), care = TRUE),
+#'                   .type = "medicare")
 #'
-#' collection("care_rhc") |>
-#' query_count(
-#' query(STATE = in_(c("CA", "GA", "NY"), care = TRUE),
-#'       `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
-#'       .type = "medicare"))
+#' ncount(end_dial, qr_state)
+#'
+#' end_rhc <- collection("care_rhc")
+#' qr_own  <- query(STATE = in_(c("CA", "GA", "NY"), care = TRUE),
+#'                 `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
+#'                 .type = "medicare")
+#'
+#' ncount(end_rhc, qr_own)
 #'
 #' @autoglobal
 #' @export
-query_count <- new_generic("query_count", "obj")
+ncount <- new_generic("ncount", "obj")
 
-method(query_count, class_group) <- function(obj, query = NULL) {
+method(ncount, class_group) <- function(obj, query = NULL) {
   prop(obj, "members") |>
-    walk(\(x) query_count(x, query = query))
+    walk(\(x) ncount(x, query = query))
 }
 
-method(query_count, class_care) <- function(obj, query = NULL) {
-  x <- prop(obj, "identifier") |>
-    S7_data() |>
-    httr2::url_modify(query = query@string) |>
-    request() |>
-    httr2::req_url_path_append("stats") |>
-    perform_simple() |>
-    _$data
+method(ncount, class_care) <- function(obj, query = NULL) {
 
-  cli::cli_inform(
-    c(
-      "!" = "Results: {.val {x$found_rows}} of {.val {x$total_rows}} ({.val {roundup(x$found_rows / x$total_rows)}} %)",
-      "*" = "Query: {.val {query@input}}",
-      "*" = "{.cls class_care} Endpoint {.val {obj@metadata$title}}"
+  q <- S7_data(prop(obj, "identifier")) |> url_modify(query = query@string)
+  n <- req_url_path_append(request(q), "stats") |> perform_simple() |> _$data
+
+  cli::cli_text(
+    cli::col_black(cli::style_bold("Results ")),
+    cli::col_silver(paste0(strrep(cli::symbol$stop, 8)))
     )
-  )
-  cli::cat_line()
-  invisible(x)
-}
 
-# query(STATE = in_(c("CA", "GA", "NY"), care = TRUE),
-#       `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
-#       .type = "medicare")
+  cli::cli_text(
+    cli::col_silver(fmt_int(n$found_rows)),
+    " (",
+    roundup(n$found_rows / n$total_rows),
+    " %)"
+    )
+
+  cli::cli_text(
+    cli::col_silver(paste0(strrep(cli::symbol$double_line, 8))),
+    cli::style_italic(" Query"))
+
+  cli::cli_bullets(
+    paste(
+      cli::style_bold(cli::col_yellow(names(query@input))),
+      cli::col_silver(cli::symbol$double_line),
+      cli::col_yellow(query@input),
+      sep = " "
+      ))
+
+  cli::cli_text(
+    cli::col_silver(paste0(strrep(cli::symbol$double_line, 8))),
+    cli::style_italic(" Endpoint"))
+
+  cli::cli_text(cli::col_cyan(obj@metadata$title))
+
+  invisible(q)
+}
