@@ -51,12 +51,6 @@ utils::globalVariables(c(
   "firstApprovedDate",
   # <clog_hgov>
   "id",
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
-  # <clog_caid>
-  # <clog_hgov>
-  "identifier",
   # <quality_eligibility>
   "is_maqi",
   # <quality_eligibility>

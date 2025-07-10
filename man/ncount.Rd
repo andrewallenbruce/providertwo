@@ -4,10 +4,14 @@
 \alias{ncount}
 \title{Return the number of results for a given query}
 \usage{
-ncount(obj, ...)
+ncount(obj, url, qstr = NULL, ...)
 }
 \arguments{
-\item{obj}{An object of class \verb{<class_care>}, \verb{<class_group>}, or \verb{<class_collection>}.}
+\item{obj}{An object of class \verb{<class_endpoint>} or \verb{<class_temporal>}.}
+
+\item{url}{An object of class \verb{<class_query>}. If \code{NULL}, the default query for the endpoint is used.}
+
+\item{qstr}{A \verb{<chr>} string representing the query to be passed to the API. If \code{NULL}, the default query for the endpoint is used.}
 
 \item{...}{Additional arguments passed to the query.}
 }
@@ -19,16 +23,14 @@ Return the number of results for a given query
 }
 \examples{
 end_dial <- endpoint("care_dial_end")
-qr_state <- query(state = in_(c("CA", "GA", "NY"), care = TRUE),
-                  .type = "medicare")
+end_rhc  <- collection("care_rhc")
+qry      <- query(
+              STATE = in_(c("CA", "GA", "NY"), care = TRUE),
+              `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
+              .type = "medicare")
 
-ncount(end_dial, qr_state)
+ncount(end_dial, identifier(end_dial), qry)
 
-end_rhc <- collection("care_rhc")
-qr_own  <- query(STATE = in_(c("CA", "GA", "NY"), care = TRUE),
-                `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
-                .type = "medicare")
-
-ncount(end_rhc, qr_own)
+#ncount(end_rhc, identifier(end_rhc), qry)
 
 }
