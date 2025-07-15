@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9362 (2025-07-15)
+
+* field typing
+
+
 # providertwo 0.0.0.9361 (2025-07-10)
 
 * work on ncount
