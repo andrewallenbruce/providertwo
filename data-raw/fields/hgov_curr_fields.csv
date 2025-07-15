@@ -1,0 +1,366 @@
+catalog,title,field,modified
+HealthcareGov,Find Local Help,record_id,2025-07-14
+HealthcareGov,Find Local Help,data_set_name,2025-07-14
+HealthcareGov,Find Local Help,organization_name,2025-07-14
+HealthcareGov,Find Local Help,main_phone_number,2025-07-14
+HealthcareGov,Find Local Help,street_address,2025-07-14
+HealthcareGov,Find Local Help,city,2025-07-14
+HealthcareGov,Find Local Help,state_or_territory,2025-07-14
+HealthcareGov,Find Local Help,zip_code,2025-07-14
+HealthcareGov,Find Local Help,non_english_assistance_offered,2025-07-14
+HealthcareGov,Find Local Help,organization_acronym,2025-07-14
+HealthcareGov,Find Local Help,office_hours,2025-07-14
+HealthcareGov,Find Local Help,toll_free_phone,2025-07-14
+HealthcareGov,Find Local Help,tty_phone,2025-07-14
+HealthcareGov,Find Local Help,language_line_phone_for_non_english_speakers,2025-07-14
+HealthcareGov,Find Local Help,location_name,2025-07-14
+HealthcareGov,Find Local Help,website_url,2025-07-14
+HealthcareGov,Find Local Help,additional_information,2025-07-14
+HealthcareGov,Find Local Help,accessibility_service_offered,2025-07-14
+HealthcareGov,Find Local Help,geo_location,2025-07-14
+HealthcareGov,Find Local Help,email_address,2025-07-14
+HealthcareGov,Find Local Help,display,2025-07-14
+HealthcareGov,Find Local Help,display_address,2025-07-14
+HealthcareGov,Find Local Help,address_comment,2025-07-14
+HealthcareGov,Agent Broker Registration Tracker,npn_indiv,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,user_work_zip_code,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,find_local_help_preference,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,portal_account_active,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,id_proofing,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,mlms_profile_complete,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,im_new_complete_courses,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,im_new_sign_agreements,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,im_returning_complete_courses,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,im_returning_sign_agreements,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,shop_complete_courses,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,shop_sign_agreements,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,license_status,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,approved_loa,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,active_loa,2025-07-11
+HealthcareGov,Agent Broker Registration Tracker,hod_training_complete,2025-07-11
+HealthcareGov,AB Registration Completion List,npn,2025-07-11
+HealthcareGov,AB Registration Completion List,applicable_plan_year,2025-07-11
+HealthcareGov,AB Registration Completion List,individual_registration_completion_date,2025-07-11
+HealthcareGov,AB Registration Completion List,individual_marketplace_end_date,2025-07-11
+HealthcareGov,AB Registration Completion List,shop_registration_completion_date,2025-07-11
+HealthcareGov,AB Registration Completion List,shop_end_date,2025-07-11
+HealthcareGov,AB Registration Completion List,npn_valid_current_plan_year_only,2025-07-11
+HealthcareGov,AB Suspension and Termination List,npn,2025-07-11
+HealthcareGov,AB Suspension and Termination List,effective_plan_year,2025-07-11
+HealthcareGov,AB Suspension and Termination List,marketplaces,2025-07-11
+HealthcareGov,AB Suspension and Termination List,registration_completion_date,2025-07-11
+HealthcareGov,AB Suspension and Termination List,individual_registration_date,2025-07-11
+HealthcareGov,AB Suspension and Termination List,shop_registration_date,2025-07-11
+HealthcareGov,AB Suspension and Termination List,termination_or_suspension_date,2025-07-11
+HealthcareGov,AB Suspension and Termination List,termination_reconsidered_or_suspension_lifted,2025-07-11
+HealthcareGov,Issuer_Partner_Lookup,partner_name,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,partner_type,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,direct_enrollment_services,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,informational_website_for_agents_and_brokers,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,agentbroker_contact_phone_number,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,agentbroker_contact_email_address,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,shop_plans_offered,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,standalone_dental_plans_offered,2025-01-13
+HealthcareGov,Issuer_Partner_Lookup,states,2025-01-13
+HealthcareGov,Rolling Draft ECP List,ecp_reference_number,2024-08-09
+HealthcareGov,Rolling Draft ECP List,provider_site_name,2024-08-09
+HealthcareGov,Rolling Draft ECP List,organization_name,2024-08-09
+HealthcareGov,Rolling Draft ECP List,national_provider_identifier,2024-08-09
+HealthcareGov,Rolling Draft ECP List,ecp_category,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_street_address_1,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_street_address_2,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_city,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_state,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_zip_code,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_county,2024-08-09
+HealthcareGov,Rolling Draft ECP List,site_fips_code,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_street_address_1,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_street_address_2,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_city,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_state,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_zip_code,2024-08-09
+HealthcareGov,Rolling Draft ECP List,org_county,2024-08-09
+HealthcareGov,Rolling Draft ECP List,website_url,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_1_name,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_1_title,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_1_phone,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_1_phone_ext,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_1_email,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_2_name,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_2_title,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_2_phone,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_2_phone_ext,2024-08-09
+HealthcareGov,Rolling Draft ECP List,poc_2_email,2024-08-09
+HealthcareGov,Rolling Draft ECP List,available_writein,2024-08-09
+HealthcareGov,Auto-population File,_row_number,2024-08-09
+HealthcareGov,Auto-population File,provider_name,2024-08-09
+HealthcareGov,Auto-population File,site_name,2024-08-09
+HealthcareGov,Auto-population File,organization_name,2024-08-09
+HealthcareGov,Auto-population File,national_provider_identifier,2024-08-09
+HealthcareGov,Auto-population File,ecp_category,2024-08-09
+HealthcareGov,Auto-population File,site_street_address_1,2024-08-09
+HealthcareGov,Auto-population File,site_street_address_2,2024-08-09
+HealthcareGov,Auto-population File,site_city,2024-08-09
+HealthcareGov,Auto-population File,site_state,2024-08-09
+HealthcareGov,Auto-population File,site_zip_code,2024-08-09
+HealthcareGov,Auto-population File,site_county,2024-08-09
+HealthcareGov,Auto-population File,org_street_address_1,2024-08-09
+HealthcareGov,Auto-population File,org_street_address_2,2024-08-09
+HealthcareGov,Auto-population File,org_city,2024-08-09
+HealthcareGov,Auto-population File,org_state,2024-08-09
+HealthcareGov,Auto-population File,org_zip_code,2024-08-09
+HealthcareGov,Auto-population File,org_county,2024-08-09
+HealthcareGov,Auto-population File,url_1,2024-08-09
+HealthcareGov,Auto-population File,poc_1_name,2024-08-09
+HealthcareGov,Auto-population File,poc_1_title,2024-08-09
+HealthcareGov,Auto-population File,poc_1phone,2024-08-09
+HealthcareGov,Auto-population File,poc_1phone_ext,2024-08-09
+HealthcareGov,Auto-population File,poc_1_email,2024-08-09
+HealthcareGov,Auto-population File,poc_2_name,2024-08-09
+HealthcareGov,Auto-population File,poc_2_title,2024-08-09
+HealthcareGov,Auto-population File,poc_2phone,2024-08-09
+HealthcareGov,Auto-population File,poc_2phone_ext,2024-08-09
+HealthcareGov,Auto-population File,poc_2_email,2024-08-09
+HealthcareGov,Auto-population File,question_05,2024-08-09
+HealthcareGov,Auto-population File,question_08,2024-08-09
+HealthcareGov,Auto-population File,question_09,2024-08-09
+HealthcareGov,Auto-population File,question_10,2024-08-09
+HealthcareGov,Auto-population File,question_11,2024-08-09
+HealthcareGov,Auto-population File,question_12,2024-08-09
+HealthcareGov,Auto-population File,question_13,2024-08-09
+HealthcareGov,Direct Enrollment Partners,organization_name,2024-08-07
+HealthcareGov,Direct Enrollment Partners,organization_type,2024-08-07
+HealthcareGov,Direct Enrollment Partners,partner_id,2024-08-07
+HealthcareGov,Direct Enrollment Partners,new_or_update,2024-08-07
+HealthcareGov,Direct Enrollment Partners,direct_enrollment_pathway,2024-08-07
+HealthcareGov,Direct Enrollment Partners,enrollment_timeframe,2024-08-07
+HealthcareGov,Direct Enrollment Partners,qhp_shopping_experience_url,2024-08-07
+HealthcareGov,Direct Enrollment Partners,states_in_which_your_organization_displays_plans,2024-08-07
+HealthcareGov,Direct Enrollment Partners,logo,2024-08-07
+HealthcareGov,Direct Enrollment Partners,logo_disclaimer,2024-08-07
+HealthcareGov,Direct Enrollment Partners,authorization,2024-08-07
+HealthcareGov,Direct Enrollment Partners,approved,2024-08-07
+HealthcareGov,"Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",resident_state,2023-07-27
+HealthcareGov,"Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",appointment_level_loa,2023-07-27
+HealthcareGov,"Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",approved_class_type,2023-07-27
+HealthcareGov,"Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",approved_license_level_loa,2023-07-27
+HealthcareGov,"Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",licensing_authority,2023-07-27
+HealthcareGov,Agent Broker Registration Tracker Glossary,term,2021-08-26
+HealthcareGov,Agent Broker Registration Tracker Glossary,descriptiondefinition,2021-08-26
+HealthcareGov,Issuer Partner Directory - Reference Text,partner_type,2020-09-29
+HealthcareGov,Issuer Partner Directory - Reference Text,direct_enrollment_services,2020-09-29
+HealthcareGov,Issuer Partner Directory - Reference Text,title_for_display_on_lookup_tool,2020-09-29
+HealthcareGov,Issuer Partner Directory - Reference Text,description_for_display_in_lookup_tool,2020-09-29
+HealthcareGov,NIPR Valid Lines of Authority List,line_of_authority,2020-08-10
+HealthcareGov,Issuer and DE Partner Directory,partner_name,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,partner_type,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,direct_enrollment_services,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,informational_website_for_agents_and_brokers,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,agentbroker_contact_phone_number,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,agentbroker_contact_email_address,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,shop_plans_offered,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,standalone_dental_plans_offered,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,alabama,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,alaska,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,arizona,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,arkansas,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,delaware,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,florida,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,georgia,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,hawaii,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,illinois,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,indiana,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,iowa,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,kansas,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,kentucky,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,louisiana,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,maine,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,michigan,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,mississippi,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,missouri,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,montana,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,nebraska,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,new_hampshire,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,new_jersey,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,new_mexico,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,north_carolina,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,north_dakota,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,ohio,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,oklahoma,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,oregon,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,pennsylvania,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,south_carolina,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,south_dakota,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,tennessee,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,texas,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,utah,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,virginia,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,west_virginia,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,wisconsin,2019-11-22
+HealthcareGov,Issuer and DE Partner Directory,wyoming,2019-11-22
+HealthcareGov,Response Codes,code,2018-09-28
+HealthcareGov,States,feature_id,2017-05-11
+HealthcareGov,States,feature_id_string,2017-05-11
+HealthcareGov,States,the_geom,2017-05-11
+HealthcareGov,States,name,2017-05-11
+HealthcareGov,States,region,2017-05-11
+HealthcareGov,States,iso,2017-05-11
+HealthcareGov,States,amin0,2017-05-11
+HealthcareGov,Counties,feature_id,2017-05-10
+HealthcareGov,Counties,feature_id_string,2017-05-10
+HealthcareGov,Counties,the_geom,2017-05-10
+HealthcareGov,Counties,geo_id,2017-05-10
+HealthcareGov,Counties,state,2017-05-10
+HealthcareGov,Counties,county,2017-05-10
+HealthcareGov,Counties,name,2017-05-10
+HealthcareGov,Counties,lsad,2017-05-10
+HealthcareGov,Counties,censusarea,2017-05-10
+HealthcareGov,Counties,shape_leng,2017-05-10
+HealthcareGov,Counties,shape_area,2017-05-10
+HealthcareGov,"QHP Selections by Type of Consumer and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",state,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",new,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",auto,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",active,2015-07-02
+HealthcareGov,"QHP Selections by Type of Consumer and County,",total_plan_selections,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",state,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",no_aptc,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",yes_aptc,2015-07-02
+HealthcareGov,"QHP Selections by APTC and County,",total_plan_selections,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",state,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",no_csr,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",yes_csr,2015-07-02
+HealthcareGov,"QHP Selections by CSR and County,",total_plan_selections,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",state_name,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",platinum,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",gold,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",silver,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",bronze,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",catastrophic,2015-07-02
+HealthcareGov,"QHP Selections by Metal Level and County,",total_plans,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",state_name,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",100_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",100__to__150_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",150_to__200_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",200_to__250_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",250_to__300_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",300_to__400_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",400_of_fpl,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",unknown,2015-07-02
+HealthcareGov,"QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",total_plan_selections,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",state_name,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",american_indian_alaska_native,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",asian,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",black,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",latino,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",native_hawaiian_pacific_islander,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",multiracial,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",white,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",unknown,2015-07-02
+HealthcareGov,"QHP Selections by Race/Ethnicity and County,",total_plan_selections,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",county_fips_code,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",state_name,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",county_name,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_017,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_1825,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_2634,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_3544,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_4554,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_5564,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",_65,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",unknown,2015-07-02
+HealthcareGov,"QHP Selections by Age Group and County,",total_plan_selections,2015-07-02
+HealthcareGov,SLCSP - County-Zip Reference Data,state,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,county_name,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,fips,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,zip_code,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,020_child_dependents,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,020_not_a_child_dependent,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_21,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_22,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_23,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_24,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_25,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_26,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_27,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_28,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_29,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_30,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_31,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_32,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_33,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_34,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_35,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_36,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_37,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_38,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_39,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_40,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_41,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_42,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_43,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_44,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_45,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_46,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_47,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_48,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_49,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_50,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_51,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_52,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_53,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_54,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_55,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_56,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_57,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_58,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_59,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_60,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_61,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_62,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_63,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,_64,2014-04-16
+HealthcareGov,SLCSP - County-Zip Reference Data,65_and_over,2014-04-16
+HealthcareGov,County Service Areas,county,2014-04-16
+HealthcareGov,County Service Areas,state,2014-04-16
+HealthcareGov,County Service Areas,local_help_id,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,state,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,insurance_company_name,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,plan_name,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,plan_type,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,website,2014-04-16
+HealthcareGov,Catastrophic Plans for People with Cancelled Policies,phone_number,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,standard_component_id,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,issuer_id,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,issuer_legal_name,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,state,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,metal_level,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,market_coverage,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,on_or_off_exchange,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,sadp_or_qhp,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,child_only_offering,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,guaranteed_or_estimated_rate,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,how_are_rates_for_contracts_covering_two_or_more_enrollees__e264,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,what_are_the_maximum_number_of_under_age_under_21_dependent_364a,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,what_are_the_maximum_number_of_under_age_under_21_dependent_e6fb,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,is_there_a_maximum_age_for_a_dependent,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,what_are_the_maximum_number_of_children_used_to_quote_a_chi_733a,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,are_domestic_partners_treated_the_same_as_secondary_subscribers,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,are_samesex_partners_treated_the_same_as_secondary_subscribers,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,how_is_age_determined_for_rating_and_eligibility_purposes,2014-04-16
+HealthcareGov,QHP Landscape Health Plan Business Rule Variables,what_relationships_between_primary_and_dependent_are_allowe_e280,2014-04-16
+HealthcareGov,Helpful Contacts Admins,name,2013-09-03
+HealthcareGov,Helpful Contacts Admins,email,2013-09-03
+HealthcareGov,Helpful Contacts Admins,user_id,2013-09-03
+HealthcareGov,Helpful Contacts Admins,org,2013-09-03

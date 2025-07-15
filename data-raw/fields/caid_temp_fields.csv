@@ -1,0 +1,142 @@
+catalog,title,field,modified
+Medicaid,Child and Adult Health Care Quality Measures,state,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,domain,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,reporting_program,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,measure_name,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,measure_abbreviation,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,measure_type,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,rate_definition,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,core_set_year,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,population,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,methodology,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,state_rate,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,number_of_states_reporting,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,median,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,bottom_quartile,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,top_quartile,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,notes,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,source,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,statespecific_comments,2024-09-25
+Medicaid,Child and Adult Health Care Quality Measures,rate_used_in_calculating_state_mean_and_median,2024-09-25
+Medicaid,Managed Care Programs by State,state,2019-05-03
+Medicaid,Managed Care Programs by State,program_name,2019-05-03
+Medicaid,Managed Care Programs by State,program_type,2019-05-03
+Medicaid,Managed Care Programs by State,statewide_or_regionspecific,2019-05-03
+Medicaid,Managed Care Programs by State,federal_operating_authority,2019-05-03
+Medicaid,Managed Care Programs by State,program_start_date,2019-05-03
+Medicaid,Managed Care Programs by State,waiver_expiration_date_if_applicable,2019-05-03
+Medicaid,Managed Care Programs by State,if_the_program_ended_in_2017_indicate_the_end_date,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_lowincome_adults_not_covered_under_aca_0778,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_lowincome_adults_covered_under__aca_se_9567,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_aged_blind_or_disabled_children_or_adults,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_nondisabled_children_excludes_children_1dda,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_individuals_receiving_limited_benefits_facc,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_full_duals,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_partial_duals,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_children_with_special_health_care_needs,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_native_americanalaskan_natives,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_foster_care_and_adoption_assistance_ch_b424,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_enrollment_choice_period,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_enrollment_broker_name_if_applicable,2019-05-03
+Medicaid,Managed Care Programs by State,populations_enrolled_notes_on_enrollment_choice_period,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_inpatient_hospital_physical_health,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_inpatient_hospital_behavioral_health_mh_an_4041,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_outpatient_hospital_physical_health,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_outpatient_hospital_behavioral_health_mh_a_ceee,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_partial_hospitalization,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_physician,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_nurse_practitioner,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_rural_health_clinics_and_fqhcs,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_clinic_services,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_lab_and_xray,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_prescription_drugs_and_prosthetic_devices,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_epsdt,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_case_management,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_ssa_section_1945authorized_health_home,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_health_home_care_services_in_home,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_family_planning,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_dental_services_medicalsurgical,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_dental_preventative_or_corrective,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_personal_care_state_plan_option,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_hcbs_waiver_services,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_private_duty_nursing,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_icfidd,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_nursing_facility_services,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_hospice_care,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_nonemergency_medical_transportation,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_institution_for_mental_disease_inpatient_t_448a,2019-05-03
+Medicaid,Managed Care Programs by State,benefits_covered_other_eg_nurse_midwife_services_freestandi_d504,2019-05-03
+Medicaid,Managed Care Programs by State,quality_assurance_and_improvement_hedis_data_required,2019-05-03
+Medicaid,Managed Care Programs by State,quality_assurance_and_improvement_cahps_data_required,2019-05-03
+Medicaid,Managed Care Programs by State,quality_assurance_and_improvement_accreditation_required,2019-05-03
+Medicaid,Managed Care Programs by State,quality_assurance_and_improvement_accrediting_organization,2019-05-03
+Medicaid,Managed Care Programs by State,quality_assurance_and_improvement_eqro_contractor_name_if_a_f2dc,2019-05-03
+Medicaid,Managed Care Programs by State,performance_incentives_payment_bonusesdifferentials_to_rewa_eece,2019-05-03
+Medicaid,Managed Care Programs by State,performance_incentives_preferential_autoenrollment_to_rewar_ab96,2019-05-03
+Medicaid,Managed Care Programs by State,performance_incentives_public_reports_comparing_plan_perfor_42d0,2019-05-03
+Medicaid,Managed Care Programs by State,performance_incentives_withholds_tied_to_performance_metrics,2019-05-03
+Medicaid,Managed Care Programs by State,performance_incentives_mcosphps_required_or_encouraged_to_p_bf59,2019-05-03
+Medicaid,Managed Care Programs by State,participating_plans_plans_in_program,2019-05-03
+Medicaid,Managed Care Programs by State,notes_program_notes,2019-05-03
+Medicaid,Managed Care Programs by State,year,2019-05-03
+Medicaid,NADAC,ndc_description,2025-07-08
+Medicaid,NADAC,ndc,2025-07-08
+Medicaid,NADAC,nadac_per_unit,2025-07-08
+Medicaid,NADAC,effective_date,2025-07-08
+Medicaid,NADAC,pricing_unit,2025-07-08
+Medicaid,NADAC,pharmacy_type_indicator,2025-07-08
+Medicaid,NADAC,otc,2025-07-08
+Medicaid,NADAC,explanation_code,2025-07-08
+Medicaid,NADAC,classification_for_rate_setting,2025-07-08
+Medicaid,NADAC,corresponding_generic_drug_nadac_per_unit,2025-07-08
+Medicaid,NADAC,corresponding_generic_drug_effective_date,2025-07-08
+Medicaid,NADAC,as_of_date,2025-07-08
+Medicaid,Pricing Comparison for Blood Disorder Treatments,blood_disorder_product_group,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,aac_non340b_a,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,wac_b,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,wac_equivalence_to_aac_ab__1,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,awp_c,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,awp_equivalence_to_aac_ac__1,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,awp__16_d,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,awp__16_equivalence_to_aac_ad__1,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,medicare_allowable_asp__6__0238_per_unit_e,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,medicare_allowable_equivalence_to_aac_ae__1,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,asp__6_f,2025-06-30
+Medicaid,Pricing Comparison for Blood Disorder Treatments,asp__6_equivalence_to_aac_af__1,2025-06-30
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,ndc1,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,ndc2,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,ndc3,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,labeler_name,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,labeler_status,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,fda_name,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,cod_status,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,fda_application_number,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,drug_category,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,drug_type,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,line_extension,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,fda_approval_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,market_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,unit_type,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,unit_per_package_size,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,therapeutic_equivalent_code,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,5i_indicator,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,purchased_product_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,coverage_effective_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,drug_termination_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,drug_reactivation_date,2025-07-14
+Medicaid,Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program,date_reported_to_cms,2025-07-14
+Medicaid,State Drug Utilization Data,utilization_type,2025-05-14
+Medicaid,State Drug Utilization Data,state,2025-05-14
+Medicaid,State Drug Utilization Data,ndc,2025-05-14
+Medicaid,State Drug Utilization Data,labeler_code,2025-05-14
+Medicaid,State Drug Utilization Data,product_code,2025-05-14
+Medicaid,State Drug Utilization Data,package_size,2025-05-14
+Medicaid,State Drug Utilization Data,year,2025-05-14
+Medicaid,State Drug Utilization Data,quarter,2025-05-14
+Medicaid,State Drug Utilization Data,suppression_used,2025-05-14
+Medicaid,State Drug Utilization Data,product_name,2025-05-14
+Medicaid,State Drug Utilization Data,units_reimbursed,2025-05-14
+Medicaid,State Drug Utilization Data,number_of_prescriptions,2025-05-14
+Medicaid,State Drug Utilization Data,total_amount_reimbursed,2025-05-14
+Medicaid,State Drug Utilization Data,medicaid_amount_reimbursed,2025-05-14
+Medicaid,State Drug Utilization Data,non_medicaid_amount_reimbursed,2025-05-14

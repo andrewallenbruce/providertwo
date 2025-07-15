@@ -1,0 +1,321 @@
+catalog,title,field,modified
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_type,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_id,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,associated_covered_recipient_profile_id_1,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,associated_covered_recipient_profile_id_2,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_npi,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_first_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_middle_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_last_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_suffix,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_alternate_first_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_alternate_middle_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_alternate_last_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_alternate_suffix,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_address_line_1,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_address_line_2,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_city,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_state,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_zipcode,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_country_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_province_name,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_primary_specialty,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_1,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_2,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_3,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_4,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_5,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_ops_taxonomy_6,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_license_state_code_1,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_license_state_code_2,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_license_state_code_3,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_license_state_code_4,2025-06-30
+OpenPay,Covered Recipient Profile Supplement,covered_recipient_profile_license_state_code_5,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,payment_type,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,recipient_type,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,program_year,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,taxonomy_code,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,provider_type_description,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,classification,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,specialization,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_number_of_physicians,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_number_of_non_physician_practitioners,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,mean_total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,mean_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,median_total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,median_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,mean_total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,mean_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,median_total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages by Provider Specialty for all Years,median_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,metric_level,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,payment_type,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,recipient_type,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,program_year,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_number_of_physicians,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_number_of_non_physician_practitioners,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,mean_total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,mean_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,median_total_payment_amount_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,median_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,mean_total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,mean_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,median_total_payment_count_physician,2025-06-30
+OpenPay,National Level Payment Total and Averages for all Years,median_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,recipient_id,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,recipient_type,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,covered_recipient_npi,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,covered_recipient_profile_first_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,covered_recipient_profile_middle_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,covered_recipient_profile_last_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,teaching_hospital_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,nature_of_payment_type_code,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,number_of_transaction,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments for all Years,total_amount,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,recipient_id,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,recipient_type,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,covered_recipient_npi,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,covered_recipient_profile_first_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,covered_recipient_profile_middle_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,covered_recipient_profile_last_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,teaching_hospital_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,payment_type,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,amgpo_name,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,amgpo_id,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,number_of_transaction,2025-06-30
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities for all Years,total_amount,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_id,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,program_year,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_type,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_npi,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_first_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_middle_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_last_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_suffix,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_alternate_first_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_alternate_middle_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_alternate_last_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_alternate_suffix,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_address_line_1,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_address_line_2,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_city,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_state,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_zipcode,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_country_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_province_name,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_primary_specialty,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_license_state_code_1,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_license_state_code_2,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_license_state_code_3,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_license_state_code_4,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,covered_recipient_profile_license_state_code_5,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,general_total_payment,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,research_total_payment,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,invested_total_amount,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,interest_total_amount,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,general_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,research_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,invested_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,interest_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,total_associated_research_payments,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,total_associated_research_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,total_disputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,total_undisputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Physician (Distinct) for all Years,has_multiple_ids,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,amgpo_making_payment_id,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,amgpo_making_payment_name,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,amgpo_making_payment_state,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,amgpo_making_payment_country,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_amount_general,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_amount_research,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_amount_investment,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_amount_interest,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_general,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_general_physician,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_general_non_physician_practitioner,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_general_teachinghospital,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_research,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_research_physician,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_research_non_physician_practitioner,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_research_teachinghospital,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,trans_invested,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_disputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,total_undisputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities,program_year,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments for all Years,amgpo_id,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments for all Years,nature_of_payment_type_code,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments for all Years,number_of_transaction,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments for all Years,total_amount,2025-06-30
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments for all Years,amgpo_name,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",amgpo_id,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",recipient_id,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",recipient_type,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",nature_of_payment_type_code,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",number_of_transaction,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",total_amount,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",recipient_name,2025-06-30
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments for all Years",amgpo_name,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_ccn,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_name,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_address1,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_address2,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_city,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_state,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,teaching_hospital_zip_code,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,general_total_payment,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,research_total_payment,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,general_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,research_total_transactions,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,total_disputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,total_undisputed_transactions,2025-06-30
+OpenPay,Payments Grouped by Teaching Hospital,program_year,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_type,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_id,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_npi,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_first_name,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_middle_name,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_last_name,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_suffix,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_first_name1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_middle_name1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_last_name1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_suffix1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_address_line_1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_address_line_2,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_city,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_state,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_zipcode,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_country_name,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_province_name,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_primary_specialty,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_license_state_code_1,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_license_state_code_2,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_license_state_code_3,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_license_state_code_4,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_license_state_code_5,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_first_name2,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_last_name2,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_first_name3,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_last_name3,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_first_name4,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_last_name4,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_first_name5,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,covered_recipient_profile_alternate_last_name5,2025-06-30
+OpenPay,Physician (Distinct) Profile Information,has_multiple_ids,2025-06-30
+OpenPay,Profile Information,entity_id,2025-06-30
+OpenPay,Profile Information,entity_provider_type,2025-06-30
+OpenPay,Profile Information,entity_npi,2025-06-30
+OpenPay,Profile Information,entity_alternate_id,2025-06-30
+OpenPay,Profile Information,entity_type,2025-06-30
+OpenPay,Profile Information,entity_name,2025-06-30
+OpenPay,Profile Information,entity_alternate_name1,2025-06-30
+OpenPay,Profile Information,entity_alternate_name2,2025-06-30
+OpenPay,Profile Information,entity_alternate_name3,2025-06-30
+OpenPay,Profile Information,entity_alternate_name4,2025-06-30
+OpenPay,Profile Information,entity_alternate_name5,2025-06-30
+OpenPay,Profile Information,entity_address_line_1,2025-06-30
+OpenPay,Profile Information,entity_address_line_2,2025-06-30
+OpenPay,Profile Information,entity_city,2025-06-30
+OpenPay,Profile Information,entity_state,2025-06-30
+OpenPay,Profile Information,entity_zipcode,2025-06-30
+OpenPay,Profile Information,entity_country_name,2025-06-30
+OpenPay,Profile Information,entity_province_name,2025-06-30
+OpenPay,Profile Information,entity_specialty,2025-06-30
+OpenPay,Profile Information,location,2025-06-30
+OpenPay,Provider Profile ID Mapping Table,primary_provider_profile_id,2025-06-30
+OpenPay,Provider Profile ID Mapping Table,secondary_provider_profile_id,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_id,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_name,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_state,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_country,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_alternate_name1,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_alternate_name2,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_alternate_name3,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_alternate_name4,2025-06-30
+OpenPay,Reporting Entity Profile Information,amgpo_making_payment_alternate_name5,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,country_code,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,country_name,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,state_code,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,state_name,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,payment_type,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,recipient_type,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,program_year,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_number_of_physicians,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_number_of_non_physician_practitioners,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_number_of_teaching_hospitals,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_amount_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_amount_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_amount_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_count_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,total_payment_count_teaching_hospital,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_count_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,mean_total_payment_count_teaching_hospital,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_count_physician,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Level Payment Total and Averages for all Years,median_total_payment_count_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,country_code,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,country_name,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,state_code,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,state_name,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,nature_of_payment,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,recipient_type,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,program_year,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_number_of_physicians,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_number_of_non_physician_practitioners,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_number_of_teaching_hospitals,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_amount_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_amount_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_amount_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_amount_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_amount_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_count_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,total_payment_count_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_count_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,mean_total_payment_count_teaching_hospital,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_count_physician,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_count_non_physician_practitioner,2025-06-30
+OpenPay,State Payment Totals and Averages Grouped by Nature of Payment for all Years,median_total_payment_count_teaching_hospital,2025-06-30
+OpenPay,Summary Dashboard - all Years,dashboard_row_number,2025-06-30
+OpenPay,Summary Dashboard - all Years,data_metrics,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2018,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2019,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2020,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2021,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2022,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2023,2025-06-30
+OpenPay,Summary Dashboard - all Years,py_2024,2025-06-30
+OpenPay,Summary Dashboard - all Years,total,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_ccn,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_name,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_address1,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_address2,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_city,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_state,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_zip_code,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_alternate_name1,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_alternate_name2,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_alternate_name3,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_alternate_name4,2025-06-30
+OpenPay,Teaching Hospital Profile Information,teaching_hospital_alternate_name5,2025-06-30

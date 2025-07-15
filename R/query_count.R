@@ -34,6 +34,7 @@ method(identifier, class_temporal) <- function(obj) {
 #'
 #' @examples
 #' end_dial <- endpoint("care_dial_end")
+#' end_qpp  <- endpoint("quality_payment")
 #' end_rhc  <- collection("care_rhc")
 #' qry      <- query(
 #'               STATE = in_(c("CA", "GA", "NY"), care = TRUE),
@@ -91,10 +92,7 @@ method(ncount, list(class_care, class_temporal)) <- function(
 
   q <- S7_data(url) |>
     get_elem("identifier") |>
-    map_chr(function(x) {
-      url_modify(x, query = qstr@string) |>
-        utils::URLdecode()
-    })
+    map_chr(function(x) url_modify(x, query = qstr@string))
 
   n <- map(q, function(x) {
     request(x) |>
@@ -112,7 +110,7 @@ method(ncount, list(class_care, class_temporal)) <- function(
       found = as.integer(get_elem(n, "found_rows")),
       total = as.integer(get_elem(n, "total_rows")),
       prop  = found / total,
-      qstring = q
+      qstring = utils::URLdecode(q)
       )
   )
 

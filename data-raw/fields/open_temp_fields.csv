@@ -1,0 +1,437 @@
+catalog,title,field,modified
+OpenPay,General Payment Data,change_type,2024
+OpenPay,General Payment Data,covered_recipient_type,2024
+OpenPay,General Payment Data,teaching_hospital_ccn,2024
+OpenPay,General Payment Data,teaching_hospital_id,2024
+OpenPay,General Payment Data,teaching_hospital_name,2024
+OpenPay,General Payment Data,covered_recipient_profile_id,2024
+OpenPay,General Payment Data,covered_recipient_npi,2024
+OpenPay,General Payment Data,covered_recipient_first_name,2024
+OpenPay,General Payment Data,covered_recipient_middle_name,2024
+OpenPay,General Payment Data,covered_recipient_last_name,2024
+OpenPay,General Payment Data,covered_recipient_name_suffix,2024
+OpenPay,General Payment Data,recipient_primary_business_street_address_line1,2024
+OpenPay,General Payment Data,recipient_primary_business_street_address_line2,2024
+OpenPay,General Payment Data,recipient_city,2024
+OpenPay,General Payment Data,recipient_state,2024
+OpenPay,General Payment Data,recipient_zip_code,2024
+OpenPay,General Payment Data,recipient_country,2024
+OpenPay,General Payment Data,recipient_province,2024
+OpenPay,General Payment Data,recipient_postal_code,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_1,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_2,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_3,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_4,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_5,2024
+OpenPay,General Payment Data,covered_recipient_primary_type_6,2024
+OpenPay,General Payment Data,covered_recipient_specialty_1,2024
+OpenPay,General Payment Data,covered_recipient_specialty_2,2024
+OpenPay,General Payment Data,covered_recipient_specialty_3,2024
+OpenPay,General Payment Data,covered_recipient_specialty_4,2024
+OpenPay,General Payment Data,covered_recipient_specialty_5,2024
+OpenPay,General Payment Data,covered_recipient_specialty_6,2024
+OpenPay,General Payment Data,covered_recipient_license_state_code1,2024
+OpenPay,General Payment Data,covered_recipient_license_state_code2,2024
+OpenPay,General Payment Data,covered_recipient_license_state_code3,2024
+OpenPay,General Payment Data,covered_recipient_license_state_code4,2024
+OpenPay,General Payment Data,covered_recipient_license_state_code5,2024
+OpenPay,General Payment Data,submitting_applicable_manufacturer_or_applicable_gpo_name,2024
+OpenPay,General Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_id,2024
+OpenPay,General Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_name,2024
+OpenPay,General Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_state,2024
+OpenPay,General Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_country,2024
+OpenPay,General Payment Data,total_amount_of_payment_usdollars,2024
+OpenPay,General Payment Data,date_of_payment,2024
+OpenPay,General Payment Data,number_of_payments_included_in_total_amount,2024
+OpenPay,General Payment Data,form_of_payment_or_transfer_of_value,2024
+OpenPay,General Payment Data,nature_of_payment_or_transfer_of_value,2024
+OpenPay,General Payment Data,city_of_travel,2024
+OpenPay,General Payment Data,state_of_travel,2024
+OpenPay,General Payment Data,country_of_travel,2024
+OpenPay,General Payment Data,physician_ownership_indicator,2024
+OpenPay,General Payment Data,third_party_payment_recipient_indicator,2024
+OpenPay,General Payment Data,name_of_third_party_entity_receiving_payment_or_transfer_of_ccfc,2024
+OpenPay,General Payment Data,charity_indicator,2024
+OpenPay,General Payment Data,third_party_equals_covered_recipient_indicator,2024
+OpenPay,General Payment Data,contextual_information,2024
+OpenPay,General Payment Data,delay_in_publication_indicator,2024
+OpenPay,General Payment Data,record_id,2024
+OpenPay,General Payment Data,dispute_status_for_publication,2024
+OpenPay,General Payment Data,related_product_indicator,2024
+OpenPay,General Payment Data,covered_or_noncovered_indicator_1,2024
+OpenPay,General Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_1,2024
+OpenPay,General Payment Data,product_category_or_therapeutic_area_1,2024
+OpenPay,General Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_1,2024
+OpenPay,General Payment Data,associated_drug_or_biological_ndc_1,2024
+OpenPay,General Payment Data,associated_device_or_medical_supply_pdi_1,2024
+OpenPay,General Payment Data,covered_or_noncovered_indicator_2,2024
+OpenPay,General Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_2,2024
+OpenPay,General Payment Data,product_category_or_therapeutic_area_2,2024
+OpenPay,General Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_2,2024
+OpenPay,General Payment Data,associated_drug_or_biological_ndc_2,2024
+OpenPay,General Payment Data,associated_device_or_medical_supply_pdi_2,2024
+OpenPay,General Payment Data,covered_or_noncovered_indicator_3,2024
+OpenPay,General Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_3,2024
+OpenPay,General Payment Data,product_category_or_therapeutic_area_3,2024
+OpenPay,General Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_3,2024
+OpenPay,General Payment Data,associated_drug_or_biological_ndc_3,2024
+OpenPay,General Payment Data,associated_device_or_medical_supply_pdi_3,2024
+OpenPay,General Payment Data,covered_or_noncovered_indicator_4,2024
+OpenPay,General Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_4,2024
+OpenPay,General Payment Data,product_category_or_therapeutic_area_4,2024
+OpenPay,General Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_4,2024
+OpenPay,General Payment Data,associated_drug_or_biological_ndc_4,2024
+OpenPay,General Payment Data,associated_device_or_medical_supply_pdi_4,2024
+OpenPay,General Payment Data,covered_or_noncovered_indicator_5,2024
+OpenPay,General Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_5,2024
+OpenPay,General Payment Data,product_category_or_therapeutic_area_5,2024
+OpenPay,General Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_5,2024
+OpenPay,General Payment Data,associated_drug_or_biological_ndc_5,2024
+OpenPay,General Payment Data,associated_device_or_medical_supply_pdi_5,2024
+OpenPay,General Payment Data,program_year,2024
+OpenPay,General Payment Data,payment_publication_date,2024
+OpenPay,Ownership Payment Data,change_type,2024
+OpenPay,Ownership Payment Data,physician_profile_id,2024
+OpenPay,Ownership Payment Data,physician_npi,2024
+OpenPay,Ownership Payment Data,physician_first_name,2024
+OpenPay,Ownership Payment Data,physician_middle_name,2024
+OpenPay,Ownership Payment Data,physician_last_name,2024
+OpenPay,Ownership Payment Data,physician_name_suffix,2024
+OpenPay,Ownership Payment Data,recipient_primary_business_street_address_line1,2024
+OpenPay,Ownership Payment Data,recipient_primary_business_street_address_line2,2024
+OpenPay,Ownership Payment Data,recipient_city,2024
+OpenPay,Ownership Payment Data,recipient_state,2024
+OpenPay,Ownership Payment Data,recipient_zip_code,2024
+OpenPay,Ownership Payment Data,recipient_country,2024
+OpenPay,Ownership Payment Data,recipient_province,2024
+OpenPay,Ownership Payment Data,recipient_postal_code,2024
+OpenPay,Ownership Payment Data,physician_primary_type,2024
+OpenPay,Ownership Payment Data,physician_specialty,2024
+OpenPay,Ownership Payment Data,record_id,2024
+OpenPay,Ownership Payment Data,program_year,2024
+OpenPay,Ownership Payment Data,total_amount_invested_usdollars,2024
+OpenPay,Ownership Payment Data,value_of_interest,2024
+OpenPay,Ownership Payment Data,terms_of_interest,2024
+OpenPay,Ownership Payment Data,submitting_applicable_manufacturer_or_applicable_gpo_name,2024
+OpenPay,Ownership Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_id,2024
+OpenPay,Ownership Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_name,2024
+OpenPay,Ownership Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_state,2024
+OpenPay,Ownership Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_country,2024
+OpenPay,Ownership Payment Data,dispute_status_for_publication,2024
+OpenPay,Ownership Payment Data,interest_held_by_physician_or_an_immediate_family_member,2024
+OpenPay,Ownership Payment Data,payment_publication_date,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,recipient_id,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,recipient_type,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,covered_recipient_npi,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,covered_recipient_profile_first_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,covered_recipient_profile_middle_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,covered_recipient_profile_last_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,teaching_hospital_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,nature_of_payment_type_code,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,number_of_transaction,2024
+OpenPay,Payments Grouped by Covered Recipient and Nature of Payments,total_amount,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,recipient_id,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,recipient_type,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,covered_recipient_npi,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,covered_recipient_profile_first_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,covered_recipient_profile_middle_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,covered_recipient_profile_last_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,teaching_hospital_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,payment_type,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,amgpo_name,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,amgpo_id,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,number_of_transaction,2024
+OpenPay,Payments Grouped by Covered Recipient and Reporting Entities,total_amount,2024
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments,amgpo_id,2024
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments,nature_of_payment_type_code,2024
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments,number_of_transaction,2024
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments,total_amount,2024
+OpenPay,Payments Grouped by Reporting Entities and Nature of Payments,amgpo_name,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",amgpo_id,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",recipient_id,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",recipient_type,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",nature_of_payment_type_code,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",number_of_transaction,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",total_amount,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",recipient_name,2024
+OpenPay,"Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments",amgpo_name,2024
+OpenPay,Research Payment Data,change_type,2024
+OpenPay,Research Payment Data,covered_recipient_type,2024
+OpenPay,Research Payment Data,noncovered_recipient_entity_name,2024
+OpenPay,Research Payment Data,teaching_hospital_ccn,2024
+OpenPay,Research Payment Data,teaching_hospital_id,2024
+OpenPay,Research Payment Data,teaching_hospital_name,2024
+OpenPay,Research Payment Data,covered_recipient_profile_id,2024
+OpenPay,Research Payment Data,covered_recipient_npi,2024
+OpenPay,Research Payment Data,covered_recipient_first_name,2024
+OpenPay,Research Payment Data,covered_recipient_middle_name,2024
+OpenPay,Research Payment Data,covered_recipient_last_name,2024
+OpenPay,Research Payment Data,covered_recipient_name_suffix,2024
+OpenPay,Research Payment Data,recipient_primary_business_street_address_line1,2024
+OpenPay,Research Payment Data,recipient_primary_business_street_address_line2,2024
+OpenPay,Research Payment Data,recipient_city,2024
+OpenPay,Research Payment Data,recipient_state,2024
+OpenPay,Research Payment Data,recipient_zip_code,2024
+OpenPay,Research Payment Data,recipient_country,2024
+OpenPay,Research Payment Data,recipient_province,2024
+OpenPay,Research Payment Data,recipient_postal_code,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_1,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_2,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_3,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_4,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_5,2024
+OpenPay,Research Payment Data,covered_recipient_primary_type_6,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_1,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_2,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_3,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_4,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_5,2024
+OpenPay,Research Payment Data,covered_recipient_specialty_6,2024
+OpenPay,Research Payment Data,covered_recipient_license_state_code1,2024
+OpenPay,Research Payment Data,covered_recipient_license_state_code2,2024
+OpenPay,Research Payment Data,covered_recipient_license_state_code3,2024
+OpenPay,Research Payment Data,covered_recipient_license_state_code4,2024
+OpenPay,Research Payment Data,covered_recipient_license_state_code5,2024
+OpenPay,Research Payment Data,principal_investigator_1_covered_recipient_type,2024
+OpenPay,Research Payment Data,principal_investigator_1_profile_id,2024
+OpenPay,Research Payment Data,principal_investigator_1_npi,2024
+OpenPay,Research Payment Data,principal_investigator_1_first_name,2024
+OpenPay,Research Payment Data,principal_investigator_1_middle_name,2024
+OpenPay,Research Payment Data,principal_investigator_1_last_name,2024
+OpenPay,Research Payment Data,principal_investigator_1_name_suffix,2024
+OpenPay,Research Payment Data,principal_investigator_1_business_street_address_line1,2024
+OpenPay,Research Payment Data,principal_investigator_1_business_street_address_line2,2024
+OpenPay,Research Payment Data,principal_investigator_1_city,2024
+OpenPay,Research Payment Data,principal_investigator_1_state,2024
+OpenPay,Research Payment Data,principal_investigator_1_zip_code,2024
+OpenPay,Research Payment Data,principal_investigator_1_country,2024
+OpenPay,Research Payment Data,principal_investigator_1_province,2024
+OpenPay,Research Payment Data,principal_investigator_1_postal_code,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_1,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_2,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_3,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_4,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_5,2024
+OpenPay,Research Payment Data,principal_investigator_1_primary_type_6,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_1,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_2,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_3,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_4,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_5,2024
+OpenPay,Research Payment Data,principal_investigator_1_specialty_6,2024
+OpenPay,Research Payment Data,principal_investigator_1_license_state_code1,2024
+OpenPay,Research Payment Data,principal_investigator_1_license_state_code2,2024
+OpenPay,Research Payment Data,principal_investigator_1_license_state_code3,2024
+OpenPay,Research Payment Data,principal_investigator_1_license_state_code4,2024
+OpenPay,Research Payment Data,principal_investigator_1_license_state_code5,2024
+OpenPay,Research Payment Data,principal_investigator_2_covered_recipient_type,2024
+OpenPay,Research Payment Data,principal_investigator_2_profile_id,2024
+OpenPay,Research Payment Data,principal_investigator_2_npi,2024
+OpenPay,Research Payment Data,principal_investigator_2_first_name,2024
+OpenPay,Research Payment Data,principal_investigator_2_middle_name,2024
+OpenPay,Research Payment Data,principal_investigator_2_last_name,2024
+OpenPay,Research Payment Data,principal_investigator_2_name_suffix,2024
+OpenPay,Research Payment Data,principal_investigator_2_business_street_address_line1,2024
+OpenPay,Research Payment Data,principal_investigator_2_business_street_address_line2,2024
+OpenPay,Research Payment Data,principal_investigator_2_city,2024
+OpenPay,Research Payment Data,principal_investigator_2_state,2024
+OpenPay,Research Payment Data,principal_investigator_2_zip_code,2024
+OpenPay,Research Payment Data,principal_investigator_2_country,2024
+OpenPay,Research Payment Data,principal_investigator_2_province,2024
+OpenPay,Research Payment Data,principal_investigator_2_postal_code,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_1,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_2,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_3,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_4,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_5,2024
+OpenPay,Research Payment Data,principal_investigator_2_primary_type_6,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_1,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_2,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_3,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_4,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_5,2024
+OpenPay,Research Payment Data,principal_investigator_2_specialty_6,2024
+OpenPay,Research Payment Data,principal_investigator_2_license_state_code1,2024
+OpenPay,Research Payment Data,principal_investigator_2_license_state_code2,2024
+OpenPay,Research Payment Data,principal_investigator_2_license_state_code3,2024
+OpenPay,Research Payment Data,principal_investigator_2_license_state_code4,2024
+OpenPay,Research Payment Data,principal_investigator_2_license_state_code5,2024
+OpenPay,Research Payment Data,principal_investigator_3_covered_recipient_type,2024
+OpenPay,Research Payment Data,principal_investigator_3_profile_id,2024
+OpenPay,Research Payment Data,principal_investigator_3_npi,2024
+OpenPay,Research Payment Data,principal_investigator_3_first_name,2024
+OpenPay,Research Payment Data,principal_investigator_3_middle_name,2024
+OpenPay,Research Payment Data,principal_investigator_3_last_name,2024
+OpenPay,Research Payment Data,principal_investigator_3_name_suffix,2024
+OpenPay,Research Payment Data,principal_investigator_3_business_street_address_line1,2024
+OpenPay,Research Payment Data,principal_investigator_3_business_street_address_line2,2024
+OpenPay,Research Payment Data,principal_investigator_3_city,2024
+OpenPay,Research Payment Data,principal_investigator_3_state,2024
+OpenPay,Research Payment Data,principal_investigator_3_zip_code,2024
+OpenPay,Research Payment Data,principal_investigator_3_country,2024
+OpenPay,Research Payment Data,principal_investigator_3_province,2024
+OpenPay,Research Payment Data,principal_investigator_3_postal_code,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_1,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_2,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_3,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_4,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_5,2024
+OpenPay,Research Payment Data,principal_investigator_3_primary_type_6,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_1,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_2,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_3,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_4,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_5,2024
+OpenPay,Research Payment Data,principal_investigator_3_specialty_6,2024
+OpenPay,Research Payment Data,principal_investigator_3_license_state_code1,2024
+OpenPay,Research Payment Data,principal_investigator_3_license_state_code2,2024
+OpenPay,Research Payment Data,principal_investigator_3_license_state_code3,2024
+OpenPay,Research Payment Data,principal_investigator_3_license_state_code4,2024
+OpenPay,Research Payment Data,principal_investigator_3_license_state_code5,2024
+OpenPay,Research Payment Data,principal_investigator_4_covered_recipient_type,2024
+OpenPay,Research Payment Data,principal_investigator_4_profile_id,2024
+OpenPay,Research Payment Data,principal_investigator_4_npi,2024
+OpenPay,Research Payment Data,principal_investigator_4_first_name,2024
+OpenPay,Research Payment Data,principal_investigator_4_middle_name,2024
+OpenPay,Research Payment Data,principal_investigator_4_last_name,2024
+OpenPay,Research Payment Data,principal_investigator_4_name_suffix,2024
+OpenPay,Research Payment Data,principal_investigator_4_business_street_address_line1,2024
+OpenPay,Research Payment Data,principal_investigator_4_business_street_address_line2,2024
+OpenPay,Research Payment Data,principal_investigator_4_city,2024
+OpenPay,Research Payment Data,principal_investigator_4_state,2024
+OpenPay,Research Payment Data,principal_investigator_4_zip_code,2024
+OpenPay,Research Payment Data,principal_investigator_4_country,2024
+OpenPay,Research Payment Data,principal_investigator_4_province,2024
+OpenPay,Research Payment Data,principal_investigator_4_postal_code,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_1,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_2,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_3,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_4,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_5,2024
+OpenPay,Research Payment Data,principal_investigator_4_primary_type_6,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_1,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_2,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_3,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_4,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_5,2024
+OpenPay,Research Payment Data,principal_investigator_4_specialty_6,2024
+OpenPay,Research Payment Data,principal_investigator_4_license_state_code1,2024
+OpenPay,Research Payment Data,principal_investigator_4_license_state_code2,2024
+OpenPay,Research Payment Data,principal_investigator_4_license_state_code3,2024
+OpenPay,Research Payment Data,principal_investigator_4_license_state_code4,2024
+OpenPay,Research Payment Data,principal_investigator_4_license_state_code5,2024
+OpenPay,Research Payment Data,principal_investigator_5_covered_recipient_type,2024
+OpenPay,Research Payment Data,principal_investigator_5_profile_id,2024
+OpenPay,Research Payment Data,principal_investigator_5_npi,2024
+OpenPay,Research Payment Data,principal_investigator_5_first_name,2024
+OpenPay,Research Payment Data,principal_investigator_5_middle_name,2024
+OpenPay,Research Payment Data,principal_investigator_5_last_name,2024
+OpenPay,Research Payment Data,principal_investigator_5_name_suffix,2024
+OpenPay,Research Payment Data,principal_investigator_5_business_street_address_line1,2024
+OpenPay,Research Payment Data,principal_investigator_5_business_street_address_line2,2024
+OpenPay,Research Payment Data,principal_investigator_5_city,2024
+OpenPay,Research Payment Data,principal_investigator_5_state,2024
+OpenPay,Research Payment Data,principal_investigator_5_zip_code,2024
+OpenPay,Research Payment Data,principal_investigator_5_country,2024
+OpenPay,Research Payment Data,principal_investigator_5_province,2024
+OpenPay,Research Payment Data,principal_investigator_5_postal_code,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_1,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_2,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_3,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_4,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_5,2024
+OpenPay,Research Payment Data,principal_investigator_5_primary_type_6,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_1,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_2,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_3,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_4,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_5,2024
+OpenPay,Research Payment Data,principal_investigator_5_specialty_6,2024
+OpenPay,Research Payment Data,principal_investigator_5_license_state_code1,2024
+OpenPay,Research Payment Data,principal_investigator_5_license_state_code2,2024
+OpenPay,Research Payment Data,principal_investigator_5_license_state_code3,2024
+OpenPay,Research Payment Data,principal_investigator_5_license_state_code4,2024
+OpenPay,Research Payment Data,principal_investigator_5_license_state_code5,2024
+OpenPay,Research Payment Data,submitting_applicable_manufacturer_or_applicable_gpo_name,2024
+OpenPay,Research Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_id,2024
+OpenPay,Research Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_name,2024
+OpenPay,Research Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_state,2024
+OpenPay,Research Payment Data,applicable_manufacturer_or_applicable_gpo_making_payment_country,2024
+OpenPay,Research Payment Data,related_product_indicator,2024
+OpenPay,Research Payment Data,covered_or_noncovered_indicator_1,2024
+OpenPay,Research Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_1,2024
+OpenPay,Research Payment Data,product_category_or_therapeutic_area_1,2024
+OpenPay,Research Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_1,2024
+OpenPay,Research Payment Data,associated_drug_or_biological_ndc_1,2024
+OpenPay,Research Payment Data,associated_device_or_medical_supply_pdi_1,2024
+OpenPay,Research Payment Data,covered_or_noncovered_indicator_2,2024
+OpenPay,Research Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_2,2024
+OpenPay,Research Payment Data,product_category_or_therapeutic_area_2,2024
+OpenPay,Research Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_2,2024
+OpenPay,Research Payment Data,associated_drug_or_biological_ndc_2,2024
+OpenPay,Research Payment Data,associated_device_or_medical_supply_pdi_2,2024
+OpenPay,Research Payment Data,covered_or_noncovered_indicator_3,2024
+OpenPay,Research Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_3,2024
+OpenPay,Research Payment Data,product_category_or_therapeutic_area_3,2024
+OpenPay,Research Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_3,2024
+OpenPay,Research Payment Data,associated_drug_or_biological_ndc_3,2024
+OpenPay,Research Payment Data,associated_device_or_medical_supply_pdi_3,2024
+OpenPay,Research Payment Data,covered_or_noncovered_indicator_4,2024
+OpenPay,Research Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_4,2024
+OpenPay,Research Payment Data,product_category_or_therapeutic_area_4,2024
+OpenPay,Research Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_4,2024
+OpenPay,Research Payment Data,associated_drug_or_biological_ndc_4,2024
+OpenPay,Research Payment Data,associated_device_or_medical_supply_pdi_4,2024
+OpenPay,Research Payment Data,covered_or_noncovered_indicator_5,2024
+OpenPay,Research Payment Data,indicate_drug_or_biological_or_device_or_medical_supply_5,2024
+OpenPay,Research Payment Data,product_category_or_therapeutic_area_5,2024
+OpenPay,Research Payment Data,name_of_drug_or_biological_or_device_or_medical_supply_5,2024
+OpenPay,Research Payment Data,associated_drug_or_biological_ndc_5,2024
+OpenPay,Research Payment Data,associated_device_or_medical_supply_pdi_5,2024
+OpenPay,Research Payment Data,total_amount_of_payment_usdollars,2024
+OpenPay,Research Payment Data,date_of_payment,2024
+OpenPay,Research Payment Data,form_of_payment_or_transfer_of_value,2024
+OpenPay,Research Payment Data,expenditure_category1,2024
+OpenPay,Research Payment Data,expenditure_category2,2024
+OpenPay,Research Payment Data,expenditure_category3,2024
+OpenPay,Research Payment Data,expenditure_category4,2024
+OpenPay,Research Payment Data,expenditure_category5,2024
+OpenPay,Research Payment Data,expenditure_category6,2024
+OpenPay,Research Payment Data,preclinical_research_indicator,2024
+OpenPay,Research Payment Data,delay_in_publication_indicator,2024
+OpenPay,Research Payment Data,name_of_study,2024
+OpenPay,Research Payment Data,dispute_status_for_publication,2024
+OpenPay,Research Payment Data,record_id,2024
+OpenPay,Research Payment Data,program_year,2024
+OpenPay,Research Payment Data,payment_publication_date,2024
+OpenPay,Research Payment Data,clinicaltrials_gov_identifier,2024
+OpenPay,Research Payment Data,research_information_link,2024
+OpenPay,Research Payment Data,context_of_research,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,country_code,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,country_name,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,state_code,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,state_name,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,nature_of_payment,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,recipient_type,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,program_year,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_number_of_physicians,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_number_of_non_physician_practitioners,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_number_of_teaching_hospitals,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_amount_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_amount_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_amount_teaching_hospital,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_amount_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_amount_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_amount_teaching_hospital,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_amount_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_amount_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_amount_teaching_hospital,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_count_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_count_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,total_payment_count_teaching_hospital,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_count_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_count_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,mean_total_payment_count_teaching_hospital,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_count_physician,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_count_non_physician_practitioner,2024
+OpenPay,State Payment Totals Grouped by Nature of Payment for all Years,median_total_payment_count_teaching_hospital,2024

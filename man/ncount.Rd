@@ -23,6 +23,7 @@ Return the number of results for a given query
 }
 \examples{
 end_dial <- endpoint("care_dial_end")
+end_qpp  <- endpoint("quality_payment")
 end_rhc  <- collection("care_rhc")
 qry      <- query(
               STATE = in_(c("CA", "GA", "NY"), care = TRUE),

@@ -1,0 +1,289 @@
+catalog,title,field,modified
+HealthcareGov,Benefits and Cost Sharing PUF,businessyear,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,statecode,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,issuerid,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,sourcename,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,importdate,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,standardcomponentid,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,planid,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,benefitname,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,copayinntier1,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,copayinntier2,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,copayoutofnet,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,coinsinntier1,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,coinsinntier2,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,coinsoutofnet,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,isehb,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,iscovered,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,quantlimitonsvc,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,limitqty,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,limitunit,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,exclusions,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,explanation,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,ehbvarreason,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,isexclfrominnmoop,2025-05-06
+HealthcareGov,Benefits and Cost Sharing PUF,isexclfromoonmoop,2025-05-06
+HealthcareGov,Business Rules PUF,businessyear,2025-05-06
+HealthcareGov,Business Rules PUF,statecode,2025-05-06
+HealthcareGov,Business Rules PUF,issuerid,2025-05-06
+HealthcareGov,Business Rules PUF,sourcename,2025-05-06
+HealthcareGov,Business Rules PUF,importdate,2025-05-06
+HealthcareGov,Business Rules PUF,medicaldentalboth,2025-05-06
+HealthcareGov,Business Rules PUF,productid,2025-05-06
+HealthcareGov,Business Rules PUF,standardcomponentid,2025-05-06
+HealthcareGov,Business Rules PUF,medicaldentalindicator,2025-05-06
+HealthcareGov,Business Rules PUF,maximumunderagedependent,2025-05-06
+HealthcareGov,Business Rules PUF,dependentmaximumagrule,2025-05-06
+HealthcareGov,Business Rules PUF,agedeterminationrule,2025-05-06
+HealthcareGov,Business Rules PUF,minimumtobaccofreemonthsrule,2025-05-06
+HealthcareGov,Business Rules PUF,cohabitationrule,2025-05-06
+HealthcareGov,Business Rules PUF,marketcoverage,2025-05-06
+HealthcareGov,Business Rules PUF,dentalonlyplan,2025-05-06
+HealthcareGov,MLR Dataset,company_name,2020-12-15
+HealthcareGov,MLR Dataset,issuer_state,2020-12-15
+HealthcareGov,MLR Dataset,issuer_code,2020-12-15
+HealthcareGov,MLR Dataset,state_name,2020-12-15
+HealthcareGov,MLR Dataset,mlr_standard__individual_market,2020-12-15
+HealthcareGov,MLR Dataset,issuers_mlr__individual_market,2020-12-15
+HealthcareGov,MLR Dataset,average_rebate__individual_market,2020-12-15
+HealthcareGov,MLR Dataset,mlr_standard__small_group_market,2020-12-15
+HealthcareGov,MLR Dataset,issuers_mlr__small_group_market,2020-12-15
+HealthcareGov,MLR Dataset,average_rebate__small_group_market,2020-12-15
+HealthcareGov,MLR Dataset,mlr_standard__large_group_market,2020-12-15
+HealthcareGov,MLR Dataset,issuers_mlr__large_group_market,2020-12-15
+HealthcareGov,MLR Dataset,average_rebate__large_group_market,2020-12-15
+HealthcareGov,MLR Dataset,additional_state_text,2020-12-15
+HealthcareGov,Machine Readable PUF,NA,2025-05-28
+HealthcareGov,Network PUF,businessyear,2025-05-06
+HealthcareGov,Network PUF,statecode,2025-05-06
+HealthcareGov,Network PUF,issuerid,2025-05-06
+HealthcareGov,Network PUF,sourcename,2025-05-06
+HealthcareGov,Network PUF,importdate,2025-05-06
+HealthcareGov,Network PUF,networkname,2025-05-06
+HealthcareGov,Network PUF,networkid,2025-05-06
+HealthcareGov,Network PUF,networkurl,2025-05-06
+HealthcareGov,Network PUF,marketcoverage,2025-05-06
+HealthcareGov,Network PUF,dentalonlyplan,2025-05-06
+HealthcareGov,Plan Attributes PUF,businessyear,2025-05-06
+HealthcareGov,Plan Attributes PUF,statecode,2025-05-06
+HealthcareGov,Plan Attributes PUF,issuerid,2025-05-06
+HealthcareGov,Plan Attributes PUF,issuermarketplacemarketingname,2025-05-06
+HealthcareGov,Plan Attributes PUF,sourcename,2025-05-06
+HealthcareGov,Plan Attributes PUF,importdate,2025-05-06
+HealthcareGov,Plan Attributes PUF,marketcoverage,2025-05-06
+HealthcareGov,Plan Attributes PUF,dentalonlyplan,2025-05-06
+HealthcareGov,Plan Attributes PUF,standardcomponentid,2025-05-06
+HealthcareGov,Plan Attributes PUF,planmarketingname,2025-05-06
+HealthcareGov,Plan Attributes PUF,hiosproductid,2025-05-06
+HealthcareGov,Plan Attributes PUF,networkid,2025-05-06
+HealthcareGov,Plan Attributes PUF,serviceareaid,2025-05-06
+HealthcareGov,Plan Attributes PUF,formularyid,2025-05-06
+HealthcareGov,Plan Attributes PUF,isnewplan,2025-05-06
+HealthcareGov,Plan Attributes PUF,plantype,2025-05-06
+HealthcareGov,Plan Attributes PUF,metallevel,2025-05-06
+HealthcareGov,Plan Attributes PUF,designtype,2025-05-06
+HealthcareGov,Plan Attributes PUF,uniqueplandesign,2025-05-06
+HealthcareGov,Plan Attributes PUF,qhpnonqhptypeid,2025-05-06
+HealthcareGov,Plan Attributes PUF,isnoticerequiredforpregnancy,2025-05-06
+HealthcareGov,Plan Attributes PUF,isreferralrequiredforspecialist,2025-05-06
+HealthcareGov,Plan Attributes PUF,specialistrequiringreferral,2025-05-06
+HealthcareGov,Plan Attributes PUF,planlevelexclusions,2025-05-06
+HealthcareGov,Plan Attributes PUF,indianplanvariationestimatedadvancedpaymentamountperenrollee,2025-05-06
+HealthcareGov,Plan Attributes PUF,compositeratingoffered,2025-05-06
+HealthcareGov,Plan Attributes PUF,childonlyoffering,2025-05-06
+HealthcareGov,Plan Attributes PUF,childonlyplanid,2025-05-06
+HealthcareGov,Plan Attributes PUF,wellnessprogramoffered,2025-05-06
+HealthcareGov,Plan Attributes PUF,diseasemanagementprogramsoffered,2025-05-06
+HealthcareGov,Plan Attributes PUF,ehbpercenttotalpremium,2025-05-06
+HealthcareGov,Plan Attributes PUF,ehbpediatricdentalapportionmentquantity,2025-05-06
+HealthcareGov,Plan Attributes PUF,isguaranteedrate,2025-05-06
+HealthcareGov,Plan Attributes PUF,planeffectivedate,2025-05-06
+HealthcareGov,Plan Attributes PUF,planexpirationdate,2025-05-06
+HealthcareGov,Plan Attributes PUF,outofcountrycoverage,2025-05-06
+HealthcareGov,Plan Attributes PUF,outofcountrycoveragedescription,2025-05-06
+HealthcareGov,Plan Attributes PUF,outofserviceareacoverage,2025-05-06
+HealthcareGov,Plan Attributes PUF,outofserviceareacoveragedescription,2025-05-06
+HealthcareGov,Plan Attributes PUF,nationalnetwork,2025-05-06
+HealthcareGov,Plan Attributes PUF,urlforenrollmentpayment,2025-05-06
+HealthcareGov,Plan Attributes PUF,formularyurl,2025-05-06
+HealthcareGov,Plan Attributes PUF,planid,2025-05-06
+HealthcareGov,Plan Attributes PUF,planvariantmarketingname,2025-05-06
+HealthcareGov,Plan Attributes PUF,csrvariationtype,2025-05-06
+HealthcareGov,Plan Attributes PUF,issueractuarialvalue,2025-05-06
+HealthcareGov,Plan Attributes PUF,avcalculatoroutputnumber,2025-05-06
+HealthcareGov,Plan Attributes PUF,medicaldrugdeductiblesintegrated,2025-05-06
+HealthcareGov,Plan Attributes PUF,medicaldrugmaximumoutofpocketintegrated,2025-05-06
+HealthcareGov,Plan Attributes PUF,multipleinnetworktiers,2025-05-06
+HealthcareGov,Plan Attributes PUF,firsttierutilization,2025-05-06
+HealthcareGov,Plan Attributes PUF,secondtierutilization,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingababydeductible,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingababycopayment,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingababycoinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingababylimit,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingdiabetesdeductible,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingdiabetescopayment,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingdiabetescoinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingdiabeteslimit,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingsimplefracturedeductible,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingsimplefracturecopayment,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingsimplefracturecoinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,sbchavingsimplefracturelimit,2025-05-06
+HealthcareGov,Plan Attributes PUF,specialtydrugmaximumcoinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,inpatientcopaymentmaximumdays,2025-05-06
+HealthcareGov,Plan Attributes PUF,beginprimarycarecostsharingafternumberofvisits,2025-05-06
+HealthcareGov,Plan Attributes PUF,beginprimarycaredeductiblecoinsuranceafternumberofcopays,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier1individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier1familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier1familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier2individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier2familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbinntier2familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehboutofnetindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehboutofnetfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehboutofnetfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbcombinnoonindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbcombinnoonfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbcombinnoonfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier1individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier1familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier1familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier2individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier2familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbinntier2familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehboutofnetindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehboutofnetfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehboutofnetfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbcombinnoonindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbcombinnoonfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbcombinnoonfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier1individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier1familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier1familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier2individualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier2familyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbinntier2familypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehboutofnetindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehboutofnetfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehboutofnetfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbcombinnoonindividualmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbcombinnoonfamilyperpersonmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbcombinnoonfamilypergroupmoop,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier1individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier1familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier1familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier1coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier2individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier2familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier2familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedinntier2coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedoutofnetindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedoutofnetfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedoutofnetfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedcombinnoonindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedcombinnoonfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,mehbdedcombinnoonfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier1individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier1familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier1familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier1coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier2individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier2familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier2familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedinntier2coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedoutofnetindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedoutofnetfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedoutofnetfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedcombinnoonindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedcombinnoonfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,dehbdedcombinnoonfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier1individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier1familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier1familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier1coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier2individual,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier2familyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier2familypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedinntier2coinsurance,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedoutofnetindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedoutofnetfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedoutofnetfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedcombinnoonindividual,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedcombinnoonfamilyperperson,2025-05-06
+HealthcareGov,Plan Attributes PUF,tehbdedcombinnoonfamilypergroup,2025-05-06
+HealthcareGov,Plan Attributes PUF,ishsaeligible,2025-05-06
+HealthcareGov,Plan Attributes PUF,hsaorhraemployercontribution,2025-05-06
+HealthcareGov,Plan Attributes PUF,hsaorhraemployercontributionamount,2025-05-06
+HealthcareGov,Plan Attributes PUF,urlforsummaryofbenefitscoverage,2025-05-06
+HealthcareGov,Plan Attributes PUF,planbrochure,2025-05-06
+HealthcareGov,Plan ID Crosswalk PUF,state,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,dentalplan,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,planid_2024,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,issuerid_2024,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,multistateplan_2024,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,metallevel_2024,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,childadultonly_2024,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,fipscode,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,zipcode,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,crosswalklevel,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,reasonforcrosswalk,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,planid_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,issuerid_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,multistateplan_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,metallevel_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,childadultonly_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,ageoffplanid_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,issuerid_ageoff2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,multistateplan_ageoff2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,metallevel_ageoff2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,childadultonly_ageoff2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,reasonforbronzetosilvercrosswalk,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,silvercsreligplanid_2025,2024-10-24
+HealthcareGov,Plan ID Crosswalk PUF,silvercsreligissuerid_2025,2024-10-24
+HealthcareGov,QHP Landscape Individual Market Dental,NA,2025-05-06
+HealthcareGov,QHP Landscape Individual Market Medical,NA,2025-05-06
+HealthcareGov,QHP Landscape SHOP Market Dental,NA,2025-05-06
+HealthcareGov,QHP Landscape SHOP Market Medical,NA,2025-05-06
+HealthcareGov,Quality PUF,issuerid,2024-10-24
+HealthcareGov,Quality PUF,state,2024-10-24
+HealthcareGov,Quality PUF,plan_type,2024-10-24
+HealthcareGov,Quality PUF,reportingunitid,2024-10-24
+HealthcareGov,Quality PUF,planid,2024-10-24
+HealthcareGov,Quality PUF,overallratingvalue,2024-10-24
+HealthcareGov,Quality PUF,medicalcareratingvalue,2024-10-24
+HealthcareGov,Quality PUF,memberexperienceratingvalue,2024-10-24
+HealthcareGov,Quality PUF,planadministrationratingvalue,2024-10-24
+HealthcareGov,Rate PUF,businessyear,2025-05-06
+HealthcareGov,Rate PUF,statecode,2025-05-06
+HealthcareGov,Rate PUF,issuerid,2025-05-06
+HealthcareGov,Rate PUF,sourcename,2025-05-06
+HealthcareGov,Rate PUF,importdate,2025-05-06
+HealthcareGov,Rate PUF,rateeffectivedate,2025-05-06
+HealthcareGov,Rate PUF,rateexpirationdate,2025-05-06
+HealthcareGov,Rate PUF,planid,2025-05-06
+HealthcareGov,Rate PUF,ratingareaid,2025-05-06
+HealthcareGov,Rate PUF,tobacco,2025-05-06
+HealthcareGov,Rate PUF,age,2025-05-06
+HealthcareGov,Rate PUF,individualrate,2025-05-06
+HealthcareGov,Rate PUF,individualtobaccorate,2025-05-06
+HealthcareGov,Rate PUF,couple,2025-05-06
+HealthcareGov,Rate PUF,primarysubscriberandonedependent,2025-05-06
+HealthcareGov,Rate PUF,primarysubscriberandtwodependents,2025-05-06
+HealthcareGov,Rate PUF,primarysubscriberandthreeormoredependents,2025-05-06
+HealthcareGov,Rate PUF,coupleandonedependent,2025-05-06
+HealthcareGov,Rate PUF,coupleandtwodependents,2025-05-06
+HealthcareGov,Rate PUF,coupleandthreeormoredependents,2025-05-06
+HealthcareGov,Service Area PUF,businessyear,2025-05-06
+HealthcareGov,Service Area PUF,statecode,2025-05-06
+HealthcareGov,Service Area PUF,issuerid,2025-05-06
+HealthcareGov,Service Area PUF,sourcename,2025-05-06
+HealthcareGov,Service Area PUF,importdate,2025-05-06
+HealthcareGov,Service Area PUF,serviceareaid,2025-05-06
+HealthcareGov,Service Area PUF,serviceareaname,2025-05-06
+HealthcareGov,Service Area PUF,coverentirestate,2025-05-06
+HealthcareGov,Service Area PUF,county,2025-05-06
+HealthcareGov,Service Area PUF,partialcounty,2025-05-06
+HealthcareGov,Service Area PUF,zipcodes,2025-05-06
+HealthcareGov,Service Area PUF,partialcountyjustification,2025-05-06
+HealthcareGov,Service Area PUF,marketcoverage,2025-05-06
+HealthcareGov,Service Area PUF,dentalonlyplan,2025-05-06
+HealthcareGov,Transparency in Coverage PUF,NA,2024-10-24
