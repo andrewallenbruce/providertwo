@@ -77,7 +77,7 @@ alias_lookup <- function(x) {
 #'
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<class_care/caid/prov/open/hgov>` object.
-#' @examples
+#' @examplesIf interactive()
 #' endpoint("care_dial_end")
 #' endpoint("care_dial_tmp")
 #' endpoint("managed_mltss")
@@ -91,34 +91,32 @@ endpoint <- function(alias) {
   x <- alias_lookup(alias)
 
   switch(
-    x$clg,
-    care = class_care(
+    x$pnt,
+    current = class_current(
+      access = switch(
+        x$clg,
+        care = care_current(x$identifier, x$resources),
+        caid = class_caid(x$identifier),
+        prov = class_prov(x$identifier),
+        open = class_open(x$identifier),
+        hgov = class_hgov(x$identifier)
+      ),
       metadata   = get_metadata(x),
-      dimensions = get_dimensions(x),
-      identifier = get_identifier(x),
-      resources  = get_resources(x)
+      dimensions = get_dimensions(x)
     ),
-    caid = class_caid(
+    temporal = class_temporal(
+      access = switch(
+        x$clg,
+        care = care_temporal(x$endpoints),
+        caid = class_caid(x$endpoints),
+        open = class_open(x$endpoints),
+        hgov = class_hgov(x$endpoints)
+      ),
       metadata   = get_metadata(x),
-      dimensions = get_dimensions(x),
-      identifier = get_identifier(x)
-    ),
-    prov = class_prov(
-      metadata   = get_metadata(x),
-      dimensions = get_dimensions(x),
-      identifier = get_identifier(x)
-    ),
-    open = class_open(
-      metadata   = get_metadata(x),
-      dimensions = get_dimensions(x),
-      identifier = get_identifier(x)
-    ),
-    hgov = class_hgov(
-      metadata   = get_metadata(x),
-      dimensions = get_dimensions(x),
-      identifier = get_identifier(x)
+      dimensions = get_dimensions(x)
     )
   )
+
 }
 
 #' Load a collection of endpoints by alias

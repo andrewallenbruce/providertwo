@@ -22,6 +22,7 @@ An \verb{<int>} representing the number of results found.
 Return the number of results for a given query
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 end_dial <- endpoint("care_dial_end")
 end_qpp  <- endpoint("quality_payment")
 end_rhc  <- collection("care_rhc")
@@ -33,5 +34,5 @@ qry      <- query(
 ncount(end_dial, identifier(end_dial), qry)
 
 #ncount(end_rhc, identifier(end_rhc), qry)
-
+\dontshow{\}) # examplesIf}
 }

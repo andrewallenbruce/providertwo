@@ -32,7 +32,7 @@ method(identifier, class_temporal) <- function(obj) {
 #'
 #' @returns An `<int>` representing the number of results found.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' end_dial <- endpoint("care_dial_end")
 #' end_qpp  <- endpoint("quality_payment")
 #' end_rhc  <- collection("care_rhc")

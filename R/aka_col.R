@@ -1,131 +1,46 @@
+#' @include aka_end.R
+NULL
+
 # ---- caid ----
 #' @autoglobal
 #' @noRd
 col_caid = list(
   caid_demographics = list(
     name  = "Medicaid and CHIP Enrollee Demographics",
-    alias = c(
-      "demo_wellvisit",
-      "demo_mental",
-      "demo_disability",
-      "demo_prematurity",
-      "demo_language",
-      "demo_ethnicity",
-      "demo_rural",
-      "demo_waiver"
-    )
-  ),
+    alias = grep("^demo", names(end_caid$current), value = TRUE)),
   caid_services = list(
     name = "Services Provided to the Medicaid and CHIP Population",
-    alias = c(
-      "service_acute",
-      "service_behavior",
-      "service_perinatal",
-      "service_screening",
-      "service_contraceptive",
-      "service_dental",
-      "service_pregnancy",
-      "service_telehealth",
-      "service_vaccination",
-      "service_bloodlead",
-      "service_respiratory"
-    )
-  ),
+    alias = grep("^service", names(end_caid$current), value = TRUE)),
   caid_benes = list(
     name = "Beneficiaries Receiving A Service",
-    alias = c(
-      "benes_behavior",
-      "benes_physical",
-      "benes_mental",
-      "benes_integrated",
-      "benes_nas",
-      "benes_smm",
-      "benes_pregnant",
-      "benes_delivery"
-    )
-  ),
+    alias = grep("^benes", names(end_caid$current), value = TRUE)),
   caid_finance = list(
     name = "Medicaid Financial Management Data",
-    alias = c(
-      "caid_finance_mgmt",
-      "caid_finance_nation"
-    )
-  ),
+    alias = grep("_fin_", names(end_caid$current), value = TRUE)),
   caid_nadac_group = list(
     name = "NADAC (National Average Drug Acquisition Cost)",
-    alias = c(
-      "nadac_end",
-      "nadac_first",
-      "nadac_compare",
-      "nadac_tmp"
-    )
-  ),
+    alias = grep("^nadac", names(c(end_caid$current, end_caid$temporal)), value = TRUE)),
   caid_pkg = list(
     name = "Benefit Package for Medicaid and CHIP Beneficiaries",
-    alias = c(
-      "benefit_pkg_month",
-      "benefit_pkg_year"
-    )
-  ),
+    alias = grep("^benefit", names(end_caid$current), value = TRUE)),
   caid_drug = list(
     name = "Medicaid Drug Datasets",
-    alias = c(
-      "drug_amp_mon",
-      "drug_amp_qtr",
-      "drug_products",
-      "drug_clot",
-      "drug_pediatric",
-      "drug_contact_manu",
-      "drug_contact_state"
-    )
-  ),
+    alias = grep("^drug", names(end_caid$current), value = TRUE)),
   caid_dual = list(
     name = "Dual Status Information for Medicaid and CHIP Beneficiaries",
-    alias = c(
-      "dual_status_month",
-      "dual_status_year"
-    )
-  ),
+    alias = grep("^dual_status", names(end_caid$current), value = TRUE)),
   caid_meg = list(
     name = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
-    alias = c(
-      "meg_month",
-      "meg_year"
-    )
-  ),
+    alias = grep("^meg", names(end_caid$current), value = TRUE)),
   caid_cms64 = list(
     name = "Medicaid CMS-64",
-    alias = c(
-      "cms64_caa",
-      "cms64_ffcra",
-      "cms64_adult"
-    )
-  ),
+    alias = grep("^cms64", names(end_caid$current), value = TRUE)),
   caid_managed = list(
     name = "Managed Care Enrollment",
-    alias = c(
-      "managed_summary",
-      "managed_state",
-      "managed_program",
-      "managed_pop",
-      "managed_dual",
-      "managed_feat_pop",
-      "managed_feat_qa",
-      "managed_bene_month",
-      "managed_bene_year",
-      "managed_mltss"
-    )
-  ),
+    alias = grep("^managed", names(end_caid$current), value = TRUE)),
   caid_unwind = list(
     name = "Medicaid Unwinding Report",
-    alias = c(
-      "unwind_market",
-      "unwind_transition",
-      "unwind_historic",
-      "unwind_sbm"
-    )
-  )
-)
+    alias = grep("^unwind", names(end_caid$current), value = TRUE)))
 
 # ---- open ----
 #' @autoglobal
@@ -133,44 +48,16 @@ col_caid = list(
 col_open = list(
   profile = list(
     name = "Open Payments Profiles",
-    alias = c(
-      "profile_covered",
-      "profile_physician",
-      "profile_information",
-      "profile_mapping",
-      "profile_entity",
-      "profile_teaching"
-    )
-  ),
+    alias = grep("^profile", names(end_open$current), value = TRUE)),
   summary = list(
     name = "Open Payments Summaries",
-    alias = c(
-      "summary_dashboard",
-      "summary_state",
-      "summary_nature",
-      "summary_national",
-      "summary_specialty"
-    )
-  ),
+    alias = grep("^summary", names(end_open$current), value = TRUE)),
   payment_grouped = list(
     name = "Open Payments by Year (Grouped)",
-    alias = c(
-      "grouped_covered_nature",
-      "grouped_covered_entity",
-      "grouped_entity_nature",
-      "grouped_entity_covered_nature",
-      "grouped_state_nature"
-    )
-  ),
+    alias = grep("^grouped", names(end_open$temporal), value = TRUE)),
   payment_detailed = list(
     name = "Open Payments by Year (Detailed)",
-    alias = c(
-      "payment_general",
-      "payment_ownership",
-      "payment_research"
-    )
-  )
-)
+    alias = grep("^payment", names(end_open$temporal), value = TRUE)))
 
 # ---- prov ----
 #' @autoglobal
@@ -216,31 +103,16 @@ col_prov = list(
   ),
   prov_mips = list(
     name = "PY 2022 MIPS Public Reporting",
-    alias = c(
-      "mips_performance",
-      "mips_patient",
-      "mips_clinician",
-      "mips_group",
-      "mips_virtual"
-    )
-  ),
+    alias = grep("^mips", names(end_prov$current), value = TRUE)),
   prov_pdc = list(
     name = "Provider Data Catalog",
-    alias = c("pdc_affiliations", "pdc_clinicians", "pdc_utilization")
-  ),
+    alias = grep("^pdc", names(end_prov$current), value = TRUE)),
   prov_ltch = list(
     name = "Long-Term Care Hospitals",
-    alias = c("ltch_general", "ltch_provider", "ltch_national")
-  ),
+    alias = grep("^ltch", names(end_prov$current), value = TRUE)),
   prov_irf = list(
     name = "Inpatient Rehabilitation Facilities",
-    alias = c(
-      "irf_conditions",
-      "irf_general",
-      "irf_provider",
-      "irf_national"
-    )
-  ),
+    alias = grep("^irf", names(end_prov$current), value = TRUE)),
   prov_hospice = list(
     name = "Hospices",
     alias = c(
@@ -253,30 +125,16 @@ col_prov = list(
   ),
   prov_hhc_vbp = list(
     name = "Expanded Home Health Value-Based Purchasing (HHVBP) Model",
-    alias = c("hhvbp_agency", "hhvbp_cohort")
-  ),
+    alias = grep("^hhvbp", names(end_prov$current), value = TRUE)),
   prov_home_health = list(
     name = "Home Health Care Agencies",
-    alias = c(
-      "hhc_range",
-      "hhc_national",
-      "hhc_state",
-      "hhc_zip",
-      "hhc_agency"
-    )
-  ),
+    alias = grep("^hhc", names(end_prov$current), value = TRUE)),
   prov_snf_vbp = list(
     name = "FY 2025 SNF VBP",
-    alias = c("snf_vbp_performance", "snf_vbp_facility")
-  ),
+    alias = grep("^snf_vbp", names(end_prov$current), value = TRUE)),
   prov_snf_quality = list(
     name = "SNF Quality Measures",
-    alias = c(
-      "snf_quality_nation",
-      "snf_quality_provider",
-      "snf_quality_swing"
-    )
-  ),
+    alias = grep("^snf_quality", names(end_prov$current), value = TRUE)),
   prov_nursing = list(
     name = "Nursing Homes",
     alias = c(
@@ -304,88 +162,40 @@ col_prov = list(
   ),
   prov_complication_pch = list(
     name = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital",
-    alias = c("complication_pch_hospital", "complication_pch_national")
-  ),
+    alias = grep("^complication_pch", names(end_prov$current), value = TRUE)),
   prov_asc_quality = list(
     name = "Ambulatory Surgical Center Quality Measures",
-    alias = c("asc_facility", "asc_national", "asc_state")
-  ),
+    alias = grep("^asc", names(end_prov$current), value = TRUE)),
   prov_equity = list(
     name = "Health Equity",
-    alias = c("he_hospital", "he_national", "he_state")
-  ),
+    alias = grep("^he_", names(end_prov$current), value = TRUE)),
   prov_hai = list(
     name = "Healthcare Associated Infections",
-    alias = c("hai_hospital", "hai_national", "hai_state", "hai_PCH")
-  ),
+    alias = grep("^hai", names(end_prov$current), value = TRUE)),
   prov_dialysis = list(
     name = "Dialysis Facilities",
-    alias = c(
-      "dialysis_by_facility",
-      "dialysis_national",
-      "dialysis_state"
-    )
-  ),
+    alias = grep("^dialysis", names(end_prov$current), value = TRUE)),
   prov_esrd = list(
     name = "ESRD QIP",
-    alias = c(
-      "esrd_depression",
-      "esrd_complete",
-      "esrd_adequacy",
-      "esrd_footnotes",
-      "esrd_hypercalcemia",
-      "esrd_medication",
-      "esrd_infection",
-      "esrd_event",
-      "esrd_waitlist",
-      "esrd_hospitalization",
-      "esrd_readmission",
-      "esrd_transfusion",
-      "esrd_performance",
-      "esrd_ultrafiltration",
-      "esrd_vascular"
-    )
-  ),
+    alias = grep("^esrd", names(end_prov$current), value = TRUE)),
   prov_hvbp = list(
     name = "Hospital Value-Based Purchasing (HVBP)",
-    alias = c(
-      "hvbp_outcomes",
-      "hvbp_efficiency",
-      "hvbp_engagement",
-      "hvbp_safety",
-      "hvbp_performance"
-    )
-  ),
+    alias = grep("^hvbp", names(end_prov$current), value = TRUE)),
   prov_ipf = list(
     name = "Inpatient Psychiatric Facility Quality Measure Data",
-    alias = c("ipf_national", "ipf_facility", "ipf_state")
-  ),
+    alias = grep("^ipf", names(end_prov$current), value = TRUE)),
   prov_mspb = list(
     name = "Medicare Spending Per Beneficiary",
-    alias = c(
-      "mspb_claim",
-      "mspb_hospital",
-      "mspb_decimal",
-      "mspb_national",
-      "mspb_state"
-    )
-  ),
+    alias = grep("^mspb", names(end_prov$current), value = TRUE)),
   prov_out_img = list(
     name = "Outpatient Imaging Efficiency",
-    alias = c("out_img_hospital", "out_img_national", "out_img_state")
-  ),
+    alias = grep("^out_img", names(end_prov$current), value = TRUE)),
   prov_pch_pall = list(
     name = "Palliative Care: PPS-Exempt Cancer Hospital",
-    alias = c("pch_pall_hospital", "pch_pall_national")
-  ),
+    alias = grep("^pch_pall", names(end_prov$current), value = TRUE)),
   prov_pch_hcahps = list(
     name = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital",
-    alias = c(
-      "hcahps_pch_hospital",
-      "hcahps_pch_national",
-      "hcahps_pch_state"
-    )
-  ),
+    alias = grep("^hcahps_pch", names(end_prov$current), value = TRUE)),
   prov_hcahps = list(
     name = "Patient Survey (HCAHPS)",
     alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")
@@ -400,7 +210,7 @@ col_prov = list(
   ),
   prov_vha = list(
     name = "Veterans Health Administration",
-    alias = c("va_behavioral", "va_provider", "va_timely")
+    alias = grep("^va_", names(end_prov$current), value = TRUE)
   ),
   prov_hospital_changes = list(
     name = "Hospital FY2021 Changes in Payment",
