@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9362</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9363</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">end_dial</span> <span class="op">&lt;-</span> <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"care_dial_end"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+<span class="r-in"><span><span class="va">end_dial</span> <span class="op">&lt;-</span> <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"care_dial_end"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">end_qpp</span>  <span class="op">&lt;-</span> <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">end_rhc</span>  <span class="op">&lt;-</span> <span class="fu"><a href="collection.html">collection</a></span><span class="op">(</span><span class="st">"care_rhc"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">qry</span>      <span class="op">&lt;-</span> <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
@@ -84,21 +85,9 @@
 <span class="r-in"><span>              .type <span class="op">=</span> <span class="st">"medicare"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ncount</span><span class="op">(</span><span class="va">end_dial</span>, <span class="fu"><a href="identifier.html">identifier</a></span><span class="op">(</span><span class="va">end_dial</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $endpoint</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $found</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11985275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11985275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $qstring</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/f8610e87-ba25-43a3-a49e-927dbc8701ae/data-viewer?filter[0][condition][path]=STATE&amp;filter[0][condition][operator]=IN&amp;filter[0][condition][value][1]=CA&amp;filter[0][condition][value][2]=GA&amp;filter[0][condition][value][3]=NY&amp;filter[1][condition][path]=STATE - OWNER&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#ncount(end_rhc, identifier(end_rhc), qry)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
