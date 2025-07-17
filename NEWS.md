@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9363 (2025-07-16)
+
+* Down the rabbit hole we go
+
+
 # providertwo 0.0.0.9362 (2025-07-15)
 
 * field typing
