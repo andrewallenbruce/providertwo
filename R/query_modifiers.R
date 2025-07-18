@@ -32,7 +32,7 @@ class_modifier <- new_class(
 
 #' @autoglobal
 #' @noRd
-is_modifier_S7 <- function(x) {
+is_modifier <- function(x) {
   S7::S7_inherits(x, class_modifier)
 }
 
@@ -116,9 +116,9 @@ between <- new_class(
     check_number_decimal(x)
     check_number_decimal(y)
     check_bool(negate)
-    # check lengths of x and y?
 
-    if (x >= y) cli::cli_abort("`x` must be less than `y`.", call. = FALSE)
+    if (x >= y) cli::cli_abort("`x` must be less than `y`", call. = FALSE)
+    if (length(c(x, y)) > 2) cli::cli_abort("`x` and `y` both must be length 1", call. = FALSE)
 
     new_object(
       class_modifier(),
@@ -129,129 +129,93 @@ between <- new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' starts_with_("foo")
-#' starts_with_("foo", care = TRUE)
+#' starts_with("foo")
 #' @autoglobal
-#' @noRd
-starts_with_ <- function(x, care = FALSE) {
+#' @export
+starts_with <- new_class(
+  name        = "starts_with",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
 
-  check_bool(care)
-
-  modifier_(
-    operator = if (!care) "starts+with" else "STARTS_WITH",
-    value    = x,
-    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
-}
-
-#' @rdname query_modifier
-#' @examples
-#' ends_with_("bar")
-#' @autoglobal
-#' @noRd
-ends_with_ <- function(x) {
-
-  check_character(x, allow_na = FALSE)
-
-  modifier_(
-    operator = "ENDS_WITH",
-    value    = x,
-    allow    = "care")
-
-}
-
-#' @rdname query_modifier
-#' @examples
-#' contains_("baz")
-#' contains_("baz", care = TRUE)
-#' @autoglobal
-#' @noRd
-contains_ <- function(x, care = FALSE) {
-
-  check_bool(care)
-
-  modifier_(
-    operator = if (!care) "contains" else "CONTAINS",
-    value    = x,
-    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
-}
-
-#' @rdname query_modifier
-#' @examples
-#' like_("baz")
-#' @autoglobal
-#' @noRd
-like_ <- function(x) {
-
-  modifier_(
-    operator = "like",
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov"))
-}
-
-#' @rdname query_modifier
-#' @examples
-#' in_(state.abb[10:15])
-#' in_(state.abb[10:15], negate = TRUE)
-#' in_(state.abb[1:5], care = TRUE)
-#' in_(state.abb[1:5], care = TRUE, negate = TRUE)
-#' @autoglobal
-#' @noRd
-in_ <- function(x, care = FALSE, negate = FALSE) {
-
-  check_bool(negate)
-  check_bool(care)
-
-  modifier_(
-    operator = if (!care) ifelse(!negate, "in", "not+in") else ifelse(!negate, "IN", "NOT+IN"),
-    value    = x,
-    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
-}
-
-#' Query Modifier Constructor
-#'
-#' @param operator `<chr>` comparison operator
-#' @param value `<any>` value to compare against
-#' @param allow `<chr>` allowed endpoint class(es) for this modifier
-#' @returns An object of class `"modifier"`
-#' @examples
-#' modifier_(">", 1000, "all")
-#' @autoglobal
-#' @keywords internal
-#' @noRd
-modifier_ <- function(operator, value, allow) {
-
-  check_required(operator)
-  check_required(allow)
-
-  all  <- c("=", "<>", "<", "<=", ">", ">=")
-  ohcp <- c("like", "between", "in", "not+in", "contains", "starts+with", "match")
-  prov <- c("is_empty", "not_empty")
-  care <- c("NOT+BETWEEN", "BETWEEN", "IN", "NOT+IN", "CONTAINS",
-            "STARTS_WITH", "ENDS_WITH", "IS+NULL", "IS+NOT+NULL")
-
-  arg_match0(operator, values = cheapr::cheapr_c(all, ohcp, prov, care))
-
-  structure(
-    list(
-      operator = operator,
-      value    = value,
-      allow    = allow),
-    class = "modifier")
-}
-
-#' Print method for query modifier
-#' @param ... additional arguments
-#' @rdname query_modifier
-#' @method print modifier
-#' @autoglobal
-#' @noRd
-print.modifier <- function(x, ...) {
-
-  cli::cli_text(cli::col_cyan("<modifier>"))
-  cli::cli_text(c(cli::col_silver("Operator: "), cli::col_red(x$operator)))
-
-  if (!is.null(x$value)) {
-    cli::cli_text(c(cli::col_silver("Value(s): "), cli::col_yellow("{x$value}")))
+    new_object(
+      class_modifier(),
+      operator = "STARTS_WITH",
+      value    = x)
   }
-  cli::cli_text(c(cli::col_silver("Allowed: "), brackets_cli2(sort(x$allow))))
-}
+)
+
+#' @rdname query_modifier
+#' @examples
+#' ends_with("bar")
+#' @autoglobal
+#' @export
+ends_with <- new_class(
+  name        = "ends_with",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
+
+    new_object(
+      class_modifier(),
+      operator = "ENDS_WITH",
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' contains("baz")
+#' @autoglobal
+#' @export
+contains <- new_class(
+  name        = "contains",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
+
+    new_object(
+      class_modifier(),
+      operator = "CONTAINS",
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' like("baz")
+#' @autoglobal
+#' @export
+like <- new_class(
+  name        = "like",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
+
+    new_object(
+      class_modifier(),
+      operator = "like",
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' any_of(state.abb[10:15])
+#' any_of(state.abb[10:15], negate = TRUE)
+#' @autoglobal
+#' @export
+any_of <- new_class(
+  name        = "any_of",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, negate = FALSE) {
+
+    check_bool(negate)
+
+    new_object(
+      class_modifier(),
+      operator = ifelse(!negate, "IN", "NOT+IN"),
+      value    = x)
+  }
+)

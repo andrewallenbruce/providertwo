@@ -742,6 +742,23 @@ modifier_ <- function(operator, value, allow) {
     class = "modifier")
 }
 
+#' Print method for query modifier
+#' @param ... additional arguments
+#' @rdname query_modifier
+#' @method print modifier
+#' @autoglobal
+#' @noRd
+print.modifier <- function(x, ...) {
+
+  cli::cli_text(cli::col_cyan("<modifier>"))
+  cli::cli_text(c(cli::col_silver("Operator: "), cli::col_red(x$operator)))
+
+  if (!is.null(x$value)) {
+    cli::cli_text(c(cli::col_silver("Value(s): "), cli::col_yellow("{x$value}")))
+  }
+  cli::cli_text(c(cli::col_silver("Allowed: "), brackets_cli2(sort(x$allow))))
+}
+
 #' Query modifier check
 #' @param x input
 #' @returns `<lgl>` TRUE or FALSE
@@ -967,3 +984,20 @@ is_empty_ <- function(negate = FALSE) {
     value    = NULL,
     allow    = "prov")
 }
+
+#,
+# validator = function(self) {
+#
+#   all  <- c("=", "<>", "<", "<=", ">", ">=")
+#   ohcp <- c("like", "between", "in", "not+in",
+#             "contains", "starts+with", "match")
+#   prov <- c("is_empty", "not_empty")
+#   care <- c("NOT+BETWEEN", "BETWEEN", "IN",
+#             "NOT+IN", "CONTAINS", "STARTS_WITH",
+#             "ENDS_WITH", "IS+NULL", "IS+NOT+NULL")
+#
+#   if (self@operator %!iin% c(all, ohcp, prov, care)) "@operator is invalid"
+#   if (any(self@allowed %!iin% c("caid", "care", "hgov", "open", "prov"))) "@allow is invalid"
+#
+# }
+# )

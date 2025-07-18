@@ -6,6 +6,11 @@
 \alias{greater_than}
 \alias{less_than}
 \alias{between}
+\alias{starts_with}
+\alias{ends_with}
+\alias{contains}
+\alias{like}
+\alias{any_of}
 \title{Query Modifiers}
 \usage{
 equals(x, negate = FALSE)
@@ -15,6 +20,16 @@ greater_than(x, or_equal = FALSE)
 less_than(x, or_equal = FALSE)
 
 between(x, y, negate = FALSE)
+
+starts_with(x)
+
+ends_with(x)
+
+contains(x)
+
+like(x)
+
+any_of(x, negate = FALSE)
 }
 \arguments{
 \item{x, y}{input}
@@ -42,4 +57,10 @@ less_than(1000)
 less_than(0.125, or_equal = TRUE)
 between(1000, 1100)
 between(0.125, 2, negate = TRUE)
+starts_with("foo")
+ends_with("bar")
+contains("baz")
+like("baz")
+any_of(state.abb[10:15])
+any_of(state.abb[10:15], negate = TRUE)
 }

@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
 flatten_query <- function(x) {
-  map(x, \(x) paste0(x, collapse = "&")) |>
+  map(x, function(x) paste0(x, collapse = "&")) |>
     unlist(use.names = FALSE) |>
     paste0(collapse = "&")
 }
@@ -29,20 +29,19 @@ class_query <- new_class(
 #'
 #' @returns S7 `<class_query>` object.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' query(
-#'   first_name = starts_with_("Andr"),
-#'   last_name  = contains_("J"),
-#'   state      = in_(c("CA", "GA", "NY")),
+#'   first_name = starts_with("Andr"),
+#'   last_name  = contains("J"),
+#'   state      = any_of(c("CA", "GA", "NY")),
 #'   city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
 #'   state_own  = c("GA", "MD"),
 #'   npi        = npi_ex$k,
 #'   ccn        = "01256",
-#'   rate       = between_(0.45, 0.67))
+#'   rate       = between(0.45, 0.67))
 #' @autoglobal
 #' @export
 query <- function(...) {
-
   args <- discard(dots_list(..., .homonyms = "error"), is.null)
 
   medicare <- query_care(args)
@@ -50,28 +49,24 @@ query <- function(...) {
 
   i <- discard(enexprs(...), is.null)
 
-  class_query(
-    input = i,
-    format = list(
-      medicare = set_names(medicare, paste0(names(i), " = ", i)),
-      default  = set_names(default, paste0(names(i), " = ", i))
-                  )
-    )
+  class_query(input = i,
+              format = list(
+                medicare = set_names(medicare, paste0(names(i), " = ", i)),
+                default  = set_names(default, paste0(names(i), " = ", i))
+              ))
 }
 
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {
-
   imap(args, function(x, name) {
-
-    v <- `if`(is_modifier_S7(x), x@value, unlist(x, use.names = FALSE))
+    v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
     c(
       paste0("filter[<<i>>][condition][path]=", name),
       paste0(
         "filter[<<i>>][condition][operator]=",
-        `if`(is_modifier_S7(x), x@operator, "=")
+        `if`(is_modifier(x), x@operator, "=")
       ),
       `if`(
         length(v) > 1,
@@ -88,16 +83,14 @@ query_care <- function(args) {
 #' @autoglobal
 #' @noRd
 query_default <- function(args) {
-
   imap(args, function(x, name) {
-
-    v <- `if`(is_modifier_S7(x), x@value, unlist(x, use.names = FALSE))
+    v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
     c(
       paste0("conditions[<<i>>][property]=", name),
       paste0(
-        "filter[<<i>>][condition][operator]=",
-        `if`(is_modifier_S7(x), x@operator, "=")
+        "conditions[<<i>>][operator]=",
+        `if`(is_modifier(x), x@operator, "=")
       ),
       `if`(
         length(v) > 1,
@@ -110,20 +103,3 @@ query_default <- function(args) {
     imap(function(x, idx)
       greplace(x, "<<i>>", idx - 1))
 }
-
-#,
-# validator = function(self) {
-#
-#   all  <- c("=", "<>", "<", "<=", ">", ">=")
-#   ohcp <- c("like", "between", "in", "not+in",
-#             "contains", "starts+with", "match")
-#   prov <- c("is_empty", "not_empty")
-#   care <- c("NOT+BETWEEN", "BETWEEN", "IN",
-#             "NOT+IN", "CONTAINS", "STARTS_WITH",
-#             "ENDS_WITH", "IS+NULL", "IS+NOT+NULL")
-#
-#   if (self@operator %!iin% c(all, ohcp, prov, care)) "@operator is invalid"
-#   if (any(self@allowed %!iin% c("caid", "care", "hgov", "open", "prov"))) "@allow is invalid"
-#
-# }
-# )
