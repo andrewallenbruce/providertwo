@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9365 (2025-07-17)
+
+* query and modifiers to S7
+
+
 # providertwo 0.0.0.9364 (2025-07-17)
 
 * Something something query
