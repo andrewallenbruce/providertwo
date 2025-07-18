@@ -139,7 +139,7 @@ npi_nlm <- function(terms, npi = NULL) {
   }
 
   if (n >= 7500L)
-    cli_warn(
+    cli::cli_warn(
       c("!" = "{.strong {.val {n}}} Results Found",
         "v" = "Returning API limit of {.kbd 7500}."))
 

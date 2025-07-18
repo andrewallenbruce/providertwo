@@ -8,7 +8,6 @@
 #' endpoint("care_enroll_prov") |> list_resources()
 #' endpoint("quality_payment") |> list_resources()
 #' collection("care_in") |> list_resources()
-#'
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "obj", function(obj) {
@@ -22,8 +21,8 @@ tidy_resources <- function(x) {
     fcompute(
       year     = extract_year(name),
       file     = rm_space(gremove(name, " [0-9]{4}|[0-9]{4} ")),
-      size     = as_fs_bytes(fileSize),
-      ext      = tolower(path_ext(downloadURL)),
+      size     = fs::as_fs_bytes(fileSize),
+      ext      = tolower(fs::path_ext(downloadURL)),
       download = downloadURL
     ) |>
     ffill(year) |>

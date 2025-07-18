@@ -30,7 +30,9 @@ select_alias <- function(x, alias, ...) {
 #' @autoglobal
 #' @noRd
 c_temp <- function(x) {
-  # if (all_na(gv(end, "resources"))) gv(end, "resources") <- NULL
+  # slt(x$endpoints, -resources)
+  # if (all_na(gv(end, "resources")))
+  # gv(end, "resources") <- NULL
   flist(
     !!!c(x[names(x) %!=% "endpoints"]),
     endpoints  = yank(x$endpoints),

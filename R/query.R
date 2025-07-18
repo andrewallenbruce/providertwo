@@ -12,7 +12,12 @@ class_query <- new_class(
   name       = "class_query",
   package    = NULL,
   properties = list(
-    input    = class_list,
+    input    = new_property(class_list,
+      setter = function(self, value) {
+        self@input <- value
+        self
+      }
+    ),
     format   = class_list,
     string   = new_property(
       class_character,
@@ -51,6 +56,10 @@ query <- function(...) {
     idx <- which_(names(a) != "year")
     a   <- a[idx]
     n   <- paste0(just_right(names(i)[idx]), " = ", i[idx])
+
+    i[which_(names(i) == "year")][[1]] <- eval(
+      i[which_(names(i) == "year")][[1]]
+      )
 
   } else {
     n   <- paste0(just_right(names(i)), " = ", i)

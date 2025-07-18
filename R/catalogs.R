@@ -288,7 +288,7 @@ clog_hgov <- function(x) {
     set_names(strtrim, 3) |>
     fastplyr::f_enframe(name = "id", value = "download") |>
     mtt(id = as.integer(id),
-        ext = path_ext(download)) |>
+        ext = fs::path_ext(download)) |>
     join(d,
          on = "id",
          verbose = 0,

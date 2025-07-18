@@ -179,15 +179,15 @@ any_lone_not_null <- function(x) {
 #   0L:(length(x) - 1L)
 # }
 
-# x <- exprs(
-#   first_name = starts_with_("Andr"),
-#   last_name = contains_("J"),
-#   state = in_(c("CA", "GA", "NY")),
-#   country = not_in_(c("CA", "GA", "NY")),
+# i <- exprs(
+#   first_name = starts_with("Andr"),
+#   last_name = contains("J"),
+#   state = any_of(c("CA", "GA", "NY")),
 #   owner = c("GA", "MD"),
 #   npi = npi_ex$k,
 #   ccn = "01256",
-#   pac = NULL
+#   pac = NULL,
+#   year = 2020:2023
 # )
 
 #' @autoglobal

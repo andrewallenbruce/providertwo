@@ -95,9 +95,6 @@ utils::globalVariables(c(
   "references",
   # <clog_prov>
   "released",
-  # <get_identifier>
-  # <get_resources>
-  "resources",
   # <clog_care>
   "resourcesAPI",
   # <alias_lookup>
@@ -135,7 +132,6 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   # <tidy_resources>
-  # <get_resources>
   "year",
   # <quality_eligibility>
   "years_in_medicare",

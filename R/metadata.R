@@ -13,7 +13,6 @@ unlist_if <- function(x) {
   if (is.list(x)) unlist(x, use.names = FALSE) else x
 }
 
-# get_metadata(list(title = "metadata_"))
 #' @noRd
 #' @autoglobal
 get_metadata <- function(x) {
@@ -34,26 +33,4 @@ get_metadata <- function(x) {
       references  = x$references
     )
   )
-}
-
-#' @autoglobal
-#' @noRd
-get_identifier <- function(x) {
-  switch(
-    x$pnt,
-    current = class_current(x$identifier),
-    temporal = switch(
-      x$clg,
-      care = class_temporal(slt(x$endpoints, -resources)),
-      class_temporal(x$endpoints))
-  )
-}
-
-#' @autoglobal
-#' @noRd
-get_resources <- function(x) {
-  switch(
-    x$pnt,
-    current = class_current(x$resources),
-    temporal = class_temporal(slt(x$endpoints, year, resources)))
 }

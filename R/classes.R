@@ -17,7 +17,6 @@ class_dimensions <- new_class(
         self@fields <- value
         self
       }
-        # list_modify(self, values = as.list(value))
     )
   )
 )
