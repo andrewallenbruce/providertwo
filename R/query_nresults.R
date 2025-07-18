@@ -6,14 +6,15 @@
 #'
 #' @returns An `<int>` representing the number of results found.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' query_nresults(
 #'    endpoint("care_dial_end"),
 #'    query(state = any_of(c("CA", "GA", "NY", "TX"))))
 #'
 #' query_nresults(
 #'    endpoint("quality_payment"),
-#'    query(`practice state or us territory` = any_of(c("CA", "GA", "NY", "TX"))))
+#'    query(year = 2020:2023,
+#'    `practice state or us territory` = any_of(c("CA", "GA", "NY", "TX"))))
 #'
 #' @autoglobal
 #' @export
@@ -22,11 +23,17 @@ query_nresults <- new_generic("query_nresults", "obj", function(obj, query = NUL
 })
 
 method(query_nresults, class_current) <- function(obj, query = NULL) {
+
+  cli::cli_text(cli::col_cyan(obj@metadata$title))
+
   prop(obj, "access") |>
     query_nresults(query = query)
 }
 
 method(query_nresults, class_temporal) <- function(obj, query = NULL) {
+
+  cli::cli_text(cli::col_cyan(obj@metadata$title))
+
   prop(obj, "access") |>
     query_nresults(query = query)
 }
@@ -41,17 +48,26 @@ method(query_nresults, care_current) <- function(obj, query = NULL) {
     perform_simple() |>
     _$data
 
-  list(
-    found = fmt_int(n$found_rows),
-    total = fmt_int(n$total_rows),
-    url = utils::URLdecode(q)
-  )
+  cli::cli_text(cli::col_silver(fmt_int(n$found_rows)))
+
+  invisible(
+    list(
+      found = n$found_rows,
+      total = n$total_rows,
+      url = utils::URLdecode(q)))
 }
 
 method(query_nresults, care_temporal) <- function(obj, query = NULL) {
 
-  q <- prop(obj, "identifier") |>
-    get_elem("identifier") |>
+  x <- prop(obj, "identifier")
+
+  if (!is.null(query) & "year" %in% names(query@input)) {
+
+    x <- sbt(x, year %in% eval(query@input$year))
+
+  }
+
+  q <- get_elem(x, "identifier") |>
     map_chr(function(x) url_modify(x, query = query@string$medicare))
 
   n <- map(q, function(x) {
@@ -59,7 +75,7 @@ method(query_nresults, care_temporal) <- function(obj, query = NULL) {
       req_url_path_append("stats") |>
       perform_simple()
     }) |>
-    set_names(prop(obj, "identifier") |> get_elem("year"))
+    set_names(x$year)
 
   list(
     counts = fastplyr::new_tbl(

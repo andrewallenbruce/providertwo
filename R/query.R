@@ -42,13 +42,22 @@ class_query <- new_class(
 #' @autoglobal
 #' @export
 query <- function(...) {
-  args <- discard(dots_list(..., .homonyms = "error"), is.null)
 
-  medicare <- query_care(args)
-  default  <- query_default(args)
-
+  a <- discard(dots_list(..., .homonyms = "error"), is.null)
   i <- discard(enexprs(...), is.null)
-  n <- paste0(names(i), " = ", i)
+
+  if ("year" %in% names(a)) {
+
+    idx <- which_(names(a) != "year")
+    a   <- a[idx]
+    n   <- paste0(just_right(names(i)[idx]), " = ", i[idx])
+
+  } else {
+    n   <- paste0(just_right(names(i)), " = ", i)
+  }
+
+  medicare <- query_care(a)
+  default  <- query_default(a)
 
   class_query(
     input = i,
@@ -67,7 +76,7 @@ query_care <- function(args) {
       paste0("filter[<<i>>][condition][path]=", name),
       paste0(
         "filter[<<i>>][condition][operator]=",
-        `if`(is_modifier(x), x@operator, "=")
+        `if`(is_modifier(x), toupper(x@operator), "=")
       ),
       `if`(
         length(v) > 1,
@@ -91,7 +100,7 @@ query_default <- function(args) {
       paste0("conditions[<<i>>][property]=", name),
       paste0(
         "conditions[<<i>>][operator]=",
-        `if`(is_modifier(x), x@operator, "=")
+        `if`(is_modifier(x), tolower(x@operator), "=")
       ),
       `if`(
         length(v) > 1,

@@ -20,13 +20,13 @@ An \verb{<int>} representing the number of results found.
 Return the number of results for a given query
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 query_nresults(
    endpoint("care_dial_end"),
    query(state = any_of(c("CA", "GA", "NY", "TX"))))
 
 query_nresults(
    endpoint("quality_payment"),
-   query(`practice state or us territory` = any_of(c("CA", "GA", "NY", "TX"))))
-\dontshow{\}) # examplesIf}
+   query(year = 2020:2023,
+   `practice state or us territory` = any_of(c("CA", "GA", "NY", "TX"))))
+
 }
