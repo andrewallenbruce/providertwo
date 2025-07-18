@@ -31,7 +31,7 @@ get_dimensions <- function(x, call = caller_env()) {
 #' @autoglobal
 #' @noRd
 set_fields <- function(x) {
-  set_names(new_list(length(x), character(0)), x)
+  set_names(new_list(length(x), NA_character_), x)
 }
 
 #' @autoglobal

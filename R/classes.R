@@ -11,7 +11,14 @@ class_dimensions <- new_class(
       getter = function(self)
         offset_size(self@rows, self@limit)
     ),
-    fields = class_list
+    fields = new_property(
+      class_list,
+      setter = function(self, value) {
+        self@fields <- value
+        self
+      }
+        # list_modify(self, values = as.list(value))
+    )
   )
 )
 

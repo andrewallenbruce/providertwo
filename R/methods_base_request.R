@@ -72,9 +72,9 @@ method(base_request, class_group) <- function(x, query = NULL, years = NULL) {
 #' @returns An `<int>` vector
 #' @autoglobal
 #' @noRd
-query_nresults <- new_generic("query_nresults", "x")
+query_nresults2 <- new_generic("query_nresults", "x")
 
-method(query_nresults, class_endpoint) <- function(x) {
+method(query_nresults2, class_endpoint) <- function(x) {
 
   if (clog_(x) != "care") {
     return(
@@ -90,7 +90,7 @@ method(query_nresults, class_endpoint) <- function(x) {
     get_elem("found_rows")
 }
 
-method(query_nresults, class_temporal) <- function(x) {
+method(query_nresults2, class_temporal) <- function(x) {
 
   if (clog_(x) != "care") {
     return(
@@ -109,7 +109,7 @@ method(query_nresults, class_temporal) <- function(x) {
     name_years_(x)
 }
 
-method(query_nresults, class_group) <- function(x) {
+method(query_nresults2, class_group) <- function(x) {
   members_(x) |>
     map(\(x) query_nresults(x), .progress = TRUE) |>
     name_members_(x)

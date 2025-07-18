@@ -4,12 +4,10 @@
 \alias{query}
 \title{Create a Query Object}
 \usage{
-query(..., .type = c("default", "medicare"))
+query(...)
 }
 \arguments{
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions where the names are API fields.}
-
-\item{.type}{Query type, \code{"default"} or \code{"medicare"}.}
 }
 \value{
 S7 \verb{<class_query>} object.
@@ -18,24 +16,15 @@ S7 \verb{<class_query>} object.
 Create a Query Object
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 query(
   first_name = starts_with_("Andr"),
   last_name  = contains_("J"),
   state      = in_(c("CA", "GA", "NY")),
-  city       = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
+  city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
   state_own  = c("GA", "MD"),
   npi        = npi_ex$k,
   ccn        = "01256",
   rate       = between_(0.45, 0.67))
-
-query(
-  first_name = starts_with_("Andr"),
-  last_name  = contains_("J"),
-  state      = in_(c("CA", "GA", "NY")),
-  city       = equals_(c("Atlanta", "Los Angeles"), negate = TRUE),
-  state_own  = c("GA", "MD"),
-  npi        = npi_ex$k,
-  ccn        = "01256",
-  .type      = "medicare")
-
+\dontshow{\}) # examplesIf}
 }

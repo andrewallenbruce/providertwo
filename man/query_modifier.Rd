@@ -2,48 +2,26 @@
 % Please edit documentation in R/query_modifiers.R
 \name{query_modifier}
 \alias{query_modifier}
-\alias{greater_than_}
-\alias{less_than_}
-\alias{between_}
-\alias{starts_with_}
-\alias{ends_with_}
-\alias{contains_}
-\alias{like_}
-\alias{in_}
-\alias{equals_}
-\alias{print.modifier}
+\alias{equals}
+\alias{greater_than}
+\alias{less_than}
+\alias{between}
 \title{Query Modifiers}
 \usage{
-greater_than_(x, or_equal = FALSE)
+equals(x, negate = FALSE)
 
-less_than_(x, or_equal = FALSE)
+greater_than(x, or_equal = FALSE)
 
-between_(x, y, care = FALSE, negate = FALSE)
+less_than(x, or_equal = FALSE)
 
-starts_with_(x, care = FALSE)
-
-ends_with_(x)
-
-contains_(x, care = FALSE)
-
-like_(x)
-
-in_(x, care = FALSE, negate = FALSE)
-
-equals_(x, negate = FALSE)
-
-\method{print}{modifier}(x, ...)
+between(x, y, negate = FALSE)
 }
 \arguments{
 \item{x, y}{input}
 
-\item{or_equal}{\verb{<lgl>} append \code{=}}
-
-\item{care}{\verb{<lgl>} use uppercase operators for \code{care} endpoint}
-
 \item{negate}{\verb{<lgl>} prepend \code{NOT}}
 
-\item{...}{additional arguments}
+\item{or_equal}{\verb{<lgl>} append \code{=}}
 }
 \value{
 An object of class \verb{<modifier>}
@@ -56,23 +34,12 @@ Query modifiers are a small DSL for use in constructing query conditions,
 in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
-greater_than_(1000)
-greater_than_(0.125, or_equal = TRUE)
-less_than_(1000)
-less_than_(0.125, or_equal = TRUE)
-between_(1000, 1100)
-between_(0.125, 2, negate = TRUE) # should ignore `negate`
-between_(0.125, 2, care = TRUE, negate = TRUE)
-starts_with_("foo")
-starts_with_("foo", care = TRUE)
-ends_with_("bar")
-contains_("baz")
-contains_("baz", care = TRUE)
-like_("baz")
-in_(state.abb[10:15])
-in_(state.abb[10:15], negate = TRUE)
-in_(state.abb[1:5], care = TRUE)
-in_(state.abb[1:5], care = TRUE, negate = TRUE)
-equals_(1000)
-equals_(1000, negate = TRUE)
+equals(1000)
+equals(1000, negate = TRUE)
+greater_than(1000)
+greater_than(0.125, or_equal = TRUE)
+less_than(1000)
+less_than(0.125, or_equal = TRUE)
+between(1000, 1100)
+between(0.125, 2, negate = TRUE)
 }

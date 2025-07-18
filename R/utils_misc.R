@@ -115,9 +115,9 @@ this_year <- function() {
 #' @autoglobal
 #' @noRd
 gdetect <- function(str, pt, ...) {
-  grepl(x = str,
+  grepl(x       = str,
         pattern = pt,
-        perl = TRUE,
+        perl    = TRUE,
         ...)
 }
 
@@ -125,10 +125,10 @@ gdetect <- function(str, pt, ...) {
 #' @noRd
 greplace <- function(str, pt, rp, ...) {
   gsub(
-    x = str,
-    pattern = pt,
+    x           = str,
+    pattern     = pt,
     replacement = rp,
-    perl = TRUE,
+    perl        = TRUE,
     ...
   )
 }
@@ -137,10 +137,10 @@ greplace <- function(str, pt, rp, ...) {
 #' @noRd
 gremove <- function(str, pt, ...) {
   gsub(
-    x = str,
-    pattern = pt,
+    x           = str,
+    pattern     = pt,
     replacement = "",
-    perl = TRUE,
+    perl        = TRUE,
     ...
   )
 }

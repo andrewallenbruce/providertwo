@@ -37,9 +37,6 @@ fields_tbl9 <- purrr::imap(pfields, function(x, i) {
 
 readr::write_csv(fields_tbl9, "data-raw/fields/hgov_curr_fields.csv")
 
-
-
-
 all <- readr::read_csv(fs::dir_ls("data-raw/fields")) |>
   mtt(
     modified = as_date(modified),
@@ -82,3 +79,28 @@ all |>
   print(n = 300)
 
 readr::write_csv(all, "data-raw/fields/all_fields.csv")
+
+obj <- endpoint("quality_payment")
+
+obj@dimensions@fields
+
+field_types <- readr::read_csv(
+  file       = fs::path_abs("data-raw/fields/all_fields.csv"),
+  col_types  = readr::cols(
+    catalog  = readr::col_character(),
+    field    = readr::col_character(),
+    type     = readr::col_character(),
+    category = readr::col_character(),
+    title    = readr::col_character(),
+    modified = readr::col_date(format = "")
+  ))
+
+ftype <- field_types |>
+  sbt(catalog == "care" & title == "Quality Payment Program Experience" & !is.na(category)) |>
+  slt(field, category) |>
+  funique()
+
+ftype_list <- set_names(as.list(ftype$category), ftype$field)
+
+obj@dimensions@fields <- list_modify(obj@dimensions@fields, ftype_list)
+obj@dimensions

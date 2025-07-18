@@ -38,8 +38,10 @@ method(list_resources, class_group) <- function(obj) {
 
 method(list_resources, class_catalog) <- function(obj) {
   cli::cli_alert_warning(
-    paste0("{.fn list_resources} needs a {.cls class_care}",
-      " object, not {.obj_type_friendly {obj}}."))
+    paste0(
+      "{.fn list_resources} needs ",
+      "a {.cls care_current} or {.cls care_temporal} ",
+      "object, not {.obj_type_friendly {obj}}."))
   invisible(NULL)
 }
 

@@ -10,74 +10,129 @@
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=`
 #' @param negate `<lgl>` prepend `NOT`
-#' @param care `<lgl>` use uppercase operators for `care` endpoint
 #' @name query_modifier
 #' @returns An object of class `<modifier>`
 NULL
 
-#' @rdname query_modifier
-#' @examples
-#' greater_than_(1000)
-#' greater_than_(0.125, or_equal = TRUE)
+
+#' @noRd
 #' @autoglobal
-#' @export
-greater_than_ <- function(x, or_equal = FALSE) {
+class_modifier <- new_class(
+  name       = "class_modifier",
+  package    = NULL,
+  properties = list(
+    operator = new_property(class_character, default = "="),
+    value    = class_character | class_numeric,
+    allowed  = new_property(
+      class_character,
+      default = c("caid", "prov", "open", "hgov", "care")
+    )
+  )
+)
 
-  check_number_decimal(x)
-  check_bool(or_equal)
-
-  modifier_(
-    operator = ifelse(!or_equal, ">", ">="),
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov", "care"))
+#' @autoglobal
+#' @noRd
+is_modifier_S7 <- function(x) {
+  S7::S7_inherits(x, class_modifier)
 }
 
 #' @rdname query_modifier
 #' @examples
-#' less_than_(1000)
-#' less_than_(0.125, or_equal = TRUE)
+#' equals(1000)
+#' equals(1000, negate = TRUE)
 #' @autoglobal
 #' @export
-less_than_ <- function(x, or_equal = FALSE) {
+equals <- new_class(
+  name        = "equals",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, negate = FALSE) {
 
-  check_number_decimal(x)
-  check_bool(or_equal)
+    check_bool(negate)
 
-  modifier_(
-    operator = ifelse(!or_equal, "<", "<="),
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov", "care"))
-}
+    new_object(
+      class_modifier(),
+      operator = ifelse(!negate, "=", "<>"),
+      value    = x)
+  }
+)
 
 #' @rdname query_modifier
 #' @examples
-#' between_(1000, 1100)
-#' between_(0.125, 2, negate = TRUE) # should ignore `negate`
-#' between_(0.125, 2, care = TRUE, negate = TRUE)
+#' greater_than(1000)
+#' greater_than(0.125, or_equal = TRUE)
 #' @autoglobal
 #' @export
-between_ <- function(x, y, care = FALSE, negate = FALSE) {
+greater_than <- new_class(
+  name        = "greater_than",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, or_equal = FALSE) {
 
-  check_number_decimal(x)
-  check_number_decimal(y)
+    check_number_decimal(x)
+    check_bool(or_equal)
 
-  if (x >= y) cli::cli_abort("`x` must be less than `y`.", call. = FALSE)
+    new_object(
+      class_modifier(),
+      operator = ifelse(!or_equal, ">", ">="),
+      value    = x)
+  }
+)
 
-  check_bool(care)
-  check_bool(negate)
+#' @rdname query_modifier
+#' @examples
+#' less_than(1000)
+#' less_than(0.125, or_equal = TRUE)
+#' @autoglobal
+#' @export
+less_than <- new_class(
+  name        = "less_than",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, or_equal = FALSE) {
 
-  modifier_(
-    operator = if (!care) "between" else ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
-    value    = c(x, y),
-    allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
-}
+    check_number_decimal(x)
+    check_bool(or_equal)
+
+    new_object(
+      class_modifier(),
+      operator = ifelse(!or_equal, "<", "<="),
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' between(1000, 1100)
+#' between(0.125, 2, negate = TRUE)
+#' @autoglobal
+#' @export
+between <- new_class(
+  name        = "between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, y, negate = FALSE) {
+
+    check_number_decimal(x)
+    check_number_decimal(y)
+    check_bool(negate)
+    # check lengths of x and y?
+
+    if (x >= y) cli::cli_abort("`x` must be less than `y`.", call. = FALSE)
+
+    new_object(
+      class_modifier(),
+      operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
+      value    = c(x, y))
+  }
+)
 
 #' @rdname query_modifier
 #' @examples
 #' starts_with_("foo")
 #' starts_with_("foo", care = TRUE)
 #' @autoglobal
-#' @export
+#' @noRd
 starts_with_ <- function(x, care = FALSE) {
 
   check_bool(care)
@@ -92,7 +147,7 @@ starts_with_ <- function(x, care = FALSE) {
 #' @examples
 #' ends_with_("bar")
 #' @autoglobal
-#' @export
+#' @noRd
 ends_with_ <- function(x) {
 
   check_character(x, allow_na = FALSE)
@@ -109,7 +164,7 @@ ends_with_ <- function(x) {
 #' contains_("baz")
 #' contains_("baz", care = TRUE)
 #' @autoglobal
-#' @export
+#' @noRd
 contains_ <- function(x, care = FALSE) {
 
   check_bool(care)
@@ -124,7 +179,7 @@ contains_ <- function(x, care = FALSE) {
 #' @examples
 #' like_("baz")
 #' @autoglobal
-#' @export
+#' @noRd
 like_ <- function(x) {
 
   modifier_(
@@ -140,7 +195,7 @@ like_ <- function(x) {
 #' in_(state.abb[1:5], care = TRUE)
 #' in_(state.abb[1:5], care = TRUE, negate = TRUE)
 #' @autoglobal
-#' @export
+#' @noRd
 in_ <- function(x, care = FALSE, negate = FALSE) {
 
   check_bool(negate)
@@ -150,22 +205,6 @@ in_ <- function(x, care = FALSE, negate = FALSE) {
     operator = if (!care) ifelse(!negate, "in", "not+in") else ifelse(!negate, "IN", "NOT+IN"),
     value    = x,
     allow    = if (!care) c("caid", "prov", "open", "hgov") else "care")
-}
-
-#' @rdname query_modifier
-#' @examples
-#' equals_(1000)
-#' equals_(1000, negate = TRUE)
-#' @autoglobal
-#' @export
-equals_ <- function(x, negate = FALSE) {
-
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "=", "<>"),
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov", "care"))
 }
 
 #' Query Modifier Constructor
@@ -178,7 +217,7 @@ equals_ <- function(x, negate = FALSE) {
 #' modifier_(">", 1000, "all")
 #' @autoglobal
 #' @keywords internal
-#' @export
+#' @noRd
 modifier_ <- function(operator, value, allow) {
 
   check_required(operator)
@@ -200,24 +239,12 @@ modifier_ <- function(operator, value, allow) {
     class = "modifier")
 }
 
-#' Query modifier check
-#' @param x input
-#' @returns `<lgl>` TRUE or FALSE
-#' @examples
-#' is_modifier(greater_than_(1000))
-#' @autoglobal
-#' @keywords internal
-#' @export
-is_modifier <- function(x) {
-  inherits(x, "modifier")
-}
-
 #' Print method for query modifier
 #' @param ... additional arguments
 #' @rdname query_modifier
 #' @method print modifier
 #' @autoglobal
-#' @export
+#' @noRd
 print.modifier <- function(x, ...) {
 
   cli::cli_text(cli::col_cyan("<modifier>"))
@@ -227,187 +254,4 @@ print.modifier <- function(x, ...) {
     cli::cli_text(c(cli::col_silver("Value(s): "), cli::col_yellow("{x$value}")))
   }
   cli::cli_text(c(cli::col_silver("Allowed: "), brackets_cli2(sort(x$allow))))
-}
-
-# operators <- function(x) {
-#   open <- c(
-#     "=",
-#     "<>",
-#     "<",
-#     "<=",
-#     ">", ">=",
-#     "like",
-#     "between",
-#     "in",
-#     "not+in",
-#     "contains",
-#     "starts+with",
-#     "match"
-#   )
-#
-#   hgov <- c(
-#     "=",
-#     "<>",
-#     "<",
-#     "<=",
-#     ">",
-#     ">=",
-#     "like",
-#     "between",
-#     "in",
-#     "not+in",
-#     "contains",
-#     "starts+with",
-#     "match"
-#   )
-#
-#   caid <- c(
-#     "=",
-#     "<>",
-#     "<",
-#     "<=",
-#     ">",
-#     ">=",
-#     "in",
-#     "not+in",
-#     "contains",
-#     "starts+with",
-#     "between",
-#     "like",
-#     "match"
-#   )
-#
-#   prov <- c(
-#     "=",
-#     "<>",
-#     "<",
-#     "<=",
-#     ">",
-#     ">=",
-#     "in",
-#     "not+in",
-#     "contains",
-#     "starts+with",
-#     "between",
-#     "is_empty",
-#     "not_empty",
-#     "like",
-#     "match"
-#   )
-#
-#   care <- c(
-#     "=",
-#     "<>",
-#     "<",
-#     "<=",
-#     ">",
-#     ">=",
-#     "IN",
-#     "NOT+IN",
-#     "CONTAINS",
-#     "STARTS_WITH",
-#     "ENDS_WITH",
-#     "BETWEEN",
-#     "NOT+BETWEEN",
-#     "IS+NULL",
-#     "IS+NOT+NULL"
-#   )
-#
-#   clog_rep <- function(x, name) {
-#     cheapr::cheapr_rep_len(name, length(x))
-#   }
-#
-#   fastplyr::new_tbl(
-#     catalog = c(clog_rep(open, "open"),
-#                 clog_rep(hgov, "hgov"),
-#                 clog_rep(caid, "caid"),
-#                 clog_rep(prov, "prov"),
-#                 clog_rep(care, "care")),
-#     operator = c(open, hgov, caid, prov, care) # |> tolower()
-#   ) |>
-#     fastplyr::f_add_count(operator, sort = TRUE) |>
-#     print(n = Inf)
-#
-# }
-
-
-# `%AND%` <- function(lhs, rhs) {
-  # group AND
-  #
-  # filter[g1][group][conjunction]=AND
-  # filter[1][condition][memberOf]=g1
-  # filter[2][condition][memberOf]=g1
-  #
-  # filter[1][condition][path]=first_name
-  # filter[1][condition][operator]==
-  # filter[1][condition][value]=Janis
-  #
-  # filter[2][condition][path]=last_name
-  # filter[2][condition][operator]=STARTS_WITH
-  # filter[2][condition][value]=J
-# }
-
-# `%or%` <- function(lhs, rhs) {
-#
-# filter[g1][group][conjunction]=OR
-# filter[1][condition][memberOf]=g1
-# filter[2][condition][memberOf]=g1
-#
-# filter[1][condition][path]=PROVIDER_TYPE_DESC
-# filter[1][condition][operator]=CONTAINS
-# filter[1][condition][value]=PRACTITIONER
-#
-# filter[2][condition][path]=STATE_CD
-# filter[2][condition][operator]==
-# filter[2][condition][value]=MD
-# }
-
-
-
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' match_("baz")
-#' @autoglobal
-#' @noRd
-match_ <- function(x) {
-
-  modifier_(
-    operator = "match",
-    value    = x,
-    allow    = c("caid", "prov", "open", "hgov"))
-}
-
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' is_null_()
-#' is_null_(negate = TRUE)
-#' @autoglobal
-#' @noRd
-is_null_ <- function(negate = FALSE) {
-
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "IS+NULL", "IS+NOT+NULL"),
-    value    = NULL,
-    allow    = "care")
-}
-
-#' @rdname query_modifier
-#' @examples
-#' # Not working for any endpoint yet
-#' is_empty_()
-#' is_empty_(negate = TRUE)
-#' @autoglobal
-#' @noRd
-is_empty_ <- function(negate = FALSE) {
-
-  check_bool(negate)
-
-  modifier_(
-    operator = ifelse(!negate, "is_empty", "not_empty"),
-    value    = NULL,
-    allow    = "prov")
 }

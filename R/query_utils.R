@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+brackets <- function(x) {
+  paste0("[", x, "]")
+}
+
+#' @autoglobal
+#' @noRd
 just_right <- function(x) {
   format(x, justify = "right")
 }
