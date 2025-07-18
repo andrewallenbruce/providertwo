@@ -77,7 +77,7 @@ alias_lookup <- function(x) {
 #'
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<class_care/caid/prov/open/hgov>` object.
-#' @examplesIf interactive()
+#' @examples
 #' endpoint("care_dial_end")
 #' endpoint("care_dial_tmp")
 #' endpoint("managed_mltss")
@@ -134,9 +134,8 @@ collection <- function(alias) {
   x <- collect_rex(alias)
 
   class_collection(
-    name = x$name,
-    members = names_map(x$alias, endpoint)
-    )
+    name    = x$name,
+    members = names_map(x$alias, endpoint))
 }
 
 #' Load a group of endpoints by alias

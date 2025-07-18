@@ -4,12 +4,12 @@
 \alias{query_nresults}
 \title{Return the number of results for a given query}
 \usage{
-query_nresults(obj, q = NULL, ...)
+query_nresults(obj, query = NULL, ...)
 }
 \arguments{
 \item{obj}{An object of class \verb{<class_endpoint>} or \verb{<class_temporal>}.}
 
-\item{q}{A \verb{<chr>} string representing the query to be passed to the API. If \code{NULL}, the default query for the endpoint is used.}
+\item{query}{A \verb{<chr>} string representing the query to be passed to the API. If \code{NULL}, the default query for the endpoint is used.}
 
 \item{...}{Additional arguments passed to the query.}
 }
@@ -21,16 +21,12 @@ Return the number of results for a given query
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-dial <- endpoint("care_dial_end")
-qual <- endpoint("quality_payment")
-rhc  <- collection("care_rhc")
-qry  <- query(
-              STATE = in_(c("CA", "GA", "NY"), care = TRUE),
-              `STATE - OWNER` = in_(c("CA", "GA", "NY"), care = TRUE),
-              .type = "medicare")
+query_nresults(
+   endpoint("care_dial_end"),
+   query(state = any_of(c("CA", "GA", "NY", "TX"))))
 
-query_nresults(end_dial, identifier(end_dial), qry)
-
-query_nresults(end_rhc, identifier(end_rhc), qry)
+query_nresults(
+   endpoint("quality_payment"),
+   query(`practice state or us territory` = any_of(c("CA", "GA", "NY", "TX"))))
 \dontshow{\}) # examplesIf}
 }

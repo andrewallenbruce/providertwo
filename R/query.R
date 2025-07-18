@@ -48,12 +48,13 @@ query <- function(...) {
   default  <- query_default(args)
 
   i <- discard(enexprs(...), is.null)
+  n <- paste0(names(i), " = ", i)
 
-  class_query(input = i,
-              format = list(
-                medicare = set_names(medicare, paste0(names(i), " = ", i)),
-                default  = set_names(default, paste0(names(i), " = ", i))
-              ))
+  class_query(
+    input = i,
+    format = list(
+      medicare = set_names(medicare, n),
+      default  = set_names(default, n)))
 }
 
 #' @autoglobal

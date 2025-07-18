@@ -16,12 +16,10 @@ An S7 \verb{<class_care/caid/prov/open/hgov>} object.
 Load an endpoint by alias
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 endpoint("care_dial_end")
 endpoint("care_dial_tmp")
 endpoint("managed_mltss")
 endpoint("hgov_ab_reg_comp")
 endpoint("asc_facility")
 endpoint("dialysis_by_facility")
-\dontshow{\}) # examplesIf}
 }
