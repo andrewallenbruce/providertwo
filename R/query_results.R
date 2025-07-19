@@ -6,9 +6,7 @@
 #' @returns A `<list>` with the number of results found, total number of rows, and the URL used for the query.
 #'
 #' @examples
-#' query_results(
-#'    endpoint("care_dial_end"),
-#'    query(state = any_of(c("GA", "TX"))))
+#' query_results(endpoint("care_dial_end"), query(state = any_of(c("GA", "TX"))))
 #'
 #' query_results(
 #'    endpoint("quality_payment"),
@@ -39,7 +37,8 @@ method(query_results, class_temporal) <- function(obj, query = NULL) {
 
 method(query_results, care_current) <- function(obj, query = NULL) {
 
-  q <- prop(obj, "identifier") |> url_modify(query = query@string$medicare)
+  q <- prop(obj, "identifier") |>
+    url_modify(query = `if`(is.null(query), NULL, query@string$medicare))
 
   n <- request(q) |>
     req_url_path_append("stats") |>
@@ -72,7 +71,8 @@ method(query_results, care_temporal) <- function(obj, query = NULL) {
   }
 
   q <- get_elem(x, "identifier") |>
-    map_chr(function(x) url_modify(x, query = query@string$medicare))
+    map_chr(function(x)
+      url_modify(x, query = `if`(is.null(query), NULL, query@string$medicare)))
 
   n <- map(q, function(x) {
     request(x) |>

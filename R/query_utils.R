@@ -18,8 +18,16 @@ just_left <- function(x) {
 
 #' @autoglobal
 #' @noRd
-lone_not_null_cli <- function(x) {
-  cli::col_yellow(unlist(x, use.names = FALSE))
+eval_cli <- function(x) {
+  map(x[are_evaled(x)],
+      function(x)
+        cli::ansi_collapse(
+          cli::col_cyan(
+            paste0(x, collapse = ", ")
+            ),
+          trunc = 5)
+      )
+  # |> cli::ansi_strtrim(25)
 }
 
 #' @autoglobal
@@ -60,13 +68,13 @@ mods_cli <- function(x) {
 #' @autoglobal
 #' @noRd
 deparse_mods <- function(x) {
-  map(x[are_mods(x)], \(x) deparse1(x))
+  map(x[are_mods(x)], function(x) deparse1(x))
 }
 
 #' @autoglobal
 #' @noRd
 deparse_calls <- function(x) {
-  map(x[are_calls(x)], \(x) deparse1(x))
+  map(x[are_calls(x)], function(x) deparse1(x))
 }
 
 #' @autoglobal
@@ -109,15 +117,15 @@ is_mod <- function(x) {
   is_call(
     x,
     name = c(
-      "between_",
-      "contains_",
-      "ends_with_",
-      "equals_",
-      "greater_than_",
-      "in_",
-      "less_than_",
-      "like_",
-      "starts_with_"
+      "between",
+      "contains",
+      "ends_with",
+      "equals",
+      "greater_than",
+      "any_of",
+      "less_than",
+      "like",
+      "starts_with"
     )
   )
 }
@@ -131,7 +139,7 @@ are_mods <- function(x) {
 #' @autoglobal
 #' @noRd
 are_calls <- function(x) {
-  map_lgl(x, is_call)
+  map_lgl(x, function(x) Negate(is_mod)(x) & is_call(x))
 }
 
 #' @autoglobal
@@ -140,14 +148,16 @@ any_calls <- function(x) {
   any(are_calls(x))
 }
 
-# are_calls <- function(x) {
-#   map_lgl(x, \(x) purrr::negate(is_mod)(x) & is_call(x))
-# }
+#' @autoglobal
+#' @noRd
+are_evaled <- function(x) {
+  list_lengths(x) >= 1L & map_lgl(x, Negate(is_call))
+}
 
 #' @autoglobal
 #' @noRd
-are_lone_not_null <- function(x) {
-  are_length_one(x) & are_not_null(x)
+any_evaled <- function(x) {
+  any(are_evaled(x))
 }
 
 #' @autoglobal
@@ -168,12 +178,6 @@ any_null <- function(x) {
   any(are_null(x))
 }
 
-#' @autoglobal
-#' @noRd
-any_lone_not_null <- function(x) {
-  any(are_lone_not_null(x))
-}
-
 # seq_along0 <- function(x) {
 #   seq_along(x) - 1
 #   0L:(length(x) - 1L)
@@ -192,35 +196,22 @@ any_lone_not_null <- function(x) {
 
 #' @autoglobal
 #' @noRd
-params_cli <- function(...) {
+params_cli <- function(x) {
 
-  x <- enexprs(...)
+  x <- x@input
 
-  if (any_mods(x)) x[are_mods(x)] <- mods_cli(x[are_mods(x)])
-
-  if (any_calls(x)) x[are_calls(x)] <- calls_cli(x[are_calls(x)])
-
-  if (any_length_two(x)) {
-    x[are_length_two(x)] <- brackets_cli(x[are_length_two(x)])
-  }
-
-  if (any_null(x)) x[are_null(x)] <- NULL #cli::col_silver("NULL")
-
-  if (any_lone_not_null(x)) {
-    x[are_lone_not_null(x)] <- lone_not_null_cli(x[are_lone_not_null(x)])
-  }
+  if (any_evaled(x)) x[are_evaled(x)] <- eval_cli(x[are_evaled(x)])
+  if (any_mods(x))   x[are_mods(x)]   <- mods_cli(x[are_mods(x)])
+  if (any_calls(x))  x[are_calls(x)]  <- calls_cli(x[are_calls(x)])
 
   NUM    <- brackets_cli2(just_left(seq_along(names(x))))
-
   FIELD  <- just_right(names(x))
-
-  EQUALS <- cli::col_black(cli::symbol$double_line)
-
+  EQUALS <- cli::col_black(cli::style_bold(cli::symbol$double_line))
   VALUE  <- just_left(unlist(x, use.names = FALSE))
 
-  g <- glue("{NUM} {FIELD} {EQUALS} {VALUE}")
+  g <- glue::glue_safe("{NUM} {FIELD} {EQUALS} {VALUE}")
 
-  cat(g, sep = "\n")
+  cli::cat_bullet(g, bullet = "radio_on")
 
   invisible(g)
 }

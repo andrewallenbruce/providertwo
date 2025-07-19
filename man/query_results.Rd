@@ -20,9 +20,7 @@ A \verb{<list>} with the number of results found, total number of rows, and the 
 Return the number of results for a given query
 }
 \examples{
-query_results(
-   endpoint("care_dial_end"),
-   query(state = any_of(c("GA", "TX"))))
+query_results(endpoint("care_dial_end"), query(state = any_of(c("GA", "TX"))))
 
 query_results(
    endpoint("quality_payment"),

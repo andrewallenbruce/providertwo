@@ -8,10 +8,10 @@
 #' in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
 #'
 #' @param x,y input
-#' @param or_equal `<lgl>` append `=`
-#' @param negate `<lgl>` prepend `NOT`
+#' @param or_equal `<lgl>` append `=` to `>` or `<`
+#' @param negate `<lgl>` prepend `NOT` to operator
 #' @name query_modifier
-#' @returns An object of class `<modifier>`
+#' @returns An S7 `<class_modifier>` object.
 NULL
 
 
@@ -34,6 +34,18 @@ class_modifier <- new_class(
 #' @noRd
 is_modifier <- function(x) {
   S7::S7_inherits(x, class_modifier)
+}
+
+#' @autoglobal
+#' @noRd
+are_modifiers <- function(x) {
+  map_lgl(x, is_modifier)
+}
+
+#' @autoglobal
+#' @noRd
+any_modifiers <- function(x) {
+  any(are_modifiers(x), na.rm = TRUE)
 }
 
 #' @rdname query_modifier

@@ -34,12 +34,12 @@ any_of(x, negate = FALSE)
 \arguments{
 \item{x, y}{input}
 
-\item{negate}{\verb{<lgl>} prepend \code{NOT}}
+\item{negate}{\verb{<lgl>} prepend \code{NOT} to operator}
 
-\item{or_equal}{\verb{<lgl>} append \code{=}}
+\item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
-An object of class \verb{<modifier>}
+An S7 \verb{<class_modifier>} object.
 }
 \description{
 Helpers for use in constructing conditions in queries.
