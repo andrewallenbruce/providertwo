@@ -79,6 +79,11 @@ yank <- function(x) {
   pluck(x, 1)
 }
 
+`yank<-` <- function(x, value) {
+  pluck(x, 1) <- value
+  x
+}
+
 #' @autoglobal
 #' @noRd
 pdetect <- function(x, p, n = FALSE, ci = FALSE) {

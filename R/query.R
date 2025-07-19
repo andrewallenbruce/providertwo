@@ -47,9 +47,8 @@ class_query <- new_class(
 #' @autoglobal
 #' @export
 query <- function(...) {
-
-  a <- discard(dots_list(..., .homonyms = "error"), is.null)
-  i <- discard(enexprs(...), is.null)
+  a <- compact(dots_list(..., .homonyms = "error"))
+  i <- compact(enexprs(...))
 
   if ("year" %in% names(a)) {
 
@@ -57,22 +56,20 @@ query <- function(...) {
     a   <- a[idx]
     n   <- paste0(just_right(names(i)[idx]), " = ", i[idx])
 
-    i[which_(names(i) == "year")][[1]] <- eval(
-      i[which_(names(i) == "year")][[1]]
-      )
+    idx <- which_(names(i) == "year")
+    yank(i[idx]) <- eval(yank(i[idx]))
 
   } else {
-    n   <- paste0(just_right(names(i)), " = ", i)
+    n <- paste0(just_right(names(i)), " = ", i)
   }
 
-  medicare <- query_care(a)
-  default  <- query_default(a)
-
   class_query(
-    input = i,
+    input  = i,
     format = list(
-      medicare = set_names(medicare, n),
-      default  = set_names(default, n)))
+      medicare = set_names(query_care(a), n),
+      default  = set_names(query_default(a), n)
+      )
+    )
 }
 
 #' @autoglobal

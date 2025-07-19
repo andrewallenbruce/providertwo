@@ -59,7 +59,7 @@ method(query_results, care_temporal) <- function(obj, query = NULL) {
 
   x <- prop(obj, "identifier")
 
-  if (!is.null(query) && "year" %iin% names(query@input)) {
+  if (!is.null(query) && "year" %in% names(query@input)) {
 
     x <- sbt(x, year %iin% query@input$year)
 
