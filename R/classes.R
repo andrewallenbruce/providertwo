@@ -23,12 +23,70 @@ class_dimensions <- new_class(
 
 #' @noRd
 #' @autoglobal
+class_endpoint <- new_class(
+  name         = "class_endpoint",
+  package      = NULL,
+  abstract     = TRUE,
+  properties   = list(
+    identifier = class_character | class_data.frame,
+    metadata   = class_list,
+    dimensions = class_dimensions
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_current <- new_class(
+  name       = "class_current",
+  package    = NULL,
+  parent     = class_endpoint,
+  properties   = list(
+    identifier = class_character
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_temporal <- new_class(
+  name       = "class_temporal",
+  package    = NULL,
+  parent     = class_endpoint,
+  properties   = list(
+    identifier = class_data.frame
+  )
+)
+
+#' @noRd
+#' @autoglobal
+care_current <- new_class(
+  name = "care_current",
+  package = NULL,
+  parent = class_endpoint,
+  properties = list(
+    identifier = class_character,
+    resources  = class_character
+  )
+)
+
+#' @noRd
+#' @autoglobal
+care_temporal <- new_class(
+  name = "care_temporal",
+  package = NULL,
+  parent = class_endpoint,
+  properties = list(
+    identifier = class_data.frame
+  )
+)
+
+#' @noRd
+#' @autoglobal
 class_catalog <- new_class(
   name         = "class_catalog",
   package      = NULL,
   abstract     = TRUE,
   properties   = list(
-    identifier = class_character | class_data.frame
+    access = class_current | class_temporal
   )
 )
 
@@ -37,26 +95,10 @@ class_catalog <- new_class(
 class_care <- new_class(
   name    = "class_care",
   package = NULL,
-  parent  = class_catalog
-)
-
-#' @noRd
-#' @autoglobal
-care_current <- new_class(
-  name         = "care_current",
-  package      = NULL,
-  parent       = class_care,
+  parent  = class_catalog,
   properties   = list(
-    resources  = class_character
+    access = care_current | care_temporal
   )
-)
-
-#' @noRd
-#' @autoglobal
-care_temporal <- new_class(
-  name    = "care_temporal",
-  package = NULL,
-  parent  = class_care
 )
 
 #' @noRd
@@ -64,7 +106,10 @@ care_temporal <- new_class(
 class_prov <- new_class(
   name    = "class_prov",
   package = NULL,
-  parent  = class_catalog
+  parent  = class_catalog,
+  properties = list(
+    access = class_current
+  )
 )
 
 #' @noRd
@@ -93,35 +138,6 @@ class_hgov <- new_class(
 
 #' @noRd
 #' @autoglobal
-class_endpoint <- new_class(
-  name         = "class_endpoint",
-  package      = NULL,
-  abstract     = TRUE,
-  properties   = list(
-    access     = care_current | care_temporal | class_prov | class_caid | class_open | class_hgov,
-    metadata   = class_list,
-    dimensions = class_dimensions
-    )
-  )
-
-#' @noRd
-#' @autoglobal
-class_current <- new_class(
-  name       = "class_current",
-  package    = NULL,
-  parent     = class_endpoint
-)
-
-#' @noRd
-#' @autoglobal
-class_temporal <- new_class(
-  name       = "class_temporal",
-  package    = NULL,
-  parent     = class_endpoint
-)
-
-#' @noRd
-#' @autoglobal
 class_group <- new_class(
   name       = "class_group",
   package    = NULL,
@@ -138,4 +154,3 @@ class_collection <- new_class(
   package    = NULL,
   parent     = class_group
 )
-

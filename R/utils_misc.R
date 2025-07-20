@@ -12,6 +12,10 @@ options(fastplyr.inform = FALSE)
   if (is.na(x)) y else x
 }
 
+`%|||%` <- function(x, y) {
+  if (!is_missing(x)) y else NULL
+}
+
 #' @autoglobal
 #' @noRd
 names_map <- function(x, f, ..., .nm = x) {

@@ -55,7 +55,7 @@ brackets_cli2 <- function(x) {
 
 #' @autoglobal
 #' @noRd
-calls_cli <- function(x) {
+call_cli <- function(x) {
   map(x[are_calls(x)], function(x) cli::col_yellow(deparse1(x)))
 }
 
@@ -178,22 +178,19 @@ any_null <- function(x) {
   any(are_null(x))
 }
 
-# seq_along0 <- function(x) {
-#   seq_along(x) - 1
-#   0L:(length(x) - 1L)
-# }
-
-# i <- exprs(
+# x <- query(
 #   first_name = starts_with("Andr"),
-#   last_name = contains("J"),
-#   state = any_of(c("CA", "GA", "NY")),
-#   owner = c("GA", "MD"),
-#   npi = npi_ex$k,
-#   ccn = "01256",
-#   pac = NULL,
-#   year = 2020:2023
-# )
-
+#   last_name  = contains("J"),
+#   state      = any_of(c("CA", "GA", "NY")),
+#   city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+#   state_own  = c("GA", "MD"),
+#   npi        = npi_ex$k,
+#   ccn        = "01256",
+#   pac        = NULL,
+#   rate       = between(0.45, 0.67),
+#   year       = 2014:2025)
+#
+#   params_cli(x)
 #' @autoglobal
 #' @noRd
 params_cli <- function(x) {
@@ -202,15 +199,17 @@ params_cli <- function(x) {
 
   if (any_evaled(x)) x[are_evaled(x)] <- eval_cli(x[are_evaled(x)])
   if (any_mods(x))   x[are_mods(x)]   <- mods_cli(x[are_mods(x)])
-  if (any_calls(x))  x[are_calls(x)]  <- calls_cli(x[are_calls(x)])
+  if (any_calls(x))  x[are_calls(x)]  <- call_cli(x[are_calls(x)])
 
-  NUM    <- brackets_cli2(just_left(seq_along(names(x))))
+  # NUM    <- brackets_cli2(just_left(seq_along(names(x))))
   FIELD  <- just_right(names(x))
   EQUALS <- cli::col_black(cli::style_bold(cli::symbol$double_line))
   VALUE  <- just_left(unlist(x, use.names = FALSE))
 
-  g <- glue::glue_safe("{NUM} {FIELD} {EQUALS} {VALUE}")
+  # g <- glue::glue_safe("{NUM} {FIELD} {EQUALS} {VALUE}")
+  g <- glue::glue_safe("{FIELD} {EQUALS} {VALUE}")
 
+  cli::cli_text("Query Parameters:")
   cli::cat_bullet(g, bullet = "radio_on")
 
   invisible(g)

@@ -1,11 +1,9 @@
 #' Return the number of results for a given query
 #'
-#' @param obj An object of class `<class_endpoint>` or `<class_temporal>`.
-#' @param query A `<class_query>` object. If `NULL` (the default), no query is used.
-#' @param ... Additional arguments.
-#' @returns A `<list>` with the number of results found, total number of rows, and the URL used for the query.
-#'
-#' @examples
+#' @param obj A `<class_endpoint>` or `<class_temporal>` object.
+#' @param q   A `<class_query>` object. If `NULL` (the default), no query is used.
+#' @returns   A `<list>` with the number of results found, total number of rows, and the URL used for the query.
+#' @examplesIf interactive()
 #' query_results(endpoint("care_dial_end"), query(state = any_of(c("GA", "TX"))))
 #'
 #' query_results(
@@ -15,30 +13,49 @@
 #'
 #' @autoglobal
 #' @export
-query_results <- new_generic("query_nresults", "obj", function(obj, query = NULL, ...) {
+query_results <- new_generic("query_nresults", c("obj", "q"), function(obj, q) {
   S7_dispatch()
 })
 
-method(query_results, class_current) <- function(obj, query = NULL) {
+method(query_results, list(class_current, class_query)) <- function(obj, q) {
 
   cli::cli_text(cli::col_cyan(obj@metadata$title))
 
   prop(obj, "access") |>
-    query_results(query = query)
+    query_results(query = q %|||% q)
 }
 
-method(query_results, class_temporal) <- function(obj, query = NULL) {
+method(query_results, list(class_temporal, class_query)) <- function(obj, q) {
 
   cli::cli_text(cli::col_cyan(obj@metadata$title))
 
   prop(obj, "access") |>
-    query_results(query = query)
+    query_results(query = q %|||% q)
 }
 
-method(query_results, care_current) <- function(obj, query = NULL) {
+method(query_results, list(class_prov, class_query)) <- function(obj, q) {
 
   q <- prop(obj, "identifier") |>
-    url_modify(query = `if`(is.null(query), NULL, query@string$medicare))
+    url_modify(query = q %|||% q@string$default)
+
+  n <- request(q) |>
+    perform_simple() |>
+    _$data
+
+  cli::cli_text(cli::col_silver(fmt_int(n$found_rows)))
+
+  invisible(
+    list(
+      found = n$found_rows,
+      total = n$total_rows,
+      url   = utils::URLdecode(q))
+  )
+}
+
+method(query_results, list(care_current, class_query)) <- function(obj, q) {
+
+  q <- prop(obj, "identifier") |>
+    url_modify(query = q %|||% q@string$medicare)
 
   n <- request(q) |>
     req_url_path_append("stats") |>
@@ -55,24 +72,24 @@ method(query_results, care_current) <- function(obj, query = NULL) {
     )
 }
 
-method(query_results, care_temporal) <- function(obj, query = NULL) {
+method(query_results, list(care_temporal, class_query)) <- function(obj, q) {
 
   x <- prop(obj, "identifier")
 
-  if (!is.null(query) && "year" %in% names(query@input)) {
+  if (!is.null(q) && "year" %in% names(q@input)) {
 
-    x <- sbt(x, year %iin% query@input$year)
+    x <- sbt(x, year %iin% q@input$year)
 
     if (is_empty(x)) {
       cli::cli_abort(
-        c("x" = "{.field year(s)} {.val {query@input$year}} had {nrow(x)} matches."),
+        c("x" = "{.field year(s)} {.val {q@input$year}} had {nrow(x)} matches."),
         call = call)
     }
   }
 
   q <- get_elem(x, "identifier") |>
     map_chr(function(x)
-      url_modify(x, query = `if`(is.null(query), NULL, query@string$medicare)))
+      url_modify(x, query = q %|||% q@string$medicare))
 
   n <- map(q, function(x) {
     request(x) |>

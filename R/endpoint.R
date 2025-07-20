@@ -40,6 +40,15 @@ c_temp <- function(x) {
   )
 }
 
+#' @param x `<chr>` endpoint alias
+#' @returns `<list>` with elements:
+#' @examples
+#' alias_lookup("care_dial_end")
+#' alias_lookup("care_dial_tmp")
+#' alias_lookup("managed_mltss")
+#' alias_lookup("hgov_ab_reg_comp")
+#' alias_lookup("asc_facility")
+#' alias_lookup("dialysis_by_facility")
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
@@ -89,33 +98,84 @@ alias_lookup <- function(x) {
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {
-
   x <- alias_lookup(alias)
 
   switch(
-    x$pnt,
-    current = class_current(
-      access = switch(
-        x$clg,
-        care = care_current(x$identifier, x$resources),
-        caid = class_caid(x$identifier),
-        prov = class_prov(x$identifier),
-        open = class_open(x$identifier),
-        hgov = class_hgov(x$identifier)
+    x$clg,
+    care = switch(
+      x$pnt,
+      current = class_care(
+        access = care_current(
+          identifier = x$identifier,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
       ),
-      metadata   = get_metadata(x),
-      dimensions = get_dimensions(x)
+      temporal = class_care(
+        access = care_temporal(
+          identifier = x$endpoints,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      )
     ),
-    temporal = class_temporal(
-      access = switch(
-        x$clg,
-        care = care_temporal(x$endpoints),
-        caid = class_caid(x$endpoints),
-        open = class_open(x$endpoints),
-        hgov = class_hgov(x$endpoints)
+    prov = class_prov(
+      access = class_current(
+        identifier = x$identifier,
+        metadata = get_metadata(x),
+        dimensions = get_dimensions(x)
+      )
+    ),
+    caid = switch(
+      x$pnt,
+      current = class_caid(
+        access = class_current(
+          identifier = x$identifier,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
       ),
-      metadata   = get_metadata(x),
-      dimensions = get_dimensions(x)
+      temporal = class_caid(
+        access = class_temporal(
+          identifier = x$endpoints,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      )
+    ),
+    open = switch(
+      x$pnt,
+      current = class_open(
+        access = class_current(
+          identifier = x$identifier,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      ),
+      temporal = class_open(
+        access = class_temporal(
+          identifier = x$endpoints,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      )
+    ),
+    hgov = switch(
+      x$pnt,
+      current = class_hgov(
+        access = class_current(
+          identifier = x$identifier,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      ),
+      temporal = class_hgov(
+        access = class_temporal(
+          identifier = x$endpoints,
+          metadata = get_metadata(x),
+          dimensions = get_dimensions(x)
+        )
+      )
     )
   )
 

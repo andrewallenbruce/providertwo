@@ -24,5 +24,6 @@ query(
   state_own  = c("GA", "MD"),
   npi        = npi_ex$k,
   ccn        = "01256",
-  rate       = between(0.45, 0.67))
+  rate       = between(0.45, 0.67),
+  year       = 2014:2025)
 }

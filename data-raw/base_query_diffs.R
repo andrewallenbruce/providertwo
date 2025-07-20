@@ -4,9 +4,7 @@ aka$endpoint$ahqr_psi11
 
 select_alias(the$catalogs$care$end, aka$endpoint$ahqr_psi11)
 
-`%|||%` <- function(x, y) {
-  if (!is.null(x)) y else NULL
-}
+
 care_temporal("quality_payment") |> query_nresults()
 open_temporal("payment_general") |> query_nresults()
 caid_temporal("healthcare_quality") |> query_nresults()

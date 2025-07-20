@@ -4,14 +4,12 @@
 \alias{query_results}
 \title{Return the number of results for a given query}
 \usage{
-query_results(obj, query = NULL, ...)
+query_results(obj, q)
 }
 \arguments{
-\item{obj}{An object of class \verb{<class_endpoint>} or \verb{<class_temporal>}.}
+\item{obj}{A \verb{<class_endpoint>} or \verb{<class_temporal>} object.}
 
-\item{query}{A \verb{<class_query>} object. If \code{NULL} (the default), no query is used.}
-
-\item{...}{Additional arguments.}
+\item{q}{A \verb{<class_query>} object. If \code{NULL} (the default), no query is used.}
 }
 \value{
 A \verb{<list>} with the number of results found, total number of rows, and the URL used for the query.
@@ -20,11 +18,12 @@ A \verb{<list>} with the number of results found, total number of rows, and the 
 Return the number of results for a given query
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 query_results(endpoint("care_dial_end"), query(state = any_of(c("GA", "TX"))))
 
 query_results(
    endpoint("quality_payment"),
    query(year = 2017:2023,
          `practice state or us territory` = any_of(c("GA", "TX"))))
-
+\dontshow{\}) # examplesIf}
 }
