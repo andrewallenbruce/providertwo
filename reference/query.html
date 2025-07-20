@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9370</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9371</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,9 +71,10 @@
 <span class="r-in"><span>  state_own  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  npi        <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span>,</span></span>
 <span class="r-in"><span>  ccn        <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
-<span class="r-in"><span>  rate       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  rate       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  year       <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: language starts_with("Andr")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : language contains("J")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : language any_of(c("CA", "GA", "NY"))</span>
@@ -82,6 +83,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ npi       : language npi_ex$k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : language between(0.45, 0.67)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ format:List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ medicare:List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..$ first_name = starts_with("Andr")                               : chr [1:3] "filter[1][condition][path]=first_name" "filter[1][condition][operator]=STARTS_WITH" "filter[1][condition][value]=Andr"</span>
