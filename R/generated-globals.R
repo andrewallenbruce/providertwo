@@ -97,8 +97,6 @@ utils::globalVariables(c(
   "released",
   # <clog_care>
   "resourcesAPI",
-  # <alias_lookup>
-  "rex",
   # <clog_caid>
   "rowid",
   # <tidy_resources>

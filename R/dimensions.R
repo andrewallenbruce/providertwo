@@ -13,18 +13,18 @@
 #' @autoglobal
 get_dimensions <- function(x, call = caller_env()) {
   switch(
-    x$clg,
+    x$catalog,
     care = switch(
-      x$pnt,
+      x$point,
       current  = dims_cur(x),
       temporal = dims_tmp(x),
-      cli::cli_abort(c("x" = "{.val {x$pnt}} is invalid."), call = call)
+      cli::cli_abort(c("x" = "{.val {x$point}} is invalid."), call = call)
       ),
     caid = dims(x, 8000L),
     prov = dims(x, 1500L),
     open = dims(x, 500L),
     hgov = dims(x, 500L),
-    cli::cli_abort(c("x" = "{.val {x$clg}} is invalid."), call = call)
+    cli::cli_abort(c("x" = "{.val {x$catalog}} is invalid."), call = call)
   )
 }
 

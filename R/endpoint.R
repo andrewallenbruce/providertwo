@@ -1,25 +1,5 @@
 #' @autoglobal
 #' @noRd
-check_alias_results <- function(x, call = caller_env()) {
-  if (is_empty(x$tbl)) {
-    cli::cli_abort(
-      c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches."),
-      call = call)
-  }
-
-  if (nrow(x$tbl) > 1L) {
-    cli::cli_abort(
-      c("x" = "{.field {x$aka}} ({.val {x$rex}}) had {nrow(x$tbl)} matches:",
-        cli::col_yellow(cli::format_bullets_raw(x$tbl$title))
-      ),
-      call = call
-    )
-  }
-
-}
-
-#' @autoglobal
-#' @noRd
 select_alias <- function(x, alias, ...) {
   subset_detect(i = eval(str2lang(x)),
                 j = title,
@@ -40,9 +20,29 @@ c_temp <- function(x) {
   )
 }
 
+#' @autoglobal
+#' @noRd
+check_alias_results <- function(x, call = caller_env()) {
+  if (is_empty(x$tbl)) {
+    cli::cli_abort(
+      c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches."),
+      call = call)
+  }
+
+  if (nrow(x$tbl) > 1L) {
+    cli::cli_abort(
+      c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches:",
+        cli::col_yellow(cli::format_bullets_raw(x$tbl$title))
+      ),
+      call = call
+    )
+  }
+
+}
+
 #' @param x `<chr>` endpoint alias
 #' @returns `<list>` with elements:
-#' @examples
+#' @examplesIf interactive()
 #' alias_lookup("care_dial_end")
 #' alias_lookup("care_dial_tmp")
 #' alias_lookup("managed_mltss")
@@ -56,28 +56,21 @@ alias_lookup <- function(x) {
   check_required(x)
 
   x <- flist(
-    aka = x,
-    pnt = point_type(x),
-    clg = clog_type(x),
-    rex = alias_rex(x),
-    exp = glue("the$clog${clg}${pnt}"),
-    tbl = select_alias(exp, rex)
+    alias   = x,
+    point   = point_type(x),
+    catalog = catalog_type(x),
+    tbl     = select_alias(
+      glue("the$clog${catalog}${point}"),
+      alias_rex(x)
+      )
   )
 
   check_alias_results(x)
 
   list_combine(
-    list_modify(
-      x,
-      list(
-        aka = NULL,
-        tbl = NULL,
-        exp = NULL,
-        rex = NULL
-        )
-      ),
+    list_modify(x, list(tbl = NULL)),
     switch(
-      x$pnt,
+      x$point,
       current = c(x$tbl),
       temporal = c_temp(x$tbl)
       )
@@ -89,21 +82,20 @@ alias_lookup <- function(x) {
 #' @param alias `<chr>` endpoint alias
 #' @returns An S7 `<class_care/caid/prov/open/hgov>` object.
 #' @examples
-#' endpoint("care_dial_end")
-#' endpoint("care_dial_tmp")
-#' endpoint("managed_mltss")
+#' endpoint("dial_facility")
+#' endpoint("man_mltss")
 #' endpoint("hgov_ab_reg_comp")
 #' endpoint("asc_facility")
-#' endpoint("dialysis_by_facility")
+#' endpoint("dial_listing")
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {
   x <- alias_lookup(alias)
 
   switch(
-    x$clg,
+    x$catalog,
     care = switch(
-      x$pnt,
+      x$point,
       current = class_care(
         access = care_current(
           identifier = x$identifier,
@@ -127,7 +119,7 @@ endpoint <- function(alias) {
       )
     ),
     caid = switch(
-      x$pnt,
+      x$point,
       current = class_caid(
         access = class_current(
           identifier = x$identifier,
@@ -144,7 +136,7 @@ endpoint <- function(alias) {
       )
     ),
     open = switch(
-      x$pnt,
+      x$point,
       current = class_open(
         access = class_current(
           identifier = x$identifier,
@@ -161,7 +153,7 @@ endpoint <- function(alias) {
       )
     ),
     hgov = switch(
-      x$pnt,
+      x$point,
       current = class_hgov(
         access = class_current(
           identifier = x$identifier,
@@ -193,7 +185,7 @@ collection <- function(alias) {
 
   check_required(alias)
 
-  x <- collect_rex(alias)
+  x <- rex_collect(alias)
 
   class_collection(
     name    = x$name,
@@ -208,7 +200,7 @@ collection <- function(alias) {
 #' @param call `<env>` Environment from which to call the function.
 #' @returns S7 `<class_group>` object.
 #' @examples
-#' group(c("asc_facility", "care_dial_end"))
+#' group(c("asc_facility", "caid_enter"))
 #' try(group("asc_facility"))
 #' @autoglobal
 #' @export
@@ -224,7 +216,7 @@ group <- function(alias, description = NULL, call = caller_env()) {
   }
 
   class_group(
-    name    = description %||% paste0(alias, collapse = " | "),
+    name    = description %||% paste0("[", paste0(alias, collapse = ", "), "]"),
     members = names_map(alias, endpoint)
   )
 }

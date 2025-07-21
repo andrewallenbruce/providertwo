@@ -5,7 +5,7 @@
 #' @returns A list of available API resources.
 #'
 #' @examplesIf interactive()
-#' endpoint("care_enroll_prov") |> list_resources()
+#' endpoint("enroll_prov") |> list_resources()
 #' endpoint("quality_payment") |> list_resources()
 #' collection("care_in") |> list_resources()
 #' @autoglobal
@@ -35,7 +35,7 @@ method(list_resources, class_group) <- function(obj) {
     map(list_resources)
 }
 
-method(list_resources, class_catalog) <- function(obj) {
+method(list_resources, class_endpoint) <- function(obj) {
   cli::cli_alert_warning(
     paste0(
       "{.fn list_resources} needs ",
@@ -44,13 +44,14 @@ method(list_resources, class_catalog) <- function(obj) {
   invisible(NULL)
 }
 
-method(list_resources, class_endpoint) <- function(obj) {
+method(list_resources, class_care) <- function(obj) {
   prop(obj, "access") |>
     list_resources()
 }
 
 method(list_resources, care_current) <- function(obj) {
-  prop(obj, "resources") |>
+  prop(obj, "metadata") |>
+    _$resources |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     resps_successes() |>

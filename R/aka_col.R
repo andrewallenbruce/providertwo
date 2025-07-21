@@ -1,75 +1,98 @@
 #' @include aka_end.R
 NULL
 
-# ---- caid ----
 #' @autoglobal
 #' @noRd
-col_caid = list(
-  caid_demographics = list(
+lf <- function(aka) {
+  function(x) {
+    grep(
+      pattern = x,
+      x       = names(aka),
+      perl    = TRUE,
+      value   = TRUE
+    )
+  }
+}
+
+#' @autoglobal
+#' @noRd
+look <- list(
+  caid = lf(c(end_caid$current, end_caid$temporal)),
+  prov = lf(end_prov$current),
+  care = lf(c(end_care$current, end_care$temporal)),
+  open = lf(c(end_open$current, end_open$temporal)),
+  hgov = lf(c(end_hgov$current, end_hgov$temporal))
+)
+
+#' @autoglobal
+#' @noRd
+collect_caid = list(
+  caid_demo = list(
     name  = "Medicaid and CHIP Enrollee Demographics",
-    alias = grep("^demo", names(end_caid$current), value = TRUE)),
+    alias = look$caid("^demo")),
   caid_services = list(
     name = "Services Provided to the Medicaid and CHIP Population",
-    alias = grep("^service", names(end_caid$current), value = TRUE)),
+    alias = look$caid("^service")),
   caid_benes = list(
     name = "Beneficiaries Receiving A Service",
-    alias = grep("^benes", names(end_caid$current), value = TRUE)),
+    alias = look$caid("^benes_")),
   caid_finance = list(
     name = "Medicaid Financial Management Data",
-    alias = grep("_fin_", names(end_caid$current), value = TRUE)),
-  caid_nadac_group = list(
+    alias = look$caid("fin_")),
+  caid_nadac = list(
     name = "NADAC (National Average Drug Acquisition Cost)",
-    alias = grep("^nadac", names(c(end_caid$current, end_caid$temporal)), value = TRUE)),
+    alias = look$caid("^nadac_")),
   caid_pkg = list(
     name = "Benefit Package for Medicaid and CHIP Beneficiaries",
-    alias = grep("^benefit", names(end_caid$current), value = TRUE)),
+    alias = grep("^pkg_", names(end_caid$current), value = TRUE)),
   caid_drug = list(
     name = "Medicaid Drug Datasets",
-    alias = grep("^drug", names(end_caid$current), value = TRUE)),
+    alias = grep("^drug_", names(end_caid$current), value = TRUE)),
   caid_dual = list(
     name = "Dual Status Information for Medicaid and CHIP Beneficiaries",
-    alias = grep("^dual_status", names(end_caid$current), value = TRUE)),
+    alias = grep("^dual_", names(end_caid$current), value = TRUE)),
   caid_meg = list(
     name = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
-    alias = grep("^meg", names(end_caid$current), value = TRUE)),
+    alias = grep("^meg_", names(end_caid$current), value = TRUE)),
   caid_cms64 = list(
     name = "Medicaid CMS-64",
-    alias = grep("^cms64", names(end_caid$current), value = TRUE)),
+    alias = grep("^cms64_", names(end_caid$current), value = TRUE)),
   caid_managed = list(
     name = "Managed Care Enrollment",
-    alias = grep("^managed", names(end_caid$current), value = TRUE)),
+    alias = grep("^man_", names(end_caid$current), value = TRUE)),
   caid_unwind = list(
     name = "Medicaid Unwinding Report",
-    alias = grep("^unwind", names(end_caid$current), value = TRUE)))
+    alias = grep("^wind_", names(end_caid$current), value = TRUE)))
 
 # ---- open ----
 #' @autoglobal
 #' @noRd
-col_open = list(
+collect_open = list(
   profile = list(
     name = "Open Payments Profiles",
-    alias = grep("^profile", names(end_open$current), value = TRUE)),
+    alias = look$open("^prof_")
+    ),
   summary = list(
     name = "Open Payments Summaries",
-    alias = grep("^summary", names(end_open$current), value = TRUE)),
-  payment_grouped = list(
+    alias = look$open("^sum_")
+    ),
+  pay_group = list(
     name = "Open Payments by Year (Grouped)",
-    alias = grep("^grouped", names(end_open$temporal), value = TRUE)),
-  payment_detailed = list(
+    alias = look$open("^grp_")
+    ),
+  pay_detail = list(
     name = "Open Payments by Year (Detailed)",
-    alias = grep("^payment", names(end_open$temporal), value = TRUE)))
+    alias = look$open("^pay_")
+    )
+  )
 
 # ---- prov ----
 #' @autoglobal
 #' @noRd
-col_prov = list(
+collect_prov = list(
   prov_cahps_spice = list(
     name = "CAHPS Hospice Survey Data",
-    alias = c(
-      "cahps_hospice_nation",
-      "cahps_hospice_provider",
-      "cahps_hospice_state"
-    )
+    alias = look$prov("^cahps_hospice")
   ),
   prov_cahps_hhc = list(
     name = "Home Health Care Patient Survey Data (HHCAHPS)",
@@ -242,7 +265,7 @@ col_prov = list(
 # ---- prov ----
 #' @autoglobal
 #' @noRd
-col_care = list(
+collect_care = list(
   care_hha = list(
     name = "Home Health Agencies",
     alias = c(
@@ -465,3 +488,24 @@ col_care = list(
     )
   )
 )
+
+#' @autoglobal
+#' @noRd
+rlang::on_load({
+  collection_names <- mph_init(names(c(
+    collect_prov, collect_caid, collect_care, collect_open
+  )))
+  collection_regex <- c(collect_prov, collect_caid, collect_care, collect_open)
+})
+
+#' @autoglobal
+#' @noRd
+rex_collect <- function(x, call = caller_env()) {
+
+  if (is.na(mph_match(x, collection_names))) {
+    cli::cli_abort(
+      c("x" = "{.val {x}} is not a valid collection."),
+      call = call)
+  }
+  collection_regex[mph_match(x, collection_names)] |> unname() |> yank()
+}

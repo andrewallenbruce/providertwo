@@ -63,8 +63,7 @@ care_current <- new_class(
   package = NULL,
   parent = class_endpoint,
   properties = list(
-    identifier = class_character,
-    resources  = class_character
+    identifier = class_character
   )
 )
 

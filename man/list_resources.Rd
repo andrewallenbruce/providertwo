@@ -17,7 +17,7 @@ List resources
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-endpoint("care_enroll_prov") |> list_resources()
+endpoint("enroll_prov") |> list_resources()
 endpoint("quality_payment") |> list_resources()
 collection("care_in") |> list_resources()
 \dontshow{\}) # examplesIf}

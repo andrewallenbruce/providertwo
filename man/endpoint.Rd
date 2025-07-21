@@ -16,10 +16,9 @@ An S7 \verb{<class_care/caid/prov/open/hgov>} object.
 Load an endpoint by alias
 }
 \examples{
-endpoint("care_dial_end")
-endpoint("care_dial_tmp")
-endpoint("managed_mltss")
+endpoint("dial_facility")
+endpoint("man_mltss")
 endpoint("hgov_ab_reg_comp")
 endpoint("asc_facility")
-endpoint("dialysis_by_facility")
+endpoint("dial_listing")
 }

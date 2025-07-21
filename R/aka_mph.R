@@ -51,7 +51,9 @@ alias_rex <- function(x) {
 #' @autoglobal
 #' @noRd
 rlang::on_load({
-  point <- list(current = mph_init(names(
+  point <- list(
+    current = mph_init(
+      names(
     c(
       end_prov$current,
       end_hgov$current,
@@ -59,7 +61,8 @@ rlang::on_load({
       end_care$current,
       end_open$current
     )
-  )), temporal = mph_init(names(
+  )), temporal = mph_init(
+    names(
     c(
       end_hgov$temporal,
       end_caid$temporal,
@@ -133,7 +136,7 @@ is_temporal <- function(x) {
 
 #' @autoglobal
 #' @noRd
-clog_type <- function(x, call = caller_env()) {
+catalog_type <- function(x, call = caller_env()) {
   res <- nif(is_care(x), "care",
              is_caid(x), "caid",
              is_prov(x), "prov",
@@ -148,40 +151,5 @@ clog_type <- function(x, call = caller_env()) {
 point_type <- function(x, call = caller_env()) {
   res <- nif(is_current(x), "current", is_temporal(x), "temporal")
   res %|% cli::cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
-}
-
-# ---- col_nms ----
-#' @autoglobal
-#' @noRd
-rlang::on_load({
-  col_nms <- mph_init(names(c(col_prov, col_caid, col_care, col_open)))
-})
-
-# ---- col_rex ----
-#' @autoglobal
-#' @noRd
-rlang::on_load({
-  col_rex <- c(col_prov, col_caid, col_care, col_open)
-})
-
-#' @autoglobal
-#' @noRd
-is_collection <- function(x) {
-  !is.na(mph_match(x, col_nms))
-}
-
-#' @autoglobal
-#' @noRd
-collect_rex <- function(x, call = caller_env()) {
-
-  # !is_collection(x) %T% cli::cli_abort(c("x" = "{.val {x}} is not a valid collection."), call = call)
-
-  if (!is_collection(x)) {
-    cli::cli_abort(
-      c("x" = "{.val {x}} is not a valid collection."),
-      call = call)
-  }
-
-  col_rex[mph_match(x, col_nms)] |> unname() |> yank()
 }
 

@@ -21,6 +21,6 @@ S7 \verb{<class_group>} object.
 Load a group of endpoints by alias
 }
 \examples{
-group(c("asc_facility", "care_dial_end"))
+group(c("asc_facility", "caid_enter"))
 try(group("asc_facility"))
 }
