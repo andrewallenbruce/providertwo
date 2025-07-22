@@ -20,5 +20,6 @@ List resources
 endpoint("enroll_prov") |> list_resources()
 endpoint("quality_payment") |> list_resources()
 collection("care_in") |> list_resources()
+group(c("asc_facility", "caid_enter")) |> list_resources()
 \dontshow{\}) # examplesIf}
 }

@@ -13,7 +13,7 @@ options(fastplyr.inform = FALSE)
 }
 
 `%|||%` <- function(x, y) {
-  if (!is_missing(x)) y else NULL
+  if (!is.null(x)) y else NULL
 }
 
 #' @autoglobal

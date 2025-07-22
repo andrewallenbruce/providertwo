@@ -8,6 +8,7 @@
 #' endpoint("enroll_prov") |> list_resources()
 #' endpoint("quality_payment") |> list_resources()
 #' collection("care_in") |> list_resources()
+#' group(c("asc_facility", "caid_enter")) |> list_resources()
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "obj", function(obj) {
@@ -34,6 +35,16 @@ method(list_resources, class_group) <- function(obj) {
   prop(obj, "members") |>
     map(list_resources)
 }
+
+method(list_resources, class_catalog) <- function(obj) {
+  cli::cli_alert_warning(
+    paste0(
+      "{.fn list_resources} needs ",
+      "a {.cls class_care} ",
+      "object, not {.obj_type_friendly {obj}}."))
+  invisible(NULL)
+}
+
 
 method(list_resources, class_endpoint) <- function(obj) {
   cli::cli_alert_warning(

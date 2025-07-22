@@ -4,7 +4,7 @@
 \alias{query_results}
 \title{Return the number of results for a given query}
 \usage{
-query_results(obj, q)
+query_results(obj, q = NULL)
 }
 \arguments{
 \item{obj}{A \verb{<class_endpoint>} or \verb{<class_temporal>} object.}
@@ -19,7 +19,7 @@ Return the number of results for a given query
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-query_results(endpoint("care_dial_end"), query(state = any_of(c("GA", "TX"))))
+query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
 
 query_results(
    endpoint("quality_payment"),
