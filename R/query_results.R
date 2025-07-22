@@ -1,7 +1,7 @@
 #' Return the number of results for a given query
 #'
 #' @param obj A `<class_endpoint>` or `<class_temporal>` object.
-#' @param q   A `<class_query>` object. If `NULL` (the default), no query is used.
+#' @param qry A `<class_query>` object. If `NULL` (the default), no query is used.
 #' @returns   A `<list>` with the number of results found, total number of rows, and the URL used for the query.
 #' @examplesIf interactive()
 #' query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
@@ -13,51 +13,45 @@
 #'
 #' @autoglobal
 #' @export
-query_results <- new_generic("query_nresults", "obj", function(obj, q = NULL) {
+query_results <- new_generic("query_nresults", "obj", function(obj, qry = NULL) {
   S7_dispatch()
 })
 
-method(query_results, class_catalog) <- function(obj, q = NULL) {
+method(query_results, class_catalog) <- function(obj, qry = NULL) {
   prop(obj, "access") |>
-    query_results(q = q)
+    query_results(qry = qry)
 }
 
-method(query_results, class_endpoint) <- function(obj, q = NULL) {
-  prop(obj, "access") |>
-    query_results(q = q)
-}
+method(query_results, class_current) <- function(obj, qry = NULL) {
 
-method(query_results, class_temporal) <- function(obj, q = NULL) {
+  i <- prop(obj, "identifier")
 
-  prop(obj, "access") |>
-    query_results(query = q %|||% q)
-}
+  if (!is.null(qry)) i <- paste0(i, "&", qry@string$default)
 
-method(query_results, class_prov) <- function(obj, q = NULL) {
-
-  # q <- prop(obj, "identifier") |> url_modify(query = q %|||% q@string$default)
-  q <- prop(obj, "identifier")
-  n <- request(q) |>
+  n <- request(i) |>
     perform_simple() |>
     _$count
 
   cli::cli_text(cli::col_silver(fmt_int(n)))
 
-  ob
-
   invisible(
     list(
-      found = n$found_rows,
-      total = n$total_rows,
-      url   = utils::URLdecode(q))
+      found = obj@dimensions@rows,
+      total = n,
+      url   = utils::URLdecode(i))
   )
 }
 
-method(query_results, care_current) <- function(obj, q = NULL) {
+method(query_results, class_temporal) <- function(obj, qry = NULL) {
+  prop(obj, "access") |>
+    query_results(qry = qry)
+}
 
-  q <- prop(obj, "identifier")
+method(query_results, care_current) <- function(obj, qry = NULL) {
 
-  # q <- prop(obj, "identifier") |> url_modify(query = q %|||% q@string$medicare)
+  i <- prop(obj, "identifier")
+
+  if (!is.null(qry)) i <- paste0(i, "&", qry@string$medicare)
 
   n <- request(q) |>
     req_url_path_append("stats") |>
@@ -70,33 +64,34 @@ method(query_results, care_current) <- function(obj, q = NULL) {
       url   = utils::URLdecode(q))
 }
 
-method(query_results, care_temporal) <- function(obj, q = NULL) {
+method(query_results, care_temporal) <- function(obj, qry = NULL) {
 
-  x <- prop(obj, "identifier")
+  i <- prop(obj, "identifier")
 
-  if (!is.null(q) && "year" %in% names(q@input)) {
+  if (!is.null(qry) && "year" %in% names(qry@input)) {
 
-    x <- sbt(x, year %iin% q@input$year)
+    i <- sbt(i, year %in% qry@input$year)
 
-    if (is_empty(x)) {
+    if (is_empty(i)) {
       cli::cli_abort(
-        c("x" = "{.field year(s)} {.val {q@input$year}} had {nrow(x)} matches."),
+        c("x" = "{.field year(s)} {.val {qry@input$year}} had {nrow(i)} matches."),
         call = call)
     }
   }
 
-  # q <- get_elem(x, "identifier") |>
-  #   map_chr(function(x)
-  #     url_modify(x, query = q %|||% q@string$medicare))
+  y <- get_elem(i, "year")
+  i <- get_elem(i, "identifier")
 
-  q <- get_elem(x, "identifier")
+  if (!is.null(qry)) {
+    i <- map_chr(i, function(x) paste0(i, "&", qry@string$medicare))
+    }
 
-  n <- map(q, function(x) {
+  n <- map(i, function(x) {
     request(x) |>
       req_url_path_append("stats") |>
       perform_simple()
     }) |>
-    set_names(x$year)
+    set_names(y)
 
   cli::cli_bullets(
     paste0(
@@ -112,7 +107,7 @@ method(query_results, care_temporal) <- function(obj, q = NULL) {
         year  = as.integer(names(n)),
         found = as.integer(get_elem(n, "found_rows")),
         total = as.integer(get_elem(n, "total_rows")),
-        url = utils::URLdecode(q)
+        url = utils::URLdecode(i)
     )
   )
 

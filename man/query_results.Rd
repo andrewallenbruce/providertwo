@@ -4,12 +4,12 @@
 \alias{query_results}
 \title{Return the number of results for a given query}
 \usage{
-query_results(obj, q = NULL)
+query_results(obj, qry = NULL)
 }
 \arguments{
 \item{obj}{A \verb{<class_endpoint>} or \verb{<class_temporal>} object.}
 
-\item{q}{A \verb{<class_query>} object. If \code{NULL} (the default), no query is used.}
+\item{qry}{A \verb{<class_query>} object. If \code{NULL} (the default), no query is used.}
 }
 \value{
 A \verb{<list>} with the number of results found, total number of rows, and the URL used for the query.
