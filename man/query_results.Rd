@@ -20,6 +20,7 @@ Return the number of results for a given query
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
+query_results(endpoint("lab_fee_sched"))
 
 query_results(
    endpoint("quality_payment"),

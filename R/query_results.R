@@ -5,6 +5,7 @@
 #' @returns   A `<list>` with the number of results found, total number of rows, and the URL used for the query.
 #' @examplesIf interactive()
 #' query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
+#' query_results(endpoint("lab_fee_sched"))
 #'
 #' query_results(
 #'    endpoint("quality_payment"),
@@ -43,8 +44,48 @@ method(query_results, class_current) <- function(obj, qry = NULL) {
 }
 
 method(query_results, class_temporal) <- function(obj, qry = NULL) {
-  prop(obj, "access") |>
-    query_results(qry = qry)
+
+  i <- prop(obj, "identifier")
+
+  if (!is.null(qry) && "year" %in% names(qry@input)) {
+
+    i <- sbt(i, year %in% qry@input$year)
+
+    if (is_empty(i)) {
+      cli::cli_abort(
+        c("x" = "{.field year(s)} {.val {qry@input$year}} had {nrow(i)} matches."),
+        call = call)
+    }
+  }
+
+  y <- get_elem(i, "year")
+  i <- get_elem(i, "identifier")
+
+  if (!is.null(qry)) i <- paste0(i, "&", qry@string$medicare)
+
+  n <- map(i, function(x) {
+    request(x) |>
+      perform_simple() |>
+      _$count
+  }) |>
+    set_names(y)
+
+  cli::cli_bullets(
+    paste0(
+      cli::col_yellow(names(n)), " : ",
+      cli::col_silver(map_chr(
+        unlist(n, use.names = FALSE), fmt_int)
+      )
+    )
+  )
+
+  invisible(
+    fastplyr::new_tbl(
+      year  = as.integer(names(n)),
+      found = as.integer(n),
+      url = utils::URLdecode(i)
+    )
+  )
 }
 
 method(query_results, care_current) <- function(obj, qry = NULL) {
@@ -53,7 +94,7 @@ method(query_results, care_current) <- function(obj, qry = NULL) {
 
   if (!is.null(qry)) i <- paste0(i, "&", qry@string$medicare)
 
-  n <- request(q) |>
+  n <- request(i) |>
     req_url_path_append("stats") |>
     perform_simple() |>
     _$data
@@ -61,7 +102,7 @@ method(query_results, care_current) <- function(obj, qry = NULL) {
     list(
       found = n$found_rows,
       total = n$total_rows,
-      url   = utils::URLdecode(q))
+      url   = utils::URLdecode(i))
 }
 
 method(query_results, care_temporal) <- function(obj, qry = NULL) {
@@ -82,9 +123,7 @@ method(query_results, care_temporal) <- function(obj, qry = NULL) {
   y <- get_elem(i, "year")
   i <- get_elem(i, "identifier")
 
-  if (!is.null(qry)) {
-    i <- map_chr(i, function(x) paste0(i, "&", qry@string$medicare))
-    }
+  if (!is.null(qry)) i <- paste0(i, "&", qry@string$medicare)
 
   n <- map(i, function(x) {
     request(x) |>
@@ -110,7 +149,6 @@ method(query_results, care_temporal) <- function(obj, qry = NULL) {
         url = utils::URLdecode(i)
     )
   )
-
 }
 
 # cli::cli_text(
