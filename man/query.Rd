@@ -16,6 +16,7 @@ S7 \verb{<class_query>} object.
 Create a Query Object
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 query(
   first_name = starts_with("Andr"),
   last_name  = contains("J"),
@@ -26,4 +27,5 @@ query(
   ccn        = "01256",
   rate       = between(0.45, 0.67),
   year       = 2014:2025)
+\dontshow{\}) # examplesIf}
 }

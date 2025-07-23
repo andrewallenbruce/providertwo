@@ -16,5 +16,5 @@ An S7 \verb{<class_collection>} object.
 Load a collection of endpoints by alias
 }
 \examples{
-collection("caid_unwind")
+collection("unwind")
 }

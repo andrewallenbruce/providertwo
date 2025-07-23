@@ -149,7 +149,7 @@ end_caid <- list(
     aca_ful = "ACA Federal Upper Limits",
     caid_enroll_month = "Monthly Enrollment - Test",
     caid_enroll_adult = "Medicaid Enrollment - New Adult Group",
-    caid_enter = "Medicaid Enterprise System Datatable",
+    enterprise = "Medicaid Enterprise System Datatable",
     caid_pi = "PI dataset",
     caid_tiles = "category_tiles",
     mlr_summary = "MLR Summary Reports",
@@ -235,12 +235,12 @@ end_caid <- list(
     wind_sbm = "State-based Marketplace \\(SBM\\) Medicaid Unwinding Report"
   ),
   temporal = list(
-    nadac_tmp = "^NADAC$",
-    man_tmp = "^Managed Care Programs by State$",
-    drug_week = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program$",
+    nadac_tmp   = "^NADAC$",
+    man_tmp     = "^Managed Care Programs by State$",
+    drug_week   = "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program$",
     blood_treat = "^Pricing Comparison for Blood Disorder Treatments$",
-    drug_state = "^State Drug Utilization Data$",
-    hc_quality = "^Child and Adult Health Care Quality Measures$"
+    drug_state  = "^State Drug Utilization Data$",
+    hc_quality  = "^Child and Adult Health Care Quality Measures$"
   )
 )
 
@@ -249,27 +249,27 @@ end_caid <- list(
 #' @noRd
 end_open <- list(
   current = list(
-    prof_covered = "^Covered Recipient Profile Supplement$",
-    prof_physician = "^Physician \\(Distinct\\) Profile Information$",
+    prof_covered     = "^Covered Recipient Profile Supplement$",
+    prof_physician   = "^Physician \\(Distinct\\) Profile Information$",
     prof_information = "^Profile Information$",
-    prof_mapping = "^Provider Profile ID Mapping Table$",
-    prof_entity = "^Reporting Entity Profile Information$",
-    prof_teaching = "^Teaching Hospital Profile Information$",
-    sum_dashboard = "^Summary Dashboard",
-    sum_state = "^State Level Payment Total and Averages for all Years$",
-    sum_nature = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
-    sum_national = "^National Level Payment Total and Averages for all Years$",
-    sum_specialty = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
+    prof_mapping     = "^Provider Profile ID Mapping Table$",
+    prof_entity      = "^Reporting Entity Profile Information$",
+    prof_teaching    = "^Teaching Hospital Profile Information$",
+    sum_dashboard    = "^Summary Dashboard",
+    sum_state        = "^State Level Payment Total and Averages for all Years$",
+    sum_nature       = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
+    sum_national     = "^National Level Payment Total and Averages for all Years$",
+    sum_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
   ),
   temporal = list(
-    pay_general = "^General Payment Data$",
-    pay_ownership = "^Ownership Payment Data$",
-    pay_research = "^Research Payment Data$",
-    grp_cover_nature = "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    grp_cover_entity = "^Payments Grouped by Covered Recipient and Reporting Entities$",
+    pay_general       = "^General Payment Data$",
+    pay_ownership     = "^Ownership Payment Data$",
+    pay_research      = "^Research Payment Data$",
+    grp_cover_nature  = "^Payments Grouped by Covered Recipient and Nature of Payments$",
+    grp_cover_entity  = "^Payments Grouped by Covered Recipient and Reporting Entities$",
     grp_entity_nature = "^Payments Grouped by Reporting Entities and Nature of Payments$",
-    grp_all = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
-    grp_state_nature = "^State Payment Totals Grouped by Nature of Payment for all Years$"
+    grp_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
+    grp_state_nature  = "^State Payment Totals Grouped by Nature of Payment for all Years$"
   )
 )
 

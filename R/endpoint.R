@@ -178,7 +178,7 @@ endpoint <- function(alias) {
 #' @param alias `<chr>` collection alias
 #' @returns An S7 `<class_collection>` object.
 #' @examples
-#' collection("caid_unwind")
+#' collection("unwind")
 #' @autoglobal
 #' @export
 collection <- function(alias) {
@@ -200,7 +200,7 @@ collection <- function(alias) {
 #' @param call `<env>` Environment from which to call the function.
 #' @returns S7 `<class_group>` object.
 #' @examples
-#' group(c("asc_facility", "caid_enter"))
+#' group(c("asc_facility", "enterprise"))
 #' try(group("asc_facility"))
 #' @autoglobal
 #' @export

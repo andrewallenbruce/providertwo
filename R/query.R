@@ -8,15 +8,15 @@ flatten_query <- function(x) {
 
 #' @noRd
 #' @autoglobal
-class_query <- new_class(
+class_query2 <- new_class(
   name       = "class_query",
   package    = NULL,
   properties = list(
     input    = new_property(class_list,
-      setter = function(self, value) {
-        self@input <- value
-        self
-      }
+                            setter = function(self, value) {
+                              self@input <- value
+                              self
+                            }
     ),
     format   = class_list,
     string   = new_property(
@@ -28,6 +28,22 @@ class_query <- new_class(
   )
 )
 
+#' @noRd
+#' @autoglobal
+class_query <- new_class(
+  name       = "class_query",
+  package    = NULL,
+  properties = list(
+    input    = new_property(class_list,
+      setter = function(self, value) {
+        self@input <- value
+        self
+      }
+    ),
+    params = class_list
+  )
+)
+
 #' Create a Query Object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
@@ -35,6 +51,33 @@ class_query <- new_class(
 #' @returns S7 `<class_query>` object.
 #'
 #' @examples
+#' new_query(
+#'   first_name  = starts_with("Andr"),
+#'   middle_name = NULL,
+#'   last_name   = contains("J"),
+#'   state       = any_of(c("CA", "GA", "NY")),
+#'   city        = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   state_own   = c("GA", "MD"),
+#'   npi         = npi_ex$k,
+#'   ccn         = "01256",
+#'   rate        = between(0.45, 0.67),
+#'   year        = 2014:2025)
+#' @autoglobal
+#' @export
+new_query <- function(...) {
+  class_query(
+    input  = compact(enexprs(...)),
+    params = compact(dots_list(..., .homonyms = "error"))
+  )
+}
+
+#' Create a Query Object
+#'
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
+#'
+#' @returns S7 `<class_query>` object.
+#'
+#' @examplesIf interactive()
 #' query(
 #'   first_name = starts_with("Andr"),
 #'   last_name  = contains("J"),
@@ -48,27 +91,27 @@ class_query <- new_class(
 #' @autoglobal
 #' @export
 query <- function(...) {
-  a <- compact(dots_list(..., .homonyms = "error"))
-  i <- compact(enexprs(...))
+  params <- compact(dots_list(..., .homonyms = "error"))
+  inputs <- compact(enexprs(...))
 
-  if ("year" %in% names(a)) {
+  if ("year" %in% names(params)) {
 
-    idx <- which_(names(a) != "year")
-    a   <- a[idx]
-    n   <- paste0(just_right(names(i)[idx]), " = ", i[idx])
+    idx     <- which_(names(params) != "year")
+    params  <- params[idx]
+    par_nms <- paste0(just_right(names(inputs)[idx]), " = ", inputs[idx])
 
-    idx <- which_(names(i) == "year")
-    yank(i[idx]) <- eval(yank(i[idx]))
+    idx     <- which_(names(inputs) == "year")
+    yank(inputs[idx]) <- eval(yank(inputs[idx]))
 
   } else {
-    n <- paste0(just_right(names(i)), " = ", i)
+    par_nms <- paste0(just_right(names(inputs)), " = ", inputs)
   }
 
-  class_query(
-    input  = i,
+  class_query2(
+    input  = inputs,
     format = list(
-      medicare = set_names(query_care(a), n),
-      default  = set_names(query_default(a), n)
+      medicare = set_names(query_care(params), par_nms),
+      default  = set_names(query_default(params), par_nms)
       )
     )
 }
@@ -107,7 +150,7 @@ query_default <- function(args) {
       paste0("conditions[<<i>>][property]=", name),
       paste0(
         "conditions[<<i>>][operator]=",
-        `if`(is_modifier(x), tolower(x@operator), "=")
+        `if`(is_modifier(x), tolower(gsub("_", "+", x@operator, perl = TRUE)), "=")
       ),
       `if`(
         length(v) > 1,

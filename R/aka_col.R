@@ -27,211 +27,153 @@ look <- list(
 #' @autoglobal
 #' @noRd
 collect_caid = list(
-  caid_demo = list(
+  demos = list(
     name  = "Medicaid and CHIP Enrollee Demographics",
     alias = look$caid("^demo")),
-  caid_services = list(
-    name = "Services Provided to the Medicaid and CHIP Population",
+  services = list(
+    name  = "Services Provided to the Medicaid and CHIP Population",
     alias = look$caid("^service")),
-  caid_benes = list(
-    name = "Beneficiaries Receiving A Service",
+  benes = list(
+    name  = "Beneficiaries Receiving A Service",
     alias = look$caid("^benes_")),
-  caid_finance = list(
-    name = "Medicaid Financial Management Data",
+  finance = list(
+    name  = "Medicaid Financial Management Data",
     alias = look$caid("fin_")),
-  caid_nadac = list(
-    name = "NADAC (National Average Drug Acquisition Cost)",
+  nadac = list(
+    name  = "NADAC (National Average Drug Acquisition Cost)",
     alias = look$caid("^nadac_")),
-  caid_pkg = list(
-    name = "Benefit Package for Medicaid and CHIP Beneficiaries",
-    alias = grep("^pkg_", names(end_caid$current), value = TRUE)),
-  caid_drug = list(
-    name = "Medicaid Drug Datasets",
-    alias = grep("^drug_", names(end_caid$current), value = TRUE)),
-  caid_dual = list(
-    name = "Dual Status Information for Medicaid and CHIP Beneficiaries",
-    alias = grep("^dual_", names(end_caid$current), value = TRUE)),
-  caid_meg = list(
-    name = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
-    alias = grep("^meg_", names(end_caid$current), value = TRUE)),
-  caid_cms64 = list(
-    name = "Medicaid CMS-64",
-    alias = grep("^cms64_", names(end_caid$current), value = TRUE)),
-  caid_managed = list(
-    name = "Managed Care Enrollment",
-    alias = grep("^man_", names(end_caid$current), value = TRUE)),
-  caid_unwind = list(
-    name = "Medicaid Unwinding Report",
-    alias = grep("^wind_", names(end_caid$current), value = TRUE)))
+  pkg = list(
+    name  = "Benefit Package for Medicaid and CHIP Beneficiaries",
+    alias = look$caid("^pkg_")),
+  drug = list(
+    name  = "Medicaid Drug Datasets",
+    alias = look$caid("^drug_")),
+  dual = list(
+    name  = "Dual Status Information for Medicaid and CHIP Beneficiaries",
+    alias = look$caid("^dual_")),
+  meg = list(
+    name  = "Major Eligibility Group Information for Medicaid and CHIP Beneficiaries",
+    alias = look$caid("^meg_")),
+  cms64 = list(
+    name  = "Medicaid CMS-64",
+    alias = look$caid("^cms64_")),
+  managed = list(
+    name  = "Managed Care Enrollment",
+    alias = look$caid("^man_")),
+  unwind = list(
+    name  = "Medicaid Unwinding Report",
+    alias = look$caid("^wind_")))
 
-# ---- open ----
 #' @autoglobal
 #' @noRd
 collect_open = list(
   profile = list(
-    name = "Open Payments Profiles",
-    alias = look$open("^prof_")
-    ),
+    name  = "Open Payments Profiles",
+    alias = look$open("^prof_")),
   summary = list(
-    name = "Open Payments Summaries",
-    alias = look$open("^sum_")
-    ),
+    name  = "Open Payments Summaries",
+    alias = look$open("^sum_")),
   pay_group = list(
-    name = "Open Payments by Year (Grouped)",
-    alias = look$open("^grp_")
-    ),
+    name  = "Open Payments by Year (Grouped)",
+    alias = look$open("^grp_")),
   pay_detail = list(
-    name = "Open Payments by Year (Detailed)",
-    alias = look$open("^pay_")
-    )
-  )
+    name  = "Open Payments by Year (Detailed)",
+    alias = look$open("^pay_")))
 
-# ---- prov ----
 #' @autoglobal
 #' @noRd
 collect_prov = list(
-  prov_cahps_spice = list(
-    name = "CAHPS Hospice Survey Data",
-    alias = look$prov("^cahps_hospice")
-  ),
-  prov_cahps_hhc = list(
-    name = "Home Health Care Patient Survey Data (HHCAHPS)",
-    alias = c(
-      "cahps_hhc_patient",
-      "cahps_hhc_measure",
-      "cahps_hhc_national",
-      "cahps_hhc_state"
-    )
-  ),
-  prov_cahps_ich = list(
-    name = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey",
-    alias = c(
-      "cahps_ich_esrd",
-      "cahps_ich_facility",
-      "cahps_ich_national",
-      "cahps_ich_state"
-    )
-  ),
-  prov_cahps_oas = list(
-    name = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey",
-    alias = c(
-      "cahps_oas_footnotes",
-      "cahps_oas_asc_facility",
-      "cahps_oas_asc_national",
-      "cahps_oas_asc_state",
-      "cahps_oas_hosp_facility",
-      "cahps_oas_hosp_national",
-      "cahps_oas_hosp_state"
-    )
-  ),
-  prov_mips = list(
-    name = "PY 2022 MIPS Public Reporting",
-    alias = grep("^mips", names(end_prov$current), value = TRUE)),
-  prov_pdc = list(
-    name = "Provider Data Catalog",
-    alias = grep("^pdc", names(end_prov$current), value = TRUE)),
-  prov_ltch = list(
-    name = "Long-Term Care Hospitals",
-    alias = grep("^ltch", names(end_prov$current), value = TRUE)),
-  prov_irf = list(
-    name = "Inpatient Rehabilitation Facilities",
-    alias = grep("^irf", names(end_prov$current), value = TRUE)),
-  prov_hospice = list(
-    name = "Hospices",
-    alias = c(
-      "hospice_general",
-      "hospice_provider",
-      "hospice_state",
-      "hospice_zip",
-      "hospice_national"
-    )
-  ),
-  prov_hhc_vbp = list(
-    name = "Expanded Home Health Value-Based Purchasing (HHVBP) Model",
-    alias = grep("^hhvbp", names(end_prov$current), value = TRUE)),
-  prov_home_health = list(
-    name = "Home Health Care Agencies",
-    alias = grep("^hhc", names(end_prov$current), value = TRUE)),
-  prov_snf_vbp = list(
-    name = "FY 2025 SNF VBP",
-    alias = grep("^snf_vbp", names(end_prov$current), value = TRUE)),
-  prov_snf_quality = list(
-    name = "SNF Quality Measures",
-    alias = grep("^snf_quality", names(end_prov$current), value = TRUE)),
-  prov_nursing = list(
+  cahps_spice = list(
+    name  = "CAHPS Hospice Survey Data",
+    alias = look$prov("^cahps_spice_")),
+  cahps_hhc = list(
+    name  = "Home Health Care Patient Survey Data (HHCAHPS)",
+    alias = look$prov("^cahps_hhc_")),
+  cahps_ich = list(
+    name  = "In-Center Hemodialysis Consumer Assessment Of Healthcare Providers And Services Systems (ICH CAHPS) Survey",
+    alias = look$prov("^cahps_ich_")),
+  oas_cahps = list(
+    name  = "Outpatient and Ambulatory Surgery Consumer Assessment of Healthcare Providers and Systems (OAS CAHPS) Survey",
+    alias = look$prov("^oas_cahps_")),
+  mips = list(
+    name  = "PY 2022 MIPS Public Reporting",
+    alias = look$prov("^mips_")),
+  pdc = list(
+    name  = "Provider Data Catalog",
+    alias = look$prov("^pdc_")),
+  ltch = list(
+    name  = "Long-Term Care Hospitals",
+    alias = look$prov("^ltch_")),
+  irf = list(
+    name  = "Inpatient Rehabilitation Facilities",
+    alias = look$prov("^irf_")),
+  spice = list(
+    name  = "Hospices",
+    alias = look$prov("^spice_")),
+  hhvbp = list(
+    name  = "Expanded Home Health Value-Based Purchasing (HHVBP) Model",
+    alias = look$prov("^hhvbp_")),
+  home_health = list(
+    name  = "Home Health Care Agencies",
+    alias = look$prov("^hhc_")),
+  snf_vbp = list(
+    name  = "FY 2025 SNF VBP",
+    alias = look$prov("^snf_vbp_")),
+  snf_qrp = list(
+    name  = "SNF Quality Measures",
+    alias = look$prov("^snf_qrp_")),
+  nh = list(
     name = "Nursing Homes",
-    alias = c(
-      "nursing_ownership",
-      "nursing_penalties",
-      "nursing_provider",
-      "nursing_citation",
-      "nursing_fire",
-      "nursing_deficiencies",
-      "nursing_inspection",
-      "nursing_quality_mds",
-      "nursing_quality_claims",
-      "nursing_state_avg",
-      "nursing_state_cut",
-      "nursing_interval"
-    )
-  ),
-  prov_complication = list(
-    name = "Complications and Deaths",
-    alias = c(
-      "complication_hospital",
-      "complication_state",
-      "complication_national"
-    )
-  ),
-  prov_complication_pch = list(
-    name = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital",
-    alias = grep("^complication_pch", names(end_prov$current), value = TRUE)),
-  prov_asc_quality = list(
-    name = "Ambulatory Surgical Center Quality Measures",
+    alias = look$prov("^nh_")),
+  comp = list(
+    name  = "Complications and Deaths",
+    alias = look$prov("^comp_")),
+  pch_comp = list(
+    name  = "Complications and Unplanned Hospital Visits: PPS-Exempt Cancer Hospital",
+    alias = look$prov("^pch_comp_")),
+  asc = list(
+    name  = "Ambulatory Surgical Center Quality Measures",
     alias = grep("^asc", names(end_prov$current), value = TRUE)),
-  prov_equity = list(
-    name = "Health Equity",
-    alias = grep("^he_", names(end_prov$current), value = TRUE)),
-  prov_hai = list(
-    name = "Healthcare Associated Infections",
-    alias = grep("^hai", names(end_prov$current), value = TRUE)),
-  prov_dialysis = list(
-    name = "Dialysis Facilities",
-    alias = grep("^dialysis", names(end_prov$current), value = TRUE)),
-  prov_esrd = list(
-    name = "ESRD QIP",
-    alias = grep("^esrd", names(end_prov$current), value = TRUE)),
-  prov_hvbp = list(
-    name = "Hospital Value-Based Purchasing (HVBP)",
-    alias = grep("^hvbp", names(end_prov$current), value = TRUE)),
-  prov_ipf = list(
-    name = "Inpatient Psychiatric Facility Quality Measure Data",
-    alias = grep("^ipf", names(end_prov$current), value = TRUE)),
-  prov_mspb = list(
-    name = "Medicare Spending Per Beneficiary",
-    alias = grep("^mspb", names(end_prov$current), value = TRUE)),
-  prov_out_img = list(
-    name = "Outpatient Imaging Efficiency",
-    alias = grep("^out_img", names(end_prov$current), value = TRUE)),
-  prov_pch_pall = list(
-    name = "Palliative Care: PPS-Exempt Cancer Hospital",
-    alias = grep("^pch_pall", names(end_prov$current), value = TRUE)),
-  prov_pch_hcahps = list(
-    name = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital",
-    alias = grep("^hcahps_pch", names(end_prov$current), value = TRUE)),
-  prov_hcahps = list(
-    name = "Patient Survey (HCAHPS)",
-    alias = c("hcahps_hospital", "hcahps_national", "hcahps_state")
-  ),
-  pro_timely = list(
-    name = "Timely and Effective Care",
-    alias = c("timely_hospital", "timely_national", "timely_state")
-  ),
-  prov_unplan = list(
-    name = "Unplanned Hospital Visits",
-    alias = c("unplan_hospital", "unplan_national", "unplan_state")
-  ),
-  prov_vha = list(
+  equity = list(
+    name  = "Health Equity",
+    alias = look$prov("^he_")),
+  hai = list(
+    name  = "Healthcare Associated Infections",
+    alias = look$prov("^hai_")),
+  dialysis = list(
+    name  = "Dialysis Facilities",
+    alias = look$prov("^dial_")),
+  esrd = list(
+    name  = "ESRD QIP",
+    alias = look$prov("^esrd_")),
+  hvbp = list(
+    name  = "Hospital Value-Based Purchasing (HVBP)",
+    alias = look$prov("^hvbp_")),
+  ipf = list(
+    name  = "Inpatient Psychiatric Facility Quality Measure Data",
+    alias = look$prov("^ipf_")),
+  mspb = list(
+    name  = "Medicare Spending Per Beneficiary",
+    alias = look$prov("^mspb_")),
+  imaging = list(
+    name  = "Outpatient Imaging Efficiency",
+    alias = look$prov("^out_img_")),
+  pch_pall = list(
+    name  = "Palliative Care: PPS-Exempt Cancer Hospital",
+    alias = look$prov("^pch_pall_")),
+  pch_hcahps = list(
+    name  = "Patient Survey (PCH HCAHPS) PPS-Exempt Cancer Hospital",
+    alias = look$prov("^pch_hcahps_")),
+  hcahps = list(
+    name  = "Patient Survey (HCAHPS)",
+    alias = look$prov("^hcahps_")),
+  timely = list(
+    name  = "Timely and Effective Care",
+    alias = look$prov("^timely_")),
+  visit = list(
+    name  = "Unplanned Hospital Visits",
+    alias = look$prov("^visit_")),
+  va = list(
     name = "Veterans Health Administration",
     alias = grep("^va_", names(end_prov$current), value = TRUE)
   ),
