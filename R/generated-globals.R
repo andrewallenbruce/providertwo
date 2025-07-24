@@ -123,7 +123,7 @@ utils::globalVariables(c(
   # <select_alias>
   "title",
   # <clog_caid>
-  "title2",
+  "title_y",
   # <clog_care>
   # <clog_open>
   # <clog_caid>

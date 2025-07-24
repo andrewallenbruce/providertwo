@@ -17,16 +17,12 @@ NULL
 
 #' @noRd
 #' @autoglobal
-class_modifier <- new_class(
+class_modifier <- S7::new_class(
   name       = "class_modifier",
   package    = NULL,
   properties = list(
-    operator = new_property(class_character, default = "="),
-    value    = class_character | class_numeric #,
-    # allowed  = new_property(
-    #   class_character,
-    #   default = c("caid", "prov", "open", "hgov", "care")
-    # )
+    operator = S7::new_property(S7::class_character, default = "="),
+    value    = S7::class_character | S7::class_numeric
   )
 )
 
@@ -39,7 +35,7 @@ is_modifier <- function(x) {
 #' @autoglobal
 #' @noRd
 are_modifiers <- function(x) {
-  map_lgl(x, is_modifier)
+  purrr::map_lgl(x, is_modifier)
 }
 
 #' @autoglobal
@@ -54,7 +50,7 @@ any_modifiers <- function(x) {
 #' equals(1000, negate = TRUE)
 #' @autoglobal
 #' @export
-equals <- new_class(
+equals <- S7::new_class(
   name        = "equals",
   package     = NULL,
   parent      = class_modifier,
@@ -62,7 +58,7 @@ equals <- new_class(
 
     check_bool(negate)
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = ifelse(!negate, "=", "<>"),
       value    = x)
@@ -75,7 +71,7 @@ equals <- new_class(
 #' greater_than(0.125, or_equal = TRUE)
 #' @autoglobal
 #' @export
-greater_than <- new_class(
+greater_than <- S7::new_class(
   name        = "greater_than",
   package     = NULL,
   parent      = class_modifier,
@@ -84,7 +80,7 @@ greater_than <- new_class(
     check_number_decimal(x)
     check_bool(or_equal)
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = ifelse(!or_equal, ">", ">="),
       value    = x)
@@ -97,7 +93,7 @@ greater_than <- new_class(
 #' less_than(0.125, or_equal = TRUE)
 #' @autoglobal
 #' @export
-less_than <- new_class(
+less_than <- S7::new_class(
   name        = "less_than",
   package     = NULL,
   parent      = class_modifier,
@@ -106,7 +102,7 @@ less_than <- new_class(
     check_number_decimal(x)
     check_bool(or_equal)
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = ifelse(!or_equal, "<", "<="),
       value    = x)
@@ -119,7 +115,7 @@ less_than <- new_class(
 #' between(0.125, 2, negate = TRUE)
 #' @autoglobal
 #' @export
-between <- new_class(
+between <- S7::new_class(
   name        = "between",
   package     = NULL,
   parent      = class_modifier,
@@ -132,7 +128,7 @@ between <- new_class(
     if (x >= y) cli::cli_abort("`x` must be less than `y`", call. = FALSE)
     if (length(c(x, y)) > 2) cli::cli_abort("`x` and `y` both must be length 1", call. = FALSE)
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
       value    = c(x, y))
@@ -144,13 +140,13 @@ between <- new_class(
 #' starts_with("foo")
 #' @autoglobal
 #' @export
-starts_with <- new_class(
+starts_with <- S7::new_class(
   name        = "starts_with",
   package     = NULL,
   parent      = class_modifier,
   constructor = function(x) {
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = "STARTS_WITH",
       value    = x)
@@ -162,13 +158,13 @@ starts_with <- new_class(
 #' ends_with("bar")
 #' @autoglobal
 #' @export
-ends_with <- new_class(
+ends_with <- S7::new_class(
   name        = "ends_with",
   package     = NULL,
   parent      = class_modifier,
   constructor = function(x) {
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = "ENDS_WITH",
       value    = x)
@@ -180,13 +176,13 @@ ends_with <- new_class(
 #' contains("baz")
 #' @autoglobal
 #' @export
-contains <- new_class(
+contains <- S7::new_class(
   name        = "contains",
   package     = NULL,
   parent      = class_modifier,
   constructor = function(x) {
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = "CONTAINS",
       value    = x)
@@ -198,13 +194,13 @@ contains <- new_class(
 #' like("baz")
 #' @autoglobal
 #' @export
-like <- new_class(
+like <- S7::new_class(
   name        = "like",
   package     = NULL,
   parent      = class_modifier,
   constructor = function(x) {
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = "like",
       value    = x)
@@ -217,7 +213,7 @@ like <- new_class(
 #' any_of(state.abb[10:15], negate = TRUE)
 #' @autoglobal
 #' @export
-any_of <- new_class(
+any_of <- S7::new_class(
   name        = "any_of",
   package     = NULL,
   parent      = class_modifier,
@@ -225,7 +221,7 @@ any_of <- new_class(
 
     check_bool(negate)
 
-    new_object(
+    S7::new_object(
       class_modifier(),
       operator = ifelse(!negate, "IN", "NOT+IN"),
       value    = x)

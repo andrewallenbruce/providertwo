@@ -17,13 +17,15 @@ NULL
 #' @export
 catalogs <- function() {
 
-  x <- c(
+  base_url <- c(
     care = "https://data.cms.gov/data.json",
     prov = "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items",
     open = "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items",
     caid = "https://data.medicaid.gov/api/1/metastore/schemas/dataset/items",
     hgov = "https://data.healthcare.gov/api/1/metastore/schemas/dataset/items"
-  ) |>
+  )
+
+  x <- base_url |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
     map2(c("/dataset", rep(NA_character_, 4)), function(x, q) {
@@ -31,7 +33,7 @@ catalogs <- function() {
         fparse(query = if (is.na(q)) NULL else q) |>
         as_fibble()
     }) |>
-    set_names(c("care", "prov", "open", "caid", "hgov"))
+    set_names(names(base_url))
 
 
   list(
@@ -176,42 +178,42 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  d <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
+  down <- get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
     get_elem("^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)
 
-  d <- set_names(d, seq_along(d))
+  down <- set_names(down, seq_along(down))
 
-  i <- list_lengths(d)
+  down_1 <- down[list_lengths(down) == 1]
+  down_2 <- down[list_lengths(down) > 1]
 
-  d1 <- d[i == 1]
-  d2 <- d[i > 1]
+  idx <- list_lengths(get_elem(down_2, "title", DF.as.list = TRUE))
 
-  i2 <- list_lengths(get_elem(d2, "title", DF.as.list = TRUE))
+  down_2_title <- get_elem(down_2, "title", DF.as.list = TRUE)[idx == 1]
+  down_2_url   <- get_elem(down_2, "downloadURL", DF.as.list = TRUE)[idx == 1]
 
-  title1    <- get_elem(d2, "title", DF.as.list = TRUE)[i2 == 1]
-  download1 <- get_elem(d2, "downloadURL", DF.as.list = TRUE)[i2 == 1]
-
-  title17    <- get_elem(d2, "title", DF.as.list = TRUE)[i2 > 1]
-  download17 <- get_elem(d2, "downloadURL", DF.as.list = TRUE)[i2 > 1]
+  down_2_title_2 <- get_elem(down_2, "title", DF.as.list = TRUE)[idx > 1]
+  down_2_url_2   <- get_elem(down_2, "downloadURL", DF.as.list = TRUE)[idx > 1]
 
   downloads <- rowbind(
     fill = TRUE,
     fastplyr::new_tbl(
-      rowid = names(title1) |> as.integer(),
-      title2 = unlist(title1, use.names = FALSE),
-      download = unlist(download1, use.names = FALSE)) |>
-      mtt(title2 = ifelse(title2 == "CSV", NA_character_, title2)),
+      rowid = names(down_2_title) |> as.integer(),
+      title = unlist(down_2_title, use.names = FALSE),
+      download = unlist(down_2_url, use.names = FALSE)) |>
+      mtt(title = ifelse(title == "CSV", NA_character_, title)),
 
     fastplyr::new_tbl(
-      rowid = cheapr::cheapr_rep_each(as.integer(names(title17)), list_lengths(title17)),
-      title2 = unlist(title17, use.names = FALSE),
-      download = unlist(download17, use.names = FALSE)) |>
-      mtt(title2 = ifelse(title2 == "CSV", NA_character_, title2)),
+      rowid = cheapr_rep_each(as.integer(names(down_2_title_2)), list_lengths(down_2_title_2)),
+      title = unlist(down_2_title_2, use.names = FALSE),
+      download = unlist(down_2_url_2, use.names = FALSE)) |>
+      mtt(title = ifelse(title == "CSV", NA_character_, title)),
     fastplyr::new_tbl(
-      rowid = names(d1) |> as.integer(),
-      download = unlist(d1, use.names = FALSE))
+      rowid = names(down_1) |> as.integer(),
+      download = unlist(down_1, use.names = FALSE))
   ) |>
-    roworder(rowid) |>
+    roworder(rowid)
+
+  downloads <- downloads |>
     join(
       as_fibble(x$caid) |>
         slt(title, identifier) |>
@@ -220,19 +222,41 @@ clog_caid <- function(x) {
       verbose = 0,
       multiple = TRUE
     ) |>
-    colorder(rowid, title, title2, download)
+    colorder(rowid, title, title_y, download)
 
-  e <- mtt(x$caid,
-    identifier = paste0("https://data.medicaid.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1"),
+  base <- mtt(
+    x$caid,
+    identifier = paste0(
+      "https://data.medicaid.gov/api/1/datastore/query/",
+      identifier,
+      "/0?count=true&results=true&offset=0&limit=1"
+    ),
     modified = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
     contact = fmt_contactpoint(x$caid),
     title = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
     description = iif(description == "Dataset.", NA_character_, description),
-    description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()) |>
-    slt(c("title", "identifier", "description", "periodicity", "modified", "contact"))
+    description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()
+  ) |>
+    slt(c(
+      "title",
+      "identifier",
+      "description",
+      "periodicity",
+      "modified",
+      "contact"
+    ))
 
-  e <- join_on_title(e, downloads)
+  d <- join_on_title(base, downloads) |>
+    slt(c(
+      "title",
+      "identifier",
+      "description",
+      "periodicity",
+      "modified",
+      "contact",
+      "download"
+    ))
 
   ptn <- paste0(
     "State Drug Utilization Data [0-9]{4}|",
@@ -244,28 +268,47 @@ clog_caid <- function(x) {
     "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
 
   list(
-    current = ss_title(e, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
-    temporal = ss_title(e, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
-      mtt(year = extract_year(title),
-          title = nif(
-      gdetect(title, "Child and Adult Health Care Quality Measures")       , "Child and Adult Health Care Quality Measures",
-      gdetect(title, "[0-9]{4} Manage")                                    , "Managed Care Programs by State",
-      gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)") , "NADAC",
-      gdetect(title, "State Drug Utilization Data")                        , "State Drug Utilization Data",
-      gdetect(title, "Pricing Comparison")                                 , "Pricing Comparison for Blood Disorder Treatments",
-      gdetect(title, "Product Data for Newly Reported")                    , "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-      default = title),
-      description = iif(title == "Child and Adult Health Care Quality Measures",
-                        "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
-                        description,
-                        nThread = 4L)) |>
+    current = ss_title(d, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
+    temporal = ss_title(d, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
+      mtt(
+        year = extract_year(title),
+        title = nif(
+          gdetect(title, "Child and Adult Health Care Quality Measures"),
+          "Child and Adult Health Care Quality Measures",
+          gdetect(title, "[0-9]{4} Manage"),
+          "Managed Care Programs by State",
+          gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)"),
+          "NADAC",
+          gdetect(title, "State Drug Utilization Data"),
+          "State Drug Utilization Data",
+          gdetect(title, "Pricing Comparison"),
+          "Pricing Comparison for Blood Disorder Treatments",
+          gdetect(title, "Product Data for Newly Reported"),
+          "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+          default = title
+        ),
+        description = iif(
+          title == "Child and Adult Health Care Quality Measures",
+          "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+          description,
+          nThread = 4L
+        )
+      ) |>
       roworder(title, year) |>
       ffill(description, periodicity) |>
-      slt("year", "title", "description", "periodicity", "modified", "identifier") |>
+      slt(
+        "year",
+        "title",
+        "description",
+        "periodicity",
+        "modified",
+        "identifier",
+        "download"
+      ) |>
       roworder(title, -year) |>
       fnest(by = c("title", "description", "periodicity")) |>
       rnm(endpoints = "data")
-    )
+  )
 }
 
 #' @autoglobal
