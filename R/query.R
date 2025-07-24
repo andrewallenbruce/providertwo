@@ -89,7 +89,7 @@ new_query <- function(...) {
 #'   rate       = between(0.45, 0.67),
 #'   year       = 2014:2025)
 #' @autoglobal
-#' @export
+#' @noRd
 query <- function(...) {
   params <- compact(dots_list(..., .homonyms = "error"))
   inputs <- compact(enexprs(...))

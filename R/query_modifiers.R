@@ -22,11 +22,11 @@ class_modifier <- new_class(
   package    = NULL,
   properties = list(
     operator = new_property(class_character, default = "="),
-    value    = class_character | class_numeric,
-    allowed  = new_property(
-      class_character,
-      default = c("caid", "prov", "open", "hgov", "care")
-    )
+    value    = class_character | class_numeric #,
+    # allowed  = new_property(
+    #   class_character,
+    #   default = c("caid", "prov", "open", "hgov", "care")
+    # )
   )
 )
 
