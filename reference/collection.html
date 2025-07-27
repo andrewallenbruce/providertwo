@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9382</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9383</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -226,6 +226,413 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_count                                : chr NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_percentage_applications              : chr NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_percentage_account_transfers         : chr NA</span>
+<span class="r-in"><span><span class="fu">collection</span><span class="op">(</span><span class="st">"managed"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ name   : chr "Managed Care Enrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_mltss     : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_any_managed_care_enrollees         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_managed_care_ltss_enrollees: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_managed_care_ltss_percent  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ managed_ltss_only_enrollees              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ managed_ltss_only_percent                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_summary   : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/52ed908b-0cb8-5dd2-846d-99d4af12b369/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment Summary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_medicaid_enrollees                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_medicaid_enrollment_in_any_type_of_managed_care        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ medicaid_enrollment_in_comprehensive_managed_care            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ medicaid_newly_eligible_adults_enrolled_in_comprehensive_mcos: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_state_end : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/0e112ea8-8e8e-5dee-a7e2-7ed551c3baa4/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Programs by State"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2018-08-22"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_name                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_type                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ statewide_or_regionspecific                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ federal_operating_authority                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_start_date                                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ waiver_expiration_date_if_applicable                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ if_the_program_ended_in_2014_indicate_the_end_date              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ lowincome_adults_not_eligible_under_aca_section_viii            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ aged_blind_or_disabled_children_or_adults                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ nondisabled_children_excluding_children_in_foster_care_or_r_f40d: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ individuals_receiving_limited_benefits                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ lowincome_adults_eligible_under_aca_section_viii                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ full_duals                                                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ partial_duals                                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ children_with_special_health_care_needs                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ native_americanalaskan_natives                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ foster_care_and_adoption_assistance_children                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ enrollment_choice_period                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ enrollment_broker_name_if_applicable                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes_on_enrollment_choice_period                               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered                                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ inpatient_hospital_physical_health                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ inpatient_hospital_behavioral_health_mh_andor_sud               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ outpatient_hospital_physical_health                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ outpatient_hospital_behavioral_health_mh_andor_sud              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ partial_hospitalization                                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ physician                                                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ nurse_practitioner                                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ rural_health_clinics_and_fqhcs                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ clinic_services                                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ lab_and_xray                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ prescription_drugs_and_prosthetic_devices                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ epsdt                                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ case_management                                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ health_home_ssa_1945                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ family_planning                                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental_services_medicalsurgical                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental_preventative_or_corrective                               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ home_health_agency_services                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ personal_care_state_plan_option                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ hcbs_waiver_services                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ private_duty_nursing                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ icfidd                                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ nursing_facility_services                                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ hospice_care                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ nonemergency_medical_transportation                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other_eg_nurse_midwife_services_freestanding_birth_centers__8f59: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement                               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ hedis_data_required                                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ cahps_data_required                                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ accreditation_required                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ accrediting_organization                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ eqro_contractor_name_if_applicable                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ payment_bonusesdifferentials_to_reward_plans                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ preferential_autoenrollment_to_reward_plans                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ public_reports_comparing_mco_performance_on_key_metrics         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ withholds_tied_to_performance_metrics                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mcosphps_requiredencouraged_to_pay_providers_for_valuequali_ea98: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ provider_valuebased_purchasing                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state_pays_providerbased_entities_such_as_acos_or_pcmhs_dir_89da: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ participating_plans_and_regions_served                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ plans_in_program                                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_notes                                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ location                                                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_program   : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/0bef7b8a-c663-5b14-9a46-0b5c2b86b0fe/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Plan"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 5974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_name           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ plan_name              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ geographic_region      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ medicaidonly_enrollment: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dual_enrollment        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_enrollment       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ parent_organization    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_pop       : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/e2ce0d2f-07c5-5213-947a-31e19bc649f6/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Population (All)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_medicaid_enrollees               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_mco_with_or_without_mltss: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mltss_only                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ bho_pihp_andor_pahp                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ transportation                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pace                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_entity                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_dual      : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8e7be65b-97ba-5ecf-8394-ca8e6f63685a/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Population (Duals)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_beneficiaries                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_mco_with_or_without_mltss: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_entity                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mltss_only                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ bho_pihp_andor_pahp                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ transportation                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pace                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_feat_pop  : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/927f4847-2c0a-50c1-8f50-9103de7d048b/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Features By Enrollment Population"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Number of Managed Care Programs Enrolling Certain Populations on a Mandatory or Voluntary Basis at any point in 2022"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ features                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_mco_with_or_without_mltss  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_mco_with_or_without_mltss_2: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_2                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_entity                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_entity_2                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mltss                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mltss_2                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ bho_pihp_andor_pahp                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ bho_pihp_andor_pahp_2                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental_2                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ transportation                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ transportation_2                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other_php                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other_php_2                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pace                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pace_2                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_feat_qa   : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/a6d2c261-210d-587c-8fa4-892444b7de42/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Features by QA and Performance Incentive"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Number of Managed Care Program Types, by Quality Assurance Requirements, Performance Incentives, and Provider V"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ features                               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ comprehensive_mco_with_or_without_mltss: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pccm_entity                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ mltss                                  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ bho_pihp_andor_pahp                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dental                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ transportation                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ other_php                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ pace                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_bene_month: &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/89baf100-259b-4763-b9e2-337972f988c4/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Information for Medicaid and CHIP Beneficiaries by Month"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "This data set includes monthly enrollment counts of Medicaid and CHIP beneficiaries by managed care participati"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/ManagedCare-montly.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 31164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ month                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ managedcareparticipation: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ countenrolled           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dqunusable              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_bene_year : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/c0bef49e-46ea-4b9d-9153-76b4078d58b7/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Information for Medicaid and CHIP Beneficiaries by Year"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "This data set presents annual enrollment counts of Medicaid and CHIP beneficiaries by managed care participatio"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2023-03-20"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/ManagedCare-anul.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 2597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ managedcareparticipation : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ counteverenrolled        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ countlastmonthenrollment : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ averageenrollmentpermonth: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ dqunusable               : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_share     : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/79692ea5-21e1-56bf-8149-97d437120c4b/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Share of Medicaid Enrollees in Managed Care"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Share of Medicaid Enrollees in any Managed Care and in Comprehensive Managed CaAre profiles state-level enr"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ total_medicaid_enrollees                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ individuals_enrolled_any                       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ percent_of_all_medicaid_enrollees_any          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ individuals_enrolled_comprehensive             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ percent_of_all_medicaid_enrollees_comprehensive: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_tmp       : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_temporal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: tibble [1 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:1], format: "2019-05-03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8f39b637-9bb1-5894-9062-2c4f2ad70fba/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Programs by State"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows  : int 175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ fields:List of 61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ state                                                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_name                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_type                                                    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ statewide_or_regionspecific                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ federal_operating_authority                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ program_start_date                                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ waiver_expiration_date_if_applicable                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ if_the_program_ended_in_2017_indicate_the_end_date              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_lowincome_adults_not_covered_under_aca_0778: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_lowincome_adults_covered_under__aca_se_9567: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_aged_blind_or_disabled_children_or_adults  : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_nondisabled_children_excludes_children_1dda: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_individuals_receiving_limited_benefits_facc: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_full_duals                                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_partial_duals                              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_children_with_special_health_care_needs    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_native_americanalaskan_natives             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_foster_care_and_adoption_assistance_ch_b424: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_enrollment_choice_period                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_enrollment_broker_name_if_applicable       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ populations_enrolled_notes_on_enrollment_choice_period          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_inpatient_hospital_physical_health             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_inpatient_hospital_behavioral_health_mh_an_4041: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_outpatient_hospital_physical_health            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_outpatient_hospital_behavioral_health_mh_a_ceee: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_partial_hospitalization                        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_physician                                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_nurse_practitioner                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_rural_health_clinics_and_fqhcs                 : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_clinic_services                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_lab_and_xray                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_prescription_drugs_and_prosthetic_devices      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_epsdt                                          : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_case_management                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_ssa_section_1945authorized_health_home         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_health_home_care_services_in_home              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_family_planning                                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_dental_services_medicalsurgical                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_dental_preventative_or_corrective              : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_personal_care_state_plan_option                : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_hcbs_waiver_services                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_private_duty_nursing                           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_icfidd                                         : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_nursing_facility_services                      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_hospice_care                                   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_nonemergency_medical_transportation            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_institution_for_mental_disease_inpatient_t_448a: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ benefits_covered_other_eg_nurse_midwife_services_freestandi_d504: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement_hedis_data_required           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement_cahps_data_required           : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement_accreditation_required        : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement_accrediting_organization      : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ quality_assurance_and_improvement_eqro_contractor_name_if_a_f2dc: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives_payment_bonusesdifferentials_to_rewa_eece: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives_preferential_autoenrollment_to_rewar_ab96: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives_public_reports_comparing_plan_perfor_42d0: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives_withholds_tied_to_performance_metrics    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ performance_incentives_mcosphps_required_or_encouraged_to_p_bf59: chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ participating_plans_plans_in_program                            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ notes_program_notes                                             : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. .. $ year                                                            : chr NA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
