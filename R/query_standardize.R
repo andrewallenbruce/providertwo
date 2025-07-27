@@ -1,21 +1,20 @@
 #' @autoglobal
 #' @noRd
 query_standardise <- function(obj, qry) {
-
   params <- prop(qry, "params")
-  # If fields becomes a class -> prop(obj, "fields")
   fields <- prop(obj, "dimensions") |> prop("fields")
+  # If fields becomes a class -> prop(obj, "fields")
 
   # Use a modifier on "year" parameter if meant for the API?
-  param_names <- if ("year" %in% names(params)) names(params)[names(params) != "year"] else names(params)
-  field_names <- names(fields)
+  param_names <- `if`("year" %in% names(params),
+                      names(params)[names(params) != "year"],
+                      names(params))
 
-  field_clean <- gsub(" ", "_", tolower(field_names), perl = TRUE)
+  field_clean <- gsub(" ", "_", tolower(fields), perl = TRUE)
 
   set_names(
     params[fmatch(field_clean, param_names, nomatch = 0L)],
-    field_names[sort(fmatch(param_names, field_clean, nomatch = 0L))]
-  )
+    fields[sort(fmatch(param_names, field_clean, nomatch = 0L))])
 }
 
 #' Standardize a query object to match the fields of an endpoint
@@ -75,31 +74,22 @@ method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
 }
 
 method(standardise, list(class_current, class_query)) <- function(obj, qry) {
-
   new_params <- query_standardise(obj, qry)
 
-  # map(function(x) paste0(x, collapse = "&"))
-
   list(
-    # params     = new_params,
     query      = set_names(query_default(new_params), names(new_params)),
     identifier = prop(obj, "identifier")
   )
 }
 
 method(standardise, list(care_current, class_query)) <- function(obj, qry) {
-
   new_params <- query_standardise(obj, qry)
 
-  list(
-    # params     = new_params,
-    query      = set_names(query_care(new_params), names(new_params)),
-    identifier = prop(obj, "identifier")
-  )
+  list(query      = set_names(query_care(new_params), names(new_params)),
+       identifier = prop(obj, "identifier"))
 }
 
 method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
-
   id <- if ("year" %in% names(prop(qry, "params"))) {
     sbt(prop(obj, "identifier"), year %in% prop(qry, "params")$year)
   } else {
@@ -109,17 +99,12 @@ method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
   new_params <- query_standardise(obj, qry)
 
   list(
-    # params     = new_params,
     query      = set_names(query_default(new_params), names(new_params)),
     identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
   )
 }
 
 method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
-
- # id <- prop(obj, "identifier")
- # if ("year" %in% names(prop(qry, "params"))) id <- sbt(id, year %in% prop(qry, "params")$year)
-
   id <- if ("year" %in% names(prop(qry, "params"))) {
     sbt(prop(obj, "identifier"), year %in% prop(qry, "params")$year)
   } else {
@@ -129,7 +114,6 @@ method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
   new_params <- query_standardise(obj, qry)
 
   list(
-    # params     = new_params,
     query      = set_names(query_care(new_params), names(new_params)),
     identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
   )

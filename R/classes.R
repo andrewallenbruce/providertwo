@@ -12,7 +12,7 @@ class_dimensions <- new_class(
         offset_size(self@rows, self@limit)
     ),
     fields = new_property(
-      class_list,
+      class_character,
       setter = function(self, value) {
         self@fields <- value
         self

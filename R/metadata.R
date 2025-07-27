@@ -26,7 +26,7 @@ get_metadata <- function(x) {
       released    = x$released,
       temporal    = x$temporal,
       periodicity = x$periodicity,
-      download    = x$download,
+      download    = null_if(x$download),
       resources   = unlist_if(x$resources),
       dictionary  = x$dictionary,
       site        = x$site,

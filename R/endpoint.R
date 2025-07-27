@@ -96,14 +96,14 @@ endpoint <- function(alias) {
         access = care_current(
           identifier = x$identifier,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_care(x)
         )
       ),
       temporal = class_care(
         access = care_temporal(
           identifier = x$endpoints,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_care(x)
         )
       )
     ),
@@ -111,7 +111,7 @@ endpoint <- function(alias) {
       access = class_current(
         identifier = x$identifier,
         metadata = get_metadata(x),
-        dimensions = get_dimensions(x)
+        dimensions = dims_default(x)
       )
     ),
     caid = switch(
@@ -120,14 +120,14 @@ endpoint <- function(alias) {
         access = class_current(
           identifier = x$identifier,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       ),
       temporal = class_caid(
         access = class_temporal(
           identifier = x$endpoints,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       )
     ),
@@ -137,14 +137,14 @@ endpoint <- function(alias) {
         access = class_current(
           identifier = x$identifier,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       ),
       temporal = class_open(
         access = class_temporal(
           identifier = x$endpoints,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       )
     ),
@@ -154,14 +154,14 @@ endpoint <- function(alias) {
         access = class_current(
           identifier = x$identifier,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       ),
       temporal = class_hgov(
         access = class_temporal(
           identifier = x$endpoints,
           metadata = get_metadata(x),
-          dimensions = get_dimensions(x)
+          dimensions = dims_default(x)
         )
       )
     )
@@ -217,22 +217,20 @@ group <- function(alias, description = NULL, call = caller_env()) {
   )
 }
 
-#' @autoglobal
-#' @noRd
-endpoint2 <- function(alias) {
-
-  x   <- alias_lookup(alias)
-
-  cls <- as_function(glue("class_{x$catalog}"))
-
-  pnt <- `if`(x$catalog == "care",
-              as_function(glue("{x$catalog}_{x$point}")),
-              as_function(glue("class_{x$point}")))
-
-
-  cls(access = pnt(
-    identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
-    metadata = get_metadata(x),
-    dimensions = get_dimensions(x)
-  ))
-}
+# endpoint <- function(alias) {
+#
+#   x   <- alias_lookup(alias)
+#
+#   cls <- as_function(glue("class_{x$catalog}"))
+#
+#   pnt <- `if`(x$catalog == "care",
+#               as_function(glue("{x$catalog}_{x$point}")),
+#               as_function(glue("class_{x$point}")))
+#
+#
+#   cls(access = pnt(
+#     identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
+#     metadata = get_metadata(x),
+#     dimensions = get_dimensions(x)
+#   ))
+# }
