@@ -3,7 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom collapse %iin% %=% %==% %!=% .c add_vars any_duplicated av
-#' @importFrom collapse colorder fcompute fcount fduplicated fmax fnobs funique
+#' @importFrom collapse colorder fcompute fcount fduplicated fmatch fmax fnobs funique
 #' @importFrom collapse get_elem get_vars `gv<-` gv groupid join mtt pivot radixorder
 #' @importFrom collapse rnm rowbind roworder rsplit sbt slt ss tfm vlengths
 #' @importFrom glue glue glue_collapse glue_col
