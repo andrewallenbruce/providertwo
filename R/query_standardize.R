@@ -1,3 +1,21 @@
+#' @autoglobal
+#' @noRd
+query_standardise <- function(obj, qry) {
+
+  params <- prop(qry, "params")
+  fields <- prop(obj, "dimensions") |> prop("fields")
+
+  field_names <- names(fields)
+  param_names <- names(params)
+
+  field_clean <- gsub(" ", "_", tolower(field_names), perl = TRUE)
+
+  set_names(
+    params[fmatch(field_clean, param_names, nomatch = 0L)],
+    field_names[sort(fmatch(param_names, field_clean, nomatch = 0L))]
+  )
+}
+
 #' Standardise a query object to match the fields of an endpoint
 #'
 #' @param obj A `<class_care/caid/prov/open/hgov>` object.
@@ -8,15 +26,16 @@
 #'
 #' @examples
 #' qry <- new_query(
-#'    first_name = starts_with("Andr"),
-#'    last_name  = contains("J"),
-#'    state_cd   = any_of(c("CA", "GA", "NY")),
-#'    city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
-#'    npi        = npi_ex$k,
-#'    covered_recipient_npi = npi_ex$k,
-#'    ccn        = "01256",
-#'    rate       = between(0.45, 0.67),
-#'    year       = 2014:2025)
+#'    first_name            = starts_with("Andr"),
+#'    last_name             = contains("J"),
+#'    state_cd              = any_of(c("CA", "GA", "NY")),
+#'    state                 = any_of(c("GA", "NY")),
+#'    city                  = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'    npi                   = npi_ex$k,
+#'    covered_recipient_npi = npi_ex$k[1:5],
+#'    ccn                   = "01256",
+#'    rate                  = between(0.45, 0.67),
+#'    year                  = 2021:2025)
 #'
 #' standardise(endpoint("enroll_prov"), qry)
 #'
@@ -28,11 +47,23 @@
 #'
 #' standardise(endpoint("grp_cover_nature"), qry)
 #'
+#' standardise(collection("home_health"), qry)
+#'
 #' @autoglobal
 #' @export
 standardise <- new_generic("standardise", c("obj", "qry"), function(obj, qry) {
   S7_dispatch()
 })
+
+method(standardise, list(class_group, class_query)) <- function(obj, qry) {
+  prop(obj, "members") |>
+    map(\(x) standardise(obj = x, qry = qry))
+}
+
+method(standardise, list(class_collection, class_query)) <- function(obj, qry) {
+  prop(obj, "members") |>
+    map(\(x) standardise(obj = x, qry = qry))
+}
 
 method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
   prop(obj, "access") |>
@@ -41,115 +72,56 @@ method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
 
 method(standardise, list(class_current, class_query)) <- function(obj, qry) {
 
-  field_nm <- gsub(" ", "_", tolower(names(obj@dimensions@fields)), perl = TRUE)
-  param_nm <- names(prop(qry, "params"))
-
-  new_params <- set_names(
-    qry@params[fmatch(field_nm, param_nm, nomatch = 0L)],
-    names(obj@dimensions@fields[sort(fmatch(param_nm, field_nm, nomatch = 0L))])
-  )
+  new_params <- query_standardise(obj, qry)
 
   list(
-    params = new_params,
-    query = set_names(query_default(new_params), names(new_params)),
-    identifier = obj@identifier
+    params     = new_params,
+    query      = set_names(query_default(new_params), names(new_params)),
+    identifier = prop(obj, "identifier")
   )
 }
 
 method(standardise, list(care_current, class_query)) <- function(obj, qry) {
 
-  field_nm <- gsub(" ", "_", tolower(names(obj@dimensions@fields)), perl = TRUE)
-  param_nm <- names(prop(qry, "params"))
-
-  new_params <- set_names(
-    qry@params[fmatch(field_nm, param_nm, nomatch = 0L)],
-    names(obj@dimensions@fields[sort(fmatch(param_nm, field_nm, nomatch = 0L))])
-  )
+  new_params <- query_standardise(obj, qry)
 
   list(
-    params = new_params,
-    query = set_names(query_care(new_params), names(new_params)),
-    identifier = obj@identifier
+    params     = new_params,
+    query      = set_names(query_care(new_params), names(new_params)),
+    identifier = prop(obj, "identifier")
   )
 }
 
 method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  field_nm <- gsub(" ", "_", tolower(names(obj@dimensions@fields)), perl = TRUE)
-  param_nm <- names(prop(qry, "params"))
-
   id <- prop(obj, "identifier")
 
-  if ("year" %in% param_nm) {
-    id <- sbt(id, year %in% qry@params$year)
-
-    if (is_empty(id)) {
-      cli::cli_warn(
-        c("{.field year = {paste0(range(qry@params$year), collapse = ':')}} had {nrow(id)} matches."),
-        call = call)
-      invisible(NULL)
-    }
+  if ("year" %in% names(prop(qry, "params"))) {
+    id <- sbt(id, year %in% prop(qry, "params")$year)
   }
 
-  new_params <- set_names(
-    qry@params[fmatch(field_nm, param_nm, nomatch = 0L)],
-    names(obj@dimensions@fields[sort(fmatch(param_nm, field_nm, nomatch = 0L))])
-  )
+  new_params <- query_standardise(obj, qry)
 
   list(
-    params = new_params,
-    query = set_names(query_default(new_params), names(new_params)),
+    params     = new_params,
+    query      = set_names(query_default(new_params), names(new_params)),
     identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
   )
 }
 
 method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  field_nm <- gsub(" ", "_", tolower(names(obj@dimensions@fields)), perl = TRUE)
-  param_nm <- names(prop(qry, "params"))
+ id <- prop(obj, "identifier")
 
-  id <- prop(obj, "identifier")
-
-  if ("year" %in% param_nm) {
-    id <- sbt(id, year %in% qry@params$year)
-
-    if (is_empty(id)) {
-      cli::cli_warn(
-        c("{.field year = {paste0(range(qry@params$year), collapse = ':')}} had {nrow(id)} matches."),
-        call = call)
-      invisible(NULL)
-    }
+  if ("year" %in% names(prop(qry, "params"))) {
+    id <- sbt(id, year %in% prop(qry, "params")$year)
   }
 
-  new_params <- set_names(
-    qry@params[fmatch(field_nm, param_nm, nomatch = 0L)],
-    names(obj@dimensions@fields[sort(fmatch(param_nm, field_nm, nomatch = 0L))])
-  )
+  new_params <- query_standardise(obj, qry)
 
   list(
-    params = new_params,
-    query = set_names(query_care(new_params), names(new_params)),
+    params     = new_params,
+    query      = set_names(query_care(new_params), names(new_params)),
     identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
-  )
-}
-
-
-
-
-
-
-
-
-
-#' @autoglobal
-#' @noRd
-standardise_query <- function(obj, qry) {
-
-  field_nm <- gsub(" ", "_", tolower(names(obj@access@dimensions@fields)), perl = TRUE)
-  param_nm <- names(qry@params)
-
-  set_names(
-    qry@params[fmatch(field_nm, param_nm, nomatch = 0L)],
-    names(obj@access@dimensions@fields[sort(fmatch(param_nm, field_nm, nomatch = 0L))])
   )
 }

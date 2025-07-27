@@ -113,6 +113,7 @@ less_than <- S7::new_class(
 #' @examples
 #' between(1000, 1100)
 #' between(0.125, 2, negate = TRUE)
+#' try(between(0.95, 0.67))
 #' @autoglobal
 #' @export
 between <- S7::new_class(
@@ -125,8 +126,11 @@ between <- S7::new_class(
     check_number_decimal(y)
     check_bool(negate)
 
-    if (x >= y) cli::cli_abort("`x` must be less than `y`", call. = FALSE)
-    if (length(c(x, y)) > 2) cli::cli_abort("`x` and `y` both must be length 1", call. = FALSE)
+    if (x >= y) {
+      cli::cli_abort(
+        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
+        call. = FALSE)
+    }
 
     S7::new_object(
       class_modifier(),

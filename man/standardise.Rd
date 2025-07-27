@@ -19,15 +19,16 @@ Standardise a query object to match the fields of an endpoint
 }
 \examples{
 qry <- new_query(
-   first_name = starts_with("Andr"),
-   last_name  = contains("J"),
-   state_cd   = any_of(c("CA", "GA", "NY")),
-   city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
-   npi        = npi_ex$k,
-   covered_recipient_npi = npi_ex$k,
-   ccn        = "01256",
-   rate       = between(0.45, 0.67),
-   year       = 2014:2025)
+   first_name            = starts_with("Andr"),
+   last_name             = contains("J"),
+   state_cd              = any_of(c("CA", "GA", "NY")),
+   state                 = any_of(c("GA", "NY")),
+   city                  = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+   npi                   = npi_ex$k,
+   covered_recipient_npi = npi_ex$k[1:5],
+   ccn                   = "01256",
+   rate                  = between(0.45, 0.67),
+   year                  = 2021:2025)
 
 standardise(endpoint("enroll_prov"), qry)
 
@@ -38,5 +39,7 @@ standardise(endpoint("quality_payment"), qry)
 standardise(endpoint("pdc_clinician"), qry)
 
 standardise(endpoint("grp_cover_nature"), qry)
+
+standardise(collection("home_health"), qry)
 
 }
