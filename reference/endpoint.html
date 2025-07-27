@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9384</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9385</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,44 +84,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit : int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows  : int 11985275</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 2398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields:List of 14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ state         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ CCN           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Provider_Name : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ city          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Ownership_Type: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ ESRD_Network  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ NPI           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Chain         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Modality      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Alternate_CCNs: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Measure       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Measure_Score : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ year          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ Measure_ID    : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields: chr [1:14] "state" "CCN" "Provider_Name" "city" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"man_mltss"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit : int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows  : int 399</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields:List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ state                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ notes                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ total_any_managed_care_enrollees         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ comprehensive_managed_care_ltss_enrollees: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ comprehensive_managed_care_ltss_percent  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ managed_ltss_only_enrollees              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ managed_ltss_only_percent                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ year                                     : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields: chr [1:8] "state" "notes" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"ab_reg_comp"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_hgov&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
@@ -137,14 +114,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit : int 500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows  : int 1025734</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 2052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields:List of 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ npn                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ applicable_plan_year                   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ individual_registration_completion_date: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ individual_marketplace_end_date        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ shop_registration_completion_date      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ shop_end_date                          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ npn_valid_current_plan_year_only       : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields: chr [1:7] "npn" "applicable_plan_year" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_prov&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
@@ -163,57 +133,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit : int 1500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows  : int 11288</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields:List of 50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ facility_name             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ facility_id               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ npi                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ citytown                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ state                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ zip_code                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ year                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc1_rate                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc1_footnote             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc2_rate                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc2_footnote             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc3_rate                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc3_footnote             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc4_rate                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc4_footnote             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc9_rate                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc9_footnote             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc11_rate                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc11_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_total_cases         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_performance_category: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_rshv_rate           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_interval_lower_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_interval_upper_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc12_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc13_rate                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc13_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc14_rate                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc14_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_total_cases         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_performance_category: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_rshv_rate           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_interval_lower_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_interval_upper_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc17_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_total_cases         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_performance_category: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_rshv_rate           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_interval_lower_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_interval_upper_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc18_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_total_cases         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_performance_category: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_rshv_rate           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_interval_lower_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_interval_upper_limit: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc19_footnote            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc20_sample              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc20_rate                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ asc20_footnote            : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields: chr [1:50] "facility_name" "facility_id" "npi" "citytown" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"dial_listing"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_prov&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
@@ -232,107 +152,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit : int 1500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows  : int 7561</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields:List of 142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ cms_certification_number_ccn                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ network                                                         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ facility_name                                                   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ five_star_date                                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ five_star                                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ five_star_data_availability_code                                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ address_line_1                                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ address_line_2                                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ citytown                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ state                                                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ zip_code                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ countyparish                                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ telephone_number                                                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ profit_or_nonprofit                                             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ chain_owned                                                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ chain_organization                                              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ late_shift                                                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ of_dialysis_stations                                            : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ offers_incenter_hemodialysis                                    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ offers_peritoneal_dialysis                                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ offers_home_hemodialysis_training                               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ certification_date                                              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ claims_date                                                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ eqrs_date                                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smr_date                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_survival_category_text                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_survival_data_availability_code                         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_included_in_survival_summary                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ mortality_rate_facility                                         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ mortality_rate_upper_confidence_limit_975                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ mortality_rate_lower_confidence_limit_25                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ shr_date                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_hospitalization_category_text                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_hospitalization_data_availability_code                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_included_in_hospitalization_summary          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ hospitalization_rate_facility                                   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ hospitalization_rate_upper_confidence_limit_975                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ hospitalization_rate_lower_confidence_limit_25                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ srr_date                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_hospital_readmission_category                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_hospital_readmission_data_availability_code             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_hospitalizations_included_in_hospital_readmission_fc2b: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ readmission_rate_facility                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ readmission_rate_upper_confidence_limit_975                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ readmission_rate_lower_confidence_limit_25                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ strr_date                                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_transfusion_category_text                               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_transfusion_data_availability_code                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_included_in_the_transfusion_summary          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ transfusion_rate_facility                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ transfusion_rate_upper_confidence_limit_975                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ transfusion_rate_lower_confidence_limit_25                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ swr_date                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ swr_category_text                                               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_transplant_waitlist_data_availability_code              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_in_this_facility_for_swr                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ standardized_first_kidney_transplant_waitlist_ratio             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ 95_ci_upper_limit_for_swr                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ 95_ci_lower_limit_for_swr                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ pppw_category_text                                              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_prevalent_transplant_waitlist_data_availability_code    : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_for_pppw                                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ percentage_of_prevalent_patients_waitlisted                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ 95_ci_upper_limit_for_pppw                                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ 95_ci_lower_limit_for_pppw                                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sedr_date                                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sedr_category_text                                              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ emergency_department_encounter_data_availability_code           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_included_in_sedr_summary                     : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ standardized_ed_visits_ratio_facility                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sedr_upper_confidence_limit_975                                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sedr_lower_confidence_limit_25                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ ed30_date                                                       : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ ed30_category_text                                              : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ emergency_department_encounter_ratio_occurring_within_30_da_f8e3: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_hospitalizations_included_in_ed30_summary             : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ standardized_ed_visits_within_30_days_of_hospital_discharge_6307: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ ed30_upper_confidence_limit_975                                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ ed30_lower_confidence_limit_25                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ years_modality_switch_based_upon                                : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smosr_classification_category_facility                          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ modality_switch_data_availability_code                          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smosr_number_of_eligible_patients_facility                      : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smosr_standardized_modality_switch_ratio_facility               : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smosr_upper_confidence_limit_facility                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ smosr_lower_confidence_limit_facility                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sir_date                                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_infection_category_text                                 : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ patient_infection_data_availability_code                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ standard_infection_ratio                                        : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sir_upper_confidence_limit_975                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ sir_lower_confidence_limit_25                                   : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ fistula_category_text                                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ fistula_data_availability_code                                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ number_of_patients_included_in_fistula_summary                  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ fistula_rate_facility                                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ fistula_rate_upper_confidence_limit_975                         : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ fistula_rate_lower_confidence_limit_25                          : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ hcp_vaccination_data_collection_dates                           : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  [list output truncated]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ fields: chr [1:142] "cms_certification_number_ccn" "network" ...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
