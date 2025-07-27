@@ -2,24 +2,26 @@
 % Please edit documentation in R/query_modifiers.R
 \name{query_modifier}
 \alias{query_modifier}
+\alias{any_of}
 \alias{equals}
+\alias{between}
 \alias{greater_than}
 \alias{less_than}
-\alias{between}
 \alias{starts_with}
 \alias{ends_with}
 \alias{contains}
 \alias{like}
-\alias{any_of}
 \title{Query Modifiers}
 \usage{
+any_of(x, negate = FALSE)
+
 equals(x, negate = FALSE)
+
+between(x, y, negate = FALSE)
 
 greater_than(x, or_equal = FALSE)
 
 less_than(x, or_equal = FALSE)
-
-between(x, y, negate = FALSE)
 
 starts_with(x)
 
@@ -28,8 +30,6 @@ ends_with(x)
 contains(x)
 
 like(x)
-
-any_of(x, negate = FALSE)
 }
 \arguments{
 \item{x, y}{input}
@@ -49,19 +49,19 @@ Query modifiers are a small DSL for use in constructing query conditions,
 in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
+any_of(state.abb[10:15])
+any_of(state.abb[1:5], negate = TRUE)
 equals(1000)
 equals(1000, negate = TRUE)
+between(1000, 1100)
+between(0.125, 2, negate = TRUE)
+try(between(0.95, 0.67))
 greater_than(1000)
 greater_than(0.125, or_equal = TRUE)
 less_than(1000)
 less_than(0.125, or_equal = TRUE)
-between(1000, 1100)
-between(0.125, 2, negate = TRUE)
-try(between(0.95, 0.67))
 starts_with("foo")
 ends_with("bar")
 contains("baz")
 like("baz")
-any_of(state.abb[10:15])
-any_of(state.abb[10:15], negate = TRUE)
 }

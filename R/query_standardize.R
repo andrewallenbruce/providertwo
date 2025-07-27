@@ -18,7 +18,7 @@ query_standardise <- function(obj, qry) {
   )
 }
 
-#' Standardise a query object to match the fields of an endpoint
+#' Standardize a query object to match the fields of an endpoint
 #'
 #' @param obj A `<class_care/caid/prov/open/hgov>` object.
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_standardize.R
 \name{standardise}
 \alias{standardise}
-\title{Standardise a query object to match the fields of an endpoint}
+\title{Standardize a query object to match the fields of an endpoint}
 \usage{
 standardise(obj, qry)
 }
@@ -15,7 +15,7 @@ standardise(obj, qry)
 A named list of query parameters that match the fields of the endpoint.
 }
 \description{
-Standardise a query object to match the fields of an endpoint
+Standardize a query object to match the fields of an endpoint
 }
 \examples{
 qry <- new_query(

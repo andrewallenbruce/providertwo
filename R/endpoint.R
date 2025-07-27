@@ -1,3 +1,6 @@
+#' @include classes.R
+NULL
+
 #' @autoglobal
 #' @noRd
 select_alias <- function(x, alias, ...) {
@@ -58,11 +61,7 @@ alias_lookup <- function(x) {
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(
-      glue("the$clog${catalog}${point}"),
-      alias_rex(x)
-      )
-  )
+    tbl     = select_alias(glue("the$clog${catalog}${point}"), alias_rex(x)))
 
   check_alias_results(x)
 
@@ -71,9 +70,7 @@ alias_lookup <- function(x) {
     switch(
       x$point,
       current = c(x$tbl),
-      temporal = c_temp(x$tbl)
-      )
-    )
+      temporal = c_temp(x$tbl)))
 }
 
 #' Load an endpoint by alias
@@ -169,7 +166,6 @@ endpoint <- function(alias) {
       )
     )
   )
-
 }
 
 #' Load a collection of endpoints by alias
@@ -219,4 +215,24 @@ group <- function(alias, description = NULL, call = caller_env()) {
     name    = description %||% paste0("[", paste0(alias, collapse = ", "), "]"),
     members = names_map(alias, endpoint)
   )
+}
+
+#' @autoglobal
+#' @noRd
+endpoint2 <- function(alias) {
+
+  x   <- alias_lookup(alias)
+
+  cls <- as_function(glue("class_{x$catalog}"))
+
+  pnt <- `if`(x$catalog == "care",
+              as_function(glue("{x$catalog}_{x$point}")),
+              as_function(glue("class_{x$point}")))
+
+
+  cls(access = pnt(
+    identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
+    metadata = get_metadata(x),
+    dimensions = get_dimensions(x)
+  ))
 }

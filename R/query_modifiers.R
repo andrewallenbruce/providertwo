@@ -46,6 +46,27 @@ any_modifiers <- function(x) {
 
 #' @rdname query_modifier
 #' @examples
+#' any_of(state.abb[10:15])
+#' any_of(state.abb[1:5], negate = TRUE)
+#' @autoglobal
+#' @export
+any_of <- S7::new_class(
+  name        = "any_of",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, negate = FALSE) {
+
+    check_bool(negate)
+
+    S7::new_object(
+      class_modifier(),
+      operator = ifelse(!negate, "IN", "NOT+IN"),
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
 #' equals(1000)
 #' equals(1000, negate = TRUE)
 #' @autoglobal
@@ -62,6 +83,36 @@ equals <- S7::new_class(
       class_modifier(),
       operator = ifelse(!negate, "=", "<>"),
       value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' between(1000, 1100)
+#' between(0.125, 2, negate = TRUE)
+#' try(between(0.95, 0.67))
+#' @autoglobal
+#' @export
+between <- S7::new_class(
+  name        = "between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, y, negate = FALSE) {
+
+    check_number_decimal(x)
+    check_number_decimal(y)
+    check_bool(negate)
+
+    if (x >= y) {
+      cli::cli_abort(
+        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
+        call. = FALSE)
+    }
+
+    S7::new_object(
+      class_modifier(),
+      operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
+      value    = c(x, y))
   }
 )
 
@@ -106,36 +157,6 @@ less_than <- S7::new_class(
       class_modifier(),
       operator = ifelse(!or_equal, "<", "<="),
       value    = x)
-  }
-)
-
-#' @rdname query_modifier
-#' @examples
-#' between(1000, 1100)
-#' between(0.125, 2, negate = TRUE)
-#' try(between(0.95, 0.67))
-#' @autoglobal
-#' @export
-between <- S7::new_class(
-  name        = "between",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x, y, negate = FALSE) {
-
-    check_number_decimal(x)
-    check_number_decimal(y)
-    check_bool(negate)
-
-    if (x >= y) {
-      cli::cli_abort(
-        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
-        call. = FALSE)
-    }
-
-    S7::new_object(
-      class_modifier(),
-      operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
-      value    = c(x, y))
   }
 )
 
@@ -207,27 +228,6 @@ like <- S7::new_class(
     S7::new_object(
       class_modifier(),
       operator = "like",
-      value    = x)
-  }
-)
-
-#' @rdname query_modifier
-#' @examples
-#' any_of(state.abb[10:15])
-#' any_of(state.abb[10:15], negate = TRUE)
-#' @autoglobal
-#' @export
-any_of <- S7::new_class(
-  name        = "any_of",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x, negate = FALSE) {
-
-    check_bool(negate)
-
-    S7::new_object(
-      class_modifier(),
-      operator = ifelse(!negate, "IN", "NOT+IN"),
       value    = x)
   }
 )
