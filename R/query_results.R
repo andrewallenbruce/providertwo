@@ -47,8 +47,11 @@ method(query_results, class_temporal) <- function(obj, qry = NULL) {
     i <- sbt(i, year %in% qry@input$year)
 
     if (is_empty(i)) {
-      cli::cli_abort(c("x" = "{.field year(s)} {.val {qry@input$year}} had {nrow(i)} matches."),
-                     call = call)
+      cli::cli_warn(c(
+        "{.field year(s)} {.val {qry@input$year}} had {nrow(i)} matches."
+      ),
+      call = call)
+      invisible(NULL)
     }
   }
 

@@ -2,6 +2,12 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+`%0%` <- function(x, y) {
+  if (is_empty(x)) y else x
+}
+
+#' @autoglobal
+#' @noRd
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }
