@@ -1,20 +1,3 @@
-#' @autoglobal
-#' @noRd
-query_standardize <- function(obj, qry) {
-
-  fields <- tolower(names(obj@access@dimensions@fields))
-  params <- names(qry@params)
-  p_idx  <- which_(params %in_% fields)
-  f_idx  <- which_(fields %in_% params)
-
-  new_fields <- obj@access@dimensions@fields[f_idx]
-
-  new_params <- unname(qry@params)[p_idx]
-
-  set_names(new_params, names(new_fields))
-
-}
-
 # qry <- new_query(
 #   first_name = starts_with("Andr"),
 #   last_name  = contains("J"),
@@ -27,7 +10,22 @@ query_standardize <- function(obj, qry) {
 #
 # obj <- endpoint("enroll_prov")
 #
-# set_names(
-#   qry@params[names(qry@params) %in% tolower(names(obj@access@dimensions@fields))],
-#   names(obj@access@dimensions@fields)[tolower(names(obj@access@dimensions@fields)) %in% names(qry@params)]
-#   )
+# standardise_query(obj, qry)
+#
+#' @autoglobal
+#' @noRd
+standardise_query <- function(obj, qry) {
+
+  fields <- tolower(names(obj@access@dimensions@fields))
+  params <- names(qry@params)
+
+  set_names(
+    qry@params[
+      collapse::fmatch(fields, params, nomatch = 0L)
+      ],
+    names(obj@access@dimensions@fields[
+      sort(collapse::fmatch(params, fields, nomatch = 0L))
+      ]
+    )
+  )
+}
