@@ -17,4 +17,5 @@ Load a collection of endpoints by alias
 }
 \examples{
 collection("unwind")
+collection("managed")
 }

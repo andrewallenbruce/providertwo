@@ -43,12 +43,11 @@ check_alias_results <- function(x, call = caller_env()) {
 #' @param x `<chr>` endpoint alias
 #' @returns `<list>` with elements:
 #' @examplesIf interactive()
-#' alias_lookup("care_dial_end")
-#' alias_lookup("care_dial_tmp")
-#' alias_lookup("managed_mltss")
-#' alias_lookup("hgov_ab_reg_comp")
+#' alias_lookup("dial_facility")
+#' alias_lookup("man_mltss")
+#' alias_lookup("ab_reg_comp")
 #' alias_lookup("asc_facility")
-#' alias_lookup("dialysis_by_facility")
+#' alias_lookup("dial_listing")
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
@@ -84,7 +83,7 @@ alias_lookup <- function(x) {
 #' @examples
 #' endpoint("dial_facility")
 #' endpoint("man_mltss")
-#' endpoint("hgov_ab_reg_comp")
+#' endpoint("ab_reg_comp")
 #' endpoint("asc_facility")
 #' endpoint("dial_listing")
 #' @autoglobal
@@ -179,6 +178,7 @@ endpoint <- function(alias) {
 #' @returns An S7 `<class_collection>` object.
 #' @examples
 #' collection("unwind")
+#' collection("managed")
 #' @autoglobal
 #' @export
 collection <- function(alias) {

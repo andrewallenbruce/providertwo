@@ -16,10 +16,8 @@ A list of available API resources.
 List resources
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 endpoint("enroll_prov") |> list_resources()
 endpoint("quality_payment") |> list_resources()
-collection("care_in") |> list_resources()
-group(c("asc_facility", "caid_enter")) |> list_resources()
-\dontshow{\}) # examplesIf}
+collection("in_hosp") |> list_resources()
+group(c("asc_facility", "enterprise", "lab_fee")) |> list_resources()
 }

@@ -5,7 +5,7 @@
 #' @returns   A `<list>` with the number of results found, total number of rows, and the URL used for the query.
 #' @examplesIf interactive()
 #' query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
-#' query_results(endpoint("lab_fee_sched"))
+#' query_results(endpoint("lab_fee"))
 #'
 #' query_results(
 #'    endpoint("quality_payment"),

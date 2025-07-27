@@ -18,7 +18,7 @@ Load an endpoint by alias
 \examples{
 endpoint("dial_facility")
 endpoint("man_mltss")
-endpoint("hgov_ab_reg_comp")
+endpoint("ab_reg_comp")
 endpoint("asc_facility")
 endpoint("dial_listing")
 }

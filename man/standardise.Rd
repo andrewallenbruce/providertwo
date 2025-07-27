@@ -40,6 +40,8 @@ standardise(endpoint("pdc_clinician"), qry)
 
 standardise(endpoint("grp_cover_nature"), qry)
 
-standardise(collection("home_health"), qry)
+standardise(collection("hha"), qry)
+
+standardise(collection("hhc"), qry)
 
 }
