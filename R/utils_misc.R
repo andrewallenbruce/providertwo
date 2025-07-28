@@ -71,8 +71,8 @@ ffill <- function(x,
 #' @noRd
 fnest <- function(x,
                   ...,
-                  add = FALSE,
-                  by = NULL,
+                  add  = FALSE,
+                  by   = NULL,
                   cols = NULL) {
   fastplyr::f_nest_by(
     data = x,
@@ -80,7 +80,8 @@ fnest <- function(x,
     .add = add,
     .by = by,
     .cols = cols) |>
-    fastplyr::f_ungroup()
+    fastplyr::f_ungroup() |>
+    collapse::rnm(endpoints = "data")
 }
 
 #' @autoglobal
@@ -319,17 +320,6 @@ ifelse_ <- function(test, yes, no, na = no[NA_integer_]) {
 #' @autoglobal
 #' @keywords internal
 #' @noRd
-get_distribution <- function(x) {
-  # get_elem(x, "distribution", DF.as.list = TRUE) |>
-  #   get_elem("downloadURL", DF.as.list = TRUE) |>
-  #   unlist(use.names = FALSE)
-  get_elem(x, "distribution") |>
-    get_elem("data", DF.as.list = TRUE)
-}
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
 fmt_contactpoint <- function(x) {
 
   x <- get_elem(x, "contactPoint")
@@ -427,8 +417,6 @@ roxy8601 <- function(x) {
   )
 }
 
-# care_types("single")
-# care_types("multi")
 #' @autoglobal
 #' @keywords internal
 #' @noRd

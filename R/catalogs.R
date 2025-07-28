@@ -35,7 +35,6 @@ catalogs <- function() {
     }) |>
     set_names(names(base_url))
 
-
   list(
     care = clog_care(x),
     prov = clog_prov(x),
@@ -103,7 +102,6 @@ clog_care <- function(x) {
              format != "latest", -format) |>
     roworder(title, -year) |>
     fnest(by = "title") |>
-    rnm(endpoints = "data") |>
     join_on_title(slt(x, cols)) |>
     colorder(endpoints, pos = "end")
 
@@ -169,8 +167,7 @@ clog_open <- function(x) {
         )
       ) |>
       roworder(title, -year) |>
-      fnest(by = c("title", "description", "modified")) |>
-      rnm(endpoints = "data")
+      fnest(by = c("title", "description", "modified"))
   )
 }
 
@@ -306,8 +303,7 @@ clog_caid <- function(x) {
         "download"
       ) |>
       roworder(title, -year) |>
-      fnest(by = c("title", "description", "periodicity")) |>
-      rnm(endpoints = "data")
+      fnest(by = c("title", "description", "periodicity"))
   )
 }
 
@@ -439,8 +435,7 @@ clog_hgov <- function(x) {
     temporal = rowbind(
       temporal,
       ss_title(qhp, "^QHP Landscape [HINO][IDMVR]|^QHP Landscape Health Plan Business Rule Variables", n = TRUE)) |>
-      fnest(by = "title") |>
-      rnm(endpoints = "data"))
+      fnest(by = "title"))
 }
 
 #' @autoglobal

@@ -15,7 +15,7 @@ unlist_if <- function(x) {
 
 #' @noRd
 #' @autoglobal
-get_metadata <- function(x) {
+get_meta <- function(x) {
   compact(
     list(
       title       = x$title,
@@ -25,7 +25,7 @@ get_metadata <- function(x) {
       issued      = x$issued,
       released    = x$released,
       temporal    = x$temporal,
-      periodicity = x$periodicity,
+      periodicity = null_if(x$periodicity),
       download    = null_if(x$download),
       resources   = unlist_if(x$resources),
       dictionary  = x$dictionary,

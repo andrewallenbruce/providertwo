@@ -88,80 +88,75 @@ alias_lookup <- function(x) {
 endpoint <- function(alias) {
   x <- alias_lookup(alias)
 
-  switch(
-    x$catalog,
-    care = switch(
-      x$point,
-      current = class_care(
-        access = care_current(
+  switch(x$catalog,
+    care = switch(x$point,
+      current        = class_care(
+        access       = care_current(
           identifier = x$identifier,
-          metadata = get_metadata(x),
-          dimensions = dims_care(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       ),
-      temporal = class_care(
-        access = care_temporal(
+      temporal       = class_care(
+        access       = care_temporal(
           identifier = x$endpoints,
-          metadata = get_metadata(x),
-          dimensions = dims_care(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       )
     ),
-    prov = class_prov(
-      access = class_current(
-        identifier = x$identifier,
-        metadata = get_metadata(x),
-        dimensions = dims_default(x)
+    prov             = class_prov(
+      access         = class_current(
+        identifier   = x$identifier,
+        metadata     = get_meta(x),
+        dimensions   = get_dims(x)
       )
     ),
-    caid = switch(
-      x$point,
-      current = class_caid(
-        access = class_current(
+    caid = switch(x$point,
+      current        = class_caid(
+        access       = class_current(
           identifier = x$identifier,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       ),
-      temporal = class_caid(
-        access = class_temporal(
+      temporal       = class_caid(
+        access       = class_temporal(
           identifier = x$endpoints,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
-        )
-      )
-    ),
-    open = switch(
-      x$point,
-      current = class_open(
-        access = class_current(
-          identifier = x$identifier,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
-        )
-      ),
-      temporal = class_open(
-        access = class_temporal(
-          identifier = x$endpoints,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       )
     ),
-    hgov = switch(
-      x$point,
-      current = class_hgov(
-        access = class_current(
+    open = switch(x$point,
+      current        = class_open(
+        access       = class_current(
           identifier = x$identifier,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       ),
-      temporal = class_hgov(
-        access = class_temporal(
+      temporal       = class_open(
+        access       = class_temporal(
           identifier = x$endpoints,
-          metadata = get_metadata(x),
-          dimensions = dims_default(x)
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
+        )
+      )
+    ),
+    hgov = switch(x$point,
+      current        = class_hgov(
+        access       = class_current(
+          identifier = x$identifier,
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
+        )
+      ),
+      temporal       = class_hgov(
+        access       = class_temporal(
+          identifier = x$endpoints,
+          metadata   = get_meta(x),
+          dimensions = get_dims(x)
         )
       )
     )
