@@ -21,7 +21,11 @@ class_query <- S7::new_class(
         self
       }
     ),
-    params = class_list
+    params = class_list,
+    standardized = S7::new_property(
+      S7::class_logical,
+      default = FALSE
+    )
   )
 )
 
