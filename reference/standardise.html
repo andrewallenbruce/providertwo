@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9387</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9388</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
 <span class="r-in"><span>   rate                  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   year                  <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query$NPI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[1][condition][path]=NPI"            </span>
@@ -123,7 +123,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=1"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query$state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=state"  "filter[1][condition][operator]=IN"</span>
@@ -175,7 +175,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data?offset=0&amp;size=1" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query$npi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[1][condition][path]=npi"            </span>
@@ -209,7 +209,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data?offset=0&amp;size=1" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query$npi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "conditions[0][property]=npi"         "conditions[0][operator]=="          </span>
@@ -232,7 +232,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"grp_cover_nature"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"grp_cover_nature"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $query$covered_recipient_npi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=covered_recipient_npi"</span>
@@ -255,7 +255,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> "https://openpaymentsdata.cms.gov/api/1/datastore/query/d35243be-55cb-5087-931e-a294e0e0917f/0?count=true&amp;results=true&amp;offset=0&amp;limit=1" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="collection.html">collection</a></span><span class="op">(</span><span class="st">"hha"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hha"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
@@ -324,7 +324,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="collection.html">collection</a></span><span class="op">(</span><span class="st">"hhc"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hhc"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range$query</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
