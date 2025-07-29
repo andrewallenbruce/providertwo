@@ -6,10 +6,8 @@ query_standardise <- function(obj, qry) {
   # If fields becomes a class -> prop(obj, "fields")
 
   # Use a modifier on "year" parameter if meant for the API?
-  param_names <- `if`("year" %in% names(params),
-                      names(params)[names(params) != "year"],
-                      names(params))
-
+  # `if`("year" %in% names(params), names(params)[names(params) != "year"], names(params))
+  param_names <- names(params)[names(params) != "year"]
   field_clean <- gsub(" ", "_", tolower(fields), perl = TRUE)
 
   set_names(
@@ -68,16 +66,33 @@ method(standardise, list(class_collection, class_query)) <- function(obj, qry) {
     map(\(x) standardise(obj = x, qry = qry))
 }
 
+method(standardise, list(class_catalog, class_missing)) <- function(obj, qry) {
+  prop(obj, "access") |>
+    standardise()
+}
+
 method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
   prop(obj, "access") |>
     standardise(qry = qry)
 }
 
+method(standardise, list(class_current, class_missing)) <- function(obj, qry) {
+  list(query = NULL, identifier = prop(obj, "identifier"))
+}
+
+method(standardise, list(class_temporal, class_missing)) <- function(obj, qry) {
+  id <- prop(obj, "identifier")
+
+  list(query = NULL,
+       identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year")))
+}
+
 method(standardise, list(class_current, class_query)) <- function(obj, qry) {
+
   new_params <- query_standardise(obj, qry)
 
   list(
-    query      = set_names(query_default(new_params), names(new_params)),
+    query = set_names(query_default(new_params), names(new_params)),
     identifier = prop(obj, "identifier")
   )
 }

@@ -41,37 +41,26 @@ method(query_results, class_current) <- function(obj, qry = NULL) {
 }
 
 method(query_results, class_temporal) <- function(obj, qry = NULL) {
-  i <- prop(obj, "identifier")
 
-  if (!is.null(qry) && "year" %in% names(qry@input)) {
-    i <- sbt(i, year %in% qry@input$year)
+  x   <- if (is.null(qry))
+    standardise(obj = obj)
+  else
+    standardise(obj = obj, qry = qry)
+  url <- if (is.null(qry))
+    x$identifier
+  else
+    paste0(x$identifier, "&", flatten_query(x$query)) |> set_names(names(x$identifier))
 
-    if (is_empty(i)) {
-      cli::cli_warn(c(
-        "{.field year(s)} {.val {qry@input$year}} had {nrow(i)} matches."
-      ),
-      call = call)
-      invisible(NULL)
-    }
-  }
-
-  y <- get_elem(i, "year")
-  i <- get_elem(i, "identifier")
-
-  if (!is.null(qry))
-    i <- paste0(i, "&", qry@string$medicare)
-
-  n <- map(i, function(x) {
-    request(x) |>
-      perform_simple() |>
-      _$count
-  }) |>
-    set_names(y)
+  n <- map(url, request) |>
+    req_perform_parallel(on_error = "continue") |>
+    map(function(x)
+      fparse(resp_body_string(x)) |> _[["count"]]) |>
+    set_names(names(url))
 
   fastplyr::new_tbl(
     year  = as.integer(names(n)),
     found = as.integer(n),
-    url = utils::URLdecode(i)
+    url = utils::URLdecode(url)
   )
 }
 

@@ -22,3 +22,4 @@ List of API catalogs:
 \examples{
 catalogs()
 }
+\keyword{internal}

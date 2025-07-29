@@ -14,6 +14,7 @@ NULL
 #' @examples
 #' catalogs()
 #' @autoglobal
+#' @keywords internal
 #' @export
 catalogs <- function() {
 
@@ -48,14 +49,6 @@ catalogs <- function() {
 #' @noRd
 clog_care <- function(x) {
 
-  cols <- c("title",
-            "description",
-            "periodicity",
-            "contact",
-            "dictionary",
-            "site",
-            "references")
-
   d <- get_elem(x$care, "distribution", DF.as.list = TRUE) |>
     rowbind(fill = TRUE) |>
     fcompute(
@@ -71,9 +64,8 @@ clog_care <- function(x) {
     roworder(title, -year) |>
     as_fibble()
 
-  d <- tfm(
-    sset(d, row_na_counts(d) < 3),
-    identifier = paste0(identifier, "?offset=0&size=1"))
+  d <- tfm(sset(d, row_na_counts(d) < 3),
+           identifier = paste0(identifier, "?offset=0&size=1"))
 
   x <- mtt(
     x$care,
@@ -84,16 +76,16 @@ clog_care <- function(x) {
     references  = delist(references),
     temporal    = fmt_temporal(temporal),
     title       = rm_nonascii(rm_space(title)),
-    description = rm_quotes(rm_nonascii(description)
-    ),
-    description = description |>
-      gremove("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$") |>
-      gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
-      gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
-      gremove("\\n\\n.+\\n\\n"),
+    description = rm_quotes(rm_nonascii(description)),
+    # description = description |>
+    #   gremove("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$") |>
+    #   gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
+    #   gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
+    #   gremove("\\n\\n.+\\n\\n"),
     dictionary = describedBy,
     site       = landingPage,
-    .keep      = "references") |>
+    .keep      = "references"
+  ) |>
     join_on_title(sbt(d, format == "latest", c("title", "download", "resources"))) |>
     roworder(title) |>
     colorder(title, description)
@@ -102,7 +94,18 @@ clog_care <- function(x) {
              format != "latest", -format) |>
     roworder(title, -year) |>
     fnest(by = "title") |>
-    join_on_title(slt(x, cols)) |>
+    join_on_title(slt(
+      x,
+      c(
+        "title",
+        "description",
+        "periodicity",
+        "contact",
+        "dictionary",
+        "site",
+        "references"
+      )
+    )) |>
     colorder(endpoints, pos = "end")
 
   list(current = x, temporal = d)
@@ -111,21 +114,47 @@ clog_care <- function(x) {
 #' @autoglobal
 #' @noRd
 clog_prov <- function(x) {
-
   list(
-    current = mtt(x$prov,
+    current = mtt(
+      x$prov,
       title       = rm_nonascii(title),
-      dictionary  = paste0("https://data.cms.gov/provider-data/dataset/", identifier, "#data-dictionary"),
-      identifier  = paste0("https://data.cms.gov/provider-data/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1"),
+      dictionary  = paste0(
+        "https://data.cms.gov/provider-data/dataset/",
+        identifier,
+        "#data-dictionary"
+      ),
+      identifier  = paste0(
+        "https://data.cms.gov/provider-data/api/1/datastore/query/",
+        identifier,
+        "/0?count=true&results=true&offset=0&limit=1"
+      ),
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
       group       = flatten_column(theme),
       description = gremove(description, "\n"),
-      download    = get_elem(x$prov, "distribution") |> get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |> delist(),
+      download    = get_elem(x$prov, "distribution") |>
+        get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
+        unlist(use.names = FALSE),
       contact     = fmt_contactpoint(x$prov),
-      site        = landingPage) |>
-      sbt(group %!=% "Physician office visit costs", c("title", "group", "description", "issued", "modified", "released", "identifier", "contact", "download", "site", "dictionary")) |>
+      site        = landingPage
+    ) |>
+      sbt(
+        group %!=% "Physician office visit costs",
+        c(
+          "title",
+          "group",
+          "description",
+          "issued",
+          "modified",
+          "released",
+          "identifier",
+          "contact",
+          "download",
+          "site",
+          "dictionary"
+        )
+      ) |>
       roworder(group, title)
   )
 }
@@ -134,22 +163,42 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x <- mtt(x$open,
-    identifier = paste0("https://openpaymentsdata.cms.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1"),
+  x <- mtt(
+    x$open,
+    identifier = paste0(
+      "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
+      identifier,
+      "/0?count=true&results=true&offset=0&limit=1"
+    ),
     modified = as_date(modified),
     year = unlist(x$open$keyword, use.names = FALSE),
-    year = iif(year == "all years" | title == "Provider profile ID mapping table", "All", year, nThread = 4L),
+    year = iif(
+      year == "all years" |
+        title == "Provider profile ID mapping table",
+      "All",
+      year,
+      nThread = 4L
+    ),
     title = toTitleCase(rm_nonascii(title)),
     contact = fmt_contactpoint(x$open),
     description = rm_quotes(description) |>
-        rm_nonascii() |>
-        greplace("\r\n", " ") |>
-        gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
-        rm_space(),
-      download = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
-        get_elem("downloadURL", DF.as.list = TRUE) |>
-        unlist(use.names = FALSE)) |>
-    slt(c("year", "title", "description", "modified", "identifier", "contact", "download"))
+      rm_nonascii() |>
+      # greplace("\r\n", " ") |>
+      # gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
+      rm_space(),
+    download = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
+      get_elem("downloadURL", DF.as.list = TRUE) |>
+      unlist(use.names = FALSE)
+  ) |>
+    slt(c(
+      "year",
+      "title",
+      "description",
+      "modified",
+      "identifier",
+      "contact",
+      "download"
+    ))
 
   list(
     current = sbt(x, year %==% "All", -year) |> roworder(title),
@@ -159,9 +208,12 @@ clog_open <- function(x) {
         title = gremove(title, "^[0-9]{4} "),
         description = nswitch(
           title,
-          "General Payment Data", "All general (non-research, non-ownership related) payments from the program year",
-          "Ownership Payment Data", "All ownership and investment payments from the program year",
-          "Research Payment Data", "All research-related payments from the program year",
+          "General Payment Data",
+          "All general (non-research, non-ownership related) payments from the program year",
+          "Ownership Payment Data",
+          "All ownership and investment payments from the program year",
+          "Research Payment Data",
+          "All research-related payments from the program year",
           default = description,
           nThread = 4L
         )
@@ -232,7 +284,7 @@ clog_caid <- function(x) {
     periodicity = fmt_periodicity(accrualPeriodicity),
     contact = fmt_contactpoint(x$caid),
     title = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
-    description = iif(description == "Dataset.", NA_character_, description),
+    description = iif(description == "Dataset.", NA_character_, description, nThread = 4L),
     description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()
   ) |>
     slt(c(
