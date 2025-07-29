@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9389 (2025-07-29)
+
+* standardized query indicator
+
+
 # providertwo 0.0.0.9388 (2025-07-29)
 
 * simplifying loading endpoints
