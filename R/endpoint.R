@@ -1,56 +1,58 @@
-#' @include classes.R
+#' Load Data Endpoints
+#'
+#' @description
+#' Load a data endpoint or collection by its alias.
+#'
+#' @details
+#' The `endpoint()` function loads a single data endpoint, while the
+#' `collection()` function loads a collection of endpoints, and the `group()`
+#' function loads a group of endpoints. The `alias` parameter is used to specify
+#' the endpoint or collection alias. If the alias is not found, an error will be
+#' raised.
+#'
+#' @param alias `<chr>` endpoint or collection alias
+#' @param description `<chr>` Group description. Defaults to `NULL`,
+#'    which will use the aliases as the description.
+#' @name load_endpoint
+#' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
 NULL
 
 #' @autoglobal
 #' @noRd
 select_alias <- function(x, alias, ...) {
-  subset_detect(i = eval(str2lang(x)),
-                j = title,
-                p = alias,
-                ...)
+  subset_detect(i = eval(str2lang(x)), j = title, p = alias, ...)
 }
 
 #' @autoglobal
 #' @noRd
 c_temp <- function(x) {
-  # slt(x$endpoints, -resources)
-  # if (all_na(gv(end, "resources")))
-  # gv(end, "resources") <- NULL
   flist(
     !!!c(x[names(x) %!=% "endpoints"]),
     endpoints  = yank(x$endpoints),
-    identifier = yank(endpoints$identifier)
-  )
+    identifier = yank(endpoints$identifier))
 }
 
 #' @autoglobal
 #' @noRd
 check_alias_results <- function(x, call = caller_env()) {
+  msg <- c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches.")
+
   if (is_empty(x$tbl)) {
-    cli::cli_abort(
-      c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches."),
-      call = call)
+    cli::cli_abort(msg, call = call)
   }
 
   if (nrow(x$tbl) > 1L) {
-    cli::cli_abort(
-      c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches:",
-        cli::col_yellow(cli::format_bullets_raw(x$tbl$title))
-      ),
-      call = call
-    )
+    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(x$tbl$title)))
+    cli::cli_abort(msg, call = call)
   }
 
 }
 
-#' @param x `<chr>` endpoint alias
-#' @returns `<list>` with elements:
-#' @examplesIf interactive()
-#' alias_lookup("dial_facility")
-#' alias_lookup("man_mltss")
-#' alias_lookup("ab_reg_comp")
-#' alias_lookup("asc_facility")
-#' alias_lookup("dial_listing")
+# alias_lookup("dial_facility")
+# alias_lookup("man_mltss")
+# alias_lookup("ab_reg_comp")
+# alias_lookup("asc_facility")
+# alias_lookup("dial_listing")
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
@@ -73,10 +75,27 @@ alias_lookup <- function(x) {
       temporal = c_temp(x$tbl)))
 }
 
-#' Load an endpoint by alias
-#'
-#' @param alias `<chr>` endpoint alias
-#' @returns An S7 `<class_care/caid/prov/open/hgov>` object.
+#' @autoglobal
+#' @noRd
+as_current <- function(x) {
+  class_current(
+    identifier   = x$identifier,
+    metadata     = get_meta(x),
+    dimensions   = get_dims(x)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+as_temporal <- function(x) {
+  class_temporal(
+    identifier = x$endpoints,
+    metadata   = get_meta(x),
+    dimensions = get_dims(x)
+  )
+}
+
+#' @rdname load_endpoint
 #' @examples
 #' endpoint("dial_facility")
 #' endpoint("man_mltss")
@@ -105,68 +124,26 @@ endpoint <- function(alias) {
         )
       )
     ),
-    prov             = class_prov(
-      access         = class_current(
-        identifier   = x$identifier,
-        metadata     = get_meta(x),
-        dimensions   = get_dims(x)
-      )
-    ),
-    caid = switch(x$point,
-      current        = class_caid(
-        access       = class_current(
-          identifier = x$identifier,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
+    prov = class_prov(access = as_current(x)),
+    caid = switch(
+      x$point,
+      current  = class_caid(access = as_current(x)),
+      temporal = class_caid(access = as_temporal(x))
       ),
-      temporal       = class_caid(
-        access       = class_temporal(
-          identifier = x$endpoints,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
-      )
-    ),
-    open = switch(x$point,
-      current        = class_open(
-        access       = class_current(
-          identifier = x$identifier,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
+    open = switch(
+      x$point,
+      current  = class_open(access = as_current(x)),
+      temporal = class_open(access = as_temporal(x))
       ),
-      temporal       = class_open(
-        access       = class_temporal(
-          identifier = x$endpoints,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
-      )
-    ),
-    hgov = switch(x$point,
-      current        = class_hgov(
-        access       = class_current(
-          identifier = x$identifier,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
+    hgov = switch(
+      x$point,
+      current  = class_hgov(access = as_current(x)),
+      temporal = class_hgov(access = as_temporal(x))
       ),
-      temporal       = class_hgov(
-        access       = class_temporal(
-          identifier = x$endpoints,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
-      )
-    )
   )
 }
 
-#' Load a collection of endpoints by alias
-#'
-#' @param alias `<chr>` collection alias
-#' @returns An S7 `<class_collection>` object.
+#' @rdname load_endpoint
 #' @examples
 #' collection("unwind")
 #' collection("managed")
@@ -183,27 +160,21 @@ collection <- function(alias) {
     members = names_map(x$alias, endpoint))
 }
 
-#' Load a group of endpoints by alias
-#'
-#' @param alias `<chr>` Alias representing the CMS data endpoint.
-#' @param description `<chr>` Group description. Defaults to `NULL`,
-#'    which will use the aliases as the description.
-#' @param call `<env>` Environment from which to call the function.
-#' @returns S7 `<class_group>` object.
+#' @rdname load_endpoint
 #' @examples
 #' group(c("asc_facility", "enterprise"))
 #' try(group("asc_facility"))
 #' @autoglobal
 #' @export
-group <- function(alias, description = NULL, call = caller_env()) {
+group <- function(alias, description = NULL) {
 
   check_required(alias)
 
   if (length(alias) == 1L) {
     cli::cli_abort(
-      c("A {.cls class_group} must have more than one {.arg alias}.",
+      c("A {.cls class_group} must have more than one {.field alias}.",
         "i" = "Run {.run endpoint({glue::double_quote(alias)})} to load this endpoint."),
-      call = call)
+      call. = FALSE)
   }
 
   class_group(
@@ -211,21 +182,3 @@ group <- function(alias, description = NULL, call = caller_env()) {
     members = names_map(alias, endpoint)
   )
 }
-
-# endpoint <- function(alias) {
-#
-#   x   <- alias_lookup(alias)
-#
-#   cls <- as_function(glue("class_{x$catalog}"))
-#
-#   pnt <- `if`(x$catalog == "care",
-#               as_function(glue("{x$catalog}_{x$point}")),
-#               as_function(glue("class_{x$point}")))
-#
-#
-#   cls(access = pnt(
-#     identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
-#     metadata = get_metadata(x),
-#     dimensions = get_dimensions(x)
-#   ))
-# }

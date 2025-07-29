@@ -1,18 +1,21 @@
 #' @autoglobal
 #' @noRd
 flatten_query <- function(x) {
-  map(x, function(x) paste0(x, collapse = "&")) |>
+  # purrr::map(x, paste0, collapse = "&")
+  purrr::map(x, function(x)
+    paste0(x, collapse = "&")) |>
     unlist(use.names = FALSE) |>
     paste0(collapse = "&")
 }
 
 #' @noRd
 #' @autoglobal
-class_query <- new_class(
+class_query <- S7::new_class(
   name       = "class_query",
   package    = NULL,
   properties = list(
-    input    = new_property(class_list,
+    input    = S7::new_property(
+      S7::class_list,
       setter = function(self, value) {
         self@input <- value
         self
@@ -44,15 +47,15 @@ class_query <- new_class(
 #' @export
 new_query <- function(...) {
   class_query(
-    input  = compact(enexprs(...)),
-    params = compact(dots_list(..., .homonyms = "error"))
+    input  = purrr::compact(rlang::enexprs(...)),
+    params = purrr::compact(rlang::dots_list(..., .homonyms = "error"))
   )
 }
 
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {
-  imap(args, function(x, name) {
+  purrr::imap(args, function(x, name) {
     v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
     c(
@@ -69,14 +72,14 @@ query_care <- function(args) {
     )
   }) |>
     unname() |>
-    imap(function(x, idx)
+    purrr::imap(function(x, idx)
       greplace(x, "<<i>>", idx))
 }
 
 #' @autoglobal
 #' @noRd
 query_default <- function(args) {
-  imap(args, function(x, name) {
+  purrr::imap(args, function(x, name) {
     v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
     c(
@@ -93,6 +96,6 @@ query_default <- function(args) {
     )
   }) |>
     unname() |>
-    imap(function(x, idx)
+    purrr::imap(function(x, idx)
       greplace(x, "<<i>>", idx - 1))
 }

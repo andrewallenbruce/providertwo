@@ -1,3 +1,21 @@
+# endpoint <- function(alias) {
+#
+#   x   <- alias_lookup(alias)
+#
+#   cls <- as_function(glue("class_{x$catalog}"))
+#
+#   pnt <- `if`(x$catalog == "care",
+#               as_function(glue("{x$catalog}_{x$point}")),
+#               as_function(glue("class_{x$point}")))
+#
+#
+#   cls(access = pnt(
+#     identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
+#     metadata = get_metadata(x),
+#     dimensions = get_dimensions(x)
+#   ))
+# }
+
 #' Parse datetime
 #'
 #' @param x `<chr>` vector to parse; format: "YYYY-MM-DDTHH:MM:SS"
@@ -38,25 +56,6 @@ as_fda_date <- function(i) {
 #' @noRd
 convert_epoch <- function(x) {
   as.Date(as.POSIXct.numeric(as.numeric(x) / 1000L, origin = "1970-01-01"))
-}
-
-#' @autoglobal
-#' @noRd
-identifier_type <- function(x) {
-
-  api <- case(
-    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "pro_endpoint",
-    grepl("openpaymentsdata.cms.gov", x, perl = TRUE)   ~ "open",
-    grepl("data.medicaid.gov", x, perl = TRUE)          ~ "caid",
-    grepl("data.healthcare.gov", x, perl = TRUE)        ~ "hgov",
-    grepl("data.cms.gov/data-api", x, perl = TRUE)      ~ "care",
-    .default = NA_character_
-  )
-
-  if (is_na(api) || api != "care") return(api)
-
-  case(endsWith(x, "viewer") ~ "care_endpoint",
-       endsWith(x, "data")   ~ "care_temporal")
 }
 
 #' @autoglobal

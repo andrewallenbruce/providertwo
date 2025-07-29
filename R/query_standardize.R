@@ -1,8 +1,8 @@
 #' @autoglobal
 #' @noRd
 query_standardise <- function(obj, qry) {
-  params <- prop(qry, "params")
-  fields <- prop(obj, "dimensions") |> prop("fields")
+  params <- S7::prop(qry, "params")
+  fields <- S7::prop(obj, "dimensions") |> S7::prop("fields")
   # If fields becomes a class -> prop(obj, "fields")
 
   # Use a modifier on "year" parameter if meant for the API?
@@ -52,84 +52,95 @@ query_standardise <- function(obj, qry) {
 #'
 #' @autoglobal
 #' @export
-standardise <- new_generic("standardise", c("obj", "qry"), function(obj, qry) {
-  S7_dispatch()
+standardise <- S7::new_generic("standardise", c("obj", "qry"), function(obj, qry) {
+  S7::S7_dispatch()
 })
 
-method(standardise, list(class_group, class_query)) <- function(obj, qry) {
-  prop(obj, "members") |>
-    map(\(x) standardise(obj = x, qry = qry))
+S7::method(standardise, list(class_group, class_query)) <- function(obj, qry) {
+  S7::prop(obj, "members") |> purrr::map(\(x) standardise(obj = x, qry = qry))
 }
 
-method(standardise, list(class_collection, class_query)) <- function(obj, qry) {
-  prop(obj, "members") |>
-    map(\(x) standardise(obj = x, qry = qry))
+S7::method(standardise, list(class_collection, class_query)) <- function(obj, qry) {
+  S7::prop(obj, "members") |> purrr::map(\(x) standardise(obj = x, qry = qry))
 }
 
-method(standardise, list(class_catalog, class_missing)) <- function(obj, qry) {
-  prop(obj, "access") |>
-    standardise()
+S7::method(standardise, list(class_catalog, class_missing)) <- function(obj, qry) {
+  S7::prop(obj, "access") |> standardise()
 }
 
-method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
-  prop(obj, "access") |>
-    standardise(qry = qry)
+S7::method(standardise, list(class_catalog, class_query)) <- function(obj, qry) {
+  S7::prop(obj, "access") |> standardise(qry = qry)
 }
 
-method(standardise, list(class_current, class_missing)) <- function(obj, qry) {
-  list(query = NULL, identifier = prop(obj, "identifier"))
-}
-
-method(standardise, list(class_temporal, class_missing)) <- function(obj, qry) {
-  id <- prop(obj, "identifier")
-
+S7::method(standardise, list(class_current, class_missing)) <- function(obj, qry) {
   list(query = NULL,
-       identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year")))
+       identifier = S7::prop(obj, "identifier"))
 }
 
-method(standardise, list(class_current, class_query)) <- function(obj, qry) {
-
-  new_params <- query_standardise(obj, qry)
+S7::method(standardise, list(class_temporal, class_missing)) <- function(obj, qry) {
+  id <- S7::prop(obj, "identifier")
 
   list(
-    query = set_names(query_default(new_params), names(new_params)),
-    identifier = prop(obj, "identifier")
+    query = NULL,
+    identifier = rlang::set_names(
+      collapse::get_elem(id, "identifier"),
+      collapse::get_elem(id, "year")
+    )
   )
 }
 
-method(standardise, list(care_current, class_query)) <- function(obj, qry) {
+S7::method(standardise, list(class_current, class_query)) <- function(obj, qry) {
   new_params <- query_standardise(obj, qry)
 
-  list(query      = set_names(query_care(new_params), names(new_params)),
-       identifier = prop(obj, "identifier"))
+  list(
+    query = rlang::set_names(query_default(new_params), names(new_params)),
+    identifier = S7::prop(obj, "identifier")
+  )
 }
 
-method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
-  id <- if ("year" %in% names(prop(qry, "params"))) {
-    sbt(prop(obj, "identifier"), year %in% prop(qry, "params")$year)
+S7::method(standardise, list(care_current, class_query)) <- function(obj, qry) {
+  new_params <- query_standardise(obj, qry)
+
+  list(
+    query = rlang::set_names(query_care(new_params), names(new_params)),
+    identifier = S7::prop(obj, "identifier")
+  )
+}
+
+S7::method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
+  id <- if ("year" %in% names(S7::prop(qry, "params"))) {
+    collapse::sbt(S7::prop(obj, "identifier"),
+                  year %in% S7::prop(qry, "params")$year)
   } else {
-    prop(obj, "identifier")
+    S7::prop(obj, "identifier")
   }
 
   new_params <- query_standardise(obj, qry)
 
   list(
-    query      = set_names(query_default(new_params), names(new_params)),
-    identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
+    query = rlang::set_names(query_default(new_params), names(new_params)),
+    identifier = rlang::set_names(
+      collapse::get_elem(id, "identifier"),
+      collapse::get_elem(id, "year")
+    )
   )
 }
 
-method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
-  id <- if ("year" %in% names(prop(qry, "params"))) {
-    sbt(prop(obj, "identifier"), year %in% prop(qry, "params")$year)
+S7::method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
+  id <- if ("year" %in% names(S7::prop(qry, "params"))) {
+    collapse::sbt(S7::prop(obj, "identifier"),
+                  year %in% S7::prop(qry, "params")$year)
   } else {
-    prop(obj, "identifier")
+    S7::prop(obj, "identifier")
   }
 
   new_params <- query_standardise(obj, qry)
 
   list(
-    query      = set_names(query_care(new_params), names(new_params)),
-    identifier = set_names(get_elem(id, "identifier"), get_elem(id, "year"))
+    query = rlang::set_names(query_care(new_params), names(new_params)),
+    identifier = rlang::set_names(
+      collapse::get_elem(id, "identifier"),
+      collapse::get_elem(id, "year")
+    )
   )
 }
