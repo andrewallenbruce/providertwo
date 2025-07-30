@@ -15,7 +15,9 @@ utils::globalVariables(c(
   # <.nppes_multi_npi>
   "created_epoch",
   # <quality_eligibility>
-  "date_approved",
+  "date_appr",
+  # <quality_eligibility>
+  "date_pac",
   # <clog_care>
   "describedBy",
   # <clog_care>
@@ -36,8 +38,6 @@ utils::globalVariables(c(
   # <clog_care>
   # <c_temp>
   "endpoints",
-  # <quality_eligibility>
-  "enroll_year",
   # <quality_eligibility>
   "entity",
   # <clog_hgov>
@@ -72,10 +72,10 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
+  # <quality_eligibility>
+  "mdl_name",
   # <quality_metrics>
   "metric",
-  # <quality_eligibility>
-  "middle_name",
   # <clog_care>
   # <clog_prov>
   # <clog_open>
@@ -102,11 +102,11 @@ utils::globalVariables(c(
   # <tidy_resources>
   "size",
   # <quality_eligibility>
-  "specialty_category",
+  "spec_cat",
   # <quality_eligibility>
-  "specialty_description",
+  "spec_desc",
   # <quality_eligibility>
-  "specialty_type",
+  "spec_type",
   # <clog_care>
   "temporal",
   # <clog_prov>
@@ -130,6 +130,6 @@ utils::globalVariables(c(
   # <tidy_resources>
   "year",
   # <quality_eligibility>
-  "years_in_medicare",
+  "years_mcr",
   NULL
 ))

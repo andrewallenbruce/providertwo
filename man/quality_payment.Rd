@@ -21,6 +21,5 @@ Quality Payment Program
 \examples{
 quality_metrics(year = 2018:2025)
 
-quality_eligibility(year = 2018:2025,
-                    npi  = c(1144544834, 1043477615, 1932365699))
+quality_eligibility(year = 2018:2025, npi  = c(1144544834, 1043477615, 1932365699))
 }

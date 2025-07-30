@@ -9,8 +9,7 @@
 #' @examples
 #' quality_metrics(year = 2018:2025)
 #'
-#' quality_eligibility(year = 2018:2025,
-#'                     npi  = c(1144544834, 1043477615, 1932365699))
+#' quality_eligibility(year = 2018:2025, npi  = c(1144544834, 1043477615, 1932365699))
 NULL
 
 #' @autoglobal
@@ -73,24 +72,42 @@ quality_eligibility <- function(year, npi) {
       specialty_category             = res$specialty$categoryReference,
       specialty                      = NULL
     ) |>
-    rnm(qpp_name("base")) |>
+    rnm(firstName                      = "first_name",
+        middleName                     = "mdl_name",
+        lastName                       = "last_name",
+        nationalProviderIdentifierType = "entity",
+        newlyEnrolled                  = "is_new",
+        firstApprovedDate              = "date_appr",
+        pecosEnrollmentDate            = "date_pac",
+        yearsInMedicare                = "years_mcr",
+        specialty_description          = "spec_desc",
+        specialty_type                 = "spec_type",
+        specialty_category             = "spec_cat",
+        isMaqi                         = "is_maqi",
+        qpStatus                       = "qp_status",
+        qpScoreType                    = "qp_score_type",
+        amsMipsEligibleClinician       = "ams_mips_elig",
+        organizations                  = "ORGS") |>
     colorder(
       year,
       npi,
       entity,
       last_name,
       first_name,
-      middle_name,
+      mdl_name,
       is_new,
-      date_approved,
-      enroll_year,
-      years_in_medicare,
-      specialty_category,
-      specialty_type,
-      specialty_description,
+      date_appr,
+      date_pac,
+      years_mcr,
+      spec_cat,
+      spec_type,
+      spec_desc,
       is_maqi
     ) |>
     roworder(npi, -year)
+
+  # x <- slt(x, year, npi, ORGS)
+  # a <- x[1, c("year", "npi", "ORGS")] |> yank() |> fastplyr::as_tbl()
 
   if (rlang::has_name(res, "error")) {
     res <- mtt(res, error = res$error$type) #|> rsplit(res$error)
