@@ -102,8 +102,6 @@ utils::globalVariables(c(
   # <tidy_resources>
   "size",
   # <quality_eligibility>
-  "specialty",
-  # <quality_eligibility>
   "specialty_category",
   # <quality_eligibility>
   "specialty_description",

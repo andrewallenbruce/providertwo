@@ -6,7 +6,7 @@
 #' @importFrom collapse colorder fcompute fcount fduplicated fmatch fmax fnobs funique
 #' @importFrom collapse get_elem get_vars `gv<-` gv groupid join mtt pivot radixorder
 #' @importFrom collapse rnm rowbind roworder rsplit sbt slt ss tfm vlengths
-#' @importFrom glue glue glue_collapse glue_col
+#' @importFrom glue as_glue glue glue_collapse glue_col
 #' @importFrom kit iif nif nswitch
 #' @importFrom purrr compact discard imap list_c list_rbind map map2 map_chr
 #' @importFrom purrr map_int map_lgl modify_if `pluck<-` pluck reduce walk
