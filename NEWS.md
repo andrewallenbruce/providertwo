@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9392 (2025-07-30)
+
+* qpp work
+
+
 # providertwo 0.0.0.9391 (2025-07-30)
 
 * standardise methods
