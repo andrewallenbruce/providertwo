@@ -44,4 +44,6 @@ standardise(collection("hha"), qry)
 
 standardise(collection("hhc"), qry)
 
+standardise(collection("hhc"))
+
 }

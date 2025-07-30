@@ -14,12 +14,14 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
-`%|%` <- function(x, y) {
-  if (is.na(x)) y else x
-}
-
 `%|||%` <- function(x, y) {
   if (!is.null(x)) y else NULL
+}
+
+#' @autoglobal
+#' @noRd
+`%|%` <- function(x, y) {
+  if (is.na(x)) y else x
 }
 
 #' @autoglobal
