@@ -61,10 +61,7 @@ class_temporal <- S7::new_class(
 care_current <- S7::new_class(
   name         = "care_current",
   package      = NULL,
-  parent       = class_endpoint,
-  properties   = list(
-    identifier = S7::class_character
-  )
+  parent       = class_current
 )
 
 #' @noRd
@@ -72,10 +69,7 @@ care_current <- S7::new_class(
 care_temporal <- S7::new_class(
   name         = "care_temporal",
   package      = NULL,
-  parent       = class_endpoint,
-  properties   = list(
-    identifier = S7::class_data.frame
-  )
+  parent       = class_temporal
 )
 
 #' @noRd

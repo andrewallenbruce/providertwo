@@ -19,12 +19,10 @@ Return the number of results for a given query
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
+query_results(endpoint("dial_facility"), new_query(state = any_of(c("GA", "TX"))))
 query_results(endpoint("lab_fee"))
-
-query_results(
-   endpoint("quality_payment"),
-   query(year = 2017:2023,
-         `practice state or us territory` = any_of(c("GA", "TX"))))
+query_results(endpoint("quality_payment"),
+              new_query(year = 2017:2023,
+              practice_state_or_us_territory = any_of(c("GA", "TX"))))
 \dontshow{\}) # examplesIf}
 }

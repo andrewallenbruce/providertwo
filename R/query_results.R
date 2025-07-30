@@ -4,14 +4,11 @@
 #' @param qry A `<class_query>` object. If `NULL` (the default), no query is used.
 #' @returns   A `<list>` with the number of results found, total number of rows, and the URL used for the query.
 #' @examplesIf interactive()
-#' query_results(endpoint("dial_facility"), query(state = any_of(c("GA", "TX"))))
+#' query_results(endpoint("dial_facility"), new_query(state = any_of(c("GA", "TX"))))
 #' query_results(endpoint("lab_fee"))
-#'
-#' query_results(
-#'    endpoint("quality_payment"),
-#'    query(year = 2017:2023,
-#'          `practice state or us territory` = any_of(c("GA", "TX"))))
-#'
+#' query_results(endpoint("quality_payment"),
+#'               new_query(year = 2017:2023,
+#'               practice_state_or_us_territory = any_of(c("GA", "TX"))))
 #' @autoglobal
 #' @export
 query_results <- new_generic("query_results", "obj", function(obj, qry = NULL) {
