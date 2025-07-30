@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9389</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9390</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,13 +68,11 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
-<span class="r-in"><span><span class="fu">query_results</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="fu">query</span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"TX"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">query_results</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"TX"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">query_results</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"lab_fee"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">query_results</span><span class="op">(</span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   <span class="fu">query</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2017</span><span class="op">:</span><span class="fl">2023</span>,</span></span>
-<span class="r-in"><span>         `practice state or us territory` <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"TX"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">query_results</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2017</span><span class="op">:</span><span class="fl">2023</span>,</span></span>
+<span class="r-in"><span>              practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"TX"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
