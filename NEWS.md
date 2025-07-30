@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9390 (2025-07-29)
+
+* care_current and care_temporal now children of class_current and class_temporal instead of class_endpoint
+
+
 # providertwo 0.0.0.9389 (2025-07-29)
 
 * standardized query indicator
