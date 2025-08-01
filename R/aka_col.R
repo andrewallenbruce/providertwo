@@ -268,20 +268,27 @@ collect_care = list(
 #' @autoglobal
 #' @noRd
 rlang::on_load({
-  collection_names <- mph_init(
-    names(c(collect_prov, collect_caid, collect_care, collect_open))
-  )
   collection_regex <- c(collect_prov, collect_caid, collect_care, collect_open)
+  collection_names <- oomph::mph_init(names(collection_regex))
 })
 
 #' @autoglobal
 #' @noRd
-rex_collect <- function(x, call = caller_env()) {
+is_collection <- function(x) {
+  !is.na(oomph::mph_match(x, collection_names))
+}
 
-  if (is.na(mph_match(x, collection_names))) {
-    cli::cli_abort(
-      c("x" = "{.val {x}} is not a valid collection."),
-      call = call)
+#' @autoglobal
+#' @noRd
+any_are_collection <- function(x) {
+  any(is_collection(x), na.rm = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+rex_collect <- function(x, call = caller_env()) {
+  if (!is_collection(x)) {
+    cli::cli_abort(c("x" = "{.val {x}} is not a valid collection."), call = call)
   }
-  collection_regex[mph_match(x, collection_names)] |> unname() |> yank()
+  collection_regex[oomph::mph_match(x, collection_names)] |> unname() |> yank()
 }

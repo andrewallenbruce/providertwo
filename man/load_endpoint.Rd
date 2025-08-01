@@ -11,12 +11,14 @@ endpoint(alias)
 
 collection(alias)
 
-group(alias, description = NULL)
+group(..., .description = NULL)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint or collection alias}
 
-\item{description}{\verb{<chr>} Group description. Defaults to \code{NULL},
+\item{...}{Arguments passed to methods.}
+
+\item{.description}{\verb{<chr>} Group description. Defaults to \code{NULL},
 which will use the aliases as the description.}
 }
 \value{
@@ -40,6 +42,7 @@ endpoint("asc_facility")
 endpoint("dial_listing")
 collection("unwind")
 collection("managed")
-group(c("asc_facility", "enterprise"))
+group("asc_facility", "enterprise")
 try(group("asc_facility"))
+try(group("util"))
 }

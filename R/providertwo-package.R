@@ -16,7 +16,6 @@
 #' @importFrom stringi stri_trans_general stri_trim stri_trim_both
 #' @importFrom tools toTitleCase
 #' @importFrom vctrs `vec_slice<-` vec_in
-#' @import oomph
 #' @import httr2
 #' @import S7
 #' @import RcppSimdJson

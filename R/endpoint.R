@@ -11,7 +11,8 @@
 #' raised.
 #'
 #' @param alias `<chr>` endpoint or collection alias
-#' @param description `<chr>` Group description. Defaults to `NULL`,
+#' @inheritParams rlang::args_dots_used
+#' @param .description `<chr>` Group description. Defaults to `NULL`,
 #'    which will use the aliases as the description.
 #' @name load_endpoint
 #' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
@@ -63,7 +64,7 @@ alias_lookup <- function(x) {
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(glue("the$clog${catalog}${point}"), alias_rex(x)))
+    tbl     = select_alias(glue("the$clog${catalog}${point}"), rex_endpoint(x)))
 
   check_alias_results(x)
 
@@ -107,8 +108,10 @@ as_temporal <- function(x) {
 endpoint <- function(alias) {
   x <- alias_lookup(alias)
 
-  switch(x$catalog,
-    care = switch(x$point,
+  switch(
+    x$catalog,
+    care = switch(
+      x$point,
       current        = class_care(
         access       = care_current(
           identifier = x$identifier,
@@ -124,22 +127,20 @@ endpoint <- function(alias) {
         )
       )
     ),
-    prov = class_prov(access = as_current(x)),
-    caid = switch(
-      x$point,
-      current  = class_caid(access = as_current(x)),
-      temporal = class_caid(access = as_temporal(x))
-      ),
-    open = switch(
-      x$point,
-      current  = class_open(access = as_current(x)),
-      temporal = class_open(access = as_temporal(x))
-      ),
-    hgov = switch(
-      x$point,
-      current  = class_hgov(access = as_current(x)),
-      temporal = class_hgov(access = as_temporal(x))
-      ),
+    prov = class_prov(as_current(x)),
+    caid = class_caid(switch(x$point, current = as_current(x),  temporal = as_temporal(x))),
+    open = class_open(
+      access = switch(
+        x$point,
+        current  = as_current(x),
+        temporal = as_temporal(x))
+    ),
+    hgov = class_hgov(
+      access = switch(
+        x$point,
+        current  = as_current(x),
+        temporal = as_temporal(x))
+    )
   )
 }
 
@@ -162,23 +163,32 @@ collection <- function(alias) {
 
 #' @rdname load_endpoint
 #' @examples
-#' group(c("asc_facility", "enterprise"))
+#' group("asc_facility", "enterprise")
 #' try(group("asc_facility"))
+#' try(group("util"))
 #' @autoglobal
 #' @export
-group <- function(alias, description = NULL) {
+group <- function(..., .description = NULL) {
 
-  check_required(alias)
+  check_dots_unnamed()
+  alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
+
+  if (any_are_collection(unlist(alias, use.names = FALSE))) {
+    cli::cli_abort(
+      c("x" = "A {.cls group} cannot contain a {.cls collection}.",
+        "i" = "Run {.field collection({.val {glue::double_quote(alias[is_collection(alias)])}})} to load a collection."),
+      call. = FALSE)
+  }
 
   if (length(alias) == 1L) {
     cli::cli_abort(
-      c("A {.cls class_group} must have more than one {.field alias}.",
-        "i" = "Run {.run endpoint({glue::double_quote(alias)})} to load this endpoint."),
+      c("x" = "A {.cls group} contains more than one {.cls endpoint}.",
+        "i" = "Run {.field endpoint({.val {glue::double_quote(alias)}})} to load an endpoint."),
       call. = FALSE)
   }
 
   class_group(
-    name    = description %||% paste0("[", paste0(alias, collapse = ", "), "]"),
+    name    = .description %||% paste0("[", paste0(alias, collapse = ", "), "]"),
     members = names_map(alias, endpoint)
   )
 }
