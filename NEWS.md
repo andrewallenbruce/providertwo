@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9395 (2025-08-01)
+
+* as_point
+
+
 # providertwo 0.0.0.9394 (2025-08-01)
 
 * group() work
