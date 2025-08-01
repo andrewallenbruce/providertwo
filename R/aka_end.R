@@ -48,7 +48,7 @@ end_care <- list(
     survey_covid = "^Medicare Current Beneficiary Survey [-] COVID-19 Supplement$",
     survey_cost = "^Medicare Current Beneficiary Survey [-] Cost Supplement$",
     survey_file = "^Medicare Current Beneficiary Survey [-] Survey File$",
-    geo_ma = "^Medicare Advantage Geographic Variation [-] National [&] State$",
+    geo_madv = "^Medicare Advantage Geographic Variation [-] National [&] State$",
     geo_hrr = "^Medicare Geographic Variation [-] by Hospital Referral Region$",
     geo_nsc = "^Medicare Geographic Variation [-] by National, State [&] County$",
     pdp_month = "^Monthly Prescription Drug Plan Formulary and Pharmacy Network Information$",

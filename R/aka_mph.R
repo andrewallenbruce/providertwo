@@ -15,8 +15,7 @@ rlang::on_load({
     end_hgov$temporal,
     end_caid$temporal,
     end_care$temporal,
-    end_open$temporal
-  )
+    end_open$temporal)
   endpoint_names <- oomph::mph_init(names(endpoint_regex))
 })
 

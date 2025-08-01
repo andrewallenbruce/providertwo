@@ -287,8 +287,5 @@ any_are_collection <- function(x) {
 #' @autoglobal
 #' @noRd
 rex_collect <- function(x, call = caller_env()) {
-  if (!is_collection(x)) {
-    cli::cli_abort(c("x" = "{.val {x}} is not a valid collection."), call = call)
-  }
   collection_regex[oomph::mph_match(x, collection_names)] |> unname() |> yank()
 }

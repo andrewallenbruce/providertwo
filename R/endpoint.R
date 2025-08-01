@@ -64,7 +64,8 @@ alias_lookup <- function(x) {
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(glue("the$clog${catalog}${point}"), rex_endpoint(x)))
+    tbl     = select_alias(glue("the$clog${catalog}${point}"),
+                           rex_endpoint(x)))
 
   check_alias_results(x)
 
@@ -96,6 +97,55 @@ as_temporal <- function(x) {
   )
 }
 
+#' @autoglobal
+#' @noRd
+as_point <- function(x) {
+  switch(
+    x$point,
+    current  = as_current(x),
+    temporal = as_temporal(x)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+as_care <- function(x) {
+  switch(
+    x$point,
+    current = class_care(
+      care_current(
+        identifier = x$identifier,
+        metadata   = get_meta(x),
+        dimensions = get_dims(x)
+      )
+    ),
+    temporal = class_care(
+      care_temporal(
+        identifier = x$endpoints,
+        metadata   = get_meta(x),
+        dimensions = get_dims(x)
+      )
+    )
+  )
+
+  # class_care(
+  #   switch(
+  #     x$point,
+  #     current = care_current(
+  #       identifier = x$identifier,
+  #       metadata   = get_meta(x),
+  #       dimensions = get_dims(x)
+  #     )
+  #   ),
+  #   temporal = care_temporal(
+  #     identifier = x$endpoints,
+  #     metadata   = get_meta(x),
+  #     dimensions = get_dims(x)
+  #   )
+  # )
+
+}
+
 #' @rdname load_endpoint
 #' @examples
 #' endpoint("dial_facility")
@@ -110,37 +160,11 @@ endpoint <- function(alias) {
 
   switch(
     x$catalog,
-    care = switch(
-      x$point,
-      current        = class_care(
-        access       = care_current(
-          identifier = x$identifier,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
-      ),
-      temporal       = class_care(
-        access       = care_temporal(
-          identifier = x$endpoints,
-          metadata   = get_meta(x),
-          dimensions = get_dims(x)
-        )
-      )
-    ),
+    care = as_care(x),
     prov = class_prov(as_current(x)),
-    caid = class_caid(switch(x$point, current = as_current(x),  temporal = as_temporal(x))),
-    open = class_open(
-      access = switch(
-        x$point,
-        current  = as_current(x),
-        temporal = as_temporal(x))
-    ),
-    hgov = class_hgov(
-      access = switch(
-        x$point,
-        current  = as_current(x),
-        temporal = as_temporal(x))
-    )
+    caid = class_caid(as_point(x)),
+    open = class_open(as_point(x)),
+    hgov = class_hgov(as_point(x))
   )
 }
 
@@ -148,11 +172,25 @@ endpoint <- function(alias) {
 #' @examples
 #' collection("unwind")
 #' collection("managed")
+#' try(collection(c("asc_facility", "enterprise")))
+#' try(collection("asc_facility"))
 #' @autoglobal
 #' @export
 collection <- function(alias) {
 
   check_required(alias)
+
+  if (length(alias) > 1L) {
+    cli::cli_abort(
+      c("x" = "A {.cls collection} takes only one {.field alias}."),
+      call. = FALSE)
+  }
+
+  if (!is_collection(alias)) {
+    cli::cli_abort(
+      c("x" = "{.val {alias}} is not a {.cls collection} {.field alias}."),
+      call. = FALSE)
+  }
 
   x <- rex_collect(alias)
 
@@ -170,20 +208,23 @@ collection <- function(alias) {
 #' @export
 group <- function(..., .description = NULL) {
 
-  check_dots_unnamed()
+  rlang::check_dots_unnamed()
+
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
 
-  if (any_are_collection(unlist(alias, use.names = FALSE))) {
+  avec <- unlist(alias, use.names = FALSE)
+
+  if (any_are_collection(avec)) {
     cli::cli_abort(
       c("x" = "A {.cls group} cannot contain a {.cls collection}.",
-        "i" = "Run {.field collection({.val {glue::double_quote(alias[is_collection(alias)])}})} to load a collection."),
+        "i" = "Run {.field collection({.val {avec[is_collection(avec)]}})}."),
       call. = FALSE)
   }
 
-  if (length(alias) == 1L) {
+  if (length(avec) == 1L) {
     cli::cli_abort(
       c("x" = "A {.cls group} contains more than one {.cls endpoint}.",
-        "i" = "Run {.field endpoint({.val {glue::double_quote(alias)}})} to load an endpoint."),
+        "i" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
       call. = FALSE)
   }
 
