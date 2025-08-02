@@ -87,82 +87,33 @@ collect_prov  = list(
   voc         = list(name = "Payment and Value of Care", alias = look$prov("^voc_|^pmt_"))
 )
 
-# ---- prov ----
 #' @autoglobal
 #' @noRd
 collect_care = list(
-  hha        = list(
-    name     = "Home Health Agencies",
-    alias    = look$care("^hha_")),
-  c_spice    = list(
-    name     = "Hospices",
-    alias    = look$care("^spice_")),
-  hosp       = list(
-    name     = "Hospitals",
-    alias    = look$care("^hosp_")),
-  rhc        = list(
-    name     = "Rural Health Clinics",
-    alias    = look$care("^rhc_")),
-  fqhc       = list(
-    name     = "Federally Qualified Health Centers",
-    alias    = look$care("^fqhc_")),
-  pend       = list(
-    name     = "Pending Initial Logging and Tracking",
-    alias    = look$care("^pilat_")),
-  reval      = list(
-    name     = "Revalidation Reassignments",
-    alias    = look$care("^reval_")),
-  snf        = list(
-    name     = "Skilled Nursing Facilities",
-    alias    = look$care("^snf_")),
-  aco        = list(
-    name     = "Accountable Care Organizations",
-    alias    = look$care("^aco_")),
-  reach_aco  = list(
-    name     = "Accountable Care REACH Organizations",
-    alias    = look$care("^reach_")),
-  care_caid  = list(
-    name     = "Medicare Medicaid",
-    alias    = look$care("_caid$")),
-  geo        = list(
-    name     = "Medicare Geographic Variation",
-    alias    = look$care("^geo_")),
-  pdp        = list(
-    name     = "Pharmacy Network/Formulary/Pricing",
-    alias    = look$care("^pdp_")),
-  bene_surv  = list(
-    name     = "Medicare Current Beneficiary Survey",
-    alias    = look$care("^survey_")),
-  drugb      = list(
-    name     = "Medicare Part B Drugs",
-    alias    = look$care("^drugb_")),
-  drugd      = list(
-    name     = "Medicare Part D Drugs",
-    alias    = look$care("^drugd_")),
-  mkt        = list(
-    name     = "Market Saturation & Utilization",
-    alias    = look$care("^mkt_")),
-  in_hosp    = list(
-    name     = "Medicare Inpatient Hospitals",
-    alias    = look$care("^in_")),
-  out_hosp   = list(
-    name     = "Medicare Outpatient Hospitals",
-    alias    = look$care("^out_")),
-  prx        = list(
-    name     = "Medicare Part D Prescribers",
-    alias    = look$care("^prx_")),
-  dme        = list(
-    name     = "Medicare DME, Devices & Supplies",
-    alias    = look$care("^dme_")),
-  pbj        = list(
-    name     = "Nursing Home Payroll-Based Journal Staffing",
-    alias    = look$care("^pbj_")),
-  util       = list(
-    name     = "Medicare Physician & Other Practitioners",
-    alias    = look$care("^util_")),
-  nh_perf    = list(
-    name     = "Nursing Home Performance",
-    alias    = look$care("^mds_nh_"))
+  hha        = list(name = "Home Health Agencies", alias = look$care("^hha_")),
+  spice_c    = list(name = "Hospices", alias = look$care("^spice_")),
+  hosp       = list(name = "Hospitals", alias = look$care("^hosp_")),
+  rhc        = list(name = "Rural Health Clinics", alias = look$care("^rhc_")),
+  fqhc       = list(name = "Federally Qualified Health Centers", alias = look$care("^fqhc_")),
+  pend       = list(name = "Pending Initial Logging and Tracking", alias = look$care("^pilat_")),
+  reval      = list(name = "Revalidation Reassignments", alias = look$care("^reval_")),
+  snf        = list(name = "Skilled Nursing Facilities", alias = look$care("^snf_")),
+  aco        = list(name = "Accountable Care Organizations", alias = look$care("^aco_")),
+  reach      = list(name = "Accountable Care REACH Organizations", alias = look$care("^reach_")),
+  care_caid  = list(name = "Medicare Medicaid", alias = look$care("_caid$")),
+  geo        = list(name = "Medicare Geographic Variation", alias = look$care("^geo_")),
+  pdp        = list(name = "Pharmacy Network/Formulary/Pricing", alias = look$care("^pdp_")),
+  bene_surv  = list(name = "Medicare Current Beneficiary Survey", alias = look$care("^survey_")),
+  drugb      = list(name = "Medicare Part B Drugs", alias = look$care("^drugb_")),
+  drugd      = list(name = "Medicare Part D Drugs", alias = look$care("^drugd_")),
+  mkt        = list(name = "Market Saturation & Utilization", alias = look$care("^mkt_")),
+  in_hosp    = list(name = "Medicare Inpatient Hospitals", alias = look$care("^in_")),
+  out_hosp   = list(name = "Medicare Outpatient Hospitals", alias = look$care("^out_")),
+  prx        = list(name = "Medicare Part D Prescribers", alias = look$care("^prx_")),
+  dme        = list(name = "Medicare DME, Devices & Supplies", alias = look$care("^dme_")),
+  pbj        = list(name = "Nursing Home Payroll-Based Journal Staffing", alias = look$care("^pbj_")),
+  util       = list(name = "Medicare Physician & Other Practitioners", alias = look$care("^util_")),
+  mds_nh     = list(name = "Nursing Home Performance", alias = look$care("^mds_nh_"))
 )
 
 #' @autoglobal
