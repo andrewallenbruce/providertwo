@@ -3,8 +3,11 @@
 \name{query_modifier}
 \alias{query_modifier}
 \alias{any_of}
+\alias{none_of}
 \alias{equals}
+\alias{all_but}
 \alias{between}
+\alias{not_between}
 \alias{greater_than}
 \alias{less_than}
 \alias{starts_with}
@@ -15,9 +18,15 @@
 \usage{
 any_of(x, negate = FALSE)
 
+none_of(x)
+
 equals(x, negate = FALSE)
 
+all_but(x)
+
 between(x, y, negate = FALSE)
+
+not_between(x, y)
 
 greater_than(x, or_equal = FALSE)
 
@@ -51,11 +60,16 @@ in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/js
 \examples{
 any_of(state.abb[10:15])
 any_of(state.abb[1:5], negate = TRUE)
+none_of(state.abb[10:15])
 equals(1000)
 equals(1000, negate = TRUE)
+all_but(1000)
 between(1000, 1100)
 between(0.125, 2, negate = TRUE)
 try(between(0.95, 0.67))
+not_between(1000, 1100)
+not_between(0.125, 2)
+try(not_between(0.95, 0.67))
 greater_than(1000)
 greater_than(0.125, or_equal = TRUE)
 less_than(1000)

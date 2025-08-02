@@ -1,34 +1,3 @@
-#' @autoglobal
-#' @noRd
-flatten_query <- function(x) {
-  # purrr::map(x, paste0, collapse = "&")
-  purrr::map(x, function(x)
-    paste0(x, collapse = "&")) |>
-    unlist(use.names = FALSE) |>
-    paste0(collapse = "&")
-}
-
-#' @noRd
-#' @autoglobal
-class_query <- S7::new_class(
-  name       = "class_query",
-  package    = NULL,
-  properties = list(
-    input    = S7::new_property(
-      S7::class_list,
-      setter = function(self, value) {
-        self@input <- value
-        self
-      }
-    ),
-    params = class_list,
-    standardized = S7::new_property(
-      S7::class_logical,
-      default = FALSE
-    )
-  )
-)
-
 #' Create a Query Object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.

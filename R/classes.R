@@ -147,3 +147,35 @@ class_collection <- S7::new_class(
   package    = NULL,
   parent     = class_group
 )
+
+#' @noRd
+#' @autoglobal
+class_query <- S7::new_class(
+  name       = "class_query",
+  package    = NULL,
+  properties = list(
+    input    = S7::new_property(
+      S7::class_list,
+      setter = function(self, value) {
+        self@input <- value
+        self
+      }
+    ),
+    params = class_list,
+    standardized = S7::new_property(
+      S7::class_logical,
+      default = FALSE
+    )
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_modifier <- S7::new_class(
+  name       = "class_modifier",
+  package    = NULL,
+  properties = list(
+    operator = S7::new_property(S7::class_character, default = "="),
+    value    = S7::class_character | S7::class_numeric
+  )
+)

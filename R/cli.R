@@ -1,36 +1,3 @@
-# x <- new_query(
-#   first_name = starts_with("Andr"),
-#   last_name  = contains("J"),
-#   state      = any_of(c("CA", "GA", "NY")),
-#   city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
-#   state_own  = c("GA", "MD"),
-#   npi        = npi_ex$k,
-#   ccn        = "01256",
-#   pac        = NULL,
-#   rate       = between(0.45, 0.67),
-#   year       = 2014:2025)
-#
-#   cli_query(x)
-#' @autoglobal
-#' @noRd
-cli_query <- function(x) {
-
-  x <- x@input
-
-  if (any_evaled(x)) x[are_evaled(x)] <- eval_cli(x[are_evaled(x)])
-  if (any_mods(x))   x[are_mods(x)]   <- mods_cli(x[are_mods(x)])
-  if (any_calls(x))  x[are_calls(x)]  <- call_cli(x[are_calls(x)])
-
-  FIELD  <- just_right(names(x))
-  EQUALS <- cli::col_black(cli::style_bold(cli::symbol$double_line))
-  VALUE  <- just_left(unlist(x, use.names = FALSE))
-
-  cli::cli_h1("New Query:")
-  glue::glue_safe("{FIELD} {EQUALS} {VALUE}")
-
-  invisible(x)
-}
-
 # cli_results(n = 1000, limit = 10, end = "Profile Summary", api = "Open Payments")
 #' @autoglobal
 #' @noRd

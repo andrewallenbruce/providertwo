@@ -14,18 +14,6 @@
 #' @returns An S7 `<class_modifier>` object.
 NULL
 
-
-#' @noRd
-#' @autoglobal
-class_modifier <- S7::new_class(
-  name       = "class_modifier",
-  package    = NULL,
-  properties = list(
-    operator = S7::new_property(S7::class_character, default = "="),
-    value    = S7::class_character | S7::class_numeric
-  )
-)
-
 #' @autoglobal
 #' @noRd
 is_modifier <- function(x) {
@@ -67,6 +55,24 @@ any_of <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
+#' none_of(state.abb[10:15])
+#' @autoglobal
+#' @export
+none_of <- S7::new_class(
+  name        = "none_of",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
+
+    S7::new_object(
+      class_modifier(),
+      operator = "NOT+IN",
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
 #' equals(1000)
 #' equals(1000, negate = TRUE)
 #' @autoglobal
@@ -82,6 +88,24 @@ equals <- S7::new_class(
     S7::new_object(
       class_modifier(),
       operator = ifelse(!negate, "=", "<>"),
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' all_but(1000)
+#' @autoglobal
+#' @export
+all_but <- S7::new_class(
+  name        = "all_but",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x) {
+
+    S7::new_object(
+      class_modifier(),
+      operator = "<>",
       value    = x)
   }
 )
@@ -112,6 +136,35 @@ between <- S7::new_class(
     S7::new_object(
       class_modifier(),
       operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
+      value    = c(x, y))
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' not_between(1000, 1100)
+#' not_between(0.125, 2)
+#' try(not_between(0.95, 0.67))
+#' @autoglobal
+#' @export
+not_between <- S7::new_class(
+  name        = "not_between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, y) {
+
+    check_number_decimal(x)
+    check_number_decimal(y)
+
+    if (x >= y) {
+      cli::cli_abort(
+        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
+        call. = FALSE)
+    }
+
+    S7::new_object(
+      class_modifier(),
+      operator = "NOT+BETWEEN",
       value    = c(x, y))
   }
 )
