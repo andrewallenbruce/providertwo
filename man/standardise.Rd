@@ -2,20 +2,20 @@
 % Please edit documentation in R/query_standardize.R
 \name{standardise}
 \alias{standardise}
-\title{Standardize a query object to match the fields of an endpoint}
+\title{Standardize a Query to an Endpoint}
 \usage{
 standardise(obj, qry)
 }
 \arguments{
-\item{obj}{A \verb{<class_care/caid/prov/open/hgov>} object.}
+\item{obj}{An \verb{<endpoint>}, \verb{<collection>} or \verb{<group>} object.}
 
-\item{qry}{A \verb{<class_query>} object.}
+\item{qry}{A \verb{<query>} object.}
 }
 \value{
 A named list of query parameters that match the fields of the endpoint.
 }
 \description{
-Standardize a query object to match the fields of an endpoint
+Standardize a Query to an Endpoint
 }
 \examples{
 qry <- new_query(

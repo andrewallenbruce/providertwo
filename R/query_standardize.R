@@ -1,8 +1,8 @@
-#' Standardize a query object to match the fields of an endpoint
+#' Standardize a Query to an Endpoint
 #'
-#' @param obj A `<class_care/caid/prov/open/hgov>` object.
+#' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
-#' @param qry A `<class_query>` object.
+#' @param qry A `<query>` object.
 #'
 #' @returns A named list of query parameters that match the fields of the endpoint.
 #'
@@ -84,7 +84,7 @@ S7::method(standardise, list(class_catalog, class_query)) <- function(obj, qry) 
 
 S7::method(standardise, list(class_current, class_query)) <- function(obj, qry) {
 
-  params <- query_standardise(obj, qry)
+  params <- query_match(obj, qry)
 
   list(
     params     = params %|||% set_names(query_default(params), names(params)),
@@ -94,7 +94,7 @@ S7::method(standardise, list(class_current, class_query)) <- function(obj, qry) 
 
 S7::method(standardise, list(care_current, class_query)) <- function(obj, qry) {
 
-  params <- query_standardise(obj, qry)
+  params <- query_match(obj, qry)
 
   list(
     params     = params %|||% set_names(query_care(params), names(params)),
@@ -105,14 +105,12 @@ S7::method(standardise, list(care_current, class_query)) <- function(obj, qry) {
 S7::method(standardise, list(class_temporal, class_query)) <- function(obj, qry) {
 
   id <- if ("year" %in% names(S7::prop(qry, "params"))) {
-    collapse::sbt(
-      S7::prop(obj, "identifier"),
-      year %in% S7::prop(qry, "params")$year)
+    collapse::sbt(S7::prop(obj, "identifier"), year %in% S7::prop(qry, "params")$year)
   } else {
       S7::prop(obj, "identifier")
   }
 
-  params <- query_standardise(obj, qry)
+  params <- query_match(obj, qry)
 
   list(
     params     = params %|||% set_names(query_default(params), names(params)),
@@ -126,14 +124,12 @@ S7::method(standardise, list(class_temporal, class_query)) <- function(obj, qry)
 S7::method(standardise, list(care_temporal, class_query)) <- function(obj, qry) {
 
   id <- if ("year" %in% names(S7::prop(qry, "params"))) {
-    collapse::sbt(
-      S7::prop(obj, "identifier"),
-      year %in% S7::prop(qry, "params")$year)
+    collapse::sbt(S7::prop(obj, "identifier"), year %in% S7::prop(qry, "params")$year)
   } else {
-      S7::prop(obj, "identifier")
+    S7::prop(obj, "identifier")
   }
 
-  params <- query_standardise(obj, qry)
+  params <- query_match(obj, qry)
 
   list(
     params     = params %|||% set_names(query_care(params), names(params)),

@@ -81,7 +81,7 @@ query_default <- function(args) {
 # Use a modifier on "year" parameter if meant for the API?
 #' @autoglobal
 #' @noRd
-query_standardise <- function(obj, qry) {
+query_match <- function(obj, qry) {
   params <- S7::prop(qry, "params")
   fields <- S7::prop(obj, "dimensions") |> S7::prop("fields")
 

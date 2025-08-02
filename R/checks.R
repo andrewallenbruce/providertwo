@@ -96,13 +96,13 @@ calculate_check_digit <- function(x) {
 #' @autoglobal
 #' @noRd
 luhn_base <- function(x) {
-  checksum <- x %% 10L
-  x <- rev(explode_number(x %/% 10L))
+  check <- x %% 10L
+  x <- rev(as.integer(unlist(strsplit(as.character(x %/% 10L), ""))))
   x[c(1L, 3L, 5L, 7L, 9L)]  <- x[c(1L, 3L, 5L, 7L, 9L)] * 2L
   x[cheapr::which_(x > 9L)] <- x[cheapr::which_(x > 9L)] - 9L
   x <- z <- sum(x) + 24
   x <- ceiling(x / 10L) * 10L - z
-  x == checksum
+  x == check
 }
 
 # luhn_algo(1417918293)
@@ -135,9 +135,9 @@ luhn_algo <- function(x) {
 # x[[951]] <- 1003111300
 # x[[673]] <- 1103111300
 # bench::mark(
-#   int_luhn = map_int(npi_, luhn_algo),
-#   lgl_luhn = map_lgl(npi_, luhn_algo),
-#   iterations = 1000,
+  # int_luhn = map_int(npi_, luhn_algo),
+#   lgl_luhn = map_int(x, luhn_algo),
+#   iterations = 10,
 #   check = FALSE
 # )
 # purrr::map_vec(npi_, luhn_algo)
@@ -154,6 +154,11 @@ luhn_check <- function(x) {
   }
 }
 
+# x        <- npi_all()
+# x[[100]] <- 1003011300
+# x[[951]] <- 1003111300
+# x[[673]] <- 1103111300
+# assert_luhn(x)
 #' @autoglobal
 #' @noRd
 assert_luhn <- function(x, call = caller_env()) {
