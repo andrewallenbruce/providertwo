@@ -10,80 +10,20 @@ flatten_query <- function(x) {
 
 #' @autoglobal
 #' @noRd
-eval_cli <- function(x) {
-  map(x[are_evaled(x)],
-      function(x)
-        cli::ansi_collapse(
-          cli::col_cyan(
-            paste0(x, collapse = ", ")
-            ),
-          trunc = 5)
-      )
-  # |> cli::ansi_strtrim(25)
-}
-
-#' @autoglobal
-#' @noRd
-call_cli <- function(x) {
-  map(x[are_calls(x)], function(x) cli::col_yellow(deparse1(x)))
-}
-
-#' @autoglobal
-#' @noRd
-mods_cli <- function(x) {
-  map(x[are_mods(x)], function(x) cli::col_red(deparse1(x)))
-}
-
-#' @autoglobal
-#' @noRd
-deparse_mods <- function(x) {
-  map(x[are_mods(x)], function(x) deparse1(x))
-}
-
-#' @autoglobal
-#' @noRd
-deparse_calls <- function(x) {
-  map(x[are_calls(x)], function(x) deparse1(x))
-}
-
-#' @autoglobal
-#' @noRd
-are_length_one <- function(x) {
-  list_lengths(x) == 1L
-}
-
-#' @autoglobal
-#' @noRd
-are_length_two <- function(x) {
-  list_lengths(x) > 1L
-}
-
-#' @autoglobal
-#' @noRd
-are_null <- function(x) {
-  map_lgl(x, is.null)
-}
-
-#' @autoglobal
-#' @noRd
-are_not_null <- function(x) {
-  map_lgl(x, Negate(is.null))
-}
-
-#' @autoglobal
-#' @noRd
 is_mod <- function(x) {
-  is_call(
+  rlang::is_call(
     x,
     name = c(
+      "all_but",
+      "any_of",
       "between",
       "contains",
       "ends_with",
-      "equals",
       "greater_than",
-      "any_of",
       "less_than",
       "like",
+      "none_of",
+      "not_between",
       "starts_with"
     )
   )
@@ -92,31 +32,7 @@ is_mod <- function(x) {
 #' @autoglobal
 #' @noRd
 are_mods <- function(x) {
-  map_lgl(x, is_mod)
-}
-
-#' @autoglobal
-#' @noRd
-are_calls <- function(x) {
-  map_lgl(x, function(x) Negate(is_mod)(x) & is_call(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_calls <- function(x) {
-  any(are_calls(x))
-}
-
-#' @autoglobal
-#' @noRd
-are_evaled <- function(x) {
-  list_lengths(x) >= 1L & map_lgl(x, Negate(is_call))
-}
-
-#' @autoglobal
-#' @noRd
-any_evaled <- function(x) {
-  any(are_evaled(x))
+  purrr::map_lgl(x, is_mod)
 }
 
 #' @autoglobal
@@ -127,8 +43,81 @@ any_mods <- function(x) {
 
 #' @autoglobal
 #' @noRd
+deparse_mods <- function(x) {
+  purrr::map(x[are_mods(x)], function(x) deparse1(x))
+}
+
+#' @autoglobal
+#' @noRd
+are_calls <- function(x) {
+  purrr::map_lgl(x, function(x) Negate(is_mod)(x) & rlang::is_call(x))
+}
+
+#' @autoglobal
+#' @noRd
+any_calls <- function(x) {
+  any(are_calls(x))
+}
+
+#' @autoglobal
+#' @noRd
+deparse_calls <- function(x) {
+  purrr::map(x[are_calls(x)], function(x) deparse1(x))
+}
+
+#' @autoglobal
+#' @noRd
+are_evaled <- function(x) {
+  cheapr::list_lengths(x) >= 1L & purrr::map_lgl(x, Negate(is_call))
+}
+
+#' @autoglobal
+#' @noRd
+any_evaled <- function(x) {
+  any(are_evaled(x))
+}
+
+#' @autoglobal
+#' @noRd
+eval_cli <- function(x) {
+  purrr::map(x[are_evaled(x)], function(x)
+    cli::col_cyan(paste0(glue::double_quote(x), collapse = ", ")))
+}
+
+#' @autoglobal
+#' @noRd
+call_cli <- function(x) {
+  purrr::map(x[are_calls(x)], function(x) cli::col_yellow(deparse1(x)))
+}
+
+#' @autoglobal
+#' @noRd
+mods_cli <- function(x) {
+  purrr::map(x[are_mods(x)], function(x) cli::col_red(deparse1(x)))
+}
+
+#' @autoglobal
+#' @noRd
+are_length_one <- function(x) {
+  cheapr::list_lengths(x) == 1L
+}
+
+#' @autoglobal
+#' @noRd
+are_length_two <- function(x) {
+  cheapr::list_lengths(x) > 1L
+}
+
+#' @autoglobal
+#' @noRd
 any_length_two <- function(x) {
   any(are_length_two(x))
+}
+
+#' @autoglobal
+#' @noRd
+are_null <- function(x) {
+  purrr::map_lgl(x, is.null)
 }
 
 #' @autoglobal
@@ -137,12 +126,17 @@ any_null <- function(x) {
   any(are_null(x))
 }
 
+#' @autoglobal
+#' @noRd
+are_not_null <- function(x) {
+  purrr::map_lgl(x, Negate(is.null))
+}
+
 # x <- new_query(
 #   first_name = starts_with("Andr"),
 #   last_name  = contains("J"),
 #   state      = any_of(c("CA", "GA", "NY")),
-#   city       = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
-#   state_own  = c("GA", "MD"),
+#   state_own  = none_of(c("GA", "MD")),
 #   npi        = npi_ex$k,
 #   ccn        = "01256",
 #   pac        = NULL,
@@ -165,7 +159,7 @@ cli_query <- function(x) {
   VALUE  <- just_left(unlist(x, use.names = FALSE))
 
   cli::cli_h1("New Query:")
-  glue::glue_safe("{FIELD} {EQUALS} {VALUE}")
+  cli::cat_print(glue::glue_safe("{FIELD} {EQUALS} {VALUE}"))
 
   invisible(x)
 }

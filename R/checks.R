@@ -89,6 +89,22 @@ calculate_check_digit <- function(x) {
   x
 }
 
+# luhn_base(1417918293)
+# luhn_base(1234567890)
+# luhn_base(1234567893)
+# luhn_base(123456789)
+#' @autoglobal
+#' @noRd
+luhn_base <- function(x) {
+  checksum <- x %% 10L
+  x <- rev(explode_number(x %/% 10L))
+  x[c(1L, 3L, 5L, 7L, 9L)]  <- x[c(1L, 3L, 5L, 7L, 9L)] * 2L
+  x[cheapr::which_(x > 9L)] <- x[cheapr::which_(x > 9L)] - 9L
+  x <- z <- sum(x) + 24
+  x <- ceiling(x / 10L) * 10L - z
+  x == checksum
+}
+
 # luhn_algo(1417918293)
 # luhn_algo(1234567890)
 # luhn_algo(1234567893)
@@ -111,10 +127,13 @@ luhn_algo <- function(x) {
   insitu::br_sub(x, z)
   insitu::br_eq(x, checksum)
   x
+  # x == checksum
 }
 
-# x <- npi_all()
+# x        <- npi_all()
 # x[[100]] <- 1003011300
+# x[[951]] <- 1003111300
+# x[[673]] <- 1103111300
 # bench::mark(
 #   int_luhn = map_int(npi_, luhn_algo),
 #   lgl_luhn = map_lgl(npi_, luhn_algo),
@@ -129,17 +148,17 @@ luhn_algo <- function(x) {
 #' @noRd
 luhn_check <- function(x) {
   if (length(x) > 1L) {
-    purrr::map_int(x, luhn_algo) == 0L
+    purrr::map_int(x, luhn_algo) == 1L
   } else {
-    luhn_algo(x) == 0L
+    luhn_algo(x) == 1L
   }
 }
 
 #' @autoglobal
 #' @noRd
 assert_luhn <- function(x, call = caller_env()) {
-  if (any(luhn_check(x))) {
-    idx <- cheapr::which_(purrr::map_int(x, luhn) == 0L)
+  if (any(!luhn_check(x))) {
+    idx <- cheapr::which_(purrr::map_int(x, luhn_algo) == 0L)
     cli::cli_abort(
       c(
         "x" = "{.val {length(idx)}} {.field npi{?s}} failed Luhn algorithm check:",

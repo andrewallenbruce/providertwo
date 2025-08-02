@@ -72,8 +72,6 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
-  # <assert_luhn>
-  "luhn",
   # <quality_eligibility>
   "mdl_name",
   # <quality_metrics>
