@@ -19,17 +19,11 @@ Build a Query for an Endpoint
 }
 \examples{
 qry <- new_query(
-   first_name            = starts_with("Andr"),
-   middle_name           = ends_with("e"),
-   last_name             = contains("J"),
-   state_cd              = any_of(c("CA", "GA", "NY")),
-   state                 = none_of(c("GA", "NY")),
-   city                  = all_but(c("Atlanta", "Los Angeles")),
-   npi                   = npi_ex$k,
-   covered_recipient_npi = npi_ex$k[1:5],
-   ccn                   = "105101256",
-   rate                  = between(0.45, 0.67),
-   year                  = 2021:2025)
+   first_name = starts_with("An"),
+   middle_name = ends_with("e"),
+   last_name = contains("J"),
+   state = any_of(c("CA", "GA", "NY")),
+   year = 2021:2025)
 
 build(endpoint("enroll_prov"), qry)
 

@@ -19,17 +19,11 @@ params_default <- function(x) {
 #'
 #' @examples
 #' qry <- new_query(
-#'    first_name            = starts_with("Andr"),
-#'    middle_name           = ends_with("e"),
-#'    last_name             = contains("J"),
-#'    state_cd              = any_of(c("CA", "GA", "NY")),
-#'    state                 = none_of(c("GA", "NY")),
-#'    city                  = all_but(c("Atlanta", "Los Angeles")),
-#'    npi                   = npi_ex$k,
-#'    covered_recipient_npi = npi_ex$k[1:5],
-#'    ccn                   = "105101256",
-#'    rate                  = between(0.45, 0.67),
-#'    year                  = 2021:2025)
+#'    first_name = starts_with("An"),
+#'    middle_name = ends_with("e"),
+#'    last_name = contains("J"),
+#'    state = any_of(c("CA", "GA", "NY")),
+#'    year = 2021:2025)
 #'
 #' build(endpoint("enroll_prov"), qry)
 #'
@@ -126,11 +120,18 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
   params <- query_match(obj, qry)
 
-  list(
+  flist(
     title      = S7::prop(obj, "metadata")$title,
+    params     = params %|||% params_care(params),
+    identifier = `if`(!is.null(params),
+                      paste0(S7::prop(obj, "identifier"), "&", paste0(unlist(params, use.names = FALSE), collapse = "&")),
+                      S7::prop(obj, "identifier")),
     dimensions = S7::prop(obj, "dimensions"),
-    identifier = S7::prop(obj, "identifier"),
-    params     = params %|||% params_care(params)
+    results    = request(identifier) |>
+      req_url_path_append("stats") |>
+      perform_simple() |>
+      _[["data"]] |>
+      _[["found_rows"]]
   )
 }
 
