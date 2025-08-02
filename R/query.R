@@ -78,7 +78,7 @@ query_default <- function(args) {
 }
 
 # If `fields` becomes a class -> prop(obj, "fields")
-# Use a modifier on "year" parameter if meant for the API?
+# Use a modifier on "year" parameter if meant for an API field?
 #' @autoglobal
 #' @noRd
 query_match <- function(obj, qry) {
@@ -94,7 +94,9 @@ query_match <- function(obj, qry) {
     fields[sort(collapse::fmatch(param_names, field_clean, nomatch = 0L))])
 
   if (rlang::is_empty(x)) {
-    cli::cli_alert_warning("No fields matched in {.field {S7::prop(obj, 'metadata')$title}}.")
+    end <- S7::prop(obj, "metadata")$title
+    cli::cli_alert_warning(
+      c("{.field {end}}: {.pkg {length(param_names)} params} {cli::col_red(cli::symbol$neq)} {.pkg {length(fields)} fields}"))
     return(NULL)
   }
   x

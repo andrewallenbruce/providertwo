@@ -69,8 +69,11 @@ S7::method(build, list(class_catalog, S7::class_missing)) <- function(obj, qry) 
 
 S7::method(build, list(class_current, S7::class_missing)) <- function(obj, qry) {
   list(
-    params     = NULL,
-    identifier = S7::prop(obj, "identifier"))
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = S7::prop(obj, "identifier"),
+    params     = NULL
+  )
 }
 
 S7::method(build, list(class_temporal, S7::class_missing)) <- function(obj, qry) {
@@ -78,11 +81,10 @@ S7::method(build, list(class_temporal, S7::class_missing)) <- function(obj, qry)
   id <- S7::prop(obj, "identifier")
 
   list(
-    params     = NULL,
-    identifier = rlang::set_names(
-      collapse::get_elem(id, "identifier"),
-      collapse::get_elem(id, "year")
-    )
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
+    params     = NULL
   )
 }
 
@@ -95,18 +97,10 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   params <- query_match(obj, qry)
 
   list(
-    params     = params %|||% params_default(params),
-    identifier = S7::prop(obj, "identifier")
-  )
-}
-
-S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
-
-  params <- query_match(obj, qry)
-
-  list(
-    params     = params %|||% params_care(params),
-    identifier = S7::prop(obj, "identifier")
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = S7::prop(obj, "identifier"),
+    params     = params %|||% params_default(params)
   )
 }
 
@@ -121,11 +115,22 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   params <- query_match(obj, qry)
 
   list(
-    params     = params %|||% params_default(params),
-    identifier = rlang::set_names(
-      collapse::get_elem(id, "identifier"),
-      collapse::get_elem(id, "year")
-    )
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
+    params     = params %|||% params_default(params)
+  )
+}
+
+S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
+
+  params <- query_match(obj, qry)
+
+  list(
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = S7::prop(obj, "identifier"),
+    params     = params %|||% params_care(params)
   )
 }
 
@@ -140,10 +145,9 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   params <- query_match(obj, qry)
 
   list(
-    params     = params %|||% params_care(params),
-    identifier = rlang::set_names(
-      collapse::get_elem(id, "identifier"),
-      collapse::get_elem(id, "year")
-    )
+    title      = S7::prop(obj, "metadata")$title,
+    dimensions = S7::prop(obj, "dimensions"),
+    identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
+    params     = params %|||% params_care(params)
   )
 }
