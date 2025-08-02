@@ -21,7 +21,16 @@ make_address <- function(a1, a2) {
 #' @autoglobal
 #' @noRd
 clean_names <- function(x) {
-  gremove(greplace(tolower(x), "\\s|-", "_"), "\\(|\\)")
+  # Convert to lowercase
+  x <- tolower(x)
+  # Replace space with underscore
+  x <- gsub(" ", "_", x, perl = TRUE)
+  # Remove dash
+  x <- gsub("-", "", x, perl = TRUE)
+  # Remove parentheses
+  x <- gsub("\\(|\\)", "", x, perl = TRUE)
+  # Remove multiple underscores
+  x <- gsub("__", "_", x, perl = TRUE)
 }
 
 #' @autoglobal

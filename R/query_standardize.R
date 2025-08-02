@@ -8,13 +8,7 @@ query_standardise <- function(obj, qry) {
 
   # Remove "year"
   param_names <- names(params)[names(params) != "year"]
-
-  # Convert to lowercase
-  field_clean <- tolower(fields)
-  # Replace space with underscore
-  field_clean <- gsub(" ", "_", field_clean, perl = TRUE)
-  # Remove dash followed by underscore
-  field_clean <- gsub("-_", "", field_clean, perl = TRUE)
+  field_clean <- clean_names(fields)
 
   x <- rlang::set_names(
     params[collapse::fmatch(field_clean, param_names, nomatch = 0L)],
