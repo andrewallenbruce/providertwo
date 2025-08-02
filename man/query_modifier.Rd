@@ -4,7 +4,6 @@
 \alias{query_modifier}
 \alias{any_of}
 \alias{none_of}
-\alias{equals}
 \alias{all_but}
 \alias{between}
 \alias{not_between}
@@ -16,15 +15,13 @@
 \alias{like}
 \title{Query Modifiers}
 \usage{
-any_of(x, negate = FALSE)
+any_of(x)
 
 none_of(x)
 
-equals(x, negate = FALSE)
-
 all_but(x)
 
-between(x, y, negate = FALSE)
+between(x, y)
 
 not_between(x, y)
 
@@ -43,8 +40,6 @@ like(x)
 \arguments{
 \item{x, y}{input}
 
-\item{negate}{\verb{<lgl>} prepend \code{NOT} to operator}
-
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
@@ -59,13 +54,10 @@ in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/js
 }
 \examples{
 any_of(state.abb[10:15])
-any_of(state.abb[1:5], negate = TRUE)
-none_of(state.abb[10:15])
-equals(1000)
-equals(1000, negate = TRUE)
-all_but(1000)
+none_of(state.abb[1:3])
+all_but(10000.23)
 between(1000, 1100)
-between(0.125, 2, negate = TRUE)
+between(0.125, 2)
 try(between(0.95, 0.67))
 not_between(1000, 1100)
 not_between(0.125, 2)

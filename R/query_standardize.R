@@ -1,26 +1,3 @@
-# If fields becomes a class -> prop(obj, "fields")
-# Use a modifier on "year" parameter if meant for the API?
-#' @autoglobal
-#' @noRd
-query_standardise <- function(obj, qry) {
-  params <- S7::prop(qry, "params")
-  fields <- S7::prop(obj, "dimensions") |> S7::prop("fields")
-
-  # Remove "year"
-  param_names <- names(params)[names(params) != "year"]
-  field_clean <- clean_names(fields)
-
-  x <- rlang::set_names(
-    params[collapse::fmatch(field_clean, param_names, nomatch = 0L)],
-    fields[sort(collapse::fmatch(param_names, field_clean, nomatch = 0L))])
-
-  if (rlang::is_empty(x)) {
-    cli::cli_alert_warning("No fields matched in {.field {S7::prop(obj, 'metadata')$title}}.")
-    return(NULL)
-  }
-  x
-}
-
 #' Standardize a query object to match the fields of an endpoint
 #'
 #' @param obj A `<class_care/caid/prov/open/hgov>` object.
@@ -32,10 +9,11 @@ query_standardise <- function(obj, qry) {
 #' @examples
 #' qry <- new_query(
 #'    first_name            = starts_with("Andr"),
+#'    middle_name           = ends_with("e"),
 #'    last_name             = contains("J"),
 #'    state_cd              = any_of(c("CA", "GA", "NY")),
-#'    state                 = any_of(c("GA", "NY")),
-#'    city                  = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'    state                 = none_of(c("GA", "NY")),
+#'    city                  = all_but(c("Atlanta", "Los Angeles")),
 #'    npi                   = npi_ex$k,
 #'    covered_recipient_npi = npi_ex$k[1:5],
 #'    ccn                   = "01256",

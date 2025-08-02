@@ -17,11 +17,11 @@ Create a Query Object
 }
 \examples{
 new_query(
-  first_name  = starts_with("Andr"),
+  first_name  = starts_with("And"),
   middle_name = NULL,
   last_name   = contains("J"),
   state       = any_of(c("CA", "GA", "NY")),
-  city        = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+  city        = all_but(c("Atlanta", "Los Angeles")),
   state_own   = c("GA", "MD"),
   npi         = npi_ex$k,
   ccn         = "01256",

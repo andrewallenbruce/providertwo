@@ -6,11 +6,11 @@
 #'
 #' @examples
 #' new_query(
-#'   first_name  = starts_with("Andr"),
+#'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
 #'   state       = any_of(c("CA", "GA", "NY")),
-#'   city        = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+#'   city        = all_but(c("Atlanta", "Los Angeles")),
 #'   state_own   = c("GA", "MD"),
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
@@ -28,47 +28,74 @@ new_query <- function(...) {
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {
-  purrr::imap(args, function(x, name) {
-    v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
-    c(
-      paste0("filter[<<i>>][condition][path]=", name),
-      paste0(
-        "filter[<<i>>][condition][operator]=",
-        `if`(is_modifier(x), toupper(x@operator), "=")
-      ),
+  purrr::imap(args, function(x, N) {
+
+    V <- if (is_modifier(x)) x@value else unlist(x, use.names = FALSE)
+    O <- if (is_modifier(x)) toupper(x@operator) else "="
+
+    c(paste0("filter[<<i>>][condition][path]=", N),
+      paste0("filter[<<i>>][condition][operator]=", O),
       `if`(
-        length(v) > 1,
-        paste0("filter[<<i>>][condition][value][", seq_along(v), "]=", v),
-        paste0("filter[<<i>>][condition][value]=", v)
-      )
-    )
+        length(V) > 1L,
+        paste0("filter[<<i>>][condition][value][", seq_along(V), "]=", V),
+        paste0("filter[<<i>>][condition][value]=", V)))
   }) |>
     unname() |>
     purrr::imap(function(x, idx)
-      greplace(x, "<<i>>", idx))
+      gsub(x           = x,
+           pattern     = "<<i>>",
+           replacement = idx,
+           fixed       = TRUE)
+      ) |>
+    purrr::map(paste0, collapse = "&")
 }
 
 #' @autoglobal
 #' @noRd
 query_default <- function(args) {
-  purrr::imap(args, function(x, name) {
-    v <- `if`(is_modifier(x), x@value, unlist(x, use.names = FALSE))
 
-    c(
-      paste0("conditions[<<i>>][property]=", name),
-      paste0(
-        "conditions[<<i>>][operator]=",
-        `if`(is_modifier(x), tolower(gsub("_", "+", x@operator, perl = TRUE)), "=")
-      ),
+  purrr::imap(args, function(x, N) {
+
+    V <- if (is_modifier(x)) x@value else unlist(x, use.names = FALSE)
+    O <- if (is_modifier(x)) tolower(gsub("_", "+", x@operator, fixed = TRUE)) else "="
+
+    c(paste0("conditions[<<i>>][property]=", N),
+      paste0("conditions[<<i>>][operator]=", O),
       `if`(
-        length(v) > 1,
-        paste0("conditions[<<i>>][value][", seq_along(v), "]=", v),
-        paste0("conditions[<<i>>][value]=", v)
-      )
-    )
+        length(V) > 1L,
+        paste0("conditions[<<i>>][value][", seq_along(V), "]=", V),
+        paste0("conditions[<<i>>][value]=", V)))
   }) |>
     unname() |>
     purrr::imap(function(x, idx)
-      greplace(x, "<<i>>", idx - 1))
+      gsub(x           = x,
+           pattern     = "<<i>>",
+           replacement = idx - 1,
+           fixed       = TRUE)
+      ) |>
+    purrr::map(paste0, collapse = "&")
+}
+
+# If `fields` becomes a class -> prop(obj, "fields")
+# Use a modifier on "year" parameter if meant for the API?
+#' @autoglobal
+#' @noRd
+query_standardise <- function(obj, qry) {
+  params <- S7::prop(qry, "params")
+  fields <- S7::prop(obj, "dimensions") |> S7::prop("fields")
+
+  # Remove "year" if it exists, to be applied to temporal endpoints
+  param_names <- names(params)[names(params) != "year"]
+  field_clean <- clean_names(fields)
+
+  x <- rlang::set_names(
+    params[collapse::fmatch(field_clean, param_names, nomatch = 0L)],
+    fields[sort(collapse::fmatch(param_names, field_clean, nomatch = 0L))])
+
+  if (rlang::is_empty(x)) {
+    cli::cli_alert_warning("No fields matched in {.field {S7::prop(obj, 'metadata')$title}}.")
+    return(NULL)
+  }
+  x
 }

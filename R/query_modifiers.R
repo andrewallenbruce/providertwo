@@ -9,7 +9,6 @@
 #'
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
-#' @param negate `<lgl>` prepend `NOT` to operator
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` object.
 NULL
@@ -35,27 +34,24 @@ any_modifiers <- function(x) {
 #' @rdname query_modifier
 #' @examples
 #' any_of(state.abb[10:15])
-#' any_of(state.abb[1:5], negate = TRUE)
 #' @autoglobal
 #' @export
 any_of <- S7::new_class(
   name        = "any_of",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x, negate = FALSE) {
-
-    check_bool(negate)
+  constructor = function(x) {
 
     S7::new_object(
       class_modifier(),
-      operator = ifelse(!negate, "IN", "NOT+IN"),
+      operator = "IN",
       value    = x)
   }
 )
 
 #' @rdname query_modifier
 #' @examples
-#' none_of(state.abb[10:15])
+#' none_of(state.abb[1:3])
 #' @autoglobal
 #' @export
 none_of <- S7::new_class(
@@ -73,28 +69,7 @@ none_of <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' equals(1000)
-#' equals(1000, negate = TRUE)
-#' @autoglobal
-#' @export
-equals <- S7::new_class(
-  name        = "equals",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x, negate = FALSE) {
-
-    check_bool(negate)
-
-    S7::new_object(
-      class_modifier(),
-      operator = ifelse(!negate, "=", "<>"),
-      value    = x)
-  }
-)
-
-#' @rdname query_modifier
-#' @examples
-#' all_but(1000)
+#' all_but(10000.23)
 #' @autoglobal
 #' @export
 all_but <- S7::new_class(
@@ -113,7 +88,7 @@ all_but <- S7::new_class(
 #' @rdname query_modifier
 #' @examples
 #' between(1000, 1100)
-#' between(0.125, 2, negate = TRUE)
+#' between(0.125, 2)
 #' try(between(0.95, 0.67))
 #' @autoglobal
 #' @export
@@ -121,11 +96,10 @@ between <- S7::new_class(
   name        = "between",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x, y, negate = FALSE) {
+  constructor = function(x, y) {
 
     check_number_decimal(x)
     check_number_decimal(y)
-    check_bool(negate)
 
     if (x >= y) {
       cli::cli_abort(
@@ -135,7 +109,7 @@ between <- S7::new_class(
 
     S7::new_object(
       class_modifier(),
-      operator = ifelse(!negate, "BETWEEN", "NOT+BETWEEN"),
+      operator = "BETWEEN",
       value    = c(x, y))
   }
 )
@@ -284,3 +258,25 @@ like <- S7::new_class(
       value    = x)
   }
 )
+
+# @param negate `<lgl>` prepend `NOT` to operator
+# @rdname query_modifier
+# @examples
+# equals(1000)
+# equals(1000, negate = TRUE)
+# @autoglobal
+# @export
+# equals <- S7::new_class(
+#   name        = "equals",
+#   package     = NULL,
+#   parent      = class_modifier,
+#   constructor = function(x, negate = FALSE) {
+#
+#     check_bool(negate)
+#
+#     S7::new_object(
+#       class_modifier(),
+#       operator = ifelse(!negate, "=", "<>"),
+#       value    = x)
+#   }
+# )

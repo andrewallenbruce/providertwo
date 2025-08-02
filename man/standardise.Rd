@@ -20,10 +20,11 @@ Standardize a query object to match the fields of an endpoint
 \examples{
 qry <- new_query(
    first_name            = starts_with("Andr"),
+   middle_name           = ends_with("e"),
    last_name             = contains("J"),
    state_cd              = any_of(c("CA", "GA", "NY")),
-   state                 = any_of(c("GA", "NY")),
-   city                  = equals(c("Atlanta", "Los Angeles"), negate = TRUE),
+   state                 = none_of(c("GA", "NY")),
+   city                  = all_but(c("Atlanta", "Los Angeles")),
    npi                   = npi_ex$k,
    covered_recipient_npi = npi_ex$k[1:5],
    ccn                   = "01256",
