@@ -10,24 +10,6 @@ flatten_query <- function(x) {
 
 #' @autoglobal
 #' @noRd
-brackets <- function(x) {
-  paste0("[", x, "]")
-}
-
-#' @autoglobal
-#' @noRd
-just_right <- function(x) {
-  format(x, justify = "right")
-}
-
-#' @autoglobal
-#' @noRd
-just_left <- function(x) {
-  format(x, justify = "left")
-}
-
-#' @autoglobal
-#' @noRd
 eval_cli <- function(x) {
   map(x[are_evaled(x)],
       function(x)
@@ -38,29 +20,6 @@ eval_cli <- function(x) {
           trunc = 5)
       )
   # |> cli::ansi_strtrim(25)
-}
-
-#' @autoglobal
-#' @noRd
-brackets_cli <- function(x) {
-  paste0(
-    cli::col_silver("["),
-    paste0(
-      cli::col_yellow((unlist(x, use.names = FALSE))
-    ),
-    collapse = cli::col_silver(", ")),
-    cli::col_silver("]")
-  )
-}
-
-#' @autoglobal
-#' @noRd
-brackets_cli2 <- function(x) {
-  paste0(
-    cli::col_black("["),
-    cli::col_silver(x),
-    cli::col_black("]")
-  )
 }
 
 #' @autoglobal
@@ -85,16 +44,6 @@ deparse_mods <- function(x) {
 #' @noRd
 deparse_calls <- function(x) {
   map(x[are_calls(x)], function(x) deparse1(x))
-}
-
-#' @autoglobal
-#' @noRd
-brack_along <- function(x) {
-  if (length(x) > 1) {
-    brackets(seq_along(x))
-  } else {
-    NULL
-  }
 }
 
 #' @autoglobal

@@ -89,151 +89,104 @@ calculate_check_digit <- function(x) {
   x
 }
 
-# luhn(1417918293)
-# luhn(1234567890)
-# luhn(1234567893)
-# luhn(123456789)
+# luhn_algo(1417918293)
+# luhn_algo(1234567890)
+# luhn_algo(1234567893)
+# luhn_algo(123456789)
 #' @autoglobal
 #' @noRd
-luhn <- function(x) {
-
-  last <- x %% 10L
-  x    <- as.numeric(yank(strsplit(as.character(x %/% 10L), "")))
-
+luhn_algo <- function(x) {
+  checksum <- x %% 10L
+  insitu::br_idiv(x, 10)
+  x <- explode_number(x)
   insitu::br_rev(x)
   insitu::br_mul(x, 2, idx = c(1, 3, 5, 7, 9))
-  insitu::br_sub(x, 9, idx = which_(x > 9))
+  insitu::br_sub(x, 9, idx = cheapr::which_(x > 9))
   x <- sum(x)
   insitu::br_add(x, 24)
-
   z <- insitu::duplicate(x)
-
   insitu::br_div(x, 10)
   insitu::br_ceil(x)
   insitu::br_mul(x, 10)
   insitu::br_sub(x, z)
-
-  x == last
-}
-
-#' @autoglobal
-#' @noRd
-luhn2 <- function(x) {
-
-  o <- insitu::duplicate(x)
-  with(insitu::by_reference, {
-    o %% 10
-  })
-  # insitu::br_mod(o, 10) # last digit
-
-  with(insitu::by_reference, {
-    x %/% 10
-  })
-
-  # insitu::br_idiv(x, 10) # remove last digit
-
-  x <- explode_number(x)
-
-  insitu::br_rev(x)
-  insitu::br_mul(x, 2, idx = c(1, 3, 5, 7, 9))
-  insitu::br_sub(x, 9, idx = which_(x > 9))
-
-  x <- sum(x)
-
-  insitu::br_add(x, 24)
-
-  z <- insitu::duplicate(x)
-
-  with(insitu::by_reference, {
-    x / 10
-    ceiling(x)
-    x * 10
-    x - z
-  })
-
-  # insitu::br_div(x, 10)
-  # insitu::br_ceil(x)
-  # insitu::br_mul(x, 10)
-  # insitu::br_sub(x, y = z)
-  insitu::br_eq(x, o)
-
+  insitu::br_eq(x, checksum)
   x
 }
 
-# npi_ <- npi_all()
-# npi_[[100]] <- 1003011300
+# x <- npi_all()
+# x[[100]] <- 1003011300
 # bench::mark(
-#   int_luhn = map_int(npi_, luhn),
-#   lgl_luhn = map_lgl(npi_, luhn),
+#   int_luhn = map_int(npi_, luhn_algo),
+#   lgl_luhn = map_lgl(npi_, luhn_algo),
 #   iterations = 1000,
 #   check = FALSE
 # )
-#
-# purrr::map_vec(npi_, luhn)
-
-# check_luhn(1234567890)
-# check_luhn(c(1417918293, 1234567890))
-# check_luhn(npi_all())
+# purrr::map_vec(npi_, luhn_algo)
+# luhn_check(1234567890)
+# luhn_check(c(1417918293, 1234567890))
+# luhn_check(npi_all())
 #' @autoglobal
 #' @noRd
-check_luhn <- function(x) {
-  if (length(x) > 1) {
-    map_int(x, luhn)
+luhn_check <- function(x) {
+  if (length(x) > 1L) {
+    purrr::map_int(x, luhn_algo) == 0L
   } else {
-    luhn(x)
+    luhn_algo(x) == 0L
   }
 }
 
 #' @autoglobal
 #' @noRd
 assert_luhn <- function(x, call = caller_env()) {
-  if (any(!check_luhn(x))) {
-    invalid <- x[which_(check_luhn(x), invert = TRUE)]
+  if (any(luhn_check(x))) {
+    idx <- cheapr::which_(purrr::map_int(x, luhn) == 0L)
     cli::cli_abort(
-      c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must pass Luhn algorithm"),
+      c(
+        "x" = "{.val {length(idx)}} {.field npi{?s}} failed Luhn algorithm check:",
+        cli::col_yellow(
+          cli::format_bullets_raw(
+            paste(cli::symbol$arrow_right, just_right(brackets(idx)), x[idx])))),
       call = call
     )
   }
 }
 
-#' @autoglobal
-#' @noRd
-assert_digits <- function(x, call = caller_env()) {
-  if (any(!grepl("^[0-9]{10}$", x = as.character(x), perl = TRUE))) {
-    invalid <- x[which_(grepl('^[0-9]{10}$', x = as.character(x), perl = TRUE), invert = TRUE)]
-    cli::cli_abort(
-      c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must be all digits"),
-      call = call
-    )
-  }
-}
+# @autoglobal
+# @noRd
+# assert_digits <- function(x, call = caller_env()) {
+#   if (any(!grepl("^[0-9]{10}$", x = as.character(x), perl = TRUE))) {
+#     invalid <- x[which_(grepl('^[0-9]{10}$', x = as.character(x), perl = TRUE), invert = TRUE)]
+#     cli::cli_abort(
+#       c("Invalid {.arg npi} entered: {.val {invalid}}", "x" = "{.arg npi} must be all digits"),
+#       call = call
+#     )
+#   }
+# }
 
-#' @autoglobal
-#' @noRd
-assert_nchars <- function(x, n, xname, call = caller_env()) {
-  if (any(nchar(as.character(x)) != n)) {
-    invalid <- x[which_(nchar(as.character(x)) != n)]
-    cli::cli_abort(
-      c("Invalid {.arg {xname}} entered: {.val {invalid}}", "x" = "{.arg {xname}} must be {n} characters long"),
-      call = call
-    )
-  }
-}
+# @autoglobal
+# @noRd
+# assert_nchars <- function(x, n, xname, call = caller_env()) {
+#   if (any(nchar(as.character(x)) != n)) {
+#     invalid <- x[which_(nchar(as.character(x)) != n)]
+#     cli::cli_abort(
+#       c("Invalid {.arg {xname}} entered: {.val {invalid}}", "x" = "{.arg {xname}} must be {n} characters long"),
+#       call = call
+#     )
+#   }
+# }
 
-#' @autoglobal
-#' @noRd
-assert_choices <- function(x, choices, xname, call = caller_env()) {
-  if (any(!x %in% choices)) {
-    invalid <- x[which_(x %in% choices, invert = TRUE)]
-    cli::cli_abort(c("Invalid {.arg {xname}} entered: {.val {invalid}}"), call = call)
-  }
-}
+# @autoglobal
+# @noRd
+# assert_choices <- function(x, choices, xname, call = caller_env()) {
+#   if (any(!x %in% choices)) {
+#     invalid <- x[which_(x %in% choices, invert = TRUE)]
+#     cli::cli_abort(c("Invalid {.arg {xname}} entered: {.val {invalid}}"), call = call)
+#   }
+# }
 
 # check_params_fields <- function(params, fields) {
 #   if (!any(params %in% fields)) {
 #     invalid_params <- setdiff(params, fields)
-#
 #     abort(glue("Invalid Parameter(s): {invalid_params}"))
-#
 #   }
 # }

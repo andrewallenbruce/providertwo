@@ -33,6 +33,10 @@ c_temp <- function(x) {
     identifier = yank(endpoints$identifier))
 }
 
+# x <- list(
+# alias = "asfsadgff",
+# regex = "13526#%&#%%&",
+# tbl = fastplyr::new_tbl(title = c("test1", "test2")))
 #' @autoglobal
 #' @noRd
 check_alias_results <- function(x, call = caller_env()) {

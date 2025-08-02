@@ -1,3 +1,44 @@
+#' @autoglobal
+#' @noRd
+brackets <- function(x) {
+  paste0("[", x, "]")
+}
+
+#' @autoglobal
+#' @noRd
+just_right <- function(x) {
+  format(x, justify = "right")
+}
+
+#' @autoglobal
+#' @noRd
+just_left <- function(x) {
+  format(x, justify = "left")
+}
+
+#' @autoglobal
+#' @noRd
+brackets_cli <- function(x) {
+  paste0(
+    cli::col_silver("["),
+    paste0(
+      cli::col_yellow((unlist(x, use.names = FALSE))
+      ),
+      collapse = cli::col_silver(", ")),
+    cli::col_silver("]")
+  )
+}
+
+#' @autoglobal
+#' @noRd
+brackets_cli2 <- function(x) {
+  paste0(
+    cli::col_black("["),
+    cli::col_silver(x),
+    cli::col_black("]")
+  )
+}
+
 # cli_results(n = 1000, limit = 10, end = "Profile Summary", api = "Open Payments")
 #' @autoglobal
 #' @noRd
@@ -29,6 +70,12 @@ cli_aka <- function(aka) {
     x = i)
 
 }
+
+# By default cli truncates long vectors.
+# The truncation limit is by default twenty elements,
+# but you can change it with the vec-trunc style.
+# nms <- cli::cli_vec(names(mtcars), list("vec-trunc" = 5))
+# cli::cli_text("Column names: {nms}.")
 
 # x <- endpoint("prof_mapping")
 #
