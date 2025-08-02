@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9401 (2025-08-02)
+
+* luhn_base
+
+
 # providertwo 0.0.0.9400 (2025-08-02)
 
 * luhn algo
