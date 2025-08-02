@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9398</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9399</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,10 +69,11 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">qry</span> <span class="op">&lt;-</span> <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   first_name            <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"Andr"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   middle_name           <span class="op">=</span> <span class="fu"><a href="query_modifier.html">ends_with</a></span><span class="op">(</span><span class="st">"e"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   last_name             <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   state_cd              <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   state                 <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   city                  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">equals</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atlanta"</span>, <span class="st">"Los Angeles"</span><span class="op">)</span>, negate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   state                 <span class="op">=</span> <span class="fu"><a href="query_modifier.html">none_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   city                  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">all_but</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atlanta"</span>, <span class="st">"Los Angeles"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   npi                   <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span>,</span></span>
 <span class="r-in"><span>   covered_recipient_npi <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>   ccn                   <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
@@ -82,41 +83,16 @@
 <span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$NPI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[1][condition][path]=NPI"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "filter[1][condition][operator]=="          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "filter[1][condition][value][1]=1225701881" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "filter[1][condition][value][2]=1174270805" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "filter[1][condition][value][3]=1235702796" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "filter[1][condition][value][4]=1962116806" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "filter[1][condition][value][5]=1013647569" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "filter[1][condition][value][6]=1306500665" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "filter[1][condition][value][7]=1982296737" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "filter[1][condition][value][8]=1083295638" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "filter[1][condition][value][9]=1841967825" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "filter[1][condition][value][10]=1891390084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "filter[1][condition][value][11]=1275117269"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "filter[1][condition][value][12]=1992338701"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "filter[1][condition][value][13]=1891355863"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "filter[1][condition][value][14]=1548743511"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "filter[1][condition][value][15]=1023473279"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "filter[1][condition][value][16]=1861857013"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "filter[1][condition][value][17]=1689182859"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "filter[1][condition][value][18]=1982059275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=NPI&amp;filter[1][condition][operator]==&amp;filter[1][condition][value][1]=1225701881&amp;filter[1][condition][value][2]=1174270805&amp;filter[1][condition][value][3]=1235702796&amp;filter[1][condition][value][4]=1962116806&amp;filter[1][condition][value][5]=1013647569&amp;filter[1][condition][value][6]=1306500665&amp;filter[1][condition][value][7]=1982296737&amp;filter[1][condition][value][8]=1083295638&amp;filter[1][condition][value][9]=1841967825&amp;filter[1][condition][value][10]=1891390084&amp;filter[1][condition][value][11]=1275117269&amp;filter[1][condition][value][12]=1992338701&amp;filter[1][condition][value][13]=1891355863&amp;filter[1][condition][value][14]=1548743511&amp;filter[1][condition][value][15]=1023473279&amp;filter[1][condition][value][16]=1861857013&amp;filter[1][condition][value][17]=1689182859&amp;filter[1][condition][value][18]=1982059275"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$STATE_CD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=STATE_CD" "filter[2][condition][operator]=IN"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[2][condition][value][1]=CA"   "filter[2][condition][value][2]=GA"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "filter[2][condition][value][3]=NY"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=STATE_CD&amp;filter[2][condition][operator]=IN&amp;filter[2][condition][value][1]=CA&amp;filter[2][condition][value][2]=GA&amp;filter[2][condition][value][3]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$FIRST_NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=FIRST_NAME"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "filter[3][condition][operator]=STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[3][condition][value]=Andr"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=FIRST_NAME&amp;filter[3][condition][operator]=STARTS_WITH&amp;filter[3][condition][value]=Andr"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$LAST_NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[4][condition][path]=LAST_NAME"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "filter[4][condition][operator]=CONTAINS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[4][condition][value]=J"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[4][condition][path]=LAST_NAME&amp;filter[4][condition][operator]=CONTAINS&amp;filter[4][condition][value]=J"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
@@ -126,40 +102,16 @@
 <span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=state"  "filter[1][condition][operator]=IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[1][condition][value][1]=GA" "filter[1][condition][value][2]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=state&amp;filter[1][condition][operator]=NOT+IN&amp;filter[1][condition][value][1]=GA&amp;filter[1][condition][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$CCN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=CCN"    "filter[2][condition][operator]==" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[2][condition][value]=01256"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=CCN&amp;filter[2][condition][operator]==&amp;filter[2][condition][value]=01256"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$city</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=city"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "filter[3][condition][operator]=&lt;&gt;"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[3][condition][value][1]=Atlanta"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "filter[3][condition][value][2]=Los Angeles"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=city&amp;filter[3][condition][operator]=&lt;&gt;&amp;filter[3][condition][value][1]=Atlanta&amp;filter[3][condition][value][2]=Los Angeles"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$NPI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[4][condition][path]=NPI"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "filter[4][condition][operator]=="          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "filter[4][condition][value][1]=1225701881" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "filter[4][condition][value][2]=1174270805" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "filter[4][condition][value][3]=1235702796" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "filter[4][condition][value][4]=1962116806" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "filter[4][condition][value][5]=1013647569" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "filter[4][condition][value][6]=1306500665" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "filter[4][condition][value][7]=1982296737" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "filter[4][condition][value][8]=1083295638" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "filter[4][condition][value][9]=1841967825" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "filter[4][condition][value][10]=1891390084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "filter[4][condition][value][11]=1275117269"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "filter[4][condition][value][12]=1992338701"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "filter[4][condition][value][13]=1891355863"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "filter[4][condition][value][14]=1548743511"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "filter[4][condition][value][15]=1023473279"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "filter[4][condition][value][16]=1861857013"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "filter[4][condition][value][17]=1689182859"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "filter[4][condition][value][18]=1982059275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[4][condition][path]=NPI&amp;filter[4][condition][operator]==&amp;filter[4][condition][value][1]=1225701881&amp;filter[4][condition][value][2]=1174270805&amp;filter[4][condition][value][3]=1235702796&amp;filter[4][condition][value][4]=1962116806&amp;filter[4][condition][value][5]=1013647569&amp;filter[4][condition][value][6]=1306500665&amp;filter[4][condition][value][7]=1982296737&amp;filter[4][condition][value][8]=1083295638&amp;filter[4][condition][value][9]=1841967825&amp;filter[4][condition][value][10]=1891390084&amp;filter[4][condition][value][11]=1275117269&amp;filter[4][condition][value][12]=1992338701&amp;filter[4][condition][value][13]=1891355863&amp;filter[4][condition][value][14]=1548743511&amp;filter[4][condition][value][15]=1023473279&amp;filter[4][condition][value][16]=1861857013&amp;filter[4][condition][value][17]=1689182859&amp;filter[4][condition][value][18]=1982059275"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
@@ -178,26 +130,7 @@
 <span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$npi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[1][condition][path]=npi"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "filter[1][condition][operator]=="          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "filter[1][condition][value][1]=1225701881" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "filter[1][condition][value][2]=1174270805" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "filter[1][condition][value][3]=1235702796" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "filter[1][condition][value][4]=1962116806" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "filter[1][condition][value][5]=1013647569" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "filter[1][condition][value][6]=1306500665" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "filter[1][condition][value][7]=1982296737" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "filter[1][condition][value][8]=1083295638" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "filter[1][condition][value][9]=1841967825" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "filter[1][condition][value][10]=1891390084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "filter[1][condition][value][11]=1275117269"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "filter[1][condition][value][12]=1992338701"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "filter[1][condition][value][13]=1891355863"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "filter[1][condition][value][14]=1548743511"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "filter[1][condition][value][15]=1023473279"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "filter[1][condition][value][16]=1861857013"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "filter[1][condition][value][17]=1689182859"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "filter[1][condition][value][18]=1982059275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=npi&amp;filter[1][condition][operator]==&amp;filter[1][condition][value][1]=1225701881&amp;filter[1][condition][value][2]=1174270805&amp;filter[1][condition][value][3]=1235702796&amp;filter[1][condition][value][4]=1962116806&amp;filter[1][condition][value][5]=1013647569&amp;filter[1][condition][value][6]=1306500665&amp;filter[1][condition][value][7]=1982296737&amp;filter[1][condition][value][8]=1083295638&amp;filter[1][condition][value][9]=1841967825&amp;filter[1][condition][value][10]=1891390084&amp;filter[1][condition][value][11]=1275117269&amp;filter[1][condition][value][12]=1992338701&amp;filter[1][condition][value][13]=1891355863&amp;filter[1][condition][value][14]=1548743511&amp;filter[1][condition][value][15]=1023473279&amp;filter[1][condition][value][16]=1861857013&amp;filter[1][condition][value][17]=1689182859&amp;filter[1][condition][value][18]=1982059275"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
@@ -212,20 +145,10 @@
 <span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$npi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "conditions[0][property]=npi"         "conditions[0][operator]=="          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "conditions[0][value][1]=1225701881"  "conditions[0][value][2]=1174270805" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "conditions[0][value][3]=1235702796"  "conditions[0][value][4]=1962116806" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "conditions[0][value][5]=1013647569"  "conditions[0][value][6]=1306500665" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "conditions[0][value][7]=1982296737"  "conditions[0][value][8]=1083295638" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "conditions[0][value][9]=1841967825"  "conditions[0][value][10]=1891390084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "conditions[0][value][11]=1275117269" "conditions[0][value][12]=1992338701"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "conditions[0][value][13]=1891355863" "conditions[0][value][14]=1548743511"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "conditions[0][value][15]=1023473279" "conditions[0][value][16]=1861857013"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "conditions[0][value][17]=1689182859" "conditions[0][value][18]=1982059275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=npi&amp;conditions[0][operator]==&amp;conditions[0][value][1]=1225701881&amp;conditions[0][value][2]=1174270805&amp;conditions[0][value][3]=1235702796&amp;conditions[0][value][4]=1962116806&amp;conditions[0][value][5]=1013647569&amp;conditions[0][value][6]=1306500665&amp;conditions[0][value][7]=1982296737&amp;conditions[0][value][8]=1083295638&amp;conditions[0][value][9]=1841967825&amp;conditions[0][value][10]=1891390084&amp;conditions[0][value][11]=1275117269&amp;conditions[0][value][12]=1992338701&amp;conditions[0][value][13]=1891355863&amp;conditions[0][value][14]=1548743511&amp;conditions[0][value][15]=1023473279&amp;conditions[0][value][16]=1861857013&amp;conditions[0][value][17]=1689182859&amp;conditions[0][value][18]=1982059275"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state" "conditions[1][operator]=in"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[1][value][1]=GA"    "conditions[1][value][2]=NY"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=not+in&amp;conditions[1][value][1]=GA&amp;conditions[1][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
@@ -235,13 +158,7 @@
 <span class="r-in"><span><span class="fu">standardise</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"grp_cover_nature"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $params$covered_recipient_npi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=covered_recipient_npi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[0][operator]=="                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[0][value][1]=1225701881"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "conditions[0][value][2]=1174270805"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "conditions[0][value][3]=1235702796"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "conditions[0][value][4]=1962116806"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "conditions[0][value][5]=1013647569"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=covered_recipient_npi&amp;conditions[0][operator]==&amp;conditions[0][value][1]=1225701881&amp;conditions[0][value][2]=1174270805&amp;conditions[0][value][3]=1235702796&amp;conditions[0][value][4]=1962116806&amp;conditions[0][value][5]=1013647569"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
@@ -268,40 +185,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params$NPI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "filter[1][condition][path]=NPI"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "filter[1][condition][operator]=="          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "filter[1][condition][value][1]=1225701881" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "filter[1][condition][value][2]=1174270805" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "filter[1][condition][value][3]=1235702796" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "filter[1][condition][value][4]=1962116806" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "filter[1][condition][value][5]=1013647569" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "filter[1][condition][value][6]=1306500665" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "filter[1][condition][value][7]=1982296737" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "filter[1][condition][value][8]=1083295638" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "filter[1][condition][value][9]=1841967825" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "filter[1][condition][value][10]=1891390084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "filter[1][condition][value][11]=1275117269"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "filter[1][condition][value][12]=1992338701"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "filter[1][condition][value][13]=1891355863"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "filter[1][condition][value][14]=1548743511"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "filter[1][condition][value][15]=1023473279"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "filter[1][condition][value][16]=1861857013"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "filter[1][condition][value][17]=1689182859"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "filter[1][condition][value][18]=1982059275"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=NPI&amp;filter[1][condition][operator]==&amp;filter[1][condition][value][1]=1225701881&amp;filter[1][condition][value][2]=1174270805&amp;filter[1][condition][value][3]=1235702796&amp;filter[1][condition][value][4]=1962116806&amp;filter[1][condition][value][5]=1013647569&amp;filter[1][condition][value][6]=1306500665&amp;filter[1][condition][value][7]=1982296737&amp;filter[1][condition][value][8]=1083295638&amp;filter[1][condition][value][9]=1841967825&amp;filter[1][condition][value][10]=1891390084&amp;filter[1][condition][value][11]=1275117269&amp;filter[1][condition][value][12]=1992338701&amp;filter[1][condition][value][13]=1891355863&amp;filter[1][condition][value][14]=1548743511&amp;filter[1][condition][value][15]=1023473279&amp;filter[1][condition][value][16]=1861857013&amp;filter[1][condition][value][17]=1689182859&amp;filter[1][condition][value][18]=1982059275"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params$CCN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=CCN"    "filter[2][condition][operator]==" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[2][condition][value]=01256"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=CCN&amp;filter[2][condition][operator]==&amp;filter[2][condition][value]=01256"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params$CITY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=CITY"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "filter[3][condition][operator]=&lt;&gt;"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[3][condition][value][1]=Atlanta"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "filter[3][condition][value][2]=Los Angeles"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[3][condition][path]=CITY&amp;filter[3][condition][operator]=&lt;&gt;&amp;filter[3][condition][value][1]=Atlanta&amp;filter[3][condition][value][2]=Los Angeles"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params$STATE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[4][condition][path]=STATE"  "filter[4][condition][operator]=IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[4][condition][value][1]=GA" "filter[4][condition][value][2]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[4][condition][path]=STATE&amp;filter[4][condition][operator]=NOT+IN&amp;filter[4][condition][value][1]=GA&amp;filter[4][condition][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$identifier</span>
@@ -311,10 +204,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$params$City</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=City"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "filter[1][condition][operator]=&lt;&gt;"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "filter[1][condition][value][1]=Atlanta"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "filter[1][condition][value][2]=Los Angeles"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=City&amp;filter[1][condition][operator]=&lt;&gt;&amp;filter[1][condition][value][1]=Atlanta&amp;filter[1][condition][value][2]=Los Angeles"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$identifier</span>
@@ -347,8 +237,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_state$params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_state$params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state" "conditions[0][operator]=in"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[0][value][1]=GA"    "conditions[0][value][2]=NY"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state&amp;conditions[0][operator]=not+in&amp;conditions[0][value][1]=GA&amp;conditions[0][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_state$identifier</span>
@@ -358,8 +247,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_zip</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_zip$params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_zip$params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state" "conditions[0][operator]=in"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[0][value][1]=GA"    "conditions[0][value][2]=NY"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state&amp;conditions[0][operator]=not+in&amp;conditions[0][value][1]=GA&amp;conditions[0][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_zip$identifier</span>
@@ -369,8 +257,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_agency</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_agency$params</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_agency$params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state" "conditions[0][operator]=in"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[0][value][1]=GA"    "conditions[0][value][2]=NY"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[0][property]=state&amp;conditions[0][operator]=not+in&amp;conditions[0][value][1]=GA&amp;conditions[0][value][2]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_agency$identifier</span>
