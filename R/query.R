@@ -33,6 +33,7 @@ query_care <- function(args) {
 
     V <- if (is_modifier(x)) x@value else unlist(x, use.names = FALSE)
     O <- if (is_modifier(x)) toupper(x@operator) else "="
+    N <- gsub(" ", "+", N, fixed = TRUE)
 
     c(paste0("filter[<<i>>][condition][path]=", N),
       paste0("filter[<<i>>][condition][operator]=", O),
@@ -59,6 +60,7 @@ query_default <- function(args) {
 
     V <- if (is_modifier(x)) x@value else unlist(x, use.names = FALSE)
     O <- if (is_modifier(x)) tolower(gsub("_", "+", x@operator, fixed = TRUE)) else "="
+    N <- gsub(" ", "+", N, fixed = TRUE)
 
     c(paste0("conditions[<<i>>][property]=", N),
       paste0("conditions[<<i>>][operator]=", O),

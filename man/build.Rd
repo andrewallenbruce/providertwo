@@ -23,6 +23,7 @@ qry <- new_query(
    middle_name = ends_with("e"),
    last_name = contains("J"),
    state = any_of(c("CA", "GA", "NY")),
+   practice_state_or_us_territory = any_of(c("CA", "GA", "NY")),
    year = 2021:2025)
 
 build(endpoint("enroll_prov"), qry)

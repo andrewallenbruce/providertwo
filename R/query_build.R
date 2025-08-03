@@ -1,14 +1,26 @@
 #' @autoglobal
 #' @noRd
 params_care <- function(x) {
+  if (is.null(x)) return(NULL)
   set_names(query_care(x), names(x))
 }
+
 #' @autoglobal
 #' @noRd
 params_default <- function(x) {
+  if (is.null(x)) return(NULL)
   set_names(query_default(x), names(x))
 }
 
+#' @autoglobal
+#' @noRd
+params_flatten <- function(id, x = NULL) {
+  if (is.null(x)) return(id)
+  paste0(id, "&", paste0(unlist(x, use.names = FALSE), collapse = "&"))
+}
+
+# `if`(!is.null(params), paste0(S7::prop(obj, "identifier"), "&", paste0(unlist(params, use.names = FALSE), collapse = "&")), S7::prop(obj, "identifier")),
+#
 #' Build a Query for an Endpoint
 #'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
@@ -23,6 +35,7 @@ params_default <- function(x) {
 #'    middle_name = ends_with("e"),
 #'    last_name = contains("J"),
 #'    state = any_of(c("CA", "GA", "NY")),
+#'    practice_state_or_us_territory = any_of(c("CA", "GA", "NY")),
 #'    year = 2021:2025)
 #'
 #' build(endpoint("enroll_prov"), qry)
@@ -94,16 +107,22 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     title      = S7::prop(obj, "metadata")$title,
     dimensions = S7::prop(obj, "dimensions"),
     identifier = S7::prop(obj, "identifier"),
-    params     = params %|||% params_default(params)
+    params     = params_default(params)
   )
 }
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  id <- if ("year" %in% names(S7::prop(qry, "params"))) {
-    collapse::sbt(S7::prop(obj, "identifier"), year %in% S7::prop(qry, "params")$year)
+  if ("year" %!in_% names(S7::prop(qry, "params"))) {
+
+    id <- S7::prop(obj, "identifier") |>
+      collapse::get_elem("^year$|^identifier$", regex = TRUE)
+
   } else {
-      S7::prop(obj, "identifier")
+
+    id <- S7::prop(obj, "identifier") |>
+      collapse::sbt(year %in_% S7::prop(qry, "params")$year) |>
+      collapse::get_elem("^year$|^identifier$", regex = TRUE)
   }
 
   params <- query_match(obj, qry)
@@ -111,8 +130,8 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   list(
     title      = S7::prop(obj, "metadata")$title,
     dimensions = S7::prop(obj, "dimensions"),
-    identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
-    params     = params %|||% params_default(params)
+    identifier = set_names(id$identifier, id$year),
+    params     = params_default(params)
   )
 }
 
@@ -122,10 +141,8 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
   flist(
     title      = S7::prop(obj, "metadata")$title,
-    params     = params %|||% params_care(params),
-    identifier = `if`(!is.null(params),
-                      paste0(S7::prop(obj, "identifier"), "&", paste0(unlist(params, use.names = FALSE), collapse = "&")),
-                      S7::prop(obj, "identifier")),
+    params     = params_care(params),
+    identifier = params_flatten(id = S7::prop(obj, "identifier"), x = params),
     dimensions = S7::prop(obj, "dimensions"),
     results    = request(identifier) |>
       req_url_path_append("stats") |>
@@ -137,18 +154,30 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  id <- if ("year" %in% names(S7::prop(qry, "params"))) {
-    collapse::sbt(S7::prop(obj, "identifier"), year %in% S7::prop(qry, "params")$year)
+  if ("year" %!in_% names(S7::prop(qry, "params"))) {
+
+    id <- S7::prop(obj, "identifier") |>
+      collapse::get_elem("^year$|^identifier$", regex = TRUE)
+
   } else {
-    S7::prop(obj, "identifier")
+
+    id <- S7::prop(obj, "identifier") |>
+      collapse::sbt(year %in_% S7::prop(qry, "params")$year) |>
+      collapse::get_elem("^year$|^identifier$", regex = TRUE)
   }
 
   params <- query_match(obj, qry)
 
-  list(
+  flist(
     title      = S7::prop(obj, "metadata")$title,
+    params     = params_care(params),
+    identifier = map(id$identifier, function(x) params_flatten(id = x, x = params)) |> set_names(id$year),
     dimensions = S7::prop(obj, "dimensions"),
-    identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
-    params     = params %|||% params_care(params)
+    results    = map(identifier, function(x)
+      request(x) |> req_url_path_append("stats")) |>
+      req_perform_parallel(on_error = "continue") |>
+      map(function(x)
+        fparse(resp_body_string(x))) |>
+      set_names(id$year)
   )
 }
