@@ -85,7 +85,7 @@ query_default <- function(args) {
 #' @noRd
 query_match <- function(obj, qry) {
   params <- S7::prop(qry, "params")
-  fields <- S7::prop(obj, "dimensions") |> S7::prop("fields")
+  fields <- S7::prop(obj, "fields") |> S7::prop("keys")
 
   # Remove "year" if it exists, to be applied to temporal endpoints
   param_names <- names(params)[names(params) != "year"]

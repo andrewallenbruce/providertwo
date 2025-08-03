@@ -29,13 +29,6 @@ class_dimensions <- S7::new_class(
       S7::class_integer,
       getter = function(self)
         offset_size(self@rows, self@limit)
-    ),
-    fields = S7::new_property(
-      S7::class_character,
-      setter = function(self, value) {
-        self@fields <- value
-        self
-      }
     )
   )
 )

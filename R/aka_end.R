@@ -214,7 +214,10 @@ end_caid <- list(
     hc_quality  = "^Child and Adult Health Care Quality Measures$"
   )
 )
-
+# fs::file_create(fs::path_package("providertwo"), "test.toml")
+# tomledit::as_toml(end_open)
+# tomledit::write_toml(fs::path_package("providertwo"))
+# tomledit::read_toml(fs::path_package("providertwo", "test.toml"))
 # ---- open ----
 #' @autoglobal
 #' @noRd

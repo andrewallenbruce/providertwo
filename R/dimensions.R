@@ -26,7 +26,7 @@ dims_care <- function(x) {
 
   x <- switch(
     url_type(x$identifier),
-    current = perform_simple(id) |>
+    current  = perform_simple(id) |>
       get_elem("meta") |>
       get_elem(c("total_rows", "headers")),
     temporal = list(
@@ -37,32 +37,36 @@ dims_care <- function(x) {
     )
   )
 
-  class_dimensions(
-    limit  = 5000L,
-    rows   = x$total_rows %||% 0L,
-    fields = x$headers %||% character(0)
+  list(
+    dims = class_dimensions(
+      limit = 5000L,
+      rows = x$total_rows %||% 0L),
+    fields = class_fields(keys = x$headers %||% character(0))
   )
 }
 
 #' @autoglobal
 #' @noRd
 get_dims <- function(x) {
+  if (url_type(x$identifier) %in% c("current", "temporal"))
+    return(dims_care(x))
 
-  if (url_type(x$identifier) %in% c("current", "temporal")) return(dims_care(x))
+  id <- x$identifier |>
+    request() |>
+    req_error(is_error = ~ FALSE) |>
+    perform_simple()
 
-    id <- x$identifier |>
-      request() |>
-      req_error(is_error = ~ FALSE) |>
-      perform_simple()
-
-  class_dimensions(
-    limit  = switch(
-      url_type(x$identifier),
-      caid = 8000L,
-      prov = 1500L,
-      open = ,
-      hgov = 500L),
-    rows   = id$count %||% 0L,
-    fields = id$query$properties %||% character(0)
+  list(
+    dims = class_dimensions(
+      limit = switch(
+        url_type(x$identifier),
+        caid = 8000L,
+        prov = 1500L,
+        open = 500L,
+        hgov = 500L
+      ),
+      rows = id$count %||% 0L
+    ),
+    fields = class_fields(keys = id$query$properties %||% character(0))
   )
 }

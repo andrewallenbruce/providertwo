@@ -1,0 +1,22 @@
+[current]
+prf_covered = "^Covered Recipient Profile Supplement$"
+prf_physician = '^Physician \(Distinct\) Profile Information$'
+prf_information = "^Profile Information$"
+prf_mapping = "^Provider Profile ID Mapping Table$"
+prf_entity = "^Reporting Entity Profile Information$"
+prf_teaching = "^Teaching Hospital Profile Information$"
+sum_dashboard = "^Summary Dashboard"
+sum_state = "^State Level Payment Total and Averages for all Years$"
+sum_nature = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$"
+sum_national = "^National Level Payment Total and Averages for all Years$"
+sum_specialty = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
+
+[temporal]
+pay_general = "^General Payment Data$"
+pay_ownership = "^Ownership Payment Data$"
+pay_research = "^Research Payment Data$"
+grp_cover_nature = "^Payments Grouped by Covered Recipient and Nature of Payments$"
+grp_cover_entity = "^Payments Grouped by Covered Recipient and Reporting Entities$"
+grp_entity_nature = "^Payments Grouped by Reporting Entities and Nature of Payments$"
+grp_all = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$"
+grp_state_nature = "^State Payment Totals Grouped by Nature of Payment for all Years$"

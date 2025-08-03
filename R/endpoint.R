@@ -85,20 +85,28 @@ alias_lookup <- function(x) {
 #' @autoglobal
 #' @noRd
 as_current <- function(x) {
+
+  i <- get_dims(x)
+
   class_current(
-    identifier   = x$identifier,
-    metadata     = get_meta(x),
-    dimensions   = get_dims(x)
+    identifier = x$identifier,
+    metadata = get_meta(x),
+    dimensions = i$dims,
+    fields = i$fields
   )
 }
 
 #' @autoglobal
 #' @noRd
 as_temporal <- function(x) {
+
+  i <- get_dims(x)
+
   class_temporal(
     identifier = x$endpoints,
-    metadata   = get_meta(x),
-    dimensions = get_dims(x)
+    metadata = get_meta(x),
+    dimensions = i$dims,
+    fields = i$fields
   )
 }
 
@@ -115,17 +123,23 @@ as_point <- function(x) {
 #' @autoglobal
 #' @noRd
 as_care <- function(x) {
-  class_care(switch(
-    x$point,
-    current      = care_current(
-      identifier = x$identifier,
-      metadata   = get_meta(x),
-      dimensions = get_dims(x)
+
+  i <- get_dims(x)
+
+  class_care(
+    access = switch(
+      x$point,
+      current = care_current(
+        identifier = x$identifier,
+        metadata = get_meta(x),
+        dimensions = i$dims,
+        fields = i$fields
     ),
-    temporal     = care_temporal(
+    temporal = care_temporal(
       identifier = x$endpoints,
-      metadata   = get_meta(x),
-      dimensions = get_dims(x)
+      metadata = get_meta(x),
+      dimensions = i$dims,
+      fields = i$fields
     )
   ))
 }
