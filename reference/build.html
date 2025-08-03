@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9405</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9406</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,6 +72,7 @@
 <span class="r-in"><span>   middle_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">ends_with</a></span><span class="op">(</span><span class="st">"e"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   year <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
@@ -104,6 +105,28 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2025`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data?offset=0&amp;size=1&amp;filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2024`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data?offset=0&amp;size=1&amp;filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data?offset=0&amp;size=1&amp;filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data?offset=0&amp;size=1&amp;filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data?offset=0&amp;size=1&amp;filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dimensions</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
@@ -111,28 +134,68 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 2398</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields: chr [1:14] "state" "CCN" "Provider_Name" "city" "Ownership_Type" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2025 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2024 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2023 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2022 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2021 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data?offset=0&amp;size=1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2025`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2025`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2352531</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=state&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2025`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11985275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2024`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2024`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2256637</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2024`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11679243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2252660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11716732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2067765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10821385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9701304</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9701304</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Quality Payment Program Experience</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">204 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Quality Payment Program Experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $params$`practice state or us territory`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=practice+state+or+us+territory&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data?offset=0&amp;size=1&amp;filter[1][condition][path]=practice+state+or+us+territory&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data?offset=0&amp;size=1&amp;filter[1][condition][path]=practice+state+or+us+territory&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data?offset=0&amp;size=1&amp;filter[1][condition][path]=practice+state+or+us+territory&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dimensions</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
@@ -141,16 +204,31 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 105</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields: chr [1:204] "provider key" "practice state or us territory" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2023 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2022 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2021 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data?offset=0&amp;size=1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 106775</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2023`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 524998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 109972</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2022`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 624200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 134498</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $results$`2021`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 698730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
@@ -174,7 +252,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"grp_cover_nature"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Payments Grouped by Covered Recipient and Nature of Payments</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">10 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Payments Grouped by Covered Recipient and Nature of Payments</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">10 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -200,8 +278,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hha"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency All Owners</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">38 fields</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency Cost Report</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">201 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency All Owners</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">38 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency Cost Report</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">201 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Agency All Owners"</span>
@@ -250,6 +328,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Agency Cost Report"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$params</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$identifier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$identifier$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/1adf48d9-9ff2-4641-ac51-d827aabf791c/data?offset=0&amp;size=1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$identifier$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/a02a324e-a8ad-4933-8bcd-e6a10ab28c8e/data?offset=0&amp;size=1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$dimensions</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
@@ -257,20 +346,29 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ fields: chr [1:201] "rpt_rec_num" "Provider CCN" "HHA Name" "Street Address" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2022 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/1adf48d9-9ff2-4641-ac51-d827aabf791c/data?offset=0&amp;size=1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                 2021 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "https://data.cms.gov/data-api/v1/dataset/a02a324e-a8ad-4933-8bcd-e6a10ab28c8e/data?offset=0&amp;size=1" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2022`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10564</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2022`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10564</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2021`$found_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10379</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$results$`2021`$total_rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10379</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hhc"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - Measure Date Range</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">2 fields</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - National Data</span>: <span style="color: #0000BB;">4 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">40 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - Measure Date Range</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">2 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - National Data</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">40 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range$title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Care - Measure Date Range"</span>
