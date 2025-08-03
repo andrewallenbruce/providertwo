@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9410 (2025-08-03)
+
+* class_results
+
+
 # providertwo 0.0.0.9409 (2025-08-03)
 
 * simplify build methods
