@@ -19,8 +19,6 @@ params_flatten <- function(id, x = NULL) {
   paste0(id, "&", paste0(unlist(x, use.names = FALSE), collapse = "&"))
 }
 
-# `if`(!is.null(params), paste0(S7::prop(obj, "identifier"), "&", paste0(unlist(params, use.names = FALSE), collapse = "&")), S7::prop(obj, "identifier")),
-#
 #' Build a Query for an Endpoint
 #'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.

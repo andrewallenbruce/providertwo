@@ -68,8 +68,9 @@ alias_lookup <- function(x) {
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(glue("the$clog${catalog}${point}"),
-                           rex_endpoint(x)))
+    tbl     = select_alias(
+      glue("the$clog${catalog}${point}"),
+      rex_endpoint(x)))
 
   check_alias_results(x)
 
@@ -114,40 +115,19 @@ as_point <- function(x) {
 #' @autoglobal
 #' @noRd
 as_care <- function(x) {
-  switch(
+  class_care(switch(
     x$point,
-    current = class_care(
-      care_current(
-        identifier = x$identifier,
-        metadata   = get_meta(x),
-        dimensions = get_dims(x)
-      )
+    current      = care_current(
+      identifier = x$identifier,
+      metadata   = get_meta(x),
+      dimensions = get_dims(x)
     ),
-    temporal = class_care(
-      care_temporal(
-        identifier = x$endpoints,
-        metadata   = get_meta(x),
-        dimensions = get_dims(x)
-      )
+    temporal     = care_temporal(
+      identifier = x$endpoints,
+      metadata   = get_meta(x),
+      dimensions = get_dims(x)
     )
-  )
-
-  # class_care(
-  #   switch(
-  #     x$point,
-  #     current = care_current(
-  #       identifier = x$identifier,
-  #       metadata   = get_meta(x),
-  #       dimensions = get_dims(x)
-  #     )
-  #   ),
-  #   temporal = care_temporal(
-  #     identifier = x$endpoints,
-  #     metadata   = get_meta(x),
-  #     dimensions = get_dims(x)
-  #   )
-  # )
-
+  ))
 }
 
 #' @rdname load_endpoint
@@ -186,7 +166,7 @@ collection <- function(alias) {
 
   if (length(alias) > 1L) {
     cli::cli_abort(
-      c("x" = "A {.cls collection} takes only one {.field alias}."),
+      c("x" = "Only one {.cls collection} can be selected at a time."),
       call. = FALSE)
   }
 
@@ -212,28 +192,31 @@ collection <- function(alias) {
 #' @export
 group <- function(..., .description = NULL) {
 
-  rlang::check_dots_unnamed()
-
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
+  avec  <- unlist(alias, use.names = FALSE)
 
-  avec <- unlist(alias, use.names = FALSE)
+  if (rlang::is_empty(alias) || any(!nzchar(alias))) {
+    cli::cli_abort(
+      c("x" = "A {.cls group} must contain at least two {.cls endpoints}."),
+      call. = FALSE)
+  }
 
   if (any_are_collection(avec)) {
     cli::cli_abort(
       c("x" = "A {.cls group} cannot contain a {.cls collection}.",
-        "i" = "Run {.field collection({.val {avec[is_collection(avec)]}})}."),
+        ">" = "Run e.g., {.field collection({.val {avec[is_collection(avec)][[1]]}})}."),
       call. = FALSE)
   }
 
   if (length(avec) == 1L) {
     cli::cli_abort(
-      c("x" = "A {.cls group} contains more than one {.cls endpoint}.",
-        "i" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
+      c("x" = "A {.cls group} must contain at least two {.cls endpoints}.",
+        ">" = "Run e.g., {.field endpoint({.val {avec}})} to load an endpoint."),
       call. = FALSE)
   }
 
   class_group(
-    name    = .description %||% paste0("[", paste0(alias, collapse = ", "), "]"),
+    name    = .description %||% brackets(toString(alias)),
     members = names_map(alias, endpoint)
   )
 }

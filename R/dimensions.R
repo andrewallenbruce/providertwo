@@ -10,16 +10,11 @@ url_type <- function(x) {
     .default = NA_character_
   )
 
-  if (is.na(api))
-    cli::cli_abort(c("x" = "{.val {x}} could not be categorized."))
+  if (is.na(api)) cli::cli_abort(c("x" = "{.val {x}} not recognized."))
+  if (api != "care") return(api)
 
-  if (api != "care")
-    return(api)
-
-  case(
-    grepl("/data-viewer?", x, perl = TRUE) ~ "current",
-    grepl("/data?",        x, perl = TRUE) ~ "temporal"
-  )
+  case(grepl("/data-viewer?", x, perl = TRUE) ~ "current",
+       grepl("/data?",        x, perl = TRUE) ~ "temporal")
 }
 
 #' @autoglobal
@@ -53,8 +48,7 @@ dims_care <- function(x) {
 #' @noRd
 get_dims <- function(x) {
 
-  if (url_type(x$identifier) %in% c("current", "temporal"))
-    return(dims_care(x))
+  if (url_type(x$identifier) %in% c("current", "temporal")) return(dims_care(x))
 
     id <- x$identifier |>
       request() |>

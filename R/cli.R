@@ -131,25 +131,3 @@ cli_aka <- function(aka) {
 #   width = 40,
 #   border_style = "round",
 #   border_col = "grey")
-
-#   list(
-#     caid = aka_caid$endpoint,
-#     care = aka_care$endpoint,
-#     prov = aka_prov$endpoint,
-#     open = aka_open$endpoint,
-#     hgov = aka_hgov$endpoint
-#     )
-#
-#   list(
-#     caid = aka_caid$temporal,
-#     care = aka_care$temporal,
-#     open = aka_open$temporal,
-#     hgov = aka_hgov$temporal
-#   )
-#
-#   list(
-#     caid = grp_caid,
-#     care = grp_care,
-#     open = grp_open,
-#     prov = grp_prov
-#   )

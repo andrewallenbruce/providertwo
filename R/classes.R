@@ -1,5 +1,24 @@
 #' @noRd
 #' @autoglobal
+class_fields <- S7::new_class(
+  name       = "class_fields",
+  package    = NULL,
+  properties = list(
+    keys = S7::new_property(
+      S7::class_character,
+      setter = function(self, value) {
+        self@keys <- value
+        self
+      },
+      getter = function(self) {
+        kit::psort(self@keys, nThread = 4L)
+      }
+    )
+  )
+)
+
+#' @noRd
+#' @autoglobal
 class_dimensions <- S7::new_class(
   name       = "class_dimensions",
   package    = NULL,
@@ -30,7 +49,8 @@ class_endpoint <- S7::new_class(
   properties   = list(
     identifier = S7::class_character | S7::class_data.frame,
     metadata   = S7::class_list,
-    dimensions = class_dimensions
+    dimensions = class_dimensions,
+    fields     = class_fields
   )
 )
 
@@ -135,7 +155,7 @@ class_group <- S7::new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
-    name     = S7::class_character,
+    name     = S7::class_character, # title
     members  = S7::class_list
   )
 )
