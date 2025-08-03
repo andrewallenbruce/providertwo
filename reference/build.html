@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9409</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9410</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,29 +76,14 @@
 <span class="r-in"><span>   year <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Medicare Fee-For-Service Public Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params$FIRST_NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=FIRST_NAME&amp;filter[1][condition][operator]=STARTS_WITH&amp;filter[1][condition][value]=An"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $params$LAST_NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[2][condition][path]=LAST_NAME&amp;filter[2][condition][operator]=CONTAINS&amp;filter[2][condition][value]=J"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=1&amp;filter[1][condition][path]=FIRST_NAME&amp;filter[1][condition][operator]=STARTS_WITH&amp;filter[1][condition][value]=An&amp;filter[2][condition][path]=LAST_NAME&amp;filter[2][condition][operator]=CONTAINS&amp;filter[2][condition][value]=J"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dimensions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit: int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows : int 2894910</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages: int 579</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr [1:2] "FIRST_NAME" "LAST_NAME"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ base  : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=1&amp;filte"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 2765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 2894910</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
@@ -276,46 +261,24 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency All Owners</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">38 fields</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency Cost Report</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">201 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Agency All Owners"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/fc009b2d-7846-44b1-b4a1-692f0c143879/data-viewer?offset=0&amp;size=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$dimensions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit: int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows : int 102259</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages: int 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner$results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 102259</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Home Health Agency All Owners"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ base  : chr "https://data.cms.gov/data-api/v1/dataset/fc009b2d-7846-44b1-b4a1-692f0c143879/data-viewer?offset=0&amp;size=1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 102259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Agency Enrollments"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$params$STATE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=STATE&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$identifier</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/data-api/v1/dataset/15f64ab4-3172-4a27-b589-ebd67a6d28aa/data-viewer?offset=0&amp;size=1&amp;filter[1][condition][path]=STATE&amp;filter[1][condition][operator]=IN&amp;filter[1][condition][value][1]=CA&amp;filter[1][condition][value][2]=GA&amp;filter[1][condition][value][3]=NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$dimensions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit: int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ rows : int 11632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages: int 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll$results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Home Health Agency Enrollments"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "STATE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ base  : chr "https://data.cms.gov/data-api/v1/dataset/15f64ab4-3172-4a27-b589-ebd67a6d28aa/data-viewer?offset=0&amp;size=1&amp;filte"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 3042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 11632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_cost$title</span>
