@@ -79,7 +79,6 @@ query_default <- function(args) {
     purrr::map(paste0, collapse = "&")
 }
 
-# If `fields` becomes a class -> prop(obj, "fields")
 # Use a modifier on "year" parameter if meant for an API field?
 #' @autoglobal
 #' @noRd

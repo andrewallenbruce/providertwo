@@ -135,18 +135,19 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
-  params <- query_match(obj, qry)
+  pr <- params_care(query_match(obj, qry))
+  id <- params_flatten(obj@identifier, pr)
+  dm <- get_elem(S7::props(obj@dimensions), "rows|limit", regex = TRUE)
 
-  flist(
-    title      = S7::prop(obj, "metadata")$title,
-    params     = params_care(params),
-    identifier = params_flatten(id = S7::prop(obj, "identifier"), x = params),
-    dimensions = S7::prop(obj, "dimensions"),
-    results    = request(identifier) |>
-      req_url_path_append("stats") |>
-      perform_simple() |>
-      _[["data"]] |>
-      _[["found_rows"]]
+  class_results(
+    title = obj@metadata$title,
+    params = names(pr),
+    base = id,
+    total = dm$rows,
+    found = `if`(is.null(pr), 0L, get_elem(
+      perform_simple(req_url_path_append(request(id), "stats")), "found_rows"
+    )),
+    limit = dm$limit
   )
 }
 

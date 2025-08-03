@@ -1,41 +1,70 @@
 #' Search the NPPES NPI Registry
-#' @param npi           `<chr>` Unique 10-digit National Provider Identifier number issued by CMS to US healthcare providers through NPPES.
-#' @param entity        `<chr>` Entity type; one of either I for Individual (NPI-1) or O for Organizational (NPI-2)
-#' @param first,last    `<chr>` Individual provider's name
-#' @param organization  `<chr>` Organizational provider's name
-#' @param name_type     `<chr>` Type of individual the first and last name parameters refer to; one of either AO for Authorized Officials or Provider for Individual Providers.
-#' @param taxonomy_desc `<chr>` Provider's taxonomy description, e.g. Pharmacist, Pediatrics
-#' @param city          `<chr>` City name. For military addresses, search for either APO or FPO.
-#' @param state         `<chr>` 2-character state abbreviation. If it is the only input, one other parameter besides entype and country is required.
-#' @param zip `<chr>` WC 5- to 9-digit zip code, without a hyphen.
-#' @param country `<chr>` 2-character country abbreviation. Can be the only input, as long as it is not US.
+#' @param npi `<chr>` Unique 10-digit National Provider Identifier number issued
+#'    by CMS to US healthcare providers through NPPES.
+#' @param entity_type `<int>` NPI entity/enumeration type; `1` for Individual
+#'    Providers (NPI-1) or `2` for Organizational Providers (NPI-2). When
+#'    specified, cannot be the only criteria entered.
+#' @param first_name,last_name `<chr>` Individual provider's first/last names.
+#'    Trailing wildcard entries require at least two characters to be entered
+#'    (e.g., `"jo*"` ). Special characters allowed are: `&':,/-().$?;`.
+#' @param org_name `<chr>` Organizational provider's name. Trailing wildcard
+#'    entries require at least two characters to be entered. Special characters
+#'    allowed are: `&'@:,/-().$?;`. All types of organization names (LBN, DBA,
+#'    Former LBN, Other Name) associated with an NPI are examined for matches.
+#'    As such, the results may contain a different name from the one entered.
+#' @param name_type `<chr>` Refers to whether the first/last names entered
+#'    pertains to an Authorized Official's name or a Provider's name. When `NULL`,
+#'    will search against a provider's first and last name. `"AO"` will only
+#'    search against an Authorized Official's name.
+#' @param taxonomy `<chr>` Provider's taxonomy description, e.g. "Pharmacist", "Pediatrics"
+#' @param city `<chr>` City associated with the provider's address identified
+#'    in Address Purpose. To search for a Military Address enter either APO or
+#'    FPO into the City field. This field allows the following special characters:
+#'    ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right
+#'    parentheses, period, pound sign, quotation mark, and semi-colon.
+#' @param state `<chr>` State abbreviation associated with the provider's
+#'    address identified in Address Purpose. This field cannot be used as the
+#'    only input criterion. If this field is used, at least one other field,
+#'    besides `entity_type` and `country` is required. [Valid values](https://npiregistry.cms.hhs.gov/help-api/state) for states.
+#' @param zip `<chr>` Postal Code associated with the provider's address
+#'    identified in Address Purpose. If you enter a 5 digit postal code, it
+#'    will match any appropriate 9 digit (zip+4) codes in the data. Trailing
+#'    wildcard entries are permitted requiring at least two characters to be
+#'    entered (e.g., `"21*"`).
+#' @param country `<chr>` Country associated with the provider's address
+#'    identified in Address Purpose. This field can be used as the only input
+#'    criterion as long as the value selected is not US (United States).
+#'    [Valid values](https://npiregistry.cms.hhs.gov/help-api/country) for countries.
 #' @returns `<tibble>` of search results
 #' @examplesIf interactive()
 #' npi_nppes(npi = npi_ex$k[1:2]) |> str()
 #' npi_nppes(npi = npi_ex$k[1]) |> str()
-#' @source [API Documentation](https://npiregistry.cms.hhs.gov/api-page)
+#' @source [NPPES API Help](https://npiregistry.cms.hhs.gov/api-page)
+#' @source [NPPES NPI Registry Help](https://npiregistry.cms.hhs.gov/help/help-details)
 #' @autoglobal
 #' @rdname nppes
 #' @noRd
-npi_nppes <- function(npi            = NULL,
-                      entity         = NULL,
-                      first          = NULL,
-                      last           = NULL,
-                      organization   = NULL,
-                      name_type      = NULL,
-                      taxonomy_desc  = NULL,
-                      city           = NULL,
-                      state          = NULL,
-                      zip            = NULL,
-                      country        = NULL) {
+npi_nppes <- function(npi = NULL,
+                      entity = NULL,
+                      first_name = NULL,
+                      last_name = NULL,
+                      org_name = NULL,
+                      name_type = NULL,
+                      taxonomy = NULL,
+                      city = NULL,
+                      state = NULL,
+                      zip = NULL,
+                      country = NULL) {
 
   args <- list2(
     number               = npi,
     enumeration_type     = entity,
     first_name           = first,
+    use_first_name_alias = "True",
     last_name            = last,
     name_purpose         = name_type,
     organization_name    = organization,
+    address_purpose      = address_purpose,
     taxonomy_description = taxonomy_desc,
     city                 = city,
     state                = state,
@@ -47,7 +76,7 @@ npi_nppes <- function(npi            = NULL,
 
     args <- compact(args)
 
-    "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200" |>
+    "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=200" |>
       request() |>
       req_url_query(!!!args) |>
       perform_simple() |>

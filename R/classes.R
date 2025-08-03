@@ -174,11 +174,7 @@ class_query <- S7::new_class(
         self
       }
     ),
-    params = class_list,
-    standardized = S7::new_property(
-      S7::class_logical,
-      default = FALSE
-    )
+    params = class_list
   )
 )
 
@@ -190,5 +186,25 @@ class_modifier <- S7::new_class(
   properties = list(
     operator = S7::new_property(S7::class_character, default = "="),
     value    = S7::class_character | S7::class_numeric
+  )
+)
+
+#' @noRd
+#' @autoglobal
+class_results <- S7::new_class(
+  name       = "class_results",
+  package    = NULL,
+  properties = list(
+    title = S7::class_character,
+    params = S7::new_union(NULL, S7::class_character | S7::class_list),
+    base = S7::class_character | S7::class_list,
+    found = S7::class_integer,
+    total = S7::class_integer,
+    limit = S7::class_integer,
+    pages = S7::new_property(
+      S7::class_integer,
+      getter = function(self)
+        offset_size(self@found, self@limit)
+    )
   )
 )
