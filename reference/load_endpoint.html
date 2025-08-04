@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9411</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9412</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,12 +61,12 @@
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed to methods.</p></dd>
+<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">dynamic-dots</a></code>&gt; endpoint aliases to be grouped</p></dd>
 
 
 <dt id="arg--description">.description<a class="anchor" aria-label="anchor" href="#arg--description"></a></dt>
 <dd><p><code>&lt;chr&gt;</code> Group description. Defaults to <code>NULL</code>,
-which will use the aliases as the description.</p></dd>
+which will concatenate the aliases for the description.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -101,12 +101,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2025-03/FY2025%20PUF%20Data%20Dictionary.xlsx"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ references : chr "https://data.cms.gov/sites/default/files/2025-03/FY2025_DFR_Guide.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:14] "Alternate_CCNs" "CCN" "Chain" "ESRD_Network" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit: int 5000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows : int 11985275</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages: int 2398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:14] "Alternate_CCNs" "CCN" "Chain" "ESRD_Network" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"man_mltss"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
@@ -116,69 +116,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:8] "comprehensive_managed_care_ltss_enrollees" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows : int 399</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:8] "comprehensive_managed_care_ltss_enrollees" ...</span>
-<span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"ab_reg_comp"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_hgov&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.healthcare.gov/api/1/datastore/query/wb6u-x2ny/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "AB Registration Completion List"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "Access Data Dictionary Here - https://www.cms.gov/CCIIO/Programs-and-Initiatives/Health-Insurance-Marketplaces/"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2025-08-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ issued     : Date[1:1], format: "2016-03-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr "https://data.healthcare.gov/sites/default/files/uploaded_resources/TBL_RCL_183.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit: int 500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows : int 1025734</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages: int 2052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:7] "applicable_plan_year" ...</span>
-<span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_prov&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2025-04-08"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ group      : chr "Hospitals"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ issued     : Date[1:1], format: "2024-10-10"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ released   : Date[1:1], format: "2025-04-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/dd03994fc93e296bb0297f1cd43cc987_1744668308/ASC_Facility.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit: int 1500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows : int 11288</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages: int 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:50] "asc11_footnote" "asc11_rate" "asc12_footnote" ...</span>
-<span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"dial_listing"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_prov&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Dialysis Facility - Listing by Facility"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "A list of all dialysis facilities registered with Medicare that includes addresses and phone numbers, as well a"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2025-06-17"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ group      : chr "Dialysis facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ issued     : Date[1:1], format: "2020-03-14"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ released   : Date[1:1], format: "2025-07-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/c04d84bc5c641284494bee4f20f17f9c_1750176303/DFC_FACILITY.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/23ew-n7w9"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ limit: int 1500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ rows : int 7561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages: int 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:142] "95_ci_lower_limit_for_pppw" ...</span>
 <span class="r-in"><span><span class="fu">collection</span><span class="op">(</span><span class="st">"unwind"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ name   : chr "Medicaid Unwinding Report"</span>
@@ -191,12 +134,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-08-30"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:30] "april_2023_net_count" "april_2023_net_percentage" "april_2024_cumulative_count" "april_2024_net_count" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 204</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:30] "april_2023_net_count" "april_2023_net_percentage" "april_2024_cumulative_count" "april_2024_net_count" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_trans   : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0/0?count=true&amp;results=true&amp;"| __truncated__</span>
@@ -205,12 +148,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:9] "count_of_individuals_whose_medicaid_or_chip_coverage_was_te_dd11" "cumulative_count_of_individuals_whose_medicaid_or_chip_cove_28d9" "cumulative_percentage_of_individuals_whose_medicaid_or_chip_6ac2" "data_record_note" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 59527</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:9] "count_of_individuals_whose_medicaid_or_chip_coverage_was_te_dd11" "cumulative_count_of_individuals_whose_medicaid_or_chip_cove_28d9" "cumulative_percentage_of_individuals_whose_medicaid_or_chip_6ac2" "data_record_note" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_historic: &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77/0?count=true&amp;results=true&amp;"| __truncated__</span>
@@ -219,12 +162,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "&lt;p&gt;This historic dataset with total enrollment in separate CHIP programs by month and state was created to fulf"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Monthly [R/P1M]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:5] "data_notes" "release_date" "reporting_period" "state" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 780</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:5] "data_notes" "release_date" "reporting_period" "state" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_sbm     : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd/0?count=true&amp;results=true&amp;"| __truncated__</span>
@@ -233,192 +176,15 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:59] "april_2023_count" "april_2023_percentage_account_transfers" "april_2023_percentage_applications" "april_2024_count" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 128</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:59] "april_2023_count" "april_2023_percentage_account_transfers" "april_2023_percentage_applications" "april_2024_count" ...</span>
-<span class="r-in"><span><span class="fu">collection</span><span class="op">(</span><span class="st">"managed"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ name   : chr "Managed Care Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_mltss     : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:8] "comprehensive_managed_care_ltss_enrollees" "comprehensive_managed_care_ltss_percent" "managed_ltss_only_enrollees" "managed_ltss_only_percent" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_summary   : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/52ed908b-0cb8-5dd2-846d-99d4af12b369/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment Summary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:7] "medicaid_enrollment_in_comprehensive_managed_care" "medicaid_newly_eligible_adults_enrolled_in_comprehensive_mcos" "notes" "state" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_state_end : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/0e112ea8-8e8e-5dee-a7e2-7ed551c3baa4/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Programs by State"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2018-08-22"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:69] "accreditation_required" "accrediting_organization" "aged_blind_or_disabled_children_or_adults" "benefits_covered" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_program   : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/0bef7b8a-c663-5b14-9a46-0b5c2b86b0fe/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Plan"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 5974</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:10] "dual_enrollment" "geographic_region" "medicaidonly_enrollment" "notes" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_pop       : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/e2ce0d2f-07c5-5213-947a-31e19bc649f6/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Population (All)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 401</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:13] "bho_pihp_andor_pahp" "comprehensive_mco_with_or_without_mltss" "dental" "mltss_only" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_dual      : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8e7be65b-97ba-5ecf-8394-ca8e6f63685a/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Enrollment by Program and Population (Duals)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Medicaid Managed Care Enrollment Report profiles enrollment statistics on Medicaid managed care programs on"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:13] "bho_pihp_andor_pahp" "comprehensive_mco_with_or_without_mltss" "dental" "mltss_only" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_feat_pop  : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/927f4847-2c0a-50c1-8f50-9103de7d048b/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Features By Enrollment Population"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Number of Managed Care Programs Enrolling Certain Populations on a Mandatory or Voluntary Basis at any point in 2022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:21] "bho_pihp_andor_pahp" "bho_pihp_andor_pahp_2" "comprehensive_mco_with_or_without_mltss" "comprehensive_mco_with_or_without_mltss_2" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_feat_qa   : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/a6d2c261-210d-587c-8fa4-892444b7de42/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Features by QA and Performance Incentive"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Number of Managed Care Program Types, by Quality Assurance Requirements, Performance Incentives, and Provider V"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:11] "bho_pihp_andor_pahp" "comprehensive_mco_with_or_without_mltss" "dental" "features" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_bene_month: &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/89baf100-259b-4763-b9e2-337972f988c4/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Information for Medicaid and CHIP Beneficiaries by Month"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "This data set includes monthly enrollment counts of Medicaid and CHIP beneficiaries by managed care participati"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-01-05"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/ManagedCare-montly.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 31164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:5] "countenrolled" "dqunusable" "managedcareparticipation" "month" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_bene_year : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/c0bef49e-46ea-4b9d-9153-76b4078d58b7/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Information for Medicaid and CHIP Beneficiaries by Year"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "This data set presents annual enrollment counts of Medicaid and CHIP beneficiaries by managed care participatio"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2023-03-20"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/ManagedCare-anul.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 2597</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:7] "averageenrollmentpermonth" "counteverenrolled" "countlastmonthenrollment" "dqunusable" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_share     : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/79692ea5-21e1-56bf-8149-97d437120c4b/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Share of Medicaid Enrollees in Managed Care"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "The Share of Medicaid Enrollees in any Managed Care and in Comprehensive Managed CaAre profiles state-level enr"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-10-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 399</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:8] "individuals_enrolled_any" "individuals_enrolled_comprehensive" "notes" "percent_of_all_medicaid_enrollees_any" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ man_tmp       : &lt;class_caid&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_temporal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: tibble [1 × 4] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:1], format: "2019-05-03"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/8f39b637-9bb1-5894-9062-2c4f2ad70fba/0?count=true&amp;results=true&amp;"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Managed Care Programs by State"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:61] "benefits_covered_case_management" "benefits_covered_clinic_services" "benefits_covered_dental_preventative_or_corrective" "benefits_covered_dental_services_medicalsurgical" ...</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">collection</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asc_facility"</span>, <span class="st">"enterprise"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in collection(c("asc_facility", "enterprise")) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Only one <span style="color: #0000BB;">&lt;collection&gt;</span> can be selected at a time.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Only one <span style="color: #0000BB;">&lt;collection&gt;</span> alias can be loaded at a time.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">collection</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in collection("asc_facility") : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">"asc_facility"</span> is not a <span style="color: #0000BB;">&lt;collection&gt;</span> <span style="color: #00BB00;">alias</span>.</span>
@@ -439,12 +205,12 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/dd03994fc93e296bb0297f1cd43cc987_1744668308/ASC_Facility.csv"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7#data-dictionary"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:50] "asc11_footnote" "asc11_rate" "asc12_footnote" "asc12_interval_lower_limit" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 1500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 11288</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:50] "asc11_footnote" "asc11_rate" "asc12_footnote" "asc12_interval_lower_limit" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ enterprise  : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090/0?count=true&amp;results=true&amp;"| __truncated__</span>
@@ -452,16 +218,16 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2025-05-21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:13] "category_of_potential_impact" "certification_activities_required" "compliance_day" "compliance_month" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ rows : int 68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:13] "category_of_potential_impact" "certification_activities_required" "compliance_day" "compliance_month" ...</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">group</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in group("asc_facility") : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> A <span style="color: #0000BB;">&lt;group&gt;</span> must contain at least two <span style="color: #0000BB;">&lt;endpoints&gt;</span>.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> → Run e.g., <span style="color: #00BB00;">endpoint(</span><span style="color: #0000BB;">"asc_facility"</span><span style="color: #00BB00;">)</span> to load an endpoint.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> A <span style="color: #0000BB;">&lt;group&gt;</span> must have at least two <span style="color: #0000BB;">&lt;endpoints&gt;</span>.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> → Run <span style="color: #00BB00;">endpoint(</span><span style="color: #0000BB;">"asc_facility"</span><span style="color: #00BB00;">)</span> to load an endpoint.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">group</span><span class="op">(</span><span class="st">"util"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in group("util") : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> A <span style="color: #0000BB;">&lt;group&gt;</span> cannot contain a <span style="color: #0000BB;">&lt;collection&gt;</span>.</span>
