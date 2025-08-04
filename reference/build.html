@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9412</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9413</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,8 @@
 <span class="r-in"><span>   last_name   <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   state       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   year        <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2025</span>,</span></span>
-<span class="r-in"><span>   practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   allowed_charges <span class="op">=</span> <span class="fu"><a href="query_modifier.html">greater_than</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
@@ -105,16 +106,16 @@
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title  : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params : chr "practice state or us territory"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params : chr [1:2] "allowed charges" "practice state or us territory"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ base   :List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2023: chr "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data?offset=0&amp;size=1&amp;filter[1][co"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2022: chr "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data?offset=0&amp;size=1&amp;filter[1][co"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2021: chr "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data?offset=0&amp;size=1&amp;filter[1][co"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit  : int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int [1:3] 524998 624200 698730</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int [1:3] 106775 109972 134498</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total  : int [1:3] 524998 624200 698730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages  : int [1:3] 105 125 140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: logi [1:3] TRUE TRUE TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages  : int [1:3] 22 22 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: logi [1:3] FALSE FALSE FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
@@ -136,7 +137,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"grp_cover_nature"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Payments Grouped by Covered Recipient and Nature of Payments</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">10 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Payments Grouped by Covered Recipient and Nature of Payments</span>: <span style="color: #0000BB;">6 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">10 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Payments Grouped by Covered Recipient and Nature of Payments"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -161,8 +162,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hha"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency All Owners</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">38 fields</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency Cost Report</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">201 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency All Owners</span>: <span style="color: #0000BB;">6 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">38 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Agency Cost Report</span>: <span style="color: #0000BB;">6 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">201 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_owner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title  : chr "Home Health Agency All Owners"</span>
@@ -172,7 +173,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total  : int 102259</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages  : int 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hha_enroll</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
@@ -196,12 +197,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int [1:2] 10564 10379</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total  : int [1:2] 10564 10379</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages  : int [1:2] 3 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: logi [1:2] TRUE TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"hhc"</span><span class="op">)</span>, <span class="va">qry</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - Measure Date Range</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">2 fields</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - National Data</span>: <span style="color: #0000BB;">5 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">40 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - Measure Date Range</span>: <span style="color: #0000BB;">6 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">2 fields</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> <span style="color: #00BB00;">Home Health Care - National Data</span>: <span style="color: #0000BB;">6 params</span> <span style="color: #BB0000;">≠</span> <span style="color: #0000BB;">40 fields</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $hhc_range$title</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Home Health Care - Measure Date Range"</span>
