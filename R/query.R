@@ -79,13 +79,13 @@ query_default <- function(args) {
     purrr::map(paste0, collapse = "&")
 }
 
-# Use a modifier on "year" parameter if meant for an API field?
 #' @autoglobal
 #' @noRd
 query_match <- function(obj, qry) {
   params <- S7::prop(qry, "params")
   fields <- S7::prop(obj, "fields") |> S7::prop("keys")
 
+  # TODO Use a modifier on "year" parameter if meant for an API field?
   # Remove "year" if it exists, to be applied to temporal endpoints
   param_names <- names(params)[names(params) != "year"]
   field_clean <- clean_names(fields)
@@ -94,6 +94,7 @@ query_match <- function(obj, qry) {
     params[collapse::fmatch(field_clean, param_names, nomatch = 0L)],
     fields[sort(collapse::fmatch(param_names, field_clean, nomatch = 0L))])
 
+  # TODO Move this to each method
   if (rlang::is_empty(x)) {
     end <- S7::prop(obj, "metadata")$title
     cli::cli_alert_warning(

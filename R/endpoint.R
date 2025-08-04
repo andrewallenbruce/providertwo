@@ -11,17 +11,17 @@
 #' raised.
 #'
 #' @param alias `<chr>` endpoint or collection alias
-#' @inheritParams rlang::args_dots_used
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> endpoint aliases to be grouped
 #' @param .description `<chr>` Group description. Defaults to `NULL`,
-#'    which will use the aliases as the description.
+#'    which will concatenate the aliases for the description.
 #' @name load_endpoint
 #' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
 NULL
 
 #' @autoglobal
 #' @noRd
-select_alias <- function(x, alias, ...) {
-  subset_detect(i = eval(str2lang(x)), j = title, p = alias, ...)
+select_alias <- function(s, alias, ...) {
+  subset_detect(i = eval(str2lang(s)), j = title, p = rex_endpoint(alias), ...)
 }
 
 #' @autoglobal
@@ -33,9 +33,7 @@ c_temp <- function(x) {
     identifier = yank(endpoints$identifier))
 }
 
-# x <- list(
-# alias = "asfsadgff",
-# regex = "13526#%&#%%&",
+# x <- list(alias = "asfsadgff", regex = "13526#%&#%%&",
 # tbl = fastplyr::new_tbl(title = c("test1", "test2")))
 #' @autoglobal
 #' @noRd
@@ -62,51 +60,43 @@ check_alias_results <- function(x, call = caller_env()) {
 #' @noRd
 alias_lookup <- function(x) {
 
-  check_required(x)
-
   x <- flist(
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(
-      glue("the$clog${catalog}${point}"),
-      rex_endpoint(x)))
+    tbl     = select_alias(glue("the$clog${catalog}${point}"), x))
 
   check_alias_results(x)
 
   list_combine(
     list_modify(x, list(tbl = NULL)),
-    switch(
-      x$point,
-      current = c(x$tbl),
-      temporal = c_temp(x$tbl)))
+    switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl))
+    )
 }
 
 #' @autoglobal
 #' @noRd
 as_current <- function(x) {
-
   i <- get_dims(x)
 
   class_current(
     identifier = x$identifier,
-    metadata = get_meta(x),
+    metadata   = get_meta(x),
     dimensions = i$dims,
-    fields = i$fields
+    fields     = i$fields
   )
 }
 
 #' @autoglobal
 #' @noRd
 as_temporal <- function(x) {
-
   i <- get_dims(x)
 
   class_temporal(
     identifier = x$endpoints,
-    metadata = get_meta(x),
+    metadata   = get_meta(x),
     dimensions = i$dims,
-    fields = i$fields
+    fields     = i$fields
   )
 }
 
@@ -123,23 +113,21 @@ as_point <- function(x) {
 #' @autoglobal
 #' @noRd
 as_care <- function(x) {
-
   i <- get_dims(x)
 
-  class_care(
-    access = switch(
-      x$point,
-      current = care_current(
-        identifier = x$identifier,
-        metadata = get_meta(x),
-        dimensions = i$dims,
-        fields = i$fields
+  class_care(access = switch(
+    x$point,
+    current         = care_current(
+      identifier    = x$identifier,
+      metadata      = get_meta(x),
+      dimensions    = i$dims,
+      fields        = i$fields
     ),
-    temporal = care_temporal(
-      identifier = x$endpoints,
-      metadata = get_meta(x),
-      dimensions = i$dims,
-      fields = i$fields
+    temporal        = care_temporal(
+      identifier    = x$endpoints,
+      metadata      = get_meta(x),
+      dimensions    = i$dims,
+      fields        = i$fields
     )
   ))
 }
@@ -148,9 +136,6 @@ as_care <- function(x) {
 #' @examples
 #' endpoint("dial_facility")
 #' endpoint("man_mltss")
-#' endpoint("ab_reg_comp")
-#' endpoint("asc_facility")
-#' endpoint("dial_listing")
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {
@@ -169,7 +154,6 @@ endpoint <- function(alias) {
 #' @rdname load_endpoint
 #' @examples
 #' collection("unwind")
-#' collection("managed")
 #' try(collection(c("asc_facility", "enterprise")))
 #' try(collection("asc_facility"))
 #' @autoglobal
@@ -180,7 +164,7 @@ collection <- function(alias) {
 
   if (length(alias) > 1L) {
     cli::cli_abort(
-      c("x" = "Only one {.cls collection} can be selected at a time."),
+      c("x" = "Only one {.cls collection} alias can be loaded at a time."),
       call. = FALSE)
   }
 
@@ -224,8 +208,8 @@ group <- function(..., .description = NULL) {
 
   if (length(avec) == 1L) {
     cli::cli_abort(
-      c("x" = "A {.cls group} must contain at least two {.cls endpoints}.",
-        ">" = "Run e.g., {.field endpoint({.val {avec}})} to load an endpoint."),
+      c("x" = "A {.cls group} must have at least two {.cls endpoints}.",
+        ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
       call. = FALSE)
   }
 

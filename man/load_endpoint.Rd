@@ -16,10 +16,10 @@ group(..., .description = NULL)
 \arguments{
 \item{alias}{\verb{<chr>} endpoint or collection alias}
 
-\item{...}{Arguments passed to methods.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> endpoint aliases to be grouped}
 
 \item{.description}{\verb{<chr>} Group description. Defaults to \code{NULL},
-which will use the aliases as the description.}
+which will concatenate the aliases for the description.}
 }
 \value{
 An S7 \verb{<class_care/caid/prov/open/hgov/collection/group>} object.
@@ -37,11 +37,7 @@ raised.
 \examples{
 endpoint("dial_facility")
 endpoint("man_mltss")
-endpoint("ab_reg_comp")
-endpoint("asc_facility")
-endpoint("dial_listing")
 collection("unwind")
-collection("managed")
 try(collection(c("asc_facility", "enterprise")))
 try(collection("asc_facility"))
 group("asc_facility", "enterprise")

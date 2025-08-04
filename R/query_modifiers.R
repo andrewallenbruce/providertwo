@@ -11,6 +11,9 @@
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` object.
+#' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
+#' @source [JSON-API: Query Parameters](https://jsonapi.org/format/#query-parameters)
+#' @source [JSON-API: Query Parameters Details](https://jsonapi.org/format/#appendix-query-details)
 NULL
 
 #' @autoglobal
@@ -258,25 +261,3 @@ like <- S7::new_class(
       value    = x)
   }
 )
-
-# @param negate `<lgl>` prepend `NOT` to operator
-# @rdname query_modifier
-# @examples
-# equals(1000)
-# equals(1000, negate = TRUE)
-# @autoglobal
-# @export
-# equals <- S7::new_class(
-#   name        = "equals",
-#   package     = NULL,
-#   parent      = class_modifier,
-#   constructor = function(x, negate = FALSE) {
-#
-#     check_bool(negate)
-#
-#     S7::new_object(
-#       class_modifier(),
-#       operator = ifelse(!negate, "=", "<>"),
-#       value    = x)
-#   }
-# )

@@ -14,6 +14,13 @@
 \alias{contains}
 \alias{like}
 \title{Query Modifiers}
+\source{
+\href{https://url.spec.whatwg.org/#concept-url-query}{URL Living Standard}
+
+\href{https://jsonapi.org/format/#query-parameters}{JSON-API: Query Parameters}
+
+\href{https://jsonapi.org/format/#appendix-query-details}{JSON-API: Query Parameters Details}
+}
 \usage{
 any_of(x)
 

@@ -1068,3 +1068,36 @@ is_empty_ <- function(negate = FALSE) {
 #
 # }
 # )
+
+# S7::method(build, list(class_collection, class_query)) <- function(obj, qry) {
+#   S7::prop(obj, "members") |> purrr::map(\(x) build(obj = x, qry = qry))
+# }
+
+# S7::method(build, list(class_group, S7::class_missing)) <- function(obj, qry) {
+#   S7::prop(obj, "members") |> purrr::map(\(x) build(obj = x))
+# }
+#
+# S7::method(build, list(class_catalog, S7::class_missing)) <- function(obj, qry) {
+#   S7::prop(obj, "access") |> build()
+# }
+#
+# S7::method(build, list(class_current, S7::class_missing)) <- function(obj, qry) {
+#   list(
+#     title      = S7::prop(obj, "metadata")$title,
+#     dimensions = S7::prop(obj, "dimensions"),
+#     identifier = S7::prop(obj, "identifier"),
+#     params     = NULL
+#   )
+# }
+#
+# S7::method(build, list(class_temporal, S7::class_missing)) <- function(obj, qry) {
+#
+#   id <- S7::prop(obj, "identifier")
+#
+#   list(
+#     title      = S7::prop(obj, "metadata")$title,
+#     dimensions = S7::prop(obj, "dimensions"),
+#     identifier = rlang::set_names(collapse::get_elem(id, "identifier"), collapse::get_elem(id, "year")),
+#     params     = NULL
+#   )
+# }

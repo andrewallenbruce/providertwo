@@ -4,16 +4,13 @@ class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
   properties = list(
-    keys = S7::new_property(
+    keys     = S7::new_property(
       S7::class_character,
       setter = function(self, value) {
         self@keys <- value
         self
       },
-      getter = function(self) {
-        kit::psort(self@keys, nThread = 4L)
-      }
-    )
+      getter = function(self) kit::psort(self@keys, nThread = 4L))
   )
 )
 
@@ -23,13 +20,11 @@ class_dimensions <- S7::new_class(
   name       = "class_dimensions",
   package    = NULL,
   properties = list(
-    limit = S7::class_integer,
-    rows  = S7::class_integer,
-    pages = S7::new_property(
+    limit    = S7::class_integer,
+    rows     = S7::class_integer,
+    pages    = S7::new_property(
       S7::class_integer,
-      getter = function(self)
-        offset_size(self@rows, self@limit)
-    )
+      getter = function(self) offset_size(self@rows, self@limit))
   )
 )
 
@@ -42,8 +37,8 @@ class_endpoint <- S7::new_class(
   properties   = list(
     identifier = S7::class_character | S7::class_data.frame,
     metadata   = S7::class_list,
-    dimensions = class_dimensions,
-    fields     = class_fields
+    fields     = class_fields,
+    dimensions = class_dimensions
   )
 )
 
@@ -195,16 +190,19 @@ class_results <- S7::new_class(
   name       = "class_results",
   package    = NULL,
   properties = list(
-    title = S7::class_character,
-    params = S7::new_union(NULL, S7::class_character | S7::class_list),
-    base = S7::class_character | S7::class_list,
-    found = S7::class_integer,
-    total = S7::class_integer,
-    limit = S7::class_integer,
-    pages = S7::new_property(
+    title    = S7::class_character,
+    params   = S7::new_union(NULL, S7::class_character | S7::class_list),
+    base     = S7::class_character | S7::class_list,
+    limit    = S7::class_integer,
+    found    = S7::class_integer,
+    total    = S7::class_integer,
+    pages    = S7::new_property(
       S7::class_integer,
-      getter = function(self)
-        offset_size(self@found, self@limit)
+      getter = function(self) map_int(self@found, \(x) offset_size(n = x, self@limit))
+    ),
+    problem  = S7::new_property(
+      S7::class_logical,
+      getter = function(self) self@found == self@total
     )
   )
 )
