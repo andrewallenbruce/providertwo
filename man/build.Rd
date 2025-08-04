@@ -18,27 +18,34 @@ A list of query parameters matched to an endpoint's fields.
 Build a Query for an Endpoint
 }
 \examples{
-qry <- new_query(
-   first_name  = starts_with("An"),
-   middle_name = ends_with("e"),
-   last_name   = contains("J"),
-   state       = any_of(c("CA", "GA", "NY")),
-   year        = 2021:2025,
-   practice_state_or_us_territory = any_of(c("CA", "GA", "NY")),
-   allowed_charges = greater_than(1000))
+build(
+  endpoint("drug_state"),
+  new_query(
+    year = 2022:2024,
+    state = any_of(c("CA", "GA", "NY"))))
 
-build(endpoint("enroll_prov"), qry)
+build(
+  endpoint("enroll_prov"),
+  new_query(
+    first_name = starts_with("And"),
+    last_name = ends_with("ce")))
 
-build(endpoint("dial_facility"), qry)
+build(
+  endpoint("dial_facility"),
+  new_query(city = any_of("BIRMINGHAM")))
 
-build(endpoint("quality_payment"), qry)
+build(
+  endpoint("quality_payment"),
+  new_query(
+    year = 2017:2025,
+    practice_state_or_us_territory = any_of(c("GA", "FL")),
+    allowed_charges = less_than(10000)))
 
-build(endpoint("pdc_clinician"), qry)
-
-build(endpoint("grp_cover_nature"), qry)
-
-build(collection("hha"), qry)
-
-build(collection("hhc"), qry)
+build(
+  endpoint("pdc_clinician"),
+  new_query(
+    provider_first_name = starts_with("An"),
+    provider_last_name = contains("J"),
+    state = any_of(c("CA", "GA", "NY"))))
 
 }
