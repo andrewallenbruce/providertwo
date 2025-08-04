@@ -1,33 +1,28 @@
 #' @autoglobal
 #' @noRd
-params_care <- function(x) {
+params_fmt <- function(x = NULL, is_care = FALSE) {
   if (is.null(x)) return(NULL)
-  set_names(query_care(x), names(x))
+  set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
 }
 
 #' @autoglobal
 #' @noRd
-params_default <- function(x) {
-  if (is.null(x)) return(NULL)
-  set_names(query_default(x), names(x))
+params_flatten <- function(identifier, params = NULL) {
+  if (is.null(params)) return(identifier)
+  paste0(identifier, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
 }
 
 #' @autoglobal
 #' @noRd
-params_flatten <- function(id, x = NULL) {
-  if (is.null(x)) return(id)
-  paste0(id, "&", paste0(unlist(x, use.names = FALSE), collapse = "&"))
-}
-
-#' @autoglobal
-#' @noRd
-query_years <- function(obj, qry) {
+params_years <- function(obj, qry) {
   x <- if ("year" %in_% names(qry@params)) {
-    sbt(obj@identifier, year %in_% qry@params$year)
+    sbt(obj@identifier, year %in_% qry@params$year) |>
+      get_elem("^year$|^identifier$", regex = TRUE)
   } else {
-    obj@identifier
+    obj@identifier |>
+      get_elem("^year$|^identifier$", regex = TRUE)
   }
-  get_elem(x, "^year$|^identifier$", regex = TRUE)
+  set_names(x$identifier, x$year)
 }
 
 #' Build a Query for an Endpoint
@@ -45,7 +40,8 @@ query_years <- function(obj, qry) {
 #'    last_name   = contains("J"),
 #'    state       = any_of(c("CA", "GA", "NY")),
 #'    year        = 2021:2025,
-#'    practice_state_or_us_territory = any_of(c("CA", "GA", "NY")))
+#'    practice_state_or_us_territory = any_of(c("CA", "GA", "NY")),
+#'    allowed_charges = greater_than(1000))
 #'
 #' build(endpoint("enroll_prov"), qry)
 #'
@@ -77,43 +73,32 @@ S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
-  params <- query_match(obj, qry)
+  params <- params_fmt(query_match(obj, qry))
 
   list(
-    title      = S7::prop(obj, "metadata")$title,
-    dimensions = S7::prop(obj, "dimensions"),
-    identifier = S7::prop(obj, "identifier"),
-    params     = params_default(params)
+    title      = obj@metadata$title,
+    dimensions = obj@dimensions,
+    identifier = obj@identifier,
+    params     = params
   )
 }
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  if ("year" %!in_% names(S7::prop(qry, "params"))) {
-
-    id <- S7::prop(obj, "identifier") |>
-      collapse::get_elem("^year$|^identifier$", regex = TRUE)
-
-  } else {
-
-    id <- S7::prop(obj, "identifier") |>
-      collapse::sbt(year %in_% S7::prop(qry, "params")$year) |>
-      collapse::get_elem("^year$|^identifier$", regex = TRUE)
-  }
-
-  params <- query_match(obj, qry)
+  id     <- params_years(obj, qry)
+  params <- params_fmt(query_match(obj, qry))
 
   list(
-    title      = S7::prop(obj, "metadata")$title,
-    dimensions = S7::prop(obj, "dimensions"),
-    identifier = set_names(id$identifier, id$year),
-    params     = params_default(params)
+    title      = obj@metadata$title,
+    dimensions = obj@dimensions,
+    identifier = id,
+    params     = params
   )
 }
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
-  pr <- params_care(query_match(obj, qry))
+  pr <- params_fmt(query_match(obj, qry), is_care = TRUE)
   id <- params_flatten(obj@identifier, pr)
   dm <- get_elem(S7::props(obj@dimensions), "rows|limit", regex = TRUE)
 
@@ -129,11 +114,12 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  id <- query_years(obj, qry)
-  pr <- params_care(query_match(obj, qry))
-  id <- map(id$identifier, \(x) params_flatten(id = x, x = pr)) |> set_names(id$year)
+  id <- params_years(obj, qry)
+  pr <- query_match(obj, qry)
+  pr <- params_fmt(pr, is_care = TRUE)
+  id <- map(id, function(x) params_flatten(x, pr))
 
-  res <- map(id, function(x) request(x) |> req_url_path_append("stats")) |>
+  res <- map(id, function(x) req_url_path_append(request(x), "stats")) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x) fparse(resp_body_string(x)))
 

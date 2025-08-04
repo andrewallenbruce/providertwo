@@ -31,6 +31,8 @@ clean_names <- function(x) {
   x <- gsub("\\(|\\)", "", x, perl = TRUE)
   # Remove multiple underscores
   x <- gsub("__", "_", x, perl = TRUE)
+
+  return(x)
 }
 
 #' @autoglobal

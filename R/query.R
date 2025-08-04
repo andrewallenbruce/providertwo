@@ -82,24 +82,37 @@ query_default <- function(args) {
 #' @autoglobal
 #' @noRd
 query_match <- function(obj, qry) {
-  params <- S7::prop(qry, "params")
-  fields <- S7::prop(obj, "fields") |> S7::prop("keys")
+  params <- qry@params[names(qry@params) %!in_% "year"]
+  fields <- obj@fields@keys
 
   # TODO Use a modifier on "year" parameter if meant for an API field?
   # Remove "year" if it exists, to be applied to temporal endpoints
-  param_names <- names(params)[names(params) != "year"]
   field_clean <- clean_names(fields)
 
   x <- rlang::set_names(
-    params[collapse::fmatch(field_clean, param_names, nomatch = 0L)],
-    fields[sort(collapse::fmatch(param_names, field_clean, nomatch = 0L))])
+    params[collapse::fmatch(field_clean,
+                            names(params),
+                            nomatch = 0L,
+                            overid = 2)],
+    fields[sort(collapse::fmatch(names(params),
+                                 field_clean,
+                                 nomatch = 0L,
+                                 overid = 2))]
+    )
 
   # TODO Move this to each method
   if (rlang::is_empty(x)) {
-    end <- S7::prop(obj, "metadata")$title
+
     cli::cli_alert_warning(
-      c("{.field {end}}: {.pkg {length(param_names)} params} {cli::col_red(cli::symbol$neq)} {.pkg {length(fields)} fields}"))
-    return(NULL)
+      c("{.field {obj@metadata$title}}: ",
+        paste0(
+          "{.pkg {length(names(params))} params} ",
+          "{cli::col_red(cli::symbol$neq)} ",
+          "{.pkg {length(fields)} fields}"
+          )
+        )
+      )
+    return(invisible(NULL))
   }
   x
 }

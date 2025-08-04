@@ -181,7 +181,10 @@ class_modifier <- S7::new_class(
   properties = list(
     operator = S7::new_property(S7::class_character, default = "="),
     value    = S7::class_character | S7::class_numeric
-  )
+  ),
+  validator = function(self) {
+    if (length(self@operator) != 1) "@operator must be length 1"
+  }
 )
 
 #' @noRd
@@ -191,18 +194,24 @@ class_results <- S7::new_class(
   package    = NULL,
   properties = list(
     title    = S7::class_character,
-    params   = S7::new_union(NULL, S7::class_character | S7::class_list),
+    params   = S7::new_union(NULL, S7::class_character, S7::class_list),
     base     = S7::class_character | S7::class_list,
     limit    = S7::class_integer,
     found    = S7::class_integer,
     total    = S7::class_integer,
     pages    = S7::new_property(
       S7::class_integer,
-      getter = function(self) map_int(self@found, \(x) offset_size(n = x, self@limit))
+      getter = function(self) {
+        purrr::map_int(self@found, function(x)
+          offset_size(n = x, self@limit))
+      }
     ),
     problem  = S7::new_property(
-      S7::class_logical,
-      getter = function(self) self@found == self@total
+      S7::new_union(NULL, S7::class_logical),
+      getter = function(self) {
+        if (is.null(self@params)) return(NULL)
+        self@found == self@total
+      }
     )
   )
 )

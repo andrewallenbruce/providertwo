@@ -138,7 +138,7 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <open_dictionary>
   # <tidy_resources>
-  # <query_years>
+  # <params_years>
   "year",
   # <quality_eligibility>
   "years_mcr",
