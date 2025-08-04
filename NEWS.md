@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9412 (2025-08-04)
+
+* class_results -> care_temporal method
+
+
 # providertwo 0.0.0.9411 (2025-08-03)
 
 * fixed bug in list_resources
