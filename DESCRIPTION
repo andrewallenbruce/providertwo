@@ -70,7 +70,6 @@ Collate:
     'query.R'
     'query_build.R'
     'query_modifiers.R'
-    'query_results.R'
     'query_utils.R'
     'tidyup_names.R'
     'tidyup_utils.R'

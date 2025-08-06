@@ -66,8 +66,12 @@ perform_simple_request <- function(x, ...) {
 #' @noRd
 parse_string <- function(resp, query = NULL) {
 
-  if (!is.null(query) && query == "results") {
-    return(fparse(resp_body_string(resp)) |> _[["results"]])
+  if (!is.null(query)) {
+    switch(
+      query,
+      results = return(fparse(resp_body_string(resp)) |> _[["results"]]),
+      count   = return(fparse(resp_body_string(resp)) |> _[["count"]])
+      )
   }
 
   fparse(resp_body_string(resp), query = query)

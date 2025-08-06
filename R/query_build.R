@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
-null_to_zero <- function(x, alt) {
-  `if`(is_null(x), 0L, alt)
+if_null_0 <- function(x, alt_expr) {
+  `if`(is_null(x), 0L, alt_expr)
 }
 
 #' @autoglobal
@@ -21,6 +21,9 @@ params_flatten <- function(identifier, params = NULL) {
 #' @autoglobal
 #' @noRd
 params_years <- function(obj, qry) {
+
+  # if (is_empty(x)) cli::cli_abort(c("x" = "{.field year(s)} {.val {qry@params$year}} had {nrow(x)} matches."), call. = FALSE)
+
   x <- if ("year" %in_% names(qry@params)) {
     sbt(obj@identifier, year %in_% qry@params$year) |>
       get_elem("^year$|^identifier$", regex = TRUE)
@@ -90,7 +93,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   pr <- params_fmt(pr)
   id <- params_flatten(obj@identifier, pr)
 
-  x  <- null_to_zero(pr, perform_simple(request(id)) |> _[["count"]])
+  x  <- if_null_0(pr, perform_simple(request(id)) |> _[["count"]])
 
   class_results(
     title  = obj@metadata$title,
@@ -101,6 +104,13 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     limit  = obj@dimensions@limit
   )
 }
+
+# fastplyr::new_tbl(
+#   year  = as.integer(names(n)),
+#   found = as.integer(get_elem(n, "found_rows")),
+#   total = as.integer(get_elem(n, "total_rows")),
+#   url = utils::URLdecode(i)
+# )
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
@@ -111,15 +121,15 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   res <- map(id, request) |>
     req_perform_parallel(on_error = "continue") |>
-    map(function(x) fparse(resp_body_string(x)) |>
-          _[["count"]])
+    map(function(x) parse_string(x, query = "count")) |>
+    unlist(use.names = FALSE)
 
   class_results(
     title  = obj@metadata$title,
     params = names(pr),
     base   = id,
     total  = obj@dimensions@rows,
-    found  = unlist(res, use.names = FALSE),
+    found  = res,
     limit  = obj@dimensions@limit
   )
 }
@@ -130,7 +140,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   pr <- params_fmt(pr, is_care = TRUE)
   id <- params_flatten(obj@identifier, pr)
 
-  x  <- null_to_zero(pr, get_elem(perform_simple(path_stats(request(id))),"found_rows"))
+  x  <- if_null_0(pr, get_elem(perform_simple(path_stats(request(id))),"found_rows"))
 
   class_results(
     title  = obj@metadata$title,
@@ -138,7 +148,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     base   = id,
     total  = obj@dimensions@rows,
     found  = x,
-    limit  = obj@dimensions@limit
+    limit  = api_limit("care")
   )
 }
 
@@ -151,7 +161,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   res <- map(id, function(x) path_stats(request(x))) |>
     req_perform_parallel(on_error = "continue") |>
-    map(function(x) fparse(resp_body_string(x)))
+    map(function(x) parse_string(x))
 
   class_results(
     title  = obj@metadata$title,
@@ -159,6 +169,6 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     base   = id,
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
-    limit  = 5000L
+    limit  = api_limit("care")
   )
 }
