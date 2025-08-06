@@ -77,11 +77,6 @@ clog_care <- function(x) {
     temporal    = fmt_temporal(temporal),
     title       = rm_nonascii(rm_space(title)),
     description = rm_quotes(rm_nonascii(description)),
-    # description = description |>
-    #   gremove("Note: This full dataset contains more records than most spreadsheet programs can handle, which will result in an incomplete load of data. Use of a database or statistical software is required.$") |>
-    #   gremove("^ATTENTION USERSSome Providers Opt-Out Status may end early due to COVID 19 waivers. Please contact your respective MAC for further information. For more information on the opt-out process, see Manage Your Enrollment or view the FAQ section below. ") |>
-    #   gremove("On November 17, 2023, CMS published in the Federal Register a final rule titled, .+Medicare and Medicaid Programs; Disclosures of Ownership and Additional Disclosable Parties Information for Skilled Nursing Facilities and Nursing Facilities; Medicare Providers.+ and Suppliers.+ Disclosure of Private Equity Companies and Real Estate Investment Trusts.+ .+88 FR 80141.+. This final rule implements parts of section 1124.+c.+ \\n\\n.+\\n\\n.+") |>
-    #   gremove("\\n\\n.+\\n\\n"),
     dictionary = describedBy,
     site       = landingPage,
     .keep      = "references"
@@ -131,8 +126,8 @@ clog_prov <- function(x) {
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
-      group       = flatten_column(theme),
-      description = gremove(description, "\n"),
+      group       = map_chr(theme, function(x) toString(unlist(x, use.names = FALSE))),
+      description = trimws(gremove(description, "\n")),
       download    = get_elem(x$prov, "distribution") |>
         get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
         unlist(use.names = FALSE),
@@ -172,19 +167,15 @@ clog_open <- function(x) {
     ),
     modified = as_date(modified),
     year = unlist(x$open$keyword, use.names = FALSE),
-    year = iif(
-      year == "all years" |
-        title == "Provider profile ID mapping table",
+    year = iif(year == "all years" | title == "Provider profile ID mapping table",
       "All",
       year,
       nThread = 4L
     ),
-    title = toTitleCase(rm_nonascii(title)),
+    title = rm_nonascii(title),
     contact = fmt_contactpoint(x$open),
     description = rm_quotes(description) |>
       rm_nonascii() |>
-      # greplace("\r\n", " ") |>
-      # gremove("<p><strong>NOTE: </strong>This is a very large file and, depending on your network characteristics and software, may take a long time to download or fail to download. Additionally, the number of rows in the file may be larger than the maximum rows your version of <a href=https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3>Microsoft Excel</a> supports. If you cant download the file, we recommend engaging your IT support staff. If you are able to download the file but are unable to open it in MS Excel or get a message that the data has been truncated, we recommend trying alternative programs such as MS Access, Universal Viewer, Editpad or any other software your organization has available for large datasets.</p>$") |>
       rm_space(),
     download = get_elem(x$open, "distribution", DF.as.list = TRUE) |>
       get_elem("downloadURL", DF.as.list = TRUE) |>
@@ -450,7 +441,7 @@ clog_hgov <- function(x) {
     mtt(
       description = iif(is.na(description), title, description, nThread = 4L),
       year = extract_year(title),
-      year = ifelse_(is.na(year), paste0("20", gextract(title, "[0-9]{2}")), year),
+      year = ifelse(is.na(year), paste0("20", gextract(title, "[0-9]{2}")), year),
       year = iif(is.na(year), substr(modified, 1, 4), year, nThread = 4L),
     title = gremove(title, "^[2][0-9]{3}\\s") |>
       gremove("\\s\\s?[-]?\\s?[2][0-9]{3}$") |>
@@ -496,4 +487,27 @@ reset_catalog <- function() {
   old         <- the$catalog
   the$catalog <- catalogs()
   invisible(old)
+}
+
+#' @autoglobal
+#' @noRd
+fmt_contactpoint <- function(x) {
+
+  x <- get_elem(x, "contactPoint")
+
+  glue("{names(x)} ({x})",
+       x = get_elem(x, "^has", regex = TRUE) |>
+         delist() |>
+         set_names(
+           get_elem(x, "fn") |>
+             delist()
+         )
+  ) |>
+    as.character()
+}
+
+#' @autoglobal
+#' @noRd
+fmt_temporal <- function(x) {
+  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
 }

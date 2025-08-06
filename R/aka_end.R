@@ -223,27 +223,28 @@ end_caid <- list(
 #' @noRd
 end_open <- list(
   current = list(
-    prf_covered     = "^Covered Recipient Profile Supplement$",
-    prf_physician   = "^Physician \\(Distinct\\) Profile Information$",
-    prf_information = "^Profile Information$",
-    prf_mapping     = "^Provider Profile ID Mapping Table$",
-    prf_entity      = "^Reporting Entity Profile Information$",
-    prf_teaching    = "^Teaching Hospital Profile Information$",
-    sum_dashboard    = "^Summary Dashboard",
-    sum_state        = "^State Level Payment Total and Averages for all Years$",
-    sum_nature       = "^State Payment Totals and Averages Grouped by Nature of Payment for all Years$",
-    sum_national     = "^National Level Payment Total and Averages for all Years$",
-    sum_specialty    = "^National Level Payment Total and Averages by Provider Specialty for all Years$"
+    grp_teach   = "Payments grouped by Teaching Hospital",
+    prf_cover   = "^Covered Recipient Profile Supplement$",
+    prf_phys    = "Physician (distinct) profile information",
+    prf_info    = "Profile Information",
+    prf_map     = "Provider profile ID mapping table",
+    prf_entity  = "Reporting entity profile information",
+    prf_teach   = "Teaching Hospital profile information",
+    sum_dash    = "Summary Dashboard - all years",
+    sum_state   = "State level payment total and averages for all years",
+    sum_nature  = "State payment totals and averages grouped by Nature of Payment for all years",
+    sum_nation  = "National level payment total and averages for all years",
+    sum_special = "National level payment total and averages by provider specialty for all years"
   ),
   temporal = list(
-    pay_general       = "^General Payment Data$",
-    pay_ownership     = "^Ownership Payment Data$",
-    pay_research      = "^Research Payment Data$",
-    grp_cover_nature  = "^Payments Grouped by Covered Recipient and Nature of Payments$",
-    grp_cover_entity  = "^Payments Grouped by Covered Recipient and Reporting Entities$",
-    grp_entity_nature = "^Payments Grouped by Reporting Entities and Nature of Payments$",
-    grp_all           = "^Payments Grouped by Reporting Entities, Covered Recipient, and Nature of Payments$",
-    grp_state_nature  = "^State Payment Totals Grouped by Nature of Payment for all Years$"
+    pay_general       = "General Payment Data",
+    pay_ownership     = "Ownership Payment Data",
+    pay_research      = "Research Payment Data",
+    grp_cover_nature  = "payments grouped by covered recipient and nature of payments",
+    grp_cover_entity  = "payments grouped by covered recipient and reporting entities",
+    grp_entity_nature = "payments grouped by reporting entities and nature of payments",
+    grp_all           = "payments grouped by reporting entities, covered recipient, and nature of payments",
+    grp_state_nature  = "state payment totals grouped by Nature of Payment for all years"
   )
 )
 

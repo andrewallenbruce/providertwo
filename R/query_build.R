@@ -1,14 +1,20 @@
 #' @autoglobal
 #' @noRd
+null_to_zero <- function(x, alt) {
+  `if`(is_null(x), 0L, alt)
+}
+
+#' @autoglobal
+#' @noRd
 params_fmt <- function(x = NULL, is_care = FALSE) {
-  if (is.null(x)) return(NULL)
+  if (is_null(x)) return(NULL)
   set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
 }
 
 #' @autoglobal
 #' @noRd
 params_flatten <- function(identifier, params = NULL) {
-  if (is.null(params)) return(identifier)
+  if (is_null(params)) return(identifier)
   paste0(identifier, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
 }
 
@@ -84,11 +90,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   pr <- params_fmt(pr)
   id <- params_flatten(obj@identifier, pr)
 
-  x  <- `if`(
-    is.null(pr),
-    0L,
-    perform_simple(request(id)) |> _[["count"]]
-    )
+  x  <- null_to_zero(pr, perform_simple(request(id)) |> _[["count"]])
 
   class_results(
     title  = obj@metadata$title,
@@ -128,17 +130,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   pr <- params_fmt(pr, is_care = TRUE)
   id <- params_flatten(obj@identifier, pr)
 
-  x  <- `if`(
-    is.null(pr),
-    0L,
-    get_elem(
-      perform_simple(
-        req_url_path_append(
-          request(id),
-          "stats")
-        ),
-      "found_rows")
-    )
+  x  <- null_to_zero(pr, get_elem(perform_simple(path_stats(request(id))),"found_rows"))
 
   class_results(
     title  = obj@metadata$title,
@@ -157,7 +149,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   pr <- params_fmt(pr, is_care = TRUE)
   id <- map(id, function(x) params_flatten(x, pr))
 
-  res <- map(id, function(x) req_url_path_append(request(x), "stats")) |>
+  res <- map(id, function(x) path_stats(request(x))) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x) fparse(resp_body_string(x)))
 

@@ -987,11 +987,40 @@ equals_ <- function(x, negate = FALSE) {
 # filter[2][condition][value]=J
 # }
 
-# `%or%` <- function(lhs, rhs) {
-#
-# filter[g1][group][conjunction]=OR
-# filter[1][condition][memberOf]=g1
-# filter[2][condition][memberOf]=g1
+`%or%` <- function(lhs, rhs) {
+
+filter[g1][group][conjunction]=OR
+filter[1][condition][memberOf]=g1
+filter[2][condition][memberOf]=g1
+
+filter[1][condition][path]=PROVIDER_TYPE_DESC
+filter[1][condition][operator]=CONTAINS
+filter[1][condition][value]=PRACTITIONER
+
+filter[2][condition][path]=STATE_CD
+filter[2][condition][operator]==
+filter[2][condition][value]=MD
+}
+
+`%or%` <- function(lhs, rhs, .env = NULL) {
+
+  lhs <- rlang::enquo(lhs)
+  rhs <- rlang::enquo(rhs)
+
+  if (!rlang::is_null(.env)) x <- rlang::quo_set_env(x, env = .env)
+
+  cheapr::list_combine(lhs = lhs, rhs = rhs)
+}
+
+x <- list(first_name = starts_with("And") %or% contains("J"))
+
+typeof(x$first_name[[1]])
+
+rlang::eval_tidy(x$first_name[[1]])
+
+# - filter[g1][group][conjunction]=OR
+# --- filter[1][condition][memberOf]=g1
+# --- filter[2][condition][memberOf]=g1
 #
 # filter[1][condition][path]=PROVIDER_TYPE_DESC
 # filter[1][condition][operator]=CONTAINS
@@ -1000,7 +1029,6 @@ equals_ <- function(x, negate = FALSE) {
 # filter[2][condition][path]=STATE_CD
 # filter[2][condition][operator]==
 # filter[2][condition][value]=MD
-# }
 
 
 

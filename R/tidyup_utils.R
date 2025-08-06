@@ -1,5 +1,27 @@
 #' @autoglobal
 #' @noRd
+roundup <- function(x, d = 2) {
+  d  <- 10^d
+  z  <- abs(x) * d
+  z  <- z + 0.5 + sqrt(.Machine[["double.eps"]])
+  z  <- trunc(z)
+  z  <- z / d
+  z * sign(x)
+}
+
+#' @autoglobal
+#' @noRd
+fmt_int <- function(x) {
+  if (x >= 1e6) return(paste0(round(x / 1e6, 1), "M"))
+  if (x >= 1e3) return(paste0(round(x / 1e3, 0), "K"))
+  as.character(x)
+}
+
+#' @noRd
+fmt_num <- function(x) prettyNum(x, big.mark = ",")
+
+#' @autoglobal
+#' @noRd
 na_if <- function(x, y = "") {
   vctrs::vec_slice(x, vctrs::vec_in(x, y, needles_arg = "x", haystack_arg = "y")) <- NA
   x

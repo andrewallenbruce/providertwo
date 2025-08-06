@@ -31,16 +31,15 @@ dims_care <- function(x) {
       get_elem(c("total_rows", "headers")),
     temporal = list(
       headers = names(perform_simple(id)),
-      total_rows = req_url_path_append(id, "stats") |>
+      total_rows = path_stats(id) |>
         perform_simple() |>
         get_elem("total_rows")
     )
   )
 
   list(
-    dims = class_dimensions(
-      limit = 5000L,
-      rows = x$total_rows %||% 0L),
+    dims = class_dimensions(limit = api_limit("care"),
+                            rows = x$total_rows %||% 0L),
     fields = class_fields(keys = x$headers %||% character(0))
   )
 }
@@ -48,8 +47,7 @@ dims_care <- function(x) {
 #' @autoglobal
 #' @noRd
 get_dims <- function(x) {
-  if (url_type(x$identifier) %in% c("current", "temporal"))
-    return(dims_care(x))
+  if (url_type(x$identifier) %in% c("current", "temporal")) return(dims_care(x))
 
   id <- x$identifier |>
     request() |>
@@ -57,16 +55,8 @@ get_dims <- function(x) {
     perform_simple()
 
   list(
-    dims = class_dimensions(
-      limit = switch(
-        url_type(x$identifier),
-        caid = 8000L,
-        prov = 1500L,
-        open = 500L,
-        hgov = 500L
-      ),
-      rows = id$count %||% 0L
-    ),
+    dims = class_dimensions(limit = api_limit(url_type(x$identifier)),
+                            rows = id$count %||% 0L),
     fields = class_fields(keys = id$query$properties %||% character(0))
   )
 }

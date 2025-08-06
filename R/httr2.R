@@ -1,5 +1,24 @@
 #' @autoglobal
 #' @noRd
+api_limit <- function(api) {
+  switch(
+    match.arg(api, c("care", "caid", "prov", "hgov", "open")),
+    care   = 5000L,
+    caid   = 8000L,
+    prov   = 1500L,
+    hgov   = 500L,
+    open   = 500L
+  )
+}
+
+#' @autoglobal
+#' @noRd
+path_stats <- function(req) {
+  req_url_path_append(req, "stats")
+}
+
+#' @autoglobal
+#' @noRd
 is_complete_with_limit <- function(limit) {
   function(resp)
     length(resp_body_json(resp)$data) < limit

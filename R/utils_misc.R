@@ -242,30 +242,6 @@ str_look_extract <- function(x, pattern, look) {
 
 #' @autoglobal
 #' @noRd
-flatten_column <- function(i) {
-  map_chr(i, function(x) paste0(delist(x), collapse = ", "))
-}
-
-#' @autoglobal
-#' @noRd
-get_data_elem <- function(x) {
-  delist(map(x, function(i) get_elem(as.list(i), "data")))
-}
-
-#' @autoglobal
-#' @noRd
-delist_elem <- function(x, el) {
-  delist(get_elem(x, el, DF.as.list = TRUE))
-}
-
-#' @autoglobal
-#' @noRd
-smush_elem <- function(i, el) {
-  map_chr(get_elem(i, el), function(x) paste0(x, collapse = ", "))
-}
-
-#' @autoglobal
-#' @noRd
 delist <- function(x) {
   unlist(x, use.names = FALSE)
 }
@@ -275,17 +251,6 @@ delist <- function(x) {
 as_date <- function(x, ..., fmt = "%Y-%m-%d") {
   as.Date(x, ..., format = fmt)
   }
-
-#' @autoglobal
-#' @noRd
-roundup <- function(x, d = 2) {
-  d  <- 10^d
-  z  <- abs(x) * d
-  z  <- z + 0.5 + sqrt(.Machine[["double.eps"]])
-  z  <- trunc(z)
-  z  <- z / d
-  z * sign(x)
-}
 
 #' @autoglobal
 #' @noRd
@@ -299,49 +264,6 @@ print_list <- function(ls, prefix = "") {
   cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
 
   invisible(ls)
-}
-
-#' @autoglobal
-#' @noRd
-fmt_int <- function(x) {
-  if (x >= 1e6) return(paste0(round(x / 1e6, 1), "M"))
-  if (x >= 1e3) return(paste0(round(x / 1e3, 0), "K"))
-  as.character(x)
-}
-
-#' @noRd
-fmt_num <- function(x) prettyNum(x, big.mark = ",")
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
-ifelse_ <- function(test, yes, no, na = no[NA_integer_]) {
-  cheapr_if_else(condition = test, true = yes, false = no, na = na)
-}
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
-fmt_contactpoint <- function(x) {
-
-  x <- get_elem(x, "contactPoint")
-
-  glue("{names(x)} ({x})",
-    x = get_elem(x, "^has", regex = TRUE) |>
-      delist() |>
-      set_names(
-        get_elem(x, "fn") |>
-          delist()
-      )
-  ) |>
-    as.character()
-}
-
-#' @autoglobal
-#' @keywords internal
-#' @noRd
-fmt_temporal <- function(x) {
-  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
 }
 
 #' ISO 8601 Recurring Time Intervals
