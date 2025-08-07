@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9416</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9417</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ year      : int [1:6] 2025 2024 2023 2022 2021 2020</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ modified  : Date[1:6], format: "2025-06-24" "2024-02-29" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ temporal  : chr [1:6] "2025-01-01 • 2025-12-31" "2024-01-01 • 2024-12-31" "2023-01-01 • 2023-12-31" "2022-01-01 • 2022-12-31" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data?offset=0&amp;size=1" "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data?offset=0&amp;size=1" "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data?offset=0&amp;size=1" "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data?offset=0&amp;size=1" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data" "https://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data" "https://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data" "https://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ download  : chr [1:6] "https://data.cms.gov/sites/default/files/2024-02/b2c2658d-e19d-48db-8b3b-9d343a4d395f/dfr_facility_socrata_fy2024.csv" "https://data.cms.gov/sites/default/files/2023-02/2eeb2aa7-05cd-4b7a-a4b2-62e82da03b96/dfr_facility_socrata_fy2023.csv" "https://data.cms.gov/sites/default/files/2022-02/48802694-7450-47c3-a61f-dad7d392037c/dfr_facility_socrata_fy2022.csv" "https://data.cms.gov/sites/default/files/2021-01/FY_2021_Facility_Level_Dialysis_Facility_Reports.csv" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ resources : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/7d4e7bd1-f08a-4fca-8085-6af24026a19a" "https://data.cms.gov/data-api/v1/dataset-resources/62d125ff-c959-4c5c-8a46-8cacba50bfd4" "https://data.cms.gov/data-api/v1/dataset-resources/200e7e7e-a5a6-4450-ba18-ab53d237cc45" "https://data.cms.gov/data-api/v1/dataset-resources/ebc64ad1-164c-455a-80ca-cb0753e44a46" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 6</span>
@@ -110,7 +110,7 @@ raised.</p>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"man_mltss"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5394bcab-c748-5e4b-af07-b5bf77ed3aa3"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Managed Long Term Services and Supports (MLTSS) Enrollees"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "1. Enrollment includes both Medicaid-only and Medicare-Medicaid (dual) enrollees. For both types of enrollees, "| __truncated__</span>
@@ -128,7 +128,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_mark    : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/9a83ba5e-05f5-47f5-82de-f3a59233a912/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/9a83ba5e-05f5-47f5-82de-f3a59233a912"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "HealthCare.gov Marketplace Medicaid Unwinding Report"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
@@ -142,7 +142,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_trans   : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "HealthCare.gov Transitions Marketplace Medicaid Unwinding Report"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
@@ -156,7 +156,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_historic: &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Separate CHIP Enrollment by Month and State Historic CAA/Unwinding Period"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "&lt;p&gt;This historic dataset with total enrollment in separate CHIP programs by month and state was created to fulf"| __truncated__</span>
@@ -170,7 +170,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_sbm     : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "State-based Marketplace (SBM) Medicaid Unwinding Report"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
@@ -194,7 +194,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ asc_facility: &lt;class_prov&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
@@ -213,7 +213,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ enterprise  : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090/0?count=true&amp;results=true&amp;"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Medicaid Enterprise System Datatable"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Medicaid Enterprise System Datatable"</span>
