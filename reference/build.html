@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9418</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9419</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
@@ -87,7 +87,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">ends_with</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
@@ -95,14 +95,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params : chr [1:2] "FIRST_NAME" "LAST_NAME"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ base   : chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer?offset=0&amp;size=1&amp;filte"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit  : int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int 127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found  : int 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total  : int 2894910</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages  : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ problem: logi FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span>city <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"BIRMINGHAM"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>city <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"BIRMINGHAM"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title  : chr "Medicare Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params : chr "city"</span>
@@ -121,7 +121,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2017</span><span class="op">:</span><span class="fl">2025</span>,</span></span>
 <span class="r-in"><span>    practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    allowed_charges <span class="op">=</span> <span class="fu"><a href="query_modifier.html">less_than</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -144,7 +144,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="new_query.html">new_query</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
