@@ -55,7 +55,6 @@ utils::globalVariables(c(
   "firstApprovedDate",
   # <clog_hgov>
   "id",
-  # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
@@ -99,6 +98,8 @@ utils::globalVariables(c(
   "organization",
   # <clog_caid>
   "periodicity",
+  # <util_fields>
+  "profile",
   # <clog_care>
   "references",
   # <clog_prov>

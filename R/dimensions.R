@@ -20,7 +20,9 @@ url_type <- function(x) {
 #' @autoglobal
 #' @noRd
 dims_care <- function(x) {
+
   id <- x$identifier |>
+    append_url("care") |>
     request() |>
     req_error(is_error = ~ FALSE)
 
@@ -38,25 +40,27 @@ dims_care <- function(x) {
   )
 
   list(
-    dims = class_dimensions(limit = api_limit("care"),
-                            rows = x$total_rows %||% 0L),
-    fields = class_fields(keys = x$headers %||% character(0))
+    dims = class_dimensions(limit = api_limit("care"), rows = x$total_rows %||% 0L),
+    fields = class_fields(x$headers)
   )
 }
 
 #' @autoglobal
 #' @noRd
 get_dims <- function(x) {
-  if (url_type(x$identifier) %in% c("current", "temporal")) return(dims_care(x))
+
+  type_url <- url_type(x$identifier)
+
+  if (type_url %in% c("current", "temporal")) return(dims_care(x))
 
   id <- x$identifier |>
+    append_url() |>
     request() |>
     req_error(is_error = ~ FALSE) |>
     perform_simple()
 
   list(
-    dims = class_dimensions(limit = api_limit(url_type(x$identifier)),
-                            rows = id$count %||% 0L),
-    fields = class_fields(keys = id$query$properties %||% character(0))
+    dims = class_dimensions(limit = api_limit(type_url), rows = id$count %||% 0L),
+    fields = class_fields(id$query$properties)
   )
 }

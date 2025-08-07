@@ -91,7 +91,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
   pr <- query_match(obj, qry)
   pr <- params_fmt(pr)
-  id <- params_flatten(obj@identifier, pr)
+  id <- append_url(obj@identifier) |> params_flatten(pr)
 
   x  <- if_null_0(pr, perform_simple(request(id)) |> _[["count"]])
 
@@ -117,7 +117,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   id <- params_years(obj, qry)
   pr <- query_match(obj, qry)
   pr <- params_fmt(pr)
-  id <- map(id, function(x) params_flatten(x, pr))
+  id <- append_url(id) |> map(function(x) params_flatten(x, pr))
 
   res <- map(id, request) |>
     req_perform_parallel(on_error = "continue") |>
@@ -138,7 +138,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
   pr <- query_match(obj, qry)
   pr <- params_fmt(pr, is_care = TRUE)
-  id <- params_flatten(obj@identifier, pr)
+  id <- append_url(obj@identifier, "care") |> params_flatten(pr)
 
   x  <- if_null_0(pr, get_elem(perform_simple(path_stats(request(id))),"found_rows"))
 
@@ -148,7 +148,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     base   = id,
     total  = obj@dimensions@rows,
     found  = x,
-    limit  = api_limit("care")
+    limit  = obj@dimensions@limit
   )
 }
 
@@ -157,7 +157,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   id <- params_years(obj, qry)
   pr <- query_match(obj, qry)
   pr <- params_fmt(pr, is_care = TRUE)
-  id <- map(id, function(x) params_flatten(x, pr))
+  id <- append_url(id, "care") |> map(function(x) params_flatten(x, pr))
 
   res <- map(id, function(x) path_stats(request(x))) |>
     req_perform_parallel(on_error = "continue") |>
@@ -169,6 +169,6 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     base   = id,
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
-    limit  = api_limit("care")
+    limit  = obj@dimensions@limit
   )
 }

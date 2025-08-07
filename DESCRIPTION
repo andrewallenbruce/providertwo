@@ -58,6 +58,7 @@ Collate:
     'dictionaries.R'
     'dimensions.R'
     'endpoint.R'
+    'fields.R'
     'generated-globals.R'
     'httr2.R'
     'import-standalone-obj-type.R'

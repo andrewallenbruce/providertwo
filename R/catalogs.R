@@ -64,12 +64,10 @@ clog_care <- function(x) {
     roworder(title, -year) |>
     as_fibble()
 
-  d <- tfm(sset(d, row_na_counts(d) < 3),
-           identifier = paste0(identifier, "?offset=0&size=1"))
+  d <- sset(d, row_na_counts(d) < 3)
 
   x <- mtt(
     x$care,
-    identifier  = paste0(identifier, "?offset=0&size=1"),
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
     contact     = fmt_contactpoint(x$care),
@@ -79,7 +77,7 @@ clog_care <- function(x) {
     description = rm_quotes(rm_nonascii(description)),
     dictionary = describedBy,
     site       = landingPage,
-    .keep      = "references"
+    .keep      = c("identifier", "references")
   ) |>
     join_on_title(sbt(d, format == "latest", c("title", "download", "resources"))) |>
     roworder(title) |>
@@ -120,8 +118,7 @@ clog_prov <- function(x) {
       ),
       identifier  = paste0(
         "https://data.cms.gov/provider-data/api/1/datastore/query/",
-        identifier,
-        "/0?count=true&results=true&offset=0&limit=1"
+        identifier
       ),
       issued      = as_date(issued),
       modified    = as_date(modified),
@@ -162,8 +159,7 @@ clog_open <- function(x) {
     x$open,
     identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
-      identifier,
-      "/0?count=true&results=true&offset=0&limit=1"
+      identifier
     ),
     modified = as_date(modified),
     year = unlist(x$open$keyword, use.names = FALSE),
@@ -268,8 +264,7 @@ clog_caid <- function(x) {
     x$caid,
     identifier = paste0(
       "https://data.medicaid.gov/api/1/datastore/query/",
-      identifier,
-      "/0?count=true&results=true&offset=0&limit=1"
+      identifier
     ),
     modified = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
@@ -382,7 +377,7 @@ clog_hgov <- function(x) {
 
 
   x <- mtt(x$hgov,
-           identifier = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0?count=true&results=true&offset=0&limit=1"),
+           identifier = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier),
            title = rm_nonascii(title) |> rm_space(),
            description = rm_nonascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
            modified    = as_date(modified),
