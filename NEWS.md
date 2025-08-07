@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9419 (2025-08-07)
+
+* more query build work
+
+
 # providertwo 0.0.0.9418 (2025-08-07)
 
 * fields -> params matching
