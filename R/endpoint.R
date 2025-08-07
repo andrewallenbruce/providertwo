@@ -1,4 +1,4 @@
-#' Load Data Endpoints
+#' Load Endpoints
 #'
 #' @description
 #' Load a data endpoint or collection by its alias.
@@ -12,8 +12,8 @@
 #'
 #' @param alias `<chr>` endpoint or collection alias
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> endpoint aliases to be grouped
-#' @param .description `<chr>` Group description. Defaults to `NULL`,
-#'    which will concatenate the aliases for the description.
+#' @param .title `<chr>` Group title. Defaults to `NULL`,
+#'    which will concatenate the aliases for the title.
 #' @name load_endpoint
 #' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
 NULL
@@ -70,8 +70,7 @@ alias_lookup <- function(x) {
 
   list_combine(
     list_modify(x, list(tbl = NULL)),
-    switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl))
-    )
+    switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl)))
 }
 
 #' @autoglobal
@@ -115,21 +114,21 @@ as_point <- function(x) {
 as_care <- function(x) {
   i <- get_dims(x)
 
-  class_care(access = switch(
-    x$point,
-    current         = care_current(
-      identifier    = x$identifier,
-      metadata      = get_meta(x),
-      dimensions    = i$dims,
-      fields        = i$fields
-    ),
-    temporal        = care_temporal(
-      identifier    = x$endpoints,
-      metadata      = get_meta(x),
-      dimensions    = i$dims,
-      fields        = i$fields
+  class_care(
+    access = switch(
+      x$point,
+      current      = care_current(
+        identifier = x$identifier,
+        metadata   = get_meta(x),
+        dimensions = i$dims,
+        fields     = i$fields),
+      temporal     = care_temporal(
+        identifier = x$endpoints,
+        metadata   = get_meta(x),
+        dimensions = i$dims,
+        fields     = i$fields)
+      )
     )
-  ))
 }
 
 #' @rdname load_endpoint
@@ -177,7 +176,7 @@ collection <- function(alias) {
   x <- rex_collect(alias)
 
   class_collection(
-    name    = x$name,
+    title   = x$name,
     members = names_map(x$alias, endpoint))
 }
 
@@ -188,15 +187,14 @@ collection <- function(alias) {
 #' try(group("util"))
 #' @autoglobal
 #' @export
-group <- function(..., .description = NULL) {
+group <- function(..., .title = NULL) {
 
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
   avec  <- unlist(alias, use.names = FALSE)
+  msg   <- c("x" = "A {.cls group} must contain at least two {.cls endpoints}.")
 
   if (rlang::is_empty(alias) || any(!nzchar(alias))) {
-    cli::cli_abort(
-      c("x" = "A {.cls group} must contain at least two {.cls endpoints}."),
-      call. = FALSE)
+    cli::cli_abort(msg, call. = FALSE)
   }
 
   if (any_are_collection(avec)) {
@@ -208,13 +206,11 @@ group <- function(..., .description = NULL) {
 
   if (length(avec) == 1L) {
     cli::cli_abort(
-      c("x" = "A {.cls group} must have at least two {.cls endpoints}.",
-        ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
+      c(msg, ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
       call. = FALSE)
   }
 
   class_group(
-    name    = .description %||% brackets(toString(alias)),
-    members = names_map(alias, endpoint)
-  )
+    title   = .title %||% brackets(toString(alias)),
+    members = names_map(alias, endpoint))
 }

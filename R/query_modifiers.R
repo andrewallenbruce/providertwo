@@ -34,6 +34,10 @@ any_modifiers <- function(x) {
   any(are_modifiers(x), na.rm = TRUE)
 }
 
+# TODO Map out which modifiers work with which APIs
+# Implement error checking for incompatible modifiers
+# and possible fallback methods
+
 #' @rdname query_modifier
 #' @examples
 #' any_of(state.abb[10:15])

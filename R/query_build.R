@@ -1,21 +1,32 @@
 #' @autoglobal
 #' @noRd
-if_null_0 <- function(x, alt_expr) {
+cli_no_match <- function(obj) {
+  cli::cli_alert_warning(
+    c(
+      "No query {.field parameters} matched to endpoint {.field fields} \n",
+      "{cli::symbol$record} {.field {title(obj)}}"
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
+null_zero <- function(x, alt_expr) {
   `if`(is_null(x), 0L, alt_expr)
 }
 
 #' @autoglobal
 #' @noRd
 params_fmt <- function(x = NULL, is_care = FALSE) {
-  if (is_null(x)) return(NULL)
+  if (is_null(x) || is_empty(x)) return(NULL)
   set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
 }
 
 #' @autoglobal
 #' @noRd
-params_flatten <- function(identifier, params = NULL) {
-  if (is_null(params)) return(identifier)
-  paste0(identifier, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
+params_flatten <- function(url, params = NULL) {
+  if (is_null(params) || is_empty(params)) return(url)
+  paste0(url, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
 }
 
 #' @autoglobal
@@ -45,30 +56,30 @@ params_years <- function(obj, qry) {
 #' @examples
 #' build(
 #'   endpoint("drug_state"),
-#'   new_query(
+#'   query(
 #'     year = 2022:2024,
 #'     state = any_of(c("CA", "GA", "NY"))))
 #'
 #' build(
 #'   endpoint("enroll_prov"),
-#'   new_query(
+#'   query(
 #'     first_name = starts_with("And"),
 #'     last_name = ends_with("ce")))
 #'
 #' build(
 #'   endpoint("dial_facility"),
-#'   new_query(city = any_of("BIRMINGHAM")))
+#'   query(city = any_of("BIRMINGHAM")))
 #'
 #' build(
 #'   endpoint("quality_payment"),
-#'   new_query(
+#'   query(
 #'     year = 2017:2025,
 #'     practice_state_or_us_territory = any_of(c("GA", "FL")),
 #'     allowed_charges = less_than(10000)))
 #'
 #' build(
 #'   endpoint("pdc_clinician"),
-#'   new_query(
+#'   query(
 #'     provider_first_name = starts_with("An"),
 #'     provider_last_name = contains("J"),
 #'     state = any_of(c("CA", "GA", "NY"))))
@@ -88,19 +99,35 @@ S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
 }
 
 S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
+  prm <- query_match(obj, qry)
 
-  pr <- query_match(obj, qry)
-  pr <- params_fmt(pr)
-  id <- append_url(obj@identifier) |> params_flatten(pr)
+  if (is_empty(prm)) {
+    cli_no_match(obj)
+    return(
+      class_results(
+        title  = title(obj),
+        base   = obj@identifier,
+        total  = obj@dimensions@rows,
+        found  = 0L,
+        limit  = obj@dimensions@limit
+      )
+    )
+  }
 
-  x  <- if_null_0(pr, perform_simple(request(id)) |> _[["count"]])
+  prm <- params_fmt(prm)
+  url <- append_url(obj@identifier) |> params_flatten(prm)
+  res <- map(url, request) |>
+    req_perform_parallel(on_error = "continue") |>
+    map(function(x)
+      parse_string(x, query = "count")) |>
+    unlist(use.names = FALSE)
 
   class_results(
-    title  = obj@metadata$title,
-    params = names(pr),
-    base   = id,
+    title  = title(obj),
+    params = names(prm),
+    base   = url,
     total  = obj@dimensions@rows,
-    found  = x,
+    found  = res %||% 0L,
     limit  = obj@dimensions@limit
   )
 }
@@ -128,19 +155,35 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 }
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
+  prm <- query_match(obj, qry)
 
-  pr <- query_match(obj, qry)
-  pr <- params_fmt(pr, is_care = TRUE)
-  id <- append_url(obj@identifier, "care") |> params_flatten(pr)
+  if (is_empty(prm)) {
+    cli_no_match(obj)
+    return(
+      class_results(
+        title  = title(obj),
+        base   = obj@identifier,
+        total  = obj@dimensions@rows,
+        found  = 0L,
+        limit  = obj@dimensions@limit
+      )
+    )
+  }
 
-  x  <- if_null_0(pr, get_elem(perform_simple(path_stats(request(id))),"found_rows"))
+  prm <- params_fmt(prm, is_care = TRUE)
+  url <- append_url(obj@identifier, "care") |> params_flatten(prm)
+  res <- map(url, \(x) path_stats(request(x))) |>
+    req_perform_parallel(on_error = "continue") |>
+    map(function(x)
+      parse_string(x, query = "found_rows")) |>
+    unlist(use.names = FALSE)
 
   class_results(
-    title  = obj@metadata$title,
-    params = names(pr),
-    base   = id,
+    title  = title(obj),
+    params = names(prm),
+    base   = url,
     total  = obj@dimensions@rows,
-    found  = x,
+    found  = res %||% 0L,
     limit  = obj@dimensions@limit
   )
 }

@@ -5,21 +5,21 @@
 \alias{endpoint}
 \alias{collection}
 \alias{group}
-\title{Load Data Endpoints}
+\title{Load Endpoints}
 \usage{
 endpoint(alias)
 
 collection(alias)
 
-group(..., .description = NULL)
+group(..., .title = NULL)
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint or collection alias}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> endpoint aliases to be grouped}
 
-\item{.description}{\verb{<chr>} Group description. Defaults to \code{NULL},
-which will concatenate the aliases for the description.}
+\item{.title}{\verb{<chr>} Group title. Defaults to \code{NULL},
+which will concatenate the aliases for the title.}
 }
 \value{
 An S7 \verb{<class_care/caid/prov/open/hgov/collection/group>} object.

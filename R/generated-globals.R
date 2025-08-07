@@ -123,15 +123,6 @@ utils::globalVariables(c(
   "temporal",
   # <clog_prov>
   "theme",
-  # <ss_title>
-  # <clog_care>
-  # <clog_prov>
-  # <clog_open>
-  # <clog_caid>
-  # <clog_hgov>
-  # <open_dictionary>
-  # <select_alias>
-  "title",
   # <clog_caid>
   "title_y",
   # <clog_care>

@@ -60,6 +60,7 @@ Collate:
     'endpoint.R'
     'fields.R'
     'generated-globals.R'
+    'getters.R'
     'httr2.R'
     'import-standalone-obj-type.R'
     'import-standalone-types-check.R'

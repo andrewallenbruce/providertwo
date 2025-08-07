@@ -20,30 +20,30 @@ Build a Query for an Endpoint
 \examples{
 build(
   endpoint("drug_state"),
-  new_query(
+  query(
     year = 2022:2024,
     state = any_of(c("CA", "GA", "NY"))))
 
 build(
   endpoint("enroll_prov"),
-  new_query(
+  query(
     first_name = starts_with("And"),
     last_name = ends_with("ce")))
 
 build(
   endpoint("dial_facility"),
-  new_query(city = any_of("BIRMINGHAM")))
+  query(city = any_of("BIRMINGHAM")))
 
 build(
   endpoint("quality_payment"),
-  new_query(
+  query(
     year = 2017:2025,
     practice_state_or_us_territory = any_of(c("GA", "FL")),
     allowed_charges = less_than(10000)))
 
 build(
   endpoint("pdc_clinician"),
-  new_query(
+  query(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("J"),
     state = any_of(c("CA", "GA", "NY"))))

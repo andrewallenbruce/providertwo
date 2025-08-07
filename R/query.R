@@ -1,3 +1,13 @@
+#' @autoglobal
+#' @noRd
+parameters <- S7::new_generic("parameters", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(parameters, class_query) <- function(obj) {
+  S7::prop(obj, "params")
+}
+
 #' Create a Query Object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
@@ -5,7 +15,7 @@
 #' @returns S7 `<class_query>` object.
 #'
 #' @examples
-#' new_query(
+#' query(
 #'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
@@ -18,12 +28,46 @@
 #'   year        = 2014:2025)
 #' @autoglobal
 #' @export
-new_query <- function(...) {
+query <- function(...) {
   class_query(
     input  = purrr::compact(rlang::enexprs(...)),
-    params = purrr::compact(rlang::dots_list(..., .homonyms = "error"))
+    params = purrr::compact(
+      rlang::dots_list(
+        ...,
+        .homonyms = "error",
+        .named = TRUE,
+        .check_assign = TRUE
+      )
+    )
   )
 }
+
+#' @autoglobal
+#' @noRd
+query2 <- function(...) {
+  class_query(
+    input  = rlang::enquos(
+      ...,
+      .homonyms = "error",
+      .named = TRUE,
+      .ignore_null = TRUE,
+      .check_assign = TRUE
+    ),
+    params = purrr::compact(
+      rlang::dots_list(
+        ...,
+        .homonyms = "error",
+        .named = TRUE,
+        .check_assign = TRUE
+      )
+    )
+  )
+}
+
+# TODO Explore chunking params with 10+ elements
+# Submitting too many params at once can cause API errors
+# TODO Consider the case sensitivity of each endpoint's fields' values
+# Some are all uppercase and won't match anything but uppercase values
 
 #' @autoglobal
 #' @noRd
@@ -81,40 +125,23 @@ query_default <- function(args) {
 
 #' @autoglobal
 #' @noRd
+c_match <- function(a, b) {
+  collapse::fmatch(x = a, table = b, nomatch = 0L, overid = 2)
+}
+
+#' @autoglobal
+#' @noRd
 query_match <- function(obj, qry) {
-  params <- qry@params[names(qry@params) %!in_% "year"]
-  fields <- field_keys(obj)
+
+  # Remove "year" if present
+  param  <- parameters(qry)[setdiff(names(parameters(qry)), "year")]
+  pname  <- names(param)
 
   # TODO Use a modifier on "year" parameter if meant for an API field?
-  # Remove "year" if it exists, to be applied to temporal endpoints
-  field_clean <- clean_names(fields)
+  field <- field_keys(obj)
+  clean <- clean_names(field)
 
-  x <- rlang::set_names(
-    params[collapse::fmatch(
-      field_clean,
-      names(params),
-      nomatch = 0L,
-      overid = 2)],
-    fields[sort(collapse::fmatch(
-      names(params),
-      field_clean,
-      nomatch = 0L,
-      overid = 2))]
-    )
-
-  # TODO Move this to each method
-  if (rlang::is_empty(x)) {
-
-    cli::cli_alert_warning(
-      c("{.field {obj@metadata$title}}: ",
-        paste0(
-          "{.pkg {length(names(params))} params} ",
-          "{cli::col_red(cli::symbol$neq)} ",
-          "{.pkg {length(fields)} fields}"
-          )
-        )
-      )
-    return(invisible(NULL))
-  }
-  x
+  set_names(
+    param[c_match(clean, pname)],
+    field[sort(c_match(pname, clean))])
 }

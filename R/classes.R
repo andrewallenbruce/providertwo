@@ -143,7 +143,7 @@ class_group <- S7::new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
-    name     = S7::class_character, # title
+    title    = S7::class_character,
     members  = S7::class_list
   )
 )
