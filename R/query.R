@@ -83,21 +83,23 @@ query_default <- function(args) {
 #' @noRd
 query_match <- function(obj, qry) {
   params <- qry@params[names(qry@params) %!in_% "year"]
-  fields <- obj@fields@keys
+  fields <- field_keys(obj)
 
   # TODO Use a modifier on "year" parameter if meant for an API field?
   # Remove "year" if it exists, to be applied to temporal endpoints
   field_clean <- clean_names(fields)
 
   x <- rlang::set_names(
-    params[collapse::fmatch(field_clean,
-                            names(params),
-                            nomatch = 0L,
-                            overid = 2)],
-    fields[sort(collapse::fmatch(names(params),
-                                 field_clean,
-                                 nomatch = 0L,
-                                 overid = 2))]
+    params[collapse::fmatch(
+      field_clean,
+      names(params),
+      nomatch = 0L,
+      overid = 2)],
+    fields[sort(collapse::fmatch(
+      names(params),
+      field_clean,
+      nomatch = 0L,
+      overid = 2))]
     )
 
   # TODO Move this to each method

@@ -77,6 +77,9 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
+  # <luhn_check>
+  # <assert_luhn>
+  "luhn_algo",
   # <quality_eligibility>
   "mdl_name",
   # <quality_metrics>
@@ -98,8 +101,6 @@ utils::globalVariables(c(
   "organization",
   # <clog_caid>
   "periodicity",
-  # <util_fields>
-  "profile",
   # <clog_care>
   "references",
   # <clog_prov>

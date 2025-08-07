@@ -105,13 +105,6 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   )
 }
 
-# fastplyr::new_tbl(
-#   year  = as.integer(names(n)),
-#   found = as.integer(get_elem(n, "found_rows")),
-#   total = as.integer(get_elem(n, "total_rows")),
-#   url = utils::URLdecode(i)
-# )
-
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   id <- params_years(obj, qry)

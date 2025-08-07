@@ -65,29 +65,88 @@ check_10_digits <- function(x, call = caller_env()) {
 #' @autoglobal
 #' @noRd
 explode_number <- function(x) {
-  as.character(x) |>
+  as.integer(x) |>
+  as.character() |>
     strsplit("") |>
     yank() |>
     as.numeric()
 }
 
+# x <- npi_all()
+# insitu::br_idiv(x, 10)
+# length(x)
+# bench::mark(
+#   base = purrr::map_int(x, check_base),
+#   insitu = map_int(x, check_insitu)
+  # iterations = 10,
+  # check = FALSE
+# )
+
+# bench::mark(
+#   base = check_base(100000000:100000003),
+#   insitu = check_insitu(100000000:100000003)
+  # iterations = 10,
+  # check = FALSE
+# )
+
+# check_base(100000000)
+# check_base(100000001)
+# check_base(100000002)
+# check_base(100000003)
 #' @autoglobal
 #' @noRd
-calculate_check_digit <- function(x) {
+check_base <- function(x) {
+  x <- rev(as.integer(unlist(strsplit(as.character(as.integer(x)), ""))))
+  x[c(1L, 3L, 5L, 7L, 9L)]  <- x[c(1L, 3L, 5L, 7L, 9L)] * 2L
+  x[cheapr::which_(x > 9L)] <- x[cheapr::which_(x > 9L)] - 9L
+  x <- z <- sum(x) + 24
+  ceiling(x / 10L) * 10L - z
+}
+
+# check_insitu(100000000)
+# check_insitu(100000001)
+# check_insitu(100000002)
+# check_insitu(100000003)
+#' @autoglobal
+#' @noRd
+check_insitu <- function(x) {
+  x <- as.numeric(unlist(strsplit(as.character(as.integer(x)), "")))
   insitu::br_rev(x)
   insitu::br_mul(x, 2, idx = c(1, 3, 5, 7, 9))
-  insitu::br_sub(x, 9, idx = which_(x > 9))
+  insitu::br_sub(x, 9, idx = cheapr::which_(x > 9))
   x <- sum(x)
   insitu::br_add(x, 24)
-
   z <- insitu::duplicate(x)
-
   insitu::br_div(x, 10)
   insitu::br_ceil(x)
   insitu::br_mul(x, 10)
-  insitu::br_sub(x, y = z)
+  insitu::br_sub(x, z)
   x
 }
+
+#' @autoglobal
+#' @noRd
+check_digit_vec <- function(x) {
+
+  if (all(ceiling(log10(x)) != 9L)) {
+    stop("All numbers must have 9 digits")
+  }
+
+  i <- c(1L, 3L, 5L, 7L, 9L)
+  x <- strsplit(as.character(as.integer(x)), "")
+
+  x <- purrr::map(x, \(x) {
+    x <- rev(as.integer(x))
+    x[i]  <- x[i] * 2L
+    x[cheapr::which_(x > 9L)] <- x[cheapr::which_(x > 9L)] - 9L
+    x
+  })
+
+  x <- z <- collapse::fsum(x) + 24
+
+  as.integer(ceiling(x / 10L) * 10L - z)
+}
+
 
 # luhn_base(1417918293)
 # luhn_base(1234567890)
@@ -97,7 +156,7 @@ calculate_check_digit <- function(x) {
 #' @noRd
 luhn_base <- function(x) {
   check <- x %% 10L
-  x <- rev(as.integer(unlist(strsplit(as.character(x %/% 10L), ""))))
+  x <- rev(as.integer(unlist(strsplit(as.character(as.integer(x %/% 10L)), ""))))
   x[c(1L, 3L, 5L, 7L, 9L)]  <- x[c(1L, 3L, 5L, 7L, 9L)] * 2L
   x[cheapr::which_(x > 9L)] <- x[cheapr::which_(x > 9L)] - 9L
   x <- z <- sum(x) + 24
@@ -105,13 +164,13 @@ luhn_base <- function(x) {
   x == check
 }
 
-# luhn_algo(1417918293)
-# luhn_algo(1234567890)
-# luhn_algo(1234567893)
-# luhn_algo(123456789)
+# luhn_insitu(1417918293)
+# luhn_insitu(1234567890)
+# luhn_insitu(1234567893)
+# luhn_insitu(123456789)
 #' @autoglobal
 #' @noRd
-luhn_algo <- function(x) {
+luhn_insitu <- function(x) {
   checksum <- x %% 10L
   insitu::br_idiv(x, 10)
   x <- explode_number(x)
