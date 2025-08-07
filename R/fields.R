@@ -113,7 +113,7 @@ util_fields <- function() {
   # TODO count is ints
   # except for less than 11
   # which is "1-10"
-  # if (count < 11) "1-10"
+  # ifelse(count < 11, "1-10", count)
 
   fastplyr::new_tbl(
     alias = "pdc_utilization",
@@ -168,7 +168,8 @@ util_fields <- function() {
     choices = c(
       rep(NA_character_, 6),
       enumerate(procedure),
-      rep(NA_character_, 2),
+      glue::glue("ifelse(count < 11, '1-10', count)"),
+      NA_character_,
       enumerate(c("Y", "N"))
     )
   )
@@ -178,9 +179,8 @@ util_fields <- function() {
 #' @noRd
 clin_fields <- function() {
 
-  telehlth <- ind_assgn <- grp_assgn <- ln_2_sprs <- c("Y", "M", "N")
-
-  gender <- c("F", "M")
+  ymn    <- enumerate(c("Y", "M", "N"))
+  gender <- enumerate(c("F", "M"))
 
   fastplyr::new_tbl(
     alias = "pdc_clinician",
@@ -263,10 +263,7 @@ clin_fields <- function() {
       "name", # med school
       "year", # grad year
       "enum", # specialty primary
-      NA_character_, # sec spec 1
-      NA_character_, # sec spec 2
-      NA_character_, # sec spec 3
-      NA_character_, # sec spec 4
+      rep(NA_character_, 4), # sec spec 1
       "enum", # specialty secondary
       "enum", # telehealth
       "name", # facility name
@@ -275,10 +272,10 @@ clin_fields <- function() {
       "address", # address 1
       "address", # address 2
       "enum", # address 2 suppressed
-      "city", # city
-      "state", # state
-      "zip", # zip
-      "phone", # phone
+      "city",
+      "state",
+      "zip",
+      "phone",
       "enum", # individual accepts assignment
       "enum", # group accepts assignment
       NA_character_ # address id
@@ -296,10 +293,10 @@ clin_fields <- function() {
       "individual",
       "individual",
       "individual",
-      "sec_spec_1",
-      "sec_spec_2",
-      "sec_spec_3",
-      "sec_spec_4",
+      NA_character_, # sec spec 1
+      NA_character_,
+      NA_character_,
+      NA_character_,
       "individual",
       "organization",
       "organization",
@@ -318,17 +315,17 @@ clin_fields <- function() {
     ),
     choices = c(
       rep(NA_character_, 7),
-      enumerate(gender),
+      gender,
       rep(NA_character_, 3),
-      enumerate(c("Y", "N", "M")), # TODO specialty primary
+      ymn, # TODO specialty primary
       rep(NA_character_, 4),
-      enumerate(c("Y", "M", "N")), # TODO specialty secondary
-      enumerate(telehlth),
+      ymn, # TODO specialty secondary
+      ymn,
       rep(NA_character_, 5),
-      enumerate(ln_2_sprs),
+      ymn,
       rep(NA_character_, 4),
-      enumerate(ind_assgn),
-      enumerate(grp_assgn),
+      ymn,
+      ymn,
       NA_character_
     )
   )

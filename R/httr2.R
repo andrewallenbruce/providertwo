@@ -81,8 +81,8 @@ parse_string <- function(resp, query = NULL) {
     switch(
       query,
       results = return(fparse(resp_body_string(resp)) |> _[["results"]]),
-      count   = return(fparse(resp_body_string(resp)) |> _[["count"]]),
-      found_rows   = return(fparse(resp_body_string(resp)) |> _[["found_rows"]])
+      count = return(fparse(resp_body_string(resp)) |> _[["count"]]),
+      found_rows = return(fparse(resp_body_string(resp)) |> _[["found_rows"]])
       )
   }
 

@@ -1,5 +1,15 @@
 #' @autoglobal
 #' @noRd
+parameters <- S7::new_generic("parameters", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(parameters, class_query) <- function(obj) {
+  S7::prop(obj, "params")
+}
+
+#' @autoglobal
+#' @noRd
 field_keys <- S7::new_generic("field_keys", "obj", function(obj) {
   S7::S7_dispatch()
 })

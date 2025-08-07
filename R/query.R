@@ -1,13 +1,3 @@
-#' @autoglobal
-#' @noRd
-parameters <- S7::new_generic("parameters", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(parameters, class_query) <- function(obj) {
-  S7::prop(obj, "params")
-}
-
 #' Create a Query Object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.

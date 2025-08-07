@@ -11,12 +11,6 @@ cli_no_match <- function(obj) {
 
 #' @autoglobal
 #' @noRd
-null_zero <- function(x, alt_expr) {
-  `if`(is_null(x), 0L, alt_expr)
-}
-
-#' @autoglobal
-#' @noRd
 params_fmt <- function(x = NULL, is_care = FALSE) {
   if (is_null(x) || is_empty(x)) return(NULL)
   set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
@@ -31,9 +25,11 @@ params_flatten <- function(url, params = NULL) {
 
 #' @autoglobal
 #' @noRd
-params_years <- function(obj, qry) {
+select_years <- function(obj, qry) {
 
-  # if (is_empty(x)) cli::cli_abort(c("x" = "{.field year(s)} {.val {qry@params$year}} had {nrow(x)} matches."), call. = FALSE)
+  # if (is_empty(x)) cli::cli_abort(
+  # c("x" = "{.field year(s)} {.val {qry@params$year}}
+  # had {nrow(x)} matches."), call. = FALSE)
 
   x <- if ("year" %in_% names(qry@params)) {
     sbt(obj@identifier, year %in_% qry@params$year) |>
@@ -134,20 +130,20 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  id <- params_years(obj, qry)
-  pr <- query_match(obj, qry)
-  pr <- params_fmt(pr)
-  id <- append_url(id) |> map(function(x) params_flatten(x, pr))
+  url <- select_years(obj, qry)
+  prm <- query_match(obj, qry)
+  prm <- params_fmt(prm)
+  url <- map(url, \(x) append_url(x) |> params_flatten(prm))
 
-  res <- map(id, request) |>
+  res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x) parse_string(x, query = "count")) |>
     unlist(use.names = FALSE)
 
   class_results(
     title  = obj@metadata$title,
-    params = names(pr),
-    base   = id,
+    params = names(prm),
+    base   = url,
     total  = obj@dimensions@rows,
     found  = res,
     limit  = obj@dimensions@limit
@@ -190,19 +186,19 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  id <- params_years(obj, qry)
-  pr <- query_match(obj, qry)
-  pr <- params_fmt(pr, is_care = TRUE)
-  id <- append_url(id, "care") |> map(function(x) params_flatten(x, pr))
+  url <- select_years(obj, qry)
+  prm <- query_match(obj, qry)
+  prm <- params_fmt(prm, is_care = TRUE)
+  url <- map(url, \(x) append_url(x, "care") |> params_flatten(prm))
 
-  res <- map(id, function(x) path_stats(request(x))) |>
+  res <- map(url, function(x) path_stats(request(x))) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x) parse_string(x))
 
   class_results(
     title  = obj@metadata$title,
-    params = names(pr),
-    base   = id,
+    params = names(prm),
+    base   = url,
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
     limit  = obj@dimensions@limit
