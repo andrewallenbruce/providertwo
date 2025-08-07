@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9420 (2025-08-07)
+
+* fixed bug in temporal build method
+
+
 # providertwo 0.0.0.9419 (2025-08-07)
 
 * more query build work
