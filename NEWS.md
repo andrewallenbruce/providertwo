@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9422 (2025-08-09)
+
+* finish refactoring out httr2-handled url generation
+
+
 # providertwo 0.0.0.9421 (2025-08-08)
 
 * httr2's url encoding is going haywire
