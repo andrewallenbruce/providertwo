@@ -14,20 +14,12 @@ api_limit <- function(api) {
 #' @autoglobal
 #' @noRd
 append_url <- function(url, api = "default") {
-  paste0(
-    url,
-    switch(
-      stats = "/stats?offset=0&size=1",
-      care = "?offset=0&size=1",
-      default = "?count=true&results=true&offset=0&limit=1",
-      )
-    )
-}
-
-#' @autoglobal
-#' @noRd
-path_stats <- function(req) {
-  req_url_path_append(req, "stats")
+  paste0(url, switch(
+    api,
+    stats = "/stats?offset=0&size=1",
+    care = "?offset=0&size=1",
+    default = "?count=true&results=true&offset=0&limit=1",
+  ))
 }
 
 #' @autoglobal

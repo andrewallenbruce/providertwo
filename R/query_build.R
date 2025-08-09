@@ -50,7 +50,6 @@ select_years <- function(obj, qry) {
 
     }
   }
-
   set_names(x$identifier, x$year)
 }
 
@@ -62,12 +61,12 @@ select_years <- function(obj, qry) {
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' build(
 #'   endpoint("drug_state"),
 #'   query(
 #'     year = 2022:2024,
-#'     state = any_of(c("CA", "GA", "NY"))))
+#'     state = any_of(c("GA", "NY"))))
 #'
 #' build(
 #'   endpoint("enroll_prov"),
@@ -77,12 +76,16 @@ select_years <- function(obj, qry) {
 #'
 #' build(
 #'   endpoint("dial_facility"),
-#'   query(city = any_of("BIRMINGHAM")))
+#'   query(city = "BIRMINGHAM"))
+#'
+#' build(
+#'   collection("dialysis"),
+#'   query(state = "AL"))
 #'
 #' build(
 #'   endpoint("quality_payment"),
 #'   query(
-#'     year = 2017:2025,
+#'     year = 2021:2023,
 #'     practice_state_or_us_territory = any_of(c("GA", "FL")),
 #'     allowed_charges = less_than(10000)))
 #'
@@ -165,6 +168,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 }
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
+
   prm <- match_query(obj, qry)
 
   if (is_empty(prm)) {
@@ -181,7 +185,9 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   }
 
   prm <- generate_query(prm, is_care = TRUE)
-  url <- append_url(obj@identifier, "care") |> collapse_query(prm)
+  url <- append_url(obj@identifier, "stats") |>
+    collapse_query(prm)
+
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
@@ -203,7 +209,8 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   url <- select_years(obj, qry)
   prm <- match_query(obj, qry)
   prm <- generate_query(prm, is_care = TRUE)
-  url <- map(url, \(x) append_url(x, "care") |> collapse_query(prm))
+  url <- map(url, \(x) append_url(x, "stats") |>
+               collapse_query(prm))
 
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>

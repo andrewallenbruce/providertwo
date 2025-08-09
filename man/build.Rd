@@ -18,12 +18,11 @@ A list of query parameters matched to an endpoint's fields.
 Build a Query for an Endpoint
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 build(
   endpoint("drug_state"),
   query(
     year = 2022:2024,
-    state = any_of(c("CA", "GA", "NY"))))
+    state = any_of(c("GA", "NY"))))
 
 build(
   endpoint("enroll_prov"),
@@ -33,12 +32,16 @@ build(
 
 build(
   endpoint("dial_facility"),
-  query(city = any_of("BIRMINGHAM")))
+  query(city = "BIRMINGHAM"))
+
+build(
+  collection("dialysis"),
+  query(state = "AL"))
 
 build(
   endpoint("quality_payment"),
   query(
-    year = 2017:2025,
+    year = 2021:2023,
     practice_state_or_us_territory = any_of(c("GA", "FL")),
     allowed_charges = less_than(10000)))
 
@@ -48,5 +51,5 @@ build(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("J"),
     state = any_of(c("CA", "GA", "NY"))))
-\dontshow{\}) # examplesIf}
+
 }
