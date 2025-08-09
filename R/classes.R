@@ -169,8 +169,32 @@ class_query <- S7::new_class(
         self
       }
     ),
-    params = class_list
+    params    = S7::new_property(
+      S7::class_list,
+      setter = function(self, value) {
+        self@params <- value
+        self
+      }
+    )
   )
+)
+# # 2 Group Conjunctions - Index ([2]) ids the group
+# "filter[g1][group][conjunction]=OR"
+# "filter[g2][group][conjunction]=AND"
+#
+# # Add memberOf to params in group
+# "filter[1][condition][memberOf]=g2"
+#' @noRd
+#' @autoglobal
+query_group <- S7::new_class(
+  name       = "query_group",
+  package    = NULL,
+  parent     = class_query,
+  properties = list(conjunction = S7::class_character),
+  validator = function(self) {
+    if (length(self@conjunction) != 1) "@conjunction must be length 1"
+    if (!self@conjunction %in% c("OR", "AND")) "@conjunction must be length 1"
+  }
 )
 
 #' @noRd
@@ -180,8 +204,7 @@ class_modifier <- S7::new_class(
   package    = NULL,
   properties = list(
     operator = S7::new_property(S7::class_character, default = "="),
-    value    = S7::class_character | S7::class_numeric
-  ),
+    value    = S7::class_character | S7::class_numeric),
   validator = function(self) {
     if (length(self@operator) != 1) "@operator must be length 1"
   }
@@ -206,7 +229,7 @@ class_results <- S7::new_class(
           offset_size(n = x, self@limit))
       }
     ),
-    problem  = S7::new_property(
+    error  = S7::new_property(
       S7::new_union(NULL, S7::class_logical),
       getter = function(self) {
         if (is.null(self@params)) return(NULL)

@@ -88,8 +88,8 @@ fnest <- function(x,
 
 #' @autoglobal
 #' @noRd
-yank <- function(x) {
-  pluck(x, 1)
+yank <- function(x, ..., .def = NULL) {
+  pluck(x, 1, ..., .default = .def)
 }
 
 `yank<-` <- function(x, value) {

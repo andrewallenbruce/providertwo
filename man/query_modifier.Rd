@@ -4,7 +4,8 @@
 \alias{query_modifier}
 \alias{any_of}
 \alias{none_of}
-\alias{all_but}
+\alias{equal}
+\alias{not_equal}
 \alias{between}
 \alias{not_between}
 \alias{greater_than}
@@ -26,7 +27,9 @@ any_of(x)
 
 none_of(x)
 
-all_but(x)
+equal(x, encoded = FALSE)
+
+not_equal(x, encoded = FALSE)
 
 between(x, y)
 
@@ -47,6 +50,8 @@ like(x)
 \arguments{
 \item{x, y}{input}
 
+\item{encoded}{\verb{<lgl>} whether to url encode the operator}
+
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
@@ -62,7 +67,8 @@ in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/js
 \examples{
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])
-all_but(10000.23)
+equal(1000)
+not_equal(10000.23)
 between(1000, 1100)
 between(0.125, 2)
 try(between(0.95, 0.67))

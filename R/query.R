@@ -10,7 +10,6 @@
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
 #'   state       = any_of(c("CA", "GA", "NY")),
-#'   city        = all_but(c("Atlanta", "Los Angeles")),
 #'   state_own   = c("GA", "MD"),
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
@@ -40,7 +39,7 @@ query2 <- function(...) {
       ...,
       .homonyms = "error",
       .named = TRUE,
-      .ignore_null = TRUE,
+      .ignore_null = "all",
       .check_assign = TRUE
     ),
     params = purrr::compact(
@@ -121,7 +120,7 @@ c_match <- function(a, b) {
 
 #' @autoglobal
 #' @noRd
-query_match <- function(obj, qry) {
+match_query <- function(obj, qry) {
 
   # Remove "year" if present
   param  <- parameters(qry)[setdiff(names(parameters(qry)), "year")]
@@ -134,4 +133,18 @@ query_match <- function(obj, qry) {
   set_names(
     param[c_match(clean, pname)],
     field[sort(c_match(pname, clean))])
+}
+
+#' @autoglobal
+#' @noRd
+generate_query <- function(x = NULL, is_care = FALSE) {
+  if (is_null(x) || is_empty(x)) return(NULL)
+  set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
+}
+
+#' @autoglobal
+#' @noRd
+collapse_query <- function(url, params = NULL) {
+  if (is_null(params) || is_empty(params)) return(url)
+  paste0(url, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
 }

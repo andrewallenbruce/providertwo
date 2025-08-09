@@ -17,9 +17,11 @@ append_url <- function(url, api = "default") {
   paste0(
     url,
     switch(
-      match.arg(api, c("default", "care")),
-      default = "/0?count=true&results=true&offset=0&limit=1",
-      care = "?offset=0&size=1"))
+      stats = "/stats?offset=0&size=1",
+      care = "?offset=0&size=1",
+      default = "?count=true&results=true&offset=0&limit=1",
+      )
+    )
 }
 
 #' @autoglobal

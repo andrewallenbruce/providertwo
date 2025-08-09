@@ -118,7 +118,7 @@ clog_prov <- function(x) {
       ),
       identifier  = paste0(
         "https://data.cms.gov/provider-data/api/1/datastore/query/",
-        identifier
+        identifier, "/0"
       ),
       issued      = as_date(issued),
       modified    = as_date(modified),
@@ -159,7 +159,7 @@ clog_open <- function(x) {
     x$open,
     identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
-      identifier
+      identifier, "/0"
     ),
     modified = as_date(modified),
     year = unlist(x$open$keyword, use.names = FALSE),
@@ -264,7 +264,7 @@ clog_caid <- function(x) {
     x$caid,
     identifier = paste0(
       "https://data.medicaid.gov/api/1/datastore/query/",
-      identifier
+      identifier, "/0"
     ),
     modified = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
@@ -377,7 +377,7 @@ clog_hgov <- function(x) {
 
 
   x <- mtt(x$hgov,
-           identifier = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier),
+           identifier = paste0("https://data.healthcare.gov/api/1/datastore/query/", identifier, "/0"),
            title = rm_nonascii(title) |> rm_space(),
            description = rm_nonascii(description) |> rm_quotes() |> gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |> greplace("Dataset.", NA_character_),
            modified    = as_date(modified),

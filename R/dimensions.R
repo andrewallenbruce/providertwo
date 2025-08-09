@@ -21,19 +21,20 @@ url_type <- function(x) {
 #' @noRd
 dims_care <- function(x) {
 
-  id <- x$identifier |>
-    append_url("care") |>
-    request() |>
-    req_error(is_error = ~ FALSE)
-
   x <- switch(
     url_type(x$identifier),
-    current  = perform_simple(id) |>
+    current = paste0(x$identifier, "?offset=0&size=1") |>
+      request() |>
+      perform_simple() |>
       get_elem("meta") |>
       get_elem(c("total_rows", "headers")),
     temporal = list(
-      headers = names(perform_simple(id)),
-      total_rows = path_stats(id) |>
+      headers = paste0(x$identifier, "?offset=0&size=1") |>
+        request() |>
+        perform_simple() |>
+        names(),
+      total_rows = paste0(x$identifier, "/stats?offset=0&size=1") |>
+        request() |>
         perform_simple() |>
         get_elem("total_rows")
     )

@@ -21,7 +21,6 @@ query(
   middle_name = NULL,
   last_name   = contains("J"),
   state       = any_of(c("CA", "GA", "NY")),
-  city        = all_but(c("Atlanta", "Los Angeles")),
   state_own   = c("GA", "MD"),
   npi         = npi_ex$k,
   ccn         = "01256",

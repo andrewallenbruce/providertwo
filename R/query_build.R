@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-cli_no_match <- function(obj) {
+cli_nomatch <- function(obj) {
   cli::cli_alert_warning(
     c(
       "No query {.field parameters} matched to endpoint {.field fields} \n",
@@ -11,33 +11,46 @@ cli_no_match <- function(obj) {
 
 #' @autoglobal
 #' @noRd
-params_fmt <- function(x = NULL, is_care = FALSE) {
-  if (is_null(x) || is_empty(x)) return(NULL)
-  set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
+cli_range <- function(x) {
+  len <- length(x)
+  if (len == 1L) return(paste0(x, " ", brackets(len)))
+  rng <- range(sort.int(x), na.rm = TRUE)
+  paste0(rng[1], " ", cli::symbol$bullet, " ", rng[2], " ", brackets(len))
 }
 
 #' @autoglobal
 #' @noRd
-params_flatten <- function(url, params = NULL) {
-  if (is_null(params) || is_empty(params)) return(url)
-  paste0(url, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
+cli_noyears <- function(obj, qry) {
+  cli::cli_alert_warning(
+    c(
+      "{.val {parameters(qry)$year}} had no matches in \n",
+      "{.field {title(obj)}} \n",
+      "Valid years: {cli_range(obj@identifier$year)}"
+    )
+  )
 }
 
 #' @autoglobal
 #' @noRd
 select_years <- function(obj, qry) {
 
-  # if (is_empty(x)) cli::cli_abort(
-  # c("x" = "{.field year(s)} {.val {qry@params$year}}
-  # had {nrow(x)} matches."), call. = FALSE)
+  if ("year" %!in_% names(parameters(qry))) {
 
-  x <- if ("year" %in_% names(qry@params)) {
-    sbt(obj@identifier, year %in_% qry@params$year) |>
-      get_elem("^year$|^identifier$", regex = TRUE)
+    x <- get_elem(obj@identifier, "^year$|^identifier$", regex = TRUE)
+    return(set_names(x$identifier, x$year))
+
   } else {
-    obj@identifier |>
-      get_elem("^year$|^identifier$", regex = TRUE)
+
+    x <- sbt(obj@identifier, year %in_% parameters(qry)$year)
+
+    if (is_empty(x)) {
+
+      cli_noyears(obj, qry)
+      x <- get_elem(obj@identifier, "^year$|^identifier$", regex = TRUE)
+
+    }
   }
+
   set_names(x$identifier, x$year)
 }
 
@@ -49,7 +62,7 @@ select_years <- function(obj, qry) {
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' build(
 #'   endpoint("drug_state"),
 #'   query(
@@ -95,10 +108,11 @@ S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
 }
 
 S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
-  prm <- query_match(obj, qry)
+
+  prm <- match_query(obj, qry)
 
   if (is_empty(prm)) {
-    cli_no_match(obj)
+    cli_nomatch(obj)
     return(
       class_results(
         title  = title(obj),
@@ -110,8 +124,8 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     )
   }
 
-  prm <- params_fmt(prm)
-  url <- append_url(obj@identifier) |> params_flatten(prm)
+  prm <- generate_query(prm)
+  url <- append_url(obj@identifier) |> collapse_query(prm)
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
@@ -131,9 +145,9 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   url <- select_years(obj, qry)
-  prm <- query_match(obj, qry)
-  prm <- params_fmt(prm)
-  url <- map(url, \(x) append_url(x) |> params_flatten(prm))
+  prm <- match_query(obj, qry)
+  prm <- generate_query(prm)
+  url <- map(url, \(x) append_url(x) |> collapse_query(prm))
 
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
@@ -151,10 +165,10 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 }
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
-  prm <- query_match(obj, qry)
+  prm <- match_query(obj, qry)
 
   if (is_empty(prm)) {
-    cli_no_match(obj)
+    cli_nomatch(obj)
     return(
       class_results(
         title  = title(obj),
@@ -166,20 +180,20 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     )
   }
 
-  prm <- params_fmt(prm, is_care = TRUE)
-  url <- append_url(obj@identifier, "care") |> params_flatten(prm)
-  res <- map(url, \(x) path_stats(request(x))) |>
+  prm <- generate_query(prm, is_care = TRUE)
+  url <- append_url(obj@identifier, "care") |> collapse_query(prm)
+  res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x)
-      parse_string(x, query = "found_rows")) |>
-    unlist(use.names = FALSE)
+      parse_string(x)) |>
+    yank("data")
 
   class_results(
     title  = title(obj),
     params = names(prm),
     base   = url,
-    total  = obj@dimensions@rows,
-    found  = res %||% 0L,
+    total  = res$total_rows %||% 0L,
+    found  = res$found_rows %||% 0L,
     limit  = obj@dimensions@limit
   )
 }
@@ -187,11 +201,11 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   url <- select_years(obj, qry)
-  prm <- query_match(obj, qry)
-  prm <- params_fmt(prm, is_care = TRUE)
-  url <- map(url, \(x) append_url(x, "care") |> params_flatten(prm))
+  prm <- match_query(obj, qry)
+  prm <- generate_query(prm, is_care = TRUE)
+  url <- map(url, \(x) append_url(x, "care") |> collapse_query(prm))
 
-  res <- map(url, function(x) path_stats(request(x))) |>
+  res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
     map(function(x) parse_string(x))
 

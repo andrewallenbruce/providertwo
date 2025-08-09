@@ -18,6 +18,7 @@ A list of query parameters matched to an endpoint's fields.
 Build a Query for an Endpoint
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 build(
   endpoint("drug_state"),
   query(
@@ -47,5 +48,5 @@ build(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("J"),
     state = any_of(c("CA", "GA", "NY"))))
-
+\dontshow{\}) # examplesIf}
 }

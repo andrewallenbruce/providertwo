@@ -1,36 +1,3 @@
-caid_list$endpoint[["unwin_sbm"]]
-
-aka$endpoint$ahqr_psi11
-
-select_alias(the$catalogs$care$end, aka$endpoint$ahqr_psi11)
-
-
-care_temporal("quality_payment") |> query_nresults()
-open_temporal("payment_general") |> query_nresults()
-caid_temporal("healthcare_quality") |> query_nresults()
-hgov_temporal("hgov_mlr") |> query_nresults()
-
-care_endpoint("care_enrollees") |> query_nresults()
-prov_endpoint("pdc_affiliations") |> query_nresults()
-
-quick("care_dialysis")
-quick("managed_longterm")
-quick("hgov_ab_reg_comp")
-quick("profile_covered")
-quick("asc_facility")
-
-care_endpoint("care_dialysis") |> quick_query_()
-caid_endpoint("managed_longterm")@identifier |> quick_query_()
-hgov_endpoint("hgov_ab_reg_comp")
-open_endpoint("profile_covered")
-prov_endpoint("asc_facility")@identifier
-
-caid_temporal("nadac_year")@endpoints$identifier[1]
-
-new_collection("caid_demographics") |> query_nresults()
-
-list(count = "true", results = "true", offset = 0L, limit = 1L)
-
 # CARE ENDPOINT:
 #    == Query `stats` for results count
 request("https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer") |>

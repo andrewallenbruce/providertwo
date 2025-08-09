@@ -9,6 +9,7 @@
 #'
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
+#' @param encoded  `<lgl>` whether to url encode the operator
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` object.
 #' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
@@ -76,18 +77,40 @@ none_of <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' all_but(10000.23)
+#' equal(1000)
 #' @autoglobal
 #' @export
-all_but <- S7::new_class(
-  name        = "all_but",
+equal <- S7::new_class(
+  name        = "equals",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x) {
+  constructor = function(x, encoded = FALSE) {
+
+    check_bool(encoded)
 
     S7::new_object(
       class_modifier(),
-      operator = "<>",
+      operator = ifelse(!encoded, "=", "%3D"),
+      value    = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' not_equal(10000.23)
+#' @autoglobal
+#' @export
+not_equal <- S7::new_class(
+  name        = "not_equal",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, encoded = FALSE) {
+
+    check_bool(encoded)
+
+    S7::new_object(
+      class_modifier(),
+      operator = ifelse(!encoded, "<>", "%3C%3E"),
       value    = x)
   }
 )
@@ -169,7 +192,7 @@ greater_than <- S7::new_class(
       class_modifier(),
       operator = ifelse(!or_equal, ">", ">="),
       value    = x)
-  }
+  } # "%3E", "%3E%3D" ("%3E=")
 )
 
 #' @rdname query_modifier
@@ -191,7 +214,7 @@ less_than <- S7::new_class(
       class_modifier(),
       operator = ifelse(!or_equal, "<", "<="),
       value    = x)
-  }
+  } # "%3C", "%3C%3D" ("%3C=")
 )
 
 #' @rdname query_modifier
