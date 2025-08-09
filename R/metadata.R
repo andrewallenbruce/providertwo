@@ -18,6 +18,7 @@ unlist_if <- function(x) {
 get_meta <- function(x) {
   compact(
     list(
+      alias       = x$alias,
       title       = x$title,
       description = x$description,
       modified    = x$modified,

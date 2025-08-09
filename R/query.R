@@ -139,7 +139,7 @@ match_query <- function(obj, qry) {
 #' @noRd
 generate_query <- function(x = NULL, is_care = FALSE) {
   if (is_null(x) || is_empty(x)) return(NULL)
-  set_names(`if`(is_care, query_care(x), query_default(x)), names(x))
+  set_names(`if`(is_care, query_care(x), query_default(x)), names2(x))
 }
 
 #' @autoglobal

@@ -43,6 +43,7 @@ catalogs <- function() {
     caid = clog_caid(x),
     hgov = clog_hgov(x)
   )
+  # sum(16, 28, 6, 95, 8, 18, 147, 80, 138)
 }
 
 #' @autoglobal

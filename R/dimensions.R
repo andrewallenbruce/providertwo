@@ -41,7 +41,7 @@ dims_care <- function(x) {
   )
 
   list(
-    dims = class_dimensions(limit = api_limit("care"), rows = x$total_rows %||% 0L),
+    dims = class_dimensions(limit = api_limit("care"), total = x$total_rows %||% 0L),
     fields = class_fields(x$headers)
   )
 }
@@ -61,7 +61,7 @@ get_dims <- function(x) {
     perform_simple()
 
   list(
-    dims = class_dimensions(limit = api_limit(type_url), rows = id$count %||% 0L),
+    dims = class_dimensions(limit = api_limit(type_url), total = id$count %||% 0L),
     fields = class_fields(id$query$properties)
   )
 }

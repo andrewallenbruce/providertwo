@@ -21,11 +21,18 @@ class_dimensions <- S7::new_class(
   package    = NULL,
   properties = list(
     limit    = S7::class_integer,
-    rows     = S7::class_integer,
+    total    = S7::class_integer,
     pages    = S7::new_property(
       S7::class_integer,
-      getter = function(self) offset_size(self@rows, self@limit))
-  )
+      getter = function(self) {
+        purrr::map_int(self@total, offset_size, limit = self@limit)
+      }
+    )
+  ),
+  validator = function(self) {
+    if (length(self@limit) != 1)
+      cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call. = FALSE)
+  }
 )
 
 #' @noRd
@@ -205,8 +212,9 @@ class_modifier <- S7::new_class(
   properties = list(
     operator = S7::new_property(S7::class_character, default = "="),
     value    = S7::class_character | S7::class_numeric),
-  validator = function(self) {
-    if (length(self@operator) != 1) "@operator must be length 1"
+  validator  = function(self) {
+    if (length(self@operator) != 1)
+      cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call. = FALSE)
   }
 )
 
@@ -216,6 +224,7 @@ class_results <- S7::new_class(
   name       = "class_results",
   package    = NULL,
   properties = list(
+    alias    = S7::class_character,
     title    = S7::class_character,
     params   = S7::new_union(NULL, S7::class_character, S7::class_list),
     base     = S7::class_character | S7::class_list,

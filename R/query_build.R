@@ -1,12 +1,7 @@
 #' @autoglobal
 #' @noRd
 cli_nomatch <- function(obj) {
-  cli::cli_alert_warning(
-    c(
-      "No query {.field parameters} matched to endpoint {.field fields} \n",
-      "{cli::symbol$record} {.field {title(obj)}}"
-    )
-  )
+  cli::cli_alert_warning("No {.field query} matches for {.field {meta(obj)$alias}}")
 }
 
 #' @autoglobal
@@ -23,9 +18,8 @@ cli_range <- function(x) {
 cli_noyears <- function(obj, qry) {
   cli::cli_alert_warning(
     c(
-      "{.val {parameters(qry)$year}} had no matches in \n",
-      "{.field {title(obj)}} \n",
-      "Valid years: {cli_range(obj@identifier$year)}"
+      "No {.field year} matches for {.field {meta(obj)$alias}} \n",
+      "{cli::symbol$pointer} Valid years: {cli_range(obj@identifier$year)}"
     )
   )
 }
@@ -68,19 +62,13 @@ select_years <- function(obj, qry) {
 #'     year = 2022:2024,
 #'     state = any_of(c("GA", "NY"))))
 #'
-#' build(
-#'   endpoint("enroll_prov"),
-#'   query(
-#'     first_name = starts_with("And"),
-#'     last_name = ends_with("ce")))
+#' build(endpoint("enroll_prov"),
+#'       query(first_name = starts_with("And"),
+#'       last_name = ends_with("ce")))
 #'
-#' build(
-#'   endpoint("dial_facility"),
-#'   query(city = "BIRMINGHAM"))
+#' build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
 #'
-#' build(
-#'   collection("dialysis"),
-#'   query(state = "AL"))
+#' build(collection("dialysis"), query(state = "AL"))
 #'
 #' build(
 #'   endpoint("quality_payment"),
@@ -118,9 +106,10 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     cli_nomatch(obj)
     return(
       class_results(
-        title  = title(obj),
+        alias  = meta(obj)$alias,
+        title  = meta(obj)$title,
         base   = obj@identifier,
-        total  = obj@dimensions@rows,
+        total  = obj@dimensions@total,
         found  = 0L,
         limit  = obj@dimensions@limit
       )
@@ -136,10 +125,11 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     unlist(use.names = FALSE)
 
   class_results(
-    title  = title(obj),
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
     params = names(prm),
     base   = url,
-    total  = obj@dimensions@rows,
+    total  = obj@dimensions@total,
     found  = res %||% 0L,
     limit  = obj@dimensions@limit
   )
@@ -158,10 +148,11 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     unlist(use.names = FALSE)
 
   class_results(
-    title  = obj@metadata$title,
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
     params = names(prm),
     base   = url,
-    total  = obj@dimensions@rows,
+    total  = obj@dimensions@total,
     found  = res,
     limit  = obj@dimensions@limit
   )
@@ -175,9 +166,10 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     cli_nomatch(obj)
     return(
       class_results(
-        title  = title(obj),
+        alias  = meta(obj)$alias,
+        title  = meta(obj)$title,
         base   = obj@identifier,
-        total  = obj@dimensions@rows,
+        total  = obj@dimensions@total,
         found  = 0L,
         limit  = obj@dimensions@limit
       )
@@ -195,7 +187,8 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     yank("data")
 
   class_results(
-    title  = title(obj),
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
     params = names(prm),
     base   = url,
     total  = res$total_rows %||% 0L,
@@ -217,7 +210,8 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     map(function(x) parse_string(x))
 
   class_results(
-    title  = obj@metadata$title,
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
     params = names(prm),
     base   = url,
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),

@@ -24,19 +24,13 @@ build(
     year = 2022:2024,
     state = any_of(c("GA", "NY"))))
 
-build(
-  endpoint("enroll_prov"),
-  query(
-    first_name = starts_with("And"),
-    last_name = ends_with("ce")))
+build(endpoint("enroll_prov"),
+      query(first_name = starts_with("And"),
+      last_name = ends_with("ce")))
 
-build(
-  endpoint("dial_facility"),
-  query(city = "BIRMINGHAM"))
+build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
 
-build(
-  collection("dialysis"),
-  query(state = "AL"))
+build(collection("dialysis"), query(state = "AL"))
 
 build(
   endpoint("quality_payment"),

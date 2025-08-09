@@ -1,3 +1,14 @@
+#' @noRd
+#' @autoglobal
+class_schema <- S7::new_class(
+  name         = "class_schema",
+  package      = NULL,
+  properties   = list(
+    alias = S7::class_character,
+    columns = S7::class_list
+  ) # priority/only most common fields?
+)
+
 #' @autoglobal
 #' @noRd
 enumerate <- function(x) {
@@ -53,7 +64,7 @@ aff_fields <- function() {
       "ccn",
       "ccn"
     ),
-    subtype = c(
+    subtype = c( # tag
       "individual",
       "individual",
       "individual",
