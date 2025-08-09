@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9423 (2025-08-09)
+
+* getters, results class
+
+
 # providertwo 0.0.0.9422 (2025-08-09)
 
 * finish refactoring out httr2-handled url generation
