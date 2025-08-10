@@ -17,9 +17,7 @@ utils::globalVariables(c(
   # <.nppes_multi_npi>
   "created_epoch",
   # <quality_eligibility>
-  "date_appr",
-  # <quality_eligibility>
-  "date_pac",
+  "date_enrolled",
   # <clog_care>
   "describedBy",
   # <clog_care>
@@ -80,10 +78,10 @@ utils::globalVariables(c(
   # <luhn_check>
   # <assert_luhn>
   "luhn_algo",
-  # <quality_eligibility>
-  "mdl_name",
   # <quality_metrics>
   "metric",
+  # <quality_eligibility>
+  "middle_name",
   # <clog_care>
   # <clog_prov>
   # <clog_open>
@@ -111,12 +109,6 @@ utils::globalVariables(c(
   "rowid",
   # <tidy_resources>
   "size",
-  # <quality_eligibility>
-  "spec_cat",
-  # <quality_eligibility>
-  "spec_desc",
-  # <quality_eligibility>
-  "spec_type",
   # <npi_nppes>
   "taxonomy_desc",
   # <clog_care>
@@ -142,7 +134,5 @@ utils::globalVariables(c(
   # <tidy_resources>
   # <select_years>
   "year",
-  # <quality_eligibility>
-  "years_mcr",
   NULL
 ))

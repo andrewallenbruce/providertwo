@@ -1,5 +1,46 @@
 #' @autoglobal
 #' @noRd
+check_year <- function(x,
+                       min = NULL,
+                       arg = caller_arg(x),
+                       call = caller_env()) {
+  check_number_whole(
+    x,
+    min = min,
+    max = this_year(),
+    allow_na = FALSE,
+    allow_null = FALSE,
+    arg = arg,
+    call = call
+  )
+  if (ceiling(log10(x)) != 4)
+    cli::cli_abort("{.arg {arg}} must be 4 digits",
+                   arg = arg,
+                   call = call)
+}
+
+#' @autoglobal
+#' @noRd
+check_years <- function(x,
+                        min = NULL,
+                        arg = caller_arg(x),
+                        call = caller_env()) {
+  walk(x, \(x) check_year(
+    x,
+    min = min,
+    arg = arg,
+    call = call
+  ))
+}
+
+#' @autoglobal
+#' @noRd
+check_requires <- function(x) {
+  walk(x, check_required)
+}
+
+#' @autoglobal
+#' @noRd
 last_digit <- function(x) {
   check_number_whole(x)
   # x %% 10L
@@ -20,10 +61,7 @@ rm_last_digit <- function(x) {
 #' @noRd
 n_digits <- function(x) {
   check_number_whole(x)
-  # ceiling(log10(x))
-  insitu::br_log10(x)
-  insitu::br_ceil(x)
-  x
+  ceiling(log10(x))
 }
 
 #' @autoglobal

@@ -11,6 +11,11 @@ api_limit <- function(api) {
   )
 }
 
+
+# base_url
+# care_current: base_url + stats + ? + offset + limit
+# care_temporal: base_url + data + offset
+# default: base_url + offset + size + count + results
 #' @autoglobal
 #' @noRd
 append_url <- function(url, api = "default") {
@@ -85,11 +90,10 @@ parse_string <- function(resp, query = NULL) {
 
 #' Generate API Request "Offset" Sequence
 #'
-#' @param n `<int>` Number of results returned in an API request
-#'
-#' @param limit `<int>` API rate limit
-#'
-#' @returns `<int>` If `n <= limit`, simply returns `n`. If `n > limit`,
+#' @param n       `<int>` Number of results returned in an API request
+#' @param limit   `<int>` API rate limit
+#' @param default `<int>` Default value to return if `n <= limit`. Defaults to `1L`.
+#' @returns If `n <= limit`, simply returns `n`. If `n > limit`,
 #'   returns an integer sequence beginning at `0`, of length equal to
 #'   `ceiling(n / limit)`.
 #'
@@ -125,12 +129,13 @@ offset_seq <- function(n, limit) {
 #' @rdname offset
 #' @autoglobal
 #' @noRd
-offset_size <- function(n, limit) {
+offset_size <- function(n, limit, default = 1L) {
 
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
+  # check_number_whole(default, min = 0)
 
-  if (n <= limit) return(1L)
+  if (n <= limit) return(default)
 
   seq_size(from = 0L, to = n, by = limit)
 }

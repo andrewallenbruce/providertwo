@@ -1,34 +1,8 @@
 #' @autoglobal
 #' @noRd
-cli_nomatch <- function(obj) {
-  cli::cli_alert_warning("No {.field query} matches for {.field {meta(obj)$alias}}")
-}
-
-#' @autoglobal
-#' @noRd
-cli_range <- function(x) {
-  len <- length(x)
-  if (len == 1L) return(paste0(x, " ", brackets(len)))
-  rng <- range(sort.int(x), na.rm = TRUE)
-  paste0(rng[1], " ", cli::symbol$bullet, " ", rng[2], " ", brackets(len))
-}
-
-#' @autoglobal
-#' @noRd
-cli_noyears <- function(obj, qry) {
-  cli::cli_alert_warning(
-    c(
-      "No {.field year} matches for {.field {meta(obj)$alias}} \n",
-      "{cli::symbol$pointer} Valid years: {cli_range(obj@identifier$year)}"
-    )
-  )
-}
-
-#' @autoglobal
-#' @noRd
 select_years <- function(obj, qry) {
 
-  if ("year" %!in_% names(parameters(qry))) {
+  if ("year" %!in_% names2(parameters(qry))) {
 
     x <- get_elem(obj@identifier, "^year$|^identifier$", regex = TRUE)
     return(set_names(x$identifier, x$year))
@@ -127,7 +101,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   class_results(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names(prm),
+    params = names2(prm),
     base   = url,
     total  = obj@dimensions@total,
     found  = res %||% 0L,
@@ -150,7 +124,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_results(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names(prm),
+    params = names2(prm),
     base   = url,
     total  = obj@dimensions@total,
     found  = res,
@@ -189,7 +163,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   class_results(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names(prm),
+    params = names2(prm),
     base   = url,
     total  = res$total_rows %||% 0L,
     found  = res$found_rows %||% 0L,
@@ -212,7 +186,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_results(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names(prm),
+    params = names2(prm),
     base   = url,
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),

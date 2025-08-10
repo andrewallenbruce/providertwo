@@ -1,5 +1,31 @@
 #' @autoglobal
 #' @noRd
+cli_nomatch <- function(obj) {
+  cli::cli_alert_warning("No {.field query} matches for {.field {meta(obj)$alias}}")
+}
+
+#' @autoglobal
+#' @noRd
+cli_range <- function(x) {
+  len <- length(x)
+  if (len == 1L) return(paste0(x, " ", brackets(len)))
+  rng <- range(sort.int(x), na.rm = TRUE)
+  paste0(rng[1], " ", cli::symbol$em_dash, " ", rng[2], " ", brackets(len))
+}
+
+#' @autoglobal
+#' @noRd
+cli_noyears <- function(obj, qry) {
+  cli::cli_alert_warning(
+    c(
+      "No {.field year} matches for {.field {meta(obj)$alias}} \n",
+      "{cli::symbol$pointer} Valid years: {cli_range(obj@identifier$year)}"
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
 brackets <- function(x) {
   paste0("[", x, "]")
 }

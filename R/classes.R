@@ -226,7 +226,7 @@ class_results <- S7::new_class(
   properties = list(
     alias    = S7::class_character,
     title    = S7::class_character,
-    params   = S7::new_union(NULL, S7::class_character, S7::class_list),
+    params   = S7::new_union(NULL, S7::class_character),
     base     = S7::class_character | S7::class_list,
     limit    = S7::class_integer,
     found    = S7::class_integer,
@@ -234,8 +234,7 @@ class_results <- S7::new_class(
     pages    = S7::new_property(
       S7::class_integer,
       getter = function(self) {
-        purrr::map_int(self@found, function(x)
-          offset_size(n = x, self@limit))
+        purrr::map_int(self@found, offset_size, limit = self@limit, default = 0L)
       }
     ),
     error  = S7::new_property(
