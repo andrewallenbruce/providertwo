@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9424 (2025-08-10)
+
+* quality_eligibility error handling
+
+
 # providertwo 0.0.0.9423 (2025-08-09)
 
 * getters, results class
