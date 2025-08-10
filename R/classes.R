@@ -25,7 +25,7 @@ class_dimensions <- S7::new_class(
     pages    = S7::new_property(
       S7::class_integer,
       getter = function(self) {
-        purrr::map_int(self@total, offset_size, limit = self@limit)
+        purrr::map_int(self@total, offset, limit = self@limit)
       }
     )
   ),
@@ -234,7 +234,7 @@ class_results <- S7::new_class(
     pages    = S7::new_property(
       S7::class_integer,
       getter = function(self) {
-        purrr::map_int(self@found, offset_size, limit = self@limit, default = 0L)
+        purrr::map_int(self@found, offset, limit = self@limit)
       }
     ),
     error  = S7::new_property(

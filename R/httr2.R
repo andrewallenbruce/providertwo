@@ -76,68 +76,58 @@ perform_simple_request <- function(x, ...) {
 #' @noRd
 parse_string <- function(resp, query = NULL) {
 
+  f <- \(x, qry = NULL) fparse(resp_body_string(x), query = qry)
+
   if (!is.null(query)) {
     switch(
       query,
-      results = return(fparse(resp_body_string(resp)) |> _[["results"]]),
-      count = return(fparse(resp_body_string(resp)) |> _[["count"]]),
-      found_rows = return(fparse(resp_body_string(resp)) |> _[["found_rows"]])
+      results    = return(f(resp) |> _[["results"]]),
+      count      = return(f(resp) |> _[["count"]]),
+      found_rows = return(f(resp) |> _[["found_rows"]])
       )
   }
 
-  fparse(resp_body_string(resp), query = query)
+  f(resp, qry = query)
 }
 
 #' Generate API Request "Offset" Sequence
 #'
-#' @param n       `<int>` Number of results returned in an API request
-#' @param limit   `<int>` API rate limit
-#' @param default `<int>` Default value to return if `n <= limit`. Defaults to `1L`.
-#' @returns If `n <= limit`, simply returns `n`. If `n > limit`,
-#'   returns an integer sequence beginning at `0`, of length equal to
-#'   `ceiling(n / limit)`.
+#' @param n     `<int>` Number of results in an API request
+#' @param limit `<int>` API rate limit
+#' @param type  `<chr>` Return type, either `"seq"` or `"size"` (default)
+#' @returns Depending on `type` input and conditions listed below, returns:
+#'    * `n == 0`: returns `0`
+#'    * `n <= limit`: returns `n`
+#'    * `n > limit`:
+#'       * `type = "seq"`: integer sequence beginning at `0`, incremented by `limit`, of length equal to `ceiling(n / limit)`.
+#'       * `type = "size"`: single integer equal to length of sequence returned by `type = "seq"`.
 #'
 #' @examplesIf interactive()
-#' offset_seq(100, 10)
-#' offset_size(100, 10)
+#' offset(100, 10)
+#' offset(100, 10, "seq")
 #'
-#' offset_seq(10, 100)
-#' offset_size(10, 100)
+#' offset(10, 100)
+#' offset(10, 100, "seq")
 #'
-#' offset_seq(47984, 5000)
-#' offset_size(47984, 5000)
+#' offset(47984, 5000)
+#' offset(47984, 5000, "seq")
 #'
-#' offset_seq(147984, 2000)
-#' offset_size(147984, 2000)
-#' @name offset
-#' @noRd
-NULL
-
-#' @rdname offset
+#' offset(147984, 2000)
+#' offset(147984, 2000, "seq")
 #' @autoglobal
 #' @noRd
-offset_seq <- function(n, limit) {
-
+offset <- function(n, limit, type = c("size", "seq")) {
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
 
+  if (n == 0L)    return(0L)
   if (n <= limit) return(n)
 
-  seq_(from = 0L, to = n, by = limit)
-}
-
-#' @rdname offset
-#' @autoglobal
-#' @noRd
-offset_size <- function(n, limit, default = 1L) {
-
-  check_number_whole(n, min = 0)
-  check_number_whole(limit, min = 1)
-  # check_number_whole(default, min = 0)
-
-  if (n <= limit) return(default)
-
-  seq_size(from = 0L, to = n, by = limit)
+  switch (
+    match.arg(type, c("size", "seq")),
+    size = seq_size(from = 0L, to = n, by = limit),
+    seq  = seq_(from = 0L, to = n, by = limit)
+  )
 }
 
 #' @autoglobal
