@@ -113,7 +113,8 @@ collect_care = list(
   dme        = list(name = "Medicare DME, Devices & Supplies", alias = look$care("^dme_")),
   pbj        = list(name = "Nursing Home Payroll-Based Journal Staffing", alias = look$care("^pbj_")),
   util       = list(name = "Medicare Physician & Other Practitioners", alias = look$care("^util_")),
-  mds_nh     = list(name = "Nursing Home Performance", alias = look$care("^mds_nh_"))
+  mds_nh     = list(name = "Nursing Home Performance", alias = look$care("^mds_nh_")),
+  innovate   = list(name = "Innovation Center", alias = look$care("^inno_"))
 )
 
 #' @autoglobal

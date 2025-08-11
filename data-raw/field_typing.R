@@ -1,35 +1,16 @@
 clog <- catalogs()
 
-x <- the$clog$prov$current |> slt(x, title, modified, identifier) |> roworder(title, -modified)
+fields_current <- function(catalog_tbl, alias_list) {
 
-alias_column <- function(df, aka) {
-  to_col <- function(aka) {
-    code_head  <- glue::as_glue("cheapr::case(\n")
-    code_tail  <- glue::as_glue(",\n .default = NA)")
+  mirai::daemons(0)
 
-    string <- paste0(
-      "gdetect(title, ",
-      "{glue::single_quote(unname(x))}) ~ ",
-      "{glue::single_quote(names(x))}"
-    )
+  e <- rlang::enquo(catalog_tbl) |>
+    rlang::as_label() |>
+    strsplit("[$]", perl = TRUE) |>
+    yank() |>
+    _[3:4]
 
-    code_head +
-      glue::glue(string, x = aka) |>
-      glue::glue_collapse(sep = ",\n") +
-      code_tail
-  }
-
-  collapse::mtt(
-    df,
-    alias = to_col(aka) |>
-      rlang::parse_expr() |>
-      rlang::eval_bare()
-  )
-}
-
-fields_current <- function(x) {
-
-  x <- collapse::slt(x, title, modified, identifier) |>
+  x <- collapse::slt(catalog_tbl, title, modified, identifier) |>
     collapse::roworder(title, -modified)
 
   url_list <- rlang::set_names(x[["identifier"]], x[["title"]])
@@ -53,17 +34,18 @@ fields_current <- function(x) {
 
   res |>
     purrr::list_rbind() |>
-    collapse::mtt(catalog = "prov", point = "current") |>
+    collapse::mtt(catalog = e[1], point = e[2]) |>
     join_on_title(x) |>
-    alias_column(end_prov$current) |>
+    alias_column(alias_list) |>
     collapse::slt(catalog, point, alias, field, title, modified)
 }
 
-prov_fld <- fields_current(the$clog$prov$current)
+prov_fld <- fields_current(the$clog$prov$current, end_prov$current)
 
 prov_fld |>
   fcount(alias, decreasing = TRUE, sort = TRUE) |>
-  roworder(-N)
+  roworder(-N) |>
+  print(n = Inf)
 
 prov_fld |>
   sbt(is.na(alias)) |>
@@ -92,6 +74,97 @@ prov_fld |>
   ) |>
   slt(catalog, alias, field, type) |>
   fcount(type, decreasing = TRUE, sort = TRUE)
+
+fields_current_care <- function(catalog_tbl, alias_list) {
+
+  mirai::daemons(0)
+
+  e <- rlang::enquo(catalog_tbl) |>
+    rlang::as_label() |>
+    strsplit("[$]", perl = TRUE) |>
+    yank() |>
+    _[3:4]
+
+  x <- collapse::slt(catalog_tbl, title, modified, identifier) |>
+    collapse::roworder(title, -modified)
+
+  url_list <- rlang::set_names(x[["identifier"]], x[["title"]])
+
+  mirai::daemons(6)
+
+  res <- purrr::imap(url_list, purrr::in_parallel(\(x, i) {
+    fastplyr::new_tbl(
+      title = i,
+      field = x |>
+        httr2::request() |>
+        httr2::req_error(is_error = ~ FALSE) |>
+        httr2::req_perform() |>
+        httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE) |>
+        collapse::get_elem("meta") |>
+        collapse::get_elem("headers")
+    )
+  }))
+
+  mirai::daemons(0)
+
+  empty <- res |>
+    purrr::keep(vctrs::vec_is_empty) |>
+    names() |>
+    fastplyr::f_enframe(value = "title")
+
+  non_empty <- res |>
+    purrr::discard(vctrs::vec_is_empty) |>
+    purrr::list_rbind()
+
+  vctrs::vec_rbind(non_empty, empty) |>
+    collapse::mtt(catalog = e[1], point = e[2]) |>
+    join_on_title(x) |>
+    alias_column(end_care$current) |>
+    collapse::slt(catalog, point, alias, field, title, modified)
+}
+
+
+
+care_fld <- fields_current_care(the$clog$care$current, end_care$current)
+
+care_fld |>
+  fcount(alias, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = Inf)
+
+care_fld |>
+  sbt(stringi::stri_detect_regex(title, "CMS Program Statistics", negate = TRUE)) |>
+  alias_after(end_care$temporal) |>
+  sbt(!is.na(alias)) |>
+  fcount(title, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N)
+
+care_fld |>
+  sbt(gdetect(field, "npi")) |>
+  fcount(field, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = 50)
+
+care_fld |>
+  mtt(
+    type = case(
+      field %in% c("npi") ~ "npi",
+      field %in% c("year", "fiscal_year", "payment_year") ~ "year",
+      field %in% c("city", "citytown", "practicecity") ~ "city",
+      field %in% c("county", "countyparish") ~ "county",
+      field %in% c("phone", "telephone_number", "telephonenumber") ~ "phone",
+      field %in% c("zip", "zip_code", "practicezip9code") ~ "zip",
+      field %in% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
+      field %in% c("alternate_ccn", "ccn", "cms_certification_number_ccn") ~ "ccn",
+      field %in% c("state", "state_or_nation", "practicestate") ~ "state",
+      .default = NA
+    )
+  ) |>
+  slt(catalog, alias, field, type) |>
+  fcount(type, decreasing = TRUE, sort = TRUE)
+
+
+
 
 all <- readr::read_csv(fs::dir_ls("data-raw/fields")) |>
   mtt(

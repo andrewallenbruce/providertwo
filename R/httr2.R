@@ -11,7 +11,6 @@ api_limit <- function(api) {
   )
 }
 
-
 # base_url
 # care_current: base_url + stats + ? + offset + limit
 # care_temporal: base_url + data + offset

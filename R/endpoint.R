@@ -204,7 +204,7 @@ group <- function(..., .title = NULL) {
       call. = FALSE)
   }
 
-  if (length(avec) == 1L) {
+  if (rlang::has_length(avec, 1L)) {
     cli::cli_abort(
       c(msg, ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
       call. = FALSE)
