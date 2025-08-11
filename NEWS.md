@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9426 (2025-08-11)
+
+* field typing
+
+
 # providertwo 0.0.0.9425 (2025-08-10)
 
 * offset refactoring
