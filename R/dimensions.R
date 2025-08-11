@@ -50,18 +50,20 @@ dims_care <- function(x) {
 #' @noRd
 get_dims <- function(x) {
 
-  type_url <- url_type(x$identifier)
+  utype <- url_type(x$identifier)
 
-  if (type_url %in% c("current", "temporal")) return(dims_care(x))
+  if (utype %in% c("current", "temporal")) return(dims_care(x))
 
-  id <- x$identifier |>
-    append_url() |>
+  id <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    # append_url() |>
     request() |>
     req_error(is_error = ~ FALSE) |>
     perform_simple()
 
   list(
-    dims = class_dimensions(limit = api_limit(type_url), total = id$count %||% 0L),
+    dims = class_dimensions(
+      limit = api_limit(utype),
+      total = id$count %||% 0L),
     fields = class_fields(id$query$properties)
   )
 }

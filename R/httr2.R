@@ -116,12 +116,12 @@ parse_string <- function(resp, query = NULL) {
 #' offset(147984, 2000, "seq")
 #' @autoglobal
 #' @noRd
-offset <- function(n, limit, type = c("size", "seq")) {
+offset <- function(n, limit, type = "size") {
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
 
   if (n == 0L)    return(0L)
-  if (n <= limit) return(n)
+  # if (n <= limit) return(n)
 
   switch (
     match.arg(type, c("size", "seq")),

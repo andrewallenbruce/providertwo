@@ -176,8 +176,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   url <- select_years(obj, qry)
   prm <- match_query(obj, qry)
   prm <- generate_query(prm, is_care = TRUE)
-  url <- map(url, \(x) append_url(x, "stats") |>
-               collapse_query(prm))
+  url <- map(url, \(x) append_url(x, "stats") |> collapse_query(prm))
 
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>

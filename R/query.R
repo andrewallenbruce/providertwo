@@ -123,7 +123,7 @@ c_match <- function(a, b) {
 match_query <- function(obj, qry) {
 
   # Remove "year" if present
-  param  <- parameters(qry)[setdiff(names(parameters(qry)), "year")]
+  param  <- parameters(qry)[setdiff(names2(parameters(qry)), "year")]
   pname  <- names(param)
 
   # TODO Use a modifier on "year" parameter if meant for an API field?

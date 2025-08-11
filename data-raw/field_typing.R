@@ -1,41 +1,97 @@
 clog <- catalogs()
 
-# care_fields <- clog$care$current |>
-#   slt(title, modified, identifier)
-#
-x <- clog$hgov$current |> slt(title, modified, identifier) |> roworder(-modified)
-# e <- x$endpoints |> map(\(x) slt(x, modified, identifier)) |> roworder(-modified) |> _[1, ])
-# n <- cheapr::cheapr_rep_each(x$title, list_lengths(e))
+x <- the$clog$prov$current |> slt(x, title, modified, identifier) |> roworder(title, -modified)
 
-# care_fields <- cheapr::col_c(
-#   title = n,
-#   e |> purrr::list_rbind()) |>
-#   fastplyr::as_tbl()
+alias_column <- function(df, aka) {
+  to_col <- function(aka) {
+    code_head  <- glue::as_glue("cheapr::case(\n")
+    code_tail  <- glue::as_glue(",\n .default = NA)")
 
+    string <- paste0(
+      "gdetect(title, ",
+      "{glue::single_quote(unname(x))}) ~ ",
+      "{glue::single_quote(names(x))}"
+    )
 
-pfields <- set_names(x[["identifier"]], x[["title"]])
+    code_head +
+      glue::glue(string, x = aka) |>
+      glue::glue_collapse(sep = ",\n") +
+      code_tail
+  }
 
-fields_tbl9 <- purrr::imap(pfields, function(x, i) {
-  fastplyr::new_tbl(
-    title = i,
-    field = x |>
-      httr2::request() |>
-      httr2::req_error(is_error = ~ FALSE) |>
-      perform_simple() |>
-      # names()
-      # _$meta |>
-      # _$headers
-      _$query |>
-      _$properties
+  collapse::mtt(
+    df,
+    alias = to_col(aka) |>
+      rlang::parse_expr() |>
+      rlang::eval_bare()
   )
-}) |>
-  purrr::list_rbind() |>
-  mtt(catalog = "HealthcareGov") |>
-  join_on_title(x) |>
-  slt(catalog, title, field, modified)
+}
 
+fields_current <- function(x) {
 
-readr::write_csv(fields_tbl9, "data-raw/fields/hgov_curr_fields.csv")
+  x <- collapse::slt(x, title, modified, identifier) |>
+    collapse::roworder(title, -modified)
+
+  url_list <- rlang::set_names(x[["identifier"]], x[["title"]])
+
+  mirai::daemons(6)
+
+  res <- purrr::imap(url_list, purrr::in_parallel(\(x, i) {
+    fastplyr::new_tbl(
+      title = i,
+      field = x |>
+        httr2::request() |>
+        httr2::req_error(is_error = ~ FALSE) |>
+        httr2::req_perform() |>
+        httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE) |>
+        _$query |>
+        _$properties
+    )
+  }))
+
+  mirai::daemons(0)
+
+  res |>
+    purrr::list_rbind() |>
+    collapse::mtt(catalog = "prov", point = "current") |>
+    join_on_title(x) |>
+    alias_column(end_prov$current) |>
+    collapse::slt(catalog, point, alias, field, title, modified)
+}
+
+prov_fld <- fields_current(the$clog$prov$current)
+
+prov_fld |>
+  fcount(alias, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N)
+
+prov_fld |>
+  sbt(is.na(alias)) |>
+  fcount(title, decreasing = TRUE, sort = TRUE)
+
+prov_fld |>
+  sbt(gdetect(field, "year")) |>
+  fcount(field, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = 50)
+
+prov_fld |>
+  mtt(
+    type = case(
+      field %in% c("npi") ~ "npi",
+      field %in% c("year", "fiscal_year", "payment_year") ~ "year",
+      field %in% c("city", "citytown", "practicecity") ~ "city",
+      field %in% c("county", "countyparish") ~ "county",
+      field %in% c("phone", "telephone_number", "telephonenumber") ~ "phone",
+      field %in% c("zip", "zip_code", "practicezip9code") ~ "zip",
+      field %in% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
+      field %in% c("alternate_ccn", "ccn", "cms_certification_number_ccn") ~ "ccn",
+      field %in% c("state", "state_or_nation", "practicestate") ~ "state",
+      .default = NA
+    )
+  ) |>
+  slt(catalog, alias, field, type) |>
+  fcount(type, decreasing = TRUE, sort = TRUE)
 
 all <- readr::read_csv(fs::dir_ls("data-raw/fields")) |>
   mtt(
