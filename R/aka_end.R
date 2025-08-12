@@ -235,18 +235,25 @@ end_caid <- list(
 #' @noRd
 end_open <- list(
   current = list(
-    grp_teach   = "Payments grouped by Teaching Hospital",
-    prf_cover   = "^Covered Recipient Profile Supplement$",
-    prf_phys    = "Physician (distinct) profile information",
-    prf_info    = "Profile Information",
-    prf_map     = "Provider profile ID mapping table",
-    prf_entity  = "Reporting entity profile information",
-    prf_teach   = "Teaching Hospital profile information",
-    sum_dash    = "Summary Dashboard - all years",
-    sum_state   = "State level payment total and averages for all years",
-    sum_nature  = "State payment totals and averages grouped by Nature of Payment for all years",
-    sum_nation  = "National level payment total and averages for all years",
-    sum_special = "National level payment total and averages by provider specialty for all years"
+    grp_teach = "Payments grouped by Teaching Hospital",
+    prf_cover = "^Covered Recipient Profile Supplement$",
+    prf_phys = "Physician \\(distinct\\) profile information",
+    prf_info = "Profile Information",
+    prf_map = "Provider profile ID mapping table",
+    prf_entity = "Reporting entity profile information",
+    prf_teach = "Teaching Hospital profile information",
+    sum_phys = "Payments grouped by physician \\(distinct\\) for all years",
+    sum_dash = "Summary Dashboard - all years",
+    sum_state = "State level payment total and averages for all years",
+    sum_nature = "State payment totals and averages grouped by Nature of Payment for all years",
+    sum_nation = "National level payment total and averages for all years",
+    sum_specialty = "National level payment total and averages by provider specialty for all years",
+    sum_cover_nature = "Payments grouped by covered recipient and nature of payments",
+    sum_cover_entity = "Payments grouped by covered recipient and reporting entities",
+    sum_entity_nature = "Payments grouped by reporting entities and nature of payments",
+    sum_entity = "Payments grouped by reporting entities",
+    sum_all = "Payments grouped by reporting entities, covered recipient, and nature of payments",
+    sum_state_nature = "State payment totals grouped by Nature of Payment for all years"
   ),
   temporal = list(
     pay_general       = "General Payment Data",

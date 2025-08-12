@@ -1,4 +1,4 @@
-clog <- catalogs()
+source(here::here("data-raw", "pins_internal.R"))
 
 fields_current <- function(catalog_tbl, alias_list) {
 
@@ -7,13 +7,22 @@ fields_current <- function(catalog_tbl, alias_list) {
   e <- rlang::enquo(catalog_tbl) |>
     rlang::as_label() |>
     strsplit("[$]", perl = TRUE) |>
-    yank() |>
-    _[3:4]
+    yank()
 
   x <- collapse::slt(catalog_tbl, title, modified, identifier) |>
     collapse::roworder(title, -modified)
 
   url_list <- rlang::set_names(x[["identifier"]], x[["title"]])
+
+  # res <- base_url |>
+  #   map(request) |>
+  #   req_perform_parallel(on_error = "continue") |>
+  #   map2(c("/dataset", rep(NA_character_, 4)), function(x, q) {
+  #     resp_body_string(x) |>
+  #       fparse(query = if (is.na(q)) NULL else q) |>
+  #       as_fibble()
+  #   }) |>
+  #   set_names(names(base_url))
 
   mirai::daemons(6)
 
@@ -32,9 +41,17 @@ fields_current <- function(catalog_tbl, alias_list) {
 
   mirai::daemons(0)
 
-  res |>
-    purrr::list_rbind() |>
-    collapse::mtt(catalog = e[1], point = e[2]) |>
+  empty <- res |>
+    purrr::keep(vctrs::vec_is_empty) |>
+    names() |>
+    fastplyr::f_enframe(value = "title")
+
+  non_empty <- res |>
+    purrr::discard(vctrs::vec_is_empty) |>
+    purrr::list_rbind()
+
+  vctrs::vec_rbind(non_empty, empty) |>
+    collapse::mtt(catalog = e[3], point = e[4]) |>
     join_on_title(x) |>
     alias_column(alias_list) |>
     collapse::slt(catalog, point, alias, field, title, modified)
@@ -48,32 +65,19 @@ prov_fld |>
   print(n = Inf)
 
 prov_fld |>
-  sbt(is.na(alias)) |>
-  fcount(title, decreasing = TRUE, sort = TRUE)
+  field_type_col() |>
+  fcount(type, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = 200)
 
 prov_fld |>
-  sbt(gdetect(field, "year")) |>
+  field_type_col() |>
+  sbt(is.na(type)) |>
+  # fcount(type, decreasing = TRUE, sort = TRUE) |>
+  # sbt(gdetect(field, "year")) |>
   fcount(field, decreasing = TRUE, sort = TRUE) |>
   roworder(-N) |>
-  print(n = 50)
-
-prov_fld |>
-  mtt(
-    type = case(
-      field %in% c("npi") ~ "npi",
-      field %in% c("year", "fiscal_year", "payment_year") ~ "year",
-      field %in% c("city", "citytown", "practicecity") ~ "city",
-      field %in% c("county", "countyparish") ~ "county",
-      field %in% c("phone", "telephone_number", "telephonenumber") ~ "phone",
-      field %in% c("zip", "zip_code", "practicezip9code") ~ "zip",
-      field %in% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
-      field %in% c("alternate_ccn", "ccn", "cms_certification_number_ccn") ~ "ccn",
-      field %in% c("state", "state_or_nation", "practicestate") ~ "state",
-      .default = NA
-    )
-  ) |>
-  slt(catalog, alias, field, type) |>
-  fcount(type, decreasing = TRUE, sort = TRUE)
+  print(n = 200)
 
 fields_current_care <- function(catalog_tbl, alias_list) {
 
@@ -82,8 +86,7 @@ fields_current_care <- function(catalog_tbl, alias_list) {
   e <- rlang::enquo(catalog_tbl) |>
     rlang::as_label() |>
     strsplit("[$]", perl = TRUE) |>
-    yank() |>
-    _[3:4]
+    yank()
 
   x <- collapse::slt(catalog_tbl, title, modified, identifier) |>
     collapse::roworder(title, -modified)
@@ -117,54 +120,62 @@ fields_current_care <- function(catalog_tbl, alias_list) {
     purrr::list_rbind()
 
   vctrs::vec_rbind(non_empty, empty) |>
-    collapse::mtt(catalog = e[1], point = e[2]) |>
+    collapse::mtt(catalog = e[3], point = e[4]) |>
     join_on_title(x) |>
-    alias_column(end_care$current) |>
-    collapse::slt(catalog, point, alias, field, title, modified)
+    alias_column(alias_list) |>
+    collapse::slt(catalog, point, alias, field, title, modified) |>
+    collapse::sbt(stringi::stri_detect_regex(title, "CMS Program Statistics", negate = TRUE))
 }
-
-
 
 care_fld <- fields_current_care(the$clog$care$current, end_care$current)
 
 care_fld |>
+  alias_after(end_care$temporal) |>
   fcount(alias, decreasing = TRUE, sort = TRUE) |>
   roworder(-N) |>
   print(n = Inf)
 
 care_fld |>
-  sbt(stringi::stri_detect_regex(title, "CMS Program Statistics", negate = TRUE)) |>
-  alias_after(end_care$temporal) |>
-  sbt(!is.na(alias)) |>
-  fcount(title, decreasing = TRUE, sort = TRUE) |>
-  roworder(-N)
-
-care_fld |>
-  sbt(gdetect(field, "npi")) |>
+  # alias_after(end_care$temporal) |>
+  sbt(stringi::stri_detect_regex(field, "ccn", case_insensitive = TRUE)) |>
+  # sbt(stringi::stri_detect_regex(field, "years", case_insensitive = TRUE, negate = TRUE)) |>
   fcount(field, decreasing = TRUE, sort = TRUE) |>
   roworder(-N) |>
   print(n = 50)
 
 care_fld |>
-  mtt(
-    type = case(
-      field %in% c("npi") ~ "npi",
-      field %in% c("year", "fiscal_year", "payment_year") ~ "year",
-      field %in% c("city", "citytown", "practicecity") ~ "city",
-      field %in% c("county", "countyparish") ~ "county",
-      field %in% c("phone", "telephone_number", "telephonenumber") ~ "phone",
-      field %in% c("zip", "zip_code", "practicezip9code") ~ "zip",
-      field %in% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
-      field %in% c("alternate_ccn", "ccn", "cms_certification_number_ccn") ~ "ccn",
-      field %in% c("state", "state_or_nation", "practicestate") ~ "state",
-      .default = NA
-    )
-  ) |>
+  field_type_col() |>
   slt(catalog, alias, field, type) |>
-  fcount(type, decreasing = TRUE, sort = TRUE)
+  fcount(type, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = Inf)
 
+open_fld <- fields_current(the$clog$open$current, end_open$current)
 
+open_fld |>
+  fcount(alias, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = Inf)
 
+open_fld |>
+  sbt(stringi::stri_detect_regex(field, "middle_name", case_insensitive = TRUE)) |>
+  # sbt(stringi::stri_detect_regex(field, "years", case_insensitive = TRUE, negate = TRUE)) |>
+  fcount(field, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = 50)
+
+open_fld |>
+  field_type_col() |>
+  slt(catalog, alias, field, type) |>
+  fcount(type, decreasing = TRUE, sort = TRUE) |>
+  roworder(-N) |>
+  print(n = Inf)
+
+pin_update(
+  vctrs::vec_rbind(prov_fld, care_fld, open_fld),
+  name = "field_types",
+  title = "Field Typing",
+  description = "Field Typing")
 
 all <- readr::read_csv(fs::dir_ls("data-raw/fields")) |>
   mtt(
