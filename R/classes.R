@@ -151,7 +151,12 @@ class_group <- S7::new_class(
   package    = NULL,
   properties = list(
     title    = S7::class_character,
-    members  = S7::class_list
+    members  = S7::class_list #,
+    # validator = function(self) {
+    #   if (any(purrr::map_lgl(self@members, \(x) ! S7::S7_inherits(x, class_catalog))))
+    #     cli::cli_abort(c("x" = "{.field @members} must be {.cls class_catalog}"),
+    #                    call. = FALSE)
+    # }
   )
 )
 
@@ -199,8 +204,10 @@ query_group <- S7::new_class(
   parent     = class_query,
   properties = list(conjunction = S7::class_character),
   validator = function(self) {
-    if (length(self@conjunction) != 1) "@conjunction must be length 1"
-    if (!self@conjunction %in% c("OR", "AND")) "@conjunction must be length 1"
+    if (length(self@conjunction) != 1)
+      cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"), call. = FALSE)
+    if (!self@conjunction %in% c("OR", "AND"))
+      cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"), call. = FALSE)
   }
 )
 
@@ -220,8 +227,8 @@ class_modifier <- S7::new_class(
 
 #' @noRd
 #' @autoglobal
-class_results <- S7::new_class(
-  name       = "class_results",
+class_response <- S7::new_class(
+  name       = "class_response",
   package    = NULL,
   properties = list(
     alias    = S7::class_character,
@@ -231,14 +238,9 @@ class_results <- S7::new_class(
     limit    = S7::class_integer,
     found    = S7::class_integer,
     total    = S7::class_integer,
-    pages    = S7::new_property(
-      S7::class_integer,
-      getter = function(self) {
-        purrr::map_int(self@found, offset, limit = self@limit)
-      }
-    ),
-    error  = S7::new_property(
-      S7::new_union(NULL, S7::class_logical),
+    pages    = S7::new_property(S7::class_integer,
+      getter = function(self) purrr::map_int(self@found, offset, limit = self@limit)),
+    error    = S7::new_property(S7::new_union(NULL, S7::class_logical),
       getter = function(self) {
         if (is.null(self@params)) return(NULL)
         self@found == self@total

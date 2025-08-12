@@ -24,4 +24,8 @@ quality_metrics(year = 2018:2025)
 quality_eligibility(
    year = 2018:2024,
    npi = c(1144544834, 1043477615, 1932365699, 1225701881))
+
+build(
+   endpoint("quality_payment"),
+   query(npi = any_of(c(1144544834, 1043477615, 1932365699, 1225701881))))
 }

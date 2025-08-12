@@ -79,7 +79,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   if (is_empty(prm)) {
     cli_nomatch(obj)
     return(
-      class_results(
+      class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
         base   = obj@identifier,
@@ -98,7 +98,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
       parse_string(x, query = "count")) |>
     unlist(use.names = FALSE)
 
-  class_results(
+  class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     params = names2(prm),
@@ -121,7 +121,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     map(function(x) parse_string(x, query = "count")) |>
     unlist(use.names = FALSE)
 
-  class_results(
+  class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     params = names2(prm),
@@ -139,7 +139,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   if (is_empty(prm)) {
     cli_nomatch(obj)
     return(
-      class_results(
+      class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
         base   = obj@identifier,
@@ -160,7 +160,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
       parse_string(x)) |>
     yank("data")
 
-  class_results(
+  class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     params = names2(prm),
@@ -182,7 +182,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     req_perform_parallel(on_error = "continue") |>
     map(function(x) parse_string(x))
 
-  class_results(
+  class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     params = names2(prm),
