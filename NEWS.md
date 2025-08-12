@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9430 (2025-08-12)
+
+* quality payment fields
+
+
 # providertwo 0.0.0.9429 (2025-08-12)
 
 * All current endpoint fields in pin
