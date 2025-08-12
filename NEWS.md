@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9428 (2025-08-12)
+
+* field types pin
+
+
 # providertwo 0.0.0.9427 (2025-08-11)
 
 * more field typing
