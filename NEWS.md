@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9429 (2025-08-12)
+
+* All current endpoint fields in pin
+
+
 # providertwo 0.0.0.9428 (2025-08-12)
 
 * field types pin
