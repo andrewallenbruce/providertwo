@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9429</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9430</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,6 +101,27 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: is_maqi &lt;lgl&gt;, yearsInMedicare &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pecosEnrollmentDate &lt;int&gt;, specialty &lt;glue&gt;, ORGS &lt;list&gt;, qpStatus &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   amsMipsEligibleClinician &lt;lgl&gt;, qpScoreType &lt;lgl&gt;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="build.html">build</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"quality_payment"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>npi <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1144544834</span>, <span class="fl">1043477615</span>, <span class="fl">1932365699</span>, <span class="fl">1225701881</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "quality_payment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Quality Payment Program Experience"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "npi"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ base  :List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2023: chr "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2022: chr "https://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2021: chr "https://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2020: chr "https://data.cms.gov/data-api/v1/dataset/48a484e6-ff02-4284-8666-6045b3cac17f/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2019: chr "https://data.cms.gov/data-api/v1/dataset/5776e77d-a844-49fd-b697-a2b01bdacdc7/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2018: chr "https://data.cms.gov/data-api/v1/dataset/4cae2e39-693d-4699-ac23-2611b29c5da7/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2017: chr "https://data.cms.gov/data-api/v1/dataset/d87865f9-70b6-41fb-be3a-db735c4a05d2/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:7] 2 2 3 3 3 5 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:7] 524998 624200 698730 921517 944376 881959 1054657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:7] 1 1 1 1 1 1 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:7] FALSE FALSE FALSE FALSE FALSE FALSE ...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

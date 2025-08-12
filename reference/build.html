@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9429</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9430</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "drug_state"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "State Drug Utilization Data"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "state"</span>
@@ -89,7 +89,7 @@
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">ends_with</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "enroll_prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr [1:2] "FIRST_NAME" "LAST_NAME"</span>
@@ -101,7 +101,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi FALSE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"BIRMINGHAM"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Dialysis Facilities"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "city"</span>
@@ -121,7 +121,7 @@
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No <span style="color: #00BB00;">query</span> matches for <span style="color: #00BB00;">dial_nation</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_listing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_listing"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Dialysis Facility - Listing by Facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "state"</span>
@@ -133,7 +133,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_nation"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Dialysis Facility - National Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: NULL</span>
@@ -145,7 +145,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_state"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Dialysis Facility - State Averages"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr "state"</span>
@@ -163,7 +163,7 @@
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2023</span>,</span></span>
 <span class="r-in"><span>    practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    allowed_charges <span class="op">=</span> <span class="fu"><a href="query_modifier.html">less_than</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "quality_payment"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Quality Payment Program Experience"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr [1:2] "allowed charges" "practice state or us territory"</span>
@@ -183,7 +183,7 @@
 <span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_results&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "pdc_clinician"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "National Downloadable File"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: chr [1:3] "provider_first_name" "provider_last_name" "state"</span>
