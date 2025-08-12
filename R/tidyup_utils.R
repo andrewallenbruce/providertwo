@@ -45,10 +45,12 @@ make_address <- function(a1, a2) {
 clean_names <- function(x) {
   # Convert to lowercase
   x <- tolower(x)
+  # Replace dash with underscore
+  x <- gsub("-", "_", x, perl = TRUE)
   # Replace space with underscore
   x <- gsub(" ", "_", x, perl = TRUE)
   # Remove dash
-  x <- gsub("-", "", x, perl = TRUE)
+  # x <- gsub("-", "", x, perl = TRUE)
   # Remove parentheses
   x <- gsub("\\(|\\)", "", x, perl = TRUE)
   # Remove multiple underscores

@@ -58,6 +58,7 @@ alias_after <- function(df, aka) {
 field_type_col <- function(df) {
   collapse::mtt(
     df,
+    field = rm_nonascii(field),
     type = cheapr::case(
       field %in_% c(
         "provider_first_name",
@@ -109,7 +110,12 @@ field_type_col <- function(df) {
         "payment_year",
         "Calendar Year"
       ) ~ "year",
-      field %in_% c("years", "Years", "YEARS") ~ "years",
+      field %in_% c(
+        "years",
+        "Years",
+        "YEARS",
+        "years in medicare"
+        ) ~ "years",
       field %in_% c(
         "city",
         "City",
@@ -147,8 +153,17 @@ field_type_col <- function(df) {
         "telephonenumber",
         "Practice Location Phone Number"
       ) ~ "phone",
-      field %in_% c("zip", "zip_code", "practicezip9code") ~ "zip",
-      field %in_% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
+      field %in_% c(
+        "zip",
+        "zip_code",
+        "practicezip9code"
+        ) ~ "zip",
+      field %in_% c(
+        "address",
+        "adr_ln_1",
+        "address_line_1",
+        "provider_address"
+        ) ~ "address",
       field %in_% c("address_line_2", "adr_ln_2") ~ "address_2",
       field %in_% c(
         "state",
@@ -157,8 +172,7 @@ field_type_col <- function(df) {
         "practicestate",
         "practice state or us territory"
       ) ~ "state",
-      .default = NA
+      .default = NA_character_
     )
-  ) |>
-    collapse::colorder("type")
+  )
 }

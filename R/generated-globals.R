@@ -43,6 +43,8 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
+  # <field_type_col>
+  "field",
   # <tidy_resources>
   "fileSize",
   # <npi_nppes>
