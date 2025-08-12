@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9431 (2025-08-12)
+
+* is_catalog
+
+
 # providertwo 0.0.0.9430 (2025-08-12)
 
 * quality payment fields
