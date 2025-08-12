@@ -146,19 +146,39 @@ class_hgov <- S7::new_class(
 
 #' @noRd
 #' @autoglobal
+not_catalog <- function(obj) {
+  purrr::map_lgl(obj, function(x) !S7::S7_inherits(x, class_catalog))
+}
+
+#' @noRd
+#' @autoglobal
+which_not_catalog <- function(obj) {
+  collapse::funique(
+    purrr::map_chr(
+      unname(
+        obj[not_catalog(obj)]),
+      function(x) pluck(class(x), 1)
+      )
+    )
+}
+
+#' @noRd
+#' @autoglobal
 class_group <- S7::new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
     title    = S7::class_character,
-    members  = S7::class_list #,
+    members  = S7::class_list#,
     # validator = function(self) {
-    #   if (any(purrr::map_lgl(self@members, \(x) ! S7::S7_inherits(x, class_catalog))))
-    #     cli::cli_abort(c("x" = "{.field @members} must be {.cls class_catalog}"),
-    #                    call. = FALSE)
-    # }
+    # if (any(not_catalog(self@members))) {
+    #   cli::cli_abort(
+    #     c("x" = "All {.field @members} must be {.cls class_catalog}, \n",
+    #       ">" = "not {.cls {which_not_catalog(self@members)}}."))
+    #     }
+    #   }
+    )
   )
-)
 
 #' @noRd
 #' @autoglobal
