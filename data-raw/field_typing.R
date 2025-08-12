@@ -57,6 +57,10 @@ fields_current <- function(catalog_tbl, alias_list) {
     collapse::slt(catalog, point, alias, field, title, modified)
 }
 
+the$clog$caid$current |>
+  alias_column(end_caid$current) |>
+  sbt(is.na(alias))
+
 prov_fld <- fields_current(the$clog$prov$current, end_prov$current)
 
 prov_fld |>
@@ -171,8 +175,26 @@ open_fld |>
   roworder(-N) |>
   print(n = Inf)
 
+caid_fld <- fields_current(
+  sbt(the$clog$caid$current,
+      title %!in_% c(
+        "Monthly Enrollment - Test",
+        "NAM CAHPS 2014 Public Use",
+        "PI dataset",
+        "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data",
+        "State Medicaid and CHIP Test",
+        "Test07232025-enrollment"
+        )
+      ),
+  end_caid$current)
+
+caid_fld <- caid_fld |>
+  collapse::mtt(catalog = "caid", point = "current")
+
+hgov_fld <- fields_current(the$clog$hgov$current, end_hgov$current)
+
 pin_update(
-  vctrs::vec_rbind(prov_fld, care_fld, open_fld),
+  vctrs::vec_rbind(prov_fld, care_fld, open_fld, caid_fld, hgov_fld),
   name = "field_types",
   title = "Field Typing",
   description = "Field Typing")

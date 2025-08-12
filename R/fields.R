@@ -401,15 +401,26 @@ alias_after <- function(df, aka) {
   )
 }
 
+# get_pin("field_types") |>
+# field_type_col()
 #' @autoglobal
 #' @noRd
 field_type_col <- function(df) {
   collapse::mtt(
     df,
     type = cheapr::case(
-      field %in_% c("provider_first_name", "covered_recipient_profile_first_name") ~ "first_name",
-      field %in_% c("provider_middle_name", "covered_recipient_profile_middle_name") ~ "middle_name",
-      field %in_% c("provider_last_name", "covered_recipient_profile_last_name") ~ "last_name",
+      field %in_% c(
+        "provider_first_name",
+        "covered_recipient_profile_first_name"
+      ) ~ "first_name",
+      field %in_% c(
+        "provider_middle_name",
+        "covered_recipient_profile_middle_name"
+      ) ~ "middle_name",
+      field %in_% c(
+        "provider_last_name",
+        "covered_recipient_profile_last_name"
+      ) ~ "last_name",
       field %in_% c("provider_name", "recipient_name") ~ "full_name",
       field %in_% c("suff") ~ "suffix",
       field %in_% c("facility_name") ~ "facility_name",
@@ -489,8 +500,15 @@ field_type_col <- function(df) {
       field %in_% c("zip", "zip_code", "practicezip9code") ~ "zip",
       field %in_% c("address", "adr_ln_1", "address_line_1", "provider_address") ~ "address",
       field %in_% c("address_line_2", "adr_ln_2") ~ "address_2",
-      field %in_% c("state", "state_name", "state_or_nation", "practicestate") ~ "state",
+      field %in_% c(
+        "state",
+        "state_name",
+        "state_or_nation",
+        "practicestate",
+        "practice state or us territory"
+      ) ~ "state",
       .default = NA
     )
-  )
+  ) |>
+    collapse::colorder("type")
 }
