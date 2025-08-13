@@ -10,7 +10,7 @@
 #'    npi = c(1144544834, 1043477615, 1932365699, 1225701881))
 #'
 #' build(
-#'    endpoint("quality_payment"),
+#'    endpoint("qppe"),
 #'    query(npi = any_of(c(1144544834, 1043477615, 1932365699, 1225701881))))
 NULL
 

@@ -1,24 +1,150 @@
-get_pin("field_types") |>
-  sbt(point == "temporal"
-      # & field == "practice state or us territory"
-      ) |>
+field_types <- get_pin("field_types")
+
+qpp_enums <- list(
+  reporting_option = c("APM Performance Pathway", "Traditional MIPS"),
+  participation_option = c("APM Entity", "Group", "Individual"),
+  participation_type = c("MIPS APM", "Group", "Individual"),
+  clinician_type = c(
+    'Doctor of Medicine',
+    'Nurse Practitioner',
+    'Physician Assistant',
+    'Anesthesiologist Assistant',
+    'Clinical Social Worker',
+    'Doctor of Optometry',
+    'Registered Dietician/Nutrition Professional',
+    'Physical Therapist',
+    'Certified Registered Nurse Anesthetist',
+    'Certified Nurse-Midwife',
+    'Clinical Psychologist',
+    'Occupational Therapist',
+    'Qualified Audiologist',
+    'Doctor of Dental Medicine/Doctor of Dental Surgery'
+  ),
+  clinician_specialty = c(
+    'Emergency Medicine',
+    'Neurosurgery',
+    'Nurse Practitioner',
+    'Ophthalmology',
+    'Physician Assistant',
+    'Hospitalist',
+    'Anesthesiologist Assistant',
+    'Cardiology',
+    'Pathology',
+    'Urology',
+    'Neurology',
+    'Critical Care (Intensivists)',
+    'General Surgery',
+    'Internal Medicine',
+    'Otolaryngology',
+    'Family Practice',
+    'Anesthesiology',
+    'Interventional Cardiology',
+    'Orthopedic Surgery',
+    'Licensed Clinical Social Worker',
+    'Nephrology',
+    'Obstetrics/Gynecology',
+    'Hospice and Palliative Care',
+    'Dermatology',
+    'Physical Medicine and Rehabilitation',
+    'Interventional Pain Management',
+    'Surgical Oncology',
+    'Endocrinology',
+    'Optometry',
+    'Thoracic Surgery',
+    'Registered Dietician/Nutrition Professional',
+    'Pulmonary Disease',
+    'Diagnostic Radiology',
+    'Physical Therapist in Private Practice',
+    'Certified Registered Nurse Anesthetist (CRNA)',
+    'Cardiac Electrophysiology',
+    'Allergy/Immunology',
+    'Certified Nurse Midwife',
+    'Interventional Radiology',
+    'Clinical Psychologist',
+    'Podiatry',
+    'Psychiatry',
+    'Hematology/Oncology',
+    'Advanced heart failure and transplant cardiology',
+    'Colorectal Surgery (Formerly Proctology)',
+    'Gastroenterology',
+    'Infectious Disease',
+    'Preventive Medicine',
+    'Radiation Oncology',
+    'Hematopoietic cell transplantation and cellular therapy',
+    'Occupational Therapist in Private Practice',
+    'Audiologist (Billing Independently)',
+    'Vascular Surgery',
+    'Sports Medicine',
+    'Rheumatology',
+    'Oral Surgery (Dentists Only)',
+    'Gynecological/Oncology',
+    'Pain Management',
+    'Cardiac Surgery',
+    'Maxillofacial Surgery',
+    'Medical Oncology',
+    'Geriatric Medicine',
+    'Hematology',
+    'Pediatric Medicine',
+    'Sleep Medicine',
+    'Hand Surgery',
+    'Nuclear Medicine',
+    'Missing',
+    'General Practice',
+    'Plastic and Reconstructive Surgery',
+    'Ambulatory Surgical Center',
+    'Independent Diagnostic Testing Facility (IDTF)',
+    'Chiropractic',
+    'Undetermined',
+    'Single or Multispecialty Clinic or Group Practice'
+  )
+)
+
+# field_types <- field_types[which_(field_types$point %in_% "current" & field_types$alias %in_% "qppe", invert = TRUE), ]
+
+field_types |>
   field_type_col() |>
+  sbt(alias == "qppe" & is.na(type)) |>
+  fcount(field) |>
+  roworder(-N) |>
   collapse::mtt(
-    alias = ifelse(title == "Quality Payment Program Experience", "quality_payment", alias),
     type = cheapr::case(
-      field %in_% c("practice state or us territory") ~ "state",
-      field %in_% c("years in medicare") ~ "years",
-    .default = type
-    ))
+      # COUNTS
+      field %in_% c("practice size") ~ "practice_size",
+      field %in_% c("medicare patients") ~ "patients",
+      field %in_% c("services") ~ "services",
+      field %in_% c("allowed charges") ~ "allowed_charges",
+      # FLAGS
+      field %in_% c("opted into mips") ~ "opt_into_mips",
+      # NUMERICS
+      field %in_% c("final score") ~ "final_score",
+      field %in_% c("payment adjustment percentage") ~ "pay_adj",
+      field %in_% c("dual_eligibility_ratio") ~ "dual_ratio",
+    .default = type)
+  )
+
+qppe_names <- field_types |> sbt(alias == "qppe") |> slt(field, year)
+
+qppe_by_year <- qppe_names |> rsplit(~year)
 
 
+field_list <- fastplyr::list_tidy(
+  all = reduce(qppe_by_year, intersect),
+  `2023` = setdiff(qppe_by_year$`2023`, all),
+  `2022` = setdiff(qppe_by_year$`2022`, all),
+  `2021` = setdiff(qppe_by_year$`2021`, all),
+  `2020` = setdiff(qppe_by_year$`2020`, all),
+  `2019` = setdiff(qppe_by_year$`2019`, all),
+  `2018` = setdiff(qppe_by_year$`2018`, all),
+  `2017` = setdiff(qppe_by_year$`2017`, all)
+) |>
+  map(\(x) kit::psort(x, nThread = 4L))
 
-
-qpp <- build(endpoint("quality_payment"), query(practice_state_or_us_territory = "GA"))@base
+qpp <- build(endpoint("qppe"), query(practice_state_or_us_territory = any_of(c("GA", "NY"))))@base
 
 url <- map(qpp, function(x) {
   gremove(x, "/stats") |>
-    greplace("size=1", "size=500")
+    greplace("size=1", "size=500") |>
+    greplace("offset=0", "offset=10000")
 })
 
 qpp_ <- purrr::imap(url, function(x, i) {
@@ -37,7 +163,7 @@ tfbin <- function(x) {
   cheapr::val_match(x, "True" ~ TRUE, "False" ~ FALSE, .default = NA)
 }
 
-over <- set_names(qpp_, clean_names(names(qpp_))) |>
+qpp_ <- set_names(qpp_, clean_names(names2(qpp_))) |>
   map_na_if() |>
   mtt(
     acr(
@@ -172,18 +298,32 @@ over <- set_names(qpp_, clean_names(names(qpp_))) |>
         participation_type
       ),
     cheapr::as_factor)
-    ) |>
-  # dplyr::glimpse() |>
-  cheapr::overview()
+    )
+
+
+
+
+
+qpp_ |>
+  fcount(clinician_specialty) |>
+  _$clinician_specialty |>
+  glue::single_quote() |>
+  paste0(", ") |>
+  cat(sep = "\n")
+
+over <- qpp_ |> cheapr::overview()
 
 over$numeric |>
   fastplyr::as_tbl() |>
   print(n = 100)
 
-over$logical |> fastplyr::as_tbl()
+over$logical |>
+  fastplyr::as_tbl() |>
+  print(n = 100)
 
 over$categorical |>
   fastplyr::as_tbl() |>
+  print(n = 100)
   sbt(is.na(n_levels) & n_unique > 1 & n_unique < 6) |>
   print(n = 200)
   _$col |>

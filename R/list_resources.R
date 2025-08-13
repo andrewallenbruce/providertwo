@@ -6,7 +6,7 @@
 #'
 #' @examples
 #' endpoint("enroll_prov") |> list_resources()
-#' endpoint("quality_payment") |> list_resources()
+#' endpoint("qppe") |> list_resources()
 #' collection("in_hosp") |> list_resources()
 #' group("asc_facility", "enterprise", "lab_fee") |> list_resources()
 #' @autoglobal

@@ -33,7 +33,7 @@ build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
 build(collection("dialysis"), query(state = "AL"))
 
 build(
-  endpoint("quality_payment"),
+  endpoint("qppe"),
   query(
     year = 2021:2023,
     practice_state_or_us_territory = any_of(c("GA", "FL")),

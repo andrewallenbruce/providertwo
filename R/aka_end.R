@@ -91,7 +91,7 @@ end_care <- list(
     strong_start = "Strong Start Awardees"
   ),
   temporal = list(
-    quality_payment = "^Quality Payment Program Experience$",
+    qppe = "^Quality Payment Program Experience$",
     px_summary = "^Physician[/]Supplier Procedure Summary$",
     dial_facility = "^Medicare Dialysis Facilities$",
     aco_share = "^Performance Year Financial and Quality Results$",
