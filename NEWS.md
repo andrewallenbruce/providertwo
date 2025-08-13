@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9433 (2025-08-12)
+
+* more qpp field typing
+
+
 # providertwo 0.0.0.9432 (2025-08-12)
 
 * qpp fields
