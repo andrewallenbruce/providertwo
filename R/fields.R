@@ -61,24 +61,84 @@ field_type_col <- function(df) {
     field = rm_nonascii(field),
     type = cheapr::case(
       field %in_% c(
+        "FIRST_NAME",
+        "First Name",
         "provider_first_name",
-        "covered_recipient_profile_first_name"
+        "covered_recipient_profile_first_name",
+        "Individual First Name"
       ) ~ "first_name",
       field %in_% c(
+        "MIDDLE NAME",
+        "MDL_NAME",
         "provider_middle_name",
         "covered_recipient_profile_middle_name"
       ) ~ "middle_name",
       field %in_% c(
+        "LAST_NAME",
+        "Last Name",
         "provider_last_name",
-        "covered_recipient_profile_last_name"
+        "covered_recipient_profile_last_name",
+        "Individual Last Name"
       ) ~ "last_name",
-      field %in_% c("provider_name", "recipient_name") ~ "full_name",
-      field %in_% c("suff") ~ "suffix",
-      field %in_% c("facility_name") ~ "facility_name",
+      field %in_% c(
+        "provider_name",
+        "recipient_name",
+        "PRVDR_NAME"
+        ) ~ "full_name",
+      field %in_% c("suff") ~ "suffix_name",
+      field %in_% c("ORG_NAME", "ORGANIZATION NAME", "Organization Name") ~ "org_name",
+      field %in_% c("FAC_NAME", "facility_name") ~ "facility_name",
       field %in_% c("measure_name") ~ "measure_name",
-      field %in_% c("ind_pac_id") ~ "pac_ind",
-      field %in_% c("org_pac_id") ~ "pac_org",
-      field %in_% c("npi", "NPI", "Individual NPI", "covered_recipient_npi") ~ "npi",
+      field %in_% c("DOING BUSINESS AS NAME", "Group Legal Business Name") ~ "dba_name",
+      field %in_% c("Hosp_Name") ~ "hospital_name",
+
+      field %in_% c(
+        "PROVIDER_TYPE_CD",
+        "PROVIDER TYPE CODE"
+        ) ~ "specialty_code",
+      field %in_% c(
+        "Specialty",
+        "PROVIDER_TYPE_DESC",
+        "PROVIDER TYPE TEXT",
+        "Provider Type Text",
+        "Individual Specialty Description"
+        ) ~ "specialty",
+
+      field %in_% c(
+        "ENRLMT_ID",
+        "ENROLLMENT ID",
+        "Enrollment ID",
+        "Individual Enrollment ID"
+        ) ~ "enid_ind",
+      field %in_% c(
+        "Group Enrollment ID"
+      ) ~ "enid_org",
+
+      field %in_% c(
+        "PECOS_ASCT_CNTL_ID",
+        "ind_pac_id",
+        "ASSOCIATE ID",
+        "Individual PAC ID"
+        ) ~ "pac_ind",
+      field %in_% c("org_pac_id", "Group PAC ID") ~ "pac_org",
+      field %in_% c("ASSOCIATE ID - OWNER") ~ "pac_owner",
+
+      field %in_% c("hcpcs_cd") ~ "hcpcs",
+
+      field %in_% c(
+        "CLIA_ID_NUMBER_1",
+        "CLIA_ID_NUMBER_2",
+        "CLIA_ID_NUMBER_3",
+        "CLIA_ID_NUMBER_4"
+        ) ~ "clia",
+
+      field %in_% c(
+        "npi",
+        "NPI",
+        "Individual NPI",
+        "covered_recipient_npi",
+        "National Provider Identifier"
+        ) ~ "npi",
       field %in_% c("entity_npi") ~ "npi_entity",
       field %in_% c("NPI - BUYER") ~ "npi_buyer",
       field %in_% c("NPI - SELLER") ~ "npi_seller",
@@ -86,7 +146,9 @@ field_type_col <- function(df) {
       field %in_% c("Rndrng_NPI") ~ "npi_rendering",
       field %in_% c("Suplr_NPI") ~ "npi_supplier",
       field %in_% c("Prscrbr_NPI", "PRSCRBR_NPI") ~ "npi_prescriber",
+
       field %in_% c(
+        "PRVDR_NUM",
         "alternate_ccn",
         "Alternate_CCNs",
         "ccn",
@@ -123,9 +185,11 @@ field_type_col <- function(df) {
         "citytown",
         "CITY_NAME",
         "City_Name",
+        "City Name",
         "city_name",
         "practicecity",
-        "Geographic Location City Name"
+        "Geographic Location City Name",
+        "PRVDR_CITY"
       ) ~ "city",
       field %in_% c("CITY - OWNER") ~ "city_owner",
       field %in_% c("PRVDR_CITY") ~ "city_provider",
@@ -151,27 +215,46 @@ field_type_col <- function(df) {
         "Telephone Number",
         "telephone_number",
         "telephonenumber",
-        "Practice Location Phone Number"
+        "Practice Location Phone Number",
+        "PHNE_NUM"
       ) ~ "phone",
       field %in_% c(
         "zip",
         "zip_code",
-        "practicezip9code"
+        "practicezip9code",
+        "ZIP_CD",
+        "Zip code",
+        "ZIP CODE",
+        "PRVDR_ZIP"
         ) ~ "zip",
       field %in_% c(
         "address",
         "adr_ln_1",
         "address_line_1",
-        "provider_address"
+        "provider_address",
+        "ST_ADR",
+        "First Line Street Address",
+        "ADDRESS LINE 1",
+        "Hosp_Address"
         ) ~ "address",
-      field %in_% c("address_line_2", "adr_ln_2") ~ "address_2",
       field %in_% c(
+        "address_line_2",
+        "adr_ln_2",
+        "Second Line Street Address",
+        "ADDRESS LINE 2"
+        ) ~ "address_2",
+      field %in_% c(
+        "State Code",
+        "STATE_CD",
         "state",
+        "State",
         "state_name",
         "state_or_nation",
         "practicestate",
         "practice state or us territory"
       ) ~ "state",
+      field %in_% c("Group State Code") ~ "state_org",
+      field %in_% c("Individual State Code", "Enrollment State Code") ~ "state_ind",
       .default = NA_character_
     )
   )

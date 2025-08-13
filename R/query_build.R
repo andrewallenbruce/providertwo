@@ -82,7 +82,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
       class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
-        base   = obj@identifier,
+        string = obj@identifier,
         total  = obj@dimensions@total,
         found  = 0L,
         limit  = obj@dimensions@limit
@@ -101,8 +101,8 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names2(prm),
-    base   = url,
+    param  = names2(prm),
+    string = url,
     total  = obj@dimensions@total,
     found  = res %||% 0L,
     limit  = obj@dimensions@limit
@@ -124,8 +124,9 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names2(prm),
-    base   = url,
+    param  = names2(prm),
+    year   = as.integer(names2(url)),
+    string = unlist(url, use.names = FALSE),
     total  = obj@dimensions@total,
     found  = res,
     limit  = obj@dimensions@limit
@@ -142,7 +143,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
       class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
-        base   = obj@identifier,
+        string = obj@identifier,
         total  = obj@dimensions@total,
         found  = 0L,
         limit  = obj@dimensions@limit
@@ -163,8 +164,8 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names2(prm),
-    base   = url,
+    param  = names2(prm),
+    string = url,
     total  = res$total_rows %||% 0L,
     found  = res$found_rows %||% 0L,
     limit  = obj@dimensions@limit
@@ -185,8 +186,9 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    params = names2(prm),
-    base   = url,
+    param  = names2(prm),
+    year   = as.integer(names2(url)),
+    string = unlist(url, use.names = FALSE),
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
     limit  = obj@dimensions@limit

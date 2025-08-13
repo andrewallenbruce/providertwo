@@ -59,6 +59,7 @@ Collate:
     'dictionaries.R'
     'dimensions.R'
     'endpoint.R'
+    'endpoint_2.R'
     'fields.R'
     'generated-globals.R'
     'getters.R'

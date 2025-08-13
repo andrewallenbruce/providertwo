@@ -128,6 +128,8 @@ utils::globalVariables(c(
   "title",
   # <clog_caid>
   "title_y",
+  # <get_dims2>
+  "utype",
   # <clog_care>
   # <clog_open>
   # <clog_caid>

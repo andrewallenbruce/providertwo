@@ -5,10 +5,12 @@
 #' @returns A list of available API resources.
 #'
 #' @examples
-#' endpoint("enroll_prov") |> list_resources()
-#' endpoint("qppe") |> list_resources()
-#' collection("in_hosp") |> list_resources()
-#' group("asc_facility", "enterprise", "lab_fee") |> list_resources()
+#' roll <- endpoint("enroll_prov")
+#' qppe <- endpoint("qppe")
+#' hosp <- collection("in_hosp")
+#' rand <- group("asc_facility", "enterprise", "lab_fee")
+#' list_resources(roll)
+#' list(qppe, hosp, rand) |> purrr::map(list_resources)
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "obj", function(obj) {
@@ -46,7 +48,8 @@ method(list_resources, class_care) <- function(obj) {
 }
 
 method(list_resources, care_current) <- function(obj) {
-  prop(obj, "metadata") |>
+  cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
+  meta(obj) |>
     get_elem("resources") |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>
@@ -58,6 +61,7 @@ method(list_resources, care_current) <- function(obj) {
 }
 
 method(list_resources, care_temporal) <- function(obj) {
+  cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
   prop(obj, "identifier") |>
     get_elem("resources") |>
     map(request) |>

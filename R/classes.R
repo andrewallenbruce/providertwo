@@ -67,7 +67,8 @@ class_temporal <- S7::new_class(
   package      = NULL,
   parent       = class_endpoint,
   properties   = list(
-    identifier = S7::class_data.frame
+    identifier = S7::class_data.frame,
+    year       = S7::class_integer
   )
 )
 
@@ -253,8 +254,9 @@ class_response <- S7::new_class(
   properties = list(
     alias    = S7::class_character,
     title    = S7::class_character,
-    params   = S7::new_union(NULL, S7::class_character),
-    base     = S7::class_character | S7::class_list,
+    param    = S7::new_union(NULL, S7::class_character),
+    year     = S7::class_integer,
+    string   = S7::class_character,
     limit    = S7::class_integer,
     found    = S7::class_integer,
     total    = S7::class_integer,
@@ -262,7 +264,7 @@ class_response <- S7::new_class(
       getter = function(self) purrr::map_int(self@found, offset, limit = self@limit)),
     error    = S7::new_property(S7::new_union(NULL, S7::class_logical),
       getter = function(self) {
-        if (is.null(self@params)) return(NULL)
+        if (is.null(self@param)) return(NULL)
         self@found == self@total
       }
     )
