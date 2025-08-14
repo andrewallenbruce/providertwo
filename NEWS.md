@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9437 (2025-08-14)
+
+* fix for query builder
+
+
 # providertwo 0.0.0.9436 (2025-08-14)
 
 * class_junction for query groups
