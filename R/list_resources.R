@@ -5,12 +5,10 @@
 #' @returns A list of available API resources.
 #'
 #' @examples
-#' roll <- endpoint("enroll_prov")
-#' qppe <- endpoint("qppe")
-#' hosp <- collection("in_hosp")
-#' rand <- group("asc_facility", "enterprise", "lab_fee")
-#' list_resources(roll)
-#' list(qppe, hosp, rand) |> purrr::map(list_resources)
+#' list_resources(endpoint("enroll_prov"))
+#' list_resources(endpoint("qppe"))
+#' list_resources(collection("in_hosp"))
+#' list_resources(group("asc_facility", "enterprise", "lab_fee"))
 #' @autoglobal
 #' @export
 list_resources <- new_generic("list_resources", "obj", function(obj) {
@@ -23,15 +21,15 @@ tidy_resources <- function(x) {
   x |>
     collapse::mtt(
       year     = extract_year(name),
-      year     = ifelse(is.na(year), extract_year(downloadURL), year),
       file     = rm_space(gremove(name, " [0-9]{4}|[0-9]{4} ")),
       size     = fs::as_fs_bytes(fileSize),
       ext      = tolower(fs::path_ext(downloadURL)),
       download = downloadURL,
       .keep = c("year", "file", "size", "ext")) |>
     ffill(year) |>
-    roworder(-year, ext, -size) |>
-    as_fibble()
+    # roworder(-year, ext, -size) |>
+    as_fibble() |>
+    collapse::mtt(year = ifelse(is.na(year), extract_year(download), year))
 }
 
 method(list_resources, class_group) <- function(obj) {
@@ -48,7 +46,6 @@ method(list_resources, class_care) <- function(obj) {
 }
 
 method(list_resources, care_current) <- function(obj) {
-  # cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
   meta(obj) |>
     get_elem("resources") |>
     map(request) |>
@@ -61,8 +58,6 @@ method(list_resources, care_current) <- function(obj) {
 }
 
 method(list_resources, care_temporal) <- function(obj) {
-  # cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
-  # prop(obj, "identifier") |>
     meta(obj) |>
     get_elem("resources") |>
     map(request) |>

@@ -26,52 +26,45 @@ select_alias <- function(s, alias, ...) {
 
 #' @autoglobal
 #' @noRd
-c_temp <- function(x) {
-  flist(
-    !!!c(x[names(x) %!=% "endpoints"]),
-    endpoints  = yank(x$endpoints),
-    identifier = yank(endpoints$identifier))
-}
+c2 <- function(x) {
 
-# x <- list(alias = "asfsadgff", regex = "13526#%&#%%&",
-# tbl = fastplyr::new_tbl(title = c("test1", "test2")))
-#' @autoglobal
-#' @noRd
-check_alias_results <- function(x, call = caller_env()) {
-  msg <- c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches.")
+  cols <- c("year", "identifier", "download")
 
-  if (is_empty(x$tbl)) {
-    cli::cli_abort(msg, call = call)
-  }
+  end <- yank(x$endpoints)
 
-  if (nrow(x$tbl) > 1L) {
-    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(x$tbl$title)))
-    cli::cli_abort(msg, call = call)
-  }
+  end <- `if`(
+    "resources" %in_% names2(end),
+    gv(end, c(cols, "resources")),
+    gv(end, cols))
 
+  if (collapse::allNA(end$download)) gv(end, "download") <- NULL
+
+  flist(!!!c(x[names(x) %!=% "endpoints"]), !!!c(end))
 }
 
 # alias_lookup("dial_facility")
 # alias_lookup("man_mltss")
 # alias_lookup("ab_reg_comp")
 # alias_lookup("asc_facility")
-# alias_lookup("dial_listing")
+# alias_lookup("qppe")
 #' @autoglobal
 #' @noRd
-# alias_lookup <- function(x) {
-#
-#   x <- flist(
-#     alias   = x,
-#     point   = point_type(x),
-#     catalog = catalog_type(x),
-#     tbl     = select_alias(glue("the$clog${catalog}${point}"), x))
-#
-#   check_alias_results(x)
-#
-#   list_combine(
-#     list_modify(x, list(tbl = NULL)),
-#     switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl)))
-# }
+alias_lookup <- function(x) {
+  x <- flist(
+    alias   = x,
+    point   = point_type(x),
+    catalog = catalog_type(x),
+    tbl     = select_alias(glue("the$clog${catalog}${point}"), x)
+  )
+
+  check_alias_results(x)
+
+  list_combine(list_modify(x, list(tbl = NULL)), switch(
+    x$point,
+    current  = c(x$tbl),
+    temporal = c2(x$tbl)
+  ))
+}
 
 #' @autoglobal
 #' @noRd

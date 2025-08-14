@@ -16,10 +16,8 @@ A list of available API resources.
 List resources
 }
 \examples{
-roll <- endpoint("enroll_prov")
-qppe <- endpoint("qppe")
-hosp <- collection("in_hosp")
-rand <- group("asc_facility", "enterprise", "lab_fee")
-list_resources(roll)
-list(qppe, hosp, rand) |> purrr::map(list_resources)
+list_resources(endpoint("enroll_prov"))
+list_resources(endpoint("qppe"))
+list_resources(collection("in_hosp"))
+list_resources(group("asc_facility", "enterprise", "lab_fee"))
 }

@@ -2,6 +2,8 @@
 % Please edit documentation in R/query_modifiers.R
 \name{query_modifier}
 \alias{query_modifier}
+\alias{and}
+\alias{or}
 \alias{any_of}
 \alias{none_of}
 \alias{equal}
@@ -23,13 +25,17 @@
 \href{https://jsonapi.org/format/#appendix-query-details}{JSON-API: Query Parameters Details}
 }
 \usage{
+and(x)
+
+or(x)
+
 any_of(x)
 
 none_of(x)
 
-equal(x, encoded = FALSE)
+equal(x)
 
-not_equal(x, encoded = FALSE)
+not_equal(x)
 
 between(x, y)
 
@@ -50,12 +56,10 @@ like(x)
 \arguments{
 \item{x, y}{input}
 
-\item{encoded}{\verb{<lgl>} whether to url encode the operator}
-
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
-An S7 \verb{<class_modifier>} object.
+An S7 \verb{<class_modifier>} or \verb{<class_junction>} object.
 }
 \description{
 Helpers for use in constructing conditions in queries.
@@ -65,6 +69,8 @@ Query modifiers are a small DSL for use in constructing query conditions,
 in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
+and(c("foo", "bar"))
+or(c("foo", "bar"))
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])
 equal(1000)

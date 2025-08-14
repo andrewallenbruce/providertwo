@@ -14,7 +14,8 @@
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
 #'   rate        = between(0.45, 0.67),
-#'   year        = 2014:2025)
+#'   year        = 2014:2025,
+#'   group       = or(c("first_name", "last_name")))
 #' @autoglobal
 #' @export
 query <- function(...) {
@@ -123,11 +124,11 @@ c_match <- function(a, b) {
 match_query <- function(obj, qry) {
 
   # Remove "year" if present
-  param  <- parameters(qry)[setdiff(names2(parameters(qry)), "year")]
+  param  <- params(qry)[setdiff(names2(params(qry)), "year")]
   pname  <- names(param)
 
   # TODO Use a modifier on "year" parameter if meant for an API field?
-  field <- field_keys(obj)
+  field <- keys(obj)
   clean <- clean_names(field)
 
   set_names(

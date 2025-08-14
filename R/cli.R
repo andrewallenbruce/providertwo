@@ -1,3 +1,21 @@
+# x <- list(alias = "asfsadgff", regex = "13526#%&#%%&",
+# tbl = fastplyr::new_tbl(title = c("test1", "test2")))
+#' @autoglobal
+#' @noRd
+check_alias_results <- function(x, call = caller_env()) {
+  msg <- c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches.")
+
+  if (is_empty(x$tbl)) {
+    cli::cli_abort(msg, call = call)
+  }
+
+  if (nrow(x$tbl) > 1L) {
+    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(x$tbl$title)))
+    cli::cli_abort(msg, call = call)
+  }
+
+}
+
 #' @autoglobal
 #' @noRd
 cli_nomatch <- function(obj) {

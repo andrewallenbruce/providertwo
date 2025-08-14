@@ -31,17 +31,16 @@ utils::globalVariables(c(
   "distribution",
   # <clog_caid>
   # <clog_hgov>
+  # <tidy_resources>
   "download",
   # <clog_care>
   # <tidy_resources>
   "downloadURL",
   # <clog_care>
-  # <c_temp>
   "endpoints",
   # <quality_eligibility>
   "entity",
   # <clog_hgov>
-  # <tidy_resources>
   "ext",
   # <reduce_fields>
   "f_common",
@@ -111,8 +110,6 @@ utils::globalVariables(c(
   "resourcesAPI",
   # <clog_caid>
   "rowid",
-  # <tidy_resources>
-  "size",
   # <npi_nppes>
   "taxonomy_desc",
   # <clog_care>

@@ -25,5 +25,6 @@ query(
   npi         = npi_ex$k,
   ccn         = "01256",
   rate        = between(0.45, 0.67),
-  year        = 2014:2025)
+  year        = 2014:2025,
+  group       = or(c("first_name", "last_name")))
 }

@@ -9,13 +9,90 @@
 #'
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
-#' @param encoded  `<lgl>` whether to url encode the operator
 #' @name query_modifier
-#' @returns An S7 `<class_modifier>` object.
+#' @returns An S7 `<class_modifier>` or `<class_junction>` object.
 #' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
 #' @source [JSON-API: Query Parameters](https://jsonapi.org/format/#query-parameters)
 #' @source [JSON-API: Query Parameters Details](https://jsonapi.org/format/#appendix-query-details)
 NULL
+
+#' @noRd
+#' @autoglobal
+class_modifier <- S7::new_class(
+  name       = "class_modifier",
+  package    = NULL,
+  properties = list(
+    operator = S7::new_property(S7::class_character, default = "="),
+    value    = S7::class_character | S7::class_numeric),
+  validator  = function(self) {
+    if (length(self@operator) != 1) {
+      cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call. = FALSE)
+    }
+  }
+)
+
+# # 2 Group Conjunctions - Index ([2]) ids the group
+# "filter[g1][group][conjunction]=OR"
+# "filter[g2][group][conjunction]=AND"
+#
+# # Add memberOf to params in group
+# "filter[1][condition][memberOf]=g2"
+#' @noRd
+#' @autoglobal
+class_junction <- S7::new_class(
+  name       = "class_junction",
+  package    = NULL,
+  properties = list(
+    conjunction = S7::new_property(S7::class_character, default = "AND"),
+    members     = S7::class_character),
+  validator = function(self) {
+    if (length(self@conjunction) != 1L) {
+      cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"), call. = FALSE)
+    }
+    if (!self@conjunction %in% c("OR", "AND")) {
+      cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"), call. = FALSE)
+    }
+    if (length(self@members) == 1L) {
+      cli::cli_abort(c("x" = "{.field @members} must be greater than length 1"), call. = FALSE)
+    }
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' and(c("foo", "bar"))
+#' @autoglobal
+#' @export
+and <- S7::new_class(
+  name        = "and",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(x) {
+
+    S7::new_object(
+      class_junction(),
+      conjunction = "AND",
+      members     = x)
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' or(c("foo", "bar"))
+#' @autoglobal
+#' @export
+or <- S7::new_class(
+  name        = "or",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(x) {
+
+    S7::new_object(
+      class_junction(),
+      conjunction = "OR",
+      members     = x)
+  }
+)
 
 #' @autoglobal
 #' @noRd
@@ -81,16 +158,14 @@ none_of <- S7::new_class(
 #' @autoglobal
 #' @export
 equal <- S7::new_class(
-  name        = "equals",
+  name        = "equal",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x, encoded = FALSE) {
-
-    check_bool(encoded)
+  constructor = function(x) {
 
     S7::new_object(
       class_modifier(),
-      operator = ifelse(!encoded, "=", "%3D"),
+      operator = "=",
       value    = x)
   }
 )
@@ -104,13 +179,11 @@ not_equal <- S7::new_class(
   name        = "not_equal",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x, encoded = FALSE) {
-
-    check_bool(encoded)
+  constructor = function(x) {
 
     S7::new_object(
       class_modifier(),
-      operator = ifelse(!encoded, "<>", "%3C%3E"),
+      operator = "<>",
       value    = x)
   }
 )
@@ -192,7 +265,7 @@ greater_than <- S7::new_class(
       class_modifier(),
       operator = ifelse(!or_equal, ">", ">="),
       value    = x)
-  } # "%3E", "%3E%3D" ("%3E=")
+  }
 )
 
 #' @rdname query_modifier
@@ -214,7 +287,7 @@ less_than <- S7::new_class(
       class_modifier(),
       operator = ifelse(!or_equal, "<", "<="),
       value    = x)
-  } # "%3C", "%3C%3D" ("%3C=")
+  }
 )
 
 #' @rdname query_modifier

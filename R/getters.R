@@ -1,32 +1,32 @@
 #' @autoglobal
 #' @noRd
-parameters <- S7::new_generic("parameters", "obj", function(obj) {
+params <- S7::new_generic("params", "obj", function(obj) {
   S7::S7_dispatch()
 })
 
-S7::method(parameters, class_query) <- function(obj) {
+S7::method(params, class_query) <- function(obj) {
   S7::prop(obj, "params")
 }
 
 #' @autoglobal
 #' @noRd
-field_keys <- S7::new_generic("field_keys", "obj", function(obj) {
+keys <- S7::new_generic("keys", "obj", function(obj) {
   S7::S7_dispatch()
 })
 
-S7::method(field_keys, class_group) <- function(obj) {
-  S7::prop(obj, "members") |> purrr::map(field_keys)
+S7::method(keys, class_group) <- function(obj) {
+  S7::prop(obj, "members") |> purrr::map(keys)
 }
 
-S7::method(field_keys, class_catalog) <- function(obj) {
-  S7::prop(obj, "access") |> field_keys()
+S7::method(keys, class_catalog) <- function(obj) {
+  S7::prop(obj, "access") |> keys()
 }
 
-S7::method(field_keys, class_endpoint) <- function(obj) {
-  S7::prop(obj, "fields") |> field_keys()
+S7::method(keys, class_endpoint) <- function(obj) {
+  S7::prop(obj, "fields") |> keys()
 }
 
-S7::method(field_keys, class_fields) <- function(obj) {
+S7::method(keys, class_fields) <- function(obj) {
   S7::prop(obj, "keys")
 }
 

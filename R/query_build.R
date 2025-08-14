@@ -1,11 +1,11 @@
 #' @autoglobal
 #' @noRd
 select_years <- function(obj, qry) {
-  if ("year" %!in_% names2(parameters(qry))) {
+  if ("year" %!in_% names2(params(qry))) {
     return(set_names(obj@identifier, obj@year))
   }
 
-  idx <- which_(obj@year %in_% parameters(qry)$year)
+  idx <- which_(obj@year %in_% params(qry)$year)
 
   if (is_empty(idx)) {
     cli_noyears(obj, qry)

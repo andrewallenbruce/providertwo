@@ -1,9 +1,11 @@
 #' @autoglobal
 #' @noRd
-alias_column <- function(df, aka) {
+alias_column <- function(df, aka, default = "NA") {
+
+  default <- match.arg(default, c("NA", "alias"))
+
   to_col <- function(aka) {
-    code_head  <- glue::as_glue("cheapr::case(\n")
-    code_tail  <- glue::as_glue(",\n .default = NA)")
+    code_def  <- glue::glue(",\n .default = {default})")
 
     string <- paste0(
       "gdetect(title, ",
@@ -11,37 +13,10 @@ alias_column <- function(df, aka) {
       "{glue::single_quote(names(x))}"
     )
 
-    code_head +
+    glue::as_glue("cheapr::case(\n") +
       glue::glue(string, x = aka) |>
       glue::glue_collapse(sep = ",\n") +
-      code_tail
-  }
-
-  collapse::mtt(
-    df,
-    alias = to_col(aka) |>
-      rlang::parse_expr() |>
-      rlang::eval_bare()
-  )
-}
-
-#' @autoglobal
-#' @noRd
-alias_after <- function(df, aka) {
-  to_col <- function(aka) {
-    code_head  <- glue::as_glue("cheapr::case(\n")
-    code_tail  <- glue::as_glue(",\n .default = alias)")
-
-    string <- paste0(
-      "gdetect(title, ",
-      "{glue::single_quote(unname(x))}) ~ ",
-      "{glue::single_quote(names(x))}"
-    )
-
-    code_head +
-      glue::glue(string, x = aka) |>
-      glue::glue_collapse(sep = ",\n") +
-      code_tail
+      code_def
   }
 
   collapse::mtt(
