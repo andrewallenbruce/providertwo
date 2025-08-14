@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9434</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9435</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,14 +75,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "drug_state"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "State Drug Utilization Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:3] 2024 2023 2022</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:3] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0?count=true&amp;results=true&amp;"| __truncated__ ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:3] 262185 286759 324621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 5205065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:3] 33 36 41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:3] FALSE FALSE FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:3] 5205065 5277298 5164804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 5164804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:3] 651 660 646</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:3] FALSE FALSE TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
@@ -103,14 +103,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "city"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:6] 2025 2024 2023 2022 2021 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data/stats?offset=0&amp;size=1" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:6] 31842 30949 31397 29704 9701304 9289559</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:6] 11985275 11679243 11716732 10821385 9701304 9289559</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:6] 11985275 11679243 11716732 10821385 9701304 9289559</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:6] 7 7 7 6 1941 1858</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:6] FALSE FALSE FALSE FALSE TRUE TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:6] 2398 2336 2344 2165 1941 1858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:6] TRUE TRUE TRUE TRUE TRUE TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No <span style="color: #00BB00;">query</span> matches for <span style="color: #00BB00;">dial_nation</span></span>
@@ -163,14 +163,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "qppe"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Quality Payment Program Experience"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr [1:2] "allowed charges" "practice state or us territory"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:3] 2023 2022 2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:3] "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:3] "https://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data/stats?offset=0&amp;size=1" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:3] 0 0 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:3] 524998 624200 698730</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:3] 524998 624200 698730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:3] 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:3] FALSE FALSE FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:3] 105 125 140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:3] TRUE TRUE TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
@@ -181,7 +181,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "pdc_clinician"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "National Downloadable File"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr [1:3] "provider_first_name" "provider_last_name" "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr [1:3] "provider_last_name" "provider_first_name" "state"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;c"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 1500</span>
