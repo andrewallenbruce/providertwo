@@ -182,29 +182,6 @@ class_collection <- S7::new_class(
 
 #' @noRd
 #' @autoglobal
-class_query <- S7::new_class(
-  name       = "class_query",
-  package    = NULL,
-  properties = list(
-    input    = S7::new_property(
-      S7::class_list,
-      setter = function(self, value) {
-        self@input <- value
-        self
-      }
-    ),
-    params    = S7::new_property(
-      S7::class_list,
-      setter = function(self, value) {
-        self@params <- value
-        self
-      }
-    )
-  )
-)
-
-#' @noRd
-#' @autoglobal
 class_response <- S7::new_class(
   name       = "class_response",
   package    = NULL,

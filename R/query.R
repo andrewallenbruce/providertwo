@@ -1,3 +1,48 @@
+# class_query <- S7::new_class(
+#   name       = "class_query",
+#   package    = NULL,
+#   properties = list(
+#     input    = S7::new_property(
+#       S7::class_list,
+#       setter = function(self, value) {
+#         self@input <- value
+#         self
+#       }
+#     ),
+#     params = S7::new_property(
+#       S7::class_list,
+#       setter = function(self, value) {
+#         self@params <- value
+#         self
+#       }
+#     ),
+#     groups = S7::class_list
+#   )
+# )
+
+#' @noRd
+#' @autoglobal
+class_query <- S7::new_class(
+  name       = "class_query",
+  package    = NULL,
+  properties = list(
+    input    = S7::class_list,
+    params   = S7::class_list,
+    groups   = S7::class_list
+  )
+)
+
+#' @autoglobal
+#' @noRd
+params <- S7::new_generic("params", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(params, class_query) <- function(obj) {
+  S7::prop(obj, "params")
+}
+
+
 #' Create a Query Object
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
@@ -123,12 +168,15 @@ c_match <- function(a, b) {
 #' @noRd
 match_query <- function(obj, qry) {
 
-  # Remove "year" if present
-  param  <- params(qry)[setdiff(names2(params(qry)), "year")]
-  pname  <- names(param)
+  param  <- params(qry)[names2(params(qry)) %!=% "year"]
+  pname  <- names2(param)
 
-  # TODO Use a modifier on "year" parameter if meant for an API field?
-  field <- keys(obj)
+  # TODO Use a modifier on "year"
+  # parameter if meant for an API field?
+  field <- keys(obj) |>
+    unlist(use.names = FALSE) |>
+    collapse::funique()
+
   clean <- clean_names(field)
 
   set_names(

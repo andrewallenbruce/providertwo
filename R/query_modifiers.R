@@ -58,6 +58,17 @@ class_junction <- S7::new_class(
   }
 )
 
+#' @noRd
+#' @autoglobal
+as_junction <- function(...) {
+    rlang::dots_list(
+      ...,
+      .homonyms = "error",
+      .named = TRUE,
+      .check_assign = TRUE
+    )
+}
+
 #' @rdname query_modifier
 #' @examples
 #' and(c("foo", "bar"))
