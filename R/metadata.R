@@ -26,9 +26,9 @@ get_meta <- function(x) {
       issued      = x$issued,
       released    = x$released,
       temporal    = x$temporal,
-      periodicity = null_if(x$periodicity),
-      download    = null_if(x$download),
-      resources   = unlist_if(x$resources),
+      periodicity = x$periodicity,
+      download    = x$download,
+      resources   = x$resources,
       dictionary  = x$dictionary,
       site        = x$site,
       references  = x$references

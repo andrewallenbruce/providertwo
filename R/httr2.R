@@ -2,7 +2,10 @@
 #' @noRd
 api_limit <- function(api) {
   switch(
-    match.arg(api, c("care", "caid", "prov", "hgov", "open")),
+    match.arg(
+      api,
+      c("care", "caid", "prov", "hgov", "open")
+      ),
     care   = 5000L,
     caid   = 8000L,
     prov   = 1500L,

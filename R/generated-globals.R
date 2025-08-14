@@ -43,6 +43,8 @@ utils::globalVariables(c(
   # <clog_hgov>
   # <tidy_resources>
   "ext",
+  # <reduce_fields>
+  "f_common",
   # <field_type_col>
   "field",
   # <tidy_resources>
@@ -128,15 +130,12 @@ utils::globalVariables(c(
   "title",
   # <clog_caid>
   "title_y",
-  # <get_dims2>
-  "utype",
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <open_dictionary>
   # <tidy_resources>
-  # <select_years>
   "year",
   NULL
 ))

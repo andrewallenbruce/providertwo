@@ -3,16 +3,7 @@
 class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
-  properties = list(
-    keys     = S7::new_property(
-      S7::class_character,
-      setter = function(self, value) {
-        self@keys <- value
-        self
-      },
-      getter = function(self) kit::psort(self@keys, nThread = 4L))
-  )
-)
+  properties = list(keys = S7::class_character | S7::class_list))
 
 #' @noRd
 #' @autoglobal
@@ -42,7 +33,7 @@ class_endpoint <- S7::new_class(
   package      = NULL,
   abstract     = TRUE,
   properties   = list(
-    identifier = S7::class_character | S7::class_data.frame,
+    identifier = S7::class_character,
     metadata   = S7::class_list,
     fields     = class_fields,
     dimensions = class_dimensions
@@ -67,7 +58,7 @@ class_temporal <- S7::new_class(
   package      = NULL,
   parent       = class_endpoint,
   properties   = list(
-    identifier = S7::class_data.frame,
+    identifier = S7::class_character,
     year       = S7::class_integer
   )
 )

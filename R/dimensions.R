@@ -19,51 +19,50 @@ url_type <- function(x) {
 
 #' @autoglobal
 #' @noRd
-dims_care <- function(x) {
-
-  x <- switch(
-    url_type(x$identifier),
-    current = paste0(x$identifier, "?offset=0&size=1") |>
-      request() |>
-      perform_simple() |>
-      get_elem("meta") |>
-      get_elem(c("total_rows", "headers")),
-    temporal = list(
-      headers = paste0(x$identifier, "?offset=0&size=1") |>
-        request() |>
-        perform_simple() |>
-        names(),
-      total_rows = paste0(x$identifier, "/stats?offset=0&size=1") |>
-        request() |>
-        perform_simple() |>
-        get_elem("total_rows")
-    )
-  )
-
-  list(
-    dims = class_dimensions(limit = api_limit("care"), total = x$total_rows %||% 0L),
-    fields = class_fields(x$headers)
-  )
-}
+# dims_care <- function(x) {
+#
+#   x <- switch(
+#     url_type(x$identifier),
+#     current = paste0(x$identifier, "?offset=0&size=1") |>
+#       request() |>
+#       perform_simple() |>
+#       get_elem("meta") |>
+#       get_elem(c("total_rows", "headers")),
+#     temporal = list(
+#       headers = paste0(x$identifier, "?offset=0&size=1") |>
+#         request() |>
+#         perform_simple() |>
+#         names(),
+#       total_rows = paste0(x$identifier, "/stats?offset=0&size=1") |>
+#         request() |>
+#         perform_simple() |>
+#         get_elem("total_rows")
+#     )
+#   )
+#
+#   list(
+#     dims = class_dimensions(limit = api_limit("care"), total = x$total_rows %||% 0L),
+#     fields = class_fields(x$headers)
+#   )
+# }
 
 #' @autoglobal
 #' @noRd
-get_dims <- function(x) {
-
-  utype <- url_type(x$identifier)
-
-  if (utype %in% c("current", "temporal")) return(dims_care(x))
-
-  id <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-    # append_url() |>
-    request() |>
-    req_error(is_error = ~ FALSE) |>
-    perform_simple()
-
-  list(
-    dims = class_dimensions(
-      limit = api_limit(utype),
-      total = id$count %||% 0L),
-    fields = class_fields(id$query$properties)
-  )
-}
+# get_dims <- function(x) {
+#
+#   utype <- url_type(x$identifier)
+#
+#   if (utype %in% c("current", "temporal")) return(dims_care(x))
+#
+#   id <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+#     request() |>
+#     req_error(is_error = ~ FALSE) |>
+#     perform_simple()
+#
+#   list(
+#     dims = class_dimensions(
+#       limit = api_limit(utype),
+#       total = id$count %||% 0L),
+#     fields = class_fields(id$query$properties)
+#   )
+# }

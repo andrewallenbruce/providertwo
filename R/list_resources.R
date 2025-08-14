@@ -48,7 +48,7 @@ method(list_resources, class_care) <- function(obj) {
 }
 
 method(list_resources, care_current) <- function(obj) {
-  cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
+  # cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
   meta(obj) |>
     get_elem("resources") |>
     map(request) |>
@@ -61,8 +61,9 @@ method(list_resources, care_current) <- function(obj) {
 }
 
 method(list_resources, care_temporal) <- function(obj) {
-  cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
-  prop(obj, "identifier") |>
+  # cli::cli_inform(c("{.pkg {cli::symbol$menu}} {.field {meta(obj)$title}}"))
+  # prop(obj, "identifier") |>
+    meta(obj) |>
     get_elem("resources") |>
     map(request) |>
     req_perform_parallel(on_error = "continue") |>

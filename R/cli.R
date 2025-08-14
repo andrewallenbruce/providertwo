@@ -18,8 +18,8 @@ cli_range <- function(x) {
 cli_noyears <- function(obj, qry) {
   cli::cli_alert_warning(
     c(
-      "No {.field year} matches for {.field {meta(obj)$alias}} \n",
-      "{cli::symbol$pointer} Valid years: {cli_range(obj@identifier$year)}"
+      "No {.field years} matched {.field {meta(obj)$alias}} \n",
+      "{cli::col_red(cli::symbol$pointer)} Valid years: {.pkg {cli_range(obj@year)}}"
     )
   )
 }

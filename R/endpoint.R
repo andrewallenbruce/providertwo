@@ -58,20 +58,20 @@ check_alias_results <- function(x, call = caller_env()) {
 # alias_lookup("dial_listing")
 #' @autoglobal
 #' @noRd
-alias_lookup <- function(x) {
-
-  x <- flist(
-    alias   = x,
-    point   = point_type(x),
-    catalog = catalog_type(x),
-    tbl     = select_alias(glue("the$clog${catalog}${point}"), x))
-
-  check_alias_results(x)
-
-  list_combine(
-    list_modify(x, list(tbl = NULL)),
-    switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl)))
-}
+# alias_lookup <- function(x) {
+#
+#   x <- flist(
+#     alias   = x,
+#     point   = point_type(x),
+#     catalog = catalog_type(x),
+#     tbl     = select_alias(glue("the$clog${catalog}${point}"), x))
+#
+#   check_alias_results(x)
+#
+#   list_combine(
+#     list_modify(x, list(tbl = NULL)),
+#     switch(x$point, current = c(x$tbl), temporal = c_temp(x$tbl)))
+# }
 
 #' @autoglobal
 #' @noRd
@@ -92,10 +92,11 @@ as_temporal <- function(x) {
   i <- get_dims(x)
 
   class_temporal(
-    identifier = x$endpoints,
+    identifier = x$identifier,
     metadata   = get_meta(x),
     dimensions = i$dims,
-    fields     = i$fields
+    fields     = i$fields,
+    year       = x$year
   )
 }
 
@@ -123,10 +124,11 @@ as_care <- function(x) {
         dimensions = i$dims,
         fields     = i$fields),
       temporal     = care_temporal(
-        identifier = x$endpoints,
+        identifier = x$identifier,
         metadata   = get_meta(x),
         dimensions = i$dims,
-        fields     = i$fields)
+        fields     = i$fields,
+        year       = x$year)
       )
     )
 }

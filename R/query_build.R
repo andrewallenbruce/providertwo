@@ -1,24 +1,18 @@
 #' @autoglobal
 #' @noRd
 select_years <- function(obj, qry) {
-
   if ("year" %!in_% names2(parameters(qry))) {
-
-    x <- get_elem(obj@identifier, "^year$|^identifier$", regex = TRUE)
-    return(set_names(x$identifier, x$year))
-
-  } else {
-
-    x <- sbt(obj@identifier, year %in_% parameters(qry)$year)
-
-    if (is_empty(x)) {
-
-      cli_noyears(obj, qry)
-      x <- get_elem(obj@identifier, "^year$|^identifier$", regex = TRUE)
-
-    }
+    return(set_names(obj@identifier, obj@year))
   }
-  set_names(x$identifier, x$year)
+
+  idx <- which_(obj@year %in_% parameters(qry)$year)
+
+  if (is_empty(idx)) {
+    cli_noyears(obj, qry)
+    return(set_names(obj@identifier, obj@year))
+  }
+
+  set_names(obj@identifier[idx], obj@year[idx])
 }
 
 #' Build a Query for an Endpoint
@@ -127,7 +121,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     param  = names2(prm),
     year   = as.integer(names2(url)),
     string = unlist(url, use.names = FALSE),
-    total  = obj@dimensions@total,
+    total  = obj@dimensions@total[length(res)], # FIXME
     found  = res,
     limit  = obj@dimensions@limit
   )
