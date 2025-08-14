@@ -166,9 +166,15 @@ c_match <- function(a, b) {
 
 #' @autoglobal
 #' @noRd
+not_year <- function(x) {
+  params(x)[names2(params(x)) %!=% "year"]
+}
+
+#' @autoglobal
+#' @noRd
 match_query <- function(obj, qry) {
 
-  param  <- params(qry)[names2(params(qry)) %!=% "year"]
+  param  <- not_year(qry)
   pname  <- names2(param)
 
   # TODO Use a modifier on "year"
@@ -182,6 +188,32 @@ match_query <- function(obj, qry) {
   set_names(
     param[c_match(clean, pname)],
     field[sort(c_match(pname, clean))])
+}
+
+#' @autoglobal
+#' @noRd
+match_query2 <- function(obj, qry) {
+
+  param <- not_year(qry)
+
+  k <- keys(obj) |>
+    unlist(use.names = FALSE) |>
+    collapse::funique()
+
+  vec <- set_names(k, clean_names(k))
+
+  raw <- vec[names2(vec) %in_% names2(param)]
+
+  values <- cheapr::cheapr_rep_each(
+    param,
+    cheapr::counts(
+      names(raw))$count)
+
+  named_args <- set_names(values, unname(raw))
+
+  list(
+    value = named_args,
+    year = map(keys(obj), \(x) x[c_match(unname(raw), x)]))
 }
 
 #' @autoglobal

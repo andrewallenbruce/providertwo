@@ -77,7 +77,7 @@ dims_care_temporal <- function(x) {
         unlist(use.names = FALSE)
     ),
     fields = class_fields(
-      keys = paste0(x$identifier, "?offset=0&size=1") |>
+      keys = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
         map(request) |>
         req_perform_parallel(on_error = "continue") |>
         resps_successes() |>

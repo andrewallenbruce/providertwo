@@ -18,18 +18,10 @@ A list of query parameters matched to an endpoint's fields.
 Build a Query for an Endpoint
 }
 \examples{
-build(
-  endpoint("drug_state"),
-  query(
-    year = 2022:2024,
-    state = any_of(c("GA", "NY"))))
-
-build(endpoint("enroll_prov"),
-      query(first_name = starts_with("And"),
-      last_name = ends_with("ce")))
-
+build(endpoint("enroll_prov"), query(enrlmt_id = "I20040309000221"))
+build(endpoint("enroll_prov"), query(npi = 1417918293))
+build(endpoint("enroll_prov"), query(pecos_asct_cntl_id = 2860305554))
 build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
-
 build(collection("dialysis"), query(state = "AL"))
 
 build(
