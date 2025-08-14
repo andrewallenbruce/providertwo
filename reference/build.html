@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9437</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9438</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,43 +67,47 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
-<span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "drug_state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "State Drug Utilization Data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:34] 2024 2023 2022 2021 2020 2019 2018 2017 2016 2015 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:34] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0?count=true&amp;results=true&amp;"| __truncated__ ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 8000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:34] 262185 286759 324621 314585 312256 319832 307289 288130 280066 269057 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:34] 5205065 5277298 5164804 5042532 4922728 4963586 4870285 4789471 4702214 4558952 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:34] 33 36 41 40 40 40 39 37 36 34 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:34] FALSE FALSE FALSE FALSE FALSE FALSE ...</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">ends_with</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "enroll_prov"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr [1:2] "FIRST_NAME" "LAST_NAME"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "ENRLMT_ID"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int 2025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer/stats?offset=0&amp;size=1"| __truncated__</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 2894910</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi FALSE</span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>npi <span class="op">=</span> <span class="fl">1417918293</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "enroll_prov"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "NPI"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer/stats?offset=0&amp;size=1"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 2894910</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi FALSE</span>
+<span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>pecos_asct_cntl_id <span class="op">=</span> <span class="fl">2860305554</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "enroll_prov"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Fee-For-Service Public Provider Enrollment"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "PECOS_ASCT_CNTL_ID"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int 2025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr "https://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer/stats?offset=0&amp;size=1"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int 2894910</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi FALSE</span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"BIRMINGHAM"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "dial_facility"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr "city"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param : chr [1:2] "city" "city"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:6] 2025 2024 2023 2022 2021 2020</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data/stats?offset=0&amp;size=1&amp;filter"| __truncated__ ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 5000</span>
@@ -111,7 +115,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:6] 11985275 11679243 11716732 10821385 9701304 9289559</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:6] 7 7 7 6 1941 1858</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:6] FALSE FALSE FALSE FALSE TRUE TRUE</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">build</span><span class="op">(</span><span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>, <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> No <span style="color: #00BB00;">query</span> matches for <span style="color: #00BB00;">dial_nation</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_listing</span>
