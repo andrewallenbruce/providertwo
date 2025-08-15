@@ -1,25 +1,3 @@
-#' @autoglobal
-#' @noRd
-select_years <- function(obj, qry) {
-  x <- list(
-    idx  = seq_along(obj@year),
-    year = obj@year,
-    id   = obj@identifier
-  )
-
-  if ("year" %!in_% names2(params(qry)))
-    return(x)
-
-  idx <- which_(obj@year %in_% params(qry)$year)
-
-  if (is_empty(idx))
-    cli_noyears(obj, qry)
-  return(x)
-
-  list(idx  = idx,
-       year = obj@year[idx],
-       id   = obj@identifier[idx])
-}
 # build(endpoint("drug_state"), query(year = 2022:2024, state = any_of(c("GA", "NY"))))
 #' Build a Query for an Endpoint
 #'
