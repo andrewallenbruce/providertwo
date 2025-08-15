@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9440 (2025-08-15)
+
+* fields_types
+
+
 # providertwo 0.0.0.9439 (2025-08-15)
 
 * more work on temporal query generation
