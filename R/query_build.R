@@ -33,15 +33,13 @@ select_years <- function(obj, qry) {
 #' build(endpoint("enroll_prov"), query(enrlmt_id = "I20040309000221"))
 #' build(endpoint("enroll_prov"), query(npi = 1417918293))
 #' build(endpoint("enroll_prov"), query(pecos_asct_cntl_id = 2860305554))
-#' build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
+#' build(endpoint("dial_facility"), query(city = "BIRMINGHAM", provcity = "BIRMINGHAM"))
 #' build(collection("dialysis"), query(state = "AL"))
 #'
-#' build(
-#'   endpoint("qppe"),
-#'   query(
-#'     year = 2021:2023,
-#'     practice_state_or_us_territory = any_of(c("GA", "FL")),
-#'     allowed_charges = less_than(10000)))
+#' # build(endpoint("qppe"),
+#' # query(year = 2021:2023,
+#' # practice_state_or_us_territory = any_of(c("GA", "FL")),
+#' # allowed_charges = less_than(10000)))
 #'
 #' build(
 #'   endpoint("pdc_clinician"),
@@ -171,9 +169,11 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   yrl <- select_years(obj, qry)
-  prm <- match_query(obj, qry)
-  prm <- generate_query(prm, is_care = TRUE)
-  url <- map(yrl$id, \(x) append_url(x, "stats") |> collapse_query(prm))
+  prm <- map_match_query(obj, qry)
+  ust <- map(prm, \(x) generate_query(x, is_care = TRUE)) |>
+    unlist(use.names = FALSE)
+  url <- paste0(append_url(yrl$id, "stats"), "&")
+  url <- glue::as_glue(url) + glue::as_glue(ust)
 
   res <- map(url, request) |>
     req_perform_parallel(on_error = "continue") |>
@@ -182,9 +182,9 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = names2(prm),
+    param  = funique(unname(map_chr(prm, names2))),
     year   = as.integer(yrl$year),
-    string = unlist(url, use.names = FALSE),
+    string = as.character(url),
     total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
     found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
     limit  = obj@dimensions@limit

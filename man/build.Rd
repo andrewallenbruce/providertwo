@@ -21,15 +21,13 @@ Build a Query for an Endpoint
 build(endpoint("enroll_prov"), query(enrlmt_id = "I20040309000221"))
 build(endpoint("enroll_prov"), query(npi = 1417918293))
 build(endpoint("enroll_prov"), query(pecos_asct_cntl_id = 2860305554))
-build(endpoint("dial_facility"), query(city = "BIRMINGHAM"))
+build(endpoint("dial_facility"), query(city = "BIRMINGHAM", provcity = "BIRMINGHAM"))
 build(collection("dialysis"), query(state = "AL"))
 
-build(
-  endpoint("qppe"),
-  query(
-    year = 2021:2023,
-    practice_state_or_us_territory = any_of(c("GA", "FL")),
-    allowed_charges = less_than(10000)))
+# build(endpoint("qppe"),
+# query(year = 2021:2023,
+# practice_state_or_us_territory = any_of(c("GA", "FL")),
+# allowed_charges = less_than(10000)))
 
 build(
   endpoint("pdc_clinician"),

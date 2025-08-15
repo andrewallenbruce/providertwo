@@ -172,6 +172,31 @@ not_year <- function(x) {
 
 #' @autoglobal
 #' @noRd
+map_match_query <- function(obj, qry) {
+
+  param  <- not_year(qry)
+  pname  <- rlang::names2(param)
+
+  # TODO Use a modifier on "year"
+  # parameter if meant for an API field?
+  field <- keys(obj)
+  clean <- purrr::map(field, clean_names)
+
+  fin <- purrr::pmap(
+    list(clean, field),
+    function(cl, fl) {
+      rlang::set_names(cl, fl)[c_match(pname, rlang::set_names(cl, fl))]
+    }) |>
+    purrr::compact()
+
+  imap(fin, \(x, i) {
+    param[names(param) %in% unlist(x, use.names = FALSE)]
+  }) |>
+      purrr::map2(fin, \(x, y) set_names(x, names2(y)))
+}
+
+#' @autoglobal
+#' @noRd
 match_query <- function(obj, qry) {
 
   param  <- not_year(qry)
