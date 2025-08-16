@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9447 (2025-08-16)
+
+* added hrsa server
+
+
 # providertwo 0.0.0.9446 (2025-08-16)
 
 * cleaning up temporal build methods
