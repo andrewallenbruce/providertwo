@@ -14,21 +14,53 @@ select_years <- function(obj, qry) {
   x <- list(
     idx  = seq_along(obj@year),
     year = obj@year,
-    id   = obj@identifier
-  )
+    id   = obj@identifier,
+    field = keys(obj))
 
-  if ("year" %!in_% names2(params(qry)))
+  if ("year" %!in_% names2(params(qry))) {
     return(x)
+  }
 
   idx <- which_(obj@year %in_% params(qry)$year)
 
-  if (is_empty(idx))
+  if (is_empty(idx)) {
     cli_noyears(obj, qry)
-  return(x)
+    return(x)
+  }
 
   list(idx  = idx,
        year = obj@year[idx],
-       id   = obj@identifier[idx])
+       id   = obj@identifier[idx],
+       field = keys(obj)[idx])
+}
+
+#' @autoglobal
+#' @noRd
+match_query_temporal <- function(obj, qry) {
+
+  x <- select_years(obj, qry)
+  param <- not_year(qry)
+
+  df <- collapse::join(
+    purrr::imap(x$field, function(x, i) {
+      fastplyr::new_tbl(year = i, field = x)
+    }) |>
+      purrr::list_rbind() |>
+      collapse::mtt(clean = clean_names(field)) |>
+      collapse::sbt(clean %in_% names2(param)),
+
+    fastplyr::new_tbl(clean = names2(param), param = unname(param)),
+    on = "clean",
+    multiple = TRUE,
+    verbose = 0L
+  ) |>
+    collapse::slt(-clean)
+
+  list(
+    idx   = x$idx,
+    year  = x$year,
+    id    = x$id,
+    param = df)
 }
 
 #' @autoglobal

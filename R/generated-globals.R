@@ -11,6 +11,8 @@ utils::globalVariables(c(
   "address_purpose",
   # <quality_metrics>
   "category",
+  # <match_query_temporal>
+  "clean",
   # <open_dictionary>
   "constraints",
   # <npi_nppes>
@@ -45,6 +47,7 @@ utils::globalVariables(c(
   # <reduce_fields>
   "f_common",
   # <field_type_col>
+  # <match_query_temporal>
   "field",
   # <tidy_resources>
   "fileSize",

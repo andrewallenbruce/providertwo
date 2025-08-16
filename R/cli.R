@@ -25,10 +25,11 @@ cli_nomatch <- function(obj) {
 #' @autoglobal
 #' @noRd
 cli_range <- function(x) {
-  len <- length(x)
-  if (len == 1L) return(paste0(x, " ", brackets(len)))
+  if (length(x) == 1L) {
+    return(paste0(x, " ", theses(1L)))
+  }
   rng <- range(sort.int(x), na.rm = TRUE)
-  paste0(rng[1], " ", cli::symbol$em_dash, " ", rng[2], " ", brackets(len))
+  paste0(rng[1], ":", rng[2], " ", theses(length(x)))
 }
 
 #' @autoglobal
@@ -36,10 +37,16 @@ cli_range <- function(x) {
 cli_noyears <- function(obj, qry) {
   cli::cli_alert_warning(
     c(
-      "No {.field years} matched {.field {meta(obj)$alias}} \n",
+      "No {.field year} matches in {.field {meta(obj)$alias}} \n",
       "{cli::col_red(cli::symbol$pointer)} Valid years: {.pkg {cli_range(obj@year)}}"
     )
   )
+}
+
+#' @autoglobal
+#' @noRd
+theses <- function(x) {
+  paste0("(", x, ")")
 }
 
 #' @autoglobal

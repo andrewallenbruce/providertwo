@@ -1,3 +1,40 @@
+#' @autoglobal
+#' @noRd
+total_rows <- function(x) {
+  get_elem(x, "total_rows") |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+found_rows <- function(x) {
+  get_elem(x, "found_rows") |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+map_perform_parallel <- function(x, query = NULL) {
+  map(x, request) |>
+    req_perform_parallel(on_error = "continue") |>
+    resps_successes() |>
+    map(function(x) parse_string(x, query = query))
+}
+
+#' @autoglobal
+#' @noRd
+no_match_response <- function(obj) {
+  class_response(
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
+    year   = date_year(obj@metadata$modified),
+    string = obj@identifier,
+    total  = obj@dimensions@total,
+    found  = 0L,
+    limit  = obj@dimensions@limit
+  )
+}
+
 # build(endpoint("drug_state"), query(year = 2022:2024, state = any_of(c("GA", "NY"))))
 #' Build a Query for an Endpoint
 #'
@@ -29,11 +66,13 @@
 #' @autoglobal
 #' @export
 build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
-
   if (!S7::S7_inherits(qry, class_query)) {
-    cli::cli_abort(c("x" = "{.field qry} must be of {.cls class_query}."))
-  }
-
+    cli::cli_abort(c("x" = paste0(
+      "{.field qry} must be of {.cls class_query}, ",
+      "not {.obj_type_friendly {qry}}."
+    )),
+    call = caller_env())
+    }
   S7::S7_dispatch()
 })
 
@@ -51,25 +90,12 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
   if (is_empty(prm)) {
     cli_nomatch(obj)
-    return(
-      class_response(
-        alias  = meta(obj)$alias,
-        title  = meta(obj)$title,
-        year   = date_year(obj@metadata$modified),
-        string = obj@identifier,
-        total  = obj@dimensions@total,
-        found  = 0L,
-        limit  = obj@dimensions@limit
-      )
-    )
+    return(no_match_response(obj))
   }
 
   prm <- generate_query(prm)
   url <- append_url(obj@identifier) |> collapse_query(prm)
-  res <- map(url, request) |>
-    req_perform_parallel(on_error = "continue") |>
-    map(function(x)
-      parse_string(x, query = "count")) |>
+  res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
 
   class_response(
@@ -84,16 +110,43 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   )
 }
 
+S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
+
+  prm <- match_query(obj, qry)
+
+  if (is_empty(prm)) {
+    cli_nomatch(obj)
+    return(no_match_response(obj))
+  }
+
+  prm <- generate_query(prm, is_care = TRUE)
+  url <- append_url(obj@identifier, "stats") |>
+    collapse_query(prm)
+
+  res <- map_perform_parallel(url) |>
+    yank("data")
+
+  class_response(
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
+    param  = names2(prm),
+    year   = date_year(obj@metadata$modified),
+    string = url,
+    total  = total_rows(res) %||% 0L,
+    found  = found_rows(res) %||% 0L,
+    limit  = obj@dimensions@limit
+  )
+}
+
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   yrl <- select_years(obj, qry)
   prm <- match_query(obj, qry)
+  # x <- match_query_temporal(obj, qry)
   prm <- generate_query(prm)
   url <- map(yrl$id, \(x) append_url(x) |> collapse_query(prm))
 
-  res <- map(url, request) |>
-    req_perform_parallel(on_error = "continue") |>
-    map(function(x) parse_string(x, query = "count")) |>
+  res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
 
   class_response(
@@ -108,47 +161,6 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   )
 }
 
-S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
-
-  prm <- match_query(obj, qry)
-
-  if (is_empty(prm)) {
-    cli_nomatch(obj)
-    return(
-      class_response(
-        alias  = meta(obj)$alias,
-        title  = meta(obj)$title,
-        year   = date_year(obj@metadata$modified),
-        string = obj@identifier,
-        total  = obj@dimensions@total,
-        found  = 0L,
-        limit  = obj@dimensions@limit
-      )
-    )
-  }
-
-  prm <- generate_query(prm, is_care = TRUE)
-  url <- append_url(obj@identifier, "stats") |>
-    collapse_query(prm)
-
-  res <- map(url, request) |>
-    req_perform_parallel(on_error = "continue") |>
-    map(function(x)
-      parse_string(x)) |>
-    yank("data")
-
-  class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
-    param  = names2(prm),
-    year   = date_year(obj@metadata$modified),
-    string = url,
-    total  = res$total_rows %||% 0L,
-    found  = res$found_rows %||% 0L,
-    limit  = obj@dimensions@limit
-  )
-}
-
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   yrl <- select_years(obj, qry)
@@ -158,9 +170,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   url <- paste0(append_url(yrl$id, "stats"), "&")
   url <- glue::as_glue(url) + glue::as_glue(ust)
 
-  res <- map(url, request) |>
-    req_perform_parallel(on_error = "continue") |>
-    map(function(x) parse_string(x))
+  res <- map_perform_parallel(url)
 
   class_response(
     alias  = meta(obj)$alias,
@@ -168,8 +178,8 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     param  = funique(unname(map_chr(prm, names2))),
     year   = as.integer(yrl$year),
     string = as.character(url),
-    total  = get_elem(res, "total_rows") |> unlist(use.names = FALSE),
-    found  = get_elem(res, "found_rows") |> unlist(use.names = FALSE),
+    total  = total_rows(res),
+    found  = found_rows(res),
     limit  = obj@dimensions@limit
   )
 }
