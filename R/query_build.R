@@ -36,16 +36,37 @@ no_match_response <- function(obj) {
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
 #' @examples
-#' build(endpoint("enroll_prov"), query(enrlmt_id = "I20040309000221"))
-#' build(endpoint("enroll_prov"), query(npi = 1417918293))
-#' build(endpoint("enroll_prov"), query(pecos_asct_cntl_id = 2860305554))
-#' build(endpoint("dial_facility"), query(city = "BIRMINGHAM", provcity = "BIRMINGHAM"))
-#' build(collection("dialysis"), query(state = "AL"))
+#' build(
+#'   endpoint("enroll_prov"),
+#'   query(enrlmt_id = "I20040309000221"))
 #'
-#' # build(endpoint("qppe"),
-#' # query(year = 2021:2023,
-#' # practice_state_or_us_territory = any_of(c("GA", "FL")),
-#' # allowed_charges = less_than(10000)))
+#' build(
+#'   collection("dialysis"),
+#'   query(state = "AL"))
+#'
+#' build(
+#'   endpoint("dial_facility"),
+#'   query(
+#'     city = "BIRMINGHAM",
+#'     provcity = "BIRMINGHAM")
+#'   )
+#'
+#' build(
+#'   endpoint("qppe"),
+#'   query(
+#'     year = 2021:2023,
+#'     practice_state_or_us_territory = any_of(c("GA", "FL")),
+#'     practice_size = less_than(10, or_equal = TRUE)
+#'   )
+#' )
+#'
+#' build(
+#'   endpoint("hc_quality"),
+#'   query(
+#'     state = any_of(c("Georgia", "Alabama")),
+#'     year = 2020:2023
+#'    )
+#'  )
 #'
 #' build(
 #'   endpoint("pdc_clinician"),
@@ -131,11 +152,32 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  yrl <- select_years(obj, qry)
-  prm <- match_query(obj, qry)
-  # x <- match_query2(obj, qry)
-  prm <- generate_query(prm)
-  url <- map(yrl$id, \(x) append_url(x) |> collapse_query(prm))
+  y <- match_query2(obj, qry)
+
+  prm <- y$param |>
+    mtt(
+      ismod = map_lgl(param, is_mod),
+      combo = glue::glue("{glue::backtick(field)} = {ifelse(ismod, unlist(param, use.names = FALSE), glue::double_quote(unlist(param, use.names = FALSE)))}"),
+      ismod = NULL,
+      field = NULL,
+      param = NULL) |>
+    # rsplit reverses order of years
+    collapse::rsplit(~ year) |>
+    rev() |>
+    map(\(x) glue::as_glue("list(") + glue::glue_collapse(x, ", ") + glue::as_glue(")"))
+
+  prm <- map(prm, \(x)
+             rlang::parse_expr(x) |>
+               rlang::eval_bare())
+
+  ust <- map(prm, \(x)
+             generate_query(x) |>
+               unlist(use.names = FALSE) |>
+               paste0(collapse = "&")) |>
+    unlist(use.names = FALSE)
+
+  url <- paste0(append_url(y$id), "&")
+  url <- glue::as_glue(url) + glue::as_glue(ust)
 
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
@@ -143,10 +185,10 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = names2(prm),
-    year   = as.integer(yrl$year),
-    string = unlist(url, use.names = FALSE),
-    total  = obj@dimensions@total[yrl$idx],
+    param  = map(prm, names2),
+    year   = as.integer(y$year),
+    string = as.character(url),
+    total  = obj@dimensions@total[y$idx],
     found  = res,
     limit  = obj@dimensions@limit
   )
@@ -168,15 +210,14 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     rev() |>
     map(\(x) glue::as_glue("list(") + glue::glue_collapse(x, ", ") + glue::as_glue(")"))
 
-  prm <- map(prm, \(x) rlang::parse_expr(x) |> rlang::eval_bare())
+  prm <- map(prm, \(x)
+             rlang::parse_expr(x) |>
+               rlang::eval_bare())
 
-  ust <- map(
-    prm,
-    \(x)
-    generate_query(x, is_care = TRUE) |>
-      unlist(use.names = FALSE) |>
-      paste0(collapse = "&")
-  ) |>
+  ust <- map(prm, \(x)
+             generate_query(x, is_care = TRUE) |>
+               unlist(use.names = FALSE) |>
+               paste0(collapse = "&")) |>
     unlist(use.names = FALSE)
 
   url <- paste0(append_url(y$id, "stats"), "&")
