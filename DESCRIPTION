@@ -13,6 +13,7 @@ BugReports: https://github.com/andrewallenbruce/providertwo/issues
 Depends: 
     R (>= 4.1.0)
 Imports: 
+    arcgislayers (>= 0.4.0),
     cheapr (>= 1.3.2),
     cli (>= 3.6.5),
     collapse (>= 2.1.2),
@@ -63,6 +64,7 @@ Collate:
     'fields_types.R'
     'generated-globals.R'
     'getters.R'
+    'hrsa.R'
     'httr2.R'
     'import-standalone-obj-type.R'
     'import-standalone-types-check.R'

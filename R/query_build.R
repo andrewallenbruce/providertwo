@@ -47,9 +47,13 @@ no_match_response <- function(obj) {
 #' build(
 #'   endpoint("dial_facility"),
 #'   query(
-#'     city = "BIRMINGHAM",
-#'     provcity = "BIRMINGHAM")
+#'     state = "GA",
+#'     city = "Atlanta",
+#'     provcity = "Atlanta",
+#'     provider_name = starts_with("C"),
+#'     provname = starts_with("C")
 #'   )
+#' )
 #'
 #' build(
 #'   endpoint("qppe"),

@@ -36,14 +36,18 @@ catalogs <- function() {
     }) |>
     set_names(names(base_url))
 
+  hrsa_url <- paste0(
+    "https://gisportal.hrsa.gov/server/rest/services/",
+    "FeatureServices/CMSApprovedFacilities_FS/MapServer")
+
   list(
     care = clog_care(x),
     prov = clog_prov(x),
     open = clog_open(x),
     caid = clog_caid(x),
-    hgov = clog_hgov(x)
+    hgov = clog_hgov(x),
+    hrsa = arcgislayers::arc_open(hrsa_url)
   )
-  # sum(16, 28, 6, 95, 8, 18, 147, 80, 138)
 }
 
 #' @autoglobal
