@@ -14,17 +14,18 @@ is_mod <- function(x) {
   rlang::is_call(
     x,
     name = c(
-      "all_but",
       "any_of",
+      "none_of",
+      "equal",
+      "not_equal",
       "between",
-      "contains",
-      "ends_with",
+      "not_between",
       "greater_than",
       "less_than",
-      "like",
-      "none_of",
-      "not_between",
-      "starts_with"
+      "starts_with",
+      "ends_with",
+      "contains",
+      "like"
     )
   )
 }

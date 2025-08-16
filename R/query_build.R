@@ -116,9 +116,9 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     param  = names2(prm),
     year   = date_year(meta(obj)$modified),
     string = url,
-    total  = obj@dimensions@total,
+    total  = dims(obj)@total,
     found  = res %||% 0L,
-    limit  = obj@dimensions@limit
+    limit  = dims(obj)@limit
   )
 }
 
@@ -146,41 +146,24 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     string = url,
     total  = total_rows(res) %||% 0L,
     found  = found_rows(res) %||% 0L,
-    limit  = obj@dimensions@limit
+    limit  = dims(obj)@limit
   )
 }
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  y <- match_query2(obj, qry)
+  x <- match_query2(obj, qry)
+  p <- finalize_match2(x$field)
 
-  prm <- y$param |>
-    mtt(
-      ismod = map_lgl(param, is_mod),
-      combo = glue::glue("{glue::backtick(field)} = {ifelse(ismod, unlist(param, use.names = FALSE), glue::double_quote(unlist(param, use.names = FALSE)))}"),
-      ismod = NULL,
-      field = NULL,
-      param = NULL) |>
-    # rsplit reverses order of years
-    collapse::rsplit(~ year) |>
-    rev() |>
-    map(function(x)
-      glue::as_glue("list(") +
-        glue::glue_collapse(x, ", ") +
-        glue::as_glue(")"))
-
-  prm <- map(prm, function(x)
-             rlang::parse_expr(x) |>
-               rlang::eval_bare())
-
-  ust <- map(prm, function(x)
-             generate_query(x) |>
-               unlist(use.names = FALSE) |>
-               paste0(collapse = "&")) |>
+  qst <- map(p, function(x) {
+    generate_query(x) |>
+      unlist(use.names = FALSE) |>
+      paste0(collapse = "&")
+  }) |>
     unlist(use.names = FALSE)
 
-  url <- paste0(append_url(y$id), "&")
-  url <- glue::as_glue(url) + glue::as_glue(ust)
+  url <- paste0(append_url(x$id), "&")
+  url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
@@ -188,57 +171,40 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(prm, names2),
-    year   = as.integer(y$year),
+    param  = map(p, names2),
+    year   = as.integer(x$year),
     string = as.character(url),
-    total  = obj@dimensions@total[y$idx],
+    total  = dims(obj)@total[x$idx],
     found  = res,
-    limit  = obj@dimensions@limit
+    limit  = dims(obj)@limit
   )
 }
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  y <- match_query2(obj, qry)
+  x <- match_query2(obj, qry)
+  p <- finalize_match2(x$field)
 
-  prm <- y$param |>
-    mtt(
-      ismod = map_lgl(param, is_mod),
-      combo = glue::glue("{glue::backtick(field)} = {ifelse(ismod, unlist(param, use.names = FALSE), glue::double_quote(unlist(param, use.names = FALSE)))}"),
-      ismod = NULL,
-      field = NULL,
-      param = NULL) |>
-    # rsplit reverses order of years
-    collapse::rsplit(~ year) |>
-    rev() |>
-    map(function(x)
-      glue::as_glue("list(") +
-        glue::glue_collapse(x, ", ") +
-        glue::as_glue(")"))
-
-  prm <- map(prm, function(x)
-             rlang::parse_expr(x) |>
-               rlang::eval_bare())
-
-  ust <- map(prm, function(x)
-             generate_query(x, is_care = TRUE) |>
-               unlist(use.names = FALSE) |>
-               paste0(collapse = "&")) |>
+  qst <- map(p, function(x) {
+    generate_query(x, is_care = TRUE) |>
+      unlist(use.names = FALSE) |>
+      paste0(collapse = "&")
+  }) |>
     unlist(use.names = FALSE)
 
-  url <- paste0(append_url(y$id, "stats"), "&")
-  url <- glue::as_glue(url) + glue::as_glue(ust)
+  url <- paste0(append_url(x$id, "stats"), "&")
+  url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url)
 
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(prm, names2),
-    year   = as.integer(y$year),
+    param  = map(p, names2),
+    year   = as.integer(x$year),
     string = as.character(url),
     total  = total_rows(res),
     found  = found_rows(res),
-    limit  = obj@dimensions@limit
+    limit  = dims(obj)@limit
   )
 }

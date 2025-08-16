@@ -106,5 +106,45 @@ match_query2 <- function(obj, qry) {
     idx   = x$idx,
     year  = x$year,
     id    = x$id,
-    param = df)
+    field = df)
+}
+
+#' @autoglobal
+#' @noRd
+map_parse_eval <- function(x) {
+  purrr::map(x, function(x)
+    rlang::parse_expr(x) |>
+      rlang::eval_bare())
+}
+
+#' @autoglobal
+#' @noRd
+finalize_match2 <- function(x) {
+  combo_cd <- paste0(
+    "{glue::backtick(field)} = ",
+    "{ifelse(ismod, unlist(param, use.names = FALSE), ",
+    "glue::double_quote(unlist(param, use.names = FALSE)))}"
+  )
+
+
+  x <- collapse::mtt(
+    x,
+    ismod = purrr::map_lgl(param, is_mod),
+    combo = glue::glue(combo_cd),
+    ismod = NULL,
+    field = NULL,
+    param = NULL
+  ) |>
+    # rsplit reverses order of years
+    collapse::rsplit(~ year) |>
+    cheapr::cheapr_rev() |>
+    # rev() |>
+    purrr::map(
+      function(x)
+        glue::as_glue("list(") +
+        glue::glue_collapse(x, ", ") +
+        glue::as_glue(")")
+    )
+
+  map_parse_eval(x)
 }
