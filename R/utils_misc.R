@@ -132,6 +132,26 @@ this_year <- function() {
 
 #' @autoglobal
 #' @noRd
+qmatch <- function(a, b) {
+  collapse::fmatch(x = a, table = b, nomatch = 0L, overid = 2)
+}
+
+# state_recode(c("GA", "FL"))
+# state_recode(c("Georgia", "Florida"), "abbr")
+#' @autoglobal
+#' @noRd
+state_recode <- function(x, to = "full") {
+
+  states <- switch(
+    match.arg(to, c("full", "abbr")),
+    full = set_names(state.abb, state.name),
+    abbr = set_names(state.name, state.abb))
+
+  names2(states)[qmatch(x, states)]
+}
+
+#' @autoglobal
+#' @noRd
 date_year <- function(x) {
   as.integer(substr(x, 1, 4))
 }

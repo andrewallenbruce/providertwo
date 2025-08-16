@@ -18,7 +18,7 @@ no_match_response <- function(obj) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    year   = date_year(obj@metadata$modified),
+    year   = date_year(meta(obj)$modified),
     string = obj@identifier,
     total  = obj@dimensions@total,
     found  = 0L,
@@ -89,7 +89,7 @@ build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
 })
 
 S7::method(build, list(class_group, class_query)) <- function(obj, qry) {
-  S7::prop(obj, "members") |> purrr::map(\(x) build(obj = x, qry = qry))
+  S7::prop(obj, "members") |> purrr::map(function(x) build(obj = x, qry = qry))
 }
 
 S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
@@ -114,7 +114,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     param  = names2(prm),
-    year   = date_year(obj@metadata$modified),
+    year   = date_year(meta(obj)$modified),
     string = url,
     total  = obj@dimensions@total,
     found  = res %||% 0L,
@@ -142,7 +142,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     param  = names2(prm),
-    year   = date_year(obj@metadata$modified),
+    year   = date_year(meta(obj)$modified),
     string = url,
     total  = total_rows(res) %||% 0L,
     found  = found_rows(res) %||% 0L,
@@ -164,13 +164,16 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     # rsplit reverses order of years
     collapse::rsplit(~ year) |>
     rev() |>
-    map(\(x) glue::as_glue("list(") + glue::glue_collapse(x, ", ") + glue::as_glue(")"))
+    map(function(x)
+      glue::as_glue("list(") +
+        glue::glue_collapse(x, ", ") +
+        glue::as_glue(")"))
 
-  prm <- map(prm, \(x)
+  prm <- map(prm, function(x)
              rlang::parse_expr(x) |>
                rlang::eval_bare())
 
-  ust <- map(prm, \(x)
+  ust <- map(prm, function(x)
              generate_query(x) |>
                unlist(use.names = FALSE) |>
                paste0(collapse = "&")) |>
@@ -208,13 +211,16 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     # rsplit reverses order of years
     collapse::rsplit(~ year) |>
     rev() |>
-    map(\(x) glue::as_glue("list(") + glue::glue_collapse(x, ", ") + glue::as_glue(")"))
+    map(function(x)
+      glue::as_glue("list(") +
+        glue::glue_collapse(x, ", ") +
+        glue::as_glue(")"))
 
-  prm <- map(prm, \(x)
+  prm <- map(prm, function(x)
              rlang::parse_expr(x) |>
                rlang::eval_bare())
 
-  ust <- map(prm, \(x)
+  ust <- map(prm, function(x)
              generate_query(x, is_care = TRUE) |>
                unlist(use.names = FALSE) |>
                paste0(collapse = "&")) |>

@@ -20,21 +20,21 @@ S7::method(input, class_query) <- function(obj) {
 
 #' @autoglobal
 #' @noRd
-not_year <- function(x) {
-  input(x)[names2(input(x)) %!=% "year"]
+remove_year <- function(x) {
+  params(x)[names2(params(x)) %!=% "year"]
 }
 
 #' @autoglobal
 #' @noRd
-c_match <- function(a, b) {
-  collapse::fmatch(x = a, table = b, nomatch = 0L, overid = 2)
+remove_year2 <- function(x) {
+  input(x)[names2(input(x)) %!=% "year"]
 }
 
 #' @autoglobal
 #' @noRd
 match_query <- function(obj, qry) {
 
-  param  <- not_year(qry)
+  param  <- remove_year(qry)
   pname  <- names2(param)
 
   # TODO Use a modifier on "year"
@@ -46,8 +46,8 @@ match_query <- function(obj, qry) {
   clean <- clean_names(field)
 
   set_names(
-    param[c_match(clean, pname)],
-    field[sort(c_match(pname, clean))])
+    param[qmatch(clean, pname)],
+    field[sort(qmatch(pname, clean))])
 }
 
 #' @autoglobal
@@ -80,21 +80,25 @@ select_years <- function(obj, qry) {
 #' @noRd
 match_query2 <- function(obj, qry) {
 
-  x <- select_years(obj, qry)
-  param <- not_year(qry)
+  x     <- select_years(obj, qry)
+  param <- remove_year2(qry)
 
   df <- collapse::join(
+
     purrr::imap(x$field, function(x, i) {
-      fastplyr::new_tbl(year = i, field = x)
+      cheapr::new_df(year = i, field = x)
     }) |>
       purrr::list_rbind() |>
       collapse::mtt(clean = clean_names(field)) |>
       collapse::sbt(clean %in_% names2(param)),
 
-    fastplyr::new_tbl(clean = names2(param), param = unname(param)),
-    on = "clean",
+    cheapr::new_df(
+      clean = names2(param),
+      param = unname(param)),
+
+    on       = "clean",
     multiple = TRUE,
-    verbose = 0L
+    verbose  = 0L
   ) |>
     collapse::slt(-clean)
 

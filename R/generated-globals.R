@@ -113,6 +113,10 @@ utils::globalVariables(c(
   "resourcesAPI",
   # <clog_caid>
   "rowid",
+  # <state_recode>
+  "state.abb",
+  # <state_recode>
+  "state.name",
   # <npi_nppes>
   "taxonomy_desc",
   # <clog_care>
