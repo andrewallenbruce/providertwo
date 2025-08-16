@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9445 (2025-08-16)
+
+* fixed bug in remove_year
+
+
 # providertwo 0.0.0.9444 (2025-08-16)
 
 * refactored build method for temporal classes now working
