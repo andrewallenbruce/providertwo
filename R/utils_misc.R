@@ -132,6 +132,12 @@ this_year <- function() {
 
 #' @autoglobal
 #' @noRd
+date_year <- function(x) {
+  as.integer(substr(x, 1, 4))
+}
+
+#' @autoglobal
+#' @noRd
 gdetect <- function(str, pt, ...) {
   grepl(x       = str,
         pattern = pt,

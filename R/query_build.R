@@ -29,6 +29,11 @@
 #' @autoglobal
 #' @export
 build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
+
+  if (!S7::S7_inherits(qry, class_query)) {
+    cli::cli_abort(c("x" = "{.field qry} must be of {.cls class_query}."))
+  }
+
   S7::S7_dispatch()
 })
 
@@ -50,7 +55,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
       class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
-        year   = as.integer(substr(obj@metadata$modified, 1, 4)),
+        year   = date_year(obj@metadata$modified),
         string = obj@identifier,
         total  = obj@dimensions@total,
         found  = 0L,
@@ -71,7 +76,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     param  = names2(prm),
-    year   = as.integer(substr(obj@metadata$modified, 1, 4)),
+    year   = date_year(obj@metadata$modified),
     string = url,
     total  = obj@dimensions@total,
     found  = res %||% 0L,
@@ -113,7 +118,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
       class_response(
         alias  = meta(obj)$alias,
         title  = meta(obj)$title,
-        year   = as.integer(substr(obj@metadata$modified, 1, 4)),
+        year   = date_year(obj@metadata$modified),
         string = obj@identifier,
         total  = obj@dimensions@total,
         found  = 0L,
@@ -136,7 +141,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
     param  = names2(prm),
-    year   = as.integer(substr(obj@metadata$modified, 1, 4)),
+    year   = date_year(obj@metadata$modified),
     string = url,
     total  = res$total_rows %||% 0L,
     found  = res$found_rows %||% 0L,
