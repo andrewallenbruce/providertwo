@@ -188,7 +188,7 @@ class_response <- S7::new_class(
   properties = list(
     alias    = S7::class_character,
     title    = S7::class_character,
-    param    = S7::new_union(NULL, S7::class_character),
+    param    = S7::new_union(NULL, S7::class_character, S7::class_list),
     year     = S7::class_integer,
     string   = S7::class_character,
     limit    = S7::class_integer,

@@ -14,15 +14,6 @@ found_rows <- function(x) {
 
 #' @autoglobal
 #' @noRd
-map_perform_parallel <- function(x, query = NULL) {
-  map(x, request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    map(function(x) parse_string(x, query = query))
-}
-
-#' @autoglobal
-#' @noRd
 no_match_response <- function(obj) {
   class_response(
     alias  = meta(obj)$alias,
@@ -142,7 +133,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   yrl <- select_years(obj, qry)
   prm <- match_query(obj, qry)
-  # x <- match_query_temporal(obj, qry)
+  # x <- match_query2(obj, qry)
   prm <- generate_query(prm)
   url <- map(yrl$id, \(x) append_url(x) |> collapse_query(prm))
 
@@ -163,11 +154,32 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  yrl <- select_years(obj, qry)
-  prm <- map_match_query(obj, qry)
-  ust <- map(prm, \(x) generate_query(x, is_care = TRUE)) |>
+  y <- match_query2(obj, qry)
+
+  prm <- y$param |>
+    mtt(
+      ismod = map_lgl(param, is_mod),
+      combo = glue::glue("{glue::backtick(field)} = {ifelse(ismod, unlist(param, use.names = FALSE), glue::double_quote(unlist(param, use.names = FALSE)))}"),
+      ismod = NULL,
+      field = NULL,
+      param = NULL) |>
+    # rsplit reverses order of years
+    collapse::rsplit(~ year) |>
+    rev() |>
+    map(\(x) glue::as_glue("list(") + glue::glue_collapse(x, ", ") + glue::as_glue(")"))
+
+  prm <- map(prm, \(x) rlang::parse_expr(x) |> rlang::eval_bare())
+
+  ust <- map(
+    prm,
+    \(x)
+    generate_query(x, is_care = TRUE) |>
+      unlist(use.names = FALSE) |>
+      paste0(collapse = "&")
+  ) |>
     unlist(use.names = FALSE)
-  url <- paste0(append_url(yrl$id, "stats"), "&")
+
+  url <- paste0(append_url(y$id, "stats"), "&")
   url <- glue::as_glue(url) + glue::as_glue(ust)
 
   res <- map_perform_parallel(url)
@@ -175,8 +187,8 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = funique(unname(map_chr(prm, names2))),
-    year   = as.integer(yrl$year),
+    param  = map(prm, names2),
+    year   = as.integer(y$year),
     string = as.character(url),
     total  = total_rows(res),
     found  = found_rows(res),

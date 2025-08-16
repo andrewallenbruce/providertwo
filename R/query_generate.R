@@ -1,3 +1,20 @@
+# args is a simple named list:
+# list(NPI = starts_with(1417918293)
+#      PECOS_ASCT_CNTL_ID = 3870481252,
+#      ENRLMT_ID = "I20040309000221")
+#
+# example output:
+# $NPI
+# <starts_with>
+#  @ operator: chr "STARTS_WITH"
+#  @ value   : num 1.42e+09
+#
+# $PECOS_ASCT_CNTL_ID
+# [1] 3870481252
+#
+# $ENRLMT_ID
+# [1] "I20040309000221"
+
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {

@@ -1,3 +1,54 @@
+#' @autoglobal
+#' @noRd
+match_query2 <- function(obj, qry) {
+
+  param <- not_year(qry)
+
+  k <- keys(obj) |>
+    unlist(use.names = FALSE) |>
+    collapse::funique()
+
+  vec <- set_names(k, clean_names(k))
+
+  raw <- vec[names2(vec) %in_% names2(param)]
+
+  values <- cheapr::cheapr_rep_each(
+    param,
+    cheapr::counts(
+      names(raw))$count)
+
+  named_args <- set_names(values, unname(raw))
+
+  list(
+    value = named_args,
+    year = map(keys(obj), \(x) x[c_match(unname(raw), x)]))
+}
+
+#' @autoglobal
+#' @noRd
+map_match_query <- function(obj, qry) {
+
+  param  <- not_year(qry)
+  pname  <- rlang::names2(param)
+
+  # TODO Use a modifier on "year"
+  # parameter if meant for an API field?
+  field <- keys(obj)
+  clean <- purrr::map(field, clean_names)
+
+  fin <- purrr::pmap(
+    list(clean, field),
+    function(cl, fl) {
+      rlang::set_names(cl, fl)[c_match(pname, rlang::set_names(cl, fl))]
+    }) |>
+    purrr::compact()
+
+  imap(fin, \(x, i) {
+    param[names(param) %in% unlist(x, use.names = FALSE)]
+  }) |>
+    purrr::map2(fin, \(x, y) set_names(x, names2(y)))
+}
+
 #' @noRd
 #' @autoglobal
 class_query2 <- new_class(

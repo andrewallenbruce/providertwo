@@ -10,6 +10,48 @@ S7::method(params, class_query) <- function(obj) {
 
 #' @autoglobal
 #' @noRd
+input <- S7::new_generic("input", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(input, class_query) <- function(obj) {
+  S7::prop(obj, "input")
+}
+
+#' @autoglobal
+#' @noRd
+not_year <- function(x) {
+  input(x)[names2(input(x)) %!=% "year"]
+}
+
+#' @autoglobal
+#' @noRd
+c_match <- function(a, b) {
+  collapse::fmatch(x = a, table = b, nomatch = 0L, overid = 2)
+}
+
+#' @autoglobal
+#' @noRd
+match_query <- function(obj, qry) {
+
+  param  <- not_year(qry)
+  pname  <- names2(param)
+
+  # TODO Use a modifier on "year"
+  # parameter if meant for an API field?
+  field <- keys(obj) |>
+    unlist(use.names = FALSE) |>
+    collapse::funique()
+
+  clean <- clean_names(field)
+
+  set_names(
+    param[c_match(clean, pname)],
+    field[sort(c_match(pname, clean))])
+}
+
+#' @autoglobal
+#' @noRd
 select_years <- function(obj, qry) {
   x <- list(
     idx  = seq_along(obj@year),
@@ -36,7 +78,7 @@ select_years <- function(obj, qry) {
 
 #' @autoglobal
 #' @noRd
-match_query_temporal <- function(obj, qry) {
+match_query2 <- function(obj, qry) {
 
   x <- select_years(obj, qry)
   param <- not_year(qry)
@@ -61,87 +103,4 @@ match_query_temporal <- function(obj, qry) {
     year  = x$year,
     id    = x$id,
     param = df)
-}
-
-#' @autoglobal
-#' @noRd
-c_match <- function(a, b) {
-  collapse::fmatch(x = a, table = b, nomatch = 0L, overid = 2)
-}
-
-#' @autoglobal
-#' @noRd
-not_year <- function(x) {
-  params(x)[names2(params(x)) %!=% "year"]
-}
-
-#' @autoglobal
-#' @noRd
-map_match_query <- function(obj, qry) {
-
-  param  <- not_year(qry)
-  pname  <- rlang::names2(param)
-
-  # TODO Use a modifier on "year"
-  # parameter if meant for an API field?
-  field <- keys(obj)
-  clean <- purrr::map(field, clean_names)
-
-  fin <- purrr::pmap(
-    list(clean, field),
-    function(cl, fl) {
-      rlang::set_names(cl, fl)[c_match(pname, rlang::set_names(cl, fl))]
-    }) |>
-    purrr::compact()
-
-  imap(fin, \(x, i) {
-    param[names(param) %in% unlist(x, use.names = FALSE)]
-  }) |>
-    purrr::map2(fin, \(x, y) set_names(x, names2(y)))
-}
-
-#' @autoglobal
-#' @noRd
-match_query <- function(obj, qry) {
-
-  param  <- not_year(qry)
-  pname  <- names2(param)
-
-  # TODO Use a modifier on "year"
-  # parameter if meant for an API field?
-  field <- keys(obj) |>
-    unlist(use.names = FALSE) |>
-    collapse::funique()
-
-  clean <- clean_names(field)
-
-  set_names(
-    param[c_match(clean, pname)],
-    field[sort(c_match(pname, clean))])
-}
-
-#' @autoglobal
-#' @noRd
-match_query2 <- function(obj, qry) {
-
-  param <- not_year(qry)
-
-  k <- keys(obj) |>
-    unlist(use.names = FALSE) |>
-    collapse::funique()
-
-  vec <- set_names(k, clean_names(k))
-
-  raw <- vec[names2(vec) %in_% names2(param)]
-
-  values <- cheapr::cheapr_rep_each(
-    param,
-    cheapr::counts(
-      names(raw))$count)
-
-  named_args <- set_names(values, unname(raw))
-
-  list(
-    value = named_args,
-    year = map(keys(obj), \(x) x[c_match(unname(raw), x)]))
 }

@@ -1,5 +1,36 @@
 #' @autoglobal
 #' @noRd
+parse_string <- function(resp, query = NULL) {
+  f <- function(x, qry = NULL) {
+    fparse(resp_body_string(x), query = qry)
+  }
+
+  if (!is.null(query)) {
+    switch(
+      query,
+      results    = return(f(resp) |> _[["results"]]),
+      count      = return(f(resp) |> _[["count"]]),
+      found_rows = return(f(resp) |> _[["found_rows"]]),
+      total_rows = return(f(resp) |> _[["total_rows"]]),
+      names      = return(f(resp) |> names2()),
+      return(f(resp, qry = query))
+    )
+  }
+  f(resp)
+}
+
+#' @autoglobal
+#' @noRd
+map_perform_parallel <- function(x, query = NULL) {
+  purrr::map(x, httr2::request) |>
+    httr2::req_perform_parallel(on_error = "continue") |>
+    httr2::resps_successes() |>
+    purrr::map(function(x)
+      parse_string(x, query = query))
+}
+
+#' @autoglobal
+#' @noRd
 api_limit <- function(api) {
   switch(
     match.arg(
@@ -72,24 +103,6 @@ perform_simple_request <- function(x, ...) {
     request() |>
     req_perform() |>
     resp_simple_json(...)
-}
-
-#' @autoglobal
-#' @noRd
-parse_string <- function(resp, query = NULL) {
-
-  f <- \(x, qry = NULL) fparse(resp_body_string(x), query = qry)
-
-  if (!is.null(query)) {
-    switch(
-      query,
-      results    = return(f(resp) |> _[["results"]]),
-      count      = return(f(resp) |> _[["count"]]),
-      found_rows = return(f(resp) |> _[["found_rows"]])
-      )
-  }
-
-  f(resp, qry = query)
 }
 
 #' Generate API Request "Offset" Sequence

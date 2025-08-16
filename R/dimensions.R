@@ -1,24 +1,5 @@
 #' @autoglobal
 #' @noRd
-url_type <- function(x) {
-  api <- case(
-    grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "prov",
-    grepl("openpaymentsdata.cms.gov",   x, perl = TRUE) ~ "open",
-    grepl("data.medicaid.gov",          x, perl = TRUE) ~ "caid",
-    grepl("data.healthcare.gov",        x, perl = TRUE) ~ "hgov",
-    grepl("data.cms.gov/data-api",      x, perl = TRUE) ~ "care",
-    .default = NA_character_
-  )
-
-  if (is.na(api)) cli::cli_abort(c("x" = "{.val {x}} not recognized."))
-  if (api != "care") return(api)
-
-  case(grepl("/data-viewer?", x, perl = TRUE) ~ "current",
-       grepl("/data?",        x, perl = TRUE) ~ "temporal")
-}
-
-#' @autoglobal
-#' @noRd
 get_dims <- function(x) {
 
   if (x$catalog == "care") {
@@ -31,19 +12,18 @@ get_dims <- function(x) {
     )
   }
 
-
   i <- switch(
     x$point,
-    current = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    current = paste0(
+      x$identifier,
+      "?count=true&results=true&offset=0&limit=1") |>
       request() |>
       req_error(is_error = ~ FALSE) |>
       perform_simple(),
-    temporal = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-      map(request) |>
-      req_perform_parallel(on_error = "continue") |>
-      resps_successes() |>
-      map(function(x)
-        parse_string(x)) |>
+    temporal = paste0(
+      x$identifier,
+      "?count=true&results=true&offset=0&limit=1") |>
+      map_perform_parallel() |>
       set_names(x$year)
   )
 
@@ -53,7 +33,7 @@ get_dims <- function(x) {
       total = switch(
         x$point,
         current = i$count,
-        temporal = unname(map_int(i, \(x) x[["count"]]))
+        temporal = unname(map_int(i, function(x) x[["count"]]))
       )
     ),
     fields = class_fields(get_elem(i, "properties"))
@@ -66,23 +46,18 @@ dims_care_temporal <- function(x) {
   list(
     dims = class_dimensions(
       limit = api_limit(x$catalog),
-      total = paste0(x$identifier, "/stats?offset=0&size=1") |>
-        map(request) |>
-        req_perform_parallel(on_error = "continue") |>
-        resps_successes() |>
-        map(function(x)
-          parse_string(x) |>
-            get_elem("total_rows")) |>
+      total = paste0(
+        x$identifier,
+        "/stats?offset=0&size=1") |>
+        map_perform_parallel(query = "total_rows") |>
         set_names(x$year) |>
         unlist(use.names = FALSE)
     ),
     fields = class_fields(
-      keys = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-        map(request) |>
-        req_perform_parallel(on_error = "continue") |>
-        resps_successes() |>
-        map(function(x)
-          names2(parse_string(x))) |>
+      keys = paste0(
+        x$identifier,
+        "?count=true&results=true&offset=0&limit=1") |>
+        map_perform_parallel(query = "names") |>
         set_names(x$year)
     )
   )
