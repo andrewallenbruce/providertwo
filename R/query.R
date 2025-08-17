@@ -11,11 +11,12 @@ class_query <- S7::new_class(
 )
 
 #' Create a Query Object
-#'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
-#'
 #' @returns S7 `<class_query>` object.
-#'
+#' @name query
+NULL
+
+#' @rdname query
 #' @examples
 #' query(
 #'   first_name  = starts_with("And"),
@@ -42,8 +43,21 @@ query <- function(...) {
   )
 }
 
+#' @rdname query
+#' @examples
+#' query2(
+#'   first_name  = starts_with("And"),
+#'   middle_name = NULL,
+#'   last_name   = contains("J"),
+#'   state       = any_of(c("CA", "GA", "NY")),
+#'   state_own   = c("GA", "MD"),
+#'   npi         = npi_ex$k,
+#'   ccn         = "01256",
+#'   rate        = between(0.45, 0.67),
+#'   year        = 2014:2025,
+#'   or("first_name", "last_name"))
 #' @autoglobal
-#' @noRd
+#' @export
 query2 <- function(...) {
   x <- list(
     groups = purrr::keep(rlang::enexprs(...), \(x) is_junc(x)),

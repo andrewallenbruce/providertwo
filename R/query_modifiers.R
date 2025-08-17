@@ -9,7 +9,7 @@
 #'
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
-#' @param ... `<chr>` one or more conditions
+#' @param ... `<chr>` param names of conditions to group with `and()` or `or()`
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` or `<class_junction>` object.
 #' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
@@ -27,7 +27,7 @@ class_modifier <- S7::new_class(
     value    = S7::class_character | S7::class_numeric),
   validator  = function(self) {
     if (length(self@operator) != 1) {
-      cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call. = FALSE)
+      cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call = NULL)
     }
   }
 )
@@ -44,30 +44,20 @@ class_junction <- S7::new_class(
   name       = "class_junction",
   package    = NULL,
   properties = list(
-    conjunction = S7::new_property(S7::class_character, default = "AND"),
-    members     = S7::class_character),
-  validator = function(self) {
-    if (length(self@conjunction) != 1L) {
-      cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"), call. = FALSE)
-    }
-    if (!self@conjunction %in% c("OR", "AND")) {
-      cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"), call. = FALSE)
-    }
-    if (length(self@members) == 1L) {
-      cli::cli_abort(c("x" = "{.field @members} must be greater than length 1"), call. = FALSE)
-    }
-  }
+    conjunction = S7::class_character,
+    members     = S7::class_character) #,
+  # validator = function(self) {
+  #   if (length(self@conjunction) != 1L) {
+  #     cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"))
+  #   }
+  #   if (!self@conjunction %in% c("OR", "AND")) {
+  #     cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"))
+  #   }
+  #   if (length(self@members) == 1L) {
+  #     cli::cli_abort(c("x" = "{.field @members} must be greater than length 1"))
+  #   }
+  # }
 )
-
-# as_junction <- function(...) {
-  # purrr::compact(rlang::enexprs(...))
-    # rlang::dots_list(
-    #   ...,
-    #   .homonyms = "error",
-    #   .named = TRUE,
-    #   .check_assign = TRUE
-    # )
-# }
 
 #' @rdname query_modifier
 #' @examples
@@ -82,13 +72,7 @@ and <- S7::new_class(
     S7::new_object(
       class_junction(),
       conjunction = "AND",
-      members     = rlang::dots_list(
-        ...,
-        .homonyms = "error",
-        .named = TRUE,
-        .check_assign = TRUE
-      ) |>
-        unlist(use.names = FALSE)
+      members     = c(...)
     )
   }
 )
@@ -106,34 +90,10 @@ or <- S7::new_class(
     S7::new_object(
       class_junction(),
       conjunction = "OR",
-      members     = rlang::dots_list(
-        ...,
-        .homonyms = "error",
-        .named = TRUE,
-        .check_assign = TRUE
-      ) |>
-        unlist(use.names = FALSE)
+      members     = c(...)
     )
   }
 )
-
-#' @autoglobal
-#' @noRd
-is_modifier <- function(x) {
-  S7::S7_inherits(x, class_modifier)
-}
-
-#' @autoglobal
-#' @noRd
-are_modifiers <- function(x) {
-  purrr::map_lgl(x, is_modifier)
-}
-
-#' @autoglobal
-#' @noRd
-any_modifiers <- function(x) {
-  any(are_modifiers(x), na.rm = TRUE)
-}
 
 # TODO Map out which modifiers work with which APIs
 # Implement error checking for incompatible modifiers

@@ -54,7 +54,7 @@ contains(x)
 like(x)
 }
 \arguments{
-\item{...}{\verb{<chr>} one or more conditions}
+\item{...}{\verb{<chr>} param names of conditions to group with \code{and()} or \code{or()}}
 
 \item{x, y}{input}
 

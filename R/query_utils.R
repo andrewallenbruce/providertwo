@@ -32,6 +32,18 @@ is_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
+is_modifier <- function(x) {
+  S7::S7_inherits(x, class_modifier)
+}
+
+#' @autoglobal
+#' @noRd
+any_modifiers <- function(x) {
+  any(purrr::map_lgl(x, is_modifier), na.rm = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
 is_junc <- function(x) {
   rlang::is_call(x, name = c("and", "or"))
 }
@@ -39,25 +51,19 @@ is_junc <- function(x) {
 #' @autoglobal
 #' @noRd
 any_junc <- function(x) {
-  any(purrr::map_lgl(x, \(x) is_junc(x)), na.rm = TRUE)
+  any(purrr::map_lgl(x, is_junc), na.rm = TRUE)
 }
 
 #' @autoglobal
 #' @noRd
-are_mods <- function(x) {
-  purrr::map_lgl(x, is_mod)
-}
-
-#' @autoglobal
-#' @noRd
-any_mods <- function(x) {
-  any(are_mods(x))
+any_mod <- function(x) {
+  any(purrr::map_lgl(x, is_mod), na.rm = TRUE)
 }
 
 #' @autoglobal
 #' @noRd
 deparse_mods <- function(x) {
-  purrr::map(x[are_mods(x)], function(x) deparse1(x))
+  purrr::map(x[is_mod(x)], function(x) deparse1(x))
 }
 
 #' @autoglobal
@@ -106,7 +112,7 @@ call_cli <- function(x) {
 #' @autoglobal
 #' @noRd
 mods_cli <- function(x) {
-  purrr::map(x[are_mods(x)], function(x) cli::col_red(deparse1(x)))
+  purrr::map(x[is_mod(x)], function(x) cli::col_red(deparse1(x)))
 }
 
 #' @autoglobal
@@ -164,7 +170,7 @@ cli_query <- function(x) {
   x <- x@input
 
   if (any_evaled(x)) x[are_evaled(x)] <- eval_cli(x[are_evaled(x)])
-  if (any_mods(x))   x[are_mods(x)]   <- mods_cli(x[are_mods(x)])
+  if (any_mod(x))    x[is_mod(x)]     <- mods_cli(x[is_mod(x)])
   if (any_calls(x))  x[are_calls(x)]  <- call_cli(x[are_calls(x)])
 
   FIELD  <- just_right(names(x))
