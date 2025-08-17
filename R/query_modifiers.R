@@ -9,6 +9,7 @@
 #'
 #' @param x,y input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
+#' @param ... `<chr>` one or more conditions
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` or `<class_junction>` object.
 #' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
@@ -58,50 +59,61 @@ class_junction <- S7::new_class(
   }
 )
 
-#' @noRd
-#' @autoglobal
-as_junction <- function(...) {
-    rlang::dots_list(
-      ...,
-      .homonyms = "error",
-      .named = TRUE,
-      .check_assign = TRUE
-    )
-}
+# as_junction <- function(...) {
+  # purrr::compact(rlang::enexprs(...))
+    # rlang::dots_list(
+    #   ...,
+    #   .homonyms = "error",
+    #   .named = TRUE,
+    #   .check_assign = TRUE
+    # )
+# }
 
 #' @rdname query_modifier
 #' @examples
-#' and(c("foo", "bar"))
+#' and("foo", "bar")
 #' @autoglobal
 #' @export
 and <- S7::new_class(
   name        = "and",
   package     = NULL,
   parent      = class_junction,
-  constructor = function(x) {
-
+  constructor = function(...) {
     S7::new_object(
       class_junction(),
       conjunction = "AND",
-      members     = x)
+      members     = rlang::dots_list(
+        ...,
+        .homonyms = "error",
+        .named = TRUE,
+        .check_assign = TRUE
+      ) |>
+        unlist(use.names = FALSE)
+    )
   }
 )
 
 #' @rdname query_modifier
 #' @examples
-#' or(c("foo", "bar"))
+#' or("foo", "bar")
 #' @autoglobal
 #' @export
 or <- S7::new_class(
   name        = "or",
   package     = NULL,
   parent      = class_junction,
-  constructor = function(x) {
-
+  constructor = function(...) {
     S7::new_object(
       class_junction(),
       conjunction = "OR",
-      members     = x)
+      members     = rlang::dots_list(
+        ...,
+        .homonyms = "error",
+        .named = TRUE,
+        .check_assign = TRUE
+      ) |>
+        unlist(use.names = FALSE)
+    )
   }
 )
 

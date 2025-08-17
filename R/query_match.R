@@ -36,14 +36,8 @@ match_query <- function(obj, qry) {
 
   param  <- remove_year(qry)
   pname  <- names2(param)
-
-  # TODO Use a modifier on "year"
-  # parameter if meant for an API field?
-  field <- keys(obj) |>
-    unlist(use.names = FALSE) |>
-    collapse::funique()
-
-  clean <- clean_names(field)
+  field  <- keys(obj)
+  clean  <- clean_names(field)
 
   set_names(
     param[qmatch(clean, pname)],
@@ -54,9 +48,9 @@ match_query <- function(obj, qry) {
 #' @noRd
 select_years <- function(obj, qry) {
   x <- list(
-    idx  = seq_along(obj@year),
-    year = obj@year,
-    id   = obj@identifier,
+    idx   = seq_along(obj@year),
+    year  = obj@year,
+    id    = obj@identifier,
     field = keys(obj))
 
   if ("year" %!in_% names2(params(qry))) {
@@ -66,7 +60,6 @@ select_years <- function(obj, qry) {
   idx <- which_(obj@year %in_% params(qry)$year)
 
   if (is_empty(idx)) {
-    cli_noyears(obj, qry)
     return(x)
   }
 
@@ -83,7 +76,7 @@ match_query2 <- function(obj, qry) {
   x     <- select_years(obj, qry)
   param <- remove_year2(qry)
 
-  df <- collapse::join(
+  df <- join_on(
 
     purrr::imap(x$field, function(x, i) {
       cheapr::new_df(year = i, field = x)
@@ -96,9 +89,7 @@ match_query2 <- function(obj, qry) {
       clean = names2(param),
       param = unname(param)),
 
-    on       = "clean",
-    multiple = TRUE,
-    verbose  = 0L
+    on = "clean"
   ) |>
     collapse::slt(-clean)
 
@@ -112,9 +103,20 @@ match_query2 <- function(obj, qry) {
 #' @autoglobal
 #' @noRd
 map_parse_eval <- function(x) {
-  purrr::map(x, function(x)
+  purrr::map(x, function(x) {
     rlang::parse_expr(x) |>
-      rlang::eval_bare())
+      rlang::eval_bare()
+  })
+}
+
+#' @autoglobal
+#' @noRd
+as_glue_list <- function(x) {
+  purrr::map(x, function(x) {
+    glue::as_glue("list(") +
+      glue::glue_collapse(x, ", ") +
+      glue::as_glue(")")
+  })
 }
 
 #' @autoglobal
@@ -126,25 +128,15 @@ finalize_match2 <- function(x) {
     "glue::double_quote(unlist(param, use.names = FALSE)))}"
   )
 
-
-  x <- collapse::mtt(
-    x,
+  x <- collapse::mtt(x,
     ismod = purrr::map_lgl(param, is_mod),
     combo = glue::glue(combo_cd),
     ismod = NULL,
     field = NULL,
-    param = NULL
-  ) |>
-    # rsplit reverses order of years
+    param = NULL) |>
     collapse::rsplit(~ year) |>
-    cheapr::cheapr_rev() |>
-    # rev() |>
-    purrr::map(
-      function(x)
-        glue::as_glue("list(") +
-        glue::glue_collapse(x, ", ") +
-        glue::as_glue(")")
-    )
+    cheapr::cheapr_rev() |> # rsplit reverses order of years
+    as_glue_list()
 
   map_parse_eval(x)
 }

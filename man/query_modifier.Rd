@@ -25,9 +25,9 @@
 \href{https://jsonapi.org/format/#appendix-query-details}{JSON-API: Query Parameters Details}
 }
 \usage{
-and(x)
+and(...)
 
-or(x)
+or(...)
 
 any_of(x)
 
@@ -54,6 +54,8 @@ contains(x)
 like(x)
 }
 \arguments{
+\item{...}{\verb{<chr>} one or more conditions}
+
 \item{x, y}{input}
 
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
@@ -69,8 +71,8 @@ Query modifiers are a small DSL for use in constructing query conditions,
 in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
-and(c("foo", "bar"))
-or(c("foo", "bar"))
+and("foo", "bar")
+or("foo", "bar")
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])
 equal(1000)

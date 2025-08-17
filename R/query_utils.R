@@ -32,6 +32,18 @@ is_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
+is_junc <- function(x) {
+  rlang::is_call(x, name = c("and", "or"))
+}
+
+#' @autoglobal
+#' @noRd
+any_junc <- function(x) {
+  any(purrr::map_lgl(x, \(x) is_junc(x)), na.rm = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
 are_mods <- function(x) {
   purrr::map_lgl(x, is_mod)
 }

@@ -26,8 +26,7 @@ class_query <- S7::new_class(
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
 #'   rate        = between(0.45, 0.67),
-#'   year        = 2014:2025,
-#'   group       = or(c("first_name", "last_name")))
+#'   year        = 2014:2025)
 #' @autoglobal
 #' @export
 query <- function(...) {
@@ -39,14 +38,28 @@ query <- function(...) {
         .homonyms = "error",
         .named = TRUE,
         .check_assign = TRUE
-      )
-    )
+      ))
   )
 }
 
 #' @autoglobal
 #' @noRd
 query2 <- function(...) {
+  x <- list(
+    groups = purrr::keep(rlang::enexprs(...), \(x) is_junc(x)),
+    params = purrr::discard(rlang::enexprs(...), \(x) is_junc(x))
+  )
+
+  class_query(
+    input  = purrr::compact(rlang::enexprs(...)),
+    params = purrr::map(x$params, eval),
+    groups = purrr::map(x$groups, eval)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+query3 <- function(...) {
   class_query(
     input  = rlang::enquos(
       ...,
