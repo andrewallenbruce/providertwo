@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9449 (2025-08-17)
+
+* conjunctions, query2
+
+
 # providertwo 0.0.0.9448 (2025-08-17)
 
 * added support for and() and or() modifiers
