@@ -10,7 +10,7 @@ query(...)
 query2(...)
 }
 \arguments{
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions where the names are API fields.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions}
 }
 \value{
 S7 \verb{<class_query>} object.

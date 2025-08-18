@@ -26,12 +26,6 @@ remove_year <- function(x) {
 
 #' @autoglobal
 #' @noRd
-remove_year2 <- function(x) {
-  input(x)[names2(input(x)) %!=% "year"]
-}
-
-#' @autoglobal
-#' @noRd
 match_query <- function(obj, qry) {
 
   param  <- remove_year(qry)

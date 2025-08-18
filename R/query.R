@@ -11,7 +11,7 @@ class_query <- S7::new_class(
 )
 
 #' Create a Query Object
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions where the names are API fields.
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions
 #' @returns S7 `<class_query>` object.
 #' @name query
 NULL
@@ -64,10 +64,21 @@ query2 <- function(...) {
     params = purrr::discard(rlang::enexprs(...), \(x) is_junc(x))
   )
 
+  g_names <- purrr::map(x$groups, function(x)
+    prop(eval(x), "members")) |>
+    unlist(use.names = FALSE) |>
+    funique()
+
+  if (all(g_names %!in_% names2(x$params), na.rm = TRUE)) {
+    cli::cli_abort(
+      c("x" = "All {.field group} members must be {.field query} field names"),
+      call = caller_env())
+  }
+
   class_query(
     input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::map(x$params, eval),
-    groups = purrr::map(x$groups, eval)
+    groups = set_names(purrr::map(x$groups, eval), paste0("g", seq_along(x$groups)))
   )
 }
 
