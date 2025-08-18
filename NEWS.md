@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9454 (2025-08-18)
+
+* fixed name check in query2
+
+
 # providertwo 0.0.0.9453 (2025-08-18)
 
 * query2 group checks
