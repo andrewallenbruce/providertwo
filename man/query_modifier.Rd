@@ -9,7 +9,9 @@
 \alias{equal}
 \alias{not_equal}
 \alias{between}
+\alias{between2}
 \alias{not_between}
+\alias{not_between2}
 \alias{greater_than}
 \alias{less_than}
 \alias{starts_with}
@@ -39,7 +41,11 @@ not_equal(x)
 
 between(x, y)
 
+between2(...)
+
 not_between(x, y)
+
+not_between2(...)
 
 greater_than(x, or_equal = FALSE)
 
@@ -80,9 +86,15 @@ not_equal(10000.23)
 between(1000, 1100)
 between(0.125, 2)
 try(between(0.95, 0.67))
+between2(1000, 1100, 125)
+between2(0.125, 2, 0.5)
+between2(0.95, 0.67, 0.75)
 not_between(1000, 1100)
 not_between(0.125, 2)
 try(not_between(0.95, 0.67))
+not_between2(1000, 1100, 125)
+not_between2(0.125, 2, 0.5)
+not_between2(0.95, 0.67, 0.75)
 greater_than(1000)
 greater_than(0.125, or_equal = TRUE)
 less_than(1000)

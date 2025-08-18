@@ -202,6 +202,30 @@ between <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
+#' between2(1000, 1100, 125)
+#' between2(0.125, 2, 0.5)
+#' between2(0.95, 0.67, 0.75)
+#' @autoglobal
+#' @export
+between2 <- S7::new_class(
+  name        = "between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(...) {
+
+    # check_number_decimal(x)
+
+    x <- collapse::frange(c(...), na.rm = TRUE)
+
+    S7::new_object(
+      class_modifier(),
+      operator = "BETWEEN",
+      value    = c(x[1], x[2]))
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
 #' not_between(1000, 1100)
 #' not_between(0.125, 2)
 #' try(not_between(0.95, 0.67))
@@ -226,6 +250,30 @@ not_between <- S7::new_class(
       class_modifier(),
       operator = "NOT+BETWEEN",
       value    = c(x, y))
+  }
+)
+
+#' @rdname query_modifier
+#' @examples
+#' not_between2(1000, 1100, 125)
+#' not_between2(0.125, 2, 0.5)
+#' not_between2(0.95, 0.67, 0.75)
+#' @autoglobal
+#' @export
+not_between2 <- S7::new_class(
+  name        = "between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(...) {
+
+    # check_number_decimal(x)
+
+    x <- collapse::frange(c(...), na.rm = TRUE)
+
+    S7::new_object(
+      class_modifier(),
+      operator = "NOT+BETWEEN",
+      value    = c(x[1], x[2]))
   }
 )
 
