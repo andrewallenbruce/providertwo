@@ -74,30 +74,32 @@ select_years <- function(obj, qry) {
 match_query2 <- function(obj, qry) {
 
   x     <- select_years(obj, qry)
-  param <- remove_year2(qry)
+  qdx   <- set_names(seq_along(qry@params), names2(qry@params))
+  param <- remove_year(qry)
 
-  df <- join_on(
-
-    purrr::imap(x$field, function(x, i) {
-      cheapr::new_df(year = i, field = x)
-    }) |>
+  df <- purrr::imap(x$field, function(x, i) {
+      cheapr::new_df(year = i, field = x)}) |>
       purrr::list_rbind() |>
       collapse::mtt(clean = clean_names(field)) |>
-      collapse::sbt(clean %in_% names2(param)),
+      collapse::sbt(clean %in_% names2(param)) |>
+      collapse::mtt(qdx = qdx[clean])
 
-    cheapr::new_df(
-      clean = names2(param),
-      param = unname(param)),
-
-    on = "clean"
-  ) |>
-    collapse::slt(-clean)
-
-  list(
+  x <- list(
     idx   = x$idx,
     year  = x$year,
     id    = x$id,
     field = df)
+
+  x$field$qdx <- unname(x$field$qdx)
+
+  fd <- purrr::map(collapse::funique(x$field$year), function(yr) {
+    set_names(
+      qry@params[x$field[x$field$year == yr, ]$qdx],
+      x$field[x$field$year == yr, ]$field)
+    }) |>
+    set_names(collapse::funique(x$field$year))
+
+  list_modify(x, list(field = fd))
 }
 
 #' @autoglobal

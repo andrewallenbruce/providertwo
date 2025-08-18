@@ -110,7 +110,9 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   }
 
   prm <- generate_query(prm)
-  url <- append_url(obj@identifier) |> collapse_query(prm)
+  url <- append_url(obj@identifier) |>
+    collapse_query(prm)
+
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
 
@@ -156,17 +158,16 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  x <- match_query2(obj, qry)
-  p <- finalize_match2(x$field)
+  p <- match_query2(obj, qry)
 
-  qst <- map(p, function(x) {
+  qst <- map(p$field, function(x) {
     generate_query(x) |>
       unlist(use.names = FALSE) |>
       paste0(collapse = "&")
   }) |>
     unlist(use.names = FALSE)
 
-  url <- paste0(append_url(x$id), "&")
+  url <- paste0(append_url(p$id), "&")
   url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url, query = "count") |>
@@ -175,10 +176,10 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(p, names2),
-    year   = as.integer(x$year),
+    param  = map(p$field, names2),
+    year   = as.integer(p$year),
     string = as.character(url),
-    total  = dims(obj)@total[x$idx],
+    total  = dims(obj)@total[p$idx],
     found  = res,
     limit  = dims(obj)@limit
   )
@@ -186,17 +187,16 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
-  x <- match_query2(obj, qry)
-  p <- finalize_match2(x$field)
+  p <- match_query2(obj, qry)
 
-  qst <- map(p, function(x) {
+  qst <- map(p$field, function(x) {
     generate_query(x, is_care = TRUE) |>
       unlist(use.names = FALSE) |>
       paste0(collapse = "&")
   }) |>
     unlist(use.names = FALSE)
 
-  url <- paste0(append_url(x$id, "stats"), "&")
+  url <- paste0(append_url(p$id, "stats"), "&")
   url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url)
@@ -204,8 +204,8 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(p, names2),
-    year   = as.integer(x$year),
+    param  = map(p$field, names2),
+    year   = as.integer(p$year),
     string = as.character(url),
     total  = total_rows(res),
     found  = found_rows(res),

@@ -32,6 +32,12 @@ is_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
+is_junction <- function(x) {
+  S7::S7_inherits(x, class_junction)
+}
+
+#' @autoglobal
+#' @noRd
 is_modifier <- function(x) {
   S7::S7_inherits(x, class_modifier)
 }
