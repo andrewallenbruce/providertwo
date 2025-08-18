@@ -19,6 +19,11 @@ Build a Query for an Endpoint
 }
 \examples{
 build(
+  endpoint("drug_state"),
+  query(year = 2022:2024,
+        state = any_of("GA", "NY")))
+
+build(
   endpoint("enroll_prov"),
   query(enrlmt_id = "I20040309000221"))
 

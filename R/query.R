@@ -69,7 +69,9 @@ query2 <- function(...) {
     unlist(use.names = FALSE) |>
     funique()
 
-  if (all(g_names %!in_% names2(x$params), na.rm = TRUE)) {
+  ok <- all(g_names %in_% names2(x$params))
+
+  if (!ok) {
     cli::cli_abort(
       c("x" = "All {.field group} members must be {.field query} field names"),
       call = caller_env())

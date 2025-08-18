@@ -26,7 +26,6 @@ no_match_response <- function(obj) {
   )
 }
 
-# build(endpoint("drug_state"), query(year = 2022:2024, state = any_of(c("GA", "NY"))))
 #' Build a Query for an Endpoint
 #'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
@@ -36,6 +35,11 @@ no_match_response <- function(obj) {
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
 #' @examples
+#' build(
+#'   endpoint("drug_state"),
+#'   query(year = 2022:2024,
+#'         state = any_of("GA", "NY")))
+#'
 #' build(
 #'   endpoint("enroll_prov"),
 #'   query(enrlmt_id = "I20040309000221"))
