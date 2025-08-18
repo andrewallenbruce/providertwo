@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9450 (2025-08-17)
+
+* between2, not_between2
+
+
 # providertwo 0.0.0.9449 (2025-08-17)
 
 * conjunctions, query2
