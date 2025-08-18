@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9452 (2025-08-18)
+
+* tidy up
+
+
 # providertwo 0.0.0.9451 (2025-08-18)
 
 * refactored match_query2() to use evaluated expressions in query() as opposed to the unevaluated input.
