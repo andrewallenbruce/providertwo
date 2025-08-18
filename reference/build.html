@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9453</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9454</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,6 +68,25 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
+<span class="r-in"><span>        state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ alias : chr "drug_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ title : chr "State Drug Utilization Data"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ param :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2024: chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2023: chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ 2022: chr "state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:3] 2024 2023 2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ string: chr [1:3] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0?count=true&amp;results=true&amp;"| __truncated__ ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ limit : int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ found : int [1:3] 262185 286759 324621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ total : int [1:3] 5205065 5277298 5164804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ pages : int [1:3] 33 36 41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ error : logi [1:3] FALSE FALSE FALSE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">build</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_response&gt;</span>
