@@ -27,5 +27,5 @@ quality_eligibility(
 
 build(
    endpoint("qppe"),
-   query(npi = any_of(c(1144544834, 1043477615, 1932365699, 1225701881))))
+   query(npi = any_of(1144544834, 1043477615, 1932365699, 1225701881)))
 }

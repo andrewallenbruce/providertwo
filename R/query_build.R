@@ -59,7 +59,7 @@ no_match_response <- function(obj) {
 #'   endpoint("qppe"),
 #'   query(
 #'     year = 2021:2023,
-#'     practice_state_or_us_territory = any_of(c("GA", "FL")),
+#'     practice_state_or_us_territory = any_of("GA", "FL"),
 #'     practice_size = less_than(10, or_equal = TRUE)
 #'   )
 #' )
@@ -67,7 +67,7 @@ no_match_response <- function(obj) {
 #' build(
 #'   endpoint("hc_quality"),
 #'   query(
-#'     state = any_of(c("Georgia", "Alabama")),
+#'     state = any_of("Georgia", "Alabama"),
 #'     year = 2020:2023
 #'    )
 #'  )
@@ -77,7 +77,7 @@ no_match_response <- function(obj) {
 #'   query(
 #'     provider_first_name = starts_with("An"),
 #'     provider_last_name = contains("J"),
-#'     state = any_of(c("CA", "GA", "NY"))))
+#'     state = any_of("CA", "GA", "NY")))
 #'
 #' @autoglobal
 #' @export

@@ -103,8 +103,6 @@ utils::globalVariables(c(
   "nationalProviderIdentifierType",
   # <npi_nppes>
   "organization",
-  # <finalize_match2>
-  "param",
   # <clog_caid>
   "periodicity",
   # <clog_care>

@@ -7,9 +7,9 @@
 #' Query modifiers are a small DSL for use in constructing query conditions,
 #' in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
 #'
-#' @param x,y input
+#' @param x input
+#' @param ... input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
-#' @param ... `<chr>` param names of conditions to group with `and()` or `or()`
 #' @name query_modifier
 #' @returns An S7 `<class_modifier>` or `<class_junction>` object.
 #' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
@@ -32,12 +32,16 @@ class_modifier <- S7::new_class(
   }
 )
 
-# # 2 Group Conjunctions - Index ([2]) ids the group
+# 2 Group Conjunctions
+# Index ([2]) ids the group
+#
 # "filter[g1][group][conjunction]=OR"
 # "filter[g2][group][conjunction]=AND"
 #
-# # Add memberOf to params in group
+# Add memberOf to params in group
+#
 # "filter[1][condition][memberOf]=g2"
+#
 #' @noRd
 #' @autoglobal
 class_junction <- S7::new_class(
@@ -45,18 +49,7 @@ class_junction <- S7::new_class(
   package    = NULL,
   properties = list(
     conjunction = S7::class_character,
-    members     = S7::class_character) #,
-  # validator = function(self) {
-  #   if (length(self@conjunction) != 1L) {
-  #     cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"))
-  #   }
-  #   if (!self@conjunction %in% c("OR", "AND")) {
-  #     cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"))
-  #   }
-  #   if (length(self@members) == 1L) {
-  #     cli::cli_abort(c("x" = "{.field @members} must be greater than length 1"))
-  #   }
-  # }
+    members     = S7::class_character)
 )
 
 #' @rdname query_modifier
@@ -108,12 +101,12 @@ any_of <- S7::new_class(
   name        = "any_of",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x) {
+  constructor = function(...) {
 
     S7::new_object(
       class_modifier(),
       operator = "IN",
-      value    = x)
+      value    = c(...))
   }
 )
 
@@ -126,12 +119,12 @@ none_of <- S7::new_class(
   name        = "none_of",
   package     = NULL,
   parent      = class_modifier,
-  constructor = function(x) {
+  constructor = function(...) {
 
     S7::new_object(
       class_modifier(),
       operator = "NOT+IN",
-      value    = x)
+      value    = c(...))
   }
 )
 
@@ -173,41 +166,12 @@ not_equal <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' between(1000, 1100)
-#' between(0.125, 2)
-#' try(between(0.95, 0.67))
+#' between(1000, 1100, 125)
+#' between(0.125, 2, 0.5)
+#' between(0.95, 0.67, 0.75)
 #' @autoglobal
 #' @export
 between <- S7::new_class(
-  name        = "between",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x, y) {
-
-    check_number_decimal(x)
-    check_number_decimal(y)
-
-    if (x >= y) {
-      cli::cli_abort(
-        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
-        call. = FALSE)
-    }
-
-    S7::new_object(
-      class_modifier(),
-      operator = "BETWEEN",
-      value    = c(x, y))
-  }
-)
-
-#' @rdname query_modifier
-#' @examples
-#' between2(1000, 1100, 125)
-#' between2(0.125, 2, 0.5)
-#' between2(0.95, 0.67, 0.75)
-#' @autoglobal
-#' @export
-between2 <- S7::new_class(
   name        = "between",
   package     = NULL,
   parent      = class_modifier,
@@ -226,42 +190,13 @@ between2 <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' not_between(1000, 1100)
-#' not_between(0.125, 2)
-#' try(not_between(0.95, 0.67))
+#' not_between(1000, 1100, 125)
+#' not_between(0.125, 2, 0.5)
+#' not_between(0.95, 0.67, 0.75)
 #' @autoglobal
 #' @export
 not_between <- S7::new_class(
   name        = "not_between",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x, y) {
-
-    check_number_decimal(x)
-    check_number_decimal(y)
-
-    if (x >= y) {
-      cli::cli_abort(
-        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
-        call. = FALSE)
-    }
-
-    S7::new_object(
-      class_modifier(),
-      operator = "NOT+BETWEEN",
-      value    = c(x, y))
-  }
-)
-
-#' @rdname query_modifier
-#' @examples
-#' not_between2(1000, 1100, 125)
-#' not_between2(0.125, 2, 0.5)
-#' not_between2(0.95, 0.67, 0.75)
-#' @autoglobal
-#' @export
-not_between2 <- S7::new_class(
-  name        = "between",
   package     = NULL,
   parent      = class_modifier,
   constructor = function(...) {

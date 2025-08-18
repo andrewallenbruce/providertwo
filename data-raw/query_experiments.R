@@ -1,5 +1,87 @@
 #' @autoglobal
 #' @noRd
+map_parse_eval <- function(x) {
+  purrr::map(x, function(x) {
+    rlang::parse_expr(x) |>
+      rlang::eval_bare()
+  })
+}
+
+#' @autoglobal
+#' @noRd
+as_glue_list <- function(x) {
+  purrr::map(x, function(x) {
+    glue::as_glue("list(") +
+      glue::glue_collapse(x, ", ") +
+      glue::as_glue(")")
+  })
+}
+
+#' @autoglobal
+#' @noRd
+finalize_match2 <- function(x) {
+  combo_cd <- paste0(
+    "{glue::backtick(field)} = ",
+    "{ifelse(ismod, unlist(param, use.names = FALSE), ",
+    "glue::double_quote(unlist(param, use.names = FALSE)))}"
+  )
+
+  x <- collapse::mtt(x,
+                     ismod = purrr::map_lgl(param, is_mod),
+                     combo = glue::glue(combo_cd),
+                     ismod = NULL,
+                     field = NULL,
+                     param = NULL) |>
+    collapse::rsplit(~ year) |>
+    cheapr::cheapr_rev() |> # rsplit reverses order of years
+    as_glue_list()
+
+  map_parse_eval(x)
+}
+
+class_junction <- S7::new_class(
+  name       = "class_junction",
+  package    = NULL,
+  properties = list(
+    conjunction = S7::class_character,
+    members     = S7::class_character) #,
+  # validator = function(self) {
+  #   if (length(self@conjunction) != 1L) {
+  #     cli::cli_abort(c("x" = "{.field @conjunction} must be length 1"))
+  #   }
+  #   if (!self@conjunction %in% c("OR", "AND")) {
+  #     cli::cli_abort(c("x" = "{.field @conjunction} must be one of {.val AND} or {.val OR}"))
+  #   }
+  #   if (length(self@members) == 1L) {
+  #     cli::cli_abort(c("x" = "{.field @members} must be greater than length 1"))
+  #   }
+  # }
+)
+
+#' @autoglobal
+#' @noRd
+query3 <- function(...) {
+  class_query(
+    input  = rlang::enquos(
+      ...,
+      .homonyms = "error",
+      .named = TRUE,
+      .ignore_null = "all",
+      .check_assign = TRUE
+    ),
+    params = purrr::compact(
+      rlang::dots_list(
+        ...,
+        .homonyms = "error",
+        .named = TRUE,
+        .check_assign = TRUE
+      )
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
 match_query2 <- function(obj, qry) {
 
   param <- not_year(qry)
@@ -115,6 +197,35 @@ query <- function(...) {
     )
   )
 }
+
+#' @rdname query_modifier
+#' @examples
+#' between(1000, 1100)
+#' between(0.125, 2)
+#' try(between(0.95, 0.67))
+#' @autoglobal
+#' @export
+between <- S7::new_class(
+  name        = "between",
+  package     = NULL,
+  parent      = class_modifier,
+  constructor = function(x, y) {
+
+    check_number_decimal(x)
+    check_number_decimal(y)
+
+    if (x >= y) {
+      cli::cli_abort(
+        "{.field x} [{.val {x}}] must be less than {.field y} [{.val {y}}]",
+        call. = FALSE)
+    }
+
+    S7::new_object(
+      class_modifier(),
+      operator = "BETWEEN",
+      value    = c(x, y))
+  }
+)
 
 #' @autoglobal
 #' @noRd

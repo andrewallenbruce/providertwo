@@ -9,9 +9,7 @@
 \alias{equal}
 \alias{not_equal}
 \alias{between}
-\alias{between2}
 \alias{not_between}
-\alias{not_between2}
 \alias{greater_than}
 \alias{less_than}
 \alias{starts_with}
@@ -31,21 +29,17 @@ and(...)
 
 or(...)
 
-any_of(x)
+any_of(...)
 
-none_of(x)
+none_of(...)
 
 equal(x)
 
 not_equal(x)
 
-between(x, y)
+between(...)
 
-between2(...)
-
-not_between(x, y)
-
-not_between2(...)
+not_between(...)
 
 greater_than(x, or_equal = FALSE)
 
@@ -60,9 +54,9 @@ contains(x)
 like(x)
 }
 \arguments{
-\item{...}{\verb{<chr>} param names of conditions to group with \code{and()} or \code{or()}}
+\item{...}{input}
 
-\item{x, y}{input}
+\item{x}{input}
 
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
@@ -83,18 +77,12 @@ any_of(state.abb[10:15])
 none_of(state.abb[1:3])
 equal(1000)
 not_equal(10000.23)
-between(1000, 1100)
-between(0.125, 2)
-try(between(0.95, 0.67))
-between2(1000, 1100, 125)
-between2(0.125, 2, 0.5)
-between2(0.95, 0.67, 0.75)
-not_between(1000, 1100)
-not_between(0.125, 2)
-try(not_between(0.95, 0.67))
-not_between2(1000, 1100, 125)
-not_between2(0.125, 2, 0.5)
-not_between2(0.95, 0.67, 0.75)
+between(1000, 1100, 125)
+between(0.125, 2, 0.5)
+between(0.95, 0.67, 0.75)
+not_between(1000, 1100, 125)
+not_between(0.125, 2, 0.5)
+not_between(0.95, 0.67, 0.75)
 greater_than(1000)
 greater_than(0.125, or_equal = TRUE)
 less_than(1000)

@@ -22,7 +22,7 @@ NULL
 #'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
-#'   state       = any_of(c("CA", "GA", "NY")),
+#'   state       = any_of("CA", "GA", "NY"),
 #'   state_own   = c("GA", "MD"),
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
@@ -49,7 +49,7 @@ query <- function(...) {
 #'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
-#'   state       = any_of(c("CA", "GA", "NY")),
+#'   state       = any_of("CA", "GA", "NY"),
 #'   state_own   = c("GA", "MD"),
 #'   npi         = npi_ex$k,
 #'   ccn         = "01256",
@@ -68,28 +68,6 @@ query2 <- function(...) {
     input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::map(x$params, eval),
     groups = purrr::map(x$groups, eval)
-  )
-}
-
-#' @autoglobal
-#' @noRd
-query3 <- function(...) {
-  class_query(
-    input  = rlang::enquos(
-      ...,
-      .homonyms = "error",
-      .named = TRUE,
-      .ignore_null = "all",
-      .check_assign = TRUE
-    ),
-    params = purrr::compact(
-      rlang::dots_list(
-        ...,
-        .homonyms = "error",
-        .named = TRUE,
-        .check_assign = TRUE
-      )
-    )
   )
 }
 
