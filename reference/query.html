@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9454</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9455</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,82 +71,52 @@
 <span class="r-in"><span>  last_name   <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state_own   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  npi         <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span>,</span></span>
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: language starts_with("And")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : language contains("J")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : language any_of("CA", "GA", "NY")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : language c("GA", "MD")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ npi       : language npi_ex$k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : language between(0.45, 0.67)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : language 2014:2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "And"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "And"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : &lt;contains&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "CONTAINS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "J"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "CONTAINS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "J"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr [1:3] "CA" "GA" "NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "IN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:3] "CA" "GA" "NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : chr [1:2] "GA" "MD"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ npi       : num [1:18] 1.23e+09 1.17e+09 1.24e+09 1.96e+09 1.01e+09 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : &lt;between&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "BETWEEN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : num [1:2] 0.45 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "BETWEEN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : num [1:2] 0.45 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: list()</span>
-<span class="r-in"><span><span class="fu">query2</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  first_name  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  middle_name <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>  last_name   <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state_own   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  npi         <span class="op">=</span> <span class="va">npi_ex</span><span class="op">$</span><span class="va">k</span>,</span></span>
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"first_name"</span>, <span class="st">"last_name"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: language starts_with("And")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : language contains("J")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : language any_of("CA", "GA", "NY")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : language c("GA", "MD")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ npi       : language npi_ex$k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : language between(0.45, 0.67)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : language 2014:2025</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $           : language or("first_name", "last_name")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name : &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "And"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ middle_name: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name  : &lt;contains&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "CONTAINS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "J"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state      : &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr [1:3] "CA" "GA" "NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own  : chr [1:2] "GA" "MD"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ npi        : num [1:18] 1.23e+09 1.17e+09 1.24e+09 1.96e+09 1.01e+09 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn        : chr "01256"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate       : &lt;between&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "BETWEEN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : num [1:2] 0.45 0.67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year       : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups:List of 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ g1: &lt;or&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ conjunction: chr "OR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ members    : chr [1:2] "first_name" "last_name"</span>
+<span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"first_name"</span>, <span class="st">"last_name"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">and</a></span><span class="op">(</span><span class="st">"ccn"</span>, <span class="st">"npii"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> All <span style="color: #00BB00;">group</span> members must be <span style="color: #00BB00;">query</span> field names</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
