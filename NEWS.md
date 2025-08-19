@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9457 (2025-08-19)
+
+* field types
+
+
 # providertwo 0.0.0.9456 (2025-08-19)
 
 * cleanup: checks, dictionary
