@@ -13,8 +13,6 @@ utils::globalVariables(c(
   "category",
   # <match_query2>
   "clean",
-  # <open_dictionary>
-  "constraints",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
@@ -27,7 +25,6 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <open_dictionary>
   "description",
   # <clog_hgov>
   "distribution",
@@ -81,9 +78,6 @@ utils::globalVariables(c(
   # <npi_nppes>
   # <.nppes_multi_npi>
   "last_updated_epoch",
-  # <luhn_check>
-  # <assert_luhn>
-  "luhn_algo",
   # <quality_metrics>
   "metric",
   # <quality_eligibility>
@@ -96,7 +90,6 @@ utils::globalVariables(c(
   "modified",
   # <clog_hgov>
   "n",
-  # <open_dictionary>
   # <tidy_resources>
   "name",
   # <quality_eligibility>
@@ -129,7 +122,6 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <open_dictionary>
   # <select_alias>
   "title",
   # <clog_caid>
@@ -138,7 +130,6 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <open_dictionary>
   # <tidy_resources>
   "year",
   NULL
