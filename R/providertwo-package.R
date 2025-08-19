@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom collapse %iin% %=% %==% %!=% .c add_vars any_duplicated av
+#' @importFrom collapse %iin% %=% %==% %!=% .c add_vars allNA any_duplicated av
 #' @importFrom collapse colorder fcompute fcount fduplicated fmatch fmax fnobs funique
 #' @importFrom collapse get_elem get_vars `gv<-` gv groupid join mtt pivot radixorder
 #' @importFrom collapse rnm rowbind roworder rsplit sbt slt ss tfm vlengths
@@ -13,7 +13,7 @@
 #' @importFrom stringi stri_detect_regex stri_extract stri_extract_all_regex
 #' @importFrom stringi stri_extract_first_regex stri_replace_all_fixed
 #' @importFrom stringi stri_replace_all_regex stri_replace_first_regex
-#' @importFrom stringi stri_trans_general stri_trim stri_trim_both
+#' @importFrom stringi stri_trim stri_trim_both
 #' @importFrom vctrs `vec_slice<-` vec_in
 #' @import httr2
 #' @import S7

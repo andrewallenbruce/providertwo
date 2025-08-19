@@ -132,7 +132,7 @@ is_collection <- function(x) {
 
 #' @autoglobal
 #' @noRd
-any_are_collection <- function(x) {
+any_collection <- function(x) {
   any(is_collection(x), na.rm = TRUE)
 }
 

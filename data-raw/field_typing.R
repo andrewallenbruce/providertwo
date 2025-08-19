@@ -136,13 +136,11 @@ qpp_fields |>
   roworder(field) |>
   print(n = 200)
 
-get_pin("field_types") |>
-  field_type_col()
-
 build(endpoint("quality_payment"), query(npi = c(1144544834, 1043477615, 1932365699, 1225701881)))
 
+care_tmp <- fields_temporal_care(the$clog$care$temporal, end_care$temporal)
+
 pin_update(
-  # vctrs::vec_rbind(prov_fld, care_fld, open_fld, caid_fld, hgov_fld, qpp_fields),
   field_types,
   name = "field_types",
   title = "Field Typing",

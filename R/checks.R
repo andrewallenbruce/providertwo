@@ -1,3 +1,67 @@
+# x <- list(
+#   alias = "example",
+#   regex = "^example$",
+#   tbl = fastplyr::new_tbl())
+# check_alias_results(x)
+#' @autoglobal
+#' @noRd
+check_alias_results <- function(x, call = caller_env()) {
+  msg <- c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches.")
+
+  if (is_empty(x$tbl)) {
+    cli::cli_abort(msg, call = call)
+  }
+
+  if (nrow(x$tbl) > 1L) {
+    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(x$tbl$title)))
+    cli::cli_abort(msg, call = call)
+  }
+
+}
+
+#' @autoglobal
+#' @noRd
+check_collection <- function(alias, call = caller_env()) {
+  if (length(alias) > 1L) {
+    cli::cli_abort(
+      c("x" = "Only one {.cls collection} alias can be loaded at a time."),
+      call = call)
+  }
+
+  if (!is_collection(alias)) {
+    cli::cli_abort(
+      c("x" = "{.val {alias}} is not a {.cls collection} {.field alias}."),
+      call = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_group <- function(alias, call = caller_env()) {
+
+  avec  <- unlist(alias, use.names = FALSE)
+  msg   <- c("x" = "A {.cls group} must contain at least two {.cls endpoints}.")
+
+  if (rlang::is_empty(alias) || !any(nzchar(alias))) {
+    cli::cli_abort(msg, call = call)
+  }
+
+  if (any_collection(avec)) {
+    avec <- avec[is_collection(avec)][[1]]
+    cli::cli_abort(
+      c("x" = "A {.cls group} cannot contain a {.cls collection}.",
+        ">" = "Run e.g., {.field collection({.val {avec}})}."),
+      call = call
+    )
+  }
+
+  if (rlang::has_length(avec, 1L)) {
+    cli::cli_abort(
+      c(msg, ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
+      call = call)
+  }
+}
+
 #' @autoglobal
 #' @noRd
 check_year <- function(x, min = NULL, arg = caller_arg(x), call = caller_env()) {

@@ -32,10 +32,11 @@ c2 <- function(x) {
 
   end <- yank(x$endpoints)
 
-  end <- `if`(
-    "resources" %in_% names2(end),
-    gv(end, c(cols, "resources")),
-    gv(end, cols))
+  end <- if ("resources" %in_% names2(end)) {
+    gv(end, c(cols, "resources"))
+  } else {
+    gv(end, cols)
+  }
 
   if (collapse::allNA(end$download)) gv(end, "download") <- NULL
 
@@ -95,7 +96,7 @@ as_temporal <- function(x) {
 
 #' @autoglobal
 #' @noRd
-as_point <- function(x) {
+as_endpoint <- function(x) {
   switch(
     x$point,
     current  = as_current(x),
@@ -139,9 +140,9 @@ endpoint <- function(alias) {
     x$catalog,
     care = as_care(x),
     prov = class_prov(as_current(x)),
-    caid = class_caid(as_point(x)),
-    open = class_open(as_point(x)),
-    hgov = class_hgov(as_point(x))
+    caid = class_caid(as_endpoint(x)),
+    open = class_open(as_endpoint(x)),
+    hgov = class_hgov(as_endpoint(x))
   )
 }
 
@@ -155,18 +156,7 @@ endpoint <- function(alias) {
 collection <- function(alias) {
 
   check_required(alias)
-
-  if (length(alias) > 1L) {
-    cli::cli_abort(
-      c("x" = "Only one {.cls collection} alias can be loaded at a time."),
-      call. = FALSE)
-  }
-
-  if (!is_collection(alias)) {
-    cli::cli_abort(
-      c("x" = "{.val {alias}} is not a {.cls collection} {.field alias}."),
-      call. = FALSE)
-  }
+  check_collection(alias)
 
   x <- rex_collect(alias)
 
@@ -185,25 +175,8 @@ collection <- function(alias) {
 group <- function(..., .title = NULL) {
 
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
-  avec  <- unlist(alias, use.names = FALSE)
-  msg   <- c("x" = "A {.cls group} must contain at least two {.cls endpoints}.")
 
-  if (rlang::is_empty(alias) || any(!nzchar(alias))) {
-    cli::cli_abort(msg, call. = FALSE)
-  }
-
-  if (any_are_collection(avec)) {
-    cli::cli_abort(
-      c("x" = "A {.cls group} cannot contain a {.cls collection}.",
-        ">" = "Run e.g., {.field collection({.val {avec[is_collection(avec)][[1]]}})}."),
-      call. = FALSE)
-  }
-
-  if (rlang::has_length(avec, 1L)) {
-    cli::cli_abort(
-      c(msg, ">" = "Run {.field endpoint({.val {avec}})} to load an endpoint."),
-      call. = FALSE)
-  }
+  check_group(alias)
 
   class_group(
     title   = .title %||% brackets(toString(alias)),
