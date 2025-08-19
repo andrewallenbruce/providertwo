@@ -139,6 +139,15 @@ qpp_fields |>
 build(endpoint("quality_payment"), query(npi = c(1144544834, 1043477615, 1932365699, 1225701881)))
 
 care_tmp <- fields_temporal_care(the$clog$care$temporal, end_care$temporal)
+caid_tmp <- fields_temporal(the$clog$caid$temporal, end_caid$temporal)
+hgov_tmp <- fields_temporal(the$clog$hgov$temporal, end_hgov$temporal)
+open_tmp <- fields_temporal(the$clog$open$temporal, end_open$temporal)
+
+field_types <- vctrs::vec_rbind(
+  get_pin("field_types"),
+  caid_tmp,
+  hgov_tmp,
+  open_tmp)
 
 pin_update(
   field_types,
