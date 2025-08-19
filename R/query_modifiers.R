@@ -20,28 +20,19 @@ NULL
 #' @noRd
 #' @autoglobal
 class_modifier <- S7::new_class(
-  name       = "class_modifier",
-  package    = NULL,
-  properties = list(
-    operator = S7::new_property(S7::class_character, default = "="),
-    value    = S7::class_character | S7::class_numeric),
-  validator  = function(self) {
+  name        = "class_modifier",
+  package     = NULL,
+  properties  = list(
+    operator  = S7::new_property(S7::class_character, default = "="),
+    value     = S7::class_character | S7::class_numeric,
+    member_of = S7::class_character),
+  validator   = function(self) {
     if (length(self@operator) != 1) {
       cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call = NULL)
     }
   }
 )
 
-# 2 Group Conjunctions
-# Index ([2]) ids the group
-#
-# "filter[g1][group][conjunction]=OR"
-# "filter[g2][group][conjunction]=AND"
-#
-# Add memberOf to params in group
-#
-# "filter[1][condition][memberOf]=g2"
-#
 #' @noRd
 #' @autoglobal
 class_junction <- S7::new_class(

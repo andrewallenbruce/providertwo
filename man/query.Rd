@@ -25,19 +25,18 @@ query(
   last_name   = contains("J"),
   state       = any_of("CA", "GA", "NY"),
   state_own   = c("GA", "MD"),
-  npi         = npi_ex$k,
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
-query2(
+try(query2(
   first_name  = starts_with("And"),
   middle_name = NULL,
   last_name   = contains("J"),
   state       = any_of("CA", "GA", "NY"),
   state_own   = c("GA", "MD"),
-  npi         = npi_ex$k,
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025,
-  or("first_name", "last_name"))
+  or("first_name", "last_name"),
+  and("ccn", "npii")))
 }

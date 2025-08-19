@@ -1,20 +1,35 @@
-# args is a simple named list:
-# list(NPI = starts_with(1417918293)
-#      PECOS_ASCT_CNTL_ID = 3870481252,
-#      ENRLMT_ID = "I20040309000221")
+# x <- query2(
+#   first_name  = starts_with("And"),
+#   middle_name = NULL,
+#   last_name   = contains("J"),
+#   state       = any_of("CA", "GA", "NY"),
+#   state_own   = c("GA", "MD"),
+#   npi         = npi_ex$k,
+#   ccn         = "01256",
+#   rate        = between(0.45, 0.67),
+#   year        = 2014:2025,
+#   or("first_name", "last_name"),
+#   and("ccn", "npi")
+# )
 #
-# example output:
-# $NPI
-# <starts_with>
-#  @ operator: chr "STARTS_WITH"
-#  @ value   : num 1.42e+09
+# x |>
+#   props("params") |>
+#   get_elem("params")
 #
-# $PECOS_ASCT_CNTL_ID
-# [1] 3870481252
-#
-# $ENRLMT_ID
-# [1] "I20040309000221"
+# x |>
+#   props("groups") |>
+#   get_elem("groups")
 
+# 2 Group Conjunctions
+# Index ([2]) ids the group
+#
+# "filter[g1][group][conjunction]=OR"
+# "filter[g2][group][conjunction]=AND"
+#
+# Add memberOf to params in group
+#
+# "filter[1][condition][memberOf]=g2"
+#
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {

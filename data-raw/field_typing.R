@@ -1,8 +1,6 @@
 source(here::here("data-raw", "pins_internal.R"))
 source(here::here("data-raw", "field_fns.R"))
 
-
-
 the$clog$caid$current |>
   alias_column(end_caid$current) |>
   sbt(is.na(alias))
