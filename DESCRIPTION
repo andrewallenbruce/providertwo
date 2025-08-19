@@ -26,6 +26,7 @@ Imports:
     oomph (>= 0.1.2),
     pins (>= 1.4.1),
     purrr (>= 1.1.0),
+    qs (>= 0.27.3),
     RcppSimdJson (>= 0.1.13),
     rlang (>= 1.1.6),
     rrapply (>= 1.2.7),

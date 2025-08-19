@@ -43,7 +43,7 @@ utils::globalVariables(c(
   "ext",
   # <reduce_fields>
   "f_common",
-  # <field_type_col>
+  # <field_table>
   # <match_query2>
   "field",
   # <tidy_resources>
