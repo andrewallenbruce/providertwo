@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9459 (2025-08-19)
+
+* field_table
+
+
 # providertwo 0.0.0.9458 (2025-08-19)
 
 * field types temporal
