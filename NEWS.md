@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9460 (2025-08-20)
+
+* removed hrsa_facilities(), HRSA API has changed
+
+
 # providertwo 0.0.0.9459 (2025-08-19)
 
 * field_table
