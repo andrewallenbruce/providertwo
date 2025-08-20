@@ -115,15 +115,6 @@ qpp_fields <- purrr::imap(url, function(x, i) {
     collapse::mtt(title = title)
 })
 
-#   year      N
-# 1 2023    204
-# 2 2022    165
-# 3 2021     92
-# 4 2020     92
-# 5 2019     92
-# 6 2018     92
-# 7 2017     92
-
 qpp_fields <- qpp_fields |>
   purrr::list_rbind() |>
   collapse::mtt(catalog = "care", point = "temporal") |>

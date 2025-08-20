@@ -22,7 +22,7 @@ class_dimensions <- S7::new_class(
   ),
   validator = function(self) {
     if (length(self@limit) != 1)
-      cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call. = FALSE)
+      cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call = NULL)
   }
 )
 

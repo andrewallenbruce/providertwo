@@ -21,7 +21,7 @@ tidy_resources <- function(x) {
 #'
 #' @returns A list of available API resources.
 #'
-#' @examples
+#' @examplesIf rlang::is_interactive()
 #' list_resources(endpoint("enroll_prov"))
 #' list_resources(endpoint("qppe"))
 #' list_resources(collection("in_hosp"))

@@ -4,12 +4,12 @@
 #'
 #' @returns A list of endpoints.
 #'
-#' @examples
+#' @examplesIf FALSE
 #' hrsa_facilities()
 #'
 #' hrsa_facilities("items")
 #' @autoglobal
-#' @export
+#' @noRd
 hrsa_facilities <- function(retrieve = NULL) {
   if (is.null(retrieve)) {
     return(the$clog$hrsa)
@@ -21,3 +21,7 @@ hrsa_facilities <- function(retrieve = NULL) {
     items  = arcgislayers::list_items(the$clog$hrsa)
   )
 }
+
+# https://data.hrsa.gov/tools/web-services/registration#serviceInfo
+# hrsa_url <- paste0("https://gisportal.hrsa.gov/server/rest/services/FeatureServices/CMSApprovedFacilities_FS/MapServer")
+# hrsa = arcgislayers::arc_open(hrsa_url)

@@ -16,8 +16,10 @@ A list of available API resources.
 List resources
 }
 \examples{
+\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 list_resources(endpoint("enroll_prov"))
 list_resources(endpoint("qppe"))
 list_resources(collection("in_hosp"))
 list_resources(group("asc_facility", "enterprise", "lab_fee"))
+\dontshow{\}) # examplesIf}
 }

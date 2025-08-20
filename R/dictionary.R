@@ -1,5 +1,9 @@
+#' Field Dictionary
+#' @examples
+#' dictionary()
+#' @returns A data frame
 #' @autoglobal
-#' @noRd
+#' @export
 dictionary <- function() {
  get_pin("dicts")
 }
