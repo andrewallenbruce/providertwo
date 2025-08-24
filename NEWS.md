@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9461 (2025-08-24)
+
+* example qpp workflow
+
+
 # providertwo 0.0.0.9460 (2025-08-20)
 
 * removed hrsa_facilities(), HRSA API has changed
