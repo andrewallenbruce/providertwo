@@ -97,7 +97,8 @@ build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
 })
 
 S7::method(build, list(class_group, class_query)) <- function(obj, qry) {
-  S7::prop(obj, "members") |> purrr::map(function(x) build(obj = x, qry = qry))
+  S7::prop(obj, "members") |> purrr::map(function(x)
+    build(obj = x, qry = qry))
 }
 
 S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {

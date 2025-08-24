@@ -19,13 +19,28 @@ quality_eligibility(year, npi)
 Quality Payment Program
 }
 \examples{
-quality_metrics(year = 2018:2025)
+qpp_metrics <- quality_metrics(year = 2018:2025)
 
-quality_eligibility(
-   year = 2018:2024,
-   npi = c(1144544834, 1043477615, 1932365699, 1225701881))
+qpp_eligible <- quality_eligibility(
+  year = 2018:2024,
+  npi = c(1144544834, 1043477615, 1932365699, 1225701881))
 
-build(
-   endpoint("qppe"),
-   query(npi = any_of(1144544834, 1043477615, 1932365699, 1225701881)))
+qpp_experience <- build(
+  endpoint("qppe"),
+  query(npi = any_of(1144544834, 1043477615, 1932365699, 1225701881)))
+
+
+qpp_exp <- qpp_experience@string |>
+  providertwo:::gremove("/stats") |>
+  providertwo:::greplace("size=1", "size=5000") |>
+  providertwo:::map_perform_parallel() |>
+  providertwo:::set_clean(qpp_experience@year) |>
+  purrr::list_rbind(names_to = "prog_year") |>
+  providertwo:::map_na_if() |>
+  fastplyr::as_tbl()
+
+list(
+  experience  = providertwo:::set_clean(qpp_exp, names(qpp_exp)),
+  eligibility = qpp_eligible,
+  metrics     = qpp_metrics)
 }

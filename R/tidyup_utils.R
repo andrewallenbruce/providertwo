@@ -82,15 +82,11 @@ set_clean <- function(i, x) {
 #' @autoglobal
 #' @noRd
 fmt_entity <- function(x, type = c("int", "chr")) {
-
-  type <- match.arg(type, c("int", "chr"))
-
   switch(
-    type,
-    int = val_match(x, 1 ~ "I", 2 ~ "O"),
-    chr = val_match(x, "NPI-1" ~ "I", "NPI-2" ~ "O")
-  ) |>
-    factor_()
+    match.arg(type, c("int", "chr")),
+    int = val_match(x, 1 ~ 1L, 2 ~ 2L, .default = NA_integer_),
+    chr = val_match(x, "NPI-1" ~ 1L, "NPI-2" ~ 2L, .default = NA_integer_),
+  )
 }
 
 #' @autoglobal

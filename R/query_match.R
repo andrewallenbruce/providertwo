@@ -57,9 +57,9 @@ select_years <- function(obj, qry) {
     return(x)
   }
 
-  list(idx  = idx,
-       year = obj@year[idx],
-       id   = obj@identifier[idx],
+  list(idx   = idx,
+       year  = obj@year[idx],
+       id    = obj@identifier[idx],
        field = keys(obj)[idx])
 }
 
@@ -72,11 +72,12 @@ match_query2 <- function(obj, qry) {
   param <- remove_year(qry)
 
   df <- purrr::imap(x$field, function(x, i) {
-      cheapr::new_df(year = i, field = x)}) |>
-      purrr::list_rbind() |>
-      collapse::mtt(clean = clean_names(field)) |>
-      collapse::sbt(clean %in_% names2(param)) |>
-      collapse::mtt(qdx = qdx[clean])
+    cheapr::new_df(year = i, field = x)
+  }) |>
+    purrr::list_rbind() |>
+    collapse::mtt(clean = clean_names(field)) |>
+    collapse::sbt(clean %in_% names2(param)) |>
+    collapse::mtt(qdx = qdx[clean])
 
   x <- list(
     idx   = x$idx,
@@ -93,5 +94,5 @@ match_query2 <- function(obj, qry) {
     }) |>
     set_names(collapse::funique(x$field$year))
 
-  list_modify(x, list(field = fd))
+  cheapr::list_modify(x, list(field = fd))
 }

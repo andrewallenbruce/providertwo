@@ -3,15 +3,30 @@
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
 #' @examples
-#' quality_metrics(year = 2018:2025)
+#' qpp_metrics <- quality_metrics(year = 2018:2025)
 #'
-#' quality_eligibility(
-#'    year = 2018:2024,
-#'    npi = c(1144544834, 1043477615, 1932365699, 1225701881))
+#' qpp_eligible <- quality_eligibility(
+#'   year = 2018:2024,
+#'   npi = c(1144544834, 1043477615, 1932365699, 1225701881))
 #'
-#' build(
-#'    endpoint("qppe"),
-#'    query(npi = any_of(1144544834, 1043477615, 1932365699, 1225701881)))
+#' qpp_experience <- build(
+#'   endpoint("qppe"),
+#'   query(npi = any_of(1144544834, 1043477615, 1932365699, 1225701881)))
+#'
+#'
+#' qpp_exp <- qpp_experience@string |>
+#'   providertwo:::gremove("/stats") |>
+#'   providertwo:::greplace("size=1", "size=5000") |>
+#'   providertwo:::map_perform_parallel() |>
+#'   providertwo:::set_clean(qpp_experience@year) |>
+#'   purrr::list_rbind(names_to = "prog_year") |>
+#'   providertwo:::map_na_if() |>
+#'   fastplyr::as_tbl()
+#'
+#' list(
+#'   experience  = providertwo:::set_clean(qpp_exp, names(qpp_exp)),
+#'   eligibility = qpp_eligible,
+#'   metrics     = qpp_metrics)
 NULL
 
 #' @autoglobal
@@ -22,7 +37,7 @@ quality_metrics <- function(year) {
   check_required(year)
   check_years(year, min = 2018)
 
-  map(year, \(y) {
+  map(year, function(y) {
     fibble(
       year     = rep.int(as.integer(y), 4L),
       category = c(rep("Individual", 2L), rep("Group", 2L)) |> factor_(),
@@ -53,21 +68,21 @@ quality_eligibility <- function(year, npi) {
   res <- map(url, function(x)
     request(x) |>
       req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
-      req_error(body = \(resp) resp_body_json(resp)$error$message) |>
+      req_error(body = function(resp) resp_body_json(resp)$error$message) |>
       perform_simple() |>
       get_elem("data")) |>
     set_names(year) |>
-    list_rbind(names_to = "year")
+    list_rbind(names_to = "prog_year")
 
   if (rlang::has_name(res, "error")) res$error <- NULL
 
   res |>
     as_fibble() |>
     mtt(
-      year                           = as.integer(year),
+      prog_year = as.integer(prog_year),
       nationalProviderIdentifierType = fmt_entity(nationalProviderIdentifierType),
-      firstApprovedDate              = as_date(firstApprovedDate),
-      specialty                      = glue::glue("{res$specialty$specialtyDescription} ({res$specialty$typeDescription}) [{res$specialty$categoryReference}]")
+      firstApprovedDate = as_date(firstApprovedDate),
+      specialty = glue::glue("{res$specialty$specialtyDescription} [D] {res$specialty$typeDescription} [T] {res$specialty$categoryReference} [C]")
     ) |>
     rnm(firstName                      = "first_name",
         middleName                     = "middle_name",
@@ -81,7 +96,7 @@ quality_eligibility <- function(year, npi) {
         # amsMipsEligibleClinician       = "ams_mips_elig",
         organizations                  = "ORGS") |>
     colorder(
-      year,
+      prog_year,
       npi,
       entity,
       last_name,
@@ -91,5 +106,5 @@ quality_eligibility <- function(year, npi) {
       date_enrolled,
       is_maqi
     ) |>
-    roworder(npi, -year)
+    roworder(npi, -prog_year)
 }

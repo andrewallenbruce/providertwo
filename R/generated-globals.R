@@ -98,6 +98,8 @@ utils::globalVariables(c(
   "organization",
   # <clog_caid>
   "periodicity",
+  # <quality_eligibility>
+  "prog_year",
   # <clog_care>
   "references",
   # <clog_prov>
