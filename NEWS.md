@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9462 (2025-08-24)
+
+* reworking internal field typing
+
+
 # providertwo 0.0.0.9461 (2025-08-24)
 
 * example qpp workflow
