@@ -108,6 +108,8 @@ utils::globalVariables(c(
   "resourcesAPI",
   # <clog_caid>
   "rowid",
+  # <quality_eligibility>
+  "specialty",
   # <state_recode>
   "state.abb",
   # <state_recode>
