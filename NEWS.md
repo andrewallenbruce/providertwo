@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9466 (2025-08-29)
+
+* Medicaid API no longer wants indexed multi-queries, leave index blank
+
+
 # providertwo 0.0.0.9465 (2025-08-29)
 
 * bug-finding
