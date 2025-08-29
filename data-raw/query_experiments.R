@@ -1,3 +1,118 @@
+ex_class_query <- S7::new_class(
+  name       = "class_query",
+  package    = NULL,
+  properties = list(
+    input    = S7::class_list,
+    params   = S7::class_list,
+    groups   = S7::new_property(
+      S7::class_list,
+      validator = function(self, value) {
+        if (!all(c("members") %in% names2(value))) {
+          stop("`groups` must contain `members`.", call. = FALSE)
+        }
+        if (!is.character(value$members)) {
+          stop("`groups$members` must be a character vector.", call. = FALSE)
+        }
+        TRUE
+      }
+    ),
+    named    = S7::new_property(
+      S7::class_list,
+      getter = function(self) {
+        identical(names2(self@params), self@groups$members)
+      }
+    )
+  )
+)
+
+ex_class_query(
+  params = list(a = 10, b = 20),
+  groups = list(
+    members = c("a", "bc")
+  )
+)
+
+q3 <- function(...) {
+  list(
+    groups = purrr::keep(rlang::enexprs(...), \(x) is_junc(x)),
+    params = purrr::discard(rlang::enexprs(...), \(x) is_junc(x))
+  )
+}
+
+x <- q3(
+  first_name  = starts_with("And"),
+  middle_name = NULL,
+  last_name   = contains("J"),
+  state       = any_of(c("CA", "GA", "NY")),
+  state_own   = c("GA", "MD"),
+  npi         = npi_ex$k,
+  ccn         = "01256",
+  rate        = between(0.45, 0.67),
+  year        = 2014:2025,
+  or("first_name", "last_name"),
+  and("ccn", "npii"))
+
+g_names <- purrr::map(x$groups, function(x)
+  prop(eval(x), "members")) |>
+  unlist(use.names = FALSE) |>
+  funique()
+
+ok <- all(g_names %in_% names2(x$params))
+
+if (!ok) {
+  cli::cli_abort(
+    c("x" = "All {.field group} members must be {.field query} field names"),
+    call = caller_env())
+}
+
+query2(
+  first_name  = starts_with("And"),
+  middle_name = NULL,
+  last_name   = contains("J"),
+  state       = any_of("CA", "GA", "NY"),
+  state_own   = c("GA", "MD"),
+  npi         = npi_ex$k,
+  ccn         = "01256",
+  rate        = between(0.45, 0.67),
+  year        = 2014:2025,
+  or("first_name", "last_name"),
+  or("state", "state1")
+)
+
+str_dist <- function(x, y) {
+  stringdist::stringdist(x, y, method = "jaccard")
+}
+
+purrr::imap(
+  unique_fields, \(x, i) {
+    setequal(x, y = unique_fields$`2017`)
+  }
+)
+
+unique_fields$`2021`
+
+stringdist::stringdist(
+  unique_fields$`2017`,
+  unique_fields$`2018`,
+  method = "jaccard")
+
+intersect(unique_fields$`2023`, unique_fields$`2022`)
+
+
+set_len <- collapse::vlengths(unique_fields)
+
+field_groups <- set_names(
+  vctrs::vec_split(unique_fields, set_len)$val,
+  paste0("ln_", collapse::funique(set_len)))
+
+setequal(unique_fields$`2023`, unique_fields$`2022`)
+
+
+RapidFuzz::extract_similar_strings(
+  unique_fields$`2023`[1],
+  unique_fields$`2022`,
+  score_cutoff = 99)
+
 #' @autoglobal
 #' @noRd
 map_parse_eval <- function(x) {

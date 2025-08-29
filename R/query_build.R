@@ -168,8 +168,8 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   }) |>
     unlist(use.names = FALSE)
 
-  url <- paste0(append_url(p$id), "&")
-  # url <- append_url(p$id)
+  # url <- paste0(append_url(p$id), "&")
+  url <- append_url(p$id)
   url <- glue::as_glue(url) + glue::as_glue(qst) |> as.character()
 
   purrr::map(url, httr2::request) |>
