@@ -1,10 +1,10 @@
 file: dicts.qs
-file_size: 28313
-pin_hash: e393c1ea30582a4b
+file_size: 35095
+pin_hash: fbaba2c08e97bc59
 type: qs
 title: Dictionaries
 description: Dictionaries
 tags: ~
 urls: ~
-created: 20250819T073540Z
+created: 20250829T170011Z
 api_version: 1
