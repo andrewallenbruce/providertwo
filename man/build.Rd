@@ -18,10 +18,10 @@ A list of query parameters matched to an endpoint's fields.
 Build a Query for an Endpoint
 }
 \examples{
-build(
-  endpoint("drug_state"),
-  query(year = 2022:2024,
-        state = any_of("GA", "NY")))
+# build(
+# endpoint("drug_state"),
+# query(year = 2022:2024,
+# state = any_of("GA", "NY")))
 
 build(
   endpoint("enroll_prov"),
@@ -51,13 +51,9 @@ build(
   )
 )
 
-build(
-  endpoint("hc_quality"),
-  query(
-    state = any_of("Georgia", "Alabama"),
-    year = 2020:2023
-   )
- )
+# build(endpoint("hc_quality"),
+# query(state = any_of("Georgia", "Alabama"),
+# year = 2020:2023))
 
 build(
   endpoint("pdc_clinician"),

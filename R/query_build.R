@@ -35,10 +35,10 @@ no_match_response <- function(obj) {
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
 #' @examples
-#' build(
-#'   endpoint("drug_state"),
-#'   query(year = 2022:2024,
-#'         state = any_of("GA", "NY")))
+#' # build(
+#' # endpoint("drug_state"),
+#' # query(year = 2022:2024,
+#' # state = any_of("GA", "NY")))
 #'
 #' build(
 #'   endpoint("enroll_prov"),
@@ -68,13 +68,9 @@ no_match_response <- function(obj) {
 #'   )
 #' )
 #'
-#' build(
-#'   endpoint("hc_quality"),
-#'   query(
-#'     state = any_of("Georgia", "Alabama"),
-#'     year = 2020:2023
-#'    )
-#'  )
+#' # build(endpoint("hc_quality"),
+#' # query(state = any_of("Georgia", "Alabama"),
+#' # year = 2020:2023))
 #'
 #' build(
 #'   endpoint("pdc_clinician"),
@@ -173,7 +169,14 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     unlist(use.names = FALSE)
 
   url <- paste0(append_url(p$id), "&")
-  url <- glue::as_glue(url) + glue::as_glue(qst)
+  # url <- append_url(p$id)
+  url <- glue::as_glue(url) + glue::as_glue(qst) |> as.character()
+
+  purrr::map(url, httr2::request) |>
+    httr2::req_perform_parallel(on_error = "continue") |>
+    httr2::resps_successes() |>
+    purrr::map(function(x)
+      parse_string(x))
 
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)

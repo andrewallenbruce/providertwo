@@ -47,6 +47,7 @@ fields_exact <- list(
     "facility_name"
     ),
   measure = c("measure_name"),
+  issuer = c("issuer_name"),
   dba_name = c(
     "DOING BUSINESS AS NAME",
     "Group Legal Business Name",
@@ -84,6 +85,7 @@ fields_exact <- list(
   npi_render      = c("Rndrng_NPI"),
   npi_supply      = c("Suplr_NPI"),
   npi_prescriber  = c("Prscrbr_NPI", "PRSCRBR_NPI"),
+  multi_npi       = c("MULTIPLE NPI FLAG"), # FLAG
 
   # Enrollment ID
   enid_ind = c(
@@ -92,7 +94,9 @@ fields_exact <- list(
     "Enrollment ID",
     "Individual Enrollment ID"
     ),
-  enid_org = c("Group Enrollment ID"),
+  enid_org = c(
+    "Group Enrollment ID"
+    ),
 
   pac_ind = c(
     "PECOS_ASCT_CNTL_ID",
@@ -143,8 +147,7 @@ fields_exact <- list(
     "City Name",
     "city_name",
     "practicecity",
-    "Geographic Location City Name",
-    "PRVDR_CITY"
+    "Geographic Location City Name"
   ),
   city_own = c("CITY - OWNER"),
   city_org = c("PRVDR_CITY"),
@@ -215,6 +218,7 @@ fields_exact <- list(
     "state",
     "State",
     "state_name",
+    "state_code",
     "state_or_nation",
     "practicestate",
     "practice state or us territory"
@@ -235,16 +239,18 @@ fields_exact <- list(
     "ZIP CODE",
     "ZIP CODE - OWNER",
     "PRVDR_ZIP",
-    "Rfrg_Prvdr_Zip5"
+    "Rfrg_Prvdr_Zip5",
+    "zipcodes"
     ),
 
-  # COUNTS
+  # COUNTS (NUMERIC FIELDS)
   years = c(
     "years",
     "Years",
     "YEARS",
     "years in medicare"
   ),
+  individual_rate = c("individualrate"),
 
   # DATE YYYY
   year = c(
@@ -271,7 +277,17 @@ fields_exact <- list(
     "end_date",
     "Fiscal Year End Date"
   ),
-  effective_date = c("effective_date"),
-  termination_date = c("termination_date"),
-  process_date = c("process_date")
+  effective_date = c(
+    "effective_date",
+    "rateeffectivedate"
+    ),
+  expiration_date = c(
+    "termination_date",
+    "expiration_date",
+    "rateexpirationdate"
+    ),
+  process_date = c("process_date"),
+
+  # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
+  plan_type = c("plan_type")
 )
