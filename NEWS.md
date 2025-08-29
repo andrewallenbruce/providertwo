@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9464 (2025-08-29)
+
+* qppe dictionary
+
+
 # providertwo 0.0.0.9463 (2025-08-29)
 
 * caid builds are now not generating the correct query strings
