@@ -20,9 +20,24 @@ no_match_response <- function(obj) {
     title  = meta(obj)$title,
     year   = date_year(meta(obj)$modified),
     string = obj@identifier,
-    total  = obj@dimensions@total,
+    total  = dims(obj)@total,
     found  = 0L,
-    limit  = obj@dimensions@limit
+    limit  = dims(obj)@limit
+  )
+}
+
+#' @autoglobal
+#' @noRd
+year_only_response <- function(p, obj) {
+  class_response(
+    alias  = meta(obj)$alias,
+    title  = meta(obj)$title,
+    param  = p$field,
+    year   = as.integer(p$year),
+    string = p$id,
+    total  = dims(obj)@total[p$idx],
+    found  = dims(obj)@total[p$idx],
+    limit  = dims(obj)@limit
   )
 }
 
@@ -162,6 +177,11 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
+  if (identical("year", rlang::names2(params(qry)))) {
+    cli_yronly(obj)
+    return(year_only_response(p, obj))
+  }
+
   qst <- purrr::map(p$field, function(x) {
     generate_query(x) |>
       unlist(use.names = FALSE) |>
@@ -179,7 +199,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(p$field, names2),
+    param  = purrr::map(p$field, names2),
     year   = as.integer(p$year),
     string = as.character(url),
     total  = dims(obj)@total[p$idx],
@@ -191,6 +211,11 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
+
+  if (identical("year", rlang::names2(params(qry)))) {
+    cli_yronly(obj)
+    return(year_only_response(p, obj))
+  }
 
   qst <- purrr::map(p$field, function(x) {
     generate_query(x, is_care = TRUE) |>
@@ -207,7 +232,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = map(p$field, names2),
+    param  = purrr::map(p$field, names2),
     year   = as.integer(p$year),
     string = as.character(url),
     total  = total_rows(res),

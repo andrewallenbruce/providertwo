@@ -6,6 +6,12 @@ cli_nomatch <- function(obj) {
 
 #' @autoglobal
 #' @noRd
+cli_yronly <- function(obj) {
+  cli::cli_alert_warning("Year-only {.field query} for {.field {meta(obj)$alias}}")
+}
+
+#' @autoglobal
+#' @noRd
 cli_range <- function(x) {
   if (length(x) == 1L) {
     return(paste0(x, " ", theses(1L)))

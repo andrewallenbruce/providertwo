@@ -66,7 +66,13 @@ select_years <- function(obj, qry) {
 #' @autoglobal
 #' @noRd
 match_query2 <- function(obj, qry) {
-  x     <- select_years(obj, qry)
+
+  x <- select_years(obj, qry)
+
+  if (identical("year", rlang::names2(params(qry)))) {
+    return(x)
+  }
+
   qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
   param <- remove_year(qry)
 
