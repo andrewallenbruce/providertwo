@@ -1,5 +1,52 @@
 #' @autoglobal
 #' @noRd
+bound <- function(lower, upper) {
+  check_number_whole(lower, min = 0)
+  check_number_whole(upper, min = 1)
+  iif(lower > upper, upper, lower, nThread = 4L, tprom = TRUE)
+}
+
+#' @autoglobal
+#' @noRd
+is_complete_with_limit <- function(limit) {
+  function(resp)
+    length(resp_body_json(resp)$data) < limit
+}
+
+#' @autoglobal
+#' @noRd
+req_perform_iterative_offset <- function(req, limit) {
+  # TODO allow switching between different API limits?
+  check_number_whole(limit, min = 1, max = 8000)
+
+  req_perform_iterative(
+    req,
+    next_req        = iterate_with_offset(
+      param_name    = "offset",
+      start         = 0L,
+      offset        = limit,
+      resp_complete = is_complete_with_limit(limit)
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
+perform_simple_request <- function(x, ...) {
+  x |>
+    request() |>
+    req_perform() |>
+    resp_simple_json(...)
+}
+
+#' @autoglobal
+#' @noRd
+resp_simple_json <- function(resp, ...) {
+  resp_body_json(resp, simplifyVector = TRUE, check_type = FALSE, ...)
+}
+
+#' @autoglobal
+#' @noRd
 url_type <- function(x) {
   api <- case(
     grepl("data.cms.gov/provider-data", x, perl = TRUE) ~ "prov",

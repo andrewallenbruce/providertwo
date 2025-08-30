@@ -2,7 +2,7 @@
 #' @noRd
 parse_string <- function(resp, query = NULL) {
   f <- function(x, qry = NULL) {
-    fparse(resp_body_string(x), query = qry)
+    RcppSimdJson::fparse(httr2::resp_body_string(x), query = qry)
   }
 
   if (!is.null(query)) {
@@ -12,7 +12,7 @@ parse_string <- function(resp, query = NULL) {
       count      = return(f(resp) |> _[["count"]]),
       found_rows = return(f(resp) |> _[["found_rows"]]),
       total_rows = return(f(resp) |> _[["total_rows"]]),
-      names      = return(f(resp) |> names2()),
+      names      = return(f(resp) |> rlang::names2()),
       return(f(resp, qry = query))
     )
   }
@@ -25,8 +25,7 @@ map_perform_parallel <- function(x, query = NULL) {
   purrr::map(x, httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
-    purrr::map(function(x)
-      parse_string(x, query = query))
+    purrr::map(function(x) parse_string(x, query = query))
 }
 
 #' @autoglobal
@@ -62,47 +61,13 @@ append_url <- function(url, api = "default") {
 
 #' @autoglobal
 #' @noRd
-is_complete_with_limit <- function(limit) {
-  function(resp)
-    length(resp_body_json(resp)$data) < limit
-}
-
-#' @autoglobal
-#' @noRd
-req_perform_iterative_offset <- function(req, limit) {
-  # TODO allow switching between different API limits?
-  check_number_whole(limit, min = 1, max = 8000)
-
-  req_perform_iterative(
-    req,
-    next_req        = iterate_with_offset(
-      param_name    = "offset",
-      start         = 0L,
-      offset        = limit,
-      resp_complete = is_complete_with_limit(limit)
-    )
-  )
-}
-
-#' @autoglobal
-#' @noRd
-resp_simple_json <- function(resp, ...) {
-  resp_body_json(resp, simplifyVector = TRUE, check_type = FALSE, ...)
-}
-
-#' @autoglobal
-#' @noRd
 perform_simple <- function(req, ...) {
-  req_perform(req) |> resp_simple_json(...)
-}
-
-#' @autoglobal
-#' @noRd
-perform_simple_request <- function(x, ...) {
-  x |>
-    request() |>
-    req_perform() |>
-    resp_simple_json(...)
+  req |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(
+      simplifyVector = TRUE,
+      check_type = FALSE,
+      ...)
 }
 
 #' Generate API Request "Offset" Sequence
@@ -143,12 +108,4 @@ offset <- function(n, limit, type = "size") {
     size = seq_size(from = 0L, to = n, by = limit),
     seq  = seq_(from = 0L, to = n, by = limit)
   )
-}
-
-#' @autoglobal
-#' @noRd
-bound <- function(lower, upper) {
-  check_number_whole(lower, min = 0)
-  check_number_whole(upper, min = 1)
-  iif(lower > upper, upper, lower, nThread = 4L, tprom = TRUE)
 }
