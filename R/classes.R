@@ -196,9 +196,9 @@ class_response <- S7::new_class(
     total    = S7::class_integer,
     pages    = S7::new_property(S7::class_integer,
       getter = function(self) purrr::map_int(self@found, offset, limit = self@limit)),
-    error    = S7::new_property(S7::new_union(NULL, S7::class_logical),
+    error    = S7::new_property(S7::class_logical,
       getter = function(self) {
-        if (is.null(self@param)) return(NULL)
+        if (is.null(self@param)) return(FALSE)
         self@found == self@total
       }
     )

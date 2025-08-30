@@ -8,11 +8,11 @@ parse_string <- function(resp, query = NULL) {
   if (!is.null(query)) {
     switch(
       query,
-      results    = return(f(resp) |> _[["results"]]),
       count      = return(f(resp) |> _[["count"]]),
       found_rows = return(f(resp) |> _[["found_rows"]]),
-      total_rows = return(f(resp) |> _[["total_rows"]]),
       names      = return(f(resp) |> rlang::names2()),
+      results    = return(f(resp) |> _[["results"]]),
+      total_rows = return(f(resp) |> _[["total_rows"]]),
       return(f(resp, qry = query))
     )
   }
@@ -30,17 +30,15 @@ map_perform_parallel <- function(x, query = NULL) {
 
 #' @autoglobal
 #' @noRd
-api_limit <- function(api) {
+api_limit <- function(api, call = rlang::caller_env()) {
   switch(
-    match.arg(
-      api,
-      c("care", "caid", "prov", "hgov", "open")
-      ),
-    care   = 5000L,
+    api,
     caid   = 8000L,
+    care   = 5000L,
     prov   = 1500L,
     hgov   = 500L,
-    open   = 500L
+    open   = 500L,
+    cli::cli_abort(c("x" = "API {.val {api}} not recognized."), call = call)
   )
 }
 
@@ -97,15 +95,17 @@ perform_simple <- function(req, ...) {
 #' @autoglobal
 #' @noRd
 offset <- function(n, limit, type = "size") {
+
   check_number_whole(n, min = 0)
   check_number_whole(limit, min = 1)
 
-  if (n == 0L)    return(0L)
-  # if (n <= limit) return(n)
+  if (n == 0L) {
+    return(0L)
+  }
 
   switch (
     match.arg(type, c("size", "seq")),
     size = seq_size(from = 0L, to = n, by = limit),
-    seq  = seq_(from = 0L, to = n, by = limit)
+    seq  = seq_(from     = 0L, to = n, by = limit)
   )
 }
