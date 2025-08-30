@@ -21,7 +21,7 @@ S7::method(input, class_query) <- function(obj) {
 #' @autoglobal
 #' @noRd
 remove_year <- function(x) {
-  params(x)[names2(params(x)) %!=% "year"]
+  params(x)[rlang::names2(params(x)) %!=% "year"]
 }
 
 #' @autoglobal
@@ -29,11 +29,11 @@ remove_year <- function(x) {
 match_query <- function(obj, qry) {
 
   param  <- remove_year(qry)
-  pname  <- names2(param)
+  pname  <- rlang::names2(param)
   field  <- keys(obj)
   clean  <- clean_names(field)
 
-  set_names(
+  rlang::set_names(
     param[qmatch(clean, pname)],
     field[sort(qmatch(pname, clean))])
 }
@@ -47,13 +47,13 @@ select_years <- function(obj, qry) {
     id    = obj@identifier,
     field = keys(obj))
 
-  if ("year" %!in_% names2(params(qry))) {
+  if ("year" %!in_% rlang::names2(params(qry))) {
     return(x)
   }
 
-  idx <- which_(obj@year %in_% params(qry)$year)
+  idx <- cheapr::which_(obj@year %in_% params(qry)$year)
 
-  if (is_empty(idx)) {
+  if (rlang::is_empty(idx)) {
     return(x)
   }
 
@@ -66,9 +66,8 @@ select_years <- function(obj, qry) {
 #' @autoglobal
 #' @noRd
 match_query2 <- function(obj, qry) {
-
   x     <- select_years(obj, qry)
-  qdx   <- set_names(seq_along(qry@params), names2(qry@params))
+  qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
   param <- remove_year(qry)
 
   df <- purrr::imap(x$field, function(x, i) {
@@ -76,23 +75,25 @@ match_query2 <- function(obj, qry) {
   }) |>
     purrr::list_rbind() |>
     collapse::mtt(clean = clean_names(field)) |>
-    collapse::sbt(clean %in_% names2(param)) |>
+    collapse::sbt(clean %in_% rlang::names2(param)) |>
     collapse::mtt(qdx = qdx[clean])
 
   x <- list(
     idx   = x$idx,
     year  = x$year,
     id    = x$id,
-    field = df)
+    field = df
+  )
 
   x$field$qdx <- unname(x$field$qdx)
 
-  fd <- purrr::map(collapse::funique(x$field$year), function(yr) {
-    set_names(
-      qry@params[x$field[x$field$year == yr, ]$qdx],
-      x$field[x$field$year == yr, ]$field)
-    }) |>
-    set_names(collapse::funique(x$field$year))
+  fd <- purrr::map(
+    collapse::funique(x$field$year), function(yr) {
+      rlang::set_names(
+        qry@params[x$field[x$field$year == yr, ]$qdx],
+        x$field[x$field$year == yr, ]$field)
+  }) |>
+    rlang::set_names(collapse::funique(x$field$year))
 
   cheapr::list_modify(x, list(field = fd))
 }

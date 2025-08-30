@@ -54,7 +54,6 @@ Collate:
     'checks.R'
     'classes.R'
     'cli.R'
-    'dictionary.R'
     'dimensions.R'
     'endpoint.R'
     'fields.R'

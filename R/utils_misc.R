@@ -3,7 +3,7 @@ options(fastplyr.inform = FALSE)
 #' @autoglobal
 #' @noRd
 `%0%` <- function(x, y) {
-  if (is_empty(x)) y else x
+  if (rlang::is_empty(x)) y else x
 }
 
 #' @autoglobal
@@ -27,8 +27,8 @@ options(fastplyr.inform = FALSE)
 #' @autoglobal
 #' @noRd
 names_map <- function(x, f, ..., .nm = x) {
-  map(.x = x, .f = f, ...) |>
-    set_names(nm = .nm)
+  purrr::map(.x = x, .f = f, ...) |>
+    rlang::set_names(nm = .nm)
 }
 
 #' @autoglobal
@@ -92,6 +92,8 @@ yank <- function(x, ..., .def = NULL) {
   pluck(x, 1, ..., .default = .def)
 }
 
+#' @autoglobal
+#' @noRd
 `yank<-` <- function(x, value) {
   pluck(x, 1) <- value
   x
@@ -220,8 +222,8 @@ join_on_title <- function(a, b) {
 str_look <- function(pattern, look) {
   switch(
     match.arg(look, c("ahead", "behind")),
-    ahead  = glue("(?<={pattern}).*$"),
-    behind = glue("^.*(?={pattern})")
+    ahead  = glue::glue("(?<={pattern}).*$"),
+    behind = glue::glue("^.*(?={pattern})")
   ) |>
     as.character()
 }
@@ -262,20 +264,6 @@ delist <- function(x) {
 #' @noRd
 as_date <- function(x, ..., fmt = "%Y-%m-%d") {
   as.Date(x, ..., format = fmt)
-  }
-
-#' @autoglobal
-#' @noRd
-print_list <- function(ls, prefix = "") {
-  if (length(ls) == 0) cat("<empty>\n")
-
-  if (length(names(ls)) != length(ls)) stop("all elements must be named")
-
-  ls <- lapply(ls, as.character)
-
-  cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
-
-  invisible(ls)
 }
 
 #' ISO 8601 Recurring Time Intervals
@@ -298,7 +286,7 @@ print_list <- function(ls, prefix = "") {
 #' @keywords internal
 #' @noRd
 fmt_periodicity <- function(x) {
-  val_match(
+  cheapr::val_match(
     x,
     "R/P10Y"   ~ "Decennially [R/P10Y]",
     "R/P4Y"    ~ "Quadrennially [R/P4Y]",
@@ -321,35 +309,6 @@ fmt_periodicity <- function(x) {
     "R/PT1H"   ~ "Hourly [R/PT1H]",
     "R/PT1S"   ~ "Continuously [R/PT1S]",
     .default = x
-  )
-}
-
-#' @autoglobal
-#' @noRd
-roxy8601 <- function(x) {
-  val_match(
-    x,
-    "R/P10Y"   ~ "Decennially (R/P10Y)",
-    "R/P4Y"    ~ "Quadrennially (R/P4Y)",
-    "R/P3Y"    ~ "Triennially (R/P3Y)",
-    "R/P2Y"    ~ "Biennially (R/P2Y)",
-    "R/P1Y"    ~ "Annually (R/P1Y)",
-    "R/P6M"    ~ "Biannually (R/P6M)",
-    "R/P4M"    ~ "Triannually (R/P4M)",
-    "R/P3M"    ~ "Quarterly (R/P3M)",
-    "R/P2M"    ~ "Bimonthly (R/P2M)",
-    "R/P1M"    ~ "Monthly (R/P1M)",
-    "R/P0.5M"  ~ "Biweekly (R/P0.5M)",
-    "R/P2W"    ~ "Biweekly (R/P2W)",
-    "R/P0.33M" ~ "Three Times a Month (R/P0.33M)",
-    "R/P1W"    ~ "Weekly (R/P1W)",
-    "R/P0.5W"  ~ "Twice a Week (R/P0.5W)",
-    "R/P3.5D"  ~ "Twice a Week (R/P3.5D)",
-    "R/P0.33W" ~ "Three Times a Week (R/P0.33W)",
-    "R/P1D"    ~ "Daily (R/P1D)",
-    "R/PT1H"   ~ "Hourly (R/PT1H)",
-    "R/PT1S"   ~ "Continuously (R/PT1S)",
-    .default   = "Unknown"
   )
 }
 

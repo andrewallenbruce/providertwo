@@ -155,7 +155,7 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x <- mtt(
+  x <- collapse::mtt(
     x$open,
     identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
@@ -237,17 +237,22 @@ clog_caid <- function(x) {
     fastplyr::new_tbl(
       rowid = names(down_2_title) |> as.integer(),
       title = unlist(down_2_title, use.names = FALSE),
-      download = unlist(down_2_url, use.names = FALSE)) |>
+      download = unlist(down_2_url, use.names = FALSE)
+    ) |>
       collapse::mtt(title = ifelse(title == "CSV", NA_character_, title)),
 
     fastplyr::new_tbl(
-      rowid = cheapr_rep_each(as.integer(names(down_2_title_2)), list_lengths(down_2_title_2)),
+      rowid = cheapr::cheapr_rep_each(
+        as.integer(names(down_2_title_2)),
+        cheapr::list_lengths(down_2_title_2)),
       title = unlist(down_2_title_2, use.names = FALSE),
-      download = unlist(down_2_url_2, use.names = FALSE)) |>
+      download = unlist(down_2_url_2, use.names = FALSE)
+    ) |>
       collapse::mtt(title = ifelse(title == "CSV", NA_character_, title)),
     fastplyr::new_tbl(
       rowid = names(down_1) |> as.integer(),
-      download = unlist(down_1, use.names = FALSE))
+      download = unlist(down_1, use.names = FALSE)
+    )
   ) |>
     collapse::roworder(rowid)
 
@@ -383,9 +388,10 @@ clog_hgov <- function(x) {
       "/0"
     ),
     title = rm_nonascii(title) |> rm_space(),
-    description = rm_nonascii(description) |> rm_quotes() |> gremove(
-      "<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s"
-    ) |> greplace("Dataset.", NA_character_),
+    description = rm_nonascii(description) |>
+      rm_quotes() |>
+      gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |>
+      greplace("Dataset.", NA_character_),
     modified    = as_date(modified),
     issued      = as_date(issued),
     periodicity = fmt_periodicity(accrualPeriodicity),
@@ -413,7 +419,7 @@ clog_hgov <- function(x) {
   qhp <- ss_title(x, "QHP|SHOP")
 
   temporal <- ss_title(x, "[2][0-9]{3}|\\sPUF") |>
-    sbt(title %!in_% collapse::get_elem(qhp, "title")) |>
+    collapse::sbt(title %!in_% collapse::get_elem(qhp, "title")) |>
     ss_title("Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     collapse::mtt(
       periodicity = "Annually [R/P1Y]",
@@ -525,13 +531,12 @@ reset_catalog <- function() {
 fmt_contactpoint <- function(x) {
   x <- collapse::get_elem(x, "contactPoint")
 
-  glue::glue(
-    "{rlang::names2(x)} ({x})",
+  glue::glue("{rlang::names2(x)} ({x})",
     x = collapse::get_elem(x, "^has", regex = TRUE) |>
       unlist(use.names = FALSE) |>
-      rlang::set_names(collapse::get_elem(x, "fn") |>
-                         unlist(use.names = FALSE))
-  ) |>
+      rlang::set_names(
+        collapse::get_elem(x, "fn") |>
+          unlist(use.names = FALSE))) |>
     as.character()
 }
 

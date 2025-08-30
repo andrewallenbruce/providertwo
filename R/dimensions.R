@@ -1,30 +1,23 @@
 #' @autoglobal
 #' @noRd
 get_dims <- function(x) {
-
   if (x$catalog == "care") {
     return(
       switch(
         x$point,
         current = dims_care_current(x),
-        temporal = dims_care_temporal(x)
-      )
-    )
+        temporal = dims_care_temporal(x)))
   }
 
   i <- switch(
     x$point,
-    current = paste0(
-      x$identifier,
-      "?count=true&results=true&offset=0&limit=1") |>
-      request() |>
-      req_error(is_error = ~ FALSE) |>
+    current = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+      httr2::request() |>
+      httr2::req_error(is_error = ~ FALSE) |>
       perform_simple(),
-    temporal = paste0(
-      x$identifier,
-      "?count=true&results=true&offset=0&limit=1") |>
+    temporal = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
       map_perform_parallel() |>
-      set_names(x$year)
+      rlang::set_names(x$year)
   )
 
   list(
@@ -33,10 +26,12 @@ get_dims <- function(x) {
       total = switch(
         x$point,
         current = i$count,
-        temporal = unname(map_int(i, function(x) x[["count"]]))
-      )
-    ),
-    fields = class_fields(get_elem(i, "properties"))
+        temporal = unname(
+          purrr::map_int(i, function(x) x[["count"]])
+          )
+        )
+      ),
+    fields = class_fields(collapse::get_elem(i, "properties"))
   )
 }
 
@@ -50,7 +45,7 @@ dims_care_temporal <- function(x) {
         x$identifier,
         "/stats?offset=0&size=1") |>
         map_perform_parallel(query = "total_rows") |>
-        set_names(x$year) |>
+        rlang::set_names(x$year) |>
         unlist(use.names = FALSE)
     ),
     fields = class_fields(
@@ -58,7 +53,7 @@ dims_care_temporal <- function(x) {
         x$identifier,
         "?count=true&results=true&offset=0&limit=1") |>
         map_perform_parallel(query = "names") |>
-        set_names(x$year)
+        rlang::set_names(x$year)
     )
   )
 }
@@ -67,10 +62,10 @@ dims_care_temporal <- function(x) {
 #' @noRd
 dims_care_current <- function(x) {
   i <- paste0(x$identifier, "?offset=0&size=1") |>
-    request() |>
+    httr2::request() |>
     perform_simple() |>
-    get_elem("meta") |>
-    get_elem(c("total_rows", "headers"))
+    collapse::get_elem("meta") |>
+    collapse::get_elem(c("total_rows", "headers"))
 
   list(
     dims = class_dimensions(

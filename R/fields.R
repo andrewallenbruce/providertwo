@@ -27,6 +27,16 @@ alias_column <- function(df, aka, default = "NA") {
   )
 }
 
+#' Field Dictionary
+#' @examples
+#' dictionary()
+#' @returns A data frame
+#' @autoglobal
+#' @export
+dictionary <- function() {
+  get_pin("dicts")
+}
+
 #' Field Table
 #' @examples
 #' field_table()

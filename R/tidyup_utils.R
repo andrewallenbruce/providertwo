@@ -6,10 +6,10 @@ state_recode <- function(x, to = "full") {
 
   states <- switch(
     match.arg(to, c("full", "abbr")),
-    full = set_names(state.abb, state.name),
-    abbr = set_names(state.name, state.abb))
+    full = rlang::set_names(state.abb, state.name),
+    abbr = rlang::set_names(state.name, state.abb))
 
-  names2(states)[qmatch(x, states)]
+  rlang::names2(states)[qmatch(x, states)]
 }
 
 #' @autoglobal
@@ -44,14 +44,13 @@ na_if <- function(x, y = "") {
 #' @autoglobal
 #' @noRd
 map_na_if <- function(i) {
-  modify_if(i, is.character, function(x)
-    na_if(x, y = ""))
+  purrr::modify_if(i, is.character, function(x) na_if(x, y = ""))
 }
 
 #' @autoglobal
 #' @noRd
 make_address <- function(a1, a2) {
-  cheapr_if_else(!is_na(a2), paste(a1, a2), a1)
+  ifelse(!is.na(a2), paste(a1, a2), a1)
 }
 
 #' @autoglobal
@@ -76,7 +75,7 @@ clean_names <- function(x) {
 #' @autoglobal
 #' @noRd
 set_clean <- function(i, x) {
-  set_names(i, clean_names(x))
+  rlang::set_names(i, clean_names(x))
 }
 
 #' @autoglobal

@@ -1,14 +1,14 @@
 #' @autoglobal
 #' @noRd
 total_rows <- function(x) {
-  get_elem(x, "total_rows") |>
+  collapse::get_elem(x, "total_rows") |>
     unlist(use.names = FALSE)
 }
 
 #' @autoglobal
 #' @noRd
 found_rows <- function(x) {
-  get_elem(x, "found_rows") |>
+  collapse::get_elem(x, "found_rows") |>
     unlist(use.names = FALSE)
 }
 
@@ -88,7 +88,7 @@ build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
       "{.field qry} must be of {.cls class_query}, ",
       "not {.obj_type_friendly {qry}}."
     )),
-    call = caller_env())
+    call = rlang::caller_env())
     }
   S7::S7_dispatch()
 })
@@ -106,7 +106,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
   prm <- match_query(obj, qry)
 
-  if (is_empty(prm)) {
+  if (rlang::is_empty(prm)) {
     cli_nomatch(obj)
     return(no_match_response(obj))
   }
@@ -134,7 +134,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
   prm <- match_query(obj, qry)
 
-  if (is_empty(prm)) {
+  if (rlang::is_empty(prm)) {
     cli_nomatch(obj)
     return(no_match_response(obj))
   }
@@ -162,7 +162,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
-  qst <- map(p$field, function(x) {
+  qst <- purrr::map(p$field, function(x) {
     generate_query(x) |>
       unlist(use.names = FALSE) |>
       paste0(collapse = "&")
@@ -192,7 +192,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
-  qst <- map(p$field, function(x) {
+  qst <- purrr::map(p$field, function(x) {
     generate_query(x, is_care = TRUE) |>
       unlist(use.names = FALSE) |>
       paste0(collapse = "&")

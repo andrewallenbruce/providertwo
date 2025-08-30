@@ -114,13 +114,33 @@ query_default2 <- function(args) {
 #' @autoglobal
 #' @noRd
 generate_query <- function(x = NULL, is_care = FALSE) {
-  if (is_null(x) || is_empty(x)) return(NULL)
-  set_names(`if`(is_care, query_care(x), query_default2(x)), names2(x))
+  if (rlang::is_null(x) || rlang::is_empty(x)) {
+    return(NULL)
+  }
+
+  rlang::set_names(
+    `if`(
+      is_care,
+      query_care(x),
+      query_default2(x)
+      ),
+    rlang::names2(x)
+    )
 }
 
 #' @autoglobal
 #' @noRd
 collapse_query <- function(url, params = NULL) {
-  if (is_null(params) || is_empty(params)) return(url)
-  paste0(url, "&", paste0(unlist(params, use.names = FALSE), collapse = "&"))
+  if (rlang::is_null(params) || rlang::is_empty(params)) {
+    return(url)
+  }
+
+  paste0(
+    url,
+    "&",
+    paste0(
+      unlist(params, use.names = FALSE),
+      collapse = "&"
+      )
+    )
 }
