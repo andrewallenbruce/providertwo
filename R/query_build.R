@@ -136,7 +136,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = names2(prm),
+    param  = rlang::names2(prm),
     year   = date_year(meta(obj)$modified),
     string = url,
     total  = dims(obj)@total,
@@ -164,7 +164,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = names2(prm),
+    param  = rlang::names2(prm),
     year   = date_year(meta(obj)$modified),
     string = url,
     total  = total_rows(res) %||% 0L,
@@ -177,7 +177,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
-  if (identical("year", rlang::names2(params(qry)))) {
+  if (identical("year", param_names(qry))) {
     cli_yronly(obj)
     return(year_only_response(p, obj))
   }
@@ -191,7 +191,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   url <- paste0(append_url(p$id), "&")
   # url <- append_url(p$id)
-  url <- glue::as_glue(url) + glue::as_glue(qst) |> as.character()
+  url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
@@ -199,7 +199,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = purrr::map(p$field, names2),
+    param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
     total  = dims(obj)@total[p$idx],
@@ -212,7 +212,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
-  if (identical("year", rlang::names2(params(qry)))) {
+  if (identical("year", param_names(qry))) {
     cli_yronly(obj)
     return(year_only_response(p, obj))
   }
@@ -232,7 +232,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = purrr::map(p$field, names2),
+    param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
     total  = total_rows(res),

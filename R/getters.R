@@ -1,3 +1,6 @@
+#' @include query.R
+NULL
+
 #' @autoglobal
 #' @noRd
 keys <- S7::new_generic("keys", "obj", function(obj) {
@@ -54,4 +57,24 @@ S7::method(dims, class_catalog) <- function(obj) {
 
 S7::method(dims, class_endpoint) <- function(obj) {
   S7::prop(obj, "dimensions")
+}
+
+#' @autoglobal
+#' @noRd
+params <- S7::new_generic("params", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(params, class_query) <- function(obj) {
+  S7::prop(obj, "params")
+}
+
+#' @autoglobal
+#' @noRd
+input <- S7::new_generic("input", "obj", function(obj) {
+  S7::S7_dispatch()
+})
+
+S7::method(input, class_query) <- function(obj) {
+  S7::prop(obj, "input")
 }

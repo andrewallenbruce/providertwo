@@ -1,27 +1,13 @@
 #' @autoglobal
 #' @noRd
-params <- S7::new_generic("params", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(params, class_query) <- function(obj) {
-  S7::prop(obj, "params")
-}
-
-#' @autoglobal
-#' @noRd
-input <- S7::new_generic("input", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(input, class_query) <- function(obj) {
-  S7::prop(obj, "input")
+param_names <- function(x) {
+  rlang::names2(params(x))
 }
 
 #' @autoglobal
 #' @noRd
 remove_year <- function(x) {
-  params(x)[rlang::names2(params(x)) %!=% "year"]
+  params(x)[param_names(x) %!=% "year"]
 }
 
 #' @autoglobal
@@ -47,7 +33,7 @@ select_years <- function(obj, qry) {
     id    = obj@identifier,
     field = keys(obj))
 
-  if ("year" %!in_% rlang::names2(params(qry))) {
+  if ("year" %!in_% param_names(qry)) {
     return(x)
   }
 
@@ -69,7 +55,7 @@ match_query2 <- function(obj, qry) {
 
   x <- select_years(obj, qry)
 
-  if (identical("year", rlang::names2(params(qry)))) {
+  if (identical("year", param_names(qry))) {
     return(x)
   }
 

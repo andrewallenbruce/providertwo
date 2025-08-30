@@ -44,16 +44,14 @@ query <- function(...) {
 
 #' @rdname query
 #' @examples
+#' query2(
+#'   state = any_of("CA", "GA", "NY"),
+#'   state_owner = c("GA", "MD"),
+#'   or("state", "state_owner"))
+#'
 #' try(query2(
 #'   first_name  = starts_with("And"),
-#'   middle_name = NULL,
-#'   last_name   = contains("J"),
-#'   state       = any_of("CA", "GA", "NY"),
-#'   state_own   = c("GA", "MD"),
 #'   ccn         = "01256",
-#'   rate        = between(0.45, 0.67),
-#'   year        = 2014:2025,
-#'   or("first_name", "last_name"),
 #'   and("ccn", "npii")))
 #' @autoglobal
 #' @export
@@ -64,11 +62,11 @@ query2 <- function(...) {
   )
 
   g_names <- purrr::map(x$groups, function(x)
-    prop(eval(x), "members")) |>
+    S7::prop(eval(x), "members")) |>
     unlist(use.names = FALSE) |>
-    funique()
+    collapse::funique()
 
-  ok <- all(g_names %in_% names2(x$params))
+  ok <- all(g_names %in_% rlang::names2(x$params))
 
   if (!ok) {
     cli::cli_abort(
@@ -79,7 +77,9 @@ query2 <- function(...) {
   class_query(
     input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::map(x$params, eval),
-    groups = set_names(purrr::map(x$groups, eval), paste0("g", seq_along(x$groups)))
+    groups = rlang::set_names(
+      purrr::map(x$groups, eval),
+      paste0("g", seq_along(x$groups)))
   )
 }
 
