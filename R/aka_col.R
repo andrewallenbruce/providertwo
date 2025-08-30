@@ -138,6 +138,6 @@ any_collection <- function(x) {
 
 #' @autoglobal
 #' @noRd
-rex_collect <- function(x, call = caller_env()) {
+rex_collect <- function(x, call = rlang::caller_env()) {
   collection_regex[oomph::mph_match(x, collection_names)] |> unname() |> yank()
 }
