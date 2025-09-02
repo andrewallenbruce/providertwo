@@ -26,11 +26,22 @@ roundup <- function(x, d = 2) {
 #' @autoglobal
 #' @noRd
 fmt_int <- function(x) {
-  if (x >= 1e6) return(paste0(round(x / 1e6, 1), "M"))
-  if (x >= 1e3) return(paste0(round(x / 1e3, 0), "K"))
-  as.character(x)
+  if (x >= 1e6) {
+    glue::glue("{roundup(x / 1e6, 1)} M")
+  } else if (x >= 1e3) {
+    glue::glue("{roundup(x / 1e3, 1)} K")
+  } else {
+    glue::as_glue(x)
+  }
 }
 
+#' @autoglobal
+#' @noRd
+fmt_sum <- function(x) {
+  collapse::fsum(x) |> fmt_int()
+}
+
+#' @autoglobal
 #' @noRd
 fmt_num <- function(x) prettyNum(x, big.mark = ",")
 

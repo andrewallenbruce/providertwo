@@ -23,6 +23,10 @@ S7::method(keys, class_fields) <- function(obj) {
   S7::prop(obj, "keys")
 }
 
+# S7::method(keys, class_fields2) <- function(obj) {
+#   S7::prop(obj, "keys")
+# }
+
 #' @autoglobal
 #' @noRd
 meta <- S7::new_generic("meta", "obj", function(obj) {

@@ -1,5 +1,23 @@
 #' @autoglobal
 #' @noRd
+cli_found <- function(found, total, pages) {
+  sep <- paste0(" ", cli::col_black(cli::symbol$play), " ")
+  lbl <- cli::combine_ansi_styles("silver", "italic")
+
+  cli::cli_text(c(
+    lbl("Found "),
+    cli::style_bold(fmt_sum(found)),
+    sep,
+    lbl("Total "),
+    cli::style_bold(fmt_sum(total)),
+    sep,
+    lbl("Pages "),
+    cli::style_bold(fmt_sum(pages))
+  ))
+}
+
+#' @autoglobal
+#' @noRd
 cli_nomatch <- function(obj) {
   cli::cli_alert_warning("No {.field query} for {.field {meta(obj)$alias}}")
 }

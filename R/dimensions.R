@@ -20,18 +20,19 @@ get_dims <- function(x) {
       rlang::set_names(x$year)
   )
 
-  list(
-    dims = class_dimensions(
-      limit = api_limit(x$catalog),
-      total = switch(
-        x$point,
-        current = i$count,
-        temporal = unname(
-          purrr::map_int(i, function(x) x[["count"]])
+  list(dims = class_dimensions(
+    limit = api_limit(x$catalog),
+    total = switch(
+      x$point,
+      current = i$count,
+      temporal = unname(
+        purrr::map_int(
+          i, function(x) x[["count"]]
           )
         )
-      ),
-    fields = class_fields(collapse::get_elem(i, "properties"))
+      )
+    ),
+  fields = class_fields(collapse::get_elem(i, "properties"))
   )
 }
 

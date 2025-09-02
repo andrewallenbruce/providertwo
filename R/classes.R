@@ -3,7 +3,27 @@
 class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
-  properties = list(keys = S7::class_character | S7::class_list))
+  properties = list(
+    keys = S7::class_character | S7::class_list
+    )
+  )
+
+#' @noRd
+#' @autoglobal
+class_fields2 <- S7::new_class(
+  name       = "class_fields2",
+  package    = NULL,
+  properties = list(
+    keys  = S7::class_list,
+    equal = S7::new_property(
+      S7::class_logical,
+      getter = function(self) {
+        if (length(self@keys) == 1L) return(TRUE)
+        all(is.element(self@keys[-1], self@keys[1]), na.rm = TRUE)
+      }
+    )
+  )
+)
 
 #' @noRd
 #' @autoglobal
@@ -35,7 +55,7 @@ class_endpoint <- S7::new_class(
   properties   = list(
     identifier = S7::class_character,
     metadata   = S7::class_list,
-    fields     = class_fields,
+    fields     = class_fields | class_fields2,
     dimensions = class_dimensions
   )
 )

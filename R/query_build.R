@@ -196,6 +196,12 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
 
+  cli_found(
+    res,
+    dims(obj)@total[p$idx],
+    purrr::map_int(res, offset, limit = dims(obj)@limit)
+  )
+
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
@@ -228,6 +234,12 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   url <- glue::as_glue(url) + glue::as_glue(qst)
 
   res <- map_perform_parallel(url)
+
+  cli_found(
+    found_rows(res),
+    total_rows(res),
+    purrr::map_int(found_rows(res), offset, limit = dims(obj)@limit)
+  )
 
   class_response(
     alias  = meta(obj)$alias,
