@@ -1,3 +1,17 @@
+#' @autoglobal
+#' @noRd
+reduce_fields <- function(x) {
+  flist(
+    f_union = purrr::reduce(x$headers, vctrs::vec_set_union) |>
+      kit::psort(nThread = 4L),
+    f_common = purrr::reduce(x$headers, vctrs::vec_set_intersect) |>
+      kit::psort(nThread = 4L),
+    f_unique = purrr::imap(x$headers, function(x, i)
+      vctrs::vec_set_difference(x, y = f_common)) |>
+      purrr::map(\(x) kit::psort(x, nThread = 4L))
+  )
+}
+
 #' @noRd
 #' @autoglobal
 class_schema <- S7::new_class(

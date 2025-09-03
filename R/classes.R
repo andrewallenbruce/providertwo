@@ -3,10 +3,7 @@
 class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
-  properties = list(
-    keys = S7::class_character | S7::class_list
-    )
-  )
+  properties = list(keys = S7::class_character | S7::class_list))
 
 #' @noRd
 #' @autoglobal
@@ -19,7 +16,7 @@ class_fields2 <- S7::new_class(
       S7::class_logical,
       getter = function(self) {
         if (length(self@keys) == 1L) return(TRUE)
-        all(is.element(self@keys[-1], self@keys[1]), na.rm = TRUE)
+        collapse::allv(is.element(self@keys[-1], self@keys[1]), value = TRUE)
       }
     )
   )
@@ -124,21 +121,17 @@ class_care <- S7::new_class(
 #' @noRd
 #' @autoglobal
 class_prov <- S7::new_class(
-  name       = "class_prov",
-  package    = NULL,
-  parent     = class_catalog,
-  properties = list(
-    access   = class_current
-  )
-)
+  name = "class_prov",
+  package = NULL,
+  parent = class_catalog,
+  properties = list(access = class_current))
 
 #' @noRd
 #' @autoglobal
 class_caid <- S7::new_class(
   name    = "class_caid",
   package = NULL,
-  parent  = class_catalog
-)
+  parent  = class_catalog)
 
 #' @noRd
 #' @autoglobal
@@ -158,37 +151,12 @@ class_hgov <- S7::new_class(
 
 #' @noRd
 #' @autoglobal
-not_catalog <- function(obj) {
-  purrr::map_lgl(obj, function(x) !S7::S7_inherits(x, class_catalog))
-}
-
-#' @noRd
-#' @autoglobal
-which_not_catalog <- function(obj) {
-  collapse::funique(
-    purrr::map_chr(
-      unname(
-        obj[not_catalog(obj)]),
-      function(x) pluck(class(x), 1)
-      )
-    )
-}
-
-#' @noRd
-#' @autoglobal
 class_group <- S7::new_class(
   name       = "class_group",
   package    = NULL,
   properties = list(
     title    = S7::class_character,
-    members  = S7::class_list#,
-    # validator = function(self) {
-    # if (any(not_catalog(self@members))) {
-    #   cli::cli_abort(
-    #     c("x" = "All {.field @members} must be {.cls class_catalog}, \n",
-    #       ">" = "not {.cls {which_not_catalog(self@members)}}."))
-    #     }
-    #   }
+    members  = S7::class_list
     )
   )
 

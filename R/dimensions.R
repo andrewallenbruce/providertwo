@@ -20,20 +20,17 @@ get_dims <- function(x) {
       rlang::set_names(x$year)
   )
 
-  list(dims = class_dimensions(
-    limit = api_limit(x$catalog),
-    total = switch(
-      x$point,
-      current = i$count,
-      temporal = unname(
-        purrr::map_int(
-          i, function(x) x[["count"]]
-          )
-        )
-      )
-    ),
-  fields = class_fields(collapse::get_elem(i, "properties"))
-  )
+  list(dims = class_dimensions(limit = api_limit(x$catalog), total = switch(
+    x$point,
+    current = i$count,
+    temporal = unname(purrr::map_int(i, function(x)
+      x[["count"]]))
+  )),
+  fields = switch(
+    x$point,
+    current = class_fields(collapse::get_elem(i, "properties")),
+    temporal = class_fields2(collapse::get_elem(i, "properties"))
+  ))
 }
 
 #' @autoglobal
@@ -49,7 +46,7 @@ dims_care_temporal <- function(x) {
         rlang::set_names(x$year) |>
         unlist(use.names = FALSE)
     ),
-    fields = class_fields(
+    fields = class_fields2(
       keys = paste0(
         x$identifier,
         "?count=true&results=true&offset=0&limit=1") |>
@@ -73,19 +70,5 @@ dims_care_current <- function(x) {
       limit = api_limit(x$catalog),
       total = i$total_rows),
     fields = class_fields(i$headers)
-  )
-}
-
-#' @autoglobal
-#' @noRd
-reduce_fields <- function(x) {
-  flist(
-    f_union = purrr::reduce(x$headers, vctrs::vec_set_union) |>
-      kit::psort(nThread = 4L),
-    f_common = purrr::reduce(x$headers, vctrs::vec_set_intersect) |>
-      kit::psort(nThread = 4L),
-    f_unique = purrr::imap(x$headers, function(x, i)
-      vctrs::vec_set_difference(x, y = f_common)) |>
-      purrr::map(\(x) kit::psort(x, nThread = 4L))
   )
 }

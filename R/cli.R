@@ -1,6 +1,6 @@
 #' @autoglobal
 #' @noRd
-cli_found <- function(found, total, pages) {
+cli_sum_found <- function(found, total, pages) {
   sep <- paste0(" ", cli::col_black(cli::symbol$play), " ")
   lbl <- cli::combine_ansi_styles("silver", "italic")
 
@@ -18,19 +18,19 @@ cli_found <- function(found, total, pages) {
 
 #' @autoglobal
 #' @noRd
-cli_nomatch <- function(obj) {
+cli_no_match <- function(obj) {
   cli::cli_alert_warning("No {.field query} for {.field {meta(obj)$alias}}")
 }
 
 #' @autoglobal
 #' @noRd
-cli_yronly <- function(obj) {
+cli_yr_only <- function(obj) {
   cli::cli_alert_warning("Year-only {.field query} for {.field {meta(obj)$alias}}")
 }
 
 #' @autoglobal
 #' @noRd
-cli_range <- function(x) {
+cli_yr_range <- function(x) {
   if (length(x) == 1L) {
     return(paste0(x, " ", theses(1L)))
   }
@@ -40,11 +40,11 @@ cli_range <- function(x) {
 
 #' @autoglobal
 #' @noRd
-cli_noyears <- function(obj, qry) {
+cli_no_years <- function(obj) {
   cli::cli_alert_warning(
     c(
       "No {.field year} matches in {.field {meta(obj)$alias}} \n",
-      "{cli::col_red(cli::symbol$pointer)} Valid years: {.pkg {cli_range(obj@year)}}"
+      "{cli::col_red(cli::symbol$pointer)} Valid years: {.pkg {cli_yr_range(obj@year)}}"
     )
   )
 }

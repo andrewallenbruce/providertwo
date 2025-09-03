@@ -1,3 +1,21 @@
+#' @noRd
+#' @autoglobal
+not_catalog <- function(obj) {
+  purrr::map_lgl(obj, function(x) !S7::S7_inherits(x, class_catalog))
+}
+
+#' @noRd
+#' @autoglobal
+which_not_catalog <- function(obj) {
+  collapse::funique(
+    purrr::map_chr(
+      unname(
+        obj[not_catalog(obj)]),
+      function(x) pluck(class(x), 1)
+    )
+  )
+}
+
 #' @autoglobal
 #' @noRd
 bound <- function(lower, upper) {

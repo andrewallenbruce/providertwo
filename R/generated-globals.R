@@ -41,8 +41,6 @@ utils::globalVariables(c(
   "entity",
   # <clog_hgov>
   "ext",
-  # <reduce_fields>
-  "f_common",
   # <field_table>
   # <match_query2>
   "field",

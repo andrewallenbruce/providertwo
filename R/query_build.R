@@ -109,8 +109,7 @@ build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
 })
 
 S7::method(build, list(class_group, class_query)) <- function(obj, qry) {
-  S7::prop(obj, "members") |> purrr::map(function(x)
-    build(obj = x, qry = qry))
+  S7::prop(obj, "members") |> purrr::map(function(x) build(obj = x, qry = qry))
 }
 
 S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
@@ -122,7 +121,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   prm <- match_query(obj, qry)
 
   if (rlang::is_empty(prm)) {
-    cli_nomatch(obj)
+    cli_no_match(obj)
     return(no_match_response(obj))
   }
 
@@ -150,7 +149,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   prm <- match_query(obj, qry)
 
   if (rlang::is_empty(prm)) {
-    cli_nomatch(obj)
+    cli_no_match(obj)
     return(no_match_response(obj))
   }
 
@@ -158,8 +157,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   url <- append_url(obj@identifier, "stats") |>
     collapse_query(prm)
 
-  res <- map_perform_parallel(url) |>
-    yank("data")
+  res <- map_perform_parallel(url) |> yank("data")
 
   class_response(
     alias  = meta(obj)$alias,
@@ -178,7 +176,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    cli_yronly(obj)
+    cli_yr_only(obj)
     return(year_only_response(p, obj))
   }
 
@@ -196,11 +194,9 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   res <- map_perform_parallel(url, query = "count") |>
     unlist(use.names = FALSE)
 
-  cli_found(
-    res,
-    dims(obj)@total[p$idx],
-    purrr::map_int(res, offset, limit = dims(obj)@limit)
-  )
+  cli_sum_found(res,
+                dims(obj)@total[p$idx],
+                purrr::map_int(res, offset, limit = dims(obj)@limit))
 
   class_response(
     alias  = meta(obj)$alias,
@@ -219,7 +215,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    cli_yronly(obj)
+    cli_yr_only(obj)
     return(year_only_response(p, obj))
   }
 
@@ -235,7 +231,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   res <- map_perform_parallel(url)
 
-  cli_found(
+  cli_sum_found(
     found_rows(res),
     total_rows(res),
     purrr::map_int(found_rows(res), offset, limit = dims(obj)@limit)
