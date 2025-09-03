@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9475 (2025-09-03)
+
+* updated field_table
+
+
 # providertwo 0.0.0.9474 (2025-09-03)
 
 * cli_sum_found
