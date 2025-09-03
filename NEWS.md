@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9474 (2025-09-03)
+
+* cli_sum_found
+
+
 # providertwo 0.0.0.9473 (2025-09-02)
 
 * cli summary for temporal responses
