@@ -141,7 +141,7 @@ field_types <- vctrs::vec_rbind(
   open_tmp)
 
 pin_update(
-  field_types,
+  field_tbl,
   name = "field_types",
   title = "Field Typing",
   description = "Field Typing")
