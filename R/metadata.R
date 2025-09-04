@@ -16,7 +16,7 @@ unlist_if <- function(x) {
 #' @noRd
 #' @autoglobal
 get_meta <- function(x) {
-  compact(
+  purrr::compact(
     list(
       alias       = x$alias,
       title       = x$title,

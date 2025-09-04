@@ -1,5 +1,19 @@
 #' @autoglobal
 #' @noRd
+total_rows <- function(x) {
+  collapse::get_elem(x, "total_rows") |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+found_rows <- function(x) {
+  collapse::get_elem(x, "found_rows") |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
 flatten_query <- function(x) {
   # purrr::map(x, paste0, collapse = "&")
   purrr::map(x, function(x)

@@ -1,19 +1,5 @@
 #' @autoglobal
 #' @noRd
-total_rows <- function(x) {
-  collapse::get_elem(x, "total_rows") |>
-    unlist(use.names = FALSE)
-}
-
-#' @autoglobal
-#' @noRd
-found_rows <- function(x) {
-  collapse::get_elem(x, "found_rows") |>
-    unlist(use.names = FALSE)
-}
-
-#' @autoglobal
-#' @noRd
 no_match_response <- function(obj) {
   class_response(
     alias  = meta(obj)$alias,
@@ -118,24 +104,21 @@ S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
-  prm <- match_query(obj, qry)
+  p <- match_query(obj, qry)
 
-  if (rlang::is_empty(prm)) {
+  if (rlang::is_empty(p)) {
     cli_no_match(obj)
     return(no_match_response(obj))
   }
 
-  prm <- generate_query(prm)
-  url <- append_url(obj@identifier) |>
-    collapse_query(prm)
-
-  res <- map_perform_parallel(url, query = "count") |>
-    unlist(use.names = FALSE)
+  p   <- generate_query(p)
+  url <- append_url(obj@identifier) |> collapse_query(p)
+  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
 
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = rlang::names2(prm),
+    param  = rlang::names2(p),
     year   = date_year(meta(obj)$modified),
     string = url,
     total  = dims(obj)@total,
@@ -146,23 +129,21 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
 S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
-  prm <- match_query(obj, qry)
+  p <- match_query(obj, qry)
 
-  if (rlang::is_empty(prm)) {
+  if (rlang::is_empty(p)) {
     cli_no_match(obj)
     return(no_match_response(obj))
   }
 
-  prm <- generate_query(prm, is_care = TRUE)
-  url <- append_url(obj@identifier, "stats") |>
-    collapse_query(prm)
-
+  p   <- generate_query(p, is_care = TRUE)
+  url <- append_url(obj@identifier, "stats") |> collapse_query(p)
   res <- map_perform_parallel(url) |> yank("data")
 
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
-    param  = rlang::names2(prm),
+    param  = rlang::names2(p),
     year   = date_year(meta(obj)$modified),
     string = url,
     total  = total_rows(res) %||% 0L,
@@ -188,15 +169,13 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     unlist(use.names = FALSE)
 
   url <- paste0(append_url(p$id), "&")
-  # url <- append_url(p$id)
   url <- glue::as_glue(url) + glue::as_glue(qst)
+  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
 
-  res <- map_perform_parallel(url, query = "count") |>
-    unlist(use.names = FALSE)
-
-  cli_sum_found(res,
-                dims(obj)@total[p$idx],
-                purrr::map_int(res, offset, limit = dims(obj)@limit))
+  cli_sum_found(
+    res,
+    dims(obj)@total[p$idx],
+    purrr::map_int(res, offset, limit = dims(obj)@limit))
 
   class_response(
     alias  = meta(obj)$alias,

@@ -14,14 +14,14 @@ remove_year <- function(x) {
 #' @noRd
 match_query <- function(obj, qry) {
 
-  param  <- remove_year(qry)
-  pname  <- rlang::names2(param)
-  field  <- keys(obj)
-  clean  <- clean_names(field)
+  param   <- remove_year(qry)
+  p_name  <- rlang::names2(param)
+  field   <- keys(obj)
+  clean   <- clean_names(field)
 
   rlang::set_names(
-    param[qmatch(clean, pname)],
-    field[sort(qmatch(pname, clean))])
+    param[qmatch(clean, p_name)],
+    field[sort(qmatch(p_name, clean))])
 }
 
 #' @autoglobal

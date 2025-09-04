@@ -32,13 +32,13 @@ c2 <- function(x) {
 
   end <- yank(x$endpoints)
 
-  end <- if ("resources" %in_% names2(end)) {
-    gv(end, c(cols, "resources"))
+  end <- if ("resources" %in_% rlang::names2(end)) {
+    collapse::gv(end, c(cols, "resources"))
   } else {
-    gv(end, cols)
+    collapse::gv(end, cols)
   }
 
-  if (collapse::allNA(end$download)) gv(end, "download") <- NULL
+  if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
 
   flist(!!!c(x[names(x) %!=% "endpoints"]), !!!c(end))
 }
@@ -55,16 +55,19 @@ alias_lookup <- function(x) {
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(glue("the$clog${catalog}${point}"), x)
+    tbl     = select_alias(glue::glue("the$clog${catalog}${point}"), x)
   )
 
   check_alias_results(x)
 
-  list_combine(list_modify(x, list(tbl = NULL)), switch(
-    x$point,
-    current  = c(x$tbl),
-    temporal = c2(x$tbl)
-  ))
+  cheapr::list_combine(
+    cheapr::list_modify(x, list(tbl = NULL)),
+    switch(
+      x$point,
+      current  = c(x$tbl),
+      temporal = c2(x$tbl)
+      )
+    )
 }
 
 #' @autoglobal
@@ -179,6 +182,6 @@ group <- function(..., .title = NULL) {
   check_group(alias)
 
   class_group(
-    title   = .title %||% brackets(toString(alias)),
+    title   = .title %||% theses(toString(alias)),
     members = names_map(alias, endpoint))
 }
