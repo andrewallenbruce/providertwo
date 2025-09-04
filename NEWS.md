@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9476 (2025-09-04)
+
+* tweaks, namespacing
+
+
 # providertwo 0.0.0.9475 (2025-09-03)
 
 * updated field_table
