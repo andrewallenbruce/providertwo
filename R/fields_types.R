@@ -135,6 +135,8 @@ fields_exact <- list(
     "HCPCS_Desc",
     "HCPCS_DESC"
     ),
+  drg = c("DRG_Cd"),
+  drg_desc = c("DRG_Desc"),
 
   # LOCATION
   city = c(

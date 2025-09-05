@@ -47,113 +47,38 @@ field_table <- function() {
 
   collapse::mtt(
     get_pin("field_types"),
+    type = NULL,
     field = rm_nonascii(field),
     type = cheapr::case(
-      field %in_% c(
-        "FIRST_NAME",
-        "FIRST NAME - OWNER",
-        "First Name",
-        "provider_first_name",
-        "covered_recipient_profile_first_name",
-        "Individual First Name",
-        "Prscrbr_First_Name",
-        "Rfrg_Prvdr_First_Name"
-      ) ~ "first_name",
-      field %in_% c(
-        "MIDDLE NAME",
-        "MIDDLE NAME - OWNER",
-        "MDL_NAME",
-        "provider_middle_name",
-        "covered_recipient_profile_middle_name",
-        "Rfrg_Prvdr_MI"
-      ) ~ "middle_name",
-      field %in_% c(
-        "LAST_NAME",
-        "LAST NAME - OWNER",
-        "Last Name",
-        "provider_last_name",
-        "covered_recipient_profile_last_name",
-        "Individual Last Name",
-        "Prscrbr_Last_Org_Name",
-        "Rfrg_Prvdr_Last_Name_Org"
-      ) ~ "last_name",
-      field %in_% c("suff") ~ "suffix",
-      field %in_% c(
-        "ORG_NAME",
-        "ORGANIZATION NAME",
-        "ORGANIZATION NAME - OWNER",
-        "Organization Name",
-        "provider_name",
-        "recipient_name",
-        "PRVDR_NAME",
-        "Prscrbr_Last_Org_Name",
-        "Rfrg_Prvdr_Last_Name_Org"
-        ) ~ "org_name",
-      field %in_% c(
-        "FAC_NAME",
-        "facility_name"
-        ) ~ "facility_name",
-      field %in_% c(
-        "DOING BUSINESS AS NAME",
-        "Group Legal Business Name",
-        "DOING BUSINESS AS NAME - OWNER"
-        ) ~ "dba_name",
-      field %in_% c("Hosp_Name") ~ "hospital_name",
-      field %in_% c("ACO_Name", "aco_name") ~ "aco_name",
-      field %in_% c("Brnd_Name") ~ "brand_name",
-
-      field %in_% c(
-        "PROVIDER_TYPE_CD",
-        "PROVIDER TYPE CODE"
-        ) ~ "specialty_code",
-      field %in_% c(
-        "Specialty",
-        "PROVIDER_TYPE_DESC",
-        "PROVIDER TYPE TEXT",
-        "Provider Type Text",
-        "Individual Specialty Description"
-        ) ~ "specialty",
-
-      field %in_% c(
-        "ENRLMT_ID",
-        "ENROLLMENT ID",
-        "Enrollment ID",
-        "Individual Enrollment ID"
-        ) ~ "enid_ind",
-      field %in_% c(
-        "Group Enrollment ID"
-      ) ~ "enid_org",
-
-      field %in_% c(
-        "PECOS_ASCT_CNTL_ID",
-        "ind_pac_id",
-        "ASSOCIATE ID",
-        "Individual PAC ID"
-        ) ~ "pac_ind",
-      field %in_% c("org_pac_id", "Group PAC ID") ~ "pac_org",
-      field %in_% c("ASSOCIATE ID - OWNER") ~ "pac_owner",
-
-      field %in_% c("hcpcs_cd", "HCPCS_Cd", "HCPCS_CD") ~ "hcpcs",
-      field %in_% c("HCPCS_Desc") ~ "hcpcs_description",
-
-      field %in_% c("DRG_Cd") ~ "drg",
-      field %in_% c("DRG_Desc") ~ "drg_description",
-
-      field %in_% c(
-        "npi",
-        "NPI",
-        "Individual NPI",
-        "covered_recipient_npi",
-        "National Provider Identifier"
-        ) ~ "npi",
-      field %in_% c("entity_npi") ~ "npi_entity",
-      field %in_% c("NPI - BUYER") ~ "npi_buyer",
-      field %in_% c("NPI - SELLER") ~ "npi_seller",
-      field %in_% c("Rfrg_NPI") ~ "npi_refer",
-      field %in_% c("Rndrng_NPI") ~ "npi_render",
-      field %in_% c("Suplr_NPI") ~ "npi_supply",
-      field %in_% c("Prscrbr_NPI", "PRSCRBR_NPI") ~ "npi_prx",
-      field %in_% c("MULTIPLE NPI FLAG") ~ "multi_npi",
+      field %in_% fields_exact$first_name ~ "first_name",
+      field %in_% fields_exact$middle_name ~ "middle_name",
+      field %in_% fields_exact$last_name ~ "last_name",
+      field %in_% fields_exact$suffix ~ "suffix",
+      field %in_% fields_exact$org_name ~ "org_name",
+      field %in_% fields_exact$facility ~ "facility",
+      field %in_% fields_exact$dba_name ~ "dba_name",
+      field %in_% fields_exact$hospital_name ~ "hospital_name",
+      field %in_% fields_exact$brand_name ~ "brand_name",
+      field %in_% fields_exact$specialty ~ "specialty",
+      field %in_% fields_exact$specialty_code ~ "specialty_code",
+      field %in_% fields_exact$enid_ind ~ "enid_ind",
+      field %in_% fields_exact$enid_org ~ "enid_org",
+      field %in_% fields_exact$pac_ind ~ "pac_ind",
+      field %in_% fields_exact$pac_org ~ "pac_org",
+      field %in_% fields_exact$pac_own ~ "pac_own",
+      field %in_% fields_exact$hcpcs ~ "hcpcs",
+      field %in_% fields_exact$hcpcs_desc ~ "hcpcs_desc",
+      field %in_% fields_exact$npi ~ "npi",
+      field %in_% fields_exact$npi_prescriber ~ "npi_prescriber",
+      field %in_% fields_exact$npi_supply ~ "npi_supply",
+      field %in_% fields_exact$npi_render ~ "npi_render",
+      field %in_% fields_exact$npi_refer ~ "npi_refer",
+      field %in_% fields_exact$npi_seller ~ "npi_seller",
+      field %in_% fields_exact$npi_buyer ~ "npi_buyer",
+      field %in_% fields_exact$npi_entity ~ "npi_entity",
+      field %in_% fields_exact$multi_npi ~ "multi_npi",
+      field %in_% fields_exact$drg ~ "drg",
+      field %in_% fields_exact$drg_desc ~ "drg_desc",
 
       field %in_% c(
         "PRVDR_NUM",
