@@ -5,7 +5,9 @@ the$clog$caid$current |>
   alias_column(end_caid$current) |>
   sbt(is.na(alias))
 
-prov_fld <- fields_current(the$clog$prov$current, end_prov$current)
+prov_fld <- fields_current(
+  the$clog$prov$current,
+  end_prov$current)
 
 prov_fld |>
   fcount(alias, decreasing = TRUE, sort = TRUE) |>

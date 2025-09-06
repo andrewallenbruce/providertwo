@@ -27,9 +27,10 @@ utils::globalVariables(c(
   # <clog_hgov>
   "description",
   # <clog_hgov>
+  # <down_caid>
   "distribution",
-  # <clog_caid>
   # <clog_hgov>
+  # <down_caid>
   # <tidy_resources>
   "download",
   # <clog_care>
@@ -59,6 +60,8 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
+  # <down_caid>
+  "is_chr",
   # <quality_eligibility>
   "is_maqi",
   # <quality_eligibility>
@@ -88,6 +91,7 @@ utils::globalVariables(c(
   "modified",
   # <clog_hgov>
   "n",
+  # <down_caid>
   # <tidy_resources>
   "name",
   # <quality_eligibility>
@@ -104,8 +108,6 @@ utils::globalVariables(c(
   "released",
   # <clog_care>
   "resourcesAPI",
-  # <clog_caid>
-  "rowid",
   # <quality_eligibility>
   "specialty",
   # <state_recode>
@@ -124,10 +126,9 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
+  # <down_caid>
   # <select_alias>
   "title",
-  # <clog_caid>
-  "title_y",
   # <clog_care>
   # <clog_open>
   # <clog_caid>

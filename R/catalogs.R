@@ -216,53 +216,6 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  down <- collapse::get_elem(x$caid, "distribution", DF.as.list = TRUE) |>
-    collapse::get_elem("^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)
-
-  down <- set_names(down, seq_along(down))
-
-  down_1 <- down[cheapr::list_lengths(down) == 1]
-  down_2 <- down[cheapr::list_lengths(down) > 1]
-
-  idx <- cheapr::list_lengths(collapse::get_elem(down_2, "title", DF.as.list = TRUE))
-
-  down_2_title <- collapse::get_elem(down_2, "title", DF.as.list = TRUE)[idx == 1]
-  down_2_url   <- collapse::get_elem(down_2, "downloadURL", DF.as.list = TRUE)[idx == 1]
-
-  down_2_title_2 <- collapse::get_elem(down_2, "title", DF.as.list = TRUE)[idx > 1]
-  down_2_url_2   <- collapse::get_elem(down_2, "downloadURL", DF.as.list = TRUE)[idx > 1]
-
-  downloads <- collapse::rowbind(
-    fill = TRUE,
-    fastplyr::new_tbl(
-      rowid = names(down_2_title) |> as.integer(),
-      title = unlist(down_2_title, use.names = FALSE),
-      download = unlist(down_2_url, use.names = FALSE)
-    ) |>
-      collapse::mtt(title = ifelse(title == "CSV", NA_character_, title)),
-
-    fastplyr::new_tbl(
-      rowid = cheapr::cheapr_rep_each(
-        as.integer(names(down_2_title_2)),
-        cheapr::list_lengths(down_2_title_2)),
-      title = unlist(down_2_title_2, use.names = FALSE),
-      download = unlist(down_2_url_2, use.names = FALSE)
-    ) |>
-      collapse::mtt(title = ifelse(title == "CSV", NA_character_, title)),
-    fastplyr::new_tbl(
-      rowid = names(down_1) |> as.integer(),
-      download = unlist(down_1, use.names = FALSE)
-    )
-  ) |>
-    collapse::roworder(rowid)
-
-  downloads <- downloads |>
-    join_on(on = "rowid",
-      fastplyr::as_tbl(x$caid) |>
-        collapse::slt(title, identifier) |>
-        collapse::mtt(rowid = seq_along(identifier))) |>
-    collapse::colorder(rowid, title, title_y, download)
-
   base <- collapse::mtt(
     x$caid,
     identifier = paste0(
@@ -285,7 +238,7 @@ clog_caid <- function(x) {
       "contact"
     ))
 
-  d <- join_on_title(base, downloads) |>
+  d <- join_on_title(base, down_caid(x)) |>
     collapse::slt(c(
       "title",
       "identifier",
@@ -544,4 +497,33 @@ fmt_contactpoint <- function(x) {
 #' @noRd
 fmt_temporal <- function(x) {
   greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
+}
+
+#' @autoglobal
+#' @noRd
+down_caid <- function(x) {
+
+  d <- x$caid |>
+    slt(title, distribution) |>
+    sbt(grep("Auto", title, fixed = TRUE, invert = TRUE)) |>
+    sbt(grep("test|coreset|scorecard|category_tiles", title, ignore.case = TRUE, perl = TRUE, invert = TRUE)) |>
+    roworder(title) |>
+    mtt(distribution = map(distribution, \(x) collapse::get_elem(x, "^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)),
+        is_chr = map_lgl(distribution, \(x) is.character(x)))
+
+  d1 <- sbt(d, is_chr) |>
+    mtt(download = map_chr(distribution, \(x) toString(unlist(x, use.names = FALSE)))) |>
+    slt(title, download)
+
+  d2 <- sbt(d, !is_chr) |>
+    mtt(
+      name = map_chr(distribution, \(x) toString(unlist(get_elem(x, "title"), use.names = FALSE))),
+      download = map_chr(distribution, \(x) toString(unlist(get_elem(x, "downloadURL"), use.names = FALSE))),
+      name = ifelse(name == "CSV", title, name),
+      equal = title == name,
+      name = ifelse(equal, NA_character_, name)) |>
+    slt(title, download)
+
+  collapse::rowbind(fill = TRUE, d1, d2) |>
+    collapse::roworder(title)
 }
