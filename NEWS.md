@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9478 (2025-09-06)
+
+* caid clog download refactor
+
+
 # providertwo 0.0.0.9477 (2025-09-05)
 
 * fields
