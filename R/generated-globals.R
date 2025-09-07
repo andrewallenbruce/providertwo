@@ -60,8 +60,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "identifier",
-  # <down_caid>
-  "is_chr",
   # <quality_eligibility>
   "is_maqi",
   # <quality_eligibility>
@@ -96,6 +94,8 @@ utils::globalVariables(c(
   "name",
   # <quality_eligibility>
   "nationalProviderIdentifierType",
+  # <clog_prov>
+  "nextUpdateDate",
   # <npi_nppes>
   "organization",
   # <clog_caid>

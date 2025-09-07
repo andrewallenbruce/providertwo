@@ -207,6 +207,15 @@ rm_quotes <- function(x) {
 
 #' @autoglobal
 #' @noRd
+clean_title <- function(x) {
+  rm_nonascii(x) |>
+    rm_quotes() |>
+    trimws() |>
+    rm_space()
+}
+
+#' @autoglobal
+#' @noRd
 join_on <- function(x, y, on) {
   collapse::join(x, y, on, verbose = 0, multiple = TRUE)
 }

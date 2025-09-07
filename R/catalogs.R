@@ -28,6 +28,7 @@ catalogs <- function() {
   x <- base_url |>
     purrr::map(request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
+    httr2::resps_successes() |>
     purrr::map2(c("/dataset", rep(NA_character_, 4)), function(x, q) {
       httr2::resp_body_string(x) |>
         RcppSimdJson::fparse(query = if (is.na(q)) NULL else q) |>
@@ -48,7 +49,8 @@ catalogs <- function() {
 #' @noRd
 clog_care <- function(x) {
 
-  d <- collapse::get_elem(x$care, "distribution", DF.as.list = TRUE) |>
+  distro <- collapse::get_elem(x, "care") |>
+    collapse::get_elem("distribution", DF.as.list = TRUE) |>
     collapse::rowbind(fill = TRUE) |>
     collapse::fcompute(
       year       = extract_year(title),
@@ -58,37 +60,37 @@ clog_care <- function(x) {
       temporal   = fmt_temporal(temporal),
       identifier = accessURL,
       download   = cheapr::lag_(downloadURL, n = -1L),
-      resources  = resourcesAPI
-    ) |>
+      resources  = resourcesAPI) |>
     collapse::roworder(title, -year) |>
     fastplyr::as_tbl()
 
-  d <- cheapr::sset(d, cheapr::row_na_counts(d) < 3)
+  distro <- cheapr::sset(distro, cheapr::row_na_counts(distro) < 3L)
 
-  x <- collapse::mtt(
-    x$care,
+  base <- collapse::get_elem(x, "care") |>
+    collapse::mtt(
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(x$care),
+    contact     = fmt_contactpoint(collapse::get_elem(x, "care")),
     references  = unlist(references, use.names = FALSE),
     temporal    = fmt_temporal(temporal),
-    title       = rm_nonascii(rm_space(title)),
-    description = rm_quotes(rm_nonascii(description)),
-    dictionary = describedBy,
-    site       = landingPage,
-    .keep      = c("identifier", "references")
+    title       = clean_title(title),
+    description = clean_title(description),
+    dictionary  = describedBy,
+    site        = landingPage,
+    .keep       = c("identifier", "references")
   ) |>
-    join_on_title(collapse::sbt(d, format == "latest", c("title", "download", "resources"))) |>
+    join_on_title(
+      collapse::sbt(distro, format %==% "latest", c("title", "download", "resources"))
+      ) |>
     collapse::roworder(title) |>
     collapse::colorder(title, description)
 
-  d <- collapse::sbt(
-    d,
-    title %!in_% care_types("single") & format != "latest", -format) |>
+  distro <- collapse::sbt(distro, format %!=% "latest", -format) |>
     collapse::roworder(title, -year) |>
     fnest(by = "title") |>
-    join_on_title(collapse::slt(
-      x,
+    join_on_title(
+      collapse::slt(
+        base,
       c(
         "title",
         "description",
@@ -101,16 +103,16 @@ clog_care <- function(x) {
     )) |>
     collapse::colorder(endpoints, pos = "end")
 
-  list(current = x, temporal = d)
+  list(current = base, temporal = distro)
 }
 
 #' @autoglobal
 #' @noRd
 clog_prov <- function(x) {
   list(
-    current = collapse::mtt(
-      x$prov,
-      title       = rm_nonascii(title),
+    current = collapse::get_elem(x, "prov") |>
+      collapse::mtt(
+      title       = clean_title(title),
       dictionary  = paste0(
         "https://data.cms.gov/provider-data/dataset/",
         identifier,
@@ -123,9 +125,11 @@ clog_prov <- function(x) {
       issued      = as_date(issued),
       modified    = as_date(modified),
       released    = as_date(released),
+      next_update = as_date(nextUpdateDate),
       group       = purrr::map_chr(theme, function(x) toString(unlist(x, use.names = FALSE))),
-      description = trimws(gremove(description, "\n")),
-      download    = collapse::get_elem(x$prov, "distribution") |>
+      description = clean_title(description),
+      download    = collapse::get_elem(x, "prov") |>
+        collapse::get_elem("distribution") |>
         collapse::get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
         unlist(use.names = FALSE),
       contact     = fmt_contactpoint(x$prov),
@@ -140,6 +144,7 @@ clog_prov <- function(x) {
           "issued",
           "modified",
           "released",
+          "next_update",
           "identifier",
           "contact",
           "download",
@@ -155,8 +160,8 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x <- collapse::mtt(
-    x$open,
+  x <- collapse::get_elem(x, "open") |>
+    collapse::mtt(
     identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
       identifier, "/0"
@@ -169,12 +174,11 @@ clog_open <- function(x) {
       year,
       nThread = 4L
     ),
-    title = rm_nonascii(title),
-    contact = fmt_contactpoint(x$open),
-    description = rm_quotes(description) |>
-      rm_nonascii() |>
-      rm_space(),
-    download = collapse::get_elem(x$open, "distribution", DF.as.list = TRUE) |>
+    title = clean_title(title),
+    contact = fmt_contactpoint(collapse::get_elem(x, "open")),
+    description = clean_title(description),
+    download = collapse::get_elem(x, "open") |>
+      collapse::get_elem("distribution", DF.as.list = TRUE) |>
       collapse::get_elem("downloadURL", DF.as.list = TRUE) |>
       unlist(use.names = FALSE)
   ) |>
@@ -189,24 +193,18 @@ clog_open <- function(x) {
     ))
 
   list(
-    current = collapse::sbt(x, year %==% "All", -year) |>
-      collapse::roworder(title),
+    current = collapse::sbt(x, year %==% "All", -year) |> collapse::roworder(title),
     temporal = collapse::sbt(x, year %!=% "All") |>
       collapse::mtt(
         year = as.integer(year),
         title = gremove(title, "^[0-9]{4} "),
         description = kit::nswitch(
           title,
-          "General Payment Data",
-          "All general (non-research, non-ownership related) payments from the program year",
-          "Ownership Payment Data",
-          "All ownership and investment payments from the program year",
-          "Research Payment Data",
-          "All research-related payments from the program year",
+          "General Payment Data", "All general (non-research, non-ownership related) payments from the program year",
+          "Ownership Payment Data", "All ownership and investment payments from the program year",
+          "Research Payment Data", "All research-related payments from the program year",
           default = description,
-          nThread = 4L
-        )
-      ) |>
+          nThread = 4L)) |>
       collapse::roworder(title, -year) |>
       fnest(by = c("title", "description", "modified"))
   )
@@ -216,75 +214,69 @@ clog_open <- function(x) {
 #' @noRd
 clog_caid <- function(x) {
 
-  base <- collapse::mtt(
-    x$caid,
-    identifier = paste0(
-      "https://data.medicaid.gov/api/1/datastore/query/",
-      identifier, "/0"
-    ),
-    modified = as_date(modified),
-    periodicity = fmt_periodicity(accrualPeriodicity),
-    contact = fmt_contactpoint(x$caid),
-    title = gremove(title, "^ ") |> rm_nonascii() |> rm_space(),
-    description = kit::iif(description == "Dataset.", NA_character_, description, nThread = 4L),
-    description = rm_nonascii(description) |> rm_quotes() |> greplace("\r\n", " ") |> rm_space()
-  ) |>
-    collapse::slt(c(
-      "title",
-      "identifier",
-      "description",
-      "periodicity",
-      "modified",
-      "contact"
-    ))
+  cols <- c(
+    "title",
+    "identifier",
+    "description",
+    "periodicity",
+    "modified",
+    "contact",
+    "download"
+  )
 
-  d <- join_on_title(base, down_caid(x)) |>
-    collapse::slt(c(
-      "title",
-      "identifier",
-      "description",
-      "periodicity",
-      "modified",
-      "contact",
-      "download"
-    ))
+  base <- collapse::get_elem(x, "caid") |>
+    collapse::mtt(
+      identifier = paste0(
+        "https://data.medicaid.gov/api/1/datastore/query/",
+        identifier,
+        "/0"
+      ),
+      modified = as_date(modified),
+      periodicity = fmt_periodicity(accrualPeriodicity),
+      contact = fmt_contactpoint(collapse::get_elem(x, "caid")),
+      title = clean_title(title),
+      description = kit::iif(description == "Dataset.", NA_character_, description, nThread = 4L),
+      description = clean_title(description)
+    ) |>
+    collapse::sbt(
+      grep(
+        "test|coreset|scorecard|category_tiles|auto",
+        title,
+        ignore.case = TRUE,
+        perl = TRUE,
+        invert = TRUE
+      )
+    ) |>
+    join_on_title(down_caid(x)) |>
+    collapse::slt(cols)
 
   ptn <- paste0(
-    "State Drug Utilization Data [0-9]{4}|",
+    "State Drug Utilization Data 2[0-9]{3}|",
     "NADAC \\(National Average Drug Acquisition Cost\\)|",
-    "^[0-9]{4} Child and Adult Health Care Quality|",
-    "^[0-9]{4} Managed Care Programs by State$|",
+    "^2[0-9]{3} Child and Adult Health Care Quality|",
+    "^2[0-9]{3} Managed Care Programs by State$|",
     "^Pricing Comparison for Blood Disorder Treatments|",
     "^Child and Adult Health Care Quality Measures|",
-    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}")
+    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}"
+    )
 
   list(
-    current = ss_title(d, ptn, n = TRUE) |> ss_title("CoreS|Scorecard|Auto", n = TRUE),
-    temporal = ss_title(d, ptn) |> ss_title("CoreS|Scorecard|Auto", n = TRUE) |>
+    current = ss_title(base, ptn, n = TRUE),
+    temporal = ss_title(base, ptn) |>
       collapse::mtt(
         year = extract_year(title),
-        title = kit::nif(
-          gdetect(title, "Child and Adult Health Care Quality Measures"),
-          "Child and Adult Health Care Quality Measures",
-          gdetect(title, "[0-9]{4} Manage"),
-          "Managed Care Programs by State",
-          gdetect(title, "NADAC \\(National Average Drug Acquisition Cost\\)"),
-          "NADAC",
-          gdetect(title, "State Drug Utilization Data"),
-          "State Drug Utilization Data",
-          gdetect(title, "Pricing Comparison"),
-          "Pricing Comparison for Blood Disorder Treatments",
-          gdetect(title, "Product Data for Newly Reported"),
-          "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-          default = title
-        ),
+        title = caid_title(title),
         description = kit::iif(
           title == "Child and Adult Health Care Quality Measures",
-          "Performance rates on frequently reported health care quality measures in the CMS Medicaid/CHIP Child and Adult Core Sets. Dataset contains both child and adult measures.",
+          paste0(
+            "Performance rates on frequently reported health ",
+            "care quality measures in the CMS Medicaid/CHIP Child ",
+            "and Adult Core Sets. Dataset contains both child and adult measures."
+            ),
           description,
           nThread = 4L
-        )
-      ) |>
+          )
+        ) |>
       collapse::roworder(title, year) |>
       ffill(description, periodicity) |>
       collapse::slt(
@@ -298,6 +290,20 @@ clog_caid <- function(x) {
       ) |>
       collapse::roworder(title, -year) |>
       fnest(by = c("title", "description", "periodicity"))
+  )
+}
+
+#' @autoglobal
+#' @noRd
+caid_title <- function(x) {
+  kit::nif(
+    gdetect(x, "Child and Adult Health Care Quality Measures"), "Child and Adult Health Care Quality Measures",
+    gdetect(x, "2[0-9]{3} Manage"), "Managed Care Programs by State",
+    gdetect(x, "NADAC \\(National Average Drug Acquisition Cost\\)"), "NADAC",
+    gdetect(x, "State Drug Utilization Data"), "State Drug Utilization Data",
+    gdetect(x, "Pricing Comparison"), "Pricing Comparison for Blood Disorder Treatments",
+    gdetect(x, "Product Data for Newly Reported"), "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
+    default = x
   )
 }
 
@@ -333,8 +339,8 @@ clog_hgov <- function(x) {
     collapse::fcount(id, add = TRUE)
 
 
-  x <- collapse::mtt(
-    x$hgov,
+  x <- collapse::get_elem(x, "hgov") |>
+    collapse::mtt(
     identifier = paste0(
       "https://data.healthcare.gov/api/1/datastore/query/",
       identifier,
@@ -502,28 +508,51 @@ fmt_temporal <- function(x) {
 #' @autoglobal
 #' @noRd
 down_caid <- function(x) {
+  s <- collapse::get_elem(x, "caid") |>
+    collapse::slt(title, distribution) |>
+    collapse::sbt(
+      grep(
+        "test|coreset|scorecard|category_tiles|auto",
+        title,
+        ignore.case = TRUE,
+        perl = TRUE,
+        invert = TRUE
+      )
+    ) |>
+    collapse::roworder(title) |>
+    collapse::mtt(
+      distribution = purrr::map(distribution, function(x) {
+        collapse::get_elem(x,
+                           "^title$|^downloadURL$",
+                           DF.as.list = TRUE,
+                           regex = TRUE)
+      }),
+      is_chr = purrr::map_lgl(distribution, function(x) is.character(x))
+    ) |>
+    collapse::rsplit(~ is_chr)
 
-  d <- x$caid |>
-    slt(title, distribution) |>
-    sbt(grep("Auto", title, fixed = TRUE, invert = TRUE)) |>
-    sbt(grep("test|coreset|scorecard|category_tiles", title, ignore.case = TRUE, perl = TRUE, invert = TRUE)) |>
-    roworder(title) |>
-    mtt(distribution = map(distribution, \(x) collapse::get_elem(x, "^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)),
-        is_chr = map_lgl(distribution, \(x) is.character(x)))
-
-  d1 <- sbt(d, is_chr) |>
-    mtt(download = map_chr(distribution, \(x) toString(unlist(x, use.names = FALSE)))) |>
-    slt(title, download)
-
-  d2 <- sbt(d, !is_chr) |>
-    mtt(
-      name = map_chr(distribution, \(x) toString(unlist(get_elem(x, "title"), use.names = FALSE))),
-      download = map_chr(distribution, \(x) toString(unlist(get_elem(x, "downloadURL"), use.names = FALSE))),
-      name = ifelse(name == "CSV", title, name),
-      equal = title == name,
-      name = ifelse(equal, NA_character_, name)) |>
-    slt(title, download)
-
-  collapse::rowbind(fill = TRUE, d1, d2) |>
+  purrr::imap(s, function(x, i) {
+    switch(
+      i,
+      `TRUE` = collapse::mtt(x, download = purrr::map_chr(distribution, function(x)
+        toString(unlist(x, use.names = FALSE)))) |>
+        collapse::slt(title, download),
+      `FALSE` = collapse::mtt(
+        x,
+        name = purrr::map_chr(distribution, function(x)
+          toString(
+            unlist(collapse::get_elem(x, "title"), use.names = FALSE)
+          )),
+        download = purrr::map_chr(distribution, \(x) toString(
+          unlist(collapse::get_elem(x, "downloadURL"), use.names = FALSE)
+        )),
+        name = ifelse(name == "CSV", title, name),
+        equal = title == name,
+        name = ifelse(equal, NA_character_, name)
+      ) |>
+        collapse::slt(title, download)
+    )
+  }) |>
+    purrr::list_rbind() |>
     collapse::roworder(title)
 }
