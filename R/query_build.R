@@ -49,7 +49,7 @@ year_only_response <- function(p, obj) {
 #'   collection("dialysis"),
 #'   query(state = "AL"))
 #'
-#' try(build(
+#' build(
 #'   endpoint("dial_facility"),
 #'   query(
 #'     state = "GA",
@@ -58,7 +58,7 @@ year_only_response <- function(p, obj) {
 #'     provider_name = starts_with("C"),
 #'     provname = starts_with("C")
 #'   )
-#' ))
+#' )
 #'
 #' build(
 #'   endpoint("qppe"),
