@@ -30,7 +30,7 @@ c2 <- function(x) {
 
   cols <- c("year", "identifier", "download")
 
-  end <- yank(x$endpoints)
+  end <- yank(x$endpoints) |> collapse::sbt(!is.na(identifier))
 
   end <- if ("resources" %in_% rlang::names2(end)) {
     collapse::gv(end, c(cols, "resources"))

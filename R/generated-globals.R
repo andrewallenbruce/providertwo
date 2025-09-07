@@ -59,6 +59,7 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
+  # <c2>
   "identifier",
   # <quality_eligibility>
   "is_maqi",
