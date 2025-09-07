@@ -40,7 +40,10 @@ c2 <- function(x) {
 
   if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
 
-  flist(!!!c(x[names(x) %!=% "endpoints"]), !!!c(end))
+  flist(
+    !!!c(x[names(x) %!=% "endpoints"]),
+    modified = max(yank(x$endpoints)$modified),
+    !!!c(end))
 }
 
 # alias_lookup("dial_facility")

@@ -116,8 +116,8 @@ subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
 
 #' @autoglobal
 #' @noRd
-ss_title <- function(x, re, ...) {
-  subset_detect(i = x, j = title, p = re, ...)
+ss_title <- function(x, re, n = FALSE) {
+  subset_detect(i = x, j = title, p = re, n = n)
 }
 
 #' @autoglobal

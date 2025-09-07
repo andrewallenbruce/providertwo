@@ -250,19 +250,25 @@ clog_caid <- function(x) {
     join_on_title(down_caid(x)) |>
     collapse::slt(cols)
 
-  ptn <- paste0(
-    "State Drug Utilization Data 2[0-9]{3}|",
-    "NADAC \\(National Average Drug Acquisition Cost\\)|",
-    "^2[0-9]{3} Child and Adult Health Care Quality|",
-    "^2[0-9]{3} Managed Care Programs by State$|",
-    "^Pricing Comparison for Blood Disorder Treatments|",
-    "^Child and Adult Health Care Quality Measures|",
-    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}"
-    )
+  ptn <- paste(
+    "State Drug Utilization Data [0-9]{4}",
+    "NADAC \\(National Average Drug Acquisition Cost\\) 20[0-9]{2}",
+    "^20[0-9]{2} Child and Adult",
+    "^20[0-9]{2} Managed Care",
+    "^Pricing Comparison for Blood Disorder Treatments",
+    "^Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program [0-9]{2}",
+    sep = "|"
+  )
 
   list(
-    current = ss_title(base, ptn, n = TRUE),
-    temporal = ss_title(base, ptn) |>
+    current = collapse::sbt(
+      base,
+      stringi::stri_detect_regex(title, pattern = ptn, negate = TRUE)) |>
+      collapse::roworder(title),
+    temporal = collapse::sbt(
+      base,
+      stringi::stri_detect_regex(title, pattern = ptn)) |>
+      collapse::roworder(title) |>
       collapse::mtt(
         year = extract_year(title),
         title = caid_title(title),
