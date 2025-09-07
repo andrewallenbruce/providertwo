@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9480 (2025-09-07)
+
+* fix query build example
+* fix: account for NAs in `identifier` column in temporal catalog entries
+
+
 # providertwo 0.0.0.9479 (2025-09-07)
 
 * Catalog editing
