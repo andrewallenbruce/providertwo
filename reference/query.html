@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9480</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9481</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,14 +75,6 @@
 <span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: language starts_with("And")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : language contains("J")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : language any_of("CA", "GA", "NY")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : language c("GA", "MD")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : language between(0.45, 0.67)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : language 2014:2025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: &lt;starts_with&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
@@ -109,10 +101,6 @@
 <span class="r-in"><span>  state_owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"state"</span>, <span class="st">"state_owner"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ input :List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state      : language any_of("CA", "GA", "NY")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_owner: language c("GA", "MD")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $            : language or("state", "state_owner")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state      : &lt;any_of&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "IN"</span>
