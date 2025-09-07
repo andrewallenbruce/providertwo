@@ -70,6 +70,7 @@ Collate:
     'pins.R'
     'providertwo-package.R'
     'qpp.R'
+    'query_assemble.R'
     'query_build.R'
     'query_generate.R'
     'query_match.R'

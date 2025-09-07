@@ -2,6 +2,7 @@
 
 export(and)
 export(any_of)
+export(assemble)
 export(between)
 export(build)
 export(catalogs)

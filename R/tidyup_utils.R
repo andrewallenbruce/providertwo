@@ -14,6 +14,12 @@ state_recode <- function(x, to = "full") {
 
 #' @autoglobal
 #' @noRd
+rm_all_na <- function(x) {
+  cheapr::na_rm(x[, !cheapr::col_all_na(x)])
+}
+
+#' @autoglobal
+#' @noRd
 roundup <- function(x, d = 2) {
   d  <- 10^d
   z  <- abs(x) * d

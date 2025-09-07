@@ -4,7 +4,7 @@ class_query <- S7::new_class(
   name       = "class_query",
   package    = NULL,
   properties = list(
-    input    = S7::class_list,
+    # input    = S7::class_list,
     params   = S7::class_list,
     groups   = S7::class_list
   )
@@ -31,7 +31,7 @@ NULL
 #' @export
 query <- function(...) {
   class_query(
-    input  = purrr::compact(rlang::enexprs(...)),
+    # input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::compact(
       rlang::dots_list(
         ...,
@@ -75,7 +75,7 @@ query2 <- function(...) {
   }
 
   class_query(
-    input  = purrr::compact(rlang::enexprs(...)),
+    # input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::map(x$params, eval),
     groups = rlang::set_names(
       purrr::map(x$groups, eval),

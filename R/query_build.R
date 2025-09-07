@@ -1,6 +1,7 @@
 #' @autoglobal
 #' @noRd
 no_match_response <- function(obj) {
+  cli_no_match(obj)
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
@@ -15,6 +16,7 @@ no_match_response <- function(obj) {
 #' @autoglobal
 #' @noRd
 year_only_response <- function(p, obj) {
+  cli_yr_only(obj)
   class_response(
     alias  = meta(obj)$alias,
     title  = meta(obj)$title,
@@ -107,7 +109,6 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   p <- match_query(obj, qry)
 
   if (rlang::is_empty(p)) {
-    cli_no_match(obj)
     return(no_match_response(obj))
   }
 
@@ -132,7 +133,6 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   p <- match_query(obj, qry)
 
   if (rlang::is_empty(p)) {
-    cli_no_match(obj)
     return(no_match_response(obj))
   }
 
@@ -157,7 +157,6 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    cli_yr_only(obj)
     return(year_only_response(p, obj))
   }
 
@@ -194,7 +193,6 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    cli_yr_only(obj)
     return(year_only_response(p, obj))
   }
 
@@ -210,11 +208,16 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   res <- map_perform_parallel(url)
 
+  # TODO Remove this once print methods are created
   cli_sum_found(
     found_rows(res),
     total_rows(res),
-    purrr::map_int(found_rows(res), offset, limit = dims(obj)@limit)
-  )
+    purrr::map_int(
+      found_rows(res),
+      offset,
+      limit = dims(obj)@limit
+      )
+    )
 
   class_response(
     alias  = meta(obj)$alias,
