@@ -6,7 +6,7 @@ param_names <- function(x) {
 
 #' @autoglobal
 #' @noRd
-remove_year <- function(x) {
+not_year <- function(x) {
   params(x)[param_names(x) %!=% "year"]
 }
 
@@ -14,7 +14,7 @@ remove_year <- function(x) {
 #' @noRd
 match_query <- function(obj, qry) {
 
-  param   <- remove_year(qry)
+  param   <- not_year(qry)
   p_name  <- rlang::names2(param)
   field   <- keys(obj)
   clean   <- clean_names(field)
@@ -60,7 +60,7 @@ match_query2 <- function(obj, qry) {
   }
 
   qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
-  param <- remove_year(qry)
+  param <- not_year(qry)
 
   df <- purrr::imap(x$field, function(x, i) {
     cheapr::new_df(year = i, field = x)

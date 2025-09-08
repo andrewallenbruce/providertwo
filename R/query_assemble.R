@@ -79,7 +79,7 @@ S7::method(assemble, list(class_current, class_query)) <- function(obj, qry) {
   p <- match_query(obj, qry)
 
   if (rlang::is_empty(p)) {
-    return(no_match_response(obj))
+    return(obj@identifier)
   }
 
   append_url(obj@identifier) |>
@@ -91,7 +91,7 @@ S7::method(assemble, list(care_current, class_query)) <- function(obj, qry) {
   p <- match_query(obj, qry)
 
   if (rlang::is_empty(p)) {
-    return(no_match_response(obj))
+    return(obj@identifier)
   }
 
   append_url(obj@identifier, "stats") |>
@@ -103,7 +103,7 @@ S7::method(assemble, list(class_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    return(year_only_response(p, obj))
+    return(p$id)
   }
 
   qst <- purrr::map(p$field, function(x) {
@@ -123,7 +123,7 @@ S7::method(assemble, list(care_temporal, class_query)) <- function(obj, qry) {
   p <- match_query2(obj, qry)
 
   if (identical("year", param_names(qry))) {
-    return(year_only_response(p, obj))
+    return(p$id)
   }
 
   qst <- purrr::map(p$field, function(x) {
