@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9483 (2025-09-08)
+
+* query_standardize
+
+
 # providertwo 0.0.0.9482 (2025-09-07)
 
 * catalog fixes
