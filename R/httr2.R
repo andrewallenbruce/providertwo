@@ -1,3 +1,23 @@
+# x <- build(endpoint("dial_facility"), query(
+#   state = "GA",
+#   city = "Atlanta",
+#   provcity = "Atlanta",
+#   provider_name = starts_with("C"),
+#   provname = starts_with("C")))
+#
+# query_string_as_list(x@string, x@year)
+#' @autoglobal
+#' @noRd
+query_string_as_list <- function(url, n = NULL) {
+  stringi::stri_extract(
+    x@string,
+    regex = str_look(pattern = "[?]", look = "ahead"),
+    opts_regex = stringi::stri_opts_regex(case_insensitive = TRUE)
+  ) |>
+    stringi::stri_split(fixed = "&") |>
+    rlang::set_names(n)
+}
+
 #' @autoglobal
 #' @noRd
 parse_string <- function(resp, query = NULL) {

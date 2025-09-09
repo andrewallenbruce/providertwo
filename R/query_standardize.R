@@ -119,7 +119,7 @@ S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry)
     purrr::list_rbind() |>
     collapse::mtt(clean = clean_names(field)) |>
     collapse::sbt(clean %in_% rlang::names2(param)) |>
-    collapse::mtt(qdx = qdx[clean])
+    collapse::mtt(qdx = unname(qdx[clean]))
 
   x <- list(
     idx   = x$idx,
@@ -128,15 +128,19 @@ S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry)
     field = df
   )
 
-  x$field$qdx <- unname(x$field$qdx)
+  yq <- collapse::funique(x$field$year)
 
-  fd <- purrr::map(
-    collapse::funique(x$field$year), function(yr) {
+  fd <- purrr::map(yq, function(yr) {
       rlang::set_names(
-        qry@params[x$field[x$field$year == yr, ]$qdx],
-        x$field[x$field$year == yr, ]$field)
+        qry@params[
+          x$field[
+            x$field$year == yr, ]$qdx
+          ],
+        x$field[
+          x$field$year == yr, ]$field
+        )
     }) |>
-    rlang::set_names(collapse::funique(x$field$year))
+    rlang::set_names(yq)
 
   cheapr::list_modify(x, list(field = fd))
 
