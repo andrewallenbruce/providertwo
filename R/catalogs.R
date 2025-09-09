@@ -64,7 +64,9 @@ clog_care <- function(x) {
     collapse::roworder(title, -year) |>
     fastplyr::as_tbl()
 
-  distro <- cheapr::sset(distro, cheapr::row_na_counts(distro) < 3L)
+  distro <- cheapr::sset(
+    distro, cheapr::which_(
+      cheapr::row_na_counts(distro) < 3L))
 
   base <- collapse::get_elem(x, "care") |>
     collapse::mtt(
@@ -77,17 +79,19 @@ clog_care <- function(x) {
     description = clean_title(description),
     dictionary  = describedBy,
     site        = landingPage,
-    .keep       = c("identifier", "references")
-  ) |>
-    join_on_title(
-      collapse::sbt(distro, format %==% "latest", c("title", "download", "resources"))
-      ) |>
+    .keep       = c("identifier", "references")) |>
+    join_on_title(collapse::sbt(
+      distro,
+      format %==% "latest",
+      c("title", "download", "resources"))) |>
     collapse::roworder(title) |>
     collapse::colorder(title, description)
 
   distro <- collapse::sbt(distro, format %!=% "latest", -format) |>
     collapse::roworder(title, -year) |>
-    fnest(by = "title") |>
+    collapse::gby(title, return.groups = FALSE) |>
+    collapse::mtt(download_only = all(is.na(identifier))) |>
+    fnest(by = c("title", "download_only")) |>
     join_on_title(
       collapse::slt(
         base,
@@ -101,9 +105,15 @@ clog_care <- function(x) {
         "references"
       )
     )) |>
-    collapse::colorder(endpoints, pos = "end")
+    collapse::colorder(endpoints, pos = "end") |>
+    collapse::rsplit(~ download_only, use.names = FALSE) |>
+    rlang::set_names(c("tmp", "dwn"))
 
-  list(current = base, temporal = distro)
+  list(
+    current = base,
+    temporal = distro$tmp,
+    download_only = distro$dwn
+    )
 }
 
 #' @autoglobal

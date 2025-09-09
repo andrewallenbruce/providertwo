@@ -10,7 +10,7 @@
 #' @noRd
 query_string_as_list <- function(url, n = NULL) {
   stringi::stri_extract(
-    x@string,
+    url,
     regex = str_look(pattern = "[?]", look = "ahead"),
     opts_regex = stringi::stri_opts_regex(case_insensitive = TRUE)
   ) |>
