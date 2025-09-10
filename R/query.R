@@ -75,7 +75,6 @@ query2 <- function(...) {
   }
 
   class_query(
-    # input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::map(x$params, eval),
     groups = rlang::set_names(
       purrr::map(x$groups, eval),
@@ -87,3 +86,51 @@ query2 <- function(...) {
 # Submitting too many params at once can cause API errors
 # TODO Consider the case sensitivity of each endpoint's fields' values
 # Some are all uppercase and won't match anything but uppercase values
+
+#' @rdname query
+#' @examples
+#' query3(
+#'   state = any_of("CA", "GA", "NY"),
+#'   state_owner = c("GA", "MD"),
+#'   or("state", "state_owner"))
+#'
+#' try(query3(
+#'   first_name  = starts_with("And"),
+#'   ccn         = "01256",
+#'   and("ccn", "npii")))
+#' @autoglobal
+#' @export
+query3 <- function(...) {
+
+  x <- rlang::enexprs(...)
+
+  x <- list(
+    j = purrr::keep(x, \(x) is_junc(x)),
+    m = purrr::keep(x, \(x) is_mod(x)),
+    p = purrr::keep(x, \(x) !is_junc(x) & !is_mod(x))
+  )
+
+  g <- rlang::set_names(
+    purrr::map(x$j, eval),
+    paste0("g", seq_along(x$j)))
+
+  x <- rlang::list2(
+    !!!x$m,
+    !!!purrr::map(
+      x$p, \(x)
+      str2lang(paste0("equal(", deparse1(x), ")"))
+    )
+  ) |>
+    purrr::map(eval)
+
+  g_m  <- purrr::map(g, \(x) S7::prop(x, "members"))
+  i    <- rlang::names2(x) %iin% unlist(g_m, use.names = FALSE)
+  x[i] <- purrr::map2(x[i], rlang::names2(g), \(x, g) set_props(x, member_of = g))
+
+  if (!all(collapse::funique(unlist(g_m, use.names = FALSE)) %in_% rlang::names2(x))) {
+    cli::cli_abort(c("x" = "All {.field group} members must be {.field query} field names"),
+                   call = caller_env())
+  }
+
+  class_query(params = x, groups = g)
+}

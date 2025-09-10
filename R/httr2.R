@@ -53,11 +53,11 @@ map_perform_parallel <- function(x, query = NULL) {
 api_limit <- function(api, call = rlang::caller_env()) {
   switch(
     api,
-    caid   = 8000L,
-    care   = 5000L,
-    prov   = 1500L,
-    hgov   = 500L,
-    open   = 500L,
+    caid = 8000L,
+    care = 5000L,
+    prov = 1500L,
+    hgov = 500L,
+    open = 500L,
     cli::cli_abort(c("x" = "API {.val {api}} not recognized."), call = call)
   )
 }

@@ -137,7 +137,7 @@ S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry)
             x$field$year == yr, ]$qdx
           ],
         x$field[
-          x$field$year == yr, ]$field
+          x$field$year == yr,   ]$field
         )
     }) |>
     rlang::set_names(yq)
