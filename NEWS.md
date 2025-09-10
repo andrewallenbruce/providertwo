@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9487 (2025-09-10)
+
+* match_dict2
+
+
 # providertwo 0.0.0.9486 (2025-09-09)
 
 * query3
