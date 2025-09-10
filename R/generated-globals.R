@@ -9,9 +9,13 @@ utils::globalVariables(c(
   "accrualPeriodicity",
   # <npi_nppes>
   "address_purpose",
+  # <dict_field>
+  # <match_dict2>
+  "alias",
   # <quality_metrics>
   "category",
   # <match_query2>
+  # <match_dict2>
   "clean",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -43,7 +47,9 @@ utils::globalVariables(c(
   # <clog_hgov>
   "ext",
   # <field_table>
+  # <dict_field>
   # <match_query2>
+  # <match_dict2>
   "field",
   # <tidy_resources>
   "fileSize",
@@ -102,6 +108,8 @@ utils::globalVariables(c(
   "organization",
   # <clog_caid>
   "periodicity",
+  # <dict_field>
+  "point",
   # <quality_eligibility>
   "prog_year",
   # <clog_care>
@@ -131,11 +139,16 @@ utils::globalVariables(c(
   # <down_caid>
   # <select_alias>
   "title",
+  # <dict_field>
+  # <match_dict2>
+  "type",
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
+  # <dict_field>
   # <tidy_resources>
+  # <match_dict2>
   "year",
   NULL
 ))

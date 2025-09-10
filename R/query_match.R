@@ -89,3 +89,79 @@ match_query2 <- function(obj, qry) {
 
   cheapr::list_modify(x, list(field = fd))
 }
+
+#' @autoglobal
+#' @noRd
+match_dict <- function(obj, qry) {
+
+  param   <- not_year(qry)
+  p_name  <- rlang::names2(param)
+  field   <- keys(obj)
+  clean   <- clean_names(field)
+
+  # the$dict |>
+  #   collapse::sbt(alias %==% obj@metadata$alias) |>
+  #   _$data |>
+  #   yank() |>
+  #   collapse::sbt(type %iin% p_name)
+
+  alias_match <- yank(
+    the$dict$data[
+      the$dict$alias %==% obj@metadata$alias
+      ])$type
+
+  idx_param <- p_name %iin% alias_match
+
+  names(param[idx_param]) <- p_name[idx_param]
+
+  param
+}
+
+#' @autoglobal
+#' @noRd
+match_dict2 <- function(obj, qry) {
+
+  x <- select_years(obj, qry)
+
+  if (identical("year", param_names(qry))) {
+    return(x)
+  }
+
+  qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
+  param <- not_year(qry)
+
+  the$dict |>
+    collapse::sbt(alias %==% obj@metadata$alias) |>
+    _$data |>
+    yank() |>
+    collapse::sbt(year %iin% x$year) |>
+    collapse::sbt(type %iin% names(param))
+
+
+  df <- purrr::imap(x$field, function(x, i) {
+    cheapr::new_df(year = i, field = x)
+  }) |>
+    purrr::list_rbind() |>
+    collapse::mtt(clean = clean_names(field)) |>
+    collapse::sbt(clean %in_% rlang::names2(param)) |>
+    collapse::mtt(qdx = qdx[clean])
+
+  x <- list(
+    idx   = x$idx,
+    year  = x$year,
+    id    = x$id,
+    field = df
+  )
+
+  x$field$qdx <- unname(x$field$qdx)
+
+  fd <- purrr::map(
+    collapse::funique(x$field$year), function(yr) {
+      rlang::set_names(
+        qry@params[x$field[x$field$year == yr, ]$qdx],
+        x$field[x$field$year == yr, ]$field)
+    }) |>
+    rlang::set_names(collapse::funique(x$field$year))
+
+  cheapr::list_modify(x, list(field = fd))
+}

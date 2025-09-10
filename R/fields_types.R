@@ -35,12 +35,17 @@ fields_exact <- list(
     "ORGANIZATION NAME",
     "ORGANIZATION NAME - OWNER",
     "Organization Name",
-    "provider_name",
     "recipient_name",
-    "PRVDR_NAME",
     "Prscrbr_Last_Org_Name",
     "Rfrg_Prvdr_Last_Name_Org"
   ),
+  provider_name = c(
+    "provider_name",
+    "Provider_Name",
+    "Provider Name",
+    "provname",
+    "PRVDR_NAME"
+    ),
   suffix = c("suff"),
   facility = c(
     "FAC_NAME",
@@ -117,6 +122,7 @@ fields_exact <- list(
     "ccn",
     "CCN",
     "Provider CCN",
+    "provfs",
     "cms_certification_number_ccn",
     "CAH OR HOSPITAL CCN",
     "HHA-based Hospice Provider CCN"
@@ -149,10 +155,11 @@ fields_exact <- list(
     "City Name",
     "city_name",
     "practicecity",
-    "Geographic Location City Name"
+    "Geographic Location City Name",
+    "provcity",
+    "PRVDR_CITY"
   ),
   city_own = c("CITY - OWNER"),
-  city_org = c("PRVDR_CITY"),
   city_refer = c("Rfrg_Prvdr_City"),
   city_render = c("Rndrng_Prvdr_City"),
   city_supply = c("Suplr_Prvdr_City"),

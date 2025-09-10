@@ -79,62 +79,20 @@ field_table <- function() {
       field %in_% fields_exact$multi_npi ~ "multi_npi",
       field %in_% fields_exact$drg ~ "drg",
       field %in_% fields_exact$drg_desc ~ "drg_desc",
+      field %in_% fields_exact$ccn ~ "ccn",
+      field %in_% fields_exact$ccn_alt ~ "ccn_alt",
+      field %in_% fields_exact$ccn_buy ~ "ccn_buyer",
+      field %in_% fields_exact$ccn_sell ~ "ccn_seller",
+      field %in_% fields_exact$ccn_render ~ "ccn_render",
+      field %in_% fields_exact$year ~ "year",
+      field %in_% fields_exact$years ~ "years",
+      field %in_% fields_exact$city ~ "city",
+      field %in_% fields_exact$city_own ~ "city_own",
+      field %in_% fields_exact$city_refer ~ "city_refer",
+      field %in_% fields_exact$city_render ~ "city_render",
+      field %in_% fields_exact$city_supply ~ "city_supply",
+      field %in_% fields_exact$city_scribe ~ "city_scribe",
 
-      field %in_% c(
-        "PRVDR_NUM",
-        "alternate_ccn",
-        "Alternate_CCNs",
-        "ccn",
-        "CCN",
-        "Provider CCN",
-        "cms_certification_number_ccn",
-        "CAH OR HOSPITAL CCN",
-        "HHA-based Hospice Provider CCN"
-      ) ~ "ccn",
-      field %in_% c("CCN - BUYER") ~ "ccn_buyer",
-      field %in_% c("CCN - SELLER") ~ "ccn_seller",
-      field %in_% c("Rndrng_Prvdr_CCN") ~ "ccn_render",
-      field %in_% c(
-        "alternate_ccn",
-        "Alternate_CCNs"
-        ) ~ "ccn_alt",
-
-      field %in_% c(
-        "year",
-        "Year",
-        "YEAR",
-        "perf_year",
-        "Performance_Year",
-        "PERF_YEAR",
-        "fiscal_year",
-        "payment_year",
-        "Calendar Year"
-      ) ~ "year",
-      field %in_% c(
-        "years",
-        "Years",
-        "YEARS",
-        "years in medicare"
-        ) ~ "years",
-      field %in_% c(
-        "city",
-        "City",
-        "CITY",
-        "citytown",
-        "CITY_NAME",
-        "City_Name",
-        "City Name",
-        "city_name",
-        "practicecity",
-        "Geographic Location City Name",
-        "PRVDR_CITY"
-      ) ~ "city",
-      field %in_% c("CITY - OWNER") ~ "city_owner",
-      field %in_% c("PRVDR_CITY") ~ "city_org",
-      field %in_% c("Rfrg_Prvdr_City") ~ "city_refer",
-      field %in_% c("Rndrng_Prvdr_City") ~ "city_render",
-      field %in_% c("Suplr_Prvdr_City") ~ "city_supply",
-      field %in_% c("Prscrbr_City") ~ "city_prx",
       field %in_% c(
         "county",
         "County",
@@ -197,26 +155,9 @@ field_table <- function() {
         "Rfrg_Prvdr_St2"
         ) ~ "address_2",
 
-      field %in_% c(
-        "ENROLLMENT STATE",
-        "INCORPORATION STATE",
-        "Prscrbr_State_Abrvtn",
-        "Rfrg_Prvdr_State_Abrvtn",
-        "State Code",
-        "STATE_CD",
-        "STATE - OWNER",
-        "STATE_RGN_CD",
-        "STATE",
-        "state",
-        "State",
-        "state_name",
-        "state_or_nation",
-        "practicestate",
-        "practice state or us territory"
-      ) ~ "state",
-
-      field %in_% c("Group State Code") ~ "state_org",
-      field %in_% c("Individual State Code", "Enrollment State Code") ~ "state_ind",
+      field %in_% fields_exact$state ~ "state",
+      field %in_% fields_exact$state_ind ~ "state_ind",
+      field %in_% fields_exact$state_org ~ "state_org",
 
       field %in_% c("WorkDate") ~ "work_date",
       field %in_% c(
@@ -299,4 +240,18 @@ field_table <- function() {
     ) |>
       rm_nonascii()
   )
+}
+
+#' @autoglobal
+#' @noRd
+dict_field <- function() {
+  field_table() |>
+  collapse::slt(point, alias, year, field, type) |>
+    collapse::sbt(!is.na(type) & !is.na(alias)) |>
+    collapse::rsplit( ~ point, keep.by = FALSE) |>
+    purrr::map(function(x)
+      rm_all_na(x) |>
+        fastplyr::f_nest_by(.by = "alias") |>
+          fastplyr::f_ungroup()) |>
+    purrr::list_rbind()
 }

@@ -11,3 +11,4 @@ the <- NULL
 
 the      <- new.env(parent = emptyenv())
 the$clog <- catalogs()
+the$dict <- dict_field()

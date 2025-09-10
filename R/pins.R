@@ -1,3 +1,7 @@
+#' @autoglobal
+#' @noRd
+qs_url <- function(url) qs::qread_url(url)
+
 #' Mount [pins][pins::pins-package] board
 #' @param source `<chr>` `"local"` or `"remote"`
 #' @returns `<pins_board_folder>` or `<pins_board_url>`
