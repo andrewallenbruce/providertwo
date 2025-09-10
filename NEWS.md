@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9486 (2025-09-09)
+
+* query3
+
+
 # providertwo 0.0.0.9485 (2025-09-09)
 
 * identify download-only endpoints
