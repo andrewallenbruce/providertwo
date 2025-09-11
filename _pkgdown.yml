@@ -7,7 +7,7 @@ template:
   bslib:
     base_font: {google: "Inter"}
     heading_font: {google: "Recursive"}
-    code_font: {google: "Fira Code"}
+    code_font: {google: "IBM Plex Mono"}
 
 navbar:
   structure:

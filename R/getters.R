@@ -68,13 +68,3 @@ params <- S7::new_generic("params", "obj", function(obj) {
 S7::method(params, class_query) <- function(obj) {
   S7::prop(obj, "params")
 }
-
-#' @autoglobal
-#' @noRd
-input <- S7::new_generic("input", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(input, class_query) <- function(obj) {
-  S7::prop(obj, "input")
-}

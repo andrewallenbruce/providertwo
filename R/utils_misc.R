@@ -33,6 +33,12 @@ names_map <- function(x, f, ..., .nm = x) {
 
 #' @autoglobal
 #' @noRd
+map_eval <- function(x, ...) {
+  purrr::map(.x = x, .f = eval, ...)
+}
+
+#' @autoglobal
+#' @noRd
 fibble <- function(...) {
   fastplyr::new_tbl(...)
 }

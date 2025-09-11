@@ -31,7 +31,6 @@ NULL
 #' @export
 query <- function(...) {
   class_query(
-    # input  = purrr::compact(rlang::enexprs(...)),
     params = purrr::compact(
       rlang::dots_list(
         ...,
@@ -87,6 +86,12 @@ query2 <- function(...) {
 # TODO Consider the case sensitivity of each endpoint's fields' values
 # Some are all uppercase and won't match anything but uppercase values
 
+#' @autoglobal
+#' @noRd
+as_equal <- function(x) {
+  purrr::map(x, function(i) str2lang(paste0("equal(", deparse1(i), ")")))
+}
+
 #' @rdname query
 #' @examples
 #' query3(
@@ -110,22 +115,15 @@ query3 <- function(...) {
     p = purrr::keep(x, \(x) !is_junc(x) & !is_mod(x))
   )
 
-  g <- rlang::set_names(
-    purrr::map(x$j, eval),
-    paste0("g", seq_along(x$j)))
+  g <- map_eval(x$j) |> rlang::set_names(paste0("g", seq_along(x$j)))
+  x <- rlang::list2(!!!x$m, !!!as_equal(x$p)) |> map_eval()
 
-  x <- rlang::list2(
-    !!!x$m,
-    !!!purrr::map(
-      x$p, \(x)
-      str2lang(paste0("equal(", deparse1(x), ")"))
-    )
-  ) |>
-    purrr::map(eval)
+  g_m  <- purrr::map(g, function(x) S7::prop(x, "members"))
 
-  g_m  <- purrr::map(g, \(x) S7::prop(x, "members"))
   i    <- rlang::names2(x) %iin% unlist(g_m, use.names = FALSE)
-  x[i] <- purrr::map2(x[i], rlang::names2(g), \(x, g) set_props(x, member_of = g))
+
+  x[i] <- purrr::map2(x[i], rlang::names2(g), function(x, g)
+    S7::set_props(x, member_of = g))
 
   if (!all(collapse::funique(unlist(g_m, use.names = FALSE)) %in_% rlang::names2(x))) {
     cli::cli_abort(c("x" = "All {.field group} members must be {.field query} field names"),
