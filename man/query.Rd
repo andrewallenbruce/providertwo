@@ -2,13 +2,10 @@
 % Please edit documentation in R/query.R
 \name{query}
 \alias{query}
-\alias{query2}
 \alias{query3}
 \title{Create a Query Object}
 \usage{
 query(...)
-
-query2(...)
 
 query3(...)
 }
@@ -31,15 +28,6 @@ query(
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
-query2(
-  state = any_of("CA", "GA", "NY"),
-  state_owner = c("GA", "MD"),
-  or("state", "state_owner"))
-
-try(query2(
-  first_name  = starts_with("And"),
-  ccn         = "01256",
-  and("ccn", "npii")))
 query3(
   state = any_of("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),

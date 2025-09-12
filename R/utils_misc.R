@@ -108,16 +108,23 @@ yank <- function(x, ..., .def = NULL) {
 #' @autoglobal
 #' @noRd
 pdetect <- function(x, p, n = FALSE, ci = FALSE) {
-  stri_detect_regex(str     = x,
-                    pattern = p,
-                    negate  = n,
-                    case_insensitive = ci)
+  stringi::stri_detect_regex(
+    str     = x,
+    pattern = p,
+    negate  = n,
+    case_insensitive = ci
+  )
 }
 
 #' @autoglobal
 #' @noRd
 subset_detect <- function(i, j, p, n = FALSE, ci = FALSE) {
-  sbt(i, pdetect(x = i[[ensym(j)]], p = p, n = n, ci = ci))
+  collapse::sbt(i, pdetect(
+    x = i[[rlang::ensym(j)]],
+    p = p,
+    n = n,
+    ci = ci
+  ))
 }
 
 #' @autoglobal
@@ -129,7 +136,7 @@ ss_title <- function(x, re, n = FALSE) {
 #' @autoglobal
 #' @noRd
 extract_year <- function(x) {
-  as.integer(stri_extract_first_regex(x, "[12]{1}[0-9]{3}"))
+  as.integer(stringi::stri_extract_first_regex(x, "[12]{1}[0-9]{3}"))
 }
 
 #' @autoglobal
@@ -186,11 +193,7 @@ gremove <- function(str, pt, ...) {
 #' @autoglobal
 #' @noRd
 gextract <- function(x, pt, n = FALSE, ...) {
-  stri_extract_first_regex(
-    str = x,
-    pattern = pt,
-    ...
-  )
+  stringi::stri_extract_first_regex(str = x, pattern = pt, ...)
 }
 
 #' @autoglobal

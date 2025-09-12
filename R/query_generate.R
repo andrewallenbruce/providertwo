@@ -89,6 +89,8 @@ query_default <- function(args) {
 #' @noRd
 query_default2 <- function(args) {
 
+  # This renders arrays with [] for multiple values
+
   purrr::imap(args, function(x, N) {
 
     V <- if (is_modifier(x)) x@value else unlist(x, use.names = FALSE)
@@ -114,34 +116,66 @@ query_default2 <- function(args) {
 
 #' @autoglobal
 #' @noRd
-generate_query <- function(x = NULL, is_care = FALSE) {
-  if (rlang::is_null(x) || rlang::is_empty(x)) {
-    return(NULL)
-  }
+query_care_GRP <- function(args) {
 
-  rlang::set_names(
-    `if`(
-      is_care,
-      query_care(x),
-      query_default2(x)
-      ),
-    rlang::names2(x)
-    )
+  purrr::imap(args, function(x, N) {
+
+    V <- x@value
+    O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
+    N <- gsub(" ", "+", N, fixed = TRUE)
+    G <- if (rlang::is_empty(x@member_of)) NULL else x@member_of
+
+    c(
+      `if`(
+        is.null(G),
+        NULL,
+        paste0("filter[<<i>>][condition][memberOf]=", G)),
+      paste0("filter[<<i>>][condition][path]=", N),
+      paste0("filter[<<i>>][condition][operator]=", O),
+      `if`(
+        length(V) > 1L,
+        paste0("filter[<<i>>][condition][value][", seq_along(V), "]=", V),
+        paste0("filter[<<i>>][condition][value]=", V)))
+  }) |>
+    unname() |>
+    purrr::imap(function(x, idx)
+      gsub(x           = x,
+           pattern     = "<<i>>",
+           replacement = idx,
+           fixed       = TRUE)
+    ) |>
+    purrr::map(paste0, collapse = "&")
 }
 
 #' @autoglobal
 #' @noRd
-collapse_query <- function(url, params = NULL) {
-  if (rlang::is_null(params) || rlang::is_empty(params)) {
-    return(url)
-  }
+query_default_GRP <- function(args) {
 
-  paste0(
-    url,
-    "&",
-    paste0(
-      unlist(params, use.names = FALSE),
-      collapse = "&"
-      )
-    )
+  purrr::imap(args, function(x, N) {
+
+    V <- x@value
+    O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
+    N <- gsub(" ", "+", N, fixed = TRUE)
+    G <- if (rlang::is_empty(x@member_of)) NULL else x@member_of
+
+    c(
+      `if`(
+        is.null(G),
+        NULL,
+        paste0("conditions[<<i>>][memberOf]=", G)),
+        paste0("conditions[<<i>>][property]=", N),
+        paste0("conditions[<<i>>][operator]=", O),
+        `if`(
+          length(V) > 1L,
+          paste0("conditions[<<i>>][value][]=", V),
+          paste0("conditions[<<i>>][value]=", V)))
+      }) |>
+      unname() |>
+      purrr::imap(function(x, idx)
+        gsub(x           = x,
+             pattern     = "<<i>>",
+             replacement = idx - 1,
+             fixed       = TRUE)
+      ) |>
+      purrr::map(paste0, collapse = "&")
 }

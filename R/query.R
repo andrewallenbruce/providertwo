@@ -41,19 +41,8 @@ query <- function(...) {
   )
 }
 
-#' @rdname query
-#' @examples
-#' query2(
-#'   state = any_of("CA", "GA", "NY"),
-#'   state_owner = c("GA", "MD"),
-#'   or("state", "state_owner"))
-#'
-#' try(query2(
-#'   first_name  = starts_with("And"),
-#'   ccn         = "01256",
-#'   and("ccn", "npii")))
+#' @noRd
 #' @autoglobal
-#' @export
 query2 <- function(...) {
   x <- list(
     groups = purrr::keep(rlang::enexprs(...), \(x) is_junc(x)),
@@ -107,7 +96,13 @@ as_equal <- function(x) {
 #' @export
 query3 <- function(...) {
 
-  x <- rlang::enexprs(...)
+  x <- purrr::compact(rlang::enexprs(...))
+
+  if (anyDuplicated(rlang::names2(x[!rlang::names2(x) == ""]))) {
+    cli::cli_abort(
+      c("x" = "All {.field query} names must be unique"),
+      call = rlang::caller_env())
+  }
 
   x <- list(
     j = purrr::keep(x, \(x) is_junc(x)),
@@ -119,15 +114,19 @@ query3 <- function(...) {
   x <- rlang::list2(!!!x$m, !!!as_equal(x$p)) |> map_eval()
 
   g_m  <- purrr::map(g, function(x) S7::prop(x, "members"))
+  g_i <- purrr::map(g_m, \(y) rlang::names2(x) %iin% y)
 
-  i    <- rlang::names2(x) %iin% unlist(g_m, use.names = FALSE)
+  x[unlist(g_i, use.names = FALSE)] <- purrr::imap(g_i, function(g, i)
+    purrr::map2(x[g], i, function(x, i)
+      S7::set_props(x, member_of = i))) |>
+    purrr::list_flatten(name_spec = "{inner}")
 
-  x[i] <- purrr::map2(x[i], rlang::names2(g), function(x, g)
-    S7::set_props(x, member_of = g))
+  grps_valid <- all(collapse::funique(unlist(g_m, use.names = FALSE)) %in_% rlang::names2(x))
 
-  if (!all(collapse::funique(unlist(g_m, use.names = FALSE)) %in_% rlang::names2(x))) {
-    cli::cli_abort(c("x" = "All {.field group} members must be {.field query} field names"),
-                   call = caller_env())
+  if (!grps_valid) {
+    cli::cli_abort(
+      c("x" = "All {.field group} members must be {.field query} field names"),
+      call = rlang::caller_env())
   }
 
   class_query(params = x, groups = g)
