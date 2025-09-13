@@ -81,6 +81,82 @@ as_equal <- function(x) {
   purrr::map(x, function(i) str2lang(paste0("equal(", deparse1(i), ")")))
 }
 
+#' @autoglobal
+#' @noRd
+check_names_unique <- function(x, call = rlang::caller_env()) {
+
+  idx <- rlang::names2(x) %!=% ""
+  prn <- rlang::names2(x[idx])
+
+  if (collapse::any_duplicated(prn)) {
+
+    dupe <- prn[cheapr::which_(collapse::fduplicated(prn))]
+
+    cli::cli_abort(
+      c("x" = "{.field Query} names must be unique",
+        "!" = "Field{?s} {.field {dupe}} appea{?rs/rs/r} multiple times."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_bare_unnamed <- function(x, call = rlang::caller_env()) {
+
+  idx <- rlang::names2(x) %==% ""
+
+  if (any(idx)) {
+
+    cli::cli_abort(
+      c("x" = "{.field Query} values must be named",
+        "!" = "Unnamed value{?s}: {.field {x[idx]}}."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_group_members <- function(x, call = rlang::caller_env()) {
+  # TODO
+  # check no duplicate groups
+  # check no nested groups
+
+  grps <- purrr::map(x$grps, as.character) |>
+    purrr::map(\(x) x[-1])
+
+  # check no empty/single-member groups
+  if (any(cheapr::list_lengths(grps) < 2L)) {
+
+    cli::cli_abort(
+      c("x" = "{.field Query} groups must have 2 or more members"),
+      call  = call)
+  }
+
+  mems <- purrr::list_c(grps)
+
+  # check no duplicate group members
+  if (collapse::any_duplicated(mems)) {
+
+    dupe <- mems[cheapr::which_(collapse::fduplicated(mems))]
+
+    cli::cli_abort(
+      c("x" = "{.field Query} group members must be unique",
+        "!" = "Member{?s} {.field {dupe}} appear{?s/rs/r} in multiple groups."),
+      call  = call)
+  }
+
+  # check group members are param names
+  if (!any(mems %in% names(c(x$bare, x$mods)))) {
+
+    bad <- mems[!mems %in% names(c(x$bare, x$mods))]
+
+    cli::cli_abort(
+      c("x" = "{.field Query} group members must be {.field query} field names",
+        "!" = "Member{?s} {.field {bad}} do{?es/s} not match any {.field query} field names."),
+      call  = call)
+  }
+}
+
 #' @rdname query
 #' @examples
 #' query3(
@@ -98,17 +174,16 @@ query3 <- function(...) {
 
   x <- purrr::compact(rlang::enexprs(...))
 
-  if (anyDuplicated(rlang::names2(x[!rlang::names2(x) == ""]))) {
-    cli::cli_abort(
-      c("x" = "All {.field query} names must be unique"),
-      call = rlang::caller_env())
-  }
+  check_names_unique(x)
 
   x <- list(
-    j = purrr::keep(x, \(x) is_junc(x)),
-    m = purrr::keep(x, \(x) is_mod(x)),
-    p = purrr::keep(x, \(x) !is_junc(x) & !is_mod(x))
+    grps = purrr::keep(x, \(x) is_junc(x)),
+    mods = purrr::keep(x, \(x) is_mod(x)),
+    bare = purrr::keep(x, \(x) !is_junc(x) & !is_mod(x))
   )
+
+  check_bare_unnamed(x$bare)
+  check_group_members(x)
 
   g <- map_eval(x$j) |> rlang::set_names(paste0("g", seq_along(x$j)))
   x <- rlang::list2(!!!x$m, !!!as_equal(x$p)) |> map_eval()
