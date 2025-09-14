@@ -4,7 +4,6 @@ class_query <- S7::new_class(
   name       = "class_query",
   package    = NULL,
   properties = list(
-    # input    = S7::class_list,
     params   = S7::class_list,
     groups   = S7::class_list
   )
@@ -83,18 +82,27 @@ as_equal <- function(x) {
 
 #' @autoglobal
 #' @noRd
+eval_groups <- function(x) {
+  rlang::set_names(
+    map_eval(x),
+    paste0(
+      "g", seq_along(x)
+      )
+    )
+}
+
+#' @autoglobal
+#' @noRd
 check_names_unique <- function(x, call = rlang::caller_env()) {
 
-  idx <- rlang::names2(x) %!=% ""
-  prn <- rlang::names2(x[idx])
+  if (collapse::any_duplicated(rlang::names2(x[rlang::have_name(x)]))) {
 
-  if (collapse::any_duplicated(prn)) {
-
-    dupe <- prn[cheapr::which_(collapse::fduplicated(prn))]
+    n <- rlang::names2(x[rlang::have_name(x)])
+    n <- n[collapse::fduplicated(n)]
 
     cli::cli_abort(
       c("x" = "{.field Query} names must be unique",
-        "!" = "Field{?s} {.field {dupe}} appea{?rs/rs/r} multiple times."),
+        "!" = "Field{?s} {.field {n}} appea{?rs/rs/r} multiple times."),
       call  = call)
   }
 }
@@ -103,13 +111,59 @@ check_names_unique <- function(x, call = rlang::caller_env()) {
 #' @noRd
 check_bare_unnamed <- function(x, call = rlang::caller_env()) {
 
-  idx <- rlang::names2(x) %==% ""
+  if (!any(rlang::have_name(x))) {
 
-  if (any(idx)) {
+    idx <- !rlang::have_name(x)
 
     cli::cli_abort(
-      c("x" = "{.field Query} values must be named",
+      c("x" = "{.field Query} values must be named with a {.field field}.",
         "!" = "Unnamed value{?s}: {.field {x[idx]}}."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_group_length <- function(x, g, call = rlang::caller_env()) {
+
+  # check no empty/single-member groups
+  if (any(cheapr::list_lengths(g) < 2L)) {
+
+    bad <- x[cheapr::list_lengths(g) == 2L] |>
+      purrr::map(\(x) glue::as_glue(deparse1(x))) |>
+      purrr::list_c()
+
+    cli::cli_abort(
+      c("x" = "{.field Query} groups must have 2 or more {.field members}.",
+        "!" = "Group{?s} {.field {bad}} ha{?s/ve/s} less than 2 members."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_memb_dupes <- function(x, call = rlang::caller_env()) {
+  # check no duplicate group members
+  if (collapse::any_duplicated(x)) {
+
+    cli::cli_abort(
+      c("x" = "{.field Query} group members must be unique",
+        "!" = "Member{?s} {.field {x[collapse::fduplicated(x)]}} appea{?rs/r} in multiple groups."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+check_membs_are_params <- function(x, p, call = rlang::caller_env()) {
+  # check group members are param names
+  if (!any(x %in% rlang::names2(p))) {
+
+    bad <- x[!x %in% rlang::names2(p)]
+
+    cli::cli_abort(
+      c("x" = "{.field Query} group members must be {.field query} field names",
+        "!" = "Member{?s} {.field {bad}} d{?oes/o} not match any {.field query} field names."),
       call  = call)
   }
 }
@@ -121,40 +175,15 @@ check_group_members <- function(x, call = rlang::caller_env()) {
   # check no duplicate groups
   # check no nested groups
 
-  grps <- purrr::map(x$grps, as.character) |>
-    purrr::map(\(x) x[-1])
+  g <- purrr::map(x$grps, \(x) as.character(x)[-1])
 
-  # check no empty/single-member groups
-  if (any(cheapr::list_lengths(grps) < 2L)) {
+  check_group_length(x, g, call = call)
 
-    cli::cli_abort(
-      c("x" = "{.field Query} groups must have 2 or more members"),
-      call  = call)
-  }
+  m <- purrr::list_c(g)
 
-  mems <- purrr::list_c(grps)
+  check_memb_dupes(m, call = call)
 
-  # check no duplicate group members
-  if (collapse::any_duplicated(mems)) {
-
-    dupe <- mems[cheapr::which_(collapse::fduplicated(mems))]
-
-    cli::cli_abort(
-      c("x" = "{.field Query} group members must be unique",
-        "!" = "Member{?s} {.field {dupe}} appear{?s/rs/r} in multiple groups."),
-      call  = call)
-  }
-
-  # check group members are param names
-  if (!any(mems %in% names(c(x$bare, x$mods)))) {
-
-    bad <- mems[!mems %in% names(c(x$bare, x$mods))]
-
-    cli::cli_abort(
-      c("x" = "{.field Query} group members must be {.field query} field names",
-        "!" = "Member{?s} {.field {bad}} do{?es/s} not match any {.field query} field names."),
-      call  = call)
-  }
+  check_membs_are_params(m, c(x$bare, x$mods), call = call)
 }
 
 #' @rdname query
@@ -173,36 +202,41 @@ check_group_members <- function(x, call = rlang::caller_env()) {
 query3 <- function(...) {
 
   x <- purrr::compact(rlang::enexprs(...))
-
-  check_names_unique(x)
-
   x <- list(
-    grps = purrr::keep(x, \(x) is_junc(x)),
-    mods = purrr::keep(x, \(x) is_mod(x)),
-    bare = purrr::keep(x, \(x) !is_junc(x) & !is_mod(x))
-  )
+    grps = purrr::keep(x, is_junc),
+    mods = purrr::keep(x, is_mod),
+    bare = purrr::keep(x, is_bare))
 
+  check_names_unique(c(x$mods, x$bare))
   check_bare_unnamed(x$bare)
   check_group_members(x)
 
-  g <- map_eval(x$j) |> rlang::set_names(paste0("g", seq_along(x$j)))
-  x <- rlang::list2(!!!x$m, !!!as_equal(x$p)) |> map_eval()
+  groups <- eval_groups(x$grps)
+  params <- rlang::list2(!!!x$mods, !!!as_equal(x$bare)) |> map_eval()
 
-  g_m  <- purrr::map(g, function(x) S7::prop(x, "members"))
-  g_i <- purrr::map(g_m, \(y) rlang::names2(x) %iin% y)
+  members <- purrr::map(groups, function(x) S7::prop(x, "members"))
+  idx     <- purrr::map(members, \(y) rlang::names2(params) %iin% y)
 
-  x[unlist(g_i, use.names = FALSE)] <- purrr::imap(g_i, function(g, i)
-    purrr::map2(x[g], i, function(x, i)
-      S7::set_props(x, member_of = i))) |>
+  params[unlist(idx, use.names = FALSE)] <- purrr::imap(
+    idx,
+    function(g, i) {
+      purrr::map2(params[g], i, function(x, i) {
+      S7::set_props(x, member_of = i)
+        })
+      }) |>
     purrr::list_flatten(name_spec = "{inner}")
 
-  grps_valid <- all(collapse::funique(unlist(g_m, use.names = FALSE)) %in_% rlang::names2(x))
-
-  if (!grps_valid) {
-    cli::cli_abort(
-      c("x" = "All {.field group} members must be {.field query} field names"),
-      call = rlang::caller_env())
-  }
-
-  class_query(params = x, groups = g)
+  class_query(params = params, groups = groups)
 }
+
+# grps_valid <- all(
+#   collapse::funique(
+#     unlist(members, use.names = FALSE)
+#   ) %in_% rlang::names2(params)
+# )
+#
+# if (!grps_valid) {
+#   cli::cli_abort(
+#     c("x" = "All {.field group} members must be {.field query} field names"),
+#     call = rlang::caller_env())
+# }

@@ -80,6 +80,18 @@ is_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
+is_junc <- function(x) {
+  rlang::is_call(x, name = c("and", "or"))
+}
+
+#' @autoglobal
+#' @noRd
+is_bare <- function(x) {
+  !is_junc(x) & !is_mod(x)
+}
+
+#' @autoglobal
+#' @noRd
 is_junction <- function(x) {
   S7::S7_inherits(x, class_junction)
 }
@@ -94,12 +106,6 @@ is_modifier <- function(x) {
 #' @noRd
 any_modifiers <- function(x) {
   any(purrr::map_lgl(x, is_modifier), na.rm = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-is_junc <- function(x) {
-  rlang::is_call(x, name = c("and", "or"))
 }
 
 #' @autoglobal
