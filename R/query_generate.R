@@ -30,7 +30,13 @@
 # Add memberOf to params in group
 #
 # "filter[1][condition][memberOf]=g2"
-#
+
+#' @autoglobal
+#' @noRd
+is_modifier <- function(x) {
+  S7::S7_inherits(x, class_modifier)
+}
+
 #' @autoglobal
 #' @noRd
 query_care <- function(args) {

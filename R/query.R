@@ -40,57 +40,6 @@ query <- function(...) {
   )
 }
 
-#' @noRd
-#' @autoglobal
-query2 <- function(...) {
-  x <- list(
-    groups = purrr::keep(rlang::enexprs(...), \(x) is_junc(x)),
-    params = purrr::discard(rlang::enexprs(...), \(x) is_junc(x))
-  )
-
-  g_names <- purrr::map(x$groups, function(x)
-    S7::prop(eval(x), "members")) |>
-    unlist(use.names = FALSE) |>
-    collapse::funique()
-
-  ok <- all(g_names %in_% rlang::names2(x$params))
-
-  if (!ok) {
-    cli::cli_abort(
-      c("x" = "All {.field group} members must be {.field query} field names"),
-      call = caller_env())
-  }
-
-  class_query(
-    params = purrr::map(x$params, eval),
-    groups = rlang::set_names(
-      purrr::map(x$groups, eval),
-      paste0("g", seq_along(x$groups)))
-  )
-}
-
-# TODO Explore chunking params with 10+ elements
-# Submitting too many params at once can cause API errors
-# TODO Consider the case sensitivity of each endpoint's fields' values
-# Some are all uppercase and won't match anything but uppercase values
-
-#' @autoglobal
-#' @noRd
-as_equal <- function(x) {
-  purrr::map(x, function(i) str2lang(paste0("equal(", deparse1(i), ")")))
-}
-
-#' @autoglobal
-#' @noRd
-eval_groups <- function(x) {
-  rlang::set_names(
-    map_eval(x),
-    paste0(
-      "g", seq_along(x)
-      )
-    )
-}
-
 #' @autoglobal
 #' @noRd
 check_names_unique <- function(x, call = rlang::caller_env()) {
@@ -111,7 +60,7 @@ check_names_unique <- function(x, call = rlang::caller_env()) {
 #' @noRd
 check_bare_unnamed <- function(x, call = rlang::caller_env()) {
 
-  if (!any(rlang::have_name(x))) {
+  if (!all(rlang::have_name(x))) {
 
     idx <- !rlang::have_name(x)
 
@@ -125,12 +74,11 @@ check_bare_unnamed <- function(x, call = rlang::caller_env()) {
 #' @autoglobal
 #' @noRd
 check_group_length <- function(x, g, call = rlang::caller_env()) {
-
   # check no empty/single-member groups
   if (any(cheapr::list_lengths(g) < 2L)) {
 
-    bad <- x[cheapr::list_lengths(g) == 2L] |>
-      purrr::map(\(x) glue::as_glue(deparse1(x))) |>
+    bad <- x[cheapr::list_lengths(g) < 2L] |>
+      purrr::map(deparse1) |>
       purrr::list_c()
 
     cli::cli_abort(
@@ -157,7 +105,7 @@ check_memb_dupes <- function(x, call = rlang::caller_env()) {
 #' @noRd
 check_membs_are_params <- function(x, p, call = rlang::caller_env()) {
   # check group members are param names
-  if (!any(x %in% rlang::names2(p))) {
+  if (!all(x %in% rlang::names2(p))) {
 
     bad <- x[!x %in% rlang::names2(p)]
 
@@ -202,6 +150,9 @@ check_group_members <- function(x, call = rlang::caller_env()) {
 query3 <- function(...) {
 
   x <- purrr::compact(rlang::enexprs(...))
+
+  # TODO Handle no groups
+
   x <- list(
     grps = purrr::keep(x, is_junc),
     mods = purrr::keep(x, is_mod),
@@ -211,32 +162,15 @@ query3 <- function(...) {
   check_bare_unnamed(x$bare)
   check_group_members(x)
 
-  groups <- eval_groups(x$grps)
-  params <- rlang::list2(!!!x$mods, !!!as_equal(x$bare)) |> map_eval()
+  groups  <- eval_groups(x$grps)
+  params  <- eval_params(x$mods, x$bare)
+  members <- get_members(groups)
 
-  members <- purrr::map(groups, function(x) S7::prop(x, "members"))
-  idx     <- purrr::map(members, \(y) rlang::names2(params) %iin% y)
+  idx <- purrr::map(members, \(y) rlang::names2(params) %iin% y)
 
   params[unlist(idx, use.names = FALSE)] <- purrr::imap(
-    idx,
-    function(g, i) {
-      purrr::map2(params[g], i, function(x, i) {
-      S7::set_props(x, member_of = i)
-        })
-      }) |>
+    idx, function(g, i) purrr::map2(params[g], i, set_members)) |>
     purrr::list_flatten(name_spec = "{inner}")
 
   class_query(params = params, groups = groups)
 }
-
-# grps_valid <- all(
-#   collapse::funique(
-#     unlist(members, use.names = FALSE)
-#   ) %in_% rlang::names2(params)
-# )
-#
-# if (!grps_valid) {
-#   cli::cli_abort(
-#     c("x" = "All {.field group} members must be {.field query} field names"),
-#     call = rlang::caller_env())
-# }
