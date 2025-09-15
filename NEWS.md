@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9493 (2025-09-15)
+
+* Alias implementation work
+* Replaced oomph with collapse's fmatch
+* Updated RcppSimdJson version (0.1.14)
+
+
 # providertwo 0.0.0.9492 (2025-09-14)
 
 * fix: query group checking
