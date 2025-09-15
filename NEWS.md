@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9494 (2025-09-15)
+
+* query checks
+
+
 # providertwo 0.0.0.9493 (2025-09-15)
 
 * Alias implementation work
