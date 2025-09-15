@@ -1,3 +1,8 @@
+# fs::file_create(fs::path_package("providertwo"), "test.toml")
+# tomledit::as_toml(end_open)
+# tomledit::write_toml(fs::path_package("providertwo"))
+# tomledit::read_toml(fs::path_package("providertwo", "test.toml"))
+
 # TODO Explore chunking params with 10+ elements
 # Submitting too many params at once can cause API errors
 # TODO Consider the case sensitivity of each endpoint's fields' values

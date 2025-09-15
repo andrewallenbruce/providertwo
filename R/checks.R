@@ -24,13 +24,13 @@ check_alias_results <- function(x, call = caller_env()) {
 check_collection <- function(alias, call = caller_env()) {
   if (length(alias) > 1L) {
     cli::cli_abort(
-      c("x" = "Only one {.cls collection} alias can be loaded at a time."),
+      c("x" = "Only one {.cls collection} can be loaded at a time."),
       call = call)
   }
 
-  if (!is_collection(alias)) {
+  if (!is_collect(alias)) {
     cli::cli_abort(
-      c("x" = "{.val {alias}} is not a {.cls collection} {.field alias}."),
+      c("x" = "{.val {alias}} is not a {.cls collection}."),
       call = call)
   }
 }
@@ -46,8 +46,8 @@ check_group <- function(alias, call = caller_env()) {
     cli::cli_abort(msg, call = call)
   }
 
-  if (any_collection(avec)) {
-    avec <- avec[is_collection(avec)][[1]]
+  if (any_collect(avec)) {
+    avec <- avec[is_collect(avec)][[1]]
     cli::cli_abort(
       c("x" = "A {.cls group} cannot contain a {.cls collection}.",
         ">" = "Run e.g., {.field collection({.val {avec}})}."),

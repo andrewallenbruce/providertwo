@@ -4,100 +4,74 @@ NULL
 
 #' @autoglobal
 #' @noRd
-minit <- function(...) {
-  oomph::mph_init(rlang::names2(c(...)))
+init <- function(...) {
+  x <- rlang::names2(c(...))
+
+  if (collapse::any_duplicated(x)) {
+    dupes <- x[collapse::fduplicated(x)]
+
+    cli::cli_abort(
+      c("x" = "Duplicate names found:",
+        cli::col_yellow(cli::format_bullets_raw(
+          paste(cli::symbol$arrow_right, " ", dupes)
+    ))))
+  }
+  x
 }
 
-# ---- end_nms ----
 #' @autoglobal
 #' @noRd
-rlang::on_load({
-  endpoint_regex <- c(
-    end_prov$current,
-    end_hgov$current,
-    end_caid$current,
-    end_care$current,
-    end_open$current,
-    end_hgov$temporal,
-    end_caid$temporal,
-    end_care$temporal,
-    end_open$temporal
-  )
-
-  endpoint_names <- minit(endpoint_regex)
-
-  catalog_members <- list(
-    care = minit(end_care$current, end_care$temporal),
-    prov = minit(end_prov$current),
-    open = minit(end_open$current, end_open$temporal),
-    caid = minit(end_caid$current, end_caid$temporal),
-    hgov = minit(end_hgov$current, end_hgov$temporal)
-  )
-
-  endpoint_types <- list(
-    current  = minit(
-      end_prov$current,
-      end_hgov$current,
-      end_caid$current,
-      end_care$current,
-      end_open$current
-    ),
-    temporal = minit(
-      end_hgov$temporal,
-      end_caid$temporal,
-      end_care$temporal,
-      end_open$temporal
-    )
-  )
-})
-
+match_point <- function(x) {
+  collapse::fmatch(x, aka$nms)
+}
 
 #' @autoglobal
 #' @noRd
-rex_endpoint <- function(x) {
-  endpoint_regex[oomph::mph_match(x, endpoint_names)]
+rex_point <- function(x) {
+  aka$all[match_point(x)] |>
+    unlist(use.names = FALSE)
 }
 
 #' @autoglobal
 #' @noRd
 is_care_member <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, catalog_members$care))
+  !cheapr::is_na(collapse::fmatch(x, aka$clg$care))
 }
 
 #' @autoglobal
 #' @noRd
 is_caid_member <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, catalog_members$caid))
+  !cheapr::is_na(collapse::fmatch(x, aka$clg$caid))
 }
 
 #' @autoglobal
 #' @noRd
 is_prov_member <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, catalog_members$prov))
+  !cheapr::is_na(collapse::fmatch(x, aka$clg$prov))
 }
 
 #' @autoglobal
 #' @noRd
 is_open_member <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, catalog_members$open))
+  !cheapr::is_na(collapse::fmatch(x, aka$clg$open))
 }
 
 #' @autoglobal
 #' @noRd
 is_hgov_member <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, catalog_members$hgov))
+  !cheapr::is_na(collapse::fmatch(x, aka$clg$hgov))
 }
 
 #' @autoglobal
 #' @noRd
-is_current_point <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, endpoint_types$current))
+is_current <- function(x) {
+  !cheapr::is_na(collapse::fmatch(x, aka$pnt$current))
 }
 
 #' @autoglobal
 #' @noRd
-is_temporal_point <- function(x) {
-  !cheapr::is_na(oomph::mph_match(x, endpoint_types$temporal))
+is_temporal <- function(x) {
+  !cheapr::is_na(collapse::fmatch(x, aka$pnt$temporal))
 }
 
 #' @autoglobal
@@ -116,9 +90,6 @@ catalog_type <- function(x, call = rlang::caller_env()) {
 #' @autoglobal
 #' @noRd
 point_type <- function(x, call = rlang::caller_env()) {
-  res <- kit::nif(
-    is_current_point(x), "current",
-    is_temporal_point(x), "temporal")
-
-  res %|% cli::cli_abort(c("x" = "{.val {x}} is not a valid endpoint type."), call = call)
+  res <- kit::nif(is_current(x), "current", is_temporal(x), "temporal")
+  res %|% cli::cli_abort(c("x" = "{.val {x}} is not an endpoint."), call = call)
 }

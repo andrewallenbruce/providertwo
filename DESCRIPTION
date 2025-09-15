@@ -22,10 +22,9 @@ Imports:
     httr2 (>= 1.2.1),
     kit (>= 0.0.2),
     memoise (>= 2.0.1),
-    oomph (>= 0.1.2),
     pins (>= 1.4.1),
     purrr (>= 1.1.0),
-    RcppSimdJson (>= 0.1.13),
+    RcppSimdJson (>= 0.1.14),
     rlang (>= 1.1.6),
     rrapply (>= 1.2.7),
     S7 (>= 0.2.0),
@@ -34,8 +33,6 @@ Imports:
     vctrs (>= 0.6.5)
 Suggests: 
     testthat (>= 3.2.3)
-Remotes:
-    coolbutuseless/oomph
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/filename: generated-globals.R
 Config/roxyglobals/unique: TRUE

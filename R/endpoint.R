@@ -21,7 +21,7 @@ NULL
 #' @autoglobal
 #' @noRd
 select_alias <- function(s, alias, ...) {
-  subset_detect(i = eval(str2lang(s)), j = title, p = rex_endpoint(alias), ...)
+  subset_detect(i = eval(str2lang(s)), j = title, p = rex_point(alias), ...)
 }
 
 #' @autoglobal
@@ -54,11 +54,12 @@ c2 <- function(x) {
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
-  x <- flist(
+  x <- list(
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(glue::glue("the$clog${catalog}${point}"), x)
+    tbl     = select_alias(
+      glue::glue("the$clog${catalog_type(x)}${point_type(x)}"), x)
   )
 
   check_alias_results(x)
@@ -118,12 +119,12 @@ as_care <- function(x) {
   class_care(
     access = switch(
       x$point,
-      current      = care_current(
+      current = care_current(
         identifier = x$identifier,
         metadata   = get_meta(x),
         dimensions = i$dims,
         fields     = i$fields),
-      temporal     = care_temporal(
+      temporal = care_temporal(
         identifier = x$identifier,
         metadata   = get_meta(x),
         dimensions = i$dims,
@@ -136,7 +137,7 @@ as_care <- function(x) {
 #' @rdname load_endpoint
 #' @examples
 #' endpoint("dial_facility")
-#' endpoint("man_mltss")
+#' endpoint("man_state")
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {
@@ -154,7 +155,7 @@ endpoint <- function(alias) {
 
 #' @rdname load_endpoint
 #' @examples
-#' collection("unwind")
+#' #collection("unwind")
 #' try(collection(c("asc_facility", "enterprise")))
 #' try(collection("asc_facility"))
 #' @autoglobal
