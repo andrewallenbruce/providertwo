@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9493</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9494</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,6 +95,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : num [1:2] 0.45 0.67</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: list()</span>
 <span class="r-in"><span><span class="fu">query3</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
@@ -110,6 +111,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:2] "GA" "MD"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr "g1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups:List of 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ g1: &lt;or&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ conjunction: chr "OR"</span>
@@ -120,8 +122,8 @@
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">and</a></span><span class="op">(</span><span class="st">"ccn"</span>, <span class="st">"npii"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in query3(first_name = starts_with("And"), ccn = "01256", and("ccn",  : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> group members must be <span style="color: #00BB00;">query</span> field names</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Member <span style="color: #00BB00;">npii</span> does not match any <span style="color: #00BB00;">query</span> field names.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Query <span style="color: #00BB00;">group members</span> must be query <span style="color: #00BB00;">field names</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Member <span style="color: #00BB00;">npii</span> does not match any <span style="color: #00BB00;">fields</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
