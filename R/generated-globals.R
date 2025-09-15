@@ -106,6 +106,8 @@ utils::globalVariables(c(
   "nextUpdateDate",
   # <npi_nppes>
   "organization",
+  # <check_memb_no_year>
+  "p",
   # <clog_caid>
   "periodicity",
   # <dict_field>
