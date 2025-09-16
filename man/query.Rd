@@ -29,6 +29,16 @@ query(
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
 query3(
+  first_name  = starts_with("And"),
+  middle_name = NULL,
+  last_name   = contains("J"),
+  state       = any_of("CA", "GA", "NY"),
+  state_own   = c("GA", "MD"),
+  ccn         = "01256",
+  rate        = between(0.45, 0.67),
+  year        = 2014:2025)
+
+query3(
   year  = 2018:2025,
   state = any_of("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),
@@ -38,4 +48,19 @@ try(query3(
   first_name  = starts_with("And"),
   ccn         = "01256",
   and("ccn", "npii")))
+
+query3(
+  year = 2022:2024,
+  state = any_of("GA", "NY"),
+  enrlmt_id = "I20040309000221",
+  city = "Atlanta",
+  provcity = "Atlanta",
+  provider_name = starts_with("C"),
+  provname = starts_with("C"),
+  provider_first_name = starts_with("An"),
+  provider_last_name = contains("JE"),
+  practice_state_or_us_territory = any_of("GA", "FL"),
+  practice_size = less_than(10, or_equal = TRUE),
+  or("state", "city"),
+  or("provider_name", "provider_first_name"))
 }

@@ -44,6 +44,16 @@ query <- function(...) {
 #' @rdname query
 #' @examples
 #' query3(
+#'   first_name  = starts_with("And"),
+#'   middle_name = NULL,
+#'   last_name   = contains("J"),
+#'   state       = any_of("CA", "GA", "NY"),
+#'   state_own   = c("GA", "MD"),
+#'   ccn         = "01256",
+#'   rate        = between(0.45, 0.67),
+#'   year        = 2014:2025)
+#'
+#' query3(
 #'   year  = 2018:2025,
 #'   state = any_of("CA", "GA", "NY"),
 #'   state_owner = c("GA", "MD"),
@@ -53,13 +63,27 @@ query <- function(...) {
 #'   first_name  = starts_with("And"),
 #'   ccn         = "01256",
 #'   and("ccn", "npii")))
+#'
+#' query3(
+#'   year = 2022:2024,
+#'   state = any_of("GA", "NY"),
+#'   enrlmt_id = "I20040309000221",
+#'   city = "Atlanta",
+#'   provcity = "Atlanta",
+#'   provider_name = starts_with("C"),
+#'   provname = starts_with("C"),
+#'   provider_first_name = starts_with("An"),
+#'   provider_last_name = contains("JE"),
+#'   practice_state_or_us_territory = any_of("GA", "FL"),
+#'   practice_size = less_than(10, or_equal = TRUE),
+#'   or("state", "city"),
+#'   or("provider_name", "provider_first_name"))
 #' @autoglobal
 #' @export
 query3 <- function(...) {
 
-  x <- purrr::compact(rlang::enexprs(...))
-
-  # TODO Handle no groups
+  x <- rlang::enexprs(...) |>
+    purrr::compact()
 
   x <- list(
     grps = purrr::keep(x, is_junc),
@@ -68,21 +92,31 @@ query3 <- function(...) {
 
   check_all_named(c(x$mods, x$bare))
   check_names_unique(c(x$mods, x$bare))
-  check_group_members(x)
 
-  groups  <- eval_groups(x$grps)
   params  <- eval_params(x$mods, x$bare)
-  members <- get_members(groups)
 
-  grp_idx <- purrr::map(members, function(x) rlang::names2(params) %iin% x)
+  if (rlang::is_empty(x$grps)) {
+    groups <- list()
+  }
 
-  member_of <- purrr::imap(grp_idx, function(idx, nm)
-    purrr::map2(params[idx], nm, set_members)) |>
-    purrr::list_flatten(name_spec = "{inner}")
+  if (!rlang::is_empty(x$grps)) {
 
-  params[unlist(grp_idx, use.names = FALSE)] <- member_of
+    check_group_members(x)
 
-  if (!rlang::is_empty(rlang::names2(params) %iin% "year")) {
+    groups  <- eval_groups(x$grps)
+
+    grp_idx <- get_members(groups) |>
+      purrr::map(function(members) rlang::names2(params) %iin% members)
+
+    member_of <- purrr::imap(
+      grp_idx, function(idx, nm) map_members(params, idx, nm)) |>
+      purrr::list_flatten(name_spec = "{inner}")
+
+    params[unlist(grp_idx, use.names = FALSE)] <- member_of
+
+  }
+
+  if (any(rlang::names2(params) %in% "year")) {
 
     yr <- rlang::names2(params) %iin% "year"
 

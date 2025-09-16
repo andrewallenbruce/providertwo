@@ -18,6 +18,15 @@ set_members <- function(x, i) {
 
 #' @autoglobal
 #' @noRd
+map_members <- function(x, index, name) {
+  purrr::map2(x[index], name, set_members)
+  # member_of <- purrr::imap(grp_idx, function(idx, nm)
+  #   purrr::map2(params[idx], nm, set_members)) |>
+  #   purrr::list_flatten(name_spec = "{inner}")
+}
+
+#' @autoglobal
+#' @noRd
 eval_groups <- function(x) {
   rlang::set_names(map_eval(x), paste0("g", seq_along(x)))
 }
