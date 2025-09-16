@@ -31,7 +31,25 @@ eval_groups <- function(x) {
 #' @autoglobal
 #' @noRd
 eval_params <- function(mods, bare) {
+  map_eval(
+    rlang::list2(
+      !!!mods,
+      !!!as_equal(bare)
+      )
+    )
+}
+
+#' @autoglobal
+#' @noRd
+eval_params <- function(mods, bare) {
   map_eval(rlang::list2(!!!mods, !!!as_equal(bare)))
+}
+#' @autoglobal
+#' @noRd
+group_index <- function(g, p) {
+  get_members(g) |>
+    purrr::map(function(x)
+      rlang::names2(p) %iin% x)
 }
 
 #' @autoglobal

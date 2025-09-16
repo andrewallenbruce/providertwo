@@ -2,7 +2,7 @@
 #' @noRd
 check_query_dots <- function(..., call = rlang::caller_env()) {
   if (...length() == 0L) {
-    cli::cli_abort("{.field Query} cannot be {.strong empty}.", call = call)
+    cli::cli_abort(c("x" = "{.field Query} cannot be {.strong empty}."), call = call)
   }
 }
 
@@ -48,8 +48,8 @@ check_group_lengths <- function(x, g, call = rlang::caller_env()) {
       purrr::list_c()
 
     cli::cli_abort(
-      c("x" = "Query {.field groups} must have {.emph 2 or more} {.field members}.",
-        "!" = "Group{?s} {.field {bad}} ha{?s/ve} less than 2 members."),
+      c("x" = "Query {.field groups} must have {.emph more than 1} {.field member}.",
+        "!" = "Invalid group{?s} {.field {bad}}."),
       call  = call)
   }
 }
@@ -78,8 +78,8 @@ check_members_valid_params <- function(x, p, call = rlang::caller_env()) {
     bad <- x[!x %in% rlang::names2(p)]
 
     cli::cli_abort(
-      c("x" = "Query {.field group members} must be query {.field field names}",
-        "!" = "Member{?s} {.field {bad}} d{?oes/o} not match any {.field fields}"),
+      c("x" = "Group {.field members} must match a {.field field} name.",
+        "!" = "Member{?s} {.val {bad}} ha{?ve/s} no matc{?hes/h}."),
       call  = call)
   }
 }

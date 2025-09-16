@@ -105,43 +105,37 @@ query3 <- function(..., call = rlang::caller_env()) {
   check_names_unique(c(x$mods, x$bare), call = call)
   check_mods_year(x$mods, call = call)
 
-  params <- eval_params(x$mods, x$bare)
-
-  if (empty(x$grps)) {
-    groups <- list()
-  }
+  x$params <- eval_params(x$mods, x$bare)
 
   if (!empty(x$grps)) {
 
     check_group_members(x, call = call)
 
-    groups  <- eval_groups(x$grps)
-
-    grp_idx <- get_members(groups) |>
-      purrr::map(function(members) rlang::names2(params) %iin% members)
+    x$grps  <- eval_groups(x$grps)
+    grp_idx <- group_index(x$grps, x$params)
 
     member_of <- purrr::imap(
-      grp_idx, function(idx, nm) map_members(params, idx, nm)) |>
+      grp_idx, function(idx, nm) map_members(x$params, idx, nm)) |>
       purrr::list_flatten(name_spec = "{inner}")
 
-    params[unlist(grp_idx, use.names = FALSE)] <- member_of
+    x$params[unlist(grp_idx, use.names = FALSE)] <- member_of
   }
 
   # TODO Handle year differently
 
-  if (any(rlang::names2(params) %in% "year")) {
+  if (any(rlang::names2(x$params) %in% "year")) {
 
-    yr <- rlang::names2(params) %iin% "year"
+    yr <- rlang::names2(x$params) %iin% "year"
 
     return(
       class_query(
-        params = params[-yr],
-        year   = params[yr]$year@value,
-        groups = groups)
-      )
+        params = x$params[-yr],
+        year   = x$params[yr]$year@value,
+        groups = x$grps)
+    )
   }
 
   class_query(
-    params = params,
-    groups = groups)
+    params = x$params,
+    groups = x$grps)
 }
