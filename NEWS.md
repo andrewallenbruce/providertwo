@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9496 (2025-09-16)
+
+* finalized query3
+
+
 # providertwo 0.0.0.9495 (2025-09-15)
 
 * fix: Bug in `check_alias_results` (#19)
