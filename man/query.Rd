@@ -7,10 +7,13 @@
 \usage{
 query(...)
 
-query3(...)
+query3(..., call = rlang::caller_env())
 }
 \arguments{
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions
+to filter results by. See Details.}
+
+\item{call}{The environment from which the function is called.}
 }
 \value{
 S7 \verb{<class_query>} object.
@@ -28,6 +31,13 @@ query(
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
+try(query3()) # cannot be empty
+try(query3(1)) # must be named
+try(query3(a = 1, a = 2)) # names must be unique
+try(query3(a = 1, or("a"))) # group needs more than one member
+try(query3(a = 1, or("a", "year"))) # year cannot be grouped
+try(query3(year = any_of(2000:2020))) # year cannot be modified
+
 query3(
   first_name  = starts_with("And"),
   middle_name = NULL,

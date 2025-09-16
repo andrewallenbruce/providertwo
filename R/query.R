@@ -12,6 +12,8 @@ class_query <- S7::new_class(
 
 #' Create a Query Object
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions
+#'  to filter results by. See Details.
+#' @param call The environment from which the function is called.
 #' @returns S7 `<class_query>` object.
 #' @name query
 NULL
@@ -43,6 +45,13 @@ query <- function(...) {
 
 #' @rdname query
 #' @examples
+#' try(query3()) # cannot be empty
+#' try(query3(1)) # must be named
+#' try(query3(a = 1, a = 2)) # names must be unique
+#' try(query3(a = 1, or("a"))) # group needs more than one member
+#' try(query3(a = 1, or("a", "year"))) # year cannot be grouped
+#' try(query3(year = any_of(2000:2020))) # year cannot be modified
+#'
 #' query3(
 #'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
@@ -80,7 +89,9 @@ query <- function(...) {
 #'   or("provider_name", "provider_first_name"))
 #' @autoglobal
 #' @export
-query3 <- function(...) {
+query3 <- function(..., call = rlang::caller_env()) {
+
+  check_query_dots(..., call = call)
 
   x <- rlang::enexprs(...) |>
     purrr::compact()
@@ -90,18 +101,19 @@ query3 <- function(...) {
     mods = purrr::keep(x, is_mod),
     bare = purrr::keep(x, is_bare))
 
-  check_all_named(c(x$mods, x$bare))
-  check_names_unique(c(x$mods, x$bare))
+  check_all_named(c(x$mods, x$bare), call = call)
+  check_names_unique(c(x$mods, x$bare), call = call)
+  check_mods_year(x$mods, call = call)
 
-  params  <- eval_params(x$mods, x$bare)
+  params <- eval_params(x$mods, x$bare)
 
-  if (rlang::is_empty(x$grps)) {
+  if (empty(x$grps)) {
     groups <- list()
   }
 
-  if (!rlang::is_empty(x$grps)) {
+  if (!empty(x$grps)) {
 
-    check_group_members(x)
+    check_group_members(x, call = call)
 
     groups  <- eval_groups(x$grps)
 
@@ -113,8 +125,9 @@ query3 <- function(...) {
       purrr::list_flatten(name_spec = "{inner}")
 
     params[unlist(grp_idx, use.names = FALSE)] <- member_of
-
   }
+
+  # TODO Handle year differently
 
   if (any(rlang::names2(params) %in% "year")) {
 
