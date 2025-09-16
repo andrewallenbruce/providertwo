@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9497</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9498</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">query</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">query3</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">query3</span><span class="op">(</span><span class="va">...</span>, call <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/stack.html" class="external-link">caller_env</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,7 +55,12 @@
 
 
 <dl><dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">dynamic-dots</a></code>&gt; Named conditions</p></dd>
+<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">dynamic-dots</a></code>&gt; Named conditions
+to filter results by. See Details.</p></dd>
+
+
+<dt id="arg-call">call<a class="anchor" aria-label="anchor" href="#arg-call"></a></dt>
+<dd><p>The environment from which the function is called.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -97,6 +102,27 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: list()</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># cannot be empty</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : <span style="color: #00BB00;">Query</span> cannot be <span style="font-weight: bold;">empty</span>.</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="co"># must be named</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> values must be <span style="font-weight: bold;">named</span>.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Unnamed value: <span style="color: #00BB00;">1</span>.</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, a <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># names must be unique</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> names must be <span style="font-weight: bold;">unique</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Field <span style="color: #00BB00;">a</span> appears multiple times.</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># group needs more than one member</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Query <span style="color: #00BB00;">groups</span> must have <span style="font-style: italic;">2 or more</span> <span style="color: #00BB00;">members</span>.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Group <span style="color: #00BB00;">or("a")</span> has less than 2 members.</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># year cannot be grouped</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">"year"</span> cannot be a group member.</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query3</span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fl">2000</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># year cannot be modified</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">"year"</span> cannot be used with a query <span style="color: #0000BB;">&lt;modifier&gt;</span>.</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">query3</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  first_name  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  middle_name <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
@@ -160,7 +186,7 @@
 <span class="r-in"><span>  first_name  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">and</a></span><span class="op">(</span><span class="st">"ccn"</span>, <span class="st">"npii"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in query3(first_name = starts_with("And"), ccn = "01256", and("ccn",  : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Query <span style="color: #00BB00;">group members</span> must be query <span style="color: #00BB00;">field names</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Member <span style="color: #00BB00;">npii</span> does not match any <span style="color: #00BB00;">fields</span></span>
 <span class="r-in"><span></span></span>
