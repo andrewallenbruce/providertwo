@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9495 (2025-09-15)
+
+* fix: Bug in `check_alias_results` (#19)
+* fix: Warning when loading from Open catalog, due to `modified` being outside of the nested column
+
+
 # providertwo 0.0.0.9494 (2025-09-15)
 
 * query checks
