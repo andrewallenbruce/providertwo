@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9495</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9496</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,44 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: list()</span>
 <span class="r-in"><span><span class="fu">query3</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  first_name  <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  middle_name <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>  last_name   <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"J"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  state       <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  state_own   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
+<span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="query_modifier.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: &lt;starts_with&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "And"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : &lt;contains&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "CONTAINS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "J"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : &lt;any_of&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "IN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:3] "CA" "GA" "NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : &lt;between&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "BETWEEN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : num [1:2] 0.45 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : &lt;equal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:2] "GA" "MD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : &lt;equal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "01256"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: list()</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">query3</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  year  <span class="op">=</span> <span class="fl">2018</span><span class="op">:</span><span class="fl">2025</span>,</span></span>
 <span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state_owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span>,</span></span>
@@ -125,6 +163,71 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in query3(first_name = starts_with("And"), ccn = "01256", and("ccn",  : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Query <span style="color: #00BB00;">group members</span> must be query <span style="color: #00BB00;">field names</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Member <span style="color: #00BB00;">npii</span> does not match any <span style="color: #00BB00;">fields</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">query3</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
+<span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span>,</span></span>
+<span class="r-in"><span>  city <span class="op">=</span> <span class="st">"Atlanta"</span>,</span></span>
+<span class="r-in"><span>  provcity <span class="op">=</span> <span class="st">"Atlanta"</span>,</span></span>
+<span class="r-in"><span>  provider_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  provname <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  provider_first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  practice_size <span class="op">=</span> <span class="fu"><a href="query_modifier.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"state"</span>, <span class="st">"city"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="query_modifier.html">or</a></span><span class="op">(</span><span class="st">"provider_name"</span>, <span class="st">"provider_first_name"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state                         : &lt;any_of&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "IN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:2] "GA" "NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr "g1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ provider_name                 : &lt;starts_with&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr "g2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ provname                      : &lt;starts_with&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ provider_first_name           : &lt;starts_with&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "An"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr "g2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ provider_last_name            : &lt;contains&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "CONTAINS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "JE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ practice_state_or_us_territory: &lt;any_of&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "IN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr [1:2] "GA" "FL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ practice_size                 : &lt;less_than&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "&lt;="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : num 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ enrlmt_id                     : &lt;equal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "I20040309000221"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ city                          : &lt;equal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "Atlanta"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr "g1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ provcity                      : &lt;equal&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator : chr "="</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value    : chr "Atlanta"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:3] 2022 2023 2024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups:List of 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ g1: &lt;or&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ conjunction: chr "OR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ members    : chr [1:2] "state" "city"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ g2: &lt;or&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ conjunction: chr "OR"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ members    : chr [1:2] "provider_name" "provider_first_name"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
