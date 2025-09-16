@@ -1,11 +1,3 @@
-class_group(
-  group = "group",
-  members = list(
-    enrollees = care_endpoint("care_enrollees"),
-    qhp_quality = hgov_temporal("qhp_quality_ratings")
-    )
-)
-
 class_ids <- quo(alias$care$temporal$quality_payment) |>
   as_label() |>
   strsplit("$", fixed = TRUE) |>
@@ -39,16 +31,11 @@ class_group(
 
 call_quo <- as.list(quote(care_endpoint("care_enrollees")))
 
-
 c(
   .aka$endpoint$ahqr_psi11,
   .aka$endpoint$aip_plan
   ) |>
-map(\(alias) select_endpoint(alias))
-
-
-
-
+  map(\(alias) select_endpoint(alias))
 
 x <- new_group(c("qhp_bus_rule_variables", "managed_care_share"))
 
@@ -56,55 +43,7 @@ x@members$managed_care_share@dimensions@fields |>
   cheapr::list_as_df()
 x@members$qhp_bus_rule_variables@dimensions@fields
 
-x@members$managed_care_share@dimensions |> props(names = c("limit", "rows", "pages")) |>
-  cheapr::list_as_df() |> t()
-
-cheapr::intersect_(
-  x@members$qhp_bus_rule_variables@dimensions@fields,
-  x@members$managed_care_share@dimensions@fields
-)
-
-vctrs::vec_set_intersect(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-
-vctrs::vec_set_difference(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-
-vctrs::vec_set_difference(
-  names(x@members$managed_care_share@dimensions@fields),
-  names(x@members$qhp_bus_rule_variables@dimensions@fields)
-)
-
-vctrs::vec_set_symmetric_difference(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-
-cheapr::cheapr_table(c(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-)
-
-cheapr::intersect_(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-
-cheapr::setdiff_(
-  names(x@members$qhp_bus_rule_variables@dimensions@fields),
-  names(x@members$managed_care_share@dimensions@fields)
-)
-
-cheapr::counts(
-  c(
-    names(x@members$qhp_bus_rule_variables@dimensions@fields),
-    names(x@members$managed_care_share@dimensions@fields)
-  ),
-  sort = TRUE
-)
-
+x@members$managed_care_share@dimensions |>
+  props(names = c("limit", "rows", "pages")) |>
+  cheapr::list_as_df() |>
+  t()

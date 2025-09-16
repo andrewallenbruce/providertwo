@@ -43,6 +43,18 @@ class_junction <- S7::new_class(
     members     = S7::class_character)
 )
 
+#' @autoglobal
+#' @noRd
+is_modifier <- function(x) {
+  S7::S7_inherits(x, class_modifier)
+}
+
+#' @autoglobal
+#' @noRd
+is_junction <- function(x) {
+  S7::S7_inherits(x, class_junction)
+}
+
 #' @rdname query_modifier
 #' @examples
 #' and("foo", "bar")
@@ -78,10 +90,6 @@ or <- S7::new_class(
     )
   }
 )
-
-# TODO Map out which modifiers work with which APIs
-# Implement error checking for incompatible modifiers
-# and possible fallback methods
 
 #' @rdname query_modifier
 #' @examples

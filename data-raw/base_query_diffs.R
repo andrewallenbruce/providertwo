@@ -121,3 +121,30 @@ paste0(
   request() |>
   perform_simple() |>
   _$count
+
+i <- obj@identifier[c(5, 6)] |>
+  paste0("?count=true&results=true&offset=0&limit=1") |>
+  map(request) |>
+  req_perform_parallel(on_error = "continue") |>
+  resps_successes() |>
+  map(function(x)
+    parse_string(x)) |>
+  set_names(2020:2021)
+
+
+p$id |> paste0(
+  "?",
+  "schema=false&",
+  "keys=true&",
+  "results=true&",
+  "count=true&",
+  "format=json&",
+  "rowIds=true&",
+  "limit=1&",
+  "offset=0") |>
+  paste0("&", qst) |>
+  purrr::map(httr2::request) |>
+  httr2::req_perform_parallel(on_error = "continue") |>
+  httr2::resps_successes() |>
+  purrr::map(function(x)
+    parse_string(x, query = "count"))

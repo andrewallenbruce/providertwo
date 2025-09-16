@@ -1,3 +1,24 @@
+field_tbl <- field_table() |>
+  mtt(
+    field = ifelse(is.na(field), "NO_FIELDS", field),
+    field = ifelse(field == "NO_FIELDS", "_NO_FIELD_", field)
+  ) |>
+  sbt(field == "_NO_FIELD_") |>
+  print(n = Inf)
+
+field_table() |>
+  # sbt(is.na(type)) |>
+  sbt(
+    # catalog == "hgov" &
+    grep("^[N]", field, perl = TRUE)) |>
+  fcount(field) |>
+  roworder(field) |>
+  print(n = 50) |>
+  sbt(N >= 10 & N <= 30) |>
+  print(n = Inf)
+
+fields_exact$first_name
+
 #' @autoglobal
 #' @noRd
 reduce_fields <- function(x) {

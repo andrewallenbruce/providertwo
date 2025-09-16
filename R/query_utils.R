@@ -20,9 +20,6 @@ set_members <- function(x, i) {
 #' @noRd
 map_members <- function(x, index, name) {
   purrr::map2(x[index], name, set_members)
-  # member_of <- purrr::imap(grp_idx, function(idx, nm)
-  #   purrr::map2(params[idx], nm, set_members)) |>
-  #   purrr::list_flatten(name_spec = "{inner}")
 }
 
 #' @autoglobal
@@ -127,10 +124,4 @@ is_junc <- function(x) {
 #' @noRd
 is_bare <- function(x) {
   !is_junc(x) & !is_mod(x)
-}
-
-#' @autoglobal
-#' @noRd
-is_junction <- function(x) {
-  S7::S7_inherits(x, class_junction)
 }
