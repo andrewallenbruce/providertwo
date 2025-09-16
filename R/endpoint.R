@@ -20,8 +20,8 @@ NULL
 
 #' @autoglobal
 #' @noRd
-select_alias <- function(s, alias, ...) {
-  subset_detect(i = eval(str2lang(s)), j = title, p = rex_point(alias), ...)
+select_alias <- function(x, alias) {
+  collapse::sbt(eval(str2lang(x)), title %iin% rex_point(alias))
 }
 
 #' @autoglobal
@@ -54,13 +54,14 @@ c2 <- function(x) {
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
+
+  g <- glue::glue("the$clog${catalog_type(x)}${point_type(x)}")
+
   x <- list(
     alias   = x,
     point   = point_type(x),
     catalog = catalog_type(x),
-    tbl     = select_alias(
-      glue::glue("the$clog${catalog_type(x)}${point_type(x)}"), x)
-  )
+    tbl     = select_alias(x = g, alias = x))
 
   check_alias_results(x)
 
@@ -69,9 +70,7 @@ alias_lookup <- function(x) {
     switch(
       x$point,
       current  = c(x$tbl),
-      temporal = c2(x$tbl)
-      )
-    )
+      temporal = c2(x$tbl)))
 }
 
 #' @autoglobal

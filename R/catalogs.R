@@ -216,7 +216,7 @@ clog_open <- function(x) {
           default = description,
           nThread = 4L)) |>
       collapse::roworder(title, -year) |>
-      fnest(by = c("title", "description", "modified"))
+      fnest(by = c("title"))
   )
 }
 

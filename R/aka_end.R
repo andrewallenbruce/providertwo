@@ -30,7 +30,7 @@ rlang::on_load({
       reach_result            = "ACO REACH Financial and Quality Results",
       reach_prov              = "ACO REACH Providers",
       reach_org               = "REACH ACOs",
-      enroll_prov             = "Public Provider Enrollment",
+      enroll_prov             = "Medicare Fee-For-Service Public Provider Enrollment",
       pos_fac                 = "Provider of Services File - Hospital & Non-Hospital Facilities",
       pos_iqies               = "Provider of Services File - Internet Quality Improvement and Evaluation System - Home Health Agency, Ambulatory Surgical Center, and Hospice Providers",
       pos_lab                 = "Provider of Services File - Clinical Laboratories",

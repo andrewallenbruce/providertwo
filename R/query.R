@@ -44,6 +44,7 @@ query <- function(...) {
 #' @rdname query
 #' @examples
 #' query3(
+#'   year  = 2018:2025,
 #'   state = any_of("CA", "GA", "NY"),
 #'   state_owner = c("GA", "MD"),
 #'   or("state", "state_owner"))

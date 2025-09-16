@@ -6,9 +6,9 @@
 #' @autoglobal
 #' @noRd
 check_alias_results <- function(x, call = caller_env()) {
-  msg <- c("x" = "{.field {x$alias}} ({.val {x$regex}}) had {nrow(x$tbl)} matches.")
+  msg <- c("x" = "{.field {x$alias}} had {.strong {nrow(x$tbl)}} matches.")
 
-  if (is_empty(x$tbl)) {
+  if (nrow(x$tbl) == 0L) {
     cli::cli_abort(msg, call = call)
   }
 

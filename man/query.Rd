@@ -29,6 +29,7 @@ query(
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
 query3(
+  year  = 2018:2025,
   state = any_of("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),
   or("state", "state_owner"))

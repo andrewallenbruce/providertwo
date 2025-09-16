@@ -1,5 +1,61 @@
 #' @autoglobal
 #' @noRd
+print_list <- function(ls, prefix = "") {
+  if (length(ls) == 0) cat("<empty>\n")
+
+  if (length(names(ls)) != length(ls)) stop("all elements must be named")
+
+  ls <- lapply(ls, as.character)
+
+  cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
+
+  invisible(ls)
+}
+
+# test_aliases(aka$open)
+# test_aliases(aka$care)
+# test_aliases(aka$caid)
+# test_aliases(aka$prov)
+# test_aliases(aka$hgov)
+#' Test Aliases
+#' @param name description
+#' @autoglobal
+#' @noRd
+test_aliases <- function(x) {
+
+  all_alias <- purrr::list_flatten(x, name_spec = "{inner}")
+
+  all_names <- rlang::names2(all_alias) |> sort()
+
+  errors <- purrr::map_dfr(
+    all_names, function(x) {
+      cheapr::new_df(
+        alias = x,
+        title = tryCatch(
+          alias_lookup(x)$title,
+          error = function(e)
+            NA_character_
+        ),
+        identifier = tryCatch(
+          alias_lookup(x)$identifier,
+          error = function(e)
+            NA_character_
+        )
+      )
+    }
+  ) |>
+    fastplyr::as_tbl() |>
+    collapse::sbt(is.na(identifier)) |>
+    _$alias
+
+  print_list(
+    all_alias[errors],
+    prefix = paste0(cli::symbol$record, " ")
+  )
+}
+
+#' @autoglobal
+#' @noRd
 alias_column <- function(df, aka, default = "NA") {
 
   default <- match.arg(default, c("NA", "alias"))
