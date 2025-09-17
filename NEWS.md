@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9501 (2025-09-17)
+
+* query groupers
+
+
 # providertwo 0.0.0.9500 (2025-09-17)
 
 * process `year` field differently in a query
