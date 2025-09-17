@@ -31,17 +31,6 @@ eval_groups <- function(x) {
 #' @autoglobal
 #' @noRd
 eval_params <- function(mods, bare) {
-  map_eval(
-    rlang::list2(
-      !!!mods,
-      !!!as_equal(bare)
-      )
-    )
-}
-
-#' @autoglobal
-#' @noRd
-eval_params <- function(mods, bare) {
   map_eval(rlang::list2(!!!mods, !!!as_equal(bare)))
 }
 #' @autoglobal
@@ -136,6 +125,12 @@ is_mod <- function(x) {
 #' @noRd
 is_junc <- function(x) {
   rlang::is_call(x, name = c("and", "or"))
+}
+
+#' @autoglobal
+#' @noRd
+is_year <- function(x, negate = FALSE) {
+  x[cheapr::which_(rlang::names2(x) == "year", invert = negate)]
 }
 
 #' @autoglobal

@@ -37,6 +37,7 @@ try(query3(a = 1, a = 2)) # names must be unique
 try(query3(a = 1, or("a"))) # group needs more than one member
 try(query3(a = 1, or("a", "year"))) # year cannot be grouped
 try(query3(year = any_of(2000:2020))) # year cannot be modified
+try(query3(ccn = "01256", and("ccn", "npii")))
 
 query3(
   first_name  = starts_with("And"),
@@ -53,11 +54,6 @@ query3(
   state = any_of("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),
   or("state", "state_owner"))
-
-try(query3(
-  first_name  = starts_with("And"),
-  ccn         = "01256",
-  and("ccn", "npii")))
 
 query3(
   year = 2022:2024,

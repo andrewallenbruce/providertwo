@@ -17,6 +17,7 @@
 #' @source [JSON-API: Query Parameters Details](https://jsonapi.org/format/#appendix-query-details)
 NULL
 
+# query_modifier
 #' @noRd
 #' @autoglobal
 class_modifier <- S7::new_class(
@@ -27,12 +28,13 @@ class_modifier <- S7::new_class(
     value     = S7::class_character | S7::class_numeric,
     member_of = S7::class_character),
   validator   = function(self) {
-    if (length(self@operator) != 1) {
+    if (length(self@operator) != 1L) {
       cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call = NULL)
     }
   }
 )
 
+# query_group
 #' @noRd
 #' @autoglobal
 class_junction <- S7::new_class(
@@ -128,9 +130,10 @@ none_of <- S7::new_class(
 )
 
 #' @rdname query_modifier
-#' @examples
+#' @examplesIf interactive()
 #' equal(1000)
 #' @autoglobal
+#' @keywords internal
 #' @export
 equal <- S7::new_class(
   name        = "equal",

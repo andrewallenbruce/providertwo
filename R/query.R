@@ -51,6 +51,7 @@ query <- function(...) {
 #' try(query3(a = 1, or("a"))) # group needs more than one member
 #' try(query3(a = 1, or("a", "year"))) # year cannot be grouped
 #' try(query3(year = any_of(2000:2020))) # year cannot be modified
+#' try(query3(ccn = "01256", and("ccn", "npii")))
 #'
 #' query3(
 #'   first_name  = starts_with("And"),
@@ -67,11 +68,6 @@ query <- function(...) {
 #'   state = any_of("CA", "GA", "NY"),
 #'   state_owner = c("GA", "MD"),
 #'   or("state", "state_owner"))
-#'
-#' try(query3(
-#'   first_name  = starts_with("And"),
-#'   ccn         = "01256",
-#'   and("ccn", "npii")))
 #'
 #' query3(
 #'   year = 2022:2024,
@@ -96,13 +92,14 @@ query3 <- function(..., call = rlang::caller_env()) {
   x <- rlang::enexprs(...) |>
     purrr::compact()
 
-  x <- list(
+  x <- rlang::list2(
     grps = purrr::keep(x, is_junc),
     mods = purrr::keep(x, is_mod),
-    bare = purrr::keep(x, is_bare))
+    bare = is_year(purrr::keep(x, is_bare), negate = TRUE),
+    !!!is_year(x))
 
   check_all_named(c(x$mods, x$bare), call = call)
-  check_names_unique(c(x$mods, x$bare), call = call)
+  check_names_unique(c(x$mods, x$bare, x$year), call = call)
   check_mods_year(x$mods, call = call)
 
   x$params <- eval_params(x$mods, x$bare)
@@ -114,25 +111,19 @@ query3 <- function(..., call = rlang::caller_env()) {
     x$grps  <- eval_groups(x$grps)
     grp_idx <- group_index(x$grps, x$params)
 
-    member_of <- purrr::imap(
-      grp_idx, function(idx, nm) map_members(x$params, idx, nm)) |>
+    member_of <- purrr::imap(grp_idx, function(idx, nm)
+      map_members(x$params, idx, nm)) |>
       purrr::list_flatten(name_spec = "{inner}")
 
     x$params[unlist(grp_idx, use.names = FALSE)] <- member_of
   }
 
-  # TODO Handle year differently
-
-  if (any(rlang::names2(x$params) %in% "year")) {
-
-    yr <- rlang::names2(x$params) %iin% "year"
-
+  if (!empty(x$year)) {
     return(
       class_query(
-        params = x$params[-yr],
-        year   = x$params[yr]$year@value,
-        groups = x$grps)
-    )
+        params = x$params,
+        year   = eval(x$year),
+        groups = x$grps))
   }
 
   class_query(

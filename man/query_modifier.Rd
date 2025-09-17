@@ -75,7 +75,9 @@ and("foo", "bar")
 or("foo", "bar")
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 equal(1000)
+\dontshow{\}) # examplesIf}
 not_equal(10000.23)
 between(1000, 1100, 125)
 between(0.125, 2, 0.5)
@@ -92,3 +94,4 @@ ends_with("bar")
 contains("baz")
 like("baz")
 }
+\keyword{internal}

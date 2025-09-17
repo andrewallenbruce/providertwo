@@ -1,16 +1,16 @@
-# x <- query2(
+# x <- exprs(
 #   first_name  = starts_with("And"),
 #   middle_name = NULL,
 #   last_name   = contains("J"),
 #   state       = any_of("CA", "GA", "NY"),
 #   state_own   = c("GA", "MD"),
-#   # npi         = npi_ex$k,
 #   ccn         = "01256",
 #   rate        = between(0.45, 0.67),
 #   year        = 2014:2025,
-#   or("first_name", "last_name")
-#   # and("ccn", "npi")
-# )
+#   or("first_name", "last_name"),
+#   and("ccn", "rate")
+# ) |>
+#   purrr::compact()
 #
 #
 # x |>
@@ -33,7 +33,7 @@
 
 #' @autoglobal
 #' @noRd
-query_care_GRP <- function(args) {
+query_care_ARG <- function(args) {
 
   purrr::imap(args, function(x, N) {
 
@@ -61,6 +61,21 @@ query_care_GRP <- function(args) {
            replacement = idx,
            fixed       = TRUE)
     ) |>
+    purrr::map(paste0, collapse = "&")
+}
+
+#' @autoglobal
+#' @noRd
+query_care_GRP <- function(grps) {
+
+  purrr::imap(grps, function(x, N) {
+
+    C <- tolower(x@conjunction)
+
+    paste0("filter[", N, "][group][conjunction]=", C)
+
+  }) |>
+    unname() |>
     purrr::map(paste0, collapse = "&")
 }
 

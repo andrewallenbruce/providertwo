@@ -16,7 +16,7 @@ check_names_unique <- function(x, call = rlang::caller_env()) {
     n <- n[collapse::fduplicated(n)]
 
     cli::cli_abort(
-      c("x" = "{.field Query} names must be {.strong unique}",
+      c("x" = "{.field Query} field names must be {.strong unique}",
         "!" = "Field{?s} {.field {n}} appea{?rs/rs/r} multiple times."),
       call  = call)
   }
@@ -32,7 +32,7 @@ check_all_named <- function(x, call = rlang::caller_env()) {
 
     cli::cli_abort(
       c("x" = "{.field Query} values must be {.strong named}.",
-        "!" = "Unnamed value{?s}: {.field {x[idx]}}."),
+        "!" = "Unnamed value{?s}: {.val {x[idx]}}."),
       call  = call)
   }
 }
@@ -49,7 +49,7 @@ check_group_lengths <- function(x, g, call = rlang::caller_env()) {
 
     cli::cli_abort(
       c("x" = "Query {.field groups} must have {.emph more than 1} {.field member}.",
-        "!" = "Invalid group{?s} {.field {bad}}."),
+        "!" = "Invalid group{?s}: {.field {bad}}."),
       call  = call)
   }
 }
@@ -63,8 +63,8 @@ check_members_unique <- function(x, call = rlang::caller_env()) {
     i <- collapse::fduplicated(x)
 
     cli::cli_abort(
-      c("x" = "Query {.field group members} must be {.emph unique}.",
-        "!" = "Member{?s} {.field {x[i]}} appea{?rs/r} in multiple groups."),
+      c("x" = "Group {.field members} must be {.emph unique}.",
+        "!" = "Member{?s} {.val {x[i]}} appea{?rs/r} multiple times."),
       call  = call)
   }
 }
@@ -79,7 +79,7 @@ check_members_valid_params <- function(x, p, call = rlang::caller_env()) {
 
     cli::cli_abort(
       c("x" = "Group {.field members} must match a {.field field} name.",
-        "!" = "Member{?s} {.val {bad}} ha{?ve/s} no matc{?hes/h}."),
+        "!" = "Invalid member{?s}: {.val {bad}}."),
       call  = call)
   }
 }
@@ -98,7 +98,7 @@ check_members_year <- function(x, call = rlang::caller_env()) {
 check_mods_year <- function(x, call = rlang::caller_env()) {
   # check mods for "year"
   if (any(rlang::names2(x) %in% "year")) {
-    cli::cli_abort(c("x" = "{.val year} cannot be used with a query {.cls modifier}."),
+    cli::cli_abort(c("x" = "{.var year} cannot be used with a {.cls modifier}."),
                    call  = call)
   }
 }
