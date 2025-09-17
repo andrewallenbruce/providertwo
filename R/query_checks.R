@@ -8,6 +8,17 @@ check_query_dots <- function(..., call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
+check_query_year <- function(x, call = rlang::caller_env()) {
+
+  if (is_mod(x)) {
+    cli::cli_abort(
+      c("x" = "{.var year} cannot be used with a {.cls modifier}."),
+      call  = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
 check_names_unique <- function(x, call = rlang::caller_env()) {
 
   if (collapse::any_duplicated(rlang::names2(x[rlang::have_name(x)]))) {
@@ -24,7 +35,7 @@ check_names_unique <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_all_named <- function(x, call = rlang::caller_env()) {
+check_named <- function(x, call = rlang::caller_env()) {
 
   if (!rlang::is_named(x)) {
 
@@ -35,6 +46,14 @@ check_all_named <- function(x, call = rlang::caller_env()) {
         "!" = "Unnamed value{?s}: {.val {x[idx]}}."),
       call  = call)
   }
+}
+
+#' @autoglobal
+#' @noRd
+check_params <- function(x, call = rlang::caller_env()) {
+  check_named(c(x$mods, x$bare), call = call)
+  check_names_unique(c(x$mods, x$bare), call = call)
+  check_query_year(x$year, call = call)
 }
 
 #' @autoglobal
@@ -71,7 +90,7 @@ check_members_unique <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_members_valid_params <- function(x, p, call = rlang::caller_env()) {
+check_members_valid <- function(x, p, call = rlang::caller_env()) {
   # check group members are param names
   if (!all(x %in% rlang::names2(p))) {
 
@@ -93,19 +112,11 @@ check_members_year <- function(x, call = rlang::caller_env()) {
   }
 }
 
-#' @autoglobal
-#' @noRd
-check_mods_year <- function(x, call = rlang::caller_env()) {
-  # check mods for "year"
-  if (any(rlang::names2(x) %in% "year")) {
-    cli::cli_abort(c("x" = "{.var year} cannot be used with a {.cls modifier}."),
-                   call  = call)
-  }
-}
 
 #' @autoglobal
 #' @noRd
-check_group_members <- function(x, call = rlang::caller_env()) {
+check_members <- function(x, call = rlang::caller_env()) {
+
   # TODO no duplicate groups
   # TODO no nested groups
 
@@ -116,8 +127,6 @@ check_group_members <- function(x, call = rlang::caller_env()) {
   m <- purrr::list_c(g)
 
   check_members_year(m, call = call)
-
   check_members_unique(m, call = call)
-
-  check_members_valid_params(m, c(x$bare, x$mods), call = call)
+  check_members_valid(m, c(x$bare, x$mods), call = call)
 }

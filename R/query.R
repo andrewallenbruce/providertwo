@@ -98,28 +98,26 @@ query2 <- function(..., call = rlang::caller_env()) {
 
   x <- rlang::list2(
     grps = purrr::keep(x, is_junc),
-    mods = purrr::keep(x, is_mod),
+    mods = is_year(purrr::keep(x, is_mod), negate = TRUE),
     bare = is_year(purrr::keep(x, is_bare), negate = TRUE),
     !!!is_year(x))
 
-  check_all_named(c(x$mods, x$bare), call = call)
-  check_names_unique(c(x$mods, x$bare, x$year), call = call)
-  check_mods_year(x$mods, call = call)
+  check_params(x, call = call)
 
   x$params <- eval_params(x$mods, x$bare)
 
   if (!empty(x$grps)) {
 
-    check_group_members(x, call = call)
+    check_members(x, call = call)
 
-    x$grps  <- eval_groups(x$grps)
-    grp_idx <- group_index(x$grps, x$params)
+    x$grps <- eval_groups(x$grps)
+    x$idx  <- group_index(x$grps, x$params)
 
-    member_of <- purrr::imap(grp_idx, function(idx, nm)
+    member_of <- purrr::imap(x$idx, function(idx, nm)
       map_members(x$params, idx, nm)) |>
       purrr::list_flatten(name_spec = "{inner}")
 
-    x$params[unlist(grp_idx, use.names = FALSE)] <- member_of
+    x$params[unlist(x$idx, use.names = FALSE)] <- member_of
   }
 
   if (!empty(x$year)) {

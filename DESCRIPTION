@@ -74,6 +74,7 @@ Collate:
     'query_generate2.R'
     'query_groupers.R'
     'query_match.R'
+    'query_match2.R'
     'query_modifiers.R'
     'query_standardize.R'
     'query_utils.R'

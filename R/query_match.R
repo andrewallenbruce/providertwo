@@ -26,24 +26,6 @@ match_query <- function(obj, qry) {
 
 #' @autoglobal
 #' @noRd
-match_queryG <- function(obj, qry) {
-
-  param   <- not_year(qry)
-  p_name  <- rlang::names2(param)
-  field   <- keys(obj)
-  clean   <- clean_names(field)
-
-  rlang::list2(
-    !!!purrr::map(qry@groups, S7::prop, "conjunction"),
-    !!!rlang::set_names(
-      param[qmatch(clean, p_name)],
-      field[sort(qmatch(p_name, clean))]
-      )
-    )
-}
-
-#' @autoglobal
-#' @noRd
 select_years <- function(obj, qry) {
   x <- list(
     idx   = seq_along(obj@year),
