@@ -4,17 +4,14 @@
 #' Helpers for use in constructing conditions in queries.
 #'
 #' @details
-#' Query modifiers are a small DSL for use in constructing query conditions,
-#' in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
+#' Query modifiers are part of a small DSL for use in query construction, in the [JSON-API](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering) format.
 #'
 #' @param x input
 #' @param ... input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
 #' @name query_modifier
-#' @returns An S7 `<class_modifier>` or `<class_junction>` object.
-#' @source [URL Living Standard](https://url.spec.whatwg.org/#concept-url-query)
+#' @returns An S7 `<class_modifier>` object.
 #' @source [JSON-API: Query Parameters](https://jsonapi.org/format/#query-parameters)
-#' @source [JSON-API: Query Parameters Details](https://jsonapi.org/format/#appendix-query-details)
 NULL
 
 # query_modifier
@@ -34,62 +31,28 @@ class_modifier <- S7::new_class(
   }
 )
 
-# query_group
-#' @noRd
-#' @autoglobal
-class_junction <- S7::new_class(
-  name       = "class_junction",
-  package    = NULL,
-  properties = list(
-    conjunction = S7::class_character,
-    members     = S7::class_character)
-)
-
 #' @autoglobal
 #' @noRd
 is_modifier <- function(x) {
   S7::S7_inherits(x, class_modifier)
 }
 
-#' @autoglobal
-#' @noRd
-is_junction <- function(x) {
-  S7::S7_inherits(x, class_junction)
-}
-
 #' @rdname query_modifier
-#' @examples
-#' and("foo", "bar")
+#' @examplesIf interactive()
+#' equal(1000)
 #' @autoglobal
+#' @keywords internal
 #' @export
-and <- S7::new_class(
-  name        = "and",
+equal <- S7::new_class(
+  name        = "equal",
   package     = NULL,
-  parent      = class_junction,
-  constructor = function(...) {
-    S7::new_object(
-      class_junction(),
-      conjunction = "AND",
-      members     = c(...)
-    )
-  }
-)
+  parent      = class_modifier,
+  constructor = function(x) {
 
-#' @rdname query_modifier
-#' @examples
-#' or("foo", "bar")
-#' @autoglobal
-#' @export
-or <- S7::new_class(
-  name        = "or",
-  package     = NULL,
-  parent      = class_junction,
-  constructor = function(...) {
     S7::new_object(
-      class_junction(),
-      conjunction = "OR",
-      members     = c(...)
-    )
+      class_modifier(),
+      operator = "=",
+      value    = x)
   }
 )
 
@@ -130,25 +93,6 @@ none_of <- S7::new_class(
 )
 
 #' @rdname query_modifier
-#' @examplesIf interactive()
-#' equal(1000)
-#' @autoglobal
-#' @keywords internal
-#' @export
-equal <- S7::new_class(
-  name        = "equal",
-  package     = NULL,
-  parent      = class_modifier,
-  constructor = function(x) {
-
-    S7::new_object(
-      class_modifier(),
-      operator = "=",
-      value    = x)
-  }
-)
-
-#' @rdname query_modifier
 #' @examples
 #' not_equal(10000.23)
 #' @autoglobal
@@ -169,8 +113,6 @@ not_equal <- S7::new_class(
 #' @rdname query_modifier
 #' @examples
 #' between(1000, 1100, 125)
-#' between(0.125, 2, 0.5)
-#' between(0.95, 0.67, 0.75)
 #' @autoglobal
 #' @export
 between <- S7::new_class(
@@ -192,8 +134,6 @@ between <- S7::new_class(
 
 #' @rdname query_modifier
 #' @examples
-#' not_between(1000, 1100, 125)
-#' not_between(0.125, 2, 0.5)
 #' not_between(0.95, 0.67, 0.75)
 #' @autoglobal
 #' @export
@@ -312,11 +252,11 @@ contains <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
-#' @examples
+# @rdname query_modifier
+#' @examplesIf interactive()
 #' like("baz")
 #' @autoglobal
-#' @export
+#' @noRd
 like <- S7::new_class(
   name        = "like",
   package     = NULL,

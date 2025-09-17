@@ -2,11 +2,9 @@
 % Please edit documentation in R/query_modifiers.R
 \name{query_modifier}
 \alias{query_modifier}
-\alias{and}
-\alias{or}
+\alias{equal}
 \alias{any_of}
 \alias{none_of}
-\alias{equal}
 \alias{not_equal}
 \alias{between}
 \alias{not_between}
@@ -15,25 +13,16 @@
 \alias{starts_with}
 \alias{ends_with}
 \alias{contains}
-\alias{like}
 \title{Query Modifiers}
 \source{
-\href{https://url.spec.whatwg.org/#concept-url-query}{URL Living Standard}
-
 \href{https://jsonapi.org/format/#query-parameters}{JSON-API: Query Parameters}
-
-\href{https://jsonapi.org/format/#appendix-query-details}{JSON-API: Query Parameters Details}
 }
 \usage{
-and(...)
-
-or(...)
+equal(x)
 
 any_of(...)
 
 none_of(...)
-
-equal(x)
 
 not_equal(x)
 
@@ -50,40 +39,31 @@ starts_with(x)
 ends_with(x)
 
 contains(x)
-
-like(x)
 }
 \arguments{
-\item{...}{input}
-
 \item{x}{input}
+
+\item{...}{input}
 
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
-An S7 \verb{<class_modifier>} or \verb{<class_junction>} object.
+An S7 \verb{<class_modifier>} object.
 }
 \description{
 Helpers for use in constructing conditions in queries.
 }
 \details{
-Query modifiers are a small DSL for use in constructing query conditions,
-in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
+Query modifiers are part of a small DSL for use in query construction, in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
-and("foo", "bar")
-or("foo", "bar")
-any_of(state.abb[10:15])
-none_of(state.abb[1:3])
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 equal(1000)
 \dontshow{\}) # examplesIf}
+any_of(state.abb[10:15])
+none_of(state.abb[1:3])
 not_equal(10000.23)
 between(1000, 1100, 125)
-between(0.125, 2, 0.5)
-between(0.95, 0.67, 0.75)
-not_between(1000, 1100, 125)
-not_between(0.125, 2, 0.5)
 not_between(0.95, 0.67, 0.75)
 greater_than(1000)
 greater_than(0.125, or_equal = TRUE)
@@ -92,6 +72,5 @@ less_than(0.125, or_equal = TRUE)
 starts_with("foo")
 ends_with("bar")
 contains("baz")
-like("baz")
 }
 \keyword{internal}

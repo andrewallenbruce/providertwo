@@ -2,16 +2,16 @@
 % Please edit documentation in R/query.R
 \name{query}
 \alias{query}
-\alias{query3}
+\alias{query2}
 \title{Create a Query Object}
 \usage{
 query(...)
 
-query3(..., call = rlang::caller_env())
+query2(..., call = rlang::caller_env())
 }
 \arguments{
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Named conditions
-to filter results by. See Details.}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> Key-value pairs of query parameters.
+See Details.}
 
 \item{call}{The environment from which the function is called.}
 }
@@ -31,15 +31,15 @@ query(
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
-try(query3()) # cannot be empty
-try(query3(1)) # must be named
-try(query3(a = 1, a = 2)) # names must be unique
-try(query3(a = 1, or("a"))) # group needs more than one member
-try(query3(a = 1, or("a", "year"))) # year cannot be grouped
-try(query3(year = any_of(2000:2020))) # year cannot be modified
-try(query3(ccn = "01256", and("ccn", "npii")))
+try(query2()) # cannot be empty
+try(query2(1)) # must be named
+try(query2(a = 1, a = 2)) # names must be unique
+try(query2(a = 1, or("a"))) # group needs more than one member
+try(query2(a = 1, or("a", "year"))) # year cannot be grouped
+try(query2(year = any_of(2000:2020))) # year cannot be modified
+try(query2(ccn = "01256", and("ccn", "npii")))
 
-query3(
+query2(
   first_name  = starts_with("And"),
   middle_name = NULL,
   last_name   = contains("J"),
@@ -49,13 +49,13 @@ query3(
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
 
-query3(
+query2(
   year  = 2018:2025,
   state = any_of("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),
   or("state", "state_owner"))
 
-query3(
+query2(
   year = 2022:2024,
   state = any_of("GA", "NY"),
   enrlmt_id = "I20040309000221",

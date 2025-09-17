@@ -11,10 +11,14 @@ class_query <- S7::new_class(
 )
 
 #' Create a Query Object
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Named conditions
-#'  to filter results by. See Details.
+#'
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> Key-value pairs of query parameters.
+#'   See Details.
+#'
 #' @param call The environment from which the function is called.
+#'
 #' @returns S7 `<class_query>` object.
+#'
 #' @name query
 NULL
 
@@ -45,15 +49,15 @@ query <- function(...) {
 
 #' @rdname query
 #' @examples
-#' try(query3()) # cannot be empty
-#' try(query3(1)) # must be named
-#' try(query3(a = 1, a = 2)) # names must be unique
-#' try(query3(a = 1, or("a"))) # group needs more than one member
-#' try(query3(a = 1, or("a", "year"))) # year cannot be grouped
-#' try(query3(year = any_of(2000:2020))) # year cannot be modified
-#' try(query3(ccn = "01256", and("ccn", "npii")))
+#' try(query2()) # cannot be empty
+#' try(query2(1)) # must be named
+#' try(query2(a = 1, a = 2)) # names must be unique
+#' try(query2(a = 1, or("a"))) # group needs more than one member
+#' try(query2(a = 1, or("a", "year"))) # year cannot be grouped
+#' try(query2(year = any_of(2000:2020))) # year cannot be modified
+#' try(query2(ccn = "01256", and("ccn", "npii")))
 #'
-#' query3(
+#' query2(
 #'   first_name  = starts_with("And"),
 #'   middle_name = NULL,
 #'   last_name   = contains("J"),
@@ -63,13 +67,13 @@ query <- function(...) {
 #'   rate        = between(0.45, 0.67),
 #'   year        = 2014:2025)
 #'
-#' query3(
+#' query2(
 #'   year  = 2018:2025,
 #'   state = any_of("CA", "GA", "NY"),
 #'   state_owner = c("GA", "MD"),
 #'   or("state", "state_owner"))
 #'
-#' query3(
+#' query2(
 #'   year = 2022:2024,
 #'   state = any_of("GA", "NY"),
 #'   enrlmt_id = "I20040309000221",
@@ -85,7 +89,7 @@ query <- function(...) {
 #'   or("provider_name", "provider_first_name"))
 #' @autoglobal
 #' @export
-query3 <- function(..., call = rlang::caller_env()) {
+query2 <- function(..., call = rlang::caller_env()) {
 
   check_query_dots(..., call = call)
 

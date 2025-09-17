@@ -1,4 +1,4 @@
-# x <- exprs(
+# x <- query2(
 #   first_name  = starts_with("And"),
 #   middle_name = NULL,
 #   last_name   = contains("J"),
@@ -9,9 +9,7 @@
 #   year        = 2014:2025,
 #   or("first_name", "last_name"),
 #   and("ccn", "rate")
-# ) |>
-#   purrr::compact()
-#
+# )
 #
 # x |>
 #   props("params") |>
@@ -40,7 +38,7 @@ query_care_ARG <- function(args) {
     V <- x@value
     O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
     N <- gsub(" ", "+", N, fixed = TRUE)
-    G <- if (rlang::is_empty(x@member_of)) NULL else x@member_of
+    G <- if (empty(x@member_of)) NULL else x@member_of
 
     c(
       `if`(
@@ -81,14 +79,14 @@ query_care_GRP <- function(grps) {
 
 #' @autoglobal
 #' @noRd
-query_default_GRP <- function(args) {
+query_default_ARG <- function(args) {
 
   purrr::imap(args, function(x, N) {
 
     V <- x@value
     O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
     N <- gsub(" ", "+", N, fixed = TRUE)
-    G <- if (rlang::is_empty(x@member_of)) NULL else x@member_of
+    G <- if (empty(x@member_of)) NULL else x@member_of
 
     c(
       `if`(
