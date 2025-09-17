@@ -93,7 +93,7 @@ query2 <- function(..., call = rlang::caller_env()) {
 
   check_query_dots(..., call = call)
 
-  x <- rlang::enexprs(...) |>
+  x <- rlang::enexprs(..., .ignore_null = "all") |>
     purrr::compact()
 
   x <- rlang::list2(

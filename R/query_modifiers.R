@@ -41,7 +41,6 @@ is_modifier <- function(x) {
 #' @examplesIf interactive()
 #' equal(1000)
 #' @autoglobal
-#' @keywords internal
 #' @export
 equal <- S7::new_class(
   name        = "equal",

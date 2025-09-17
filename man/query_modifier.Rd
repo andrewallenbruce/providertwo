@@ -73,4 +73,3 @@ starts_with("foo")
 ends_with("bar")
 contains("baz")
 }
-\keyword{internal}

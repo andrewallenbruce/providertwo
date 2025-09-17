@@ -1,7 +1,12 @@
 #' @autoglobal
 #' @noRd
-as_equal <- function(x) {
-  purrr::map(x, function(i) str2lang(paste0("equal(", deparse1(i), ")")))
+as_default_mod <- function(x) {
+
+  len <- cheapr::list_lengths(
+    purrr::map(x, function(x) as.character(x)[-1])) > 1L
+
+  purrr::map2(x, len, function(i, L)
+    str2lang(paste0(if (L) "any_of(" else "equal(", deparse1(i), ")")))
 }
 
 #' @autoglobal
@@ -31,7 +36,7 @@ eval_groups <- function(x) {
 #' @autoglobal
 #' @noRd
 eval_params <- function(mods, bare) {
-  map_eval(rlang::list2(!!!mods, !!!as_equal(bare)))
+  map_eval(rlang::list2(!!!mods, !!!as_default_mod(bare)))
 }
 #' @autoglobal
 #' @noRd
