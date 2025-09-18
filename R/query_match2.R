@@ -1,84 +1,75 @@
 #' @autoglobal
 #' @noRd
-match_queryG <- function(obj, qry) {
+match_query_G <- function(obj, qry) {
 
-  param   <- not_year(qry)
-  p_name  <- rlang::names2(param)
-  field   <- keys(obj)
-  clean   <- clean_names(field)
+  pnames <- rlang::names2(qry@params)
+  clean  <- clean_names(obj@fields@keys)
 
-  rlang::list2(
-    !!!purrr::map(qry@groups, S7::prop, "conjunction"),
-    !!!rlang::set_names(
-      param[qmatch(clean, p_name)],
-      field[sort(qmatch(p_name, clean))]
+  cheapr::list_combine(
+    list(group = get_conjunctions(qry@groups)),
+    rlang::set_names(
+      qry@params[qmatch(clean, pnames)],
+      obj@fields@keys[sort(qmatch(pnames, clean))]
     )
   )
 }
 
 #' @autoglobal
 #' @noRd
-select_yearsG <- function(obj, qry) {
+select_years_2G <- function(obj, qry) {
+
   x <- list(
     idx   = seq_along(obj@year),
     year  = obj@year,
     id    = obj@identifier,
-    field = keys(obj))
+    field = obj@fields@keys)
 
-  if ("year" %!in_% param_names(qry)) {
+  if (empty(qry@year)) {
     return(x)
   }
 
-  idx <- cheapr::which_(obj@year %in_% params(qry)$year)
+  x <- cheapr::list_modify(x,
+    list(idx = obj@year %iin% qry@year))
 
-  if (rlang::is_empty(idx)) {
+  if (empty(x$idx)) {
     return(x)
   }
 
-  list(idx   = idx,
-       year  = obj@year[idx],
-       id    = obj@identifier[idx],
-       field = keys(obj)[idx])
+  cheapr::list_modify(x,
+    list(
+      year  = obj@year[x$idx],
+      id    = obj@identifier[x$idx],
+      field = obj@fields@keys[x$idx]))
 }
 
 
 #' @autoglobal
 #' @noRd
-match_query2G <- function(obj, qry) {
+match_query_2G <- function(obj, qry) {
 
-  x <- select_yearsG(obj, qry)
-
-  if (identical("year", param_names(qry))) {
-    return(x)
+  if (empty(qry@params)) {
+    return(select_years_2G(obj, qry))
   }
 
-  qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
-  param <- not_year(qry)
+  x <- select_years_2G(obj, qry)
 
-  df <- purrr::imap(x$field, function(x, i) {
-    cheapr::new_df(year = i, field = x)
-  }) |>
+  df <- purrr::imap(
+    x$field, function(x, i)
+      cheapr::new_df(year = i, field = x)) |>
     purrr::list_rbind() |>
     collapse::mtt(clean = clean_names(field)) |>
-    collapse::sbt(clean %in_% rlang::names2(param)) |>
-    collapse::mtt(qdx = qdx[clean])
+    collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
+    collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
 
-  x <- list(
-    idx   = x$idx,
-    year  = x$year,
-    id    = x$id,
-    field = df
-  )
-
-  x$field$qdx <- unname(x$field$qdx)
-
-  fd <- purrr::map(
-    collapse::funique(x$field$year), function(yr) {
+  df <- purrr::map(
+    x$year, function(yr)
       rlang::set_names(
-        qry@params[x$field[x$field$year == yr, ]$qdx],
-        x$field[x$field$year == yr, ]$field)
-    }) |>
-    rlang::set_names(collapse::funique(x$field$year))
+        qry@params[df[df$year == yr, ]$qdx],
+        df[df$year == yr, ]$field)) |>
+    rlang::set_names(x$year)
 
-  cheapr::list_modify(x, list(field = fd))
+  cheapr::list_modify(x,
+    list(
+      field = df,
+      group = get_conjunctions(qry@groups)))
 }

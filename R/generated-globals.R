@@ -16,7 +16,7 @@ utils::globalVariables(c(
   "category",
   # <match_query2>
   # <match_dict2>
-  # <match_query2G>
+  # <match_query_2G>
   "clean",
   # <npi_nppes>
   # <.nppes_multi_npi>
@@ -51,7 +51,7 @@ utils::globalVariables(c(
   # <dict_field>
   # <match_query2>
   # <match_dict2>
-  # <match_query2G>
+  # <match_query_2G>
   "field",
   # <tidy_resources>
   "fileSize",

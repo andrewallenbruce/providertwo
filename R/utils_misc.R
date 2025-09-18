@@ -2,6 +2,12 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+set_along <- function(x) {
+  rlang::set_names(seq_along(x), rlang::names2(x))
+}
+
+#' @autoglobal
+#' @noRd
 empty <- function(x) {
   rlang::is_empty(x)
 }
