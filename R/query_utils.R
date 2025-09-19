@@ -11,7 +11,7 @@ as_default_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
-get_conjunctions <- function(x) {
+get_junctions <- function(x) {
   purrr::map(x, function(i) S7::prop(i, "conjunction"))
 }
 

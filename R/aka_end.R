@@ -1,7 +1,6 @@
 #' @autoglobal
 #' @noRd
-rlang::on_load({
-
+make_aka <- function() {
   # aka <- new.env(parent = emptyenv())
   aka <- list()
 
@@ -474,23 +473,20 @@ rlang::on_load({
     )
   )
 
-  aka$all <- purrr::list_flatten(
-    purrr::list_c(aka),
-    name_spec = "{inner}")
+  aka$all <- purrr::list_flatten(purrr::list_c(aka), name_spec = "{inner}")
 
-  aka$nms <- init(aka$all)
+  aka$nms <- rlang::names2(aka$all)
 
   aka$clg <- list(
-    care = init(purrr::list_c(aka$care)),
-    prov = init(purrr::list_c(aka$prov)),
-    open = init(purrr::list_c(aka$open)),
-    caid = init(purrr::list_c(aka$caid)),
-    hgov = init(purrr::list_c(aka$hgov))
-  )
+    care = purrr::list_c(aka$care),
+    prov = purrr::list_c(aka$prov),
+    open = purrr::list_c(aka$open),
+    caid = purrr::list_c(aka$caid),
+    hgov = purrr::list_c(aka$hgov))
 
   aka$pnt <- list(
-    current  = init(purrr::list_c(get_elem(aka, "current"))),
-    temporal = init(purrr::list_c(get_elem(aka, "temporal")))
-    )
+    current  = purrr::list_c(collapse::get_elem(aka, "current")),
+    temporal = purrr::list_c(collapse::get_elem(aka, "temporal")))
 
-})
+  aka
+}

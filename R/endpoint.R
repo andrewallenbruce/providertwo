@@ -140,6 +140,10 @@ as_care <- function(x) {
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {
+
+  check_required(alias)
+  check_endpoint(alias)
+
   x <- alias_lookup(alias)
 
   switch(
@@ -154,7 +158,7 @@ endpoint <- function(alias) {
 
 #' @rdname load_endpoint
 #' @examples
-#' #collection("unwind")
+#' collection("unwind")
 #' try(collection(c("asc_facility", "enterprise")))
 #' try(collection("asc_facility"))
 #' @autoglobal
@@ -167,7 +171,7 @@ collection <- function(alias) {
   x <- rex_collect(alias)
 
   class_collection(
-    title   = x$name,
+    title   = x$title,
     members = names_map(x$alias, endpoint))
 }
 
@@ -182,6 +186,7 @@ group <- function(..., .title = NULL) {
 
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
 
+  check_required(alias)
   check_group(alias)
 
   class_group(

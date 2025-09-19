@@ -21,6 +21,26 @@ check_alias_results <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
+check_endpoint <- function(alias, call = rlang::caller_env()) {
+  if (length(alias) > 1L) {
+    cli::cli_abort(c("x" = "Only one {.cls endpoint} can be loaded at a time."),
+                   call = call)
+  }
+
+  if (!is_alias(alias)) {
+    msg <- c("x" = "{.val {alias}} is not an {.cls endpoint} alias.")
+
+    if (is_collect(alias)) {
+      cli::cli_abort(c(msg, "!" = "{.val {alias}} is a {.cls collection} alias."),
+                     call = call)
+    }
+    cli::cli_abort(c(msg), call = call)
+  }
+}
+
+
+#' @autoglobal
+#' @noRd
 check_collection <- function(alias, call = rlang::caller_env()) {
   if (length(alias) > 1L) {
     cli::cli_abort(
@@ -30,7 +50,7 @@ check_collection <- function(alias, call = rlang::caller_env()) {
 
   if (!is_collect(alias)) {
     cli::cli_abort(
-      c("x" = "{.val {alias}} is not a {.cls collection}."),
+      c("x" = "{.val {alias}} is not a {.cls collection} alias."),
       call = call)
   }
 }
@@ -40,7 +60,7 @@ check_collection <- function(alias, call = rlang::caller_env()) {
 check_group <- function(alias, call = rlang::caller_env()) {
 
   avec  <- unlist(alias, use.names = FALSE)
-  msg   <- c("x" = "A {.cls group} must contain at least two {.cls endpoints}.")
+  msg   <- c("x" = "A {.cls group} must contain more than one {.cls endpoint}.")
 
   if (rlang::is_empty(alias) || !any(nzchar(alias))) {
     cli::cli_abort(msg, call = call)

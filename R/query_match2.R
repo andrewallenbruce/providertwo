@@ -6,7 +6,7 @@ match_query_G <- function(obj, qry) {
   clean  <- clean_names(obj@fields@keys)
 
   cheapr::list_combine(
-    list(group = get_conjunctions(qry@groups)),
+    list(group = get_junctions(qry@groups)),
     rlang::set_names(
       qry@params[qmatch(clean, pnames)],
       obj@fields@keys[sort(qmatch(pnames, clean))]
@@ -71,5 +71,5 @@ match_query_2G <- function(obj, qry) {
   cheapr::list_modify(x,
     list(
       field = df,
-      group = get_conjunctions(qry@groups)))
+      group = get_junctions(qry@groups)))
 }
