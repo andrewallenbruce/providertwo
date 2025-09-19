@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9503 (2025-09-19)
+
+* streamlining of `alias` implementation
+* new query matching implementation
+* further query check work
+
+
 # providertwo 0.0.0.9502 (2025-09-17)
 
 * `as_equal` -> `as_default_mod`: to handle values of length greater than 1
