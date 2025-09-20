@@ -36,7 +36,7 @@ query_care_ARG <- function(args) {
   purrr::imap(args, function(x, N) {
 
     V <- x@value
-    O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
+    O <- tolower(gsub(" ", "+", x@operator, fixed = TRUE))
     N <- gsub(" ", "+", N, fixed = TRUE)
     G <- if (empty(x@member_of)) NULL else x@member_of
 

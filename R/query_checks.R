@@ -1,5 +1,18 @@
 #' @autoglobal
 #' @noRd
+check_class_query <- function(x, call = rlang::caller_env()) {
+  if (!S7::S7_inherits(x, class_query)) {
+    cli::cli_abort(c(
+      "x" = paste0(
+        "{.field qry} must be of {.cls class_query}, ",
+        "not {.obj_type_friendly {x}}."
+      )
+    ), call = call)
+  }
+}
+
+#' @autoglobal
+#' @noRd
 check_query_dots <- function(..., call = rlang::caller_env()) {
   if (...length() == 0L) {
     cli::cli_abort(c("x" = "{.field Query} cannot be {.strong empty}."), call = call)

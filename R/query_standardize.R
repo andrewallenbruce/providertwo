@@ -54,13 +54,7 @@
 #' @autoglobal
 #' @export
 standardize <- S7::new_generic("standardize", c("obj", "qry"), function(obj, qry) {
-  if (!S7::S7_inherits(qry, class_query)) {
-    cli::cli_abort(c("x" = paste0(
-      "{.field qry} must be of {.cls class_query}, ",
-      "not {.obj_type_friendly {qry}}."
-    )),
-    call = rlang::caller_env())
-  }
+  check_class_query(qry)
   S7::S7_dispatch()
 })
 
@@ -96,7 +90,7 @@ S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry)
   if ("year" %in_% param_names(qry)) {
     idx <- cheapr::which_(obj@year %in_% params(qry)$year)
 
-    if (!rlang::is_empty(idx)) {
+    if (!empty(idx)) {
       x <- list(
         idx   = idx,
         year  = obj@year[idx],

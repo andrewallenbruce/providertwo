@@ -55,13 +55,7 @@
 #' @autoglobal
 #' @export
 assemble <- S7::new_generic("assemble", c("obj", "qry"), function(obj, qry) {
-  if (!S7::S7_inherits(qry, class_query)) {
-    cli::cli_abort(c("x" = paste0(
-      "{.field qry} must be of {.cls class_query}, ",
-      "not {.obj_type_friendly {qry}}."
-    )),
-    call = rlang::caller_env())
-  }
+  check_class_query(qry)
   S7::S7_dispatch()
 })
 
@@ -78,7 +72,7 @@ S7::method(assemble, list(class_current, class_query)) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
-  if (rlang::is_empty(p)) {
+  if (empty(p)) {
     return(obj@identifier)
   }
 
@@ -90,7 +84,7 @@ S7::method(assemble, list(care_current, class_query)) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
-  if (rlang::is_empty(p)) {
+  if (empty(p)) {
     return(obj@identifier)
   }
 
