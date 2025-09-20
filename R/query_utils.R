@@ -35,6 +35,20 @@ map_members <- function(x, index, name) {
 
 #' @autoglobal
 #' @noRd
+are_empty <- function(x) {
+  purrr::map(x, rlang::is_empty) |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+are_not_empty <- function(x) {
+  purrr::map(x, Negate(rlang::is_empty)) |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
 eval_groups <- function(x) {
   rlang::set_names(map_eval(x), paste0("g", seq_along(x)))
 }

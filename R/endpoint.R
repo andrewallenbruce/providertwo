@@ -137,6 +137,9 @@ as_care <- function(x) {
 #' @examples
 #' endpoint("dial_facility")
 #' endpoint("man_state")
+#' try(endpoint(c("asc_facility", "enterprise")))
+#' try(endpoint("unwind"))
+#' try(endpoint("ex"))
 #' @autoglobal
 #' @export
 endpoint <- function(alias) {

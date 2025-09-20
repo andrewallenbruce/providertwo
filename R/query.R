@@ -102,13 +102,13 @@ query2 <- function(..., call = rlang::caller_env()) {
     bare = is_year(purrr::keep(x, is_bare), negate = TRUE),
     !!!is_year(x))
 
-  check_params(x, call = call)
+  check_query_params(x, call = call)
 
   x$params <- eval_params(x$mods, x$bare)
 
   if (!empty(x$grps)) {
 
-    check_members(x, call = call)
+    check_query_members(x, call = call)
 
     x$grps <- eval_groups(x$grps)
     x$idx  <- group_index(x$grps, x$params)

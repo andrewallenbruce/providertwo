@@ -19,7 +19,7 @@ check_query_year <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_names_unique <- function(x, call = rlang::caller_env()) {
+check_query_names_unique <- function(x, call = rlang::caller_env()) {
 
   if (collapse::any_duplicated(rlang::names2(x[rlang::have_name(x)]))) {
 
@@ -35,11 +35,11 @@ check_names_unique <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_named <- function(x, call = rlang::caller_env()) {
+check_query_named <- function(x, call = rlang::caller_env()) {
 
-  if (!rlang::is_named(x)) {
+  if (!rlang::is_named(x) & any(are_not_empty(x))) {
 
-    idx <- !rlang::have_name(x)
+    idx <- !rlang::have_name(x) & are_not_empty(x)
 
     cli::cli_abort(
       c("x" = "{.field Query} values must be {.strong named}.",
@@ -50,15 +50,15 @@ check_named <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_params <- function(x, call = rlang::caller_env()) {
-  check_named(c(x$mods, x$bare), call = call)
-  check_names_unique(c(x$mods, x$bare), call = call)
+check_query_params <- function(x, call = rlang::caller_env()) {
+  check_query_named(c(x$mods, x$bare), call = call)
+  check_query_names_unique(c(x$mods, x$bare), call = call)
   check_query_year(x$year, call = call)
 }
 
 #' @autoglobal
 #' @noRd
-check_group_lengths <- function(x, g, call = rlang::caller_env()) {
+check_query_group_lengths <- function(x, g, call = rlang::caller_env()) {
   # check no empty/single-member groups
   if (any(cheapr::list_lengths(g) < 2L)) {
 
@@ -75,7 +75,7 @@ check_group_lengths <- function(x, g, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_members_unique <- function(x, call = rlang::caller_env()) {
+check_query_members_unique <- function(x, call = rlang::caller_env()) {
   # check no duplicate group members
   if (collapse::any_duplicated(x)) {
 
@@ -90,7 +90,7 @@ check_members_unique <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_members_valid <- function(x, p, call = rlang::caller_env()) {
+check_query_members_valid <- function(x, p, call = rlang::caller_env()) {
   # check group members are param names
   if (!all(x %in% rlang::names2(p))) {
 
@@ -105,7 +105,7 @@ check_members_valid <- function(x, p, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_members_year <- function(x, call = rlang::caller_env()) {
+check_query_members_year <- function(x, call = rlang::caller_env()) {
   # check no group member is "year"
   if ("year" %in% x) {
     cli::cli_abort(c("x" = "{.val year} cannot be a group member."), call  = call)
@@ -115,18 +115,18 @@ check_members_year <- function(x, call = rlang::caller_env()) {
 
 #' @autoglobal
 #' @noRd
-check_members <- function(x, call = rlang::caller_env()) {
+check_query_members <- function(x, call = rlang::caller_env()) {
 
   # TODO no duplicate groups
   # TODO no nested groups
 
   g <- purrr::map(x$grps, function(x) as.character(x)[-1])
 
-  check_group_lengths(x$grps, g, call = call)
+  check_query_group_lengths(x$grps, g, call = call)
 
   m <- purrr::list_c(g)
 
-  check_members_year(m, call = call)
-  check_members_unique(m, call = call)
-  check_members_valid(m, c(x$bare, x$mods), call = call)
+  check_query_members_year(m, call = call)
+  check_query_members_unique(m, call = call)
+  check_query_members_valid(m, c(x$bare, x$mods), call = call)
 }

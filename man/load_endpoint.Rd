@@ -37,6 +37,9 @@ raised.
 \examples{
 endpoint("dial_facility")
 endpoint("man_state")
+try(endpoint(c("asc_facility", "enterprise")))
+try(endpoint("unwind"))
+try(endpoint("ex"))
 collection("unwind")
 try(collection(c("asc_facility", "enterprise")))
 try(collection("asc_facility"))
