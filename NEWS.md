@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9505 (2025-09-20)
+
+* extracted `check_class_query` function
+
+
 # providertwo 0.0.0.9504 (2025-09-20)
 
 * fix: query returning wrong error (#21)
