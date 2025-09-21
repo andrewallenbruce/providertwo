@@ -68,7 +68,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
 <span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
@@ -110,14 +110,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ENRLMT_ID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "I20040309000221"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_listing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_listing$state</span>
@@ -134,7 +134,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="st">"GA"</span>,</span></span>
 <span class="r-in"><span>    city <span class="op">=</span> <span class="st">"Atlanta"</span>,</span></span>
@@ -245,7 +245,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2023</span>,</span></span>
 <span class="r-in"><span>    practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span>,</span></span>
@@ -309,7 +309,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"hc_quality"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"hc_quality"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="st">"Georgia"</span>, <span class="st">"Alabama"</span><span class="op">)</span>, year <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2023</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4</span>
@@ -359,7 +359,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="load_endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
