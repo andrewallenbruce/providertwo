@@ -1,5 +1,18 @@
 #' @noRd
 #' @autoglobal
+class_metadata <- S7::new_class(
+  name       = "class_metadata",
+  package    = NULL,
+  properties = list(
+    alias       = S7::class_character,
+    title       = S7::class_character,
+    modified    = S7::class_character,
+    resources   = S7::class_character
+    )
+  )
+
+#' @noRd
+#' @autoglobal
 class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
@@ -176,17 +189,27 @@ class_response <- S7::new_class(
   properties = list(
     alias    = S7::class_character,
     title    = S7::class_character,
-    param    = S7::new_union(NULL, S7::class_character, S7::class_list),
+    param    = S7::class_character | S7::class_list,
     year     = S7::class_integer,
     string   = S7::class_character,
     limit    = S7::class_integer,
     found    = S7::class_integer,
     total    = S7::class_integer,
-    pages    = S7::new_property(S7::class_integer,
-      getter = function(self) purrr::map_int(self@found, offset, limit = self@limit)),
-    error    = S7::new_property(S7::class_logical,
+    pages    = S7::new_property(
+      S7::class_integer,
       getter = function(self) {
-        if (is.null(self@param)) return(FALSE)
+        purrr::map_int(
+          self@found,
+          offset,
+          limit = self@limit)
+        }
+      ),
+    error    = S7::new_property(
+      S7::class_logical,
+      getter = function(self) {
+        if (is.null(self@param)) {
+          return(FALSE)
+          }
         self@found == self@total
       }
     )

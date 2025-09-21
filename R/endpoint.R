@@ -14,7 +14,7 @@
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> endpoint aliases to be grouped
 #' @param .title `<chr>` Group title. Defaults to `NULL`,
 #'    which will concatenate the aliases for the title.
-#' @name load_endpoint
+#' @name endpoint
 #' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
 NULL
 
@@ -42,7 +42,7 @@ c2 <- function(x) {
 
   flist(
     !!!c(x[names(x) %!=% "endpoints"]),
-    modified = max(yank(x$endpoints)$modified),
+    modified = collapse::fmax(yank(x$endpoints)$modified),
     !!!c(end))
 }
 
@@ -133,7 +133,7 @@ as_care <- function(x) {
     )
 }
 
-#' @rdname load_endpoint
+#' @rdname endpoint
 #' @examples
 #' endpoint("dial_facility")
 #' endpoint("man_state")
@@ -159,7 +159,7 @@ endpoint <- function(alias) {
   )
 }
 
-#' @rdname load_endpoint
+#' @rdname endpoint
 #' @examples
 #' collection("unwind")
 #' try(collection(c("asc_facility", "enterprise")))
@@ -178,7 +178,7 @@ collection <- function(alias) {
     members = names_map(x$alias, endpoint))
 }
 
-#' @rdname load_endpoint
+#' @rdname endpoint
 #' @examples
 #' group("asc_facility", "enterprise")
 #' try(group("asc_facility"))

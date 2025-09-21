@@ -46,23 +46,22 @@ S7::method(list_resources, class_care) <- function(obj) {
 }
 
 S7::method(list_resources, care_current) <- function(obj) {
-  meta(obj) |>
-    get_elem("resources") |>
-    map(request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    map(function(resp)
-      parse_string(resp, query = "/data") |>
-        tidy_resources()) |>
+  S7::prop(obj, "metadata") |>
+    collapse::get_elem("resources") |>
+    purrr::map(httr2::request) |>
+    httr2::req_perform_parallel(on_error = "continue") |>
+    httr2::resps_successes() |>
+    purrr::map(function(resp) parse_string(resp, query = "/data") |>
+    tidy_resources()) |>
     yank()
 }
 
 S7::method(list_resources, care_temporal) <- function(obj) {
-    meta(obj) |>
-    get_elem("resources") |>
-    map(request) |>
-    req_perform_parallel(on_error = "continue") |>
-    resps_successes() |>
-    resps_data(function(resp) parse_string(resp, query = "/data")) |>
+  S7::prop(obj, "metadata") |>
+    collapse::get_elem("resources") |>
+    purrr::map(httr2::request) |>
+    httr2::req_perform_parallel(on_error = "continue") |>
+    httr2::resps_successes() |>
+    httr2::resps_data(function(resp) parse_string(resp, query = "/data")) |>
     tidy_resources()
 }
