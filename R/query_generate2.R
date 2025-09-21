@@ -32,47 +32,50 @@
 #' @autoglobal
 #' @noRd
 query_care_ARG <- function(args) {
-
-  purrr::imap(args, function(x, N) {
-
-    V <- x@value
-    O <- tolower(gsub(" ", "+", x@operator, fixed = TRUE))
-    N <- gsub(" ", "+", N, fixed = TRUE)
-    G <- if (empty(x@member_of)) NULL else x@member_of
-
-    c(
-      `if`(
-        is.null(G),
-        NULL,
-        paste0("filter[<<i>>][condition][memberOf]=", G)),
-      paste0("filter[<<i>>][condition][path]=", N),
-      paste0("filter[<<i>>][condition][operator]=", O),
-      `if`(
-        length(V) > 1L,
-        paste0("filter[<<i>>][condition][value][", seq_along(V), "]=", V),
-        paste0("filter[<<i>>][condition][value]=", V)))
-  }) |>
+  args[rlang::names2(args) %!=% "group"] |>
+    purrr::imap(function(x, N) {
+      c(
+        if (empty(x@member_of)) {
+          NULL
+        } else {
+          paste0("filter[<<i>>][condition][memberOf]=", x@member_of)
+        },
+        paste0(
+          "filter[<<i>>][condition][path]=",
+          gsub(" ", "+", N, fixed = TRUE)
+        ),
+        paste0("filter[<<i>>][condition][operator]=", tolower(gsub(
+          " ", "+", x@operator, fixed = TRUE
+        ))),
+        if (length(x@value) > 1L) {
+          paste0("filter[<<i>>][condition][value][",
+                 seq_along(x@value),
+                 "]=",
+                 x@value)
+        } else {
+          paste0("filter[<<i>>][condition][value]=", x@value)
+        }
+      )
+    }) |>
     unname() |>
     purrr::imap(function(x, idx)
-      gsub(x           = x,
-           pattern     = "<<i>>",
-           replacement = idx,
-           fixed       = TRUE)
-    ) |>
+      gsub(
+        x           = x,
+        pattern     = "<<i>>",
+        replacement = idx,
+        fixed       = TRUE
+      )) |>
     purrr::map(paste0, collapse = "&")
 }
 
 #' @autoglobal
 #' @noRd
-query_care_GRP <- function(grps) {
+query_care_GRP <- function(args) {
+  args$group |>
+    purrr::imap(function(x, N) {
+      paste0("filter[", N, "][group][conjunction]=", x)
 
-  purrr::imap(grps, function(x, N) {
-
-    C <- tolower(x@conjunction)
-
-    paste0("filter[", N, "][group][conjunction]=", C)
-
-  }) |>
+    }) |>
     unname() |>
     purrr::map(paste0, collapse = "&")
 }
