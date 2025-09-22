@@ -9,6 +9,7 @@ utils::globalVariables(c(
   "accrualPeriodicity",
   # <npi_nppes>
   "address_purpose",
+  # <alias_column>
   # <dict_field>
   # <match_dict2>
   "alias",

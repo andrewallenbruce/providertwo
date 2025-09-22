@@ -80,7 +80,7 @@ as_current <- function(x) {
 
   class_current(
     identifier = x$identifier,
-    metadata   = get_meta(x),
+    metadata   = get_meta2(x),
     dimensions = i$dims,
     fields     = i$fields
   )
@@ -93,7 +93,7 @@ as_temporal <- function(x) {
 
   class_temporal(
     identifier = x$identifier,
-    metadata   = get_meta(x),
+    metadata   = get_meta2(x),
     dimensions = i$dims,
     fields     = i$fields,
     year       = x$year
@@ -120,12 +120,12 @@ as_care <- function(x) {
       x$point,
       current = care_current(
         identifier = x$identifier,
-        metadata   = get_meta(x),
+        metadata   = get_meta2(x),
         dimensions = i$dims,
         fields     = i$fields),
       temporal = care_temporal(
         identifier = x$identifier,
-        metadata   = get_meta(x),
+        metadata   = get_meta2(x),
         dimensions = i$dims,
         fields     = i$fields,
         year       = x$year)

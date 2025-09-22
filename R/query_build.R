@@ -3,11 +3,11 @@
 no_match_response <- function(obj) {
   cli_no_match(obj)
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
-    year   = date_year(meta(obj)$modified),
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
+    year   = date_year(obj@metadata@modified),
     string = obj@identifier,
-    total  = dims(obj)@total,
+    total  = obj@dimensions@total,
     found  = 0L,
     limit  = dims(obj)@limit
   )
@@ -18,14 +18,14 @@ no_match_response <- function(obj) {
 year_only_response <- function(p, obj) {
   cli_yr_only(obj)
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
     param  = p$field,
     year   = as.integer(p$year),
     string = p$id,
-    total  = dims(obj)@total[p$idx],
-    found  = dims(obj)@total[p$idx],
-    limit  = dims(obj)@limit
+    total  = obj@dimensions@total[p$idx],
+    found  = obj@dimensions@total[p$idx],
+    limit  = obj@dimensions@limit
   )
 }
 
@@ -107,18 +107,20 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   }
 
   p   <- generate_query(p)
-  url <- append_url(obj@identifier) |> collapse_query(p)
-  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
+  url <- append_url(obj@identifier) |>
+    collapse_query(p)
+  res <- map_perform_parallel(url, query = "count") |>
+    unlist(use.names = FALSE)
 
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
     param  = rlang::names2(p),
-    year   = date_year(meta(obj)$modified),
+    year   = date_year(obj@metadata@modified),
     string = url,
-    total  = dims(obj)@total,
+    total  = obj@dimensions@total,
     found  = res %||% 0L,
-    limit  = dims(obj)@limit
+    limit  = obj@dimensions@limit
   )
 }
 
@@ -131,18 +133,20 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   }
 
   p   <- generate_query(p, is_care = TRUE)
-  url <- append_url(obj@identifier, "stats") |> collapse_query(p)
-  res <- map_perform_parallel(url) |> yank("data")
+  url <- append_url(obj@identifier, "stats") |>
+    collapse_query(p)
+  res <- map_perform_parallel(url) |>
+    yank("data")
 
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
     param  = rlang::names2(p),
-    year   = date_year(meta(obj)$modified),
+    year   = date_year(obj@metadata@modified),
     string = url,
     total  = total_rows(res) %||% 0L,
     found  = found_rows(res) %||% 0L,
-    limit  = dims(obj)@limit
+    limit  = obj@dimensions@limit
   )
 }
 
@@ -163,22 +167,28 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   url <- paste0(append_url(p$id), "&")
   url <- glue::as_glue(url) + glue::as_glue(qst)
-  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
+  res <- map_perform_parallel(url, query = "count") |>
+    unlist(use.names = FALSE)
 
   cli_sum_found(
     res,
-    dims(obj)@total[p$idx],
-    purrr::map_int(res, offset, limit = dims(obj)@limit))
+    obj@dimensions@total[p$idx],
+    purrr::map_int(
+      res,
+      offset,
+      limit = obj@dimensions@limit
+      )
+    )
 
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
-    total  = dims(obj)@total[p$idx],
+    total  = obj@dimensions@total[p$idx],
     found  = res,
-    limit  = dims(obj)@limit
+    limit  = obj@dimensions@limit
   )
 }
 
@@ -209,18 +219,18 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     purrr::map_int(
       found_rows(res),
       offset,
-      limit = dims(obj)@limit
+      limit = obj@dimensions@limit
       )
     )
 
   class_response(
-    alias  = meta(obj)$alias,
-    title  = meta(obj)$title,
+    alias  = obj@metadata@alias,
+    title  = obj@metadata@title,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
     total  = total_rows(res),
     found  = found_rows(res),
-    limit  = dims(obj)@limit
+    limit  = obj@dimensions@limit
   )
 }

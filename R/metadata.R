@@ -1,20 +1,5 @@
 #' @noRd
 #' @autoglobal
-null_if <- function(x) {
-  if (is.null(x)) return(NULL)
-  if (is.na(x)) NULL else x
-}
-
-#' @noRd
-#' @autoglobal
-unlist_if <- function(x) {
-  if (is.null(x)) return(NULL)
-  if (is.na(x)) return(NULL)
-  if (is.list(x)) unlist(x, use.names = FALSE) else x
-}
-
-#' @noRd
-#' @autoglobal
 get_meta <- function(x) {
   purrr::compact(
     list(
@@ -33,5 +18,16 @@ get_meta <- function(x) {
       site        = x$site,
       references  = x$references
     )
+  )
+}
+
+#' @noRd
+#' @autoglobal
+get_meta2 <- function(x) {
+  class_metadata(
+    alias       = x$alias     %||% character(0L),
+    title       = x$title     %||% character(0L),
+    modified    = x$modified  %||% numeric(0L),
+    resources   = x$resources %||% character(0L)
   )
 }

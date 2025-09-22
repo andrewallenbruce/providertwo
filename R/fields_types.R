@@ -211,7 +211,10 @@ fields_exact <- list(
     "address_line_2",
     "adr_ln_2",
     "Second Line Street Address",
-    "ADDRESS LINE 2"
+    "ADDRESS LINE 2",
+    "ADDRESS LINE 2 - OWNER",
+    "Rndrng_Prvdr_St2",
+    "Rfrg_Prvdr_St2"
     ),
 
   state = c(
@@ -296,6 +299,7 @@ fields_exact <- list(
     "rateexpirationdate"
     ),
   process_date = c("process_date"),
+  work_date = c("WorkDate"),
 
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
   plan_type = c("plan_type")

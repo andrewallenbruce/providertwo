@@ -1,5 +1,20 @@
 #' @noRd
 #' @autoglobal
+null_if <- function(x) {
+  if (is.null(x)) return(NULL)
+  if (is.na(x)) NULL else x
+}
+
+#' @noRd
+#' @autoglobal
+unlist_if <- function(x) {
+  if (is.null(x)) return(NULL)
+  if (is.na(x)) return(NULL)
+  if (is.list(x)) unlist(x, use.names = FALSE) else x
+}
+
+#' @noRd
+#' @autoglobal
 not_catalog <- function(obj) {
   purrr::map_lgl(obj, function(x) !S7::S7_inherits(x, class_catalog))
 }

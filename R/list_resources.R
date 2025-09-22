@@ -47,7 +47,7 @@ S7::method(list_resources, class_care) <- function(obj) {
 
 S7::method(list_resources, care_current) <- function(obj) {
   S7::prop(obj, "metadata") |>
-    collapse::get_elem("resources") |>
+    S7::prop(obj, "resources") |>
     purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
@@ -58,7 +58,7 @@ S7::method(list_resources, care_current) <- function(obj) {
 
 S7::method(list_resources, care_temporal) <- function(obj) {
   S7::prop(obj, "metadata") |>
-    collapse::get_elem("resources") |>
+    S7::prop(obj, "resources") |>
     purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>

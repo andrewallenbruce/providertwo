@@ -19,13 +19,13 @@ cli_sum_found <- function(found, total, pages) {
 #' @autoglobal
 #' @noRd
 cli_no_match <- function(obj) {
-  cli::cli_alert_warning("No {.field query} for {.field {meta(obj)$alias}}")
+  cli::cli_alert_warning("No {.field query} for {.field {obj@metadata@alias}}")
 }
 
 #' @autoglobal
 #' @noRd
 cli_yr_only <- function(obj) {
-  cli::cli_alert_warning("Year-only {.field query} for {.field {meta(obj)$alias}}")
+  cli::cli_alert_warning("Year-only {.field query} for {.field {obj@metadata@alias}}")
 }
 
 #' @autoglobal
@@ -43,7 +43,7 @@ cli_yr_range <- function(x) {
 cli_no_years <- function(obj) {
   cli::cli_alert_warning(
     c(
-      "No {.field year} matches in {.field {meta(obj)$alias}} \n",
+      "No {.field year} matches in {.field {obj@metadata@alias}} \n",
       "{cli::col_red(cli::symbol$pointer)} Valid years: {.pkg {cli_yr_range(obj@year)}}"
     )
   )

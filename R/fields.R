@@ -12,11 +12,11 @@ print_list <- function(ls, prefix = "") {
   invisible(ls)
 }
 
-# test_aliases(aka$open)
-# test_aliases(aka$care)
-# test_aliases(aka$caid)
-# test_aliases(aka$prov)
-# test_aliases(aka$hgov)
+# test_aliases(the$aka$open)
+# test_aliases(the$aka$care)
+# test_aliases(the$aka$caid)
+# test_aliases(the$aka$prov)
+# test_aliases(the$aka$hgov)
 #' Test Aliases
 #' @param name description
 #' @autoglobal
@@ -54,6 +54,7 @@ test_aliases <- function(x) {
   )
 }
 
+# alias_column(the$clog$care$temporal, the$aka$care$temporal)
 #' @autoglobal
 #' @noRd
 alias_column <- function(df, aka, default = "NA") {
@@ -80,7 +81,8 @@ alias_column <- function(df, aka, default = "NA") {
     alias = to_col(aka) |>
       rlang::parse_expr() |>
       rlang::eval_bare()
-  )
+  ) |>
+    collapse::colorder(alias)
 }
 
 #' Field Dictionary
@@ -148,84 +150,19 @@ field_table <- function() {
       field %in_% fields_exact$city_render ~ "city_render",
       field %in_% fields_exact$city_supply ~ "city_supply",
       field %in_% fields_exact$city_scribe ~ "city_scribe",
-
-      field %in_% c(
-        "county",
-        "County",
-        "county_name",
-        "COUNTY_NAME",
-        "County_Name",
-        "County Name",
-        "State County Name",
-        "countyparish"
-      ) ~ "county",
-      field %in_% c(
-        "country",
-        "country_name",
-        "Rfrg_Prvdr_Cntry"
-        ) ~ "country",
-      field %in_% c(
-        "phone",
-        "Phone",
-        "PHONE",
-        "Telephone Number",
-        "telephone_number",
-        "telephonenumber",
-        "Practice Location Phone Number",
-        "PHNE_NUM",
-        "FAX_PHNE_NUM"
-      ) ~ "phone",
-      field %in_% c(
-        "zip",
-        "zip_code",
-        "practicezip9code",
-        "ZIP_CD",
-        "Zip code",
-        "Zip Code",
-        "ZIP CODE",
-        "ZIP CODE - OWNER",
-        "PRVDR_ZIP",
-        "Rfrg_Prvdr_Zip5"
-        ) ~ "zip",
-      field %in_% c(
-        "address",
-        "adr_ln_1",
-        "address_line_1",
-        "provider_address",
-        "ST_ADR",
-        "First Line Street Address",
-        "ADDRESS LINE 1",
-        "ADDRESS LINE 1 - OWNER",
-        "Hosp_Address",
-        "Street Address",
-        "Rndrng_Prvdr_St1",
-        "Rfrg_Prvdr_St1"
-        ) ~ "address",
-      field %in_% c(
-        "address_line_2",
-        "adr_ln_2",
-        "Second Line Street Address",
-        "ADDRESS LINE 2",
-        "ADDRESS LINE 2 - OWNER",
-        "Rndrng_Prvdr_St2",
-        "Rfrg_Prvdr_St2"
-        ) ~ "address_2",
-
+      field %in_% fields_exact$county ~ "county",
+      field %in_% fields_exact$country ~ "country",
+      field %in_% fields_exact$phone ~ "phone",
+      field %in_% fields_exact$zip ~ "zip",
+      field %in_% fields_exact$address ~ "address",
+      field %in_% fields_exact$address_2 ~ "address_2",
       field %in_% fields_exact$state ~ "state",
       field %in_% fields_exact$state_ind ~ "state_ind",
       field %in_% fields_exact$state_org ~ "state_org",
+      field %in_% fields_exact$work_date ~ "work_date",
+      field %in_% fields_exact$start_date ~ "start_date",
+      field %in_% fields_exact$end_date ~ "end_date",
 
-      field %in_% c("WorkDate") ~ "work_date",
-      field %in_% c(
-        "start_date",
-        "current_start_date",
-        "initial_start_date",
-        "Fiscal Year Begin Date"
-        ) ~ "start_date",
-      field %in_% c(
-        "end_date",
-        "Fiscal Year End Date"
-        ) ~ "end_date",
       field %in_% c("effective_date") ~ "effective_date",
       field %in_% c("termination_date") ~ "termination_date",
       field %in_% c("processing_date") ~ "process_date",

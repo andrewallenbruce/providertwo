@@ -6,7 +6,7 @@ class_metadata <- S7::new_class(
   properties = list(
     alias       = S7::class_character,
     title       = S7::class_character,
-    modified    = S7::class_character,
+    modified    = S7::class_Date,
     resources   = S7::class_character
     )
   )
@@ -64,7 +64,8 @@ class_endpoint <- S7::new_class(
   abstract     = TRUE,
   properties   = list(
     identifier = S7::class_character,
-    metadata   = S7::class_list,
+    # metadata   = S7::class_list,
+    metadata   = class_metadata,
     fields     = class_fields | class_fields2,
     dimensions = class_dimensions
   )
