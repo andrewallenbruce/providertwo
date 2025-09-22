@@ -88,17 +88,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_care&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;care_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr [1:6] "https://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ alias      : chr "dial_facility"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Medicare Dialysis Facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "The Medicare Dialysis Facilities data provides information on clinical and patient measures for Medicare-certif"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2025-09-10"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ periodicity: chr "Annually [R/P1Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr [1:6] "https://data.cms.gov/sites/default/files/2024-02/b2c2658d-e19d-48db-8b3b-9d343a4d395f/dfr_facility_socrata_fy2024.csv" "https://data.cms.gov/sites/default/files/2023-02/2eeb2aa7-05cd-4b7a-a4b2-62e82da03b96/dfr_facility_socrata_fy2023.csv" "https://data.cms.gov/sites/default/files/2022-02/48802694-7450-47c3-a61f-dad7d392037c/dfr_facility_socrata_fy2022.csv" "https://data.cms.gov/sites/default/files/2021-01/FY_2021_Facility_Level_Dialysis_Facility_Reports.csv" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ resources  : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/7d4e7bd1-f08a-4fca-8085-6af24026a19a" "https://data.cms.gov/data-api/v1/dataset-resources/62d125ff-c959-4c5c-8a46-8cacba50bfd4" "https://data.cms.gov/data-api/v1/dataset-resources/200e7e7e-a5a6-4450-ba18-ab53d237cc45" "https://data.cms.gov/data-api/v1/dataset-resources/ebc64ad1-164c-455a-80ca-cb0753e44a46" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ dictionary : chr "https://data.cms.gov/sites/default/files/2025-03/FY2025%20PUF%20Data%20Dictionary.xlsx"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ site       : chr "https://data.cms.gov/quality-of-care/medicare-dialysis-facilities"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ references : chr "https://data.cms.gov/sites/default/files/2025-03/FY2025_DFR_Guide.pdf"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ alias    : chr "dial_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ title    : chr "Medicare Dialysis Facilities"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ modified : Date[1:1], format: "2025-09-10"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ resources: chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/7d4e7bd1-f08a-4fca-8085-6af24026a19a" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys :List of 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ 2025: chr [1:14] "state" "CCN" "Provider_Name" "city" ...</span>
@@ -117,13 +111,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/0e112ea8-8e8e-5dee-a7e2-7ed551c3baa4/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ alias      : chr "man_state"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ title      : chr "Managed Care Programs by State"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ description: chr "Provides program names, program features, population enrolled, benefits covered, quality assurance and improvem"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ modified   : Date[1:1], format: "2018-08-22"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. $ download   : chr "https://download.medicaid.gov/data/managed-care-programs-by-state.p9c7-tuup-updated.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ alias    : chr "man_state"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ title    : chr "Managed Care Programs by State"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ modified : Date[1:1], format: "2018-08-22"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ keys: chr [1:69] "state" "program_name" "program_type" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -147,13 +139,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_mark    : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/9a83ba5e-05f5-47f5-82de-f3a59233a912/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "wind_mark"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "HealthCare.gov Marketplace Medicaid Unwinding Report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-08-30"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/healthcare.gov-data-july-2024-release.csv, https://download.medicaid.gov/dat"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "wind_mark"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "HealthCare.gov Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2024-08-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:30] "state" "metric" "april_2023_net_count" "april_2023_net_percentage" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -163,13 +153,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_trans   : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "wind_trans"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "HealthCare.gov Transitions Marketplace Medicaid Unwinding Report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/healthcare.gov-transitions-data-december-2024-release.csv, https://download."| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "wind_trans"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "HealthCare.gov Transitions Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:9] "state" "data_record_note" "metric" "time_period" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -179,13 +167,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_historic: &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "wind_historic"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Separate CHIP Enrollment by Month and State Historic CAA/Unwinding Period"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "&lt;p&gt;This historic dataset with total enrollment in separate CHIP programs by month and state was created to fulf"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Monthly [R/P1M]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "wind_historic"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "Separate CHIP Enrollment by Month and State Historic CAA/Unwinding Period"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:5] "state" "reporting_period" "release_date" "value" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -195,13 +181,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_sbm     : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "wind_sbm"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "State-based Marketplace (SBM) Medicaid Unwinding Report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Metrics from individual Marketplaces during the current reporting period. The report includes data for the stat"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2024-12-27"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr "Decennially [R/P10Y]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/sbm-marketplace-december-2024-release.csv, https://download.medicaid.gov/dat"| __truncated__</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "wind_sbm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "State-based Marketplace (SBM) Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:59] "state" "metric" "april_2023_count" "april_2023_percentage_applications" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -221,17 +205,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ asc_facility: &lt;class_prov&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.cms.gov/provider-data/api/1/datastore/query/4jcv-atw7/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "asc_facility"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "A list of ambulatory surgical centers participating in the Ambulatory Surgical Center Quality Reporting (ASCQR)"| __truncated__</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2025-06-27"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ group      : chr "Hospitals"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ issued     : Date[1:1], format: "2025-07-16"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ released   : Date[1:1], format: "2025-08-06"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://data.cms.gov/provider-data/sites/default/files/resources/dd03994fc93e296bb0297f1cd43cc987_1752732307/ASC_Facility.csv"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ dictionary : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7#data-dictionary"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ site       : chr "https://data.cms.gov/provider-data/dataset/4jcv-atw7"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "asc_facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "Ambulatory Surgical Center Quality Measures - Facility"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2025-06-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:50] "facility_name" "facility_id" "npi" "citytown" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
@@ -241,13 +219,11 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ enterprise  : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/13a06cdb-6bbb-4f86-bba7-9d6f3db41090/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  :List of 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ alias      : chr "enterprise"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ title      : chr "Medicaid Enterprise System Datatable"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ description: chr "Medicaid Enterprise System Datatable"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ modified   : Date[1:1], format: "2025-05-21"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ periodicity: chr NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. $ download   : chr "https://download.medicaid.gov/data/data-analysis-table-for-medcaid-05132025.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ metadata  : &lt;class_metadata&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ alias    : chr "enterprise"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ title    : chr "Medicaid Enterprise System Datatable"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ modified : Date[1:1], format: "2025-05-21"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ resources: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys: chr [1:13] "implementation_year" "policyupdate_type" "policyupdate_title" "potential_mes_impact" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
