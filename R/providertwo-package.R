@@ -18,7 +18,6 @@
 #' @import httr2
 #' @import S7
 #' @import RcppSimdJson
-#' @import rrapply
 #' @rawNamespace import(cheapr, except = c(list_assign))
 #' @rawNamespace import(rlang, except = c(is_na, new_list))
 #' @rawNamespace if (getRversion() < "4.3.0") importFrom("S7", "@")

@@ -56,7 +56,7 @@ npi_nppes <- function(npi = NULL,
                       zip = NULL,
                       country = NULL) {
 
-  args <- list2(
+  args <- rlang::list2(
     number               = npi,
     enumeration_type     = entity,
     first_name           = first,
@@ -74,34 +74,35 @@ npi_nppes <- function(npi = NULL,
 
   if (length(args$number) > 1L) return(.nppes_multi_npi(args$number))
 
-    args <- compact(args)
+    args <- purrr::compact(args)
 
     "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=200" |>
-      request() |>
-      req_url_query(!!!args) |>
+      httr2::request() |>
+      httr2::req_url_query(!!!args) |>
       perform_simple() |>
       _[["results"]] |>
-      slt(-created_epoch, -last_updated_epoch) |>
-      as_fibble()
+      collapse::slt(-created_epoch, -last_updated_epoch) |>
+      fastplyr::as_tbl()
 }
 
 #' @autoglobal
 #' @noRd
 .nppes_multi_npi <- function(npi_vec) {
 
-  resp <- glue("https://npiregistry.cms.hhs.gov/api/?version=2.1&",
-               "number={delist(npi_vec)}") |>
-    map(request) |>
-    req_perform_parallel(on_error = "continue")
+  resp <- glue::glue(
+    "https://npiregistry.cms.hhs.gov/api/?version=2.1&",
+    "number={delist(npi_vec)}") |>
+    purrr::map(request) |>
+    httr2::req_perform_parallel(on_error = "continue")
 
-  if (length(resps_successes(resp)) > 0L) {
+  if (length(httr2::resps_successes(resp)) > 0L) {
 
     resp <- resp |>
-      resps_successes() |>
-      resps_data(\(resp) parse_string(resp, query = "results")) |>
-      slt(-created_epoch, -last_updated_epoch) |>
-      as_fibble() |>
-      rrapply(
+      httr2::resps_successes() |>
+      httr2::resps_data(\(resp) parse_string(resp, query = "results")) |>
+      collapse::slt(-created_epoch, -last_updated_epoch) |>
+      fastplyr::as_tbl() |>
+      rrapply::rrapply(
         condition = \(x) !is.null(x),
         deflt     = NA_character_,
         how       = "list",
@@ -116,11 +117,13 @@ npi_nppes <- function(npi = NULL,
 #' @noRd
 nlm_url <- function(api) {
 
-  api <- arg_match0(api, values = c("idv", "org"))
+  api <- rlang::arg_match0(api, values = c("idv", "org"))
 
-  glue("https://clinicaltables.nlm.nih.gov/api/",
-       "npi_{api}",
-       "/v3/search?")
+  glue::glue(
+    "https://clinicaltables.nlm.nih.gov/api/",
+    "npi_{api}",
+    "/v3/search?"
+    )
 }
 
 #' Search the NLM NPI Registry
@@ -141,8 +144,8 @@ nlm_url <- function(api) {
 npi_nlm <- function(terms, npi = NULL) {
 
   req <- nlm_url("idv") |>
-    request() |>
-    req_url_query(
+    httr2::request() |>
+    httr2::req_url_query(
       terms   = terms,
       maxList = 500L,
       count   = 500L,
@@ -158,12 +161,12 @@ npi_nlm <- function(terms, npi = NULL) {
   if (n <= 500L) {
     cli_results(n, 500L, "NPPES", "NLM")
     return(
-      req_perform(req) |>
-        resp_body_string() |>
-        fparse(query = "/3") |>
-        as_df() |>
-        set_names(c("full_name", "npi", "specialty", "full_address")) |>
-        as_fibble()
+      httr2::req_perform(req) |>
+        httr2::resp_body_string() |>
+        RcppSimdJson::fparse(query = "/3") |>
+        cheapr::as_df() |>
+        rlang::set_names(c("full_name", "npi", "specialty", "full_address")) |>
+        fastplyr::as_tbl()
     )
   }
 
@@ -172,11 +175,17 @@ npi_nlm <- function(terms, npi = NULL) {
       c("!" = "{.strong {.val {n}}} Results Found",
         "v" = "Returning API limit of {.kbd 7500}."))
 
-  req <- map(
-    glue('{nlm_url("idv")}offset={offset_seq(n = if (n >= 7500L) 7499L else n, 500L)}'),
-    \(x)
-    request(x) |>
-      req_url_query(
+  req <- purrr::map(
+    paste0(
+      nlm_url("idv"),
+      "offset=",
+      offset(
+        nres = if (n >= 7500L) 7499L else n,
+        500L
+        )),
+    function(x)
+      httr2::request(x) |>
+      httr2::req_url_query(
         terms   = terms,
         maxList = 500L,
         count   = 500L,

@@ -77,7 +77,7 @@ ffill <- function(x,
                   limit = Inf,
                   new_names = "{.col}") {
   fastplyr::f_fill(
-    data = x,
+    .data = x,
     ...,
     .by = by,
     .cols = cols,
@@ -95,7 +95,7 @@ fnest <- function(x,
                   by   = NULL,
                   cols = NULL) {
   fastplyr::f_nest_by(
-    data = x,
+    .data = x,
     ...,
     .add = add,
     .by = by,

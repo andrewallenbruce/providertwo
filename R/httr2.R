@@ -90,7 +90,7 @@ perform_simple <- function(req, ...) {
 
 #' Generate API Request "Offset" Sequence
 #'
-#' @param n     `<int>` Number of results in an API request
+#' @param nres  `<int>` Number of results in an API request
 #' @param limit `<int>` API rate limit
 #' @param type  `<chr>` Return type, either `"seq"` or `"size"` (default)
 #' @returns Depending on `type` input and conditions listed below, returns:
@@ -114,18 +114,18 @@ perform_simple <- function(req, ...) {
 #' offset(147984, 2000, "seq")
 #' @autoglobal
 #' @noRd
-offset <- function(n, limit, type = "size") {
+offset <- function(nres, limit, type = "size") {
 
-  check_number_whole(n, min = 0)
+  check_number_whole(nres, min = 0)
   check_number_whole(limit, min = 1)
 
-  if (n == 0L) {
+  if (nres == 0L) {
     return(0L)
   }
 
   switch (
     match.arg(type, c("size", "seq")),
-    size = seq_size(from = 0L, to = n, by = limit),
-    seq  = seq_(from     = 0L, to = n, by = limit)
+    size = seq_size(from = 0L, to = nres, by = limit),
+    seq  = seq_(    from = 0L, to = nres, by = limit)
   )
 }
