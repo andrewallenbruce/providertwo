@@ -94,12 +94,14 @@ hgov: CMS HealthCare.gov API
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `dplyr::cur_group_id`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `dplyr::cur_group_rows`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Optimised expressions are independent from each other and typical data-masking</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> rules may not apply</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Optimised expressions are independent from unoptimised ones and typical</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> data-masking rules may not apply</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Run `options(fastplyr.optimise = FALSE)` to disable optimisations globally</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Run `fastplyr::fastplyr_disable_optimisations()` to disable optimisations</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> globally</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Run `options(fastplyr.inform = FALSE)` to disable this message</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Run `fastplyr::fastplyr_disable_informative_msgs()` to disable this and other</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> informative messages</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This message is displayed once per session.</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $care$current</span>
@@ -216,7 +218,7 @@ hgov: CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 85 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title          identifier description periodicity modified   contact download</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACA Federal U… https://d… Affordable… Decenniall… 2025-08-28 Medica… https:/…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ACA Federal U… https://d… Affordable… Decenniall… 2025-09-26 Medica… https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Acute Care Se… https://d… This data … Decenniall… 2024-01-05 Medica… https:/…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Behavioral He… https://d… This data … Decenniall… 2024-01-05 Medica… <span style="color: #BB0000;">NA</span>      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Beneficiaries… https://d… This table… Decenniall… 2024-01-05 Medica… https:/…</span>
@@ -232,11 +234,11 @@ hgov: CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   title                                        description periodicity endpoints</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&lt;ti&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Child and Adult Health Care Quality Measures Performanc… Annually […  <span style="color: #949494;">[10 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Child and Adult Health Care Quality Measures Performanc… Annually […  <span style="color: #949494;">[11 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Managed Care Programs by State               Provides p… Decenniall…   <span style="color: #949494;">[6 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> NADAC                                        National A… Decenniall…  <span style="color: #949494;">[13 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Pricing Comparison for Blood Disorder Treat… The Refere… Decenniall…   <span style="color: #949494;">[8 × 4]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Product Data for Newly Reported Drugs in th… The data b… Decenniall… <span style="color: #949494;">[100 × 4]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Product Data for Newly Reported Drugs in th… The data b… Decenniall… <span style="color: #949494;">[102 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> State Drug Utilization Data                  Drug utili… Decenniall…  <span style="color: #949494;">[34 × 4]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -245,9 +247,9 @@ hgov: CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title        identifier description periodicity issued     modified   contact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Agent Broke… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-07-31 2025-09-19 FFMPro…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AB Registra… https://d… Access Dat… Decenniall… 2016-03-30 2025-09-19 FFMPro…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AB Suspensi… https://d… Access Dat… <span style="color: #BB0000;">NA</span>          2016-05-03 2025-09-19 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Agent Broke… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2018-07-31 2025-09-29 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> AB Registra… https://d… Access Dat… Decenniall… 2016-03-30 2025-09-29 FFMPro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> AB Suspensi… https://d… Access Dat… <span style="color: #BB0000;">NA</span>          2016-05-03 2025-09-29 FFMPro…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Issuer_Part… https://d… The datase… Decenniall… 2020-06-05 2025-01-13 Domini…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rolling Dra… https://d… <span style="color: #BB0000;">NA</span>          Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Auto-popula… https://d… ECP Autofi… Decenniall… 2016-08-22 2024-08-09 CMS (m…</span>
@@ -262,8 +264,8 @@ hgov: CMS HealthCare.gov API
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    title                                            endpoints</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;list&lt;tibble[,9]&gt;&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Benefits and Cost Sharing PUF                     <span style="color: #949494;">[12 × 9]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Business Rules PUF                                <span style="color: #949494;">[12 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Benefits and Cost Sharing PUF                     <span style="color: #949494;">[13 × 9]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Business Rules PUF                                <span style="color: #949494;">[13 × 9]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> MLR Dataset                                        <span style="color: #949494;">[9 × 9]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Machine Readable PUF                               <span style="color: #949494;">[4 × 9]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Network PUF                                       <span style="color: #949494;">[12 × 9]</span></span>
