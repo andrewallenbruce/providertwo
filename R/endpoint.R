@@ -122,12 +122,14 @@ as_care <- function(x) {
         identifier = x$identifier,
         metadata   = get_meta2(x),
         dimensions = i$dims,
-        fields     = i$fields),
+        fields     = i$fields,
+        resources  = x$resources),
       temporal = care_temporal(
         identifier = x$identifier,
         metadata   = get_meta2(x),
         dimensions = i$dims,
         fields     = i$fields,
+        resources  = x$resources,
         year       = x$year)
       )
     )

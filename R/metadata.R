@@ -27,7 +27,6 @@ get_meta2 <- function(x) {
   class_metadata(
     alias       = x$alias     %||% character(0L),
     title       = x$title     %||% character(0L),
-    modified    = x$modified  %||% numeric(0L),
-    resources   = x$resources %||% character(0L)
+    modified    = x$modified  %||% numeric(0L)
   )
 }

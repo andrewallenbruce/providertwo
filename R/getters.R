@@ -19,7 +19,7 @@ S7::method(keys, class_endpoint) <- function(obj) {
   S7::prop(obj, "fields") |> keys()
 }
 
-S7::method(keys, class_fields | class_fields2) <- function(obj) {
+S7::method(keys, class_fields) <- function(obj) {
   S7::prop(obj, "keys")
 }
 

@@ -34,24 +34,11 @@
 query_care_ARG <- function(args) {
   args[rlang::names2(args) %!=% "group"] |>
     purrr::imap(function(x, N) {
-      c(
-        if (empty(x@member_of)) {
-          NULL
-        } else {
-          paste0("filter[<<i>>][condition][memberOf]=", x@member_of)
-        },
-        paste0(
-          "filter[<<i>>][condition][path]=",
-          gsub(" ", "+", N, fixed = TRUE)
-        ),
-        paste0("filter[<<i>>][condition][operator]=", tolower(gsub(
-          " ", "+", x@operator, fixed = TRUE
-        ))),
+      c(if (!empty(x@member_of)) paste0("filter[<<i>>][condition][memberOf]=", x@member_of) else NULL,
+        paste0("filter[<<i>>][condition][path]=", gsub(" ", "+", N, fixed = TRUE)),
+        paste0("filter[<<i>>][condition][operator]=", toupper(gsub(" ", "+", x@operator, fixed = TRUE))),
         if (length(x@value) > 1L) {
-          paste0("filter[<<i>>][condition][value][",
-                 seq_along(x@value),
-                 "]=",
-                 x@value)
+          paste0("filter[<<i>>][condition][value][", seq_along(x@value), "]=", x@value)
         } else {
           paste0("filter[<<i>>][condition][value]=", x@value)
         }
@@ -72,10 +59,8 @@ query_care_ARG <- function(args) {
 #' @noRd
 query_care_GRP <- function(args) {
   args$group |>
-    purrr::imap(function(x, N) {
-      paste0("filter[", N, "][group][conjunction]=", x)
-
-    }) |>
+    purrr::imap(function(x, N)
+      paste0("filter[", N, "][group][conjunction]=", x)) |>
     unname() |>
     purrr::map(paste0, collapse = "&")
 }

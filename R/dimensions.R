@@ -1,6 +1,7 @@
 #' @autoglobal
 #' @noRd
 get_dims <- function(x) {
+
   if (x$catalog == "care") {
     return(
       switch(
@@ -11,26 +12,28 @@ get_dims <- function(x) {
 
   i <- switch(
     x$point,
-    current = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    current = paste0(
+      x$identifier,
+      "?count=true&results=true&offset=0&limit=1") |>
       httr2::request() |>
       httr2::req_error(is_error = ~ FALSE) |>
       perform_simple(),
-    temporal = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    temporal = paste0(
+      x$identifier,
+      "?count=true&results=true&offset=0&limit=1") |>
       map_perform_parallel() |>
       rlang::set_names(x$year)
   )
 
-  list(dims = class_dimensions(limit = api_limit(x$catalog), total = switch(
-    x$point,
-    current = i$count,
-    temporal = unname(purrr::map_int(i, function(x)
-      x[["count"]]))
-  )),
-  fields = switch(
-    x$point,
-    current = class_fields(collapse::get_elem(i, "properties")),
-    temporal = class_fields2(collapse::get_elem(i, "properties"))
-  ))
+  list(
+    dims = class_dimensions(
+      limit = api_limit(x$catalog),
+      total = switch(
+        x$point,
+        current = i$count,
+        temporal = unname(purrr::map_int(i, function(x) x[["count"]])))),
+    fields = class_fields(collapse::get_elem(i, "properties"))
+  )
 }
 
 #' @autoglobal
@@ -46,7 +49,7 @@ dims_care_temporal <- function(x) {
         rlang::set_names(x$year) |>
         unlist(use.names = FALSE)
     ),
-    fields = class_fields2(
+    fields = class_fields(
       keys = paste0(
         x$identifier,
         "?count=true&results=true&offset=0&limit=1") |>
@@ -66,9 +69,7 @@ dims_care_current <- function(x) {
     collapse::get_elem(c("total_rows", "headers"))
 
   list(
-    dims = class_dimensions(
-      limit = api_limit(x$catalog),
-      total = i$total_rows),
-    fields = class_fields(i$headers)
-  )
+    dims   = class_dimensions(limit = api_limit(x$catalog),
+                              total = i$total_rows),
+    fields = class_fields(i$headers))
 }

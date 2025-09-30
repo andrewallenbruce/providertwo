@@ -6,25 +6,22 @@ class_metadata <- S7::new_class(
   properties = list(
     alias       = S7::class_character,
     title       = S7::class_character,
-    modified    = S7::class_Date,
-    resources   = S7::class_character
+    modified    = S7::class_Date
     )
   )
+
+# class_fields2 <- S7::new_class(
+#   name       = "class_fields2",
+#   package    = NULL,
+#   properties = list(keys = S7::class_character | S7::class_list))
 
 #' @noRd
 #' @autoglobal
 class_fields <- S7::new_class(
   name       = "class_fields",
   package    = NULL,
-  properties = list(keys = S7::class_character | S7::class_list))
-
-#' @noRd
-#' @autoglobal
-class_fields2 <- S7::new_class(
-  name       = "class_fields2",
-  package    = NULL,
   properties = list(
-    keys  = S7::class_list,
+    keys  = S7::class_character | S7::class_list,
     equal = S7::new_property(
       S7::class_logical,
       getter = function(self) {
@@ -43,16 +40,23 @@ class_dimensions <- S7::new_class(
   properties = list(
     limit    = S7::class_integer,
     total    = S7::class_integer,
-    pages    = S7::new_property(
-      S7::class_integer,
+    pages    = S7::new_property(S7::class_integer,
       getter = function(self) {
-        purrr::map_int(self@total, offset, limit = self@limit)
-      }
-    )
-  ),
+        purrr::map_int(self@total, offset, limit = self@limit)}),
+    whole = S7::new_property(S7::class_logical,
+      getter = function(self) {
+        if (length(self@pages) == 1L && self@pages == 1L) TRUE else FALSE })),
   validator = function(self) {
-    if (length(self@limit) != 1)
-      cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call = NULL)
+    if (length(self@limit) != 1) {
+      cli::cli_abort(
+        c("x" = "{.field @limit} must be length 1"),
+        call = NULL)
+    }
+    if (self@limit <= 0L || self@limit > 8000L) {
+      cli::cli_abort(
+        c("x" = "{.field @limit} must be between 1 - 8000"),
+        call = NULL)
+    }
   }
 )
 
@@ -64,9 +68,8 @@ class_endpoint <- S7::new_class(
   abstract     = TRUE,
   properties   = list(
     identifier = S7::class_character,
-    # metadata   = S7::class_list,
     metadata   = class_metadata,
-    fields     = class_fields | class_fields2,
+    fields     = class_fields,
     dimensions = class_dimensions
   )
 )
@@ -77,9 +80,7 @@ class_current <- S7::new_class(
   name         = "class_current",
   package      = NULL,
   parent       = class_endpoint,
-  properties   = list(
-    identifier = S7::class_character
-  )
+  properties   = list(identifier = S7::class_character)
 )
 
 #' @noRd
@@ -90,8 +91,7 @@ class_temporal <- S7::new_class(
   parent       = class_endpoint,
   properties   = list(
     identifier = S7::class_character,
-    year       = S7::class_integer
-  )
+    year       = S7::class_integer)
 )
 
 #' @noRd
@@ -99,7 +99,8 @@ class_temporal <- S7::new_class(
 care_current <- S7::new_class(
   name         = "care_current",
   package      = NULL,
-  parent       = class_current
+  parent       = class_current,
+  properties   = list(resources = S7::class_character)
 )
 
 #' @noRd
@@ -107,7 +108,8 @@ care_current <- S7::new_class(
 care_temporal <- S7::new_class(
   name         = "care_temporal",
   package      = NULL,
-  parent       = class_temporal
+  parent       = class_temporal,
+  properties   = list(resources = S7::class_character)
 )
 
 #' @noRd
@@ -124,44 +126,26 @@ class_catalog <- S7::new_class(
 #' @noRd
 #' @autoglobal
 class_care <- S7::new_class(
-  name         = "class_care",
-  package      = NULL,
-  parent       = class_catalog,
-  properties   = list(
-    access     = care_current | care_temporal
-  )
-)
+  "class_care", class_catalog, package = NULL,
+  properties = list(access = care_current | care_temporal))
 
 #' @noRd
 #' @autoglobal
 class_prov <- S7::new_class(
-  name = "class_prov",
-  package = NULL,
-  parent = class_catalog,
+  "class_prov", class_catalog, package = NULL,
   properties = list(access = class_current))
 
 #' @noRd
 #' @autoglobal
-class_caid <- S7::new_class(
-  name    = "class_caid",
-  package = NULL,
-  parent  = class_catalog)
+class_caid <- S7::new_class("class_caid", class_catalog, package = NULL)
 
 #' @noRd
 #' @autoglobal
-class_open <- S7::new_class(
-  name    = "class_open",
-  package = NULL,
-  parent  = class_catalog
-)
+class_open <- S7::new_class("class_open", class_catalog, package = NULL)
 
 #' @noRd
 #' @autoglobal
-class_hgov <- S7::new_class(
-  name    = "class_hgov",
-  package = NULL,
-  parent  = class_catalog
-)
+class_hgov <- S7::new_class("class_hgov", class_catalog, package = NULL)
 
 #' @noRd
 #' @autoglobal
@@ -199,18 +183,13 @@ class_response <- S7::new_class(
     pages    = S7::new_property(
       S7::class_integer,
       getter = function(self) {
-        purrr::map_int(
-          self@found,
-          offset,
-          limit = self@limit)
-        }
-      ),
+        purrr::map_int(self@found, offset, limit = self@limit)
+      }
+    ),
     error    = S7::new_property(
       S7::class_logical,
       getter = function(self) {
-        if (is.null(self@param)) {
-          return(FALSE)
-          }
+        if (is.null(self@param)) { return(FALSE) }
         self@found == self@total
       }
     )
