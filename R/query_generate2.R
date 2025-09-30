@@ -80,6 +80,7 @@ query_care_GRP <- function(args) {
     purrr::map(paste0, collapse = "&")
 }
 
+# Empty Brackets
 #' @autoglobal
 #' @noRd
 query_default_ARG <- function(args) {

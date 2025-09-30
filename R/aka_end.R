@@ -1,10 +1,10 @@
 #' @autoglobal
 #' @noRd
 make_aka <- function() {
-  # aka <- new.env(parent = emptyenv())
-  aka <- list()
 
-  aka$care <- list(
+  x <- list()
+
+  x$care <- list(
     current = list(
       aco_pioneer             = "Pioneer ACO Model",
       aco_part                = "Accountable Care Organization Participants",
@@ -137,7 +137,7 @@ make_aka <- function() {
   )
 
 
-  aka$caid <- list(
+  x$caid <- list(
     current                   = list(
       aca_ful                 = "ACA Federal Upper Limits",
       caid_enroll             = "Medicaid Enrollment - New Adult Group",
@@ -231,7 +231,7 @@ make_aka <- function() {
     )
   )
 
-  aka$open <- list(
+  x$open <- list(
     current                   = list(
       grp_teach               = "Payments grouped by Teaching Hospital",
       prf_cover               = "Covered Recipient Profile Supplement",
@@ -266,7 +266,7 @@ make_aka <- function() {
   )
 
 
-  aka$prov <- list(
+  x$prov <- list(
     current                   = list(
       asc_facility            = "Ambulatory Surgical Center Quality Measures - Facility",
       asc_national            = "Ambulatory Surgical Center Quality Measures - National",
@@ -422,7 +422,7 @@ make_aka <- function() {
     )
   )
 
-  aka$hgov <- list(
+  x$hgov <- list(
     current                   = list(
       auto_pop                = "Auto-population File",
       ab_reg_comp             = "AB Registration Completion List",
@@ -472,20 +472,22 @@ make_aka <- function() {
     )
   )
 
-  aka$all <- purrr::list_flatten(purrr::list_c(aka), name_spec = "{inner}")
 
-  aka$nms <- rlang::names2(aka$all)
+  x$all <- purrr::list_flatten(purrr::list_c(x), name_spec = "{inner}")
+  x$nms <- rlang::names2(x$all)
 
-  aka$clg <- list(
-    care = purrr::list_c(aka$care),
-    prov = purrr::list_c(aka$prov),
-    open = purrr::list_c(aka$open),
-    caid = purrr::list_c(aka$caid),
-    hgov = purrr::list_c(aka$hgov))
+  x$clg <- list(
+    care = purrr::list_c(x$care),
+    prov = purrr::list_c(x$prov),
+    open = purrr::list_c(x$open),
+    caid = purrr::list_c(x$caid),
+    hgov = purrr::list_c(x$hgov)
+  )
 
-  aka$pnt <- list(
-    current  = purrr::list_c(collapse::get_elem(aka, "current")),
-    temporal = purrr::list_c(collapse::get_elem(aka, "temporal")))
+  x$pnt <- list(
+    current  = purrr::list_c(collapse::get_elem(x, "current")),
+    temporal = purrr::list_c(collapse::get_elem(x, "temporal"))
+  )
 
-  aka
+  x
 }

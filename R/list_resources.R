@@ -10,9 +10,8 @@ tidy_resources <- function(x) {
       download = downloadURL,
       .keep = c("year", "file", "size", "ext")) |>
     ffill(year) |>
-    as_fibble() |>
-    collapse::mtt(
-      year     = ifelse(is.na(year), extract_year(download), year))
+    fastplyr::as_tbl() |>
+    collapse::mtt(year = ifelse(is.na(year), extract_year(download), year))
 }
 
 #' List resources
@@ -21,10 +20,8 @@ tidy_resources <- function(x) {
 #'
 #' @returns A list of available API resources.
 #'
-#' @examplesIf rlang::is_interactive()
+#' @examples
 #' list_resources(endpoint("enroll_prov"))
-#' list_resources(endpoint("qppe"))
-#' list_resources(collection("in_hosp"))
 #' list_resources(group("asc_facility", "enterprise", "lab_fee"))
 #' @autoglobal
 #' @export
@@ -33,7 +30,7 @@ list_resources <- S7::new_generic("list_resources", "obj", function(obj) {
 })
 
 S7::method(list_resources, class_group) <- function(obj) {
-  S7::prop(obj, "members") |> map(list_resources)
+  S7::prop(obj, "members") |> purrr::map(list_resources)
 }
 
 S7::method(list_resources, class_catalog) <- function(obj) {
@@ -47,21 +44,23 @@ S7::method(list_resources, class_care) <- function(obj) {
 
 S7::method(list_resources, care_current) <- function(obj) {
   S7::prop(obj, "metadata") |>
-    S7::prop(obj, "resources") |>
+    S7::prop("resources") |>
     purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
-    purrr::map(function(resp) parse_string(resp, query = "/data") |>
-    tidy_resources()) |>
+    purrr::map(function(resp)
+      parse_string(resp, query = "/data") |>
+        tidy_resources()) |>
     yank()
 }
 
 S7::method(list_resources, care_temporal) <- function(obj) {
   S7::prop(obj, "metadata") |>
-    S7::prop(obj, "resources") |>
+    S7::prop("resources") |>
     purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
-    httr2::resps_data(function(resp) parse_string(resp, query = "/data")) |>
+    httr2::resps_data(function(resp)
+      parse_string(resp, query = "/data")) |>
     tidy_resources()
 }
