@@ -239,10 +239,8 @@ FIELD <- list(
     "practice state or us territory"
   ),
   state_org = c("Group State Code"),
-  state_ind = c(
-    "Individual State Code",
-    "Enrollment State Code"
-    ),
+  state_ind = c("Individual State Code", "Enrollment State Code"),
+
   ##__ZIP####
   zip = c(
     "zip",
@@ -259,15 +257,11 @@ FIELD <- list(
     ),
 
   #COUNTS####
-  years = c(
-    "years",
-    "Years",
-    "YEARS",
-    "years in medicare"),
+  years    = c("years", "Years", "YEARS", "years in medicare"),
   rate_ind = c("individualrate"),
 
-  #DATE####
-  ##__YYYY####
+  #YQM####
+  ##__YEAR####
   year = c(
     "year",
     "Year",
@@ -285,28 +279,12 @@ FIELD <- list(
   quarter = c("quarter"),
 
   #DATES####
-  work_date = c("work_date"),
-  start_date = c(
-    "start_date",
-    "current_start_date",
-    "initial_start_date",
-    "Fiscal Year Begin Date"
-    ),
-  end_date = c(
-    "end_date",
-    "Fiscal Year End Date"
-  ),
-  effective_date = c(
-    "effective_date",
-    "rateeffectivedate"
-    ),
-  expiration_date = c(
-    "termination_date",
-    "expiration_date",
-    "rateexpirationdate"
-    ),
-  process_date = c("process_date"),
-  work_date = c("WorkDate"),
+  effective_date  = c("effective_date", "rateeffectivedate"),
+  end_date        = c("end_date", "Fiscal Year End Date"),
+  expiration_date = c("termination_date", "expiration_date", "rateexpirationdate"),
+  process_date    = c("process_date"),
+  start_date      = c("start_date", "current_start_date", "initial_start_date", "Fiscal Year Begin Date"),
+  work_date       = c("work_date", "WorkDate"),
 
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
   plan_type = c("plan_type")

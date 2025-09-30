@@ -88,26 +88,25 @@ npi_nppes <- function(npi = NULL,
 #' @autoglobal
 #' @noRd
 .nppes_multi_npi <- function(npi_vec) {
-
   resp <- glue::glue(
     "https://npiregistry.cms.hhs.gov/api/?version=2.1&",
-    "number={delist(npi_vec)}") |>
+    "number={unlist(npi_vec, use.names = FALSE)}"
+  ) |>
     purrr::map(request) |>
     httr2::req_perform_parallel(on_error = "continue")
 
   if (length(httr2::resps_successes(resp)) > 0L) {
-
     resp <- resp |>
       httr2::resps_successes() |>
       httr2::resps_data(\(resp) parse_string(resp, query = "results")) |>
       collapse::slt(-created_epoch, -last_updated_epoch) |>
       fastplyr::as_tbl() |>
       rrapply::rrapply(
-        condition = \(x) !is.null(x),
+        condition = \(x) ! is.null(x),
         deflt     = NA_character_,
         how       = "list",
-        options   = list(namesep  = "_",
-                         simplify = TRUE))
+        options   = list(namesep  = "_", simplify = TRUE)
+      )
 
   }
   resp
@@ -116,14 +115,11 @@ npi_nppes <- function(npi = NULL,
 #' @autoglobal
 #' @noRd
 nlm_url <- function(api) {
-
   api <- rlang::arg_match0(api, values = c("idv", "org"))
 
-  glue::glue(
-    "https://clinicaltables.nlm.nih.gov/api/",
-    "npi_{api}",
-    "/v3/search?"
-    )
+  glue::glue("https://clinicaltables.nlm.nih.gov/api/",
+             "npi_{api}",
+             "/v3/search?")
 }
 
 #' Search the NLM NPI Registry
@@ -142,7 +138,6 @@ nlm_url <- function(api) {
 #' @rdname nppes
 #' @noRd
 npi_nlm <- function(terms, npi = NULL) {
-
   req <- nlm_url("idv") |>
     httr2::request() |>
     httr2::req_url_query(
@@ -155,6 +150,7 @@ npi_nlm <- function(terms, npi = NULL) {
   # req_url_query(ef = "NPI:npi,name.full:full_name,
   # provider_type:specialty,addr_practice.full:full_address") |>
   # req_url_query(q = "NPI:1083618052")
+
 
   n <- perform_simple(req) |> _[[1]]
 
@@ -187,10 +183,7 @@ npi_nlm <- function(terms, npi = NULL) {
         .space  = "form"
       ))
 
-  cli_results(nres = if (n > 7500L) 7500L else n,
-              500L,
-              "NPPES",
-              "NLM")
+  cli_results(nres = if (n > 7500L) 7500L else n, 500L, "NPPES", "NLM")
 
   resp <- httr2::req_perform_parallel(req, on_error = "continue")
 
