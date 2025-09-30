@@ -7,8 +7,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "accrualPeriodicity",
-  # <npi_nppes>
-  "address_purpose",
   # <alias_column>
   # <dict_field>
   # <match_dict2>
@@ -56,8 +54,6 @@ utils::globalVariables(c(
   "field",
   # <tidy_resources>
   "fileSize",
-  # <npi_nppes>
-  "first",
   # <quality_eligibility>
   "first_name",
   # <quality_eligibility>
@@ -82,8 +78,6 @@ utils::globalVariables(c(
   # <clog_care>
   # <clog_prov>
   "landingPage",
-  # <npi_nppes>
-  "last",
   # <quality_eligibility>
   "last_name",
   # <npi_nppes>
@@ -108,8 +102,6 @@ utils::globalVariables(c(
   "nationalProviderIdentifierType",
   # <clog_prov>
   "nextUpdateDate",
-  # <npi_nppes>
-  "organization",
   # <clog_caid>
   "periodicity",
   # <dict_field>
@@ -128,8 +120,6 @@ utils::globalVariables(c(
   "state.abb",
   # <state_recode>
   "state.name",
-  # <npi_nppes>
-  "taxonomy_desc",
   # <clog_care>
   "temporal",
   # <clog_prov>

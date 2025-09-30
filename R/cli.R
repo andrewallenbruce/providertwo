@@ -76,13 +76,17 @@ just_left <- function(x) {
 #' @autoglobal
 #' @noRd
 brackets_cli <- function(x) {
-  paste0(
-    cli::col_silver("["),
+  cli::cli_inform(
     paste0(
-      cli::col_yellow((unlist(x, use.names = FALSE))
-      ),
-      collapse = cli::col_silver(", ")),
+      cli::col_silver("["),
+      paste0(
+        cli::col_yellow(
+          unlist(x, use.names = FALSE)
+          ),
+        collapse = cli::col_silver(", ")
+        ),
     cli::col_silver("]")
+    )
   )
 }
 
@@ -99,11 +103,11 @@ brackets_cli2 <- function(x) {
 # cli_results(n = 1000, limit = 10, end = "Profile Summary", api = "Open Payments")
 #' @autoglobal
 #' @noRd
-cli_results <- function(n, limit, end, api) {
+cli_results <- function(nres, limit, endpoint, catalog) {
   cli::cli_inform(
     c(
-      "{.pkg {cli::symbol$circle_filled}} {end} {.kbd {api}}",
-      "{.pkg {cli::symbol$circle_filled}} {n} RW{?S} {.kbd {offset(n, limit)} PG{?S}}"
+      "{.pkg {cli::symbol$circle_filled}} {endpoint} {.kbd {catalog}}",
+      "{.pkg {cli::symbol$circle_filled}} {nres} RW{?S} {.kbd {offset(nres, limit)} PG{?S}}"
     )
   )
 }

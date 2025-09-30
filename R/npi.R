@@ -59,13 +59,13 @@ npi_nppes <- function(npi = NULL,
   args <- rlang::list2(
     number               = npi,
     enumeration_type     = entity,
-    first_name           = first,
+    first_name           = first_name,
     use_first_name_alias = "True",
-    last_name            = last,
+    last_name            = last_name,
     name_purpose         = name_type,
-    organization_name    = organization,
-    address_purpose      = address_purpose,
-    taxonomy_description = taxonomy_desc,
+    organization_name    = org_name,
+    # address_purpose      = address_purpose,
+    taxonomy_description = taxonomy,
     city                 = city,
     state                = state,
     postal_code          = zip,
@@ -165,43 +165,41 @@ npi_nlm <- function(terms, npi = NULL) {
         httr2::resp_body_string() |>
         RcppSimdJson::fparse(query = "/3") |>
         cheapr::as_df() |>
-        rlang::set_names(c("full_name", "npi", "specialty", "full_address")) |>
+        rlang::set_names(c(
+          "full_name", "npi", "specialty", "full_address"
+        )) |>
         fastplyr::as_tbl()
     )
   }
 
   if (n >= 7500L)
-    cli::cli_warn(
-      c("!" = "{.strong {.val {n}}} Results Found",
-        "v" = "Returning API limit of {.kbd 7500}."))
+    cli::cli_warn(c("!" = "{.strong {.val {n}}} Results Found", "v" = "Returning API limit of {.kbd 7500}."))
 
-  req <- purrr::map(
-    paste0(
-      nlm_url("idv"),
-      "offset=",
-      offset(
-        nres = if (n >= 7500L) 7499L else n,
-        500L
-        )),
-    function(x)
-      httr2::request(x) |>
+  req <- purrr::map(paste0(nlm_url("idv"), "offset=", offset(nres = if (n >= 7500L)
+    7499L
+    else
+      n, 500L)), function(x)
+        httr2::request(x) |>
       httr2::req_url_query(
         terms   = terms,
         maxList = 500L,
         count   = 500L,
         .space  = "form"
-      )
-  )
+      ))
 
-  cli_results(n = if (n > 7500L) 7500L else n, 500L, "NPPES", "NLM")
+  cli_results(nres = if (n > 7500L) 7500L else n,
+              500L,
+              "NPPES",
+              "NLM")
 
-  resp <- req_perform_parallel(req, on_error = "continue")
+  resp <- httr2::req_perform_parallel(req, on_error = "continue")
 
-  map(resp, \(x) x |>
-        resp_body_string() |>
-        fparse(query = "/3") |>
-        as_df()) |>
-    rowbind() |>
-    set_names(c("full_name", "npi", "specialty", "full_address")) |>
-    as_fibble()
+  purrr::map(resp, function(x)
+    x |>
+      httr2::resp_body_string() |>
+      RcppSimdJson::fparse(query = "/3") |>
+      cheapr::as_df()) |>
+    collapse::rowbind() |>
+    rlang::set_names(c("full_name", "npi", "specialty", "full_address")) |>
+    fastplyr::as_tbl()
 }

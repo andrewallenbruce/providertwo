@@ -1,7 +1,7 @@
 #' @autoglobal
 #' @noRd
-fields_exact <- list(
-  # NAME
+FIELD <- list(
+  #NAME####
   first_name = c(
     "FIRST_NAME",
     "FIRST NAME - OWNER",
@@ -62,7 +62,7 @@ fields_exact <- list(
   aco_name = c("ACO_NAME", "aco_name"),
   brand_name = c("Brand Name", "Brnd_Name"),
 
-  # SPECIALTY
+  #SPECIALTY####
   specialty_code = c(
     "PROVIDER_TYPE_CD",
     "PROVIDER TYPE CODE"
@@ -75,7 +75,8 @@ fields_exact <- list(
     "Individual Specialty Description"
   ),
 
-  # IDENTIFIERS
+  #IDENTIFIER####
+  ##__NPI####
   npi = c(
     "npi",
     "NPI",
@@ -92,29 +93,27 @@ fields_exact <- list(
   npi_prescriber  = c("Prscrbr_NPI", "PRSCRBR_NPI"),
   multi_npi       = c("MULTIPLE NPI FLAG"), # FLAG
 
-  # Enrollment ID
+  ##__ENID####
   enid_ind = c(
     "ENRLMT_ID",
     "ENROLLMENT ID",
     "Enrollment ID",
     "Individual Enrollment ID"
     ),
-  enid_org = c(
-    "Group Enrollment ID"
-    ),
+  enid_org = c("Group Enrollment ID"),
 
+  ##__PAC####
   pac_ind = c(
     "PECOS_ASCT_CNTL_ID",
     "ind_pac_id",
     "ASSOCIATE ID",
-    "Individual PAC ID"
-    ),
+    "Individual PAC ID"),
   pac_org = c(
     "org_pac_id",
-    "Group PAC ID"
-    ),
+    "Group PAC ID"),
   pac_own = c("ASSOCIATE ID - OWNER"),
 
+  ##__CCN####
   ccn = c(
     "PRVDR_NUM",
     "alternate_ccn",
@@ -132,19 +131,21 @@ fields_exact <- list(
   ccn_sell = c("CCN - SELLER"),
   ccn_render = c("Rndrng_Prvdr_CCN"),
 
-  # TERMINOLOGY
+  #TERMINOLOGY####
+  ##__HCPCS####
   hcpcs = c(
     "hcpcs_cd",
     "HCPCS_Cd",
     "HCPCS_CD"),
   hcpcs_desc = c(
     "HCPCS_Desc",
-    "HCPCS_DESC"
-    ),
+    "HCPCS_DESC"),
+  ##__DRG####
   drg = c("DRG_Cd"),
   drg_desc = c("DRG_Desc"),
 
-  # LOCATION
+  #LOCATION####
+  ##__CITY####
   city = c(
     "city",
     "City",
@@ -165,6 +166,7 @@ fields_exact <- list(
   city_supply = c("Suplr_Prvdr_City"),
   city_scribe = c("Prscrbr_City"),
 
+  ##__COUNTY####
   county = c(
     "county",
     "County",
@@ -173,14 +175,14 @@ fields_exact <- list(
     "County_Name",
     "County Name",
     "State County Name",
-    "countyparish"
-  ),
+    "countyparish"),
+  ##__COUNTRY####
   country = c(
     "country",
     "country_name",
     "Rfrg_Prvdr_Cntry"
     ),
-
+  ##__PHONE####
   phone = c(
     "phone",
     "Phone",
@@ -192,7 +194,7 @@ fields_exact <- list(
     "PHNE_NUM",
     "FAX_PHNE_NUM"
   ),
-
+  ##__ADDRESS####
   address = c(
     "address",
     "adr_ln_1",
@@ -207,6 +209,7 @@ fields_exact <- list(
     "Rndrng_Prvdr_St1",
     "Rfrg_Prvdr_St1"
   ),
+  ##__ADDRESS_2####
   address_2 = c(
     "address_line_2",
     "adr_ln_2",
@@ -216,7 +219,7 @@ fields_exact <- list(
     "Rndrng_Prvdr_St2",
     "Rfrg_Prvdr_St2"
     ),
-
+  ##__STATE####
   state = c(
     "ENROLLMENT STATE",
     "INCORPORATION STATE",
@@ -240,7 +243,7 @@ fields_exact <- list(
     "Individual State Code",
     "Enrollment State Code"
     ),
-
+  ##__ZIP####
   zip = c(
     "zip",
     "zip_code",
@@ -255,16 +258,16 @@ fields_exact <- list(
     "zipcodes"
     ),
 
-  # COUNTS (NUMERIC FIELDS)
+  #COUNTS####
   years = c(
     "years",
     "Years",
     "YEARS",
-    "years in medicare"
-  ),
-  individual_rate = c("individualrate"),
+    "years in medicare"),
+  rate_ind = c("individualrate"),
 
-  # DATE YYYY
+  #DATE####
+  ##__YYYY####
   year = c(
     "year",
     "Year",
@@ -276,8 +279,12 @@ fields_exact <- list(
     "payment_year",
     "Calendar Year"
   ),
+  ##__MONTH####
   month = c("month"),
+  ##__QUARTER####
   quarter = c("quarter"),
+
+  #DATES####
   work_date = c("work_date"),
   start_date = c(
     "start_date",
@@ -304,3 +311,20 @@ fields_exact <- list(
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
   plan_type = c("plan_type")
 )
+
+#' @autoglobal
+#' @noRd
+to_col2 <- function(aka) {
+  code_def  <- glue::glue(",\n .default = {default})")
+
+  string <- paste0(
+    "gdetect(title, ",
+    "{glue::single_quote(unname(x))}) ~ ",
+    "{glue::single_quote(names(x))}"
+  )
+
+  glue::as_glue("cheapr::case(\n") +
+    glue::glue(string, x = aka) |>
+    glue::glue_collapse(sep = ",\n") +
+    code_def
+}
