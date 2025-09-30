@@ -1,5 +1,19 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9506 (2025-09-30)
+
+* class_fields restructure
+* list_resources cleanup
+* alias matching (#20)
+* tidy cli messaging, field typing
+* updated fastplyr version (0.9.9)
+* moved rrapply to suggests
+* renamed `offset` arg
+* new `class_metadata` implemented
+* testing lighter `class_metadata`
+* `query_care_ARG` and `query_care_GRP` working
+
+
 # providertwo 0.0.0.9505 (2025-09-20)
 
 * extracted `check_class_query` function
