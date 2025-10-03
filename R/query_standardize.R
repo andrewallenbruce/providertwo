@@ -1,4 +1,4 @@
-#' Standardize a Query for an Endpoint
+#' Standardize Query to Endpoint
 #'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
@@ -9,20 +9,26 @@
 #' @examples
 #' standardize(
 #'   endpoint("drug_state"),
-#'   query(year = 2022:2024,
-#'   state = any_of("GA", "NY")))
+#'   query2(
+#'     year = 2022:2024,
+#'     state = c("GA", "NY")
+#'   )
+#' )
 #'
 #' standardize(
 #'   endpoint("enroll_prov"),
-#'   query(enrlmt_id = "I20040309000221"))
+#'   query2(
+#'     enrlmt_id = "I20040309000221")
+#' )
 #'
 #' standardize(
 #'   collection("dialysis"),
-#'   query(state = "AL"))
+#'   query2(state = "AL")
+#' )
 #'
 #' standardize(
 #'   endpoint("dial_facility"),
-#'   query(
+#'   query2(
 #'     state = "GA",
 #'     city = "Atlanta",
 #'     provcity = "Atlanta",
@@ -33,23 +39,31 @@
 #'
 #' standardize(
 #'   endpoint("qppe"),
-#'   query(
+#'   query2(
 #'     year = 2021:2023,
-#'     practice_state_or_us_territory = any_of("GA", "FL"),
-#'     practice_size = less_than(10, or_equal = TRUE)
+#'     practice_state_or_us_territory = c("GA", "FL"),
+#'     practice_size = less_than(10, or_equal = TRUE),
+#'     or("practice_state_or_us_territory",
+#'        "practice_size")
 #'   )
 #' )
 #'
 #' standardize(
 #'   endpoint("hc_quality"),
-#'   query(state = any_of("Georgia", "Alabama"), year = 2020:2023))
+#'   query2(
+#'     state = c("Georgia", "Alabama"),
+#'     year = 2020:2023
+#'   )
+#' )
 #'
 #' standardize(
 #'   endpoint("pdc_clinician"),
-#'   query(
+#'   query2(
 #'     provider_first_name = starts_with("An"),
 #'     provider_last_name = contains("JE"),
-#'     state = any_of("CA", "GA", "NY")))
+#'     state = c("CA", "GA", "NY")
+#'   )
+#' )
 #'
 #' @autoglobal
 #' @export
@@ -69,73 +83,65 @@ S7::method(standardize, list(class_catalog, class_query)) <- function(obj, qry) 
 
 S7::method(standardize, list(class_current, class_query)) <- function(obj, qry) {
 
-  param   <- not_year(qry)
-  p_name  <- rlang::names2(param)
-  field   <- keys(obj)
-  clean   <- clean_names(field)
+  pname <- rlang::names2(qry@params)
+  clean <- clean_names(obj@fields@keys)
 
-  rlang::set_names(
-    param[qmatch(clean, p_name)],
-    field[sort(qmatch(p_name, clean))])
+  cheapr::list_combine(
+    rlang::set_names(
+      qry@params[
+        qmatch(clean, pname)
+        ],
+      obj@fields@keys[
+        sort(
+          qmatch(pname, clean)
+          )
+        ]
+      ),
+    list(
+      group = get_junctions(qry@groups)
+      )
+    )
 }
 
 S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry) {
 
-  x <- list(
-    idx   = seq_along(obj@year),
-    year  = obj@year,
-    id    = obj@identifier,
-    field = keys(obj))
+  x <- fastplyr::list_tidy(
+    idx   = if (empty(qry@year)) seq_along(obj@year) else obj@year %iin% qry@year,
+    year  = if (empty(idx)) obj@year else obj@year[idx],
+    id    = if (empty(idx)) obj@identifier else obj@identifier[idx],
+    field = if (empty(idx)) obj@fields@keys else obj@fields@keys[idx]
+  )
 
-  if ("year" %in_% param_names(qry)) {
-    idx <- cheapr::which_(obj@year %in_% params(qry)$year)
-
-    if (!empty(idx)) {
-      x <- list(
-        idx   = idx,
-        year  = obj@year[idx],
-        id    = obj@identifier[idx],
-        field = keys(obj)[idx]
-      )
-    }
-  }
-
-  if (identical("year", param_names(qry))) {
+  if (empty(qry@params)) {
     return(x)
   }
 
-  qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
-  param <- not_year(qry)
-
-  df <- purrr::imap(x$field, function(x, i) {
-    cheapr::new_df(year = i, field = x)
-  }) |>
+  df <- x$field |>
+    purrr::imap(\(x, i) cheapr::new_df(year = i, field = x)) |>
     purrr::list_rbind() |>
     collapse::mtt(clean = clean_names(field)) |>
-    collapse::sbt(clean %in_% rlang::names2(param)) |>
-    collapse::mtt(qdx = unname(qdx[clean]))
+    collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
+    collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
 
-  x <- list(
-    idx   = x$idx,
-    year  = x$year,
-    id    = x$id,
-    field = df
-  )
+  df <- x$year |>
+    purrr::map(\(yr) rlang::set_names(
+      qry@params[
+        df[
+          df$year == yr,
+          ]$qdx
+        ],
+      df[
+        df$year == yr,
+        ]$field
+      )
+    ) |>
+    rlang::set_names(x$year)
 
-  yq <- collapse::funique(x$field$year)
-
-  fd <- purrr::map(yq, function(yr) {
-      rlang::set_names(
-        qry@params[
-          x$field[
-            x$field$year == yr, ]$qdx
-          ],
-        x$field[
-          x$field$year == yr,   ]$field
-        )
-    }) |>
-    rlang::set_names(yq)
-
-  cheapr::list_modify(x, list(field = fd))
-
+  cheapr::list_modify(
+    x,
+    list(
+      field = df,
+      group = get_junctions(qry@groups)
+      )
+    )
 }

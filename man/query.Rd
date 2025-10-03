@@ -31,12 +31,12 @@ query(
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
-try(query2()) # cannot be empty
-try(query2(1)) # must be named
-try(query2(a = 1, a = 2)) # names must be unique
-try(query2(a = 1, or("a"))) # group needs more than one member
-try(query2(a = 1, or("a", "year"))) # year cannot be grouped
-try(query2(year = any_of(2000:2020))) # year cannot be modified
+try(query2())
+try(query2(1))
+try(query2(a = 1, a = 2))
+try(query2(a = 1, or("a")))
+try(query2(a = 1, or("a", "year")))
+try(query2(year = any_of(2000:2020)))
 try(query2(ccn = "01256", and("ccn", "npii")))
 
 query2(

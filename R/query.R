@@ -49,12 +49,12 @@ query <- function(...) {
 
 #' @rdname query
 #' @examples
-#' try(query2()) # cannot be empty
-#' try(query2(1)) # must be named
-#' try(query2(a = 1, a = 2)) # names must be unique
-#' try(query2(a = 1, or("a"))) # group needs more than one member
-#' try(query2(a = 1, or("a", "year"))) # year cannot be grouped
-#' try(query2(year = any_of(2000:2020))) # year cannot be modified
+#' try(query2())
+#' try(query2(1))
+#' try(query2(a = 1, a = 2))
+#' try(query2(a = 1, or("a")))
+#' try(query2(a = 1, or("a", "year")))
+#' try(query2(year = any_of(2000:2020)))
 #' try(query2(ccn = "01256", and("ccn", "npii")))
 #'
 #' query2(
@@ -120,15 +120,16 @@ query2 <- function(..., call = rlang::caller_env()) {
     x$params[unlist(x$idx, use.names = FALSE)] <- member_of
   }
 
-  if (!empty(x$year)) {
-    return(
-      class_query(
-        params = x$params,
-        year   = eval(x$year),
-        groups = x$grps))
-  }
+  if (empty(x$year)) {
 
-  class_query(
-    params = x$params,
-    groups = x$grps)
+    class_query(params = x$params, groups = x$grps)
+
+   } else {
+
+    class_query(
+      params = x$params,
+      year = eval(x$year),
+      groups = x$grps
+    )
+  }
 }

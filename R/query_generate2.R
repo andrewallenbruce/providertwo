@@ -31,18 +31,56 @@
 
 #' @autoglobal
 #' @noRd
+place_member_of <- function(x) {
+  if (empty(x@member_of)) {
+    return(NULL)
+  }
+  paste0(
+    "filter[<<i>>][condition][memberOf]=",
+    x@member_of
+  )
+}
+
+#' @autoglobal
+#' @noRd
+place_path <- function(x) {
+  paste0(
+    "filter[<<i>>][condition][path]=",
+    gsub(" ", "+", x, fixed = TRUE)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+place_operator <- function(x) {
+  paste0(
+    "filter[<<i>>][condition][operator]=",
+    toupper(
+      gsub(" ", "+", x@operator, fixed = TRUE)
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
+place_value <- function(x) {
+  if (length(x@value) > 1L) {
+    paste0(
+      "filter[<<i>>][condition][value][", seq_along(x@value), "]=", x@value)
+  } else {
+    paste0("filter[<<i>>][condition][value]=", x@value)
+  }
+}
+
+#' @autoglobal
+#' @noRd
 query_care_ARG <- function(args) {
   args[rlang::names2(args) %!=% "group"] |>
     purrr::imap(function(x, N) {
-      c(if (!empty(x@member_of)) paste0("filter[<<i>>][condition][memberOf]=", x@member_of) else NULL,
-        paste0("filter[<<i>>][condition][path]=", gsub(" ", "+", N, fixed = TRUE)),
-        paste0("filter[<<i>>][condition][operator]=", toupper(gsub(" ", "+", x@operator, fixed = TRUE))),
-        if (length(x@value) > 1L) {
-          paste0("filter[<<i>>][condition][value][", seq_along(x@value), "]=", x@value)
-        } else {
-          paste0("filter[<<i>>][condition][value]=", x@value)
-        }
-      )
+      c(place_member_of(x),
+        place_path(N),
+        place_operator(x),
+        place_value(x))
     }) |>
     unname() |>
     purrr::imap(function(x, idx)

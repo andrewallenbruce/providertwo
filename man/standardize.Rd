@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_standardize.R
 \name{standardize}
 \alias{standardize}
-\title{Standardize a Query for an Endpoint}
+\title{Standardize Query to Endpoint}
 \usage{
 standardize(obj, qry)
 }
@@ -15,25 +15,31 @@ standardize(obj, qry)
 A list of query parameters matched to an endpoint's fields.
 }
 \description{
-Standardize a Query for an Endpoint
+Standardize Query to Endpoint
 }
 \examples{
 standardize(
   endpoint("drug_state"),
-  query(year = 2022:2024,
-  state = any_of("GA", "NY")))
+  query2(
+    year = 2022:2024,
+    state = c("GA", "NY")
+  )
+)
 
 standardize(
   endpoint("enroll_prov"),
-  query(enrlmt_id = "I20040309000221"))
+  query2(
+    enrlmt_id = "I20040309000221")
+)
 
 standardize(
   collection("dialysis"),
-  query(state = "AL"))
+  query2(state = "AL")
+)
 
 standardize(
   endpoint("dial_facility"),
-  query(
+  query2(
     state = "GA",
     city = "Atlanta",
     provcity = "Atlanta",
@@ -44,22 +50,30 @@ standardize(
 
 standardize(
   endpoint("qppe"),
-  query(
+  query2(
     year = 2021:2023,
-    practice_state_or_us_territory = any_of("GA", "FL"),
-    practice_size = less_than(10, or_equal = TRUE)
+    practice_state_or_us_territory = c("GA", "FL"),
+    practice_size = less_than(10, or_equal = TRUE),
+    or("practice_state_or_us_territory",
+       "practice_size")
   )
 )
 
 standardize(
   endpoint("hc_quality"),
-  query(state = any_of("Georgia", "Alabama"), year = 2020:2023))
+  query2(
+    state = c("Georgia", "Alabama"),
+    year = 2020:2023
+  )
+)
 
 standardize(
   endpoint("pdc_clinician"),
-  query(
+  query2(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("JE"),
-    state = any_of("CA", "GA", "NY")))
+    state = c("CA", "GA", "NY")
+  )
+)
 
 }
