@@ -43,7 +43,12 @@ place_member_of <- function(x) {
 
 #' @autoglobal
 #' @noRd
-place_path <- function(x) {
+place_path <- function(x, call = rlang::caller_env()) {
+  if (empty(x)) {
+    cli::cli_abort(c(
+      "x" = "{.field path} cannot be empty"),
+      call = NULL)
+  }
   paste0(
     "filter[<<i>>][condition][path]=",
     gsub(" ", "+", x, fixed = TRUE)
@@ -52,7 +57,12 @@ place_path <- function(x) {
 
 #' @autoglobal
 #' @noRd
-place_operator <- function(x) {
+place_operator <- function(x, call = rlang::caller_env()) {
+  if (empty(x@operator)) {
+    cli::cli_abort(c(
+      "x" = "{.field operator} cannot be empty"),
+      call = NULL)
+  }
   paste0(
     "filter[<<i>>][condition][operator]=",
     toupper(
