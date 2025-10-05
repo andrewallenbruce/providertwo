@@ -17,6 +17,8 @@ utils::globalVariables(c(
   # <match_dict2>
   # <match_query_2G>
   "clean",
+  # <make_field_switch>
+  "constant",
   # <npi_nppes>
   # <.nppes_multi_npi>
   "created_epoch",
@@ -46,6 +48,7 @@ utils::globalVariables(c(
   "entity",
   # <clog_hgov>
   "ext",
+  # <make_field_switch>
   # <field_table>
   # <dict_field>
   # <match_query2>

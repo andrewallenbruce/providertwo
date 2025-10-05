@@ -72,7 +72,8 @@ FIELD <- list(
     "PROVIDER_TYPE_DESC",
     "PROVIDER TYPE TEXT",
     "Provider Type Text",
-    "Individual Specialty Description"
+    "Individual Specialty Description",
+    "clinician specialty"
   ),
 
   #IDENTIFIER####
@@ -259,6 +260,10 @@ FIELD <- list(
   #COUNTS####
   years    = c("years", "Years", "YEARS", "years in medicare"),
   rate_ind = c("individualrate"),
+  practice_size = c("practice_size"),
+  patients = c("medicare patients"),
+  services = c("services"),
+  allowed_charges = c("allowed charges"),
 
   #YQM####
   ##__YEAR####
@@ -292,17 +297,24 @@ FIELD <- list(
 
 #' @autoglobal
 #' @noRd
-to_col2 <- function(aka) {
-  code_def  <- glue::glue(",\n .default = {default})")
+make_field_switch <- function() {
 
-  string <- paste0(
-    "gdetect(title, ",
-    "{glue::single_quote(unname(x))}) ~ ",
-    "{glue::single_quote(names(x))}"
-  )
+  D <- FIELD |>
+    purrr::map(\(x) cheapr::fast_df(field = x)) |>
+    purrr::list_rbind(names_to = "constant") |>
+    collapse::roworder(constant, field)
 
-  glue::as_glue("cheapr::case(\n") +
-    glue::glue(string, x = aka) |>
-    glue::glue_collapse(sep = ",\n") +
-    code_def
+  function(x) {
+    kit::vswitch(x, D$field, D$constant, nThread = 4L)
+  }
 }
+
+#' Field Switch
+#' Convert raw field names to a known constant.
+#' @param x A character vector of raw field names.
+#' @examples
+#' field_switch(c("FIRST NAME - OWNER", "FIRST_NAME"))
+#' @returns A character vector of standardized field names.
+#' @autoglobal
+#' @export
+field_switch <- make_field_switch()

@@ -51,18 +51,6 @@ map_eval <- function(x, ...) {
 
 #' @autoglobal
 #' @noRd
-fibble <- function(...) {
-  fastplyr::new_tbl(...)
-}
-
-#' @autoglobal
-#' @noRd
-as_fibble <- function(x) {
-  fastplyr::as_tbl(x)
-}
-
-#' @autoglobal
-#' @noRd
 flist <- function(...) {
   fastplyr::list_tidy(...)
 }

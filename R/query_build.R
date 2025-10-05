@@ -8,8 +8,8 @@ no_match_response <- function(obj) {
     year   = date_year(obj@metadata@modified),
     string = obj@identifier,
     total  = obj@dimensions@total,
-    found  = 0L,
-    limit  = dims(obj)@limit
+    found  = obj@dimensions@total,
+    limit  = obj@dimensions@limit
   )
 }
 

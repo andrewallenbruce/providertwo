@@ -33,24 +33,22 @@ NULL
 #' @export
 #' @rdname quality_payment
 quality_metrics <- function(year) {
-
   check_required(year)
   check_years(year, min = 2018)
 
   purrr::map(year, function(y) {
-    fibble(
+    fastplyr::new_tbl(
       year     = rep.int(as.integer(y), 4L),
-      category = c(rep("Individual", 2L), rep("Group", 2L)) |> factor_(),
-      metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2L) |> factor_(),
-      mean     = request("https://qpp.cms.gov/api/eligibility/stats") |>
-        req_url_query(year = y) |>
+      category = c(rep("Individual", 2L), rep("Group", 2L)) |> cheapr::factor_(),
+      metric   = rep(c("HCC Risk Score", "Dual Eligibility Ratio"), 2L) |> cheapr::factor_(),
+      mean     = httr2::request("https://qpp.cms.gov/api/eligibility/stats") |>
+        httr2::req_url_query(year = y) |>
         perform_simple() |>
-        get_elem("data") |>
+        collapse::get_elem("data") |>
         unlist(use.names = FALSE))
-    }
-  ) |>
-    rowbind() |>
-    roworder(metric, category)
+  }) |>
+    collapse::rowbind() |>
+    collapse::roworder(metric, category)
 }
 
 #' @autoglobal
@@ -68,10 +66,7 @@ quality_eligibility <- function(year, npi) {
   res <- purrr::map(url, function(x)
     httr2::request(x) |>
       httr2::req_headers(Accept = "application/vnd.qpp.cms.gov.v6+json") |>
-      httr2::req_error(
-        body = function(resp)
-          httr2::resp_body_json(resp)$error$message
-      ) |>
+      httr2::req_error(body = function(resp) httr2::resp_body_json(resp)$error$message) |>
       httr2::req_perform() |>
       httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE) |>
       collapse::get_elem("data")) |>
@@ -82,12 +77,12 @@ quality_eligibility <- function(year, npi) {
 
   res |>
     collapse::mtt(
-      prog_year                      = as.integer(prog_year),
+      prog_year = as.integer(prog_year),
       nationalProviderIdentifierType = fmt_entity(nationalProviderIdentifierType),
-      firstApprovedDate              = as_date(firstApprovedDate),
-      specialty                      = glue::glue("{res$specialty$specialtyDescription} [D] {res$specialty$typeDescription} [T] {res$specialty$categoryReference} [C]") |>
-        as.character()
-    ) |>
+      firstApprovedDate = as_date(firstApprovedDate),
+      specialty = as.character(glue::glue(
+        "{res$specialty$specialtyDescription} [D] {res$specialty$typeDescription} [T] {res$specialty$categoryReference} [C]"
+        ))) |>
     collapse::rnm(
       firstName                      = "first_name",
       middleName                     = "middle_name",
