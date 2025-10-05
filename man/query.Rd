@@ -36,14 +36,14 @@ try(query2(1))
 try(query2(a = 1, a = 2))
 try(query2(a = 1, or("a")))
 try(query2(a = 1, or("a", "year")))
-try(query2(year = any_of(2000:2020)))
+try(query2(year = 2000:2020))
 try(query2(ccn = "01256", and("ccn", "npii")))
 
 query2(
   first_name  = starts_with("And"),
   middle_name = NULL,
   last_name   = contains("J"),
-  state       = any_of("CA", "GA", "NY"),
+  state       = c("CA", "GA", "NY"),
   state_own   = c("GA", "MD"),
   ccn         = "01256",
   rate        = between(0.45, 0.67),
@@ -51,13 +51,13 @@ query2(
 
 query2(
   year  = 2018:2025,
-  state = any_of("CA", "GA", "NY"),
+  state = c("CA", "GA", "NY"),
   state_owner = c("GA", "MD"),
   or("state", "state_owner"))
 
 query2(
   year = 2022:2024,
-  state = any_of("GA", "NY"),
+  state = c("GA", "NY"),
   enrlmt_id = "I20040309000221",
   city = "Atlanta",
   provcity = "Atlanta",
@@ -65,7 +65,7 @@ query2(
   provname = starts_with("C"),
   provider_first_name = starts_with("An"),
   provider_last_name = contains("JE"),
-  practice_state_or_us_territory = any_of("GA", "FL"),
+  practice_state_or_us_territory = c("GA", "FL"),
   practice_size = less_than(10, or_equal = TRUE),
   or("state", "city"),
   or("provider_name", "provider_first_name"))

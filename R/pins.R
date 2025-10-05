@@ -9,15 +9,25 @@ qs_url <- function(url) qs::qread_url(url)
 #' @noRd
 mount_board <- function(source = c("local", "remote")) {
 
+
   gh_raw  <- function(x) paste0("https://raw.githubusercontent.com/", x)
-  gh_path <- gh_raw(paste0("andrewallenbruce/", utils::packageName(), "/master/inst/extdata/pins/"))
+  gh_path <- gh_raw(paste0(
+    "andrewallenbruce/",
+    utils::packageName(),
+    "/master/inst/extdata/pins/"
+    )
+  )
 
   switch(
     match.arg(source),
     local  = pins::board_folder(
-      fs::path_package("extdata/pins",
-                       package = utils::packageName())),
-    remote = pins::board_url(gh_path))
+      fs::path_package(
+        "extdata/pins",
+        package = utils::packageName()
+        )
+      ),
+    remote = pins::board_url(gh_path)
+    )
 }
 
 #' Get pinned dataset
