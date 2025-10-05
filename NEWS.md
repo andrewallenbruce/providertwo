@@ -1,5 +1,11 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9508 (2025-10-05)
+
+* initial `field_switch` impl (#24)
+* use of `%:=%` (until S7 exports `:=`)
+
+
 # providertwo 0.0.0.9507 (2025-10-05)
 
 * catalog polishing
