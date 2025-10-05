@@ -1,5 +1,15 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9507 (2025-10-05)
+
+* catalog polishing
+* query generation default method
+* checks added to `place_*` helpers
+* fix: aliases not matching (closes #20)
+* standardize generic updated
+* `place_*` generate helpers
+
+
 # providertwo 0.0.0.9506 (2025-09-30)
 
 * class_fields restructure
