@@ -1,3 +1,37 @@
+# Empty Brackets
+#' @autoglobal
+#' @noRd
+query_default_ARG <- function(args) {
+
+  purrr::imap(args, function(x, N) {
+
+    V <- x@value
+    O <- tolower(gsub("_", "+", x@operator, fixed = TRUE))
+    N <- gsub(" ", "+", N, fixed = TRUE)
+    G <- if (empty(x@member_of)) NULL else x@member_of
+
+    c(
+      `if`(
+        is.null(G),
+        NULL,
+        paste0("conditions[<<i>>][memberOf]=", G)),
+      paste0("conditions[<<i>>][property]=", N),
+      paste0("conditions[<<i>>][operator]=", O),
+      `if`(
+        length(V) > 1L,
+        paste0("conditions[<<i>>][value][]=", V),
+        paste0("conditions[<<i>>][value]=", V)))
+  }) |>
+    unname() |>
+    purrr::imap(function(x, idx)
+      gsub(x           = x,
+           pattern     = "<<i>>",
+           replacement = idx - 1,
+           fixed       = TRUE)
+    ) |>
+    purrr::map(paste0, collapse = "&")
+}
+
 #' @autoglobal
 #' @noRd
 process_params <- function(arg_names, field_names) {

@@ -1,3 +1,11 @@
+#' @autoglobal
+#' @noRd
+reset_catalog <- function() {
+  old         <- the$catalog
+  the$catalog <- catalogs()
+  invisible(old)
+}
+
 #' @noRd
 #' @autoglobal
 null_if <- function(x) {

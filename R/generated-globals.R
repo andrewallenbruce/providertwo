@@ -31,10 +31,10 @@ utils::globalVariables(c(
   # <clog_hgov>
   "description",
   # <clog_hgov>
-  # <down_caid>
+  # <caid_download>
   "distribution",
   # <clog_hgov>
-  # <down_caid>
+  # <caid_download>
   # <tidy_resources>
   "download",
   # <clog_care>
@@ -95,7 +95,9 @@ utils::globalVariables(c(
   "modified",
   # <clog_hgov>
   "n",
-  # <down_caid>
+  # <place_path2>
+  "N",
+  # <caid_download>
   # <tidy_resources>
   "name",
   # <quality_eligibility>
@@ -130,7 +132,7 @@ utils::globalVariables(c(
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <down_caid>
+  # <caid_download>
   # <select_alias>
   "title",
   # <dict_field>

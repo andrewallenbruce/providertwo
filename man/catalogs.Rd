@@ -20,6 +20,8 @@ List of API catalogs:
 }
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 catalogs()
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

@@ -45,7 +45,7 @@ RoxygenNote: 7.3.3
 Collate: 
     'aka_end.R'
     'aka_col.R'
-    'aka_mph.R'
+    'aka_util.R'
     'utils_misc.R'
     'catalogs.R'
     'checks.R'

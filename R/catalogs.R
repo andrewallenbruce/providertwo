@@ -11,7 +11,7 @@ NULL
 #'   * `caid`: CMS Medicaid API
 #'   * `hgov`: CMS HealthCare.gov API
 #' @returns `<list>` of catalogs
-#' @examples
+#' @examplesIf interactive()
 #' catalogs()
 #' @autoglobal
 #' @keywords internal
@@ -36,21 +36,52 @@ catalogs <- function() {
     }) |>
     rlang::set_names(rlang::names2(base_url))
 
-  list(
-    care = clog_care(x),
-    prov = clog_prov(x),
-    open = clog_open(x),
-    caid = clog_caid(x),
-    hgov = clog_hgov(x)
-  )
+  list(clog_care(x), clog_prov(x), clog_open(x), clog_caid(x), clog_hgov(x)) |>
+    rlang::set_names(rlang::names2(base_url))
+}
+
+#' @autoglobal
+#' @noRd
+get_care <- function(x) {
+  collapse::get_elem(x, "care")
+}
+
+#' @autoglobal
+#' @noRd
+get_prov <- function(x) {
+  collapse::get_elem(x, "prov")
+}
+
+#' @autoglobal
+#' @noRd
+get_caid <- function(x) {
+  collapse::get_elem(x, "caid")
+}
+
+#' @autoglobal
+#' @noRd
+get_open <- function(x) {
+  collapse::get_elem(x, "open")
+}
+
+#' @autoglobal
+#' @noRd
+get_hgov <- function(x) {
+  collapse::get_elem(x, "hgov")
+}
+
+#' @autoglobal
+#' @noRd
+get_distribution <- function(x, ...) {
+  collapse::get_elem(x, "distribution", ...)
 }
 
 #' @autoglobal
 #' @noRd
 clog_care <- function(x) {
 
-  distro <- collapse::get_elem(x, "care") |>
-    collapse::get_elem("distribution", DF.as.list = TRUE) |>
+  distro <- get_care(x) |>
+    get_distribution(DF.as.list = TRUE) |>
     collapse::rowbind(fill = TRUE) |>
     collapse::fcompute(
       year       = extract_year(title),
@@ -64,15 +95,13 @@ clog_care <- function(x) {
     collapse::roworder(title, -year) |>
     fastplyr::as_tbl()
 
-  distro <- cheapr::sset(
-    distro, cheapr::which_(
-      cheapr::row_na_counts(distro) < 3L))
+  distro <- cheapr::sset(distro, cheapr::which_(cheapr::row_na_counts(distro) < 3L))
 
-  base <- collapse::get_elem(x, "care") |>
+  base <- get_care(x) |>
     collapse::mtt(
     modified    = as_date(modified),
     periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(collapse::get_elem(x, "care")),
+    contact     = fmt_contactpoint(get_care(x)),
     references  = unlist(references, use.names = FALSE),
     temporal    = fmt_temporal(temporal),
     title       = clean_title(title),
@@ -120,7 +149,7 @@ clog_care <- function(x) {
 #' @noRd
 clog_prov <- function(x) {
   list(
-    current = collapse::get_elem(x, "prov") |>
+    current = get_prov(x) |>
       collapse::mtt(
       title       = clean_title(title),
       dictionary  = paste0(
@@ -138,11 +167,10 @@ clog_prov <- function(x) {
       next_update = as_date(nextUpdateDate),
       group       = purrr::map_chr(theme, function(x) toString(unlist(x, use.names = FALSE))),
       description = clean_title(description),
-      download    = collapse::get_elem(x, "prov") |>
-        collapse::get_elem("distribution") |>
+      download    = get_prov(x) |> get_distribution() |>
         collapse::get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
         unlist(use.names = FALSE),
-      contact     = fmt_contactpoint(x$prov),
+      contact     = fmt_contactpoint(get_prov(x)),
       site        = landingPage
     ) |>
       collapse::sbt(
@@ -170,14 +198,14 @@ clog_prov <- function(x) {
 #' @noRd
 clog_open <- function(x) {
 
-  x <- collapse::get_elem(x, "open") |>
+  x <- get_open(x) |>
     collapse::mtt(
     identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
       identifier, "/0"
     ),
     modified = as_date(modified),
-    year = unlist(x$open$keyword, use.names = FALSE),
+    year = unlist(get_open(x)$keyword, use.names = FALSE),
     year = kit::iif(
       year == "all years" | title == "Provider profile ID mapping table",
       "All",
@@ -185,10 +213,10 @@ clog_open <- function(x) {
       nThread = 4L
     ),
     title = clean_title(title),
-    contact = fmt_contactpoint(collapse::get_elem(x, "open")),
+    contact = fmt_contactpoint(get_open(x)),
     description = clean_title(description),
-    download = collapse::get_elem(x, "open") |>
-      collapse::get_elem("distribution", DF.as.list = TRUE) |>
+    download = get_open(x) |>
+      get_distribution(DF.as.list = TRUE) |>
       collapse::get_elem("downloadURL", DF.as.list = TRUE) |>
       unlist(use.names = FALSE)
   ) |>
@@ -234,7 +262,7 @@ clog_caid <- function(x) {
     "download"
   )
 
-  base <- collapse::get_elem(x, "caid") |>
+  base <- get_caid(x) |>
     collapse::mtt(
       identifier = paste0(
         "https://data.medicaid.gov/api/1/datastore/query/",
@@ -243,7 +271,7 @@ clog_caid <- function(x) {
       ),
       modified = as_date(modified),
       periodicity = fmt_periodicity(accrualPeriodicity),
-      contact = fmt_contactpoint(collapse::get_elem(x, "caid")),
+      contact = fmt_contactpoint(get_caid(x)),
       title = clean_title(title),
       description = kit::iif(description == "Dataset.", NA_character_, description, nThread = 4L),
       description = clean_title(description)
@@ -257,7 +285,7 @@ clog_caid <- function(x) {
         invert = TRUE
       )
     ) |>
-    join_on_title(down_caid(x)) |>
+    join_on_title(caid_download(x)) |>
     collapse::slt(cols)
 
   ptn <- paste(
@@ -328,15 +356,12 @@ caid_title <- function(x) {
 clog_hgov <- function(x) {
 
   d <- cheapr::col_c(
-    title = collapse::get_elem(x$hgov, "title"),
-    distribution = collapse::get_elem(x$hgov, "distribution")
-  ) |>
+    title = collapse::get_elem(get_hgov(x), "title"),
+    distribution = get_distribution(get_hgov(x))) |>
     fastplyr::as_tbl() |>
     fastplyr::f_mutate(
-      n = purrr::map_int(distribution, function(x)
-        nrow(x)),
-      id = fastplyr::f_consecutive_id(title)
-    )
+      n = purrr::map_int(distribution, function(x) nrow(x)),
+      id = fastplyr::f_consecutive_id(title))
 
   d$distribution <- rlang::set_names(d$distribution, d$id)
 
@@ -355,22 +380,21 @@ clog_hgov <- function(x) {
     collapse::fcount(id, add = TRUE)
 
 
-  x <- collapse::get_elem(x, "hgov") |>
+  x <- get_hgov(x) |>
     collapse::mtt(
     identifier = paste0(
       "https://data.healthcare.gov/api/1/datastore/query/",
       identifier,
       "/0"
     ),
-    title = rm_nonascii(title) |> rm_space(),
-    description = rm_nonascii(description) |>
-      rm_quotes() |>
+    title = clean_title(title),
+    description = clean_title(description) |>
       gremove("<a href=|>|target=_blank rel=noopener noreferrer|</a|<br|@\\s") |>
       greplace("Dataset.", NA_character_),
     modified    = as_date(modified),
     issued      = as_date(issued),
     periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(x$hgov)
+    contact     = fmt_contactpoint(get_hgov(x))
   ) |>
     collapse::slt(
       c(
@@ -384,11 +408,9 @@ clog_hgov <- function(x) {
       )
     )
 
-  x <- list(
-    x,
-    collapse::sbt(d, ext == "csv", "title", "download"),
-    collapse::sbt(d, ext != "csv", "title", resources = "download")
-  ) |>
+  x <- list(x,
+    collapse::sbt(d, ext %==% "csv", "title", "download"),
+    collapse::sbt(d, ext %!=% "csv", "title", resources = "download")) |>
     purrr::reduce(join_on_title)
 
   qhp <- ss_title(x, "QHP|SHOP")
@@ -410,7 +432,7 @@ clog_hgov <- function(x) {
         gdetect(title, "^Plan\\sCrosswalk\\sPUF")             , "Plan ID Crosswalk PUF",
         gdetect(title, "Transparency [Ii]n Coverage PUF")     , "Transparency in Coverage PUF",
         default = title),
-      title = rm_space(title) |> greplace("/\\s", "/"),
+      title = clean_title(title) |> greplace("/\\s", "/"),
       description = kit::nswitch(title,
         "Benefits and Cost Sharing PUF" , "The Benefits and Cost Sharing PUF (BenCS-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BenCS-PUF contains plan variant-level data on essential health benefits, coverage limits, and cost sharing for each QHP and SADP.",
         "Business Rules PUF"            , "The Business Rules PUF (BR-PUF) is one of the files that comprise the Health Insurance Exchange Public Use Files. The BR-PUF contains plan-level data on rating business rules, such as maximum age for a dependent and allowed dependent relationships.",
@@ -495,14 +517,6 @@ clog_hgov <- function(x) {
 
 #' @autoglobal
 #' @noRd
-reset_catalog <- function() {
-  old         <- the$catalog
-  the$catalog <- catalogs()
-  invisible(old)
-}
-
-#' @autoglobal
-#' @noRd
 fmt_contactpoint <- function(x) {
   x <- collapse::get_elem(x, "contactPoint")
 
@@ -523,51 +537,29 @@ fmt_temporal <- function(x) {
 
 #' @autoglobal
 #' @noRd
-down_caid <- function(x) {
-  s <- collapse::get_elem(x, "caid") |>
+caid_download <- function(x) {
+
+  to_string  <- \(x) purrr::map_chr(x, \(i) toString(unlist(i, use.names = FALSE), width = NULL))
+  to_string2 <- \(x, e) purrr::map_chr(x, \(i) toString(unlist(collapse::get_elem(x, e), use.names = FALSE), width = NULL))
+
+  s <- get_caid(x) |>
     collapse::slt(title, distribution) |>
-    collapse::sbt(
-      grep(
-        "test|coreset|scorecard|category_tiles|auto",
-        title,
-        ignore.case = TRUE,
-        perl = TRUE,
-        invert = TRUE
-      )
-    ) |>
+    collapse::sbt(grep("test|coreset|scorecard|category_tiles|auto", title, ignore.case = TRUE, perl = TRUE, invert = TRUE)) |>
     collapse::roworder(title) |>
     collapse::mtt(
-      distribution = purrr::map(distribution, function(x) {
-        collapse::get_elem(x,
-                           "^title$|^downloadURL$",
-                           DF.as.list = TRUE,
-                           regex = TRUE)
-      }),
-      is_chr = purrr::map_lgl(distribution, function(x) is.character(x))
-    ) |>
+      distribution = purrr::map(distribution, \(x) collapse::get_elem(x, "^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)),
+      is_chr = purrr::map_lgl(distribution, \(x) is.character(x))) |>
     collapse::rsplit(~ is_chr)
 
   purrr::imap(s, function(x, i) {
-    switch(
-      i,
-      `TRUE` = collapse::mtt(x, download = purrr::map_chr(distribution, function(x)
-        toString(unlist(x, use.names = FALSE)))) |>
-        collapse::slt(title, download),
-      `FALSE` = collapse::mtt(
-        x,
-        name = purrr::map_chr(distribution, function(x)
-          toString(
-            unlist(collapse::get_elem(x, "title"), use.names = FALSE)
-          )),
-        download = purrr::map_chr(distribution, \(x) toString(
-          unlist(collapse::get_elem(x, "downloadURL"), use.names = FALSE)
-        )),
-        name = ifelse(name == "CSV", title, name),
-        equal = title == name,
-        name = ifelse(equal, NA_character_, name)
-      ) |>
-        collapse::slt(title, download)
-    )
+    switch(i,
+      `TRUE`  = collapse::slt(collapse::mtt(x, download = to_string(distribution)), title, download),
+      `FALSE` = collapse::mtt(x,
+        name     = to_string2(distribution, "title"),
+        download = to_string2(distribution, "downloadURL"),
+        name     = kit::iif(name == "CSV", title, name, nThread = 4L),
+        name     = kit::iif(title == name, NA_character_, name, nThread = 4L)) |>
+        collapse::slt(title, download))
   }) |>
     purrr::list_rbind() |>
     collapse::roworder(title)
