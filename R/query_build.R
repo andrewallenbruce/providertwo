@@ -4,7 +4,7 @@ no_match_response <- function(obj) {
   cli_no_match(obj)
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     year   = date_year(obj@metadata@modified),
     string = obj@identifier,
     total  = obj@dimensions@total,
@@ -19,7 +19,7 @@ year_only_response <- function(p, obj) {
   cli_yr_only(obj)
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     param  = p$field,
     year   = as.integer(p$year),
     string = p$id,
@@ -114,7 +114,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
 
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     param  = rlang::names2(p),
     year   = date_year(obj@metadata@modified),
     string = url,
@@ -140,7 +140,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
 
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     param  = rlang::names2(p),
     year   = date_year(obj@metadata@modified),
     string = url,
@@ -182,7 +182,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
@@ -225,7 +225,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   class_response(
     alias  = obj@metadata@alias,
-    title  = obj@metadata@title,
+    # title  = obj@metadata@title,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),

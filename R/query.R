@@ -54,7 +54,7 @@ query <- function(...) {
 #' try(query2(a = 1, a = 2))
 #' try(query2(a = 1, or("a")))
 #' try(query2(a = 1, or("a", "year")))
-#' try(query2(year = 2000:2020))
+#' try(query2(year = none_of(2000:2020)))
 #' try(query2(ccn = "01256", and("ccn", "npii")))
 #'
 #' query2(
@@ -96,8 +96,8 @@ query2 <- function(..., call = rlang::caller_env()) {
   x <- purrr::compact(
     rlang::enexprs(
       ...,
-      .ignore_null = "all",
-      .homonyms = "error"
+      # .homonyms = "error",
+      .ignore_null = "all"
       )
     )
 

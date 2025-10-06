@@ -47,26 +47,18 @@ FIELD <- list(
     "PRVDR_NAME"
     ),
   suffix = c("suff"),
-  facility = c(
-    "FAC_NAME",
-    "facility_name"
-    ),
+  facility = c("FAC_NAME", "facility_name"),
   measure = c("measure_name"),
   issuer = c("issuer_name"),
-  dba_name = c(
-    "DOING BUSINESS AS NAME",
-    "Group Legal Business Name",
-    "DOING BUSINESS AS NAME - OWNER"
-    ),
+  dba_name = c("DOING BUSINESS AS NAME",
+               "Group Legal Business Name",
+               "DOING BUSINESS AS NAME - OWNER"),
   hospital_name = c("Hosp_Name"),
   aco_name = c("ACO_NAME", "aco_name"),
   brand_name = c("Brand Name", "Brnd_Name"),
 
   #SPECIALTY####
-  specialty_code = c(
-    "PROVIDER_TYPE_CD",
-    "PROVIDER TYPE CODE"
-    ),
+  specialty_code = c("PROVIDER_TYPE_CD", "PROVIDER TYPE CODE"),
   specialty = c(
     "Specialty",
     "PROVIDER_TYPE_DESC",
@@ -92,15 +84,9 @@ FIELD <- list(
   npi_render      = c("Rndrng_NPI"),
   npi_supply      = c("Suplr_NPI"),
   npi_prescriber  = c("Prscrbr_NPI", "PRSCRBR_NPI"),
-  multi_npi       = c("MULTIPLE NPI FLAG"), # FLAG
 
   ##__ENID####
-  enid_ind = c(
-    "ENRLMT_ID",
-    "ENROLLMENT ID",
-    "Enrollment ID",
-    "Individual Enrollment ID"
-    ),
+  enid_ind = c("ENRLMT_ID", "ENROLLMENT ID", "Enrollment ID", "Individual Enrollment ID"),
   enid_org = c("Group Enrollment ID"),
 
   ##__PAC####
@@ -109,9 +95,7 @@ FIELD <- list(
     "ind_pac_id",
     "ASSOCIATE ID",
     "Individual PAC ID"),
-  pac_org = c(
-    "org_pac_id",
-    "Group PAC ID"),
+  pac_org = c("org_pac_id", "Group PAC ID"),
   pac_own = c("ASSOCIATE ID - OWNER"),
 
   ##__CCN####
@@ -134,13 +118,8 @@ FIELD <- list(
 
   #TERMINOLOGY####
   ##__HCPCS####
-  hcpcs = c(
-    "hcpcs_cd",
-    "HCPCS_Cd",
-    "HCPCS_CD"),
-  hcpcs_desc = c(
-    "HCPCS_Desc",
-    "HCPCS_DESC"),
+  hcpcs = c("hcpcs_cd", "HCPCS_Cd", "HCPCS_CD"),
+  hcpcs_desc = c("HCPCS_Desc", "HCPCS_DESC"),
   ##__DRG####
   drg = c("DRG_Cd"),
   drg_desc = c("DRG_Desc"),
@@ -288,24 +267,31 @@ FIELD <- list(
   end_date        = c("end_date", "Fiscal Year End Date"),
   expiration_date = c("termination_date", "expiration_date", "rateexpirationdate"),
   process_date    = c("process_date"),
-  start_date      = c("start_date", "current_start_date", "initial_start_date", "Fiscal Year Begin Date"),
+  start_date      = c(
+    "start_date",
+    "current_start_date",
+    "initial_start_date",
+    "Fiscal Year Begin Date",
+    "implementation_date"
+  ),
   work_date       = c("work_date", "WorkDate"),
 
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
+  multi_npi = c("MULTIPLE NPI FLAG"),
   plan_type = c("plan_type")
 )
 
 #' @autoglobal
 #' @noRd
-make_field_switch <- function() {
+make_field_switch <- function(x) {
 
-  D <- FIELD |>
+  e <- x |>
     purrr::map(\(x) cheapr::fast_df(field = x)) |>
     purrr::list_rbind(names_to = "constant") |>
     collapse::roworder(constant, field)
 
   function(x) {
-    kit::vswitch(x, D$field, D$constant, nThread = 4L)
+    kit::vswitch(x, e$field, e$constant, nThread = 4L)
   }
 }
 
@@ -317,4 +303,4 @@ make_field_switch <- function() {
 #' @returns A character vector of standardized field names.
 #' @autoglobal
 #' @export
-field_switch <- make_field_switch()
+field_switch <- make_field_switch(x = FIELD)

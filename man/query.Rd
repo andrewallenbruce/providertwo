@@ -36,7 +36,7 @@ try(query2(1))
 try(query2(a = 1, a = 2))
 try(query2(a = 1, or("a")))
 try(query2(a = 1, or("a", "year")))
-try(query2(year = 2000:2020))
+try(query2(year = none_of(2000:2020)))
 try(query2(ccn = "01256", and("ccn", "npii")))
 
 query2(

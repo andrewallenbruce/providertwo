@@ -35,33 +35,27 @@ class_metadata %:=% S7::new_class(
 #' @noRd
 #' @autoglobal
 class_fields %:=% S7::new_class(
-  package    = NULL,
+  package = NULL,
   properties = list(
-    keys  = S7::class_character | S7::class_list,
-    equal = S7::new_property(
-      S7::class_logical,
+    keys = S7::class_character | S7::class_list,
+    equal = S7::new_property(S7::class_logical,
       getter = function(self) {
-        if (length(self@keys) == 1L)
-          return(TRUE)
+        if (rlang::is_bare_character(self@keys)) return(TRUE)
         collapse::allv(is.element(self@keys[-1], self@keys[1]), value = TRUE)
-      }
-    ),
-    constants = S7::new_property(
-      S7::class_character | S7::class_list,
+      }),
+    constants = S7::new_property(S7::class_character | S7::class_list,
       getter = function(self) {
-        if (empty(self@keys)) {
-          return(character(0L))
-        }
-        if (rlang::is_bare_character(self@keys)) {
-          return(field_switch(self@keys))
-        }
-        if (rlang::is_bare_list(self@keys)) {
-          purrr::map(self@keys, field_switch)
-        }
-      }
+        if (empty(self@keys)) return(character(0L))
+        if (rlang::is_bare_character(self@keys)) return(field_switch(self@keys))
+        if (rlang::is_bare_list(self@keys)) purrr::map(self@keys, field_switch)
+      }),
+    idx = S7::new_property(S7::class_integer | S7::class_list,
+      getter = function(self) {
+        if (rlang::is_bare_character(self@constants)) return(cheapr::which_not_na(self@constants))
+        if (rlang::is_bare_list(self@constants)) purrr::map(self@constants, cheapr::which_not_na)
+      })
     )
   )
-)
 
 #' @noRd
 #' @autoglobal
@@ -70,29 +64,20 @@ class_dimensions %:=% S7::new_class(
   properties = list(
     limit    = S7::class_integer,
     total    = S7::class_integer,
-    pages    = S7::new_property(
-      S7::class_integer,
+    pages    = S7::new_property(S7::class_integer,
       getter = function(self) {
         purrr::map_int(self@total, offset, limit = self@limit)
-      }
-    ),
-    whole = S7::new_property(
-      S7::class_logical,
+      }),
+    lite = S7::new_property(S7::class_logical,
       getter = function(self) {
-        if (length(self@pages) == 1L &&
-            self@pages == 1L)
-          TRUE
-        else
-          FALSE
-      }
-    )
-  ),
+        if (length(self@pages) == 1L && self@pages == 1L) TRUE else FALSE
+      })),
   validator = function(self) {
     if (length(self@limit) != 1) {
       cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call = NULL)
     }
-    if (self@limit <= 0L || self@limit > 8000L) {
-      cli::cli_abort(c("x" = "{.field @limit} must be between 1 - 8000"), call = NULL)
+    if (self@limit < 1L) {
+      cli::cli_abort(c("x" = "{.field @limit} must be greater than 0"), call = NULL)
     }
   }
 )
@@ -195,7 +180,7 @@ class_response %:=% S7::new_class(
   package = NULL,
   properties = list(
     alias = S7::class_character,
-    title = S7::class_character,
+    # title = S7::class_character,
     param = S7::class_character | S7::class_list,
     year = S7::class_integer,
     string = S7::class_character,
@@ -208,9 +193,7 @@ class_response %:=% S7::new_class(
       }),
     error = S7::new_property(S7::class_logical,
       getter = function(self) {
-        if (empty(self@param))
-          return(FALSE)
-        self@found == self@total
+        if (empty(self@param)) FALSE else self@found == self@total
       })
     )
   )
