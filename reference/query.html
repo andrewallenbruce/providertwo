@@ -110,9 +110,9 @@ See Details.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> values must be <span style="font-weight: bold;">named</span>.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Unnamed value: <span style="color: #0000BB;">1</span>.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, a <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in lapply(.x, .f, ...) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Arguments in `...` must have unique names.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Multiple arguments named `a` at positions 1 and 2.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> field names must be <span style="font-weight: bold;">unique</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Field <span style="color: #00BB00;">a</span> appears multiple times.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu"><a href="query_grouper.html">or</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Query <span style="color: #00BB00;">groups</span> must have <span style="font-style: italic;">more than 1</span> <span style="color: #00BB00;">member</span>.</span>
@@ -120,11 +120,9 @@ See Details.</p></dd>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu"><a href="query_grouper.html">or</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">"year"</span> cannot be a group member.</span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2000</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params: Named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int [1:21] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ groups: Named list()</span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="query_modifier.html">none_of</a></span><span class="op">(</span><span class="fl">2000</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> `year` cannot be used with a <span style="color: #0000BB;">&lt;modifier&gt;</span>.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>ccn <span class="op">=</span> <span class="st">"01256"</span>, <span class="fu"><a href="query_grouper.html">and</a></span><span class="op">(</span><span class="st">"ccn"</span>, <span class="st">"npii"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Group <span style="color: #00BB00;">members</span> must match a <span style="color: #00BB00;">field</span> name.</span>
