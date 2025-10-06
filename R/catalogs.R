@@ -80,7 +80,7 @@ get_distribution <- function(x, ...) {
 #' @noRd
 clog_care <- function(x) {
 
-  distro <- get_care(x) |>
+  dist <- get_care(x) |>
     get_distribution(DF.as.list = TRUE) |>
     collapse::rowbind(fill = TRUE) |>
     collapse::fcompute(
@@ -95,28 +95,32 @@ clog_care <- function(x) {
     collapse::roworder(title, -year) |>
     fastplyr::as_tbl()
 
-  distro <- cheapr::sset(distro, cheapr::which_(cheapr::row_na_counts(distro) < 3L))
+  dist <- cheapr::sset(dist, cheapr::which_(cheapr::row_na_counts(dist) < 3L))
 
   base <- get_care(x) |>
     collapse::mtt(
-    modified    = as_date(modified),
-    periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(get_care(x)),
-    references  = unlist(references, use.names = FALSE),
-    temporal    = fmt_temporal(temporal),
-    title       = clean_title(title),
-    description = clean_title(description),
-    dictionary  = describedBy,
-    site        = landingPage,
-    .keep       = c("identifier", "references")) |>
+      uuid        = uuid_from_url(identifier),
+      modified    = as_date(modified),
+      periodicity = fmt_periodicity(accrualPeriodicity),
+      contact     = fmt_contactpoint(get_care(x)),
+      references  = unlist(references, use.names = FALSE),
+      temporal    = fmt_temporal(temporal),
+      title       = clean_title(title),
+      description = clean_title(description),
+      dictionary  = describedBy,
+      site        = landingPage,
+      .keep       = c("identifier", "references")
+    ) |>
     join_on_title(collapse::sbt(
-      distro,
+      dist,
       format %==% "latest",
       c("title", "download", "resources"))) |>
     collapse::roworder(title) |>
     collapse::colorder(title, description)
 
-  distro <- collapse::sbt(distro, format %!=% "latest", -format) |>
+  base <- cheapr::sset(base, cheapr::which_(cheapr::row_na_counts(base) < 3L))
+
+  dist <- collapse::sbt(dist, format %!=% "latest", -format) |>
     collapse::roworder(title, -year) |>
     collapse::gby(title, return.groups = FALSE) |>
     collapse::mtt(download_only = all(is.na(identifier))) |>
@@ -140,8 +144,8 @@ clog_care <- function(x) {
 
   list(
     current = base,
-    temporal = distro$tmp,
-    download_only = distro$dwn
+    temporal = dist$tmp,
+    download_only = dist$dwn
     )
 }
 
@@ -151,8 +155,9 @@ clog_prov <- function(x) {
   list(
     current = get_prov(x) |>
       collapse::mtt(
-      title       = clean_title(title),
-      dictionary  = paste0(
+        uuid        = identifier,
+        title       = clean_title(title),
+        dictionary  = paste0(
         "https://data.cms.gov/provider-data/dataset/",
         identifier,
         "#data-dictionary"
@@ -167,9 +172,7 @@ clog_prov <- function(x) {
       next_update = as_date(nextUpdateDate),
       group       = purrr::map_chr(theme, function(x) toString(unlist(x, use.names = FALSE))),
       description = clean_title(description),
-      download    = get_prov(x) |> get_distribution() |>
-        collapse::get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
-        unlist(use.names = FALSE),
+      download    = prov_download(x),
       contact     = fmt_contactpoint(get_prov(x)),
       site        = landingPage
     ) |>
@@ -183,6 +186,7 @@ clog_prov <- function(x) {
           "modified",
           "released",
           "next_update",
+          "uuid",
           "identifier",
           "contact",
           "download",
@@ -200,7 +204,8 @@ clog_open <- function(x) {
 
   x <- get_open(x) |>
     collapse::mtt(
-    identifier = paste0(
+      uuid = identifier,
+      identifier = paste0(
       "https://openpaymentsdata.cms.gov/api/1/datastore/query/",
       identifier, "/0"
     ),
@@ -215,10 +220,7 @@ clog_open <- function(x) {
     title = clean_title(title),
     contact = fmt_contactpoint(get_open(x)),
     description = clean_title(description),
-    download = get_open(x) |>
-      get_distribution(DF.as.list = TRUE) |>
-      collapse::get_elem("downloadURL", DF.as.list = TRUE) |>
-      unlist(use.names = FALSE)
+    download = open_download(x)
   ) |>
     collapse::slt(c(
       "year",
@@ -226,6 +228,7 @@ clog_open <- function(x) {
       "description",
       "modified",
       "identifier",
+      "uuid",
       "contact",
       "download"
     ))
@@ -254,6 +257,7 @@ clog_caid <- function(x) {
 
   cols <- c(
     "title",
+    "uuid",
     "identifier",
     "description",
     "periodicity",
@@ -264,6 +268,7 @@ clog_caid <- function(x) {
 
   base <- get_caid(x) |>
     collapse::mtt(
+      uuid = identifier,
       identifier = paste0(
         "https://data.medicaid.gov/api/1/datastore/query/",
         identifier,
@@ -382,7 +387,8 @@ clog_hgov <- function(x) {
 
   x <- get_hgov(x) |>
     collapse::mtt(
-    identifier = paste0(
+      uuid = identifier,
+      identifier = paste0(
       "https://data.healthcare.gov/api/1/datastore/query/",
       identifier,
       "/0"
@@ -399,6 +405,7 @@ clog_hgov <- function(x) {
     collapse::slt(
       c(
         "title",
+        "uuid",
         "identifier",
         "description",
         "periodicity",
@@ -539,7 +546,7 @@ fmt_temporal <- function(x) {
 #' @noRd
 caid_download <- function(x) {
 
-  to_string  <- \(x) purrr::map_chr(x, \(i) toString(unlist(i, use.names = FALSE), width = NULL))
+  to_string  <- \(x)    purrr::map_chr(x, \(i) toString(unlist(i, use.names = FALSE), width = NULL))
   to_string2 <- \(x, e) purrr::map_chr(x, \(i) toString(unlist(collapse::get_elem(x, e), use.names = FALSE), width = NULL))
 
   s <- get_caid(x) |>
@@ -563,4 +570,22 @@ caid_download <- function(x) {
   }) |>
     purrr::list_rbind() |>
     collapse::roworder(title)
+}
+
+#' @autoglobal
+#' @noRd
+prov_download <- function(x) {
+  get_prov(x) |>
+    get_distribution() |>
+    collapse::get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
+    unlist(use.names = FALSE)
+}
+
+#' @autoglobal
+#' @noRd
+open_download <- function(x) {
+  get_open(x) |>
+    get_distribution(DF.as.list = TRUE) |>
+    collapse::get_elem("downloadURL", DF.as.list = TRUE) |>
+    unlist(use.names = FALSE)
 }

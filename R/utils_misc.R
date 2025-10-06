@@ -2,6 +2,22 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+uuid_from_url <- function(x) {
+  stringi::stri_extract(
+    x,
+    regex = paste(
+      "(?:[0-9a-fA-F]){8}",
+      "(?:[0-9a-fA-F]){4}",
+      "(?:[0-9a-fA-F]){4}",
+      "(?:[0-9a-fA-F]){4}",
+      "(?:[0-9a-fA-F]){12}",
+      sep = "-?"
+    )
+  )
+}
+
+#' @autoglobal
+#' @noRd
 set_along <- function(x) {
   rlang::set_names(seq_along(x), rlang::names2(x))
 }
