@@ -1,5 +1,7 @@
 #' Standardize Query to Endpoint
 #'
+#' @name standardize
+#'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
 #' @param qry A `<query>` object.
@@ -67,7 +69,7 @@
 #'
 #' @autoglobal
 #' @export
-standardize <- S7::new_generic("standardize", c("obj", "qry"), function(obj, qry) {
+standardize %:=% S7::new_generic(c("obj", "qry"), function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })
@@ -117,25 +119,31 @@ S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry)
   }
 
   df <- x$field |>
-    purrr::imap(\(x, i) cheapr::new_df(year = i, field = x)) |>
-    purrr::list_rbind() |>
+    purrr::map(\(x) cheapr::fast_df(field = x)) |>
+    purrr::list_rbind(names_to = "year") |>
     collapse::mtt(clean = clean_names(field)) |>
     collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
-    collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
+    collapse::mtt(
+      qdx = unname(set_along(qry@params)[clean]),
+      .keep = c("year", "field"))
+
+  # args <- rlang::set_names(qry@params[df$qdx], df$field) |>
+  #   purrr::map2(df$year, \(x, y) rlang::set_names(x, y))
 
   df <- x$year |>
     purrr::map(\(yr) rlang::set_names(
       qry@params[
         df[
           df$year == yr,
-          ]$qdx
-        ],
+        ]$qdx
+      ],
       df[
         df$year == yr,
-        ]$field
-      )
+      ]$field
+    )
     ) |>
     rlang::set_names(x$year)
+
 
   cheapr::list_modify(
     x,

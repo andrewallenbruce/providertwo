@@ -8,10 +8,31 @@
 #
 # "filter[1][condition][memberOf]=g2"
 
+# englue_care <- function(args) {
+#
+#   mask <- rlang::env(
+#     rlang::caller_env(),
+#     .member = "filter[<<i>>][condition][memberOf]=",
+#     .field = "filter[<<i>>][condition][path]=",
+#     .operator = "filter[<<i>>][condition][operator]=",
+#     .value = "filter[<<i>>][condition][value]=",
+#     .value_m1 = "filter[<<i>>][condition][value][",
+#     .value_m2 = "]=",
+#     )
+#
+#   rlang::englue(
+#     args,
+#     env = mask,
+#     error_arg = "args",
+#     error_call = rlang::current_env()
+#   )
+  # englue_care("{.member}{{ x }}")
+# }
+
 #' @autoglobal
 #' @noRd
 place_member_of <- function(x) {
-  if (empty(x@member_of)) {
+  if (empty(x)) {
     return(NULL)
   }
   paste0("filter[<<i>>][condition][memberOf]=", x@member_of)
@@ -41,6 +62,15 @@ place_value <- function(x) {
 
 #' @autoglobal
 #' @noRd
+place_member_of2 <- function(x) {
+  if (empty(x)) {
+    return(NULL)
+  }
+  paste0("conditions[<<i>>][memberOf]=", x@member_of)
+}
+
+#' @autoglobal
+#' @noRd
 place_path2 <- function(x) {
   paste0("conditions[<<i>>][property]=", gsub(" ", "+", N, fixed = TRUE))
 }
@@ -56,6 +86,16 @@ place_operator2 <- function(x) {
 place_value2 <- function(x) {
   if (length(x@value) > 1L) {
     paste0("conditions[<<i>>][value][]=", x@value)
+  } else {
+    paste0("conditions[<<i>>][value]=", x@value)
+  }
+}
+
+#' @autoglobal
+#' @noRd
+place_value2_1 <- function(x) {
+  if (length(x@value) > 1L) {
+    paste0("conditions[<<i>>][value][", seq_along(x@value), "]=", x@value)
   } else {
     paste0("conditions[<<i>>][value]=", x@value)
   }
@@ -97,7 +137,8 @@ query_care_GRP <- function(args) {
 query_def_ARG <- function(args) {
   args[rlang::names2(args) %!=% "group"] |>
     purrr::imap(function(x, N) {
-      c(place_path2(N),
+      c(place_member_of2(x),
+        place_path2(N),
         place_operator2(x),
         place_value2(x))
     }) |>
@@ -109,5 +150,15 @@ query_def_ARG <- function(args) {
         replacement = idx,
         fixed       = TRUE
       )) |>
+    purrr::map(paste0, collapse = "&")
+}
+
+#' @autoglobal
+#' @noRd
+query_def_GRP <- function(args) {
+  args$group |>
+    purrr::imap(function(x, N)
+      paste0("conditions[", N, "][conjunction]=", x)) |>
+    unname() |>
     purrr::map(paste0, collapse = "&")
 }
