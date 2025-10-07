@@ -69,21 +69,21 @@
 #'
 #' @autoglobal
 #' @export
-standardize %:=% S7::new_generic(c("obj", "qry"), function(obj, qry) {
+standardize %:=% S7::new_generic("obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })
 
-S7::method(standardize, list(class_group, class_query)) <- function(obj, qry) {
+S7::method(standardize, class_group) <- function(obj, qry) {
   S7::prop(obj, "members") |>
     purrr::map(function(x) standardize(obj = x, qry = qry))
 }
 
-S7::method(standardize, list(class_catalog, class_query)) <- function(obj, qry) {
+S7::method(standardize, class_catalog) <- function(obj, qry) {
   S7::prop(obj, "access") |> standardize(qry = qry)
 }
 
-S7::method(standardize, list(class_current, class_query)) <- function(obj, qry) {
+S7::method(standardize, class_current) <- function(obj, qry) {
 
   pname <- rlang::names2(qry@params)
   clean <- clean_names(obj@fields@keys)
@@ -105,7 +105,7 @@ S7::method(standardize, list(class_current, class_query)) <- function(obj, qry) 
     )
 }
 
-S7::method(standardize, list(class_temporal, class_query)) <- function(obj, qry) {
+S7::method(standardize, class_temporal) <- function(obj, qry) {
 
   x <- fastplyr::list_tidy(
     idx   = if (empty(qry@year)) seq_along(obj@year) else obj@year %iin% qry@year,

@@ -55,6 +55,7 @@ Collate:
     'dimensions.R'
     'endpoint.R'
     'fields.R'
+    'generate.R'
     'generated-globals.R'
     'query.R'
     'getters.R'

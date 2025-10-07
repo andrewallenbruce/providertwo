@@ -3,9 +3,6 @@
 \name{assemble}
 \alias{assemble}
 \title{Assemble a Query for an Endpoint}
-\usage{
-assemble(obj, qry)
-}
 \arguments{
 \item{obj}{An \verb{<endpoint>}, \verb{<collection>} or \verb{<group>} object.}
 
@@ -20,20 +17,20 @@ Assemble a Query for an Endpoint
 \examples{
 assemble(
   endpoint("drug_state"),
-  query(year = 2022:2024,
-  state = any_of("GA", "NY")))
+  query2(year = 2022:2024,
+  state = c("GA", "NY")))
 
 assemble(
   endpoint("enroll_prov"),
-  query(enrlmt_id = "I20040309000221"))
+  query2(enrlmt_id = "I20040309000221"))
 
 assemble(
   collection("dialysis"),
-  query(state = "AL"))
+  query2(state = "AL"))
 
 assemble(
   endpoint("dial_facility"),
-  query(
+  query2(
     state = "GA",
     city = "Atlanta",
     provcity = "Atlanta",
@@ -44,23 +41,23 @@ assemble(
 
 assemble(
   endpoint("qppe"),
-  query(
+  query2(
     year = 2021:2023,
-    practice_state_or_us_territory = any_of("GA", "FL"),
+    practice_state_or_us_territory = c("GA", "FL"),
     practice_size = less_than(10, or_equal = TRUE)
   )
 )
 
 assemble(
   endpoint("hc_quality"),
-  query(state = any_of("Georgia", "Alabama"),
+  query2(state = c("Georgia", "Alabama"),
   year = 2020:2023))
 
 assemble(
   endpoint("pdc_clinician"),
-  query(
+  query2(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("JE"),
-    state = any_of("CA", "GA", "NY")))
+    state = c("CA", "GA", "NY")))
 
 }

@@ -48,7 +48,9 @@ FIELD <- list(
     ),
   suffix = c("suff"),
   facility = c("FAC_NAME", "facility_name"),
-  measure = c("measure_name"),
+  measure = c("measure_name", "Measure", "_label_"),
+  measure_score = c("Measure_Score", "col1"),
+  measure_id = c("Measure_ID", "Measure ID", "measure_id"),
   issuer = c("issuer_name"),
   dba_name = c("DOING BUSINESS AS NAME",
                "Group Legal Business Name",
@@ -77,16 +79,19 @@ FIELD <- list(
     "covered_recipient_npi",
     "National Provider Identifier"
   ),
-  npi_entity      = c("entity_npi"),
-  npi_buyer       = c("NPI - BUYER"),
-  npi_seller      = c("NPI - SELLER"),
-  npi_refer       = c("Rfrg_NPI"),
-  npi_render      = c("Rndrng_NPI"),
-  npi_supply      = c("Suplr_NPI"),
-  npi_prescriber  = c("Prscrbr_NPI", "PRSCRBR_NPI"),
+  npi_entity  = c("entity_npi"),
+  npi_buyer   = c("NPI - BUYER"),
+  npi_seller  = c("NPI - SELLER"),
+  npi_refer   = c("Rfrg_NPI"),
+  npi_render  = c("Rndrng_NPI"),
+  npi_supply  = c("Suplr_NPI"),
+  npi_scribe  = c("Prscrbr_NPI", "PRSCRBR_NPI"),
 
   ##__ENID####
-  enid_ind = c("ENRLMT_ID", "ENROLLMENT ID", "Enrollment ID", "Individual Enrollment ID"),
+  enid_ind = c("ENRLMT_ID",
+               "ENROLLMENT ID",
+               "Enrollment ID",
+               "Individual Enrollment ID"),
   enid_org = c("Group Enrollment ID"),
 
   ##__PAC####
@@ -111,7 +116,10 @@ FIELD <- list(
     "CAH OR HOSPITAL CCN",
     "HHA-based Hospice Provider CCN"
   ),
-  ccn_alt = c("alternate_ccn", "Alternate_CCNs"),
+  ccn_alt = c("alternate_ccn",
+              "Alternate_CCNs",
+              "alt_ccns",
+              "Alternate CCN(s)"),
   ccn_buy = c("CCN - BUYER"),
   ccn_sell = c("CCN - SELLER"),
   ccn_render = c("Rndrng_Prvdr_CCN"),
@@ -255,7 +263,8 @@ FIELD <- list(
     "PERF_YEAR",
     "fiscal_year",
     "payment_year",
-    "Calendar Year"
+    "Calendar Year",
+    "Year(s) covered by the measure"
   ),
   ##__MONTH####
   month = c("month"),
@@ -278,7 +287,11 @@ FIELD <- list(
 
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
   multi_npi = c("MULTIPLE NPI FLAG"),
-  plan_type = c("plan_type")
+  plan_type = c("plan_type"),
+  owner_type = c("Ownership_Type", "Ownership Type", "ownership_type"),
+  esrd_network = c("ESRD_Network", "ESRD Network", "network"),
+  chain = c("Chain", "Chain Name", "chainnam"),
+  modality = c("Modality", "modal_f")
 )
 
 #' @autoglobal

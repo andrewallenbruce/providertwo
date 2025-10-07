@@ -1,5 +1,7 @@
 #' Assemble a Query for an Endpoint
 #'
+#' @name assemble
+#'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
 #' @param qry A `<query>` object.
@@ -9,20 +11,20 @@
 #' @examples
 #' assemble(
 #'   endpoint("drug_state"),
-#'   query(year = 2022:2024,
-#'   state = any_of("GA", "NY")))
+#'   query2(year = 2022:2024,
+#'   state = c("GA", "NY")))
 #'
 #' assemble(
 #'   endpoint("enroll_prov"),
-#'   query(enrlmt_id = "I20040309000221"))
+#'   query2(enrlmt_id = "I20040309000221"))
 #'
 #' assemble(
 #'   collection("dialysis"),
-#'   query(state = "AL"))
+#'   query2(state = "AL"))
 #'
 #' assemble(
 #'   endpoint("dial_facility"),
-#'   query(
+#'   query2(
 #'     state = "GA",
 #'     city = "Atlanta",
 #'     provcity = "Atlanta",
@@ -33,42 +35,42 @@
 #'
 #' assemble(
 #'   endpoint("qppe"),
-#'   query(
+#'   query2(
 #'     year = 2021:2023,
-#'     practice_state_or_us_territory = any_of("GA", "FL"),
+#'     practice_state_or_us_territory = c("GA", "FL"),
 #'     practice_size = less_than(10, or_equal = TRUE)
 #'   )
 #' )
 #'
 #' assemble(
 #'   endpoint("hc_quality"),
-#'   query(state = any_of("Georgia", "Alabama"),
+#'   query2(state = c("Georgia", "Alabama"),
 #'   year = 2020:2023))
 #'
 #' assemble(
 #'   endpoint("pdc_clinician"),
-#'   query(
+#'   query2(
 #'     provider_first_name = starts_with("An"),
 #'     provider_last_name = contains("JE"),
-#'     state = any_of("CA", "GA", "NY")))
+#'     state = c("CA", "GA", "NY")))
 #'
 #' @autoglobal
 #' @export
-assemble <- S7::new_generic("assemble", c("obj", "qry"), function(obj, qry) {
+assemble %:=% S7::new_generic("obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })
 
-S7::method(assemble, list(class_group, class_query)) <- function(obj, qry) {
+S7::method(assemble, class_group) <- function(obj, qry) {
   S7::prop(obj, "members") |>
     purrr::map(function(x) assemble(obj = x, qry = qry))
 }
 
-S7::method(assemble, list(class_catalog, class_query)) <- function(obj, qry) {
+S7::method(assemble, class_catalog) <- function(obj, qry) {
   S7::prop(obj, "access") |> assemble(qry = qry)
 }
 
-S7::method(assemble, list(class_current, class_query)) <- function(obj, qry) {
+S7::method(assemble, class_current) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
@@ -80,7 +82,7 @@ S7::method(assemble, list(class_current, class_query)) <- function(obj, qry) {
     collapse_query(generate_query(p))
 }
 
-S7::method(assemble, list(care_current, class_query)) <- function(obj, qry) {
+S7::method(assemble, care_current) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
@@ -92,7 +94,7 @@ S7::method(assemble, list(care_current, class_query)) <- function(obj, qry) {
     collapse_query(generate_query(p, is_care = TRUE))
 }
 
-S7::method(assemble, list(class_temporal, class_query)) <- function(obj, qry) {
+S7::method(assemble, class_temporal) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
@@ -112,7 +114,7 @@ S7::method(assemble, list(class_temporal, class_query)) <- function(obj, qry) {
     glue::as_glue(qst)
 }
 
-S7::method(assemble, list(care_temporal, class_query)) <- function(obj, qry) {
+S7::method(assemble, care_temporal) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 

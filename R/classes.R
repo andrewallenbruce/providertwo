@@ -38,11 +38,11 @@ class_fields %:=% S7::new_class(
   package = NULL,
   properties = list(
     keys = S7::class_character | S7::class_list,
-    equal = S7::new_property(S7::class_logical,
-      getter = function(self) {
-        if (rlang::is_bare_character(self@keys)) return(TRUE)
-        collapse::allv(is.element(self@keys[-1], self@keys[1]), value = TRUE)
-      }),
+    # equal = S7::new_property(S7::class_logical,
+    #   getter = function(self) {
+    #     if (rlang::is_bare_character(self@keys)) return(TRUE)
+    #     collapse::allv(is.element(self@keys[-1], self@keys[1]), value = TRUE)
+    #   }),
     constants = S7::new_property(S7::class_character | S7::class_list,
       getter = function(self) {
         if (empty(self@keys)) return(character(0L))
