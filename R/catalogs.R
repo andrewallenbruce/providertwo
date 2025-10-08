@@ -26,7 +26,7 @@ catalogs <- function() {
   )
 
   x <- base_url |>
-    purrr::map(request) |>
+    purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
     purrr::map2(c("/dataset", rep(NA_character_, 4)), function(x, q) {
@@ -123,7 +123,7 @@ clog_care <- function(x) {
   dist <- collapse::sbt(dist, format %!=% "latest", -format) |>
     collapse::roworder(title, -year) |>
     collapse::gby(title, return.groups = FALSE) |>
-    collapse::mtt(download_only = all(is.na(identifier))) |>
+    collapse::mtt(download_only = collapse::allNA(identifier)) |>
     fnest(by = c("title", "download_only")) |>
     join_on_title(
       collapse::slt(
@@ -423,7 +423,7 @@ clog_hgov <- function(x) {
   qhp <- ss_title(x, "QHP|SHOP")
 
   temporal <- ss_title(x, "[2][0-9]{3}|\\sPUF") |>
-    collapse::sbt(title %!in_% collapse::get_elem(qhp, "title")) |>
+    collapse::sbt(title %!iin% collapse::get_elem(qhp, "title")) |>
     ss_title("Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     collapse::mtt(
       periodicity = "Annually [R/P1Y]",

@@ -88,21 +88,12 @@ S7::method(standardize, class_current) <- function(obj, qry) {
   pname <- rlang::names2(qry@params)
   clean <- clean_names(obj@fields@keys)
 
-  cheapr::list_combine(
-    rlang::set_names(
-      qry@params[
-        qmatch(clean, pname)
-        ],
-      obj@fields@keys[
-        sort(
-          qmatch(pname, clean)
-          )
-        ]
-      ),
-    list(
-      group = get_junctions(qry@groups)
-      )
-    )
+  list(
+    field = rlang::set_names(
+      qry@params[qmatch(clean, pname)],
+      obj@fields@keys[sort(qmatch(pname, clean))]),
+    group = get_junctions(qry@groups)
+  )
 }
 
 S7::method(standardize, class_temporal) <- function(obj, qry) {
@@ -123,33 +114,23 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
     purrr::list_rbind(names_to = "year") |>
     collapse::mtt(clean = clean_names(field)) |>
     collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
-    collapse::mtt(
-      qdx = unname(set_along(qry@params)[clean]),
-      .keep = c("year", "field"))
+    collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
 
-  # args <- rlang::set_names(qry@params[df$qdx], df$field) |>
-  #   purrr::map2(df$year, \(x, y) rlang::set_names(x, y))
+  if (!empty(qry@groups)) {
+    grp <- qry@groups |>
+      purrr::map(\(x) cheapr::fast_df(clean = S7::prop(x, "members")) |>
+          join_on(df, on = "clean") |> _$year |> collapse::funique())
+
+    grp <- list(year = unname(grp),
+         junc = unname(get_junctions(qry@groups))) |>
+      purrr::list_flatten()
+  }
 
   df <- x$year |>
     purrr::map(\(yr) rlang::set_names(
-      qry@params[
-        df[
-          df$year == yr,
-        ]$qdx
-      ],
-      df[
-        df$year == yr,
-      ]$field
-    )
-    ) |>
+      qry@params[df[df$year == yr, ]$qdx],
+      df[df$year == yr, ]$field)) |>
     rlang::set_names(x$year)
 
-
-  cheapr::list_modify(
-    x,
-    list(
-      field = df,
-      group = get_junctions(qry@groups)
-      )
-    )
+  cheapr::list_modify(x, list(field = df, group = grp))
 }

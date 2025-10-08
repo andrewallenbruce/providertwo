@@ -100,8 +100,8 @@ set_clean <- function(i, x) {
 fmt_entity <- function(x, type = c("int", "chr")) {
   switch(
     match.arg(type, c("int", "chr")),
-    int = val_match(x, 1 ~ 1L, 2 ~ 2L, .default = NA_integer_),
-    chr = val_match(x, "NPI-1" ~ 1L, "NPI-2" ~ 2L, .default = NA_integer_),
+    int = cheapr::val_match(x, 1 ~ 1L, 2 ~ 2L, .default = NA_integer_),
+    chr = cheapr::val_match(x, "NPI-1" ~ 1L, "NPI-2" ~ 2L, .default = NA_integer_),
   )
 }
 
@@ -114,11 +114,11 @@ underscore <- function(x) {
 #' @autoglobal
 #' @noRd
 charbin <- function(x) {
-  val_match(x, "N" ~ 0L, "Y" ~ 1L, .default = NA_integer_)
+  cheapr::val_match(x, "N" ~ 0L, "Y" ~ 1L, .default = NA_integer_)
 }
 
 #' @autoglobal
 #' @noRd
 charprop <- function(x) {
-  case(x == "0" ~ 0, is_na(x) ~ NA_real_, .default = as.double(x) / 100)
+  cheapr::case(x == "0" ~ 0, cheapr::is_na(x) ~ NA_real_, .default = as.double(x) / 100)
 }

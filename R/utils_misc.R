@@ -67,12 +67,6 @@ map_eval <- function(x, ...) {
 
 #' @autoglobal
 #' @noRd
-flist <- function(...) {
-  fastplyr::list_tidy(...)
-}
-
-#' @autoglobal
-#' @noRd
 ffill <- function(x,
                   ...,
                   by = NULL,
@@ -111,13 +105,13 @@ fnest <- function(x,
 #' @autoglobal
 #' @noRd
 yank <- function(x, ..., .def = NULL) {
-  pluck(x, 1, ..., .default = .def)
+  purrr::pluck(x, 1, ..., .default = .def)
 }
 
 #' @autoglobal
 #' @noRd
 `yank<-` <- function(x, value) {
-  pluck(x, 1) <- value
+  purrr::pluck(x, 1) <- value
   x
 }
 

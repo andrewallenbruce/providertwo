@@ -46,18 +46,18 @@ FIELD <- list(
     "provname",
     "PRVDR_NAME"
     ),
-  suffix = c("suff"),
-  facility = c("FAC_NAME", "facility_name"),
-  measure = c("measure_name", "Measure", "_label_"),
+  suffix        = c("suff"),
+  facility      = c("FAC_NAME", "facility_name"),
+  measure       = c("measure_name", "Measure", "_label_"),
   measure_score = c("Measure_Score", "col1"),
-  measure_id = c("Measure_ID", "Measure ID", "measure_id"),
-  issuer = c("issuer_name"),
-  dba_name = c("DOING BUSINESS AS NAME",
-               "Group Legal Business Name",
-               "DOING BUSINESS AS NAME - OWNER"),
+  measure_id    = c("Measure_ID", "Measure ID", "measure_id"),
+  issuer        = c("issuer_name"),
+  dba_name      = c("DOING BUSINESS AS NAME",
+                    "Group Legal Business Name",
+                    "DOING BUSINESS AS NAME - OWNER"),
   hospital_name = c("Hosp_Name"),
-  aco_name = c("ACO_NAME", "aco_name"),
-  brand_name = c("Brand Name", "Brnd_Name"),
+  aco_name      = c("ACO_NAME", "aco_name"),
+  brand_name    = c("Brand Name", "Brnd_Name"),
 
   #SPECIALTY####
   specialty_code = c("PROVIDER_TYPE_CD", "PROVIDER TYPE CODE"),
@@ -245,15 +245,14 @@ FIELD <- list(
     ),
 
   #COUNTS####
-  years    = c("years", "Years", "YEARS", "years in medicare"),
-  rate_ind = c("individualrate"),
-  practice_size = c("practice_size"),
-  patients = c("medicare patients"),
-  services = c("services"),
+  years           = c("years", "Years", "YEARS", "years in medicare"),
+  rate_ind        = c("individualrate"),
+  practice_size   = c("practice_size"),
+  patients        = c("medicare patients"),
+  services        = c("services"),
   allowed_charges = c("allowed charges"),
 
   #YQM####
-  ##__YEAR####
   year = c(
     "year",
     "Year",
@@ -266,9 +265,7 @@ FIELD <- list(
     "Calendar Year",
     "Year(s) covered by the measure"
   ),
-  ##__MONTH####
   month = c("month"),
-  ##__QUARTER####
   quarter = c("quarter"),
 
   #DATES####
@@ -286,18 +283,17 @@ FIELD <- list(
   work_date       = c("work_date", "WorkDate"),
 
   # ENUMERATED TYPES (FLAGS, CODES, INDICATORS)
-  multi_npi = c("MULTIPLE NPI FLAG"),
-  plan_type = c("plan_type"),
-  owner_type = c("Ownership_Type", "Ownership Type", "ownership_type"),
+  multi_npi    = c("MULTIPLE NPI FLAG"),
+  plan_type    = c("plan_type"),
+  owner_type   = c("Ownership_Type", "Ownership Type", "ownership_type"),
   esrd_network = c("ESRD_Network", "ESRD Network", "network"),
-  chain = c("Chain", "Chain Name", "chainnam"),
-  modality = c("Modality", "modal_f")
+  chain        = c("Chain", "Chain Name", "chainnam"),
+  modality     = c("Modality", "modal_f")
 )
 
 #' @autoglobal
 #' @noRd
 make_field_switch <- function(x) {
-
   e <- x |>
     purrr::map(\(x) cheapr::fast_df(field = x)) |>
     purrr::list_rbind(names_to = "constant") |>

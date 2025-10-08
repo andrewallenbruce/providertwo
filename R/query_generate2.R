@@ -8,27 +8,6 @@
 #
 # "filter[1][condition][memberOf]=g2"
 
-# englue_care <- function(args) {
-#
-#   mask <- rlang::env(
-#     rlang::caller_env(),
-#     .member = "filter[<<i>>][condition][memberOf]=",
-#     .field = "filter[<<i>>][condition][path]=",
-#     .operator = "filter[<<i>>][condition][operator]=",
-#     .value = "filter[<<i>>][condition][value]=",
-#     .value_m1 = "filter[<<i>>][condition][value][",
-#     .value_m2 = "]=",
-#     )
-#
-#   rlang::englue(
-#     args,
-#     env = mask,
-#     error_arg = "args",
-#     error_call = rlang::current_env()
-#   )
-  # englue_care("{.member}{{ x }}")
-# }
-
 #' @autoglobal
 #' @noRd
 place_member_of <- function(x) {
@@ -72,7 +51,7 @@ place_member_of2 <- function(x) {
 #' @autoglobal
 #' @noRd
 place_path2 <- function(x) {
-  paste0("conditions[<<i>>][property]=", gsub(" ", "+", N, fixed = TRUE))
+  paste0("conditions[<<i>>][property]=", gsub(" ", "+", x, fixed = TRUE))
 }
 
 #' @autoglobal
