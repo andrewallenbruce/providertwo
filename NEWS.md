@@ -1,5 +1,17 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9509 (2025-10-07)
+
+* feat: generic `generate` initial implementation
+* feat: generic `standardize` streamlining
+* chore: removed most imports of whole packages
+* chore: bumped `vctrs` (and `rlang`) to remote dev version
+* `class_fields` streamlining (#24)
+* catalog: `uuid` added (#27), helpers added (#17)
+* `class_fields` work, trying to reduce the amount of information stored
+* tidying up
+
+
 # providertwo 0.0.0.9508 (2025-10-05)
 
 * initial `field_switch` impl (#24)
