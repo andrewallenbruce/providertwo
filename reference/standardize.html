@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9508</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9509</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,57 +70,20 @@
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2024 2023 2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $ENRLMT_ID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field$ENRLMT_ID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "I20040309000221"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
@@ -131,27 +94,34 @@
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$field$state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "AL"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation$field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation$group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$field$state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "AL"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
@@ -168,145 +138,7 @@
 <span class="r-in"><span>    provname <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4 5 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2025 2024 2023 2022 2021 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "http://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "http://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "http://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "http://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "http://data.cms.gov/data-api/v1/dataset/44aedde0-c535-497d-ab27-b415ec12ff5a/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2025`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2025`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2025`$Provider_Name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2025`$city</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`$Provider_Name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2024`$city</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$Provider_Name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$city</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$Provider_Name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$city</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$`Provider Name`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$City</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "GA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`$provname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "C"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`$provcity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "Atlanta"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
@@ -318,66 +150,7 @@
 <span class="r-in"><span>       <span class="st">"practice_size"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2023 2022 2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "http://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "http://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$`practice state or us territory`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "FL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$`practice size`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;less_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$`practice state or us territory`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "FL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$`practice size`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;less_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$`practice state or us territory`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "GA" "FL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$`practice size`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;less_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr "g1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group$g1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"hc_quality"</span><span class="op">)</span>,</span></span>
@@ -386,55 +159,7 @@
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2023</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $idx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 3 4 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $year</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2023 2022 2021 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.medicaid.gov/api/1/datastore/query/e85033c7-367e-467e-9e81-8e85048102b8/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://data.medicaid.gov/api/1/datastore/query/dfd13757-d763-4f7a-9641-3f06ce21b4c6/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://data.medicaid.gov/api/1/datastore/query/a058ef78-e18b-4435-94aa-b70ab6ce5904/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://data.medicaid.gov/api/1/datastore/query/fbbe1734-b448-4e5a-bc94-3f8688534741/0"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2023`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "Georgia" "Alabama"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2022`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "Georgia" "Alabama"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2021`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "Georgia" "Alabama"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$`2020`$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:2] "Georgia" "Alabama"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
@@ -444,23 +169,25 @@
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $provider_last_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field$provider_last_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;contains&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "CONTAINS"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "JE"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $provider_first_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field$provider_first_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "An"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $state</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $field$state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:3] "CA" "GA" "NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
