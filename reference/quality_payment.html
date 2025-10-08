@@ -74,7 +74,7 @@
 <span class="r-in"><span><span class="va">qpp_experience</span> <span class="op">&lt;-</span> <span class="fu"><a href="build.html">build</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query</a></span><span class="op">(</span>npi <span class="op">=</span> <span class="fu"><a href="query_modifier.html">any_of</a></span><span class="op">(</span><span class="fl">1144544834</span>, <span class="fl">1043477615</span>, <span class="fl">1932365699</span>, <span class="fl">1225701881</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #555555; font-style: italic;">Found </span><span style="font-weight: bold;">22</span> <span style="color: #000000;">▶</span> <span style="color: #555555; font-style: italic;">Total </span><span style="font-weight: bold;">5.7 M</span> <span style="color: #000000;">▶</span> <span style="color: #555555; font-style: italic;">Pages </span><span style="font-weight: bold;">7</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">qpp_exp</span> <span class="op">&lt;-</span> <span class="va">qpp_experience</span><span class="op">@</span><span class="va">string</span> <span class="op">|&gt;</span></span></span>
@@ -85,13 +85,68 @@
 <span class="r-in"><span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span>names_to <span class="op">=</span> <span class="st">"prog_year"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">providertwo</span><span class="fu">:::</span><span class="fu">map_na_if</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">fastplyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fastplyr/man/new_tbl.html" class="external-link">as_tbl</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'qpp_experience' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  experience  <span class="op">=</span> <span class="fu">providertwo</span><span class="fu">:::</span><span class="fu">set_clean</span><span class="op">(</span><span class="va">qpp_exp</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">qpp_exp</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  eligibility <span class="op">=</span> <span class="va">qpp_eligible</span>,</span></span>
 <span class="r-in"><span>  metrics     <span class="op">=</span> <span class="va">qpp_metrics</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'qpp_exp' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $experience</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 230</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    prog_year provider_key practice_state_or_us_te…¹ practice_size clinician_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2023      000131692    MD                        1572          Doctor of Med…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2023      000475122    GA                        14            Physician Ass…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2022      000021992    PA                        1518          Doctor of Med…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2022      000212248    GA                        11            Physician Ass…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2021      000066744    PA                        1940          <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2021      000183263    GA                        11            <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2021      000493218    CO                        3             <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2020      000402699    PA                        1440          <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020      000000310    GA                        13            <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2020      000434064    CO                        2             <span style="color: #BB0000;">NA</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​practice_state_or_us_territory</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 225 more variables: clinician_specialty &lt;chr&gt;, years_in_medicare &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   npi &lt;chr&gt;, non_reporting &lt;chr&gt;, reporting_option &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   participation_option &lt;chr&gt;, mips_value_pathway_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   mips_value_pathway_title &lt;chr&gt;, medicare_patients &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   allowed_charges &lt;chr&gt;, services &lt;chr&gt;, opted_into_mips &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $eligibility</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    prog_year npi        entity last_name first_name middle_name specialty       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      <span style="text-decoration: underline;">2</span>024 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>      <span style="text-decoration: underline;">2</span>023 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      <span style="text-decoration: underline;">2</span>022 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      <span style="text-decoration: underline;">2</span>021 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>      <span style="text-decoration: underline;">2</span>020 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      <span style="text-decoration: underline;">2</span>019 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>      <span style="text-decoration: underline;">2</span>018 1043477615      1 HUSSAIN   SARAH      K           Clinical/Cardia…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>      <span style="text-decoration: underline;">2</span>024 1144544834      1 MANLEY    EMILY      T           Physician Assis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      <span style="text-decoration: underline;">2</span>023 1144544834      1 MANLEY    EMILY      T           Physician Assis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>      <span style="text-decoration: underline;">2</span>022 1144544834      1 MANLEY    EMILY      T           Physician Assis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: date_enrolled &lt;date&gt;, is_new &lt;lgl&gt;, is_maqi &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   yearsInMedicare &lt;int&gt;, pecosEnrollmentDate &lt;int&gt;, ORGS &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   qpStatus &lt;lgl&gt;, amsMipsEligibleClinician &lt;lgl&gt;, qpScoreType &lt;lgl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $metrics</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     year category   metric                  mean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Group      Dual Eligibility Ratio 0.230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>019 Group      Dual Eligibility Ratio 0.216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>020 Group      Dual Eligibility Ratio 0.210</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>021 Group      Dual Eligibility Ratio 0.499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>022 Group      Dual Eligibility Ratio 0.499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>023 Group      Dual Eligibility Ratio 0.499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>024 Group      Dual Eligibility Ratio 0.499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>025 Group      Dual Eligibility Ratio 0.499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>018 Individual Dual Eligibility Ratio 0.288</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>019 Individual Dual Eligibility Ratio 0.269</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

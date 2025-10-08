@@ -67,13 +67,27 @@
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
 <span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2024`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">generate</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][memberOf]=&amp;filter[1][condition][path]=ENRLMT_ID&amp;filter[1][condition][operator]==&amp;filter[1][condition][value]=I20040309000221"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filter[1][condition][path]=ENRLMT_ID&amp;filter[1][condition][operator]==&amp;filter[1][condition][value]=I20040309000221"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">generate</span><span class="op">(</span></span></span>
@@ -81,7 +95,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list[[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][memberOf]=&amp;conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation</span>
@@ -89,7 +103,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state[[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][memberOf]=&amp;conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -103,7 +117,42 @@
 <span class="r-in"><span>    provname <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2025`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=Provider_Name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=city&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2024`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=Provider_Name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=city&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=Provider_Name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=city&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=Provider_Name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=city&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=State&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=Provider+Name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=City&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2020`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=GA"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=provname&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "conditions[3][property]=provcity&amp;conditions[3][operator]==&amp;conditions[3][value]=Atlanta"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">generate</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
@@ -113,13 +162,47 @@
 <span class="r-in"><span>    practice_size <span class="op">=</span> <span class="fu"><a href="query_modifier.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=practice+state+or+us+territory&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=FL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=practice+size&amp;conditions[2][operator]=&lt;=&amp;conditions[2][value]=10"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=practice+state+or+us+territory&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=FL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=practice+size&amp;conditions[2][operator]=&lt;=&amp;conditions[2][value]=10"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=practice+state+or+us+territory&amp;conditions[1][operator]=in&amp;conditions[1][value][]=GA&amp;conditions[1][value][]=FL"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "conditions[2][property]=practice+size&amp;conditions[2][operator]=&lt;=&amp;conditions[2][value]=10"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">generate</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"hc_quality"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Georgia"</span>, <span class="st">"Alabama"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2023</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in flist(!!!c(x[names(x) %!=% "endpoints"]), modified = collapse::fmax(yank(x$endpoints)$modified),     !!!c(end)):</span> could not find function "flist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2023`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=Georgia&amp;conditions[1][value][]=Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2022`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=Georgia&amp;conditions[1][value][]=Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2021`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=Georgia&amp;conditions[1][value][]=Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`2020`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=state&amp;conditions[1][operator]=in&amp;conditions[1][value][]=Georgia&amp;conditions[1][value][]=Alabama"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">generate</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
@@ -128,13 +211,13 @@
 <span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][memberOf]=&amp;conditions[1][property]=provider_last_name&amp;conditions[1][operator]=contains&amp;conditions[1][value]=JE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[1][property]=provider_last_name&amp;conditions[1][operator]=contains&amp;conditions[1][value]=JE"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[2][memberOf]=&amp;conditions[2][property]=provider_first_name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=An"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[2][property]=provider_first_name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=An"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[3][memberOf]=&amp;conditions[3][property]=state&amp;conditions[3][operator]=in&amp;conditions[3][value][]=CA&amp;conditions[3][value][]=GA&amp;conditions[3][value][]=NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditions[3][property]=state&amp;conditions[3][operator]=in&amp;conditions[3][value][]=CA&amp;conditions[3][value][]=GA&amp;conditions[3][value][]=NY"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
