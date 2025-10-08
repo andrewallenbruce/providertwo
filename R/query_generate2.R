@@ -11,7 +11,7 @@
 #' @autoglobal
 #' @noRd
 place_member_of <- function(x) {
-  if (empty(x)) {
+  if (empty(x@member_of)) {
     return(NULL)
   }
   paste0("filter[<<i>>][condition][memberOf]=", x@member_of)
@@ -42,7 +42,7 @@ place_value <- function(x) {
 #' @autoglobal
 #' @noRd
 place_member_of2 <- function(x) {
-  if (empty(x)) {
+  if (empty(x@member_of)) {
     return(NULL)
   }
   paste0("conditions[<<i>>][memberOf]=", x@member_of)

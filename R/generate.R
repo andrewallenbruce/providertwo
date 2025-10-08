@@ -137,9 +137,15 @@ S7::method(generate, class_temporal) <- function(obj, qry) {
   x <- standardize(obj, qry)
 
   if (!empty(x$group)) {
-    x$group <- x$group |>
+    group <- x$group |>
+      collapse::get_elem("^junc", regex = TRUE) |>
+      rlang::set_names(\(x) gsub("junc_", "g",  x)) |>
       purrr::imap(function(x, N)
         paste0("conditions[", N, "][conjunction]=", x))
+
+    grp_yrs <- x$group |>
+      collapse::get_elem("^year", regex = TRUE) |>
+      rlang::set_names(\(x) gsub("year_", "g",  x))
   }
 
   .fun <- function(x) {
@@ -162,6 +168,10 @@ S7::method(generate, class_temporal) <- function(obj, qry) {
 
   x$field <- purrr::map(x$field, .fun)
 
-  cheapr::cheapr_c(x$group, x$field)
+  cheapr::list_combine(
+    if (!empty(x$group)) group else NULL,
+    if (!empty(x$group)) grp_yrs else NULL,
+    x$field
+    )
 
 }

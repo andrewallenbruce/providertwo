@@ -117,20 +117,20 @@ cli_results <- function(nres, limit, endpoint, catalog) {
 # cli_aka(end_care$current)
 # cli_aka(end_care$temporal)
 # cli_aka(collect_care)
-#' @autoglobal
-#' @noRd
-cli_aka <- function(aka) {
-
-  x <- unlist(aka)
-  i <- x[collapse::radixorder(names(x), sort = TRUE)]
-
-  glue_col(
-    "{bgBlack {format(names(x), justify = 'right')}}",
-    # " {red {cli::symbol$pointer}} ",
-    " {silver {strtrim(unname(x), width = 60)}}",
-    x = i)
-
-}
+# @autoglobal
+# @noRd
+# cli_aka <- function(aka) {
+#
+#   x <- unlist(aka)
+#   i <- x[collapse::radixorder(names(x), sort = TRUE)]
+#
+#   glue_col(
+#     "{bgBlack {format(names(x), justify = 'right')}}",
+#     " {red {cli::symbol$pointer}} ",
+#     " {silver {strtrim(unname(x), width = 60)}}",
+#     x = i)
+#
+# }
 
 # By default cli truncates long vectors.
 # The truncation limit is by default twenty elements,

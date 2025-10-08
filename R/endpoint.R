@@ -27,23 +27,19 @@ select_alias <- function(x, alias) {
 #' @autoglobal
 #' @noRd
 c2 <- function(x) {
+  end <- yank(x$endpoints) |>
+    collapse::sbt(!is.na(identifier)) |>
+    collapse::gvr(c("^year$", "^identifier$", "^download$", "^resources$"))
 
-  cols <- c("year", "identifier", "download")
-
-  end <- yank(x$endpoints) |> collapse::sbt(!is.na(identifier))
-
-  end <- if ("resources" %in_% rlang::names2(end)) {
-    collapse::gv(end, c(cols, "resources"))
-  } else {
-    collapse::gv(end, cols)
-  }
+  mod <- collapse::fmax(yank(x$endpoints, "modified"))
 
   if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
 
-  flist(
-    !!!c(x[names(x) %!=% "endpoints"]),
-    modified = collapse::fmax(yank(x$endpoints)$modified),
-    !!!c(end))
+  cheapr::list_combine(
+    collapse::char_vars(x),
+    modified = mod,
+    end
+  )
 }
 
 # alias_lookup("dial_facility")
@@ -54,23 +50,17 @@ c2 <- function(x) {
 #' @autoglobal
 #' @noRd
 alias_lookup <- function(x) {
+  x <- list(alias   = x,
+            point   = point_type(x),
+            catalog = catalog_type(x))
 
-  g <- glue::glue("the$clog${catalog_type(x)}${point_type(x)}")
+  lng <- glue::glue("the$clog${x$catalog}${x$point}")
+  tbl <- select_alias(x = lng, alias = x$alias)
 
-  x <- list(
-    alias   = x,
-    point   = point_type(x),
-    catalog = catalog_type(x),
-    tbl     = select_alias(x = g, alias = x))
-
-  check_alias_results(x)
+  check_alias_results(x$alias, tbl)
 
   cheapr::list_combine(
-    cheapr::list_modify(x, list(tbl = NULL)),
-    switch(
-      x$point,
-      current  = c(x$tbl),
-      temporal = c2(x$tbl)))
+    x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
 }
 
 #' @autoglobal

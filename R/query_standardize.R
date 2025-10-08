@@ -132,5 +132,9 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
       df[df$year == yr, ]$field)) |>
     rlang::set_names(x$year)
 
-  cheapr::list_modify(x, list(field = df, group = grp))
+  cheapr::list_modify(
+    x,
+    list(
+      field = df,
+      group = if (!empty(qry@groups)) grp else qry@groups))
 }

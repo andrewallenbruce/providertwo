@@ -5,15 +5,15 @@
 # check_alias_results(x)
 #' @autoglobal
 #' @noRd
-check_alias_results <- function(x, call = rlang::caller_env()) {
-  msg <- c("x" = "{.field {x$alias}} had {.strong {nrow(x$tbl)}} matches.")
+check_alias_results <- function(alias, df, call = rlang::caller_env()) {
+  msg <- c("x" = "{.field {alias}} had {.strong {nrow(df)}} matches.")
 
-  if (nrow(x$tbl) == 0L) {
+  if (nrow(df) == 0L) {
     cli::cli_abort(msg, call = call)
   }
 
-  if (nrow(x$tbl) > 1L) {
-    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(x$tbl$title)))
+  if (nrow(df) > 1L) {
+    msg <- c(msg, cli::col_yellow(cli::format_bullets_raw(df$title)))
     cli::cli_abort(msg, call = call)
   }
 

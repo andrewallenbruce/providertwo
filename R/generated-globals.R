@@ -98,8 +98,6 @@ utils::globalVariables(c(
   "modified",
   # <clog_hgov>
   "n",
-  # <place_path2>
-  "N",
   # <caid_download>
   # <tidy_resources>
   "name",
@@ -117,6 +115,8 @@ utils::globalVariables(c(
   "references",
   # <clog_prov>
   "released",
+  # <.nppes_multi_npi>
+  "request",
   # <clog_care>
   "resourcesAPI",
   # <quality_eligibility>
