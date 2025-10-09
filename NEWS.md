@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9510 (2025-10-09)
+
+* alias: consistent function naming convention (#22)
+* alias: all now names sorted (#16)
+* generate logic is terrible
+
+
 # providertwo 0.0.0.9509 (2025-10-07)
 
 * feat: generic `generate` initial implementation
