@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+sort_by_names <- function(x) {
+  x[kit::psort(rlang::names2(x), nThread = 4L)]
+}
+
+#' @autoglobal
+#' @noRd
 make_aka <- function() {
 
   x <- list()
@@ -468,19 +474,20 @@ make_aka <- function() {
 
 
   x$all <- purrr::list_flatten(purrr::list_c(x), name_spec = "{inner}")
-  x$nms <- rlang::names2(x$all)
+  x$nms <- kit::psort(rlang::names2(x$all), nThread = 4L)
+  x$all <- x$all[x$nms]
 
   x$clg <- list(
-    care = purrr::list_c(x$care),
-    prov = purrr::list_c(x$prov),
-    open = purrr::list_c(x$open),
-    caid = purrr::list_c(x$caid),
-    hgov = purrr::list_c(x$hgov)
+    care = purrr::list_c(x$care) |> sort_by_names(),
+    prov = purrr::list_c(x$prov) |> sort_by_names(),
+    open = purrr::list_c(x$open) |> sort_by_names(),
+    caid = purrr::list_c(x$caid) |> sort_by_names(),
+    hgov = purrr::list_c(x$hgov) |> sort_by_names()
   )
 
   x$pnt <- list(
-    current  = purrr::list_c(collapse::get_elem(x, "current")),
-    temporal = purrr::list_c(collapse::get_elem(x, "temporal"))
+    current  = purrr::list_c(collapse::get_elem(x, "current")) |> sort_by_names(),
+    temporal = purrr::list_c(collapse::get_elem(x, "temporal")) |> sort_by_names()
   )
 
   x

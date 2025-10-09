@@ -18,6 +18,12 @@ uuid_from_url <- function(x) {
 
 #' @autoglobal
 #' @noRd
+match_names <- function(x, aka) {
+  collapse::fmatch(x, table = rlang::names2(aka))
+}
+
+#' @autoglobal
+#' @noRd
 set_along <- function(x) {
   rlang::set_names(seq_along(x), rlang::names2(x))
 }

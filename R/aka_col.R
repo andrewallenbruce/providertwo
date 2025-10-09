@@ -351,37 +351,7 @@ make_col <- function() {
           clog  = "care"))
 
   x$all <- purrr::list_c(x)
-  x$nms <- rlang::names2(c(x$all))
+  x$nms <- kit::psort(rlang::names2(x$all), nThread = 4L)
+  x$all <- x$all[x$nms]
   x
-}
-
-#' @autoglobal
-#' @noRd
-match_collect <- function(x) {
-  collapse::fmatch(x, the$col$nms)
-}
-
-#' @autoglobal
-#' @noRd
-is_collect <- function(x) {
-  !cheapr::is_na(match_collect(x))
-}
-
-#' @autoglobal
-#' @noRd
-any_collect <- function(x) {
-  any(is_collect(x), na.rm = TRUE)
-}
-
-#' @autoglobal
-#' @noRd
-rex_collect <- function(x, call = rlang::caller_env()) {
-
-  if (!is_collect(x)) {
-    cli::cli_abort(c("x" = "{.val {x}} is not a collection."), call = call)
-  }
-
-  the$col$all[match_collect(x)] |>
-    unname() |>
-    yank()
 }

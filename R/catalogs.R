@@ -518,6 +518,7 @@ clog_hgov <- function(x) {
         n = TRUE
       )
     ) |>
+      collapse::mtt(year = as.integer(year)) |>
       fnest(by = "title")
   )
 }

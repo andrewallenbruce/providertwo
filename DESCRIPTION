@@ -49,6 +49,7 @@ Collate:
     'aka_end.R'
     'aka_col.R'
     'aka_util.R'
+    'alias_checks.R'
     'utils_misc.R'
     'catalogs.R'
     'checks.R'

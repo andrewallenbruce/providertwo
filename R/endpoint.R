@@ -21,7 +21,27 @@ NULL
 #' @autoglobal
 #' @noRd
 select_alias <- function(x, alias) {
-  collapse::sbt(eval(str2lang(x)), title %iin% rex_point(alias))
+  collapse::sbt(eval(str2lang(x)), title %iin% alias_match_endpoint(alias))
+}
+
+# alias_lookup("dial_facility")
+# alias_lookup("man_mltss")
+# alias_lookup("ab_reg_comp")
+# alias_lookup("asc_facility")
+# alias_lookup("qppe")
+#' @autoglobal
+#' @noRd
+alias_lookup <- function(x) {
+  x <- list(alias   = x,
+            point   = alias_endpoint_type(x),
+            catalog = alias_catalog_name(x))
+
+  lng <- glue::glue("the$clog${x$catalog}${x$point}")
+  tbl <- select_alias(x = lng, alias = x$alias)
+
+  check_alias_results(x$alias, tbl)
+
+  cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
 }
 
 #' @autoglobal
@@ -35,32 +55,7 @@ c2 <- function(x) {
 
   if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
 
-  cheapr::list_combine(
-    collapse::char_vars(x),
-    modified = mod,
-    end
-  )
-}
-
-# alias_lookup("dial_facility")
-# alias_lookup("man_mltss")
-# alias_lookup("ab_reg_comp")
-# alias_lookup("asc_facility")
-# alias_lookup("qppe")
-#' @autoglobal
-#' @noRd
-alias_lookup <- function(x) {
-  x <- list(alias   = x,
-            point   = point_type(x),
-            catalog = catalog_type(x))
-
-  lng <- glue::glue("the$clog${x$catalog}${x$point}")
-  tbl <- select_alias(x = lng, alias = x$alias)
-
-  check_alias_results(x$alias, tbl)
-
-  cheapr::list_combine(
-    x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
+  cheapr::list_combine(collapse::char_vars(x), modified = mod, end)
 }
 
 #' @autoglobal
@@ -137,7 +132,7 @@ as_care <- function(x) {
 endpoint <- function(alias) {
 
   check_required(alias)
-  check_endpoint(alias)
+  check_endpoint_alias(alias)
 
   x <- alias_lookup(alias)
 
@@ -161,9 +156,9 @@ endpoint <- function(alias) {
 collection <- function(alias) {
 
   check_required(alias)
-  check_collection(alias)
+  check_collection_alias(alias)
 
-  x <- rex_collect(alias)
+  x <- alias_match_collection(alias)
 
   class_collection(
     title   = x$title,
@@ -182,7 +177,7 @@ group <- function(..., .title = NULL) {
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
 
   check_required(alias)
-  check_group(alias)
+  check_group_alias(alias)
 
   class_group(
     title   = .title %||% theses(toString(alias)),
