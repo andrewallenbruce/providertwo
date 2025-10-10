@@ -1,3 +1,38 @@
+query2(
+  year = 2022:2024,
+  state = c("GA", "NY"),
+  enrlmt_id = "I20040309000221",
+  city = matches("Atlanta"),
+  provcity = "Atlanta",
+  provider_name = starts_with("C"),
+  provname = starts_with("C"),
+  provider_first_name = starts_with("An"),
+  provider_last_name = contains("JE"),
+  practice_state_or_us_territory = c("GA", "FL"),
+  practice_size = less_than(10, or_equal = TRUE),
+  or("state", "city"),
+  or("provider_name", "provider_first_name"))
+
+query2(
+  npi = 1003879883,
+  pecos_asct_cntl_id = 3678485208,
+  enrlmt_id = "I20040309000221",
+  provider_type_cd = c("14-16", "14-39"),
+  provider_type_desc = ends_with("OLOGY"),
+  state_cd = c("GA", "NY"),
+  first_name = starts_with("An"),
+  last_name = contains("Z"),
+  org_name = contains("E"),
+  or("state_cd", "org_name"),
+  or("npi", "pecos_asct_cntl_id", "enrlmt_id")
+)
+
+kronecker(
+  X = c("state", "city", "A"),
+  Y = c("provider_name", "provider_first_name"),
+  FUN = paste0
+)
+
 # fs::file_create(fs::path_package("providertwo"), "test.toml")
 # tomledit::as_toml(end_open)
 # tomledit::write_toml(fs::path_package("providertwo"))

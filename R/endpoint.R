@@ -146,6 +146,29 @@ endpoint <- function(alias) {
   )
 }
 
+# endpoint <- function(alias) {
+#   x <- alias_lookup(alias)
+#
+#   x$point <- switch(
+#     x$catalog,
+#     care = glue::glue("providertwo:::{x$catalog}_{x$point}"),
+#     glue::glue("providertwo:::class_{x$point}"))
+#
+#   .pnt <- rlang::as_function(x$point)
+#
+#   x$catalog <- glue::glue("providertwo:::class_{x$catalog}")
+#
+#   .cls <- rlang::as_function(x$catalog)
+#
+#   .cls(
+#     .pnt(
+#       identifier = x$identifier,
+#       metadata = get_metadata(x),
+#       dimensions = get_dimensions(x)
+#     )
+#   )
+# }
+
 #' @rdname endpoint
 #' @examples
 #' collection("unwind")

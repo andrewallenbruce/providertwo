@@ -107,20 +107,6 @@ url_type <- function(x) {
 
 #' @autoglobal
 #' @noRd
-print_list <- function(ls, prefix = "") {
-  if (length(ls) == 0) cat("<empty>\n")
-
-  if (length(names(ls)) != length(ls)) stop("all elements must be named")
-
-  ls <- lapply(ls, as.character)
-
-  cat(sprintf("%s%s : %s", prefix, format(names(ls)), ls), sep = "\n")
-
-  invisible(ls)
-}
-
-#' @autoglobal
-#' @noRd
 roxy8601 <- function(x) {
   cheapr::val_match(
     x,
@@ -148,23 +134,28 @@ roxy8601 <- function(x) {
   )
 }
 
-# endpoint <- function(alias) {
-#
-#   x   <- alias_lookup(alias)
-#
-#   cls <- as_function(glue("class_{x$catalog}"))
-#
-#   pnt <- `if`(x$catalog == "care",
-#               as_function(glue("{x$catalog}_{x$point}")),
-#               as_function(glue("class_{x$point}")))
-#
-#
-#   cls(access = pnt(
-#     identifier = ifelse(x$point == "current", x$identifier, x$endpoints),
-#     metadata = get_metadata(x),
-#     dimensions = get_dimensions(x)
-#   ))
-# }
+endpoint <- function(alias) {
+  x <- alias_lookup(alias)
+
+  x$point <- switch(
+    x$catalog,
+    care = glue::glue("providertwo:::{x$catalog}_{x$point}"),
+    glue::glue("providertwo:::class_{x$point}"))
+
+  .pnt <- rlang::as_function(x$point)
+
+  x$catalog <- glue::glue("providertwo:::class_{x$catalog}")
+
+  .cls <- rlang::as_function(x$catalog)
+
+  .cls(
+    .pnt(
+      identifier = x$identifier,
+      metadata = get_metadata(x),
+      dimensions = get_dimensions(x)
+    )
+  )
+}
 
 #' Parse datetime
 #'
