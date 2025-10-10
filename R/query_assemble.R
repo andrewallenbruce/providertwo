@@ -1,7 +1,5 @@
 #' Assemble a Query for an Endpoint
 #'
-#' @name assemble
-#'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
 #' @param qry A `<query>` object.
@@ -12,8 +10,11 @@
 #'
 #' assemble(
 #'   endpoint("drug_state"),
-#'   query2(year = 2022:2024,
-#'   state = c("GA", "NY")))
+#'   query2(
+#'     year = 2022:2024,
+#'     state = c("GA", "NY")
+#'   )
+#' )
 #'
 #' assemble(
 #'   endpoint("enroll_prov"),
@@ -57,7 +58,7 @@
 #'
 #' @autoglobal
 #' @export
-assemble %:=% S7::new_generic("obj", function(obj, qry) {
+assemble <- S7::new_generic("assemble", "obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })
@@ -73,35 +74,43 @@ S7::method(assemble, class_catalog) <- function(obj, qry) {
 
 S7::method(assemble, class_current) <- function(obj, qry) {
 
-  p <- match_query(obj, qry)
+  p <- match_query_G(obj, qry)
 
   if (empty(p)) {
     return(obj@identifier)
   }
 
   append_url(obj@identifier) |>
-    collapse_query(generate_query(p))
+    collapse_query(
+      cheapr::list_combine(
+        query_def_GRP(p),
+        query_def_ARG(p)) |>
+        purrr::list_c())
 }
 
 S7::method(assemble, care_current) <- function(obj, qry) {
 
-  p <- match_query(obj, qry)
+  p <- match_query_G(obj, qry)
 
   if (empty(p)) {
     return(obj@identifier)
   }
 
   append_url(obj@identifier, "stats") |>
-    collapse_query(generate_query(p, is_care = TRUE))
+    collapse_query(
+      cheapr::list_combine(
+        query_care_GRP(p),
+        query_care_ARG(p)) |>
+        purrr::list_c())
 }
 
 S7::method(assemble, class_temporal) <- function(obj, qry) {
 
-  p <- match_query2(obj, qry)
-
-  if (identical("year", param_names(qry))) {
-    return(p$id)
+  if (empty(qry@params)) {
+    return(select_years_2G(obj, qry)$id)
   }
+
+  p <- match_query_2G(obj, qry)
 
   qst <- purrr::map(p$field, function(x) {
     generate_query(x) |>
@@ -112,16 +121,17 @@ S7::method(assemble, class_temporal) <- function(obj, qry) {
 
   paste0(append_url(p$id), "&") |>
     glue::as_glue() +
-    glue::as_glue(qst)
+    glue::as_glue(qst) |>
+    as.character()
 }
 
 S7::method(assemble, care_temporal) <- function(obj, qry) {
 
-  p <- match_query2(obj, qry)
-
-  if (identical("year", param_names(qry))) {
-    return(p$id)
+  if (empty(qry@params)) {
+    return(select_years_2G(obj, qry)$id)
   }
+
+  p <- match_query_2G(obj, qry)
 
   qst <- purrr::map(p$field, function(x) {
     generate_query(x, is_care = TRUE) |>
@@ -132,5 +142,6 @@ S7::method(assemble, care_temporal) <- function(obj, qry) {
 
   paste0(append_url(p$id, "stats"), "&") |>
     glue::as_glue() +
-    glue::as_glue(qst)
+    glue::as_glue(qst) |>
+    as.character()
 }

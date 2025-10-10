@@ -3,6 +3,9 @@
 \name{assemble}
 \alias{assemble}
 \title{Assemble a Query for an Endpoint}
+\usage{
+assemble(obj, qry)
+}
 \arguments{
 \item{obj}{An \verb{<endpoint>}, \verb{<collection>} or \verb{<group>} object.}
 
@@ -18,8 +21,11 @@ Assemble a Query for an Endpoint
 
 assemble(
   endpoint("drug_state"),
-  query2(year = 2022:2024,
-  state = c("GA", "NY")))
+  query2(
+    year = 2022:2024,
+    state = c("GA", "NY")
+  )
+)
 
 assemble(
   endpoint("enroll_prov"),
