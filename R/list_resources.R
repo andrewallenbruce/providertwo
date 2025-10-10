@@ -9,7 +9,7 @@ tidy_resources <- function(x) {
       ext      = tolower(fs::path_ext(downloadURL)),
       download = downloadURL,
       .keep = c("year", "file", "size", "ext")) |>
-    ffill(year) |>
+    fastplyr::f_fill(year) |>
     fastplyr::as_tbl() |>
     collapse::mtt(year = ifelse(is.na(year), extract_year(download), year))
 }

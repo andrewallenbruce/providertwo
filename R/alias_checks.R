@@ -2,7 +2,7 @@
 #   alias = "example",
 #   regex = "^example$",
 #   tbl = fastplyr::new_tbl())
-# check_alias_results(x)
+# check_alias_results(x$alias, x$tbl)
 #' @autoglobal
 #' @noRd
 check_alias_results <- function(alias, df, call = rlang::caller_env()) {
@@ -23,18 +23,13 @@ check_alias_results <- function(alias, df, call = rlang::caller_env()) {
 #' @noRd
 check_endpoint_alias <- function(alias, call = rlang::caller_env()) {
   if (length(alias) > 1L) {
-    cli::cli_abort(c("x" = "Only one {.cls endpoint} can be loaded at a time."),
-                   call = call)
+    msg <- c("x" = "Only one {.cls endpoint} can be loaded at a time.")
+    cli::cli_abort(msg, call = call)
   }
 
   if (!is_alias(alias)) {
     msg <- c("x" = "{.val {alias}} is not an {.cls endpoint} alias.")
-
-    if (alias_is_collection(alias)) {
-      cli::cli_abort(c(msg, "!" = "{.val {alias}} is a {.cls collection} alias."),
-                     call = call)
-    }
-    cli::cli_abort(c(msg), call = call)
+    cli::cli_abort(msg, call = call)
   }
 }
 

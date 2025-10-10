@@ -6,7 +6,7 @@
 \alias{group}
 \title{Load Endpoints}
 \usage{
-endpoint(alias)
+endpoint(alias, call = rlang::caller_env())
 
 collection(alias)
 

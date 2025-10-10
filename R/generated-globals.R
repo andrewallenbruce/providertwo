@@ -11,6 +11,8 @@ utils::globalVariables(c(
   # <dict_field>
   # <match_dict2>
   "alias",
+  # <alias_lookup>
+  "catalog",
   # <quality_metrics>
   "category",
   # <match_query2>
@@ -32,11 +34,10 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   "description",
-  # <clog_hgov>
   # <caid_download>
+  # <clog_hgov>
   "distribution",
   # <clog_hgov>
-  # <caid_download>
   # <tidy_resources>
   "download",
   # <clog_care>
@@ -129,13 +130,13 @@ utils::globalVariables(c(
   "temporal",
   # <clog_prov>
   "theme",
+  # <caid_download>
   # <ss_title>
   # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <caid_download>
   # <select_alias>
   "title",
   # <dict_field>

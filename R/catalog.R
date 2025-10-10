@@ -1,4 +1,5 @@
 #' @include utils_misc.R
+#' @include catalog_utils.R
 NULL
 
 #' @name catalogs
@@ -17,6 +18,19 @@ NULL
 #' @keywords internal
 #' @export
 catalogs <- function() {
+  x <- catalog_raw()
+
+  list(clog_care(x),
+       clog_prov(x),
+       clog_open(x),
+       clog_caid(x),
+       clog_hgov(x)) |>
+    rlang::set_names(rlang::names2(x))
+}
+
+#' @autoglobal
+#' @noRd
+catalog_raw <- function() {
   base_url <- c(
     care = "https://data.cms.gov/data.json",
     prov = "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items",
@@ -25,7 +39,7 @@ catalogs <- function() {
     hgov = "https://data.healthcare.gov/api/1/metastore/schemas/dataset/items"
   )
 
-  x <- base_url |>
+  base_url |>
     purrr::map(httr2::request) |>
     httr2::req_perform_parallel(on_error = "continue") |>
     httr2::resps_successes() |>
@@ -35,45 +49,6 @@ catalogs <- function() {
         fastplyr::as_tbl()
     }) |>
     rlang::set_names(rlang::names2(base_url))
-
-  list(clog_care(x), clog_prov(x), clog_open(x), clog_caid(x), clog_hgov(x)) |>
-    rlang::set_names(rlang::names2(base_url))
-}
-
-#' @autoglobal
-#' @noRd
-get_care <- function(x) {
-  collapse::get_elem(x, "care")
-}
-
-#' @autoglobal
-#' @noRd
-get_prov <- function(x) {
-  collapse::get_elem(x, "prov")
-}
-
-#' @autoglobal
-#' @noRd
-get_caid <- function(x) {
-  collapse::get_elem(x, "caid")
-}
-
-#' @autoglobal
-#' @noRd
-get_open <- function(x) {
-  collapse::get_elem(x, "open")
-}
-
-#' @autoglobal
-#' @noRd
-get_hgov <- function(x) {
-  collapse::get_elem(x, "hgov")
-}
-
-#' @autoglobal
-#' @noRd
-get_distribution <- function(x, ...) {
-  collapse::get_elem(x, "distribution", ...)
 }
 
 #' @autoglobal
@@ -88,7 +63,7 @@ clog_care <- function(x) {
       title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
       format     = kit::iif(!is.na(description), description, format, nThread = 4L),
       modified   = as_date(modified),
-      temporal   = fmt_temporal(temporal),
+      # temporal   = fmt_temporal(temporal),
       identifier = accessURL,
       download   = cheapr::lag_(downloadURL, n = -1L),
       resources  = resourcesAPI) |>
@@ -101,8 +76,9 @@ clog_care <- function(x) {
     collapse::mtt(
       uuid        = uuid_from_url(identifier),
       modified    = as_date(modified),
-      periodicity = fmt_periodicity(accrualPeriodicity),
-      contact     = fmt_contactpoint(get_care(x)),
+      periodicity = accrualPeriodicity,
+      # periodicity = fmt_periodicity(accrualPeriodicity),
+      # contact     = fmt_contactpoint(get_care(x)),
       references  = unlist(references, use.names = FALSE),
       temporal    = fmt_temporal(temporal),
       title       = clean_title(title),
@@ -124,7 +100,7 @@ clog_care <- function(x) {
     collapse::roworder(title, -year) |>
     collapse::gby(title, return.groups = FALSE) |>
     collapse::mtt(download_only = collapse::allNA(identifier)) |>
-    fnest(by = c("title", "download_only")) |>
+    f_nest(by = c("title", "download_only")) |>
     join_on_title(
       collapse::slt(
         base,
@@ -132,7 +108,7 @@ clog_care <- function(x) {
         "title",
         "description",
         "periodicity",
-        "contact",
+        # "contact",
         "dictionary",
         "site",
         "references"
@@ -170,10 +146,10 @@ clog_prov <- function(x) {
       modified    = as_date(modified),
       released    = as_date(released),
       next_update = as_date(nextUpdateDate),
-      group       = purrr::map_chr(theme, function(x) toString(unlist(x, use.names = FALSE))),
+      group       = to_str(theme),
       description = clean_title(description),
       download    = prov_download(x),
-      contact     = fmt_contactpoint(get_prov(x)),
+      # contact     = fmt_contactpoint(get_prov(x)),
       site        = landingPage
     ) |>
       collapse::sbt(
@@ -188,7 +164,7 @@ clog_prov <- function(x) {
           "next_update",
           "uuid",
           "identifier",
-          "contact",
+          # "contact",
           "download",
           "site",
           "dictionary"
@@ -218,7 +194,7 @@ clog_open <- function(x) {
       nThread = 4L
     ),
     title = clean_title(title),
-    contact = fmt_contactpoint(get_open(x)),
+    # contact = fmt_contactpoint(get_open(x)),
     description = clean_title(description),
     download = open_download(x)
   ) |>
@@ -229,7 +205,7 @@ clog_open <- function(x) {
       "modified",
       "identifier",
       "uuid",
-      "contact",
+      # "contact",
       "download"
     ))
 
@@ -247,7 +223,7 @@ clog_open <- function(x) {
           default = description,
           nThread = 4L)) |>
       collapse::roworder(title, -year) |>
-      fnest(by = c("title"))
+      f_nest(by = c("title"))
   )
 }
 
@@ -262,7 +238,7 @@ clog_caid <- function(x) {
     "description",
     "periodicity",
     "modified",
-    "contact",
+    # "contact",
     "download"
   )
 
@@ -275,8 +251,9 @@ clog_caid <- function(x) {
         "/0"
       ),
       modified = as_date(modified),
-      periodicity = fmt_periodicity(accrualPeriodicity),
-      contact = fmt_contactpoint(get_caid(x)),
+      periodicity = accrualPeriodicity,
+      # periodicity = fmt_periodicity(accrualPeriodicity),
+      # contact = fmt_contactpoint(get_caid(x)),
       title = clean_title(title),
       description = kit::iif(description == "Dataset.", NA_character_, description, nThread = 4L),
       description = clean_title(description)
@@ -327,7 +304,7 @@ clog_caid <- function(x) {
           )
         ) |>
       collapse::roworder(title, year) |>
-      ffill(description, periodicity) |>
+      fastplyr::f_fill(description, periodicity) |>
       collapse::slt(
         "year",
         "title",
@@ -338,21 +315,7 @@ clog_caid <- function(x) {
         "download"
       ) |>
       collapse::roworder(title, -year) |>
-      fnest(by = c("title", "description", "periodicity"))
-  )
-}
-
-#' @autoglobal
-#' @noRd
-caid_title <- function(x) {
-  kit::nif(
-    gdetect(x, "Child and Adult Health Care Quality Measures"), "Child and Adult Health Care Quality Measures",
-    gdetect(x, "2[0-9]{3} Manage"), "Managed Care Programs by State",
-    gdetect(x, "NADAC \\(National Average Drug Acquisition Cost\\)"), "NADAC",
-    gdetect(x, "State Drug Utilization Data"), "State Drug Utilization Data",
-    gdetect(x, "Pricing Comparison"), "Pricing Comparison for Blood Disorder Treatments",
-    gdetect(x, "Product Data for Newly Reported"), "Product Data for Newly Reported Drugs in the Medicaid Drug Rebate Program",
-    default = x
+      f_nest(by = c("title", "description", "periodicity"))
   )
 }
 
@@ -399,8 +362,9 @@ clog_hgov <- function(x) {
       greplace("Dataset.", NA_character_),
     modified    = as_date(modified),
     issued      = as_date(issued),
-    periodicity = fmt_periodicity(accrualPeriodicity),
-    contact     = fmt_contactpoint(get_hgov(x))
+    # contact     = fmt_contactpoint(get_hgov(x)),
+    # periodicity = fmt_periodicity(accrualPeriodicity),
+    periodicity = accrualPeriodicity
   ) |>
     collapse::slt(
       c(
@@ -410,8 +374,8 @@ clog_hgov <- function(x) {
         "description",
         "periodicity",
         "issued",
-        "modified",
-        "contact"
+        # "contact",
+        "modified"
       )
     )
 
@@ -426,7 +390,8 @@ clog_hgov <- function(x) {
     collapse::sbt(title %!iin% collapse::get_elem(qhp, "title")) |>
     ss_title("Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     collapse::mtt(
-      periodicity = "Annually [R/P1Y]",
+      # periodicity = "Annually [R/P1Y]",
+      periodicity = "R/P1Y",
       year  = extract_year(title),
       title = gremove(title, "^[2][0-9]{3}\\s") |>
         gremove("\\s\\s?[-]?\\s?[2][0-9]{3}$") |>
@@ -519,74 +484,6 @@ clog_hgov <- function(x) {
       )
     ) |>
       collapse::mtt(year = as.integer(year)) |>
-      fnest(by = "title")
+      f_nest(by = "title")
   )
-}
-
-#' @autoglobal
-#' @noRd
-fmt_contactpoint <- function(x) {
-  x <- collapse::get_elem(x, "contactPoint")
-
-  glue::glue("{rlang::names2(x)} ({x})",
-    x = collapse::get_elem(x, "^has", regex = TRUE) |>
-      unlist(use.names = FALSE) |>
-      rlang::set_names(
-        collapse::get_elem(x, "fn") |>
-          unlist(use.names = FALSE))) |>
-    as.character()
-}
-
-#' @autoglobal
-#' @noRd
-fmt_temporal <- function(x) {
-  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
-}
-
-#' @autoglobal
-#' @noRd
-caid_download <- function(x) {
-
-  to_string  <- \(x)    purrr::map_chr(x, \(i) toString(unlist(i, use.names = FALSE), width = NULL))
-  to_string2 <- \(x, e) purrr::map_chr(x, \(i) toString(unlist(collapse::get_elem(x, e), use.names = FALSE), width = NULL))
-
-  s <- get_caid(x) |>
-    collapse::slt(title, distribution) |>
-    collapse::sbt(grep("test|coreset|scorecard|category_tiles|auto", title, ignore.case = TRUE, perl = TRUE, invert = TRUE)) |>
-    collapse::roworder(title) |>
-    collapse::mtt(
-      distribution = purrr::map(distribution, \(x) collapse::get_elem(x, "^title$|^downloadURL$", DF.as.list = TRUE, regex = TRUE)),
-      is_chr = purrr::map_lgl(distribution, \(x) is.character(x))) |>
-    collapse::rsplit(~ is_chr)
-
-  purrr::imap(s, function(x, i) {
-    switch(i,
-      `TRUE`  = collapse::slt(collapse::mtt(x, download = to_string(distribution)), title, download),
-      `FALSE` = collapse::mtt(x,
-        name     = to_string2(distribution, "title"),
-        download = to_string2(distribution, "downloadURL"),
-        name     = kit::iif(name == "CSV", title, name, nThread = 4L),
-        name     = kit::iif(title == name, NA_character_, name, nThread = 4L)) |>
-        collapse::slt(title, download))
-  }) |>
-    purrr::list_rbind() |>
-    collapse::roworder(title)
-}
-
-#' @autoglobal
-#' @noRd
-prov_download <- function(x) {
-  get_prov(x) |>
-    get_distribution() |>
-    collapse::get_elem("^downloadURL", regex = TRUE, DF.as.list = TRUE) |>
-    unlist(use.names = FALSE)
-}
-
-#' @autoglobal
-#' @noRd
-open_download <- function(x) {
-  get_open(x) |>
-    get_distribution(DF.as.list = TRUE) |>
-    collapse::get_elem("downloadURL", DF.as.list = TRUE) |>
-    unlist(use.names = FALSE)
 }

@@ -20,46 +20,6 @@ NULL
 
 #' @autoglobal
 #' @noRd
-select_alias <- function(x, alias) {
-  collapse::sbt(eval(str2lang(x)), title %iin% alias_match_endpoint(alias))
-}
-
-# alias_lookup("dial_facility")
-# alias_lookup("man_mltss")
-# alias_lookup("ab_reg_comp")
-# alias_lookup("asc_facility")
-# alias_lookup("qppe")
-#' @autoglobal
-#' @noRd
-alias_lookup <- function(x) {
-  x <- list(alias   = x,
-            point   = alias_endpoint_type(x),
-            catalog = alias_catalog_name(x))
-
-  lng <- glue::glue("the$clog${x$catalog}${x$point}")
-  tbl <- select_alias(x = lng, alias = x$alias)
-
-  check_alias_results(x$alias, tbl)
-
-  cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
-}
-
-#' @autoglobal
-#' @noRd
-c2 <- function(x) {
-  end <- yank(x$endpoints) |>
-    collapse::sbt(!is.na(identifier)) |>
-    collapse::gvr(c("^year$", "^identifier$", "^download$", "^resources$"))
-
-  mod <- collapse::fmax(yank(x$endpoints, "modified"))
-
-  if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
-
-  cheapr::list_combine(collapse::char_vars(x), modified = mod, end)
-}
-
-#' @autoglobal
-#' @noRd
 as_current <- function(x) {
   i <- get_dims(x)
 
@@ -129,12 +89,12 @@ as_care <- function(x) {
 #' try(endpoint("ex"))
 #' @autoglobal
 #' @export
-endpoint <- function(alias) {
+endpoint <- function(alias, call = rlang::caller_env()) {
 
-  check_required(alias)
-  check_endpoint_alias(alias)
+  check_required(alias, call = call)
+  check_endpoint_alias(alias, call = call)
 
-  x <- alias_lookup(alias)
+  x <- alias_lookup(alias, call = call)
 
   switch(
     x$catalog,
@@ -145,29 +105,6 @@ endpoint <- function(alias) {
     hgov = class_hgov(as_endpoint(x))
   )
 }
-
-# endpoint <- function(alias) {
-#   x <- alias_lookup(alias)
-#
-#   x$point <- switch(
-#     x$catalog,
-#     care = glue::glue("providertwo:::{x$catalog}_{x$point}"),
-#     glue::glue("providertwo:::class_{x$point}"))
-#
-#   .pnt <- rlang::as_function(x$point)
-#
-#   x$catalog <- glue::glue("providertwo:::class_{x$catalog}")
-#
-#   .cls <- rlang::as_function(x$catalog)
-#
-#   .cls(
-#     .pnt(
-#       identifier = x$identifier,
-#       metadata = get_metadata(x),
-#       dimensions = get_dimensions(x)
-#     )
-#   )
-# }
 
 #' @rdname endpoint
 #' @examples
