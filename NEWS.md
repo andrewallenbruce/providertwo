@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9511 (2025-10-11)
+
+* removed `class_metadata`
+* catalog polishing
+* data-raw cleanup
+* fixed assemble
+
+
 # providertwo 0.0.0.9510 (2025-10-09)
 
 * alias: consistent function naming convention (#22)
