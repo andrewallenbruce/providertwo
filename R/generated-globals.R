@@ -49,6 +49,8 @@ utils::globalVariables(c(
   "entity",
   # <clog_hgov>
   "ext",
+  # <reduce_fields>
+  "f_common",
   # <make_field_switch>
   # <field_table>
   # <dict_field>
@@ -64,13 +66,13 @@ utils::globalVariables(c(
   "firstApprovedDate",
   # <clog_hgov>
   "id",
+  # <test_aliases>
   # <clog_care>
   # <clog_prov>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
   # <c2>
-  # <test_aliases>
   "identifier",
   # <quality_eligibility>
   "is_maqi",

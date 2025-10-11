@@ -15,6 +15,8 @@ group(..., .title = NULL)
 \arguments{
 \item{alias}{\verb{<chr>} endpoint or collection alias}
 
+\item{call}{The environment from which the function is called.}
+
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> endpoint aliases to be grouped}
 
 \item{.title}{\verb{<chr>} Group title. Defaults to \code{NULL},

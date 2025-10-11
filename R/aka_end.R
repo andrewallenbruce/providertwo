@@ -6,11 +6,9 @@ sort_by_names <- function(x) {
 
 #' @autoglobal
 #' @noRd
-make_aka <- function() {
+ENDPOINT <- function() {
 
-  x <- list()
-
-  x$care <- list(
+  care <- list(
     current = list(
       aco_pioneer = "Pioneer ACO Model",
       aco_part = "Accountable Care Organization Participants",
@@ -142,8 +140,7 @@ make_aka <- function() {
     )
   )
 
-
-  x$caid <- list(
+  caid <- list(
     current = list(
       aca_ful = "ACA Federal Upper Limits",
       amp_month = "Drug AMP Reporting - Monthly",
@@ -236,7 +233,7 @@ make_aka <- function() {
     )
   )
 
-  x$open <- list(
+  open <- list(
     current = list(
       grp_teach = "Payments grouped by Teaching Hospital",
       prf_cover = "Covered Recipient Profile Supplement",
@@ -270,7 +267,7 @@ make_aka <- function() {
     )
   )
 
-  x$prov <- list(
+  prov <- list(
     current = list(
       asc_facility = "Ambulatory Surgical Center Quality Measures - Facility",
       asc_national = "Ambulatory Surgical Center Quality Measures - National",
@@ -387,97 +384,116 @@ make_aka <- function() {
       nh_citation = "Citation Code Look-up",
       nh_fire = "Fire Safety Deficiencies",
       nh_deficient = "Health Deficiencies",
-      nh_inspect              = "Inspection Dates",
-      nh_mds                  = "MDS Quality Measures",
-      nh_claims               = "Medicare Claims Quality Measures",
-      nh_point_avg            = "State US Averages",
-      nh_point_cut            = "State-Level Health Inspection Cut Points",
-      nh_interval             = "Nursing Home Data Collection Intervals",
-      out_img_hosp            = "Outpatient Imaging Efficiency - Hospital",
-      out_img_nation          = "Outpatient Imaging Efficiency - National",
-      out_img_state           = "Outpatient Imaging Efficiency - State",
-      pch_pall_hosp           = "Palliative Care - PPS-Exempt Cancer Hospital - Hospital",
-      pch_pall_nation         = "Palliative Care - PPS-Exempt Cancer Hospital - National",
-      pdc_affiliation         = "Facility Affiliation Data",
-      pdc_clinician           = "National Downloadable File",
-      pdc_utilization         = "Utilization Data",
-      reduc_hac               = "Hospital-Acquired Condition (HAC) Reduction Program",
-      reduc_hrr               = "Hospital Readmissions Reduction Program",
-      snf_vbp_perform         = "FY 2025 SNF VBP Aggregate Performance",
-      snf_vbp_facility        = "FY 2025 SNF VBP Facility-Level Dataset",
-      snf_qrp_nation          = "Skilled Nursing Facility Quality Reporting Program - National Data",
-      snf_qrp_provider        = "Skilled Nursing Facility Quality Reporting Program - Provider Data",
-      snf_qrp_swing           = "Skilled Nursing Facility Quality Reporting Program - Swing Beds - Provider Data",
-      supplier_directory      = "Medical Equipment Suppliers",
-      surv_sum                = "Survey Summary",
-      timely_hosp             = "Timely and Effective Care - Hospital",
-      timely_nation           = "Timely and Effective Care - National",
-      timely_state            = "Timely and Effective Care - State",
-      visit_hosp              = "Unplanned Hospital Visits - Hospital",
-      visit_nation            = "Unplanned Hospital Visits - National",
-      visit_state             = "Unplanned Hospital Visits - State",
-      va_behavior             = "Veterans Health Administration Behavioral Health Data",
-      va_provider             = "Veterans Health Administration Provider Level Data",
-      va_timely               = "Veterans Health Administration Timely and Effective Care Data"
+      nh_inspect = "Inspection Dates",
+      nh_mds = "MDS Quality Measures",
+      nh_claims = "Medicare Claims Quality Measures",
+      nh_point_avg = "State US Averages",
+      nh_point_cut = "State-Level Health Inspection Cut Points",
+      nh_interval = "Nursing Home Data Collection Intervals",
+      out_img_hosp = "Outpatient Imaging Efficiency - Hospital",
+      out_img_nation = "Outpatient Imaging Efficiency - National",
+      out_img_state = "Outpatient Imaging Efficiency - State",
+      pch_pall_hosp = "Palliative Care - PPS-Exempt Cancer Hospital - Hospital",
+      pch_pall_nation = "Palliative Care - PPS-Exempt Cancer Hospital - National",
+      pdc_affiliation = "Facility Affiliation Data",
+      pdc_clinician = "National Downloadable File",
+      pdc_utilization = "Utilization Data",
+      reduc_hac = "Hospital-Acquired Condition (HAC) Reduction Program",
+      reduc_hrr = "Hospital Readmissions Reduction Program",
+      snf_vbp_perform = "FY 2025 SNF VBP Aggregate Performance",
+      snf_vbp_facility = "FY 2025 SNF VBP Facility-Level Dataset",
+      snf_qrp_nation = "Skilled Nursing Facility Quality Reporting Program - National Data",
+      snf_qrp_provider = "Skilled Nursing Facility Quality Reporting Program - Provider Data",
+      snf_qrp_swing = "Skilled Nursing Facility Quality Reporting Program - Swing Beds - Provider Data",
+      supplier_directory = "Medical Equipment Suppliers",
+      surv_sum = "Survey Summary",
+      timely_hosp = "Timely and Effective Care - Hospital",
+      timely_nation = "Timely and Effective Care - National",
+      timely_state = "Timely and Effective Care - State",
+      visit_hosp = "Unplanned Hospital Visits - Hospital",
+      visit_nation = "Unplanned Hospital Visits - National",
+      visit_state = "Unplanned Hospital Visits - State",
+      va_behavior = "Veterans Health Administration Behavioral Health Data",
+      va_provider = "Veterans Health Administration Provider Level Data",
+      va_timely = "Veterans Health Administration Timely and Effective Care Data"
     )
   )
 
-  x$hgov <- list(
-    current                   = list(
-      auto_pop                = "Auto-population File",
-      ab_reg_comp             = "AB Registration Completion List",
-      ab_sus_term             = "AB Suspension and Termination List",
-      ab_reg_gloss            = "Agent Broker Registration Tracker Glossary",
-      ab_reg_trac             = "Agent Broker Registration Tracker",
-      catastrophic            = "Catastrophic Plans for People with Cancelled Policies",
-      contact_admin           = "Helpful Contacts Admins",
-      counties                = "Counties",
-      county_service          = "County Service Areas",
-      partner_lookup          = "Issuer_Partner_Lookup",
-      partner_reference       = "Issuer Partner Directory - Reference Text",
-      partner_directory       = "Issuer and DE Partner Directory",
-      partner_enrollment      = "Direct Enrollment Partners",
-      nipr_authority          = "NIPR Valid Lines of Authority List",
-      nipr_state              = "Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",
-      response_codes          = "Response Codes",
-      rolling_draft           = "Rolling Draft ECP List",
-      slcsp_county            = "SLCSP - County-Zip Reference Data",
-      states                  = "States",
-      local_help              = "Find Local Help",
-      qhp_age                 = "QHP Selections by Age Group and County,",
-      qhp_aptc                = "QHP Selections by APTC and County,",
-      qhp_consumer            = "QHP Selections by Type of Consumer and County,",
-      qhp_csr                 = "QHP Selections by CSR and County,",
-      qhp_metal               = "QHP Selections by Metal Level and County,",
-      qhp_income              = "QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",
-      qhp_ethnicity           = "QHP Selections by Race/Ethnicity and County,",
-      qhp_business            = "QHP Landscape Health Plan Business Rule Variables"
+  hgov <- list(
+    current = list(
+      auto_pop = "Auto-population File",
+      ab_reg_comp = "AB Registration Completion List",
+      ab_sus_term = "AB Suspension and Termination List",
+      ab_reg_gloss = "Agent Broker Registration Tracker Glossary",
+      ab_reg_trac = "Agent Broker Registration Tracker",
+      catastrophic = "Catastrophic Plans for People with Cancelled Policies",
+      contact_admin = "Helpful Contacts Admins",
+      counties = "Counties",
+      county_service = "County Service Areas",
+      partner_lookup = "Issuer_Partner_Lookup",
+      partner_reference = "Issuer Partner Directory - Reference Text",
+      partner_directory = "Issuer and DE Partner Directory",
+      partner_enrollment = "Direct Enrollment Partners",
+      nipr_authority = "NIPR Valid Lines of Authority List",
+      nipr_state = "Marketplace Agent/Broker NIPR Valid Lines of Authority, by State",
+      response_codes = "Response Codes",
+      rolling_draft = "Rolling Draft ECP List",
+      slcsp_county = "SLCSP - County-Zip Reference Data",
+      states = "States",
+      local_help = "Find Local Help",
+      qhp_age = "QHP Selections by Age Group and County,",
+      qhp_aptc = "QHP Selections by APTC and County,",
+      qhp_consumer = "QHP Selections by Type of Consumer and County,",
+      qhp_csr = "QHP Selections by CSR and County,",
+      qhp_metal = "QHP Selections by Metal Level and County,",
+      qhp_income = "QHP Selections by Household Income as a Percent of the Federal Poverty Level and County,",
+      qhp_ethnicity = "QHP Selections by Race/Ethnicity and County,",
+      qhp_business = "QHP Landscape Health Plan Business Rule Variables"
     ),
-    temporal                  = list(
-      mlr                     = "MLR Dataset",
-      puf_benefits            = "Benefits and Cost Sharing PUF",
-      puf_business            = "Business Rules PUF",
-      puf_machine             = "Machine Readable PUF",
-      puf_network             = "Network PUF",
-      puf_plan_attr           = "Plan Attributes PUF",
-      puf_plan_walk           = "Plan ID Crosswalk PUF",
-      puf_rate                = "Rate PUF",
-      puf_service             = "Service Area PUF",
-      puf_tic                 = "Transparency in Coverage PUF",
+    temporal = list(
+      mlr = "MLR Dataset",
+      puf_benefits = "Benefits and Cost Sharing PUF",
+      puf_business = "Business Rules PUF",
+      puf_machine = "Machine Readable PUF",
+      puf_network = "Network PUF",
+      puf_plan_attr = "Plan Attributes PUF",
+      puf_plan_walk = "Plan ID Crosswalk PUF",
+      puf_rate = "Rate PUF",
+      puf_service = "Service Area PUF",
+      puf_tic = "Transparency in Coverage PUF",
       # THESE CONTAIN ZIP FILES NOT ENDPOINTS
-      qhp_ind_dnt             = "QHP Landscape Individual Market Dental",
-      qhp_ind_med             = "QHP Landscape Individual Market Medical",
-      qhp_shop_dnt            = "QHP Landscape SHOP Market Dental",
-      qhp_shop_med            = "QHP Landscape SHOP Market Medical"
+      qhp_ind_dnt = "QHP Landscape Individual Market Dental",
+      qhp_ind_med = "QHP Landscape Individual Market Medical",
+      qhp_shop_dnt = "QHP Landscape SHOP Market Dental",
+      qhp_shop_med = "QHP Landscape SHOP Market Medical"
     )
   )
 
+  list(
+    care = care,
+    caid = caid,
+    open = open,
+    prov = prov,
+    hgov = hgov
+  )
+}
 
-  x$all <- purrr::list_flatten(purrr::list_c(x), name_spec = "{inner}")
-  x$nms <- kit::psort(rlang::names2(x$all), nThread = 4L)
-  x$all <- x$all[x$nms]
+#' @autoglobal
+#' @noRd
+make_aka <- function() {
+  x   <- ENDPOINT()
+  aka <- list()
 
-  x$clg <- list(
+  aka$all <- purrr::list_c(x) |>
+    purrr::list_flatten(name_spec = "{inner}")
+
+  aka$nms <- kit::psort(rlang::names2(aka$all), nThread = 4L)
+
+  check_alias_unique(aka$nms)
+
+  aka$all <- aka$all[aka$nms]
+
+  aka$clg <- list(
     care = purrr::list_c(x$care) |> sort_by_names(),
     prov = purrr::list_c(x$prov) |> sort_by_names(),
     open = purrr::list_c(x$open) |> sort_by_names(),
@@ -485,10 +501,10 @@ make_aka <- function() {
     hgov = purrr::list_c(x$hgov) |> sort_by_names()
   )
 
-  x$pnt <- list(
+  aka$pnt <- list(
     current  = purrr::list_c(collapse::get_elem(x, "current")) |> sort_by_names(),
     temporal = purrr::list_c(collapse::get_elem(x, "temporal")) |> sort_by_names()
   )
 
-  x
+  aka
 }

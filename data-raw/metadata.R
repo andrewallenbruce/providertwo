@@ -1,5 +1,16 @@
 #' @noRd
 #' @autoglobal
+class_metadata %:=% S7::new_class(
+  package    = NULL,
+  properties = list(
+    alias       = S7::class_character,
+    title       = S7::class_character,
+    modified    = S7::class_Date
+  )
+)
+
+#' @noRd
+#' @autoglobal
 get_meta <- function(x) {
   purrr::compact(
     list(

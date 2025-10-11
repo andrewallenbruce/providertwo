@@ -1,4 +1,4 @@
-#' @include fields_types.R
+#' @include fields.R
 NULL
 
 #' @noRd
@@ -20,17 +20,6 @@ NULL
   }
   eval.parent(cl)
 }
-
-#' @noRd
-#' @autoglobal
-class_metadata %:=% S7::new_class(
-  package    = NULL,
-  properties = list(
-    alias       = S7::class_character,
-    title       = S7::class_character,
-    modified    = S7::class_Date
-  )
-)
 
 #' @noRd
 #' @autoglobal
@@ -65,7 +54,7 @@ class_dimensions %:=% S7::new_class(
       }),
     lite = S7::new_property(S7::class_logical,
       getter = function(self) {
-        if (length(self@pages) == 1L && self@pages == 1L) TRUE else FALSE
+        length(self@pages) == 1L && self@pages == 1L
       })),
   validator = function(self) {
     if (length(self@limit) != 1) {
@@ -83,10 +72,12 @@ class_endpoint %:=% S7::new_class(
   package      = NULL,
   abstract     = TRUE,
   properties   = list(
-    identifier = S7::class_character,
-    metadata   = class_metadata,
-    fields     = class_fields,
-    dimensions = class_dimensions
+    alias       = S7::class_character,
+    title       = S7::class_character,
+    modified    = S7::class_Date,
+    identifier  = S7::class_character,
+    fields      = class_fields,
+    dimensions  = class_dimensions
   )
 )
 
@@ -175,7 +166,6 @@ class_response %:=% S7::new_class(
   package = NULL,
   properties = list(
     alias = S7::class_character,
-    # title = S7::class_character,
     param = S7::class_character | S7::class_list,
     year = S7::class_integer,
     string = S7::class_character,

@@ -48,3 +48,17 @@ dim_care_temporal <- function(x) {
       rlang::set_names(x$year)
   )
 }
+
+#' @autoglobal
+#' @noRd
+reduce_fields <- function(x) {
+  fastplyr::list_tidy(
+    union = purrr::reduce(x, vctrs::vec_set_union) |>
+      kit::psort(nThread = 4L),
+    common = purrr::reduce(x, vctrs::vec_set_intersect) |>
+      kit::psort(nThread = 4L),
+    unique = purrr::imap(x, function(x, i)
+      vctrs::vec_set_difference(x, y = f_common)) |>
+      purrr::map(\(x) kit::psort(x, nThread = 4L))
+  )
+}

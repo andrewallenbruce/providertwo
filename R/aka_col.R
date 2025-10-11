@@ -17,11 +17,11 @@ lookup_factory <- function(...) {
 #' @autoglobal
 #' @noRd
 aka_look <- list(
-  caid = lookup_factory(the$aka$caid),
-  care = lookup_factory(the$aka$care),
-  hgov = lookup_factory(the$aka$hgov),
-  open = lookup_factory(the$aka$open),
-  prov = lookup_factory(the$aka$prov)
+  caid = lookup_factory(the$aka$clg$caid),
+  care = lookup_factory(the$aka$clg$care),
+  hgov = lookup_factory(the$aka$clg$hgov),
+  open = lookup_factory(the$aka$clg$open),
+  prov = lookup_factory(the$aka$clg$prov)
 )
 
 #' @autoglobal

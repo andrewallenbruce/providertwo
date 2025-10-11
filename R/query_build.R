@@ -3,9 +3,8 @@
 no_match_response <- function(obj) {
   cli_no_match(obj)
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
-    year   = date_year(obj@metadata@modified),
+    alias  = obj@alias,
+    year   = date_year(obj@modified),
     string = obj@identifier,
     total  = obj@dimensions@total,
     found  = obj@dimensions@total,
@@ -18,8 +17,7 @@ no_match_response <- function(obj) {
 year_only_response <- function(p, obj) {
   cli_yr_only(obj)
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
+    alias  = obj@alias,
     param  = p$field,
     year   = as.integer(p$year),
     string = p$id,
@@ -107,16 +105,13 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   }
 
   p   <- generate_query(p)
-  url <- append_url(obj@identifier) |>
-    collapse_query(p)
-  res <- map_perform_parallel(url, query = "count") |>
-    unlist(use.names = FALSE)
+  url <- append_url(obj@identifier) |> collapse_query(p)
+  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
 
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
+    alias  = obj@alias,
     param  = rlang::names2(p),
-    year   = date_year(obj@metadata@modified),
+    year   = date_year(obj@modified),
     string = url,
     total  = obj@dimensions@total,
     found  = res %||% 0L,
@@ -133,16 +128,13 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   }
 
   p   <- generate_query(p, is_care = TRUE)
-  url <- append_url(obj@identifier, "stats") |>
-    collapse_query(p)
-  res <- map_perform_parallel(url) |>
-    yank("data")
+  url <- append_url(obj@identifier, "stats") |> collapse_query(p)
+  res <- map_perform_parallel(url) |> yank("data")
 
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
+    alias  = obj@alias,
     param  = rlang::names2(p),
-    year   = date_year(obj@metadata@modified),
+    year   = date_year(obj@modified),
     string = url,
     total  = total_rows(res) %||% 0L,
     found  = found_rows(res) %||% 0L,
@@ -181,8 +173,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
     )
 
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
+    alias  = obj@alias,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),
@@ -224,8 +215,7 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
     )
 
   class_response(
-    alias  = obj@metadata@alias,
-    # title  = obj@metadata@title,
+    alias  = obj@alias,
     param  = purrr::map(p$field, rlang::names2),
     year   = as.integer(p$year),
     string = as.character(url),

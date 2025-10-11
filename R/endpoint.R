@@ -14,6 +14,7 @@
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> endpoint aliases to be grouped
 #' @param .title `<chr>` Group title. Defaults to `NULL`,
 #'    which will concatenate the aliases for the title.
+#' @param call The environment from which the function is called.
 #' @name endpoint
 #' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
 NULL
@@ -25,7 +26,9 @@ as_current <- function(x) {
 
   class_current(
     identifier = x$identifier,
-    metadata   = get_meta2(x),
+    alias      = x$alias,
+    title      = x$title,
+    modified   = x$modified,
     dimensions = i$dims,
     fields     = i$fields
   )
@@ -38,7 +41,9 @@ as_temporal <- function(x) {
 
   class_temporal(
     identifier = x$identifier,
-    metadata   = get_meta2(x),
+    alias      = x$alias,
+    title      = x$title,
+    modified   = x$modified,
     dimensions = i$dims,
     fields     = i$fields,
     year       = x$year
@@ -65,13 +70,17 @@ as_care <- function(x) {
       x$point,
       current = care_current(
         identifier = x$identifier,
-        metadata   = get_meta2(x),
+        alias      = x$alias,
+        title      = x$title,
+        modified   = x$modified,
         dimensions = i$dims,
         fields     = i$fields,
         resources  = x$resources),
       temporal = care_temporal(
         identifier = x$identifier,
-        metadata   = get_meta2(x),
+        alias      = x$alias,
+        title      = x$title,
+        modified   = x$modified,
         dimensions = i$dims,
         fields     = i$fields,
         resources  = x$resources,
