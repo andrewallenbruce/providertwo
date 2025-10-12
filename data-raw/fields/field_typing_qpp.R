@@ -126,18 +126,22 @@ qppe_names <- field_types |> sbt(alias == "qppe") |> slt(field, year)
 
 qppe_by_year <- qppe_names |> rsplit(~year)
 
+qppe_fields <- endpoint("qppe") |>
+  S7::prop("access") |>
+  S7::prop("fields")
+
 
 field_list <- fastplyr::list_tidy(
-  all = reduce(qppe_by_year, intersect),
-  `2023` = setdiff(qppe_by_year$`2023`, all),
-  `2022` = setdiff(qppe_by_year$`2022`, all),
-  `2021` = setdiff(qppe_by_year$`2021`, all),
-  `2020` = setdiff(qppe_by_year$`2020`, all),
-  `2019` = setdiff(qppe_by_year$`2019`, all),
-  `2018` = setdiff(qppe_by_year$`2018`, all),
-  `2017` = setdiff(qppe_by_year$`2017`, all)
+  all = purrr::reduce(qppe_fields@keys, intersect),
+  `2023` = setdiff(qppe_fields@keys$`2023`, all),
+  `2022` = setdiff(qppe_fields@keys$`2022`, all),
+  `2021` = setdiff(qppe_fields@keys$`2021`, all),
+  `2020` = setdiff(qppe_fields@keys$`2020`, all),
+  `2019` = setdiff(qppe_fields@keys$`2019`, all),
+  `2018` = setdiff(qppe_fields@keys$`2018`, all),
+  `2017` = setdiff(qppe_fields@keys$`2017`, all)
 ) |>
-  map(\(x) kit::psort(x, nThread = 4L))
+  purrr::map(\(x) kit::psort(x, nThread = 4L))
 
 qpp <- build(endpoint("qppe"), query(practice_state_or_us_territory = any_of(c("GA", "NY"))))@base
 

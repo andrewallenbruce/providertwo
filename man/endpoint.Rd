@@ -8,9 +8,9 @@
 \usage{
 endpoint(alias, call = rlang::caller_env())
 
-collection(alias)
+collection(alias, call = rlang::caller_env())
 
-group(..., .title = NULL)
+group(..., .title = NULL, call = rlang::caller_env())
 }
 \arguments{
 \item{alias}{\verb{<chr>} endpoint or collection alias}

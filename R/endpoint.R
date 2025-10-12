@@ -22,30 +22,30 @@ NULL
 #' @autoglobal
 #' @noRd
 as_current <- function(x) {
-  i <- get_dims(x)
+  # i <- get_dims(x)
 
   class_current(
     identifier = x$identifier,
     alias      = x$alias,
     title      = x$title,
     modified   = x$modified,
-    dimensions = i$dims,
-    fields     = i$fields
+    dimensions = x$dimensions,
+    fields     = x$fields
   )
 }
 
 #' @autoglobal
 #' @noRd
 as_temporal <- function(x) {
-  i <- get_dims(x)
+  # i <- get_dims(x)
 
   class_temporal(
     identifier = x$identifier,
     alias      = x$alias,
     title      = x$title,
     modified   = x$modified,
-    dimensions = i$dims,
-    fields     = i$fields,
+    dimensions = x$dimensions,
+    fields     = x$fields,
     year       = x$year
   )
 }
@@ -63,7 +63,7 @@ as_endpoint <- function(x) {
 #' @autoglobal
 #' @noRd
 as_care <- function(x) {
-  i <- get_dims(x)
+  # i <- get_dims(x)
 
   class_care(
     access = switch(
@@ -73,16 +73,16 @@ as_care <- function(x) {
         alias      = x$alias,
         title      = x$title,
         modified   = x$modified,
-        dimensions = i$dims,
-        fields     = i$fields,
+        dimensions = x$dimensions,
+        fields     = x$fields,
         resources  = x$resources),
       temporal = care_temporal(
         identifier = x$identifier,
         alias      = x$alias,
         title      = x$title,
         modified   = x$modified,
-        dimensions = i$dims,
-        fields     = i$fields,
+        dimensions = x$dimensions,
+        fields     = x$fields,
         resources  = x$resources,
         year       = x$year)
       )
@@ -122,10 +122,10 @@ endpoint <- function(alias, call = rlang::caller_env()) {
 #' try(collection("asc_facility"))
 #' @autoglobal
 #' @export
-collection <- function(alias) {
+collection <- function(alias, call = rlang::caller_env()) {
 
-  check_required(alias)
-  check_collection_alias(alias)
+  check_required(alias, call = call)
+  check_collection_alias(alias, call = call)
 
   x <- alias_match_collection(alias)
 
@@ -141,12 +141,12 @@ collection <- function(alias) {
 #' try(group("util"))
 #' @autoglobal
 #' @export
-group <- function(..., .title = NULL) {
+group <- function(..., .title = NULL, call = rlang::caller_env()) {
 
   alias <- purrr::compact(rlang::dots_list(..., .homonyms = "error"))
 
-  check_required(alias)
-  check_group_alias(alias)
+  check_required(alias, call = call)
+  check_group_alias(alias, call = call)
 
   class_group(
     title   = .title %||% theses(toString(alias)),
