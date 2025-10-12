@@ -23,7 +23,7 @@ group(..., .title = NULL)
 which will concatenate the aliases for the title.}
 }
 \value{
-An S7 \verb{<class_care/caid/prov/open/hgov/collection/group>} object.
+An S7 \verb{<endpoint/collection/group>} object.
 }
 \description{
 Load a data endpoint or collection by its alias.

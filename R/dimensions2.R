@@ -1,5 +1,14 @@
 #' @autoglobal
 #' @noRd
+dimensions <- function(x) {
+  if (x$catalog == "care") {
+    return(switch(x$point, current = dim_care_current(x), temporal = dim_care_temporal(x)))
+  }
+  switch(x$point, current = dim_current(x), temporal = dim_temporal(x))
+}
+
+#' @autoglobal
+#' @noRd
 dim_current <- function(x) {
   i <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
     httr2::request() |>

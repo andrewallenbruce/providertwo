@@ -83,20 +83,22 @@ year_only_response <- function(p, obj) {
 #'
 #' @autoglobal
 #' @export
-build <- S7::new_generic("build", c("obj", "qry"), function(obj, qry) {
+build <- S7::new_generic("build", "obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })
 
-S7::method(build, list(class_group, class_query)) <- function(obj, qry) {
-  S7::prop(obj, "members") |> purrr::map(function(x) build(obj = x, qry = qry))
+S7::method(build, class_group) <- function(obj, qry) {
+  S7::prop(obj, "members") |>
+    purrr::map(function(x) build(obj = x, qry = qry))
 }
 
-S7::method(build, list(class_catalog, class_query)) <- function(obj, qry) {
-  S7::prop(obj, "access") |> build(qry = qry)
+S7::method(build, class_catalog) <- function(obj, qry) {
+  S7::prop(obj, "access") |>
+    build(qry = qry)
 }
 
-S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
+S7::method(build, class_current) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
@@ -119,7 +121,7 @@ S7::method(build, list(class_current, class_query)) <- function(obj, qry) {
   )
 }
 
-S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
+S7::method(build, care_current) <- function(obj, qry) {
 
   p <- match_query(obj, qry)
 
@@ -142,7 +144,7 @@ S7::method(build, list(care_current, class_query)) <- function(obj, qry) {
   )
 }
 
-S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
+S7::method(build, class_temporal) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
@@ -159,18 +161,10 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
 
   url <- paste0(append_url(p$id), "&")
   url <- glue::as_glue(url) + glue::as_glue(qst)
-  res <- map_perform_parallel(url, query = "count") |>
-    unlist(use.names = FALSE)
+  res <- map_perform_parallel(url, query = "count") |> unlist(use.names = FALSE)
 
-  cli_sum_found(
-    res,
-    obj@dimensions@total[p$idx],
-    purrr::map_int(
-      res,
-      offset,
-      limit = obj@dimensions@limit
-      )
-    )
+  cli_sum_found(res, obj@dimensions@total[p$idx],
+    purrr::map_int(res, offset, limit = obj@dimensions@limit))
 
   class_response(
     alias  = obj@alias,
@@ -183,7 +177,7 @@ S7::method(build, list(class_temporal, class_query)) <- function(obj, qry) {
   )
 }
 
-S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
+S7::method(build, care_temporal) <- function(obj, qry) {
 
   p <- match_query2(obj, qry)
 
@@ -200,19 +194,11 @@ S7::method(build, list(care_temporal, class_query)) <- function(obj, qry) {
 
   url <- paste0(append_url(p$id, "stats"), "&")
   url <- glue::as_glue(url) + glue::as_glue(qst)
-
   res <- map_perform_parallel(url)
 
   # TODO Remove this once print methods are created
-  cli_sum_found(
-    found_rows(res),
-    total_rows(res),
-    purrr::map_int(
-      found_rows(res),
-      offset,
-      limit = obj@dimensions@limit
-      )
-    )
+  cli_sum_found(found_rows(res), total_rows(res),
+    purrr::map_int(found_rows(res), offset, limit = obj@dimensions@limit))
 
   class_response(
     alias  = obj@alias,

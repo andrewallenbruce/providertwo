@@ -7,7 +7,7 @@ lookup_factory <- function(...) {
   function(x) {
     grep(
       pattern = x,
-      x       = rlang::names2(purrr::list_c(...)),
+      x       = rlang::names2(...),
       perl    = TRUE,
       value   = TRUE
     )

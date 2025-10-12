@@ -16,7 +16,7 @@
 #'    which will concatenate the aliases for the title.
 #' @param call The environment from which the function is called.
 #' @name endpoint
-#' @returns An S7 `<class_care/caid/prov/open/hgov/collection/group>` object.
+#' @returns An S7 `<endpoint/collection/group>` object.
 NULL
 
 #' @autoglobal

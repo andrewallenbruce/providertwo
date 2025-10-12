@@ -4,8 +4,22 @@ select_alias <- function(alias, catalog, point) {
 
   x <- str2lang(glue::glue("the$clog${catalog}${point}"))
 
-  collapse::sbt(eval(x),
-                title %iin% alias_match_endpoint(alias))
+  collapse::sbt(
+    eval(x), title %iin% alias_match_endpoint(alias))
+}
+
+#' @autoglobal
+#' @noRd
+c2 <- function(x) {
+  end <- yank(x$endpoints) |>
+    collapse::sbt(!is.na(identifier)) |>
+    collapse::gvr(c("^year$", "^identifier$", "^download$", "^resources$"))
+
+  mod <- collapse::fmax(yank(x$endpoints, "modified"))
+
+  if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
+
+  cheapr::list_combine(collapse::char_vars(x), modified = mod, end)
 }
 
 # alias_lookup("dial_facility")
@@ -29,21 +43,13 @@ alias_lookup <- function(x, call = rlang::caller_env()) {
 
   check_alias_results(x$alias, tbl, call = call)
 
-  cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
-}
-
-#' @autoglobal
-#' @noRd
-c2 <- function(x) {
-  end <- yank(x$endpoints) |>
-    collapse::sbt(!is.na(identifier)) |>
-    collapse::gvr(c("^year$", "^identifier$", "^download$", "^resources$"))
-
-  mod <- collapse::fmax(yank(x$endpoints, "modified"))
-
-  if (collapse::allNA(end$download)) collapse::gv(end, "download") <- NULL
-
-  cheapr::list_combine(collapse::char_vars(x), modified = mod, end)
+  x <- cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
+  # x <- cheapr::list_combine(x, dimensions(x))
+  # x$fields     <- class_fields(x$fields)
+  # x$dimensions <- class_dimensions(x$limit, x$total)
+  # x$limit      <- NULL
+  # x$total      <- NULL
+  x
 }
 
 # endpoint2("dial_facility")
@@ -75,5 +81,18 @@ endpoint2 <- function(alias, call = rlang::caller_env()) {
     x$catalog,
     env = rlang::pkg_env("providertwo"))
 
-  .cls(.pnt(rlang::list2(!!!x)))
+  x$fields     <- class_fields(x$fields)
+  x$dimensions <- class_dimensions(x$limit, x$total)
+  x$limit      <- NULL
+  x$total      <- NULL
+
+  x <- x[names(.pnt@properties)]
+
+  arg_nms <- names(x)
+
+  list2(!!!x)
+
+  .cls(
+    .pnt(!!!rlang::dots_list(x))
+    )
 }
