@@ -75,7 +75,7 @@ which will concatenate the aliases for the title.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An S7 <code>&lt;class_care/caid/prov/open/hgov/collection/group&gt;</code> object.</p>
+    <p>An S7 <code>&lt;endpoint/collection/group&gt;</code> object.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -152,7 +152,67 @@ raised.</p>
 <span class="r-in"><span><span class="fu">collection</span><span class="op">(</span><span class="st">"unwind"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_collection&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ title  : chr "Medicaid Unwinding Report"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members: Named list()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members:List of 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_hist: &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_hist"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title     : chr "Separate CHIP Enrollment by Month and State Historic CAA/Unwinding Period"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified  : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/d30cfc7c-4b32-4df1-b2bf-e0a850befd77/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys     : chr [1:5] "state" "reporting_period" "release_date" "value" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ constants: chr [1:5] "state" NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ idx      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total: int 780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ lite : logi TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_mark: &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_mark"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title     : chr "HealthCare.gov Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified  : Date[1:1], format: "2024-08-30"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/9a83ba5e-05f5-47f5-82de-f3a59233a912/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys     : chr [1:30] "state" "metric" "april_2023_net_count" "april_2023_net_percentage" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ constants: chr [1:30] "state" NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ idx      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total: int 204</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ lite : logi TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_sbm : &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_sbm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title     : chr "State-based Marketplace (SBM) Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified  : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5670e72c-e44e-4282-ab67-4ebebaba3cbd/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys     : chr [1:59] "state" "metric" "april_2023_count" "april_2023_percentage_applications" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ constants: chr [1:59] "state" NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ idx      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total: int 128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ lite : logi TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_tran: &lt;class_caid&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_tran"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ title     : chr "HealthCare.gov Transitions Marketplace Medicaid Unwinding Report"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ modified  : Date[1:1], format: "2024-12-27"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ identifier: chr "https://data.medicaid.gov/api/1/datastore/query/5636a78c-fe18-4229-aee1-e40fa910a8a0/0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ keys     : chr [1:9] "state" "data_record_note" "metric" "time_period" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ constants: chr [1:9] "state" NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ idx      : int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ dimensions: &lt;class_dimensions&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ limit: int 8000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total: int 59527</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages: int 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ lite : logi FALSE</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">collection</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asc_facility"</span>, <span class="st">"enterprise"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in collection(c("asc_facility", "enterprise")) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Only one <span style="color: #0000BB;">&lt;collection&gt;</span> can be loaded at a time.</span>
