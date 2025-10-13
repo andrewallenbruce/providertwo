@@ -22,8 +22,6 @@ NULL
 #' @autoglobal
 #' @noRd
 as_current <- function(x) {
-  # i <- get_dims(x)
-
   class_current(
     identifier = x$identifier,
     alias      = x$alias,
@@ -37,8 +35,6 @@ as_current <- function(x) {
 #' @autoglobal
 #' @noRd
 as_temporal <- function(x) {
-  # i <- get_dims(x)
-
   class_temporal(
     identifier = x$identifier,
     alias      = x$alias,
@@ -63,8 +59,6 @@ as_endpoint <- function(x) {
 #' @autoglobal
 #' @noRd
 as_care <- function(x) {
-  # i <- get_dims(x)
-
   class_care(
     access = switch(
       x$point,

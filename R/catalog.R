@@ -63,7 +63,6 @@ clog_care <- function(x) {
       title      = gremove(title, " : [0-9]{4}-[0-9]{2}-[0-9]{2}([0-9A-Za-z]{1,3})?$"),
       format     = kit::iif(!is.na(description), description, format, nThread = 4L),
       modified   = as_date(modified),
-      # temporal   = fmt_temporal(temporal),
       identifier = accessURL,
       download   = cheapr::lag_(downloadURL, n = -1L),
       resources  = resourcesAPI) |>
@@ -77,20 +76,14 @@ clog_care <- function(x) {
       uuid        = uuid_from_url(identifier),
       modified    = as_date(modified),
       periodicity = accrualPeriodicity,
-      # periodicity = fmt_periodicity(accrualPeriodicity),
-      # contact     = fmt_contactpoint(get_care(x)),
       references  = unlist(references, use.names = FALSE),
-      temporal    = fmt_temporal(temporal),
       title       = clean_title(title),
       description = clean_title(description),
       dictionary  = describedBy,
       site        = landingPage,
       .keep       = c("identifier", "references")
     ) |>
-    join_on_title(collapse::sbt(
-      dist,
-      format %==% "latest",
-      c("title", "download", "resources"))) |>
+    join_on_title(collapse::sbt(dist, format %==% "latest", c("title", "download", "resources"))) |>
     collapse::roworder(title) |>
     collapse::colorder(title, description)
 
@@ -101,19 +94,8 @@ clog_care <- function(x) {
     collapse::gby(title, return.groups = FALSE) |>
     collapse::mtt(download_only = collapse::allNA(identifier)) |>
     f_nest(by = c("title", "download_only")) |>
-    join_on_title(
-      collapse::slt(
-        base,
-      c(
-        "title",
-        "description",
-        "periodicity",
-        # "contact",
-        "dictionary",
-        "site",
-        "references"
-      )
-    )) |>
+    join_on_title(collapse::slt(base,
+      c("title", "description", "periodicity", "dictionary", "site", "references"))) |>
     collapse::colorder(endpoints, pos = "end") |>
     collapse::rsplit(~ download_only, use.names = FALSE) |>
     rlang::set_names(c("tmp", "dwn"))
@@ -121,8 +103,7 @@ clog_care <- function(x) {
   list(
     current = base,
     temporal = dist$tmp,
-    download_only = dist$dwn
-    )
+    download_only = dist$dwn)
 }
 
 #' @autoglobal
@@ -149,7 +130,6 @@ clog_prov <- function(x) {
       group       = to_str(theme),
       description = clean_title(description),
       download    = prov_download(x),
-      # contact     = fmt_contactpoint(get_prov(x)),
       site        = landingPage
     ) |>
       collapse::sbt(
@@ -164,7 +144,6 @@ clog_prov <- function(x) {
           "next_update",
           "uuid",
           "identifier",
-          # "contact",
           "download",
           "site",
           "dictionary"
@@ -194,7 +173,6 @@ clog_open <- function(x) {
       nThread = 4L
     ),
     title = clean_title(title),
-    # contact = fmt_contactpoint(get_open(x)),
     description = clean_title(description),
     download = open_download(x)
   ) |>
@@ -205,7 +183,6 @@ clog_open <- function(x) {
       "modified",
       "identifier",
       "uuid",
-      # "contact",
       "download"
     ))
 
@@ -215,13 +192,7 @@ clog_open <- function(x) {
       collapse::mtt(
         year = as.integer(year),
         title = gremove(title, "^[0-9]{4} "),
-        description = kit::nswitch(
-          title,
-          "General Payment Data", "All general (non-research, non-ownership related) payments from the program year",
-          "Ownership Payment Data", "All ownership and investment payments from the program year",
-          "Research Payment Data", "All research-related payments from the program year",
-          default = description,
-          nThread = 4L)) |>
+        description = open_description(title, description)) |>
       collapse::roworder(title, -year) |>
       f_nest(by = c("title"))
   )
@@ -230,17 +201,6 @@ clog_open <- function(x) {
 #' @autoglobal
 #' @noRd
 clog_caid <- function(x) {
-
-  cols <- c(
-    "title",
-    "uuid",
-    "identifier",
-    "description",
-    "periodicity",
-    "modified",
-    # "contact",
-    "download"
-  )
 
   base <- get_caid(x) |>
     collapse::mtt(
@@ -252,8 +212,6 @@ clog_caid <- function(x) {
       ),
       modified = as_date(modified),
       periodicity = accrualPeriodicity,
-      # periodicity = fmt_periodicity(accrualPeriodicity),
-      # contact = fmt_contactpoint(get_caid(x)),
       title = clean_title(title),
       description = kit::iif(description == "Dataset.", NA_character_, description, nThread = 4L),
       description = clean_title(description)
@@ -268,7 +226,15 @@ clog_caid <- function(x) {
       )
     ) |>
     join_on_title(caid_download(x)) |>
-    collapse::slt(cols)
+    collapse::slt(c(
+      "title",
+      "uuid",
+      "identifier",
+      "description",
+      "periodicity",
+      "modified",
+      "download"
+    ))
 
   ptn <- paste(
     "State Drug Utilization Data [0-9]{4}",
@@ -305,15 +271,16 @@ clog_caid <- function(x) {
         ) |>
       collapse::roworder(title, year) |>
       fastplyr::f_fill(description, periodicity) |>
-      collapse::slt(
+      collapse::slt(c(
         "year",
         "title",
+        "uuid",
+        "identifier",
         "description",
         "periodicity",
         "modified",
-        "identifier",
         "download"
-      ) |>
+      )) |>
       collapse::roworder(title, -year) |>
       f_nest(by = c("title", "description", "periodicity"))
   )
@@ -362,8 +329,6 @@ clog_hgov <- function(x) {
       greplace("Dataset.", NA_character_),
     modified    = as_date(modified),
     issued      = as_date(issued),
-    # contact     = fmt_contactpoint(get_hgov(x)),
-    # periodicity = fmt_periodicity(accrualPeriodicity),
     periodicity = accrualPeriodicity
   ) |>
     collapse::slt(
@@ -374,7 +339,6 @@ clog_hgov <- function(x) {
         "description",
         "periodicity",
         "issued",
-        # "contact",
         "modified"
       )
     )
@@ -390,7 +354,6 @@ clog_hgov <- function(x) {
     collapse::sbt(title %!iin% collapse::get_elem(qhp, "title")) |>
     ss_title("Qualifying|QHP Landscape Health Plan Business Rule Variables", n = TRUE) |>
     collapse::mtt(
-      # periodicity = "Annually [R/P1Y]",
       periodicity = "R/P1Y",
       year  = extract_year(title),
       title = gremove(title, "^[2][0-9]{3}\\s") |>

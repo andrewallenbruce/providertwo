@@ -1,60 +1,27 @@
 #' @autoglobal
 #' @noRd
-get_dims <- function(x) {
-
+get_dimensions <- function(x) {
   if (x$catalog == "care") {
-    return(
-      switch(
-        x$point,
-        current = dims_care_current(x),
-        temporal = dims_care_temporal(x)))
+    return(switch(x$point, current = dim_care_current(x), temporal = dim_care_temporal(x)))
   }
-
-  i <- switch(
-    x$point,
-    current = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-      httr2::request() |>
-      httr2::req_error(is_error = ~ FALSE) |>
-      httr2::req_perform() |>
-      httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE),
-    temporal = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-      map_perform_parallel() |>
-      rlang::set_names(x$year)
-  )
-
-  list(
-    dims = class_dimensions(
-      limit = api_limit(x$catalog),
-      total = switch(
-        x$point,
-        current = i$count,
-        temporal = unname(purrr::map_int(i, function(x) x[["count"]])))),
-    fields = class_fields(collapse::get_elem(i, "properties"))
-  )
+  switch(x$point, current = dim_current(x), temporal = dim_temporal(x))
 }
 
 #' @autoglobal
 #' @noRd
-dims_care_temporal <- function(x) {
-  list(
-    dims = class_dimensions(
-      limit = api_limit(x$catalog),
-      total = paste0(x$identifier, "/stats?offset=0&size=1") |>
-        map_perform_parallel(query = "total_rows") |>
-        rlang::set_names(x$year) |>
-        unlist(use.names = FALSE)
-    ),
-    fields = class_fields(
-      keys = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
-        map_perform_parallel(query = "names") |>
-        rlang::set_names(x$year)
-    )
-  )
+dim_current <- function(x) {
+  i <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    httr2::request() |>
+    httr2::req_error(is_error = ~ FALSE) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE)
+
+  list(total = i$count, fields = collapse::get_elem(i, "properties"))
 }
 
 #' @autoglobal
 #' @noRd
-dims_care_current <- function(x) {
+dim_care_current <- function(x) {
   i <- paste0(x$identifier, "?offset=0&size=1") |>
     httr2::request() |>
     httr2::req_perform() |>
@@ -62,8 +29,31 @@ dims_care_current <- function(x) {
     collapse::get_elem("meta") |>
     collapse::get_elem(c("total_rows", "headers"))
 
+  list(total = i$total_rows, fields = i$headers)
+}
+
+#' @autoglobal
+#' @noRd
+dim_temporal <- function(x) {
+  i <- paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+    map_perform_parallel() |>
+    rlang::set_names(x$year)
+
   list(
-    dims   = class_dimensions(limit = api_limit(x$catalog),
-                              total = i$total_rows),
-    fields = class_fields(i$headers))
+    total = unname(purrr::map_int(i, function(x) x[["count"]])),
+    fields = collapse::get_elem(i, "properties")
+  )
+}
+
+#' @autoglobal
+#' @noRd
+dim_care_temporal <- function(x) {
+  list(
+    total = paste0(x$identifier, "/stats?offset=0&size=1") |>
+      map_perform_parallel(query = "total_rows") |>
+      unlist(use.names = FALSE),
+    fields = paste0(x$identifier, "?count=true&results=true&offset=0&limit=1") |>
+      map_perform_parallel(query = "names") |>
+      rlang::set_names(x$year)
+  )
 }

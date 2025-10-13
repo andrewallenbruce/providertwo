@@ -58,7 +58,6 @@ Collate:
     'classes.R'
     'cli.R'
     'dimensions.R'
-    'dimensions2.R'
     'endpoint.R'
     'endpoint_utils.R'
     'generate.R'

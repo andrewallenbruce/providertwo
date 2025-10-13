@@ -49,8 +49,6 @@ utils::globalVariables(c(
   "entity",
   # <clog_hgov>
   "ext",
-  # <reduce_fields>
-  "f_common",
   # <make_field_switch>
   # <field_table>
   # <dict_field>
@@ -128,8 +126,6 @@ utils::globalVariables(c(
   "state.abb",
   # <state_recode>
   "state.name",
-  # <clog_care>
-  "temporal",
   # <clog_prov>
   "theme",
   # <caid_download>

@@ -1,7 +1,5 @@
 #' Standardize Query to Endpoint
 #'
-#' @name standardize
-#'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
 #' @param qry A `<query>` object.
@@ -69,7 +67,7 @@
 #'
 #' @autoglobal
 #' @export
-standardize %:=% S7::new_generic("obj", function(obj, qry) {
+standardize <- S7::new_generic("standardize", "obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })

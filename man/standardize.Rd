@@ -3,6 +3,9 @@
 \name{standardize}
 \alias{standardize}
 \title{Standardize Query to Endpoint}
+\usage{
+standardize(obj, qry)
+}
 \arguments{
 \item{obj}{An \verb{<endpoint>}, \verb{<collection>} or \verb{<group>} object.}
 

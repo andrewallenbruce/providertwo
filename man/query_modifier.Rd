@@ -57,9 +57,7 @@ Helpers for use in constructing conditions in queries.
 Query modifiers are part of a small DSL for use in query construction, in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 equal(1000)
-\dontshow{\}) # examplesIf}
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])
 not_equal(10000.23)

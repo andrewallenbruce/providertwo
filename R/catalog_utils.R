@@ -2,6 +2,22 @@ options(fastplyr.inform = FALSE)
 
 #' @autoglobal
 #' @noRd
+open_description <- function(title_col, desc_col) {
+  kit::nswitch(
+    title_col,
+    "General Payment Data",
+    "All general (non-research, non-ownership related) payments from the program year",
+    "Ownership Payment Data",
+    "All ownership and investment payments from the program year",
+    "Research Payment Data",
+    "All research-related payments from the program year",
+    default = desc_col,
+    nThread = 4L
+  )
+}
+
+#' @autoglobal
+#' @noRd
 caid_title <- function(x) {
   kit::nif(
     gdetect(x, "Child and Adult Health Care Quality Measures"), "Child and Adult Health Care Quality Measures",

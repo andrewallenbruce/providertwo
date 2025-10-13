@@ -38,7 +38,7 @@ is_modifier <- function(x) {
 }
 
 #' @rdname query_modifier
-#' @examplesIf interactive()
+#' @examples
 #' equal(1000)
 #' @autoglobal
 #' @export
@@ -120,8 +120,6 @@ between <- S7::new_class(
   parent      = class_modifier,
   constructor = function(...) {
 
-    # check_number_decimal(x)
-
     x <- collapse::frange(c(...), na.rm = TRUE)
 
     S7::new_object(
@@ -141,8 +139,6 @@ not_between <- S7::new_class(
   package     = NULL,
   parent      = class_modifier,
   constructor = function(...) {
-
-    # check_number_decimal(x)
 
     x <- collapse::frange(c(...), na.rm = TRUE)
 

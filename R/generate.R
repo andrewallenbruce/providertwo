@@ -1,7 +1,5 @@
 #' Generate a Query for an Endpoint
 #'
-#' @name generate
-#'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
 #'
 #' @param qry A `<query>` object.
@@ -56,7 +54,7 @@
 #'
 #' @autoglobal
 #' @export
-generate %:=% S7::new_generic("obj", function(obj, qry) {
+generate <- S7::new_generic("generate", "obj", function(obj, qry) {
   check_class_query(qry)
   S7::S7_dispatch()
 })

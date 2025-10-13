@@ -3,6 +3,9 @@
 \name{generate}
 \alias{generate}
 \title{Generate a Query for an Endpoint}
+\usage{
+generate(obj, qry)
+}
 \arguments{
 \item{obj}{An \verb{<endpoint>}, \verb{<collection>} or \verb{<group>} object.}
 
