@@ -26,20 +26,30 @@ NULL
 class_fields %:=% S7::new_class(
   package = NULL,
   properties = list(
-    keys = S7::class_character | S7::class_list,
-    constants = S7::new_property(S7::class_character | S7::class_list,
-      getter = function(self) {
-        if (empty(self@keys)) return(character(0L))
-        if (rlang::is_bare_character(self@keys)) return(field_switch(self@keys))
-        if (rlang::is_bare_list(self@keys)) purrr::map(self@keys, field_switch)
-      }),
-    idx = S7::new_property(S7::class_integer | S7::class_list,
-      getter = function(self) {
-        if (rlang::is_bare_character(self@constants)) return(cheapr::which_not_na(self@constants))
-        if (rlang::is_bare_list(self@constants)) purrr::map(self@constants, cheapr::which_not_na)
-      })
+    keys = S7::class_character,
+    stds = S7::new_property(S7::class_character,
+      getter = function(self) field_switch(self@keys))
     )
   )
+
+#' @noRd
+#' @autoglobal
+class_fields_list %:=% S7::new_class(
+  parent     = class_fields,
+  package    = NULL,
+  properties = list(sets = S7::class_list)
+)
+
+#' @noRd
+#' @autoglobal
+fields_list <- function(x) {
+  k <- collapse::funique(unlist(x, use.names = FALSE))
+
+  class_fields_list(
+    keys = k,
+    sets = purrr::map(x, function(x) collapse::fmatch(x, k)))
+}
+
 
 #' @noRd
 #' @autoglobal
@@ -49,20 +59,12 @@ class_dimensions %:=% S7::new_class(
     limit    = S7::class_integer,
     total    = S7::class_integer,
     pages    = S7::new_property(S7::class_integer,
-      getter = function(self) {
-        purrr::map_int(self@total, offset, limit = self@limit)
-      }),
-    lite = S7::new_property(S7::class_logical,
-      getter = function(self) {
-        length(self@pages) == 1L && self@pages == 1L
-      })),
-  validator = function(self) {
-    if (length(self@limit) != 1) {
-      cli::cli_abort(c("x" = "{.field @limit} must be length 1"), call = NULL)
-    }
-    if (self@limit < 1L) {
-      cli::cli_abort(c("x" = "{.field @limit} must be greater than 0"), call = NULL)
-    }
+      getter = function(self) page_count(self@total, self@limit)),
+    simple   = S7::new_property(S7::class_logical,
+      getter = function(self) length(self@pages) == 1L && self@pages == 1L)),
+  validator  = function(self) {
+    if (length(self@limit) != 1L) "@limit must be length 1"
+    if (self@limit < 1L) "@limit must be greater than 0"
   }
 )
 
@@ -76,36 +78,34 @@ class_endpoint %:=% S7::new_class(
     title       = S7::class_character,
     modified    = S7::class_Date,
     identifier  = S7::class_character,
-    fields      = class_fields,
     dimensions  = class_dimensions
   )
 )
 
 #' @noRd
 #' @autoglobal
-class_current %:=% S7::new_class(class_endpoint, package = NULL)
-
-#' @noRd
-#' @autoglobal
-class_temporal %:=% S7::new_class(
-  class_endpoint,
-  package = NULL,
-  properties = list(year = S7::class_integer)
+class_current %:=% S7::new_class(class_endpoint, package = NULL,
+  properties = list(fields = class_fields)
 )
 
 #' @noRd
 #' @autoglobal
-care_current %:=% S7::new_class(
-  class_current,
-  package = NULL,
+class_temporal %:=% S7::new_class(class_endpoint, package = NULL,
+  properties = list(
+    fields = class_fields_list,
+    year = S7::class_integer
+  )
+)
+
+#' @noRd
+#' @autoglobal
+care_current %:=% S7::new_class(class_current, package = NULL,
   properties = list(resources = S7::class_character)
 )
 
 #' @noRd
 #' @autoglobal
-care_temporal %:=% S7::new_class(
-  class_temporal,
-  package = NULL,
+care_temporal %:=% S7::new_class(class_temporal, package = NULL,
   properties = list(resources = S7::class_character)
 )
 
@@ -121,17 +121,13 @@ class_catalog %:=% S7::new_class(
 
 #' @noRd
 #' @autoglobal
-class_care %:=% S7::new_class(
-  class_catalog,
-  package = NULL,
+class_care %:=% S7::new_class(class_catalog, package = NULL,
   properties = list(access = care_current | care_temporal)
 )
 
 #' @noRd
 #' @autoglobal
-class_prov %:=% S7::new_class(
-  class_catalog,
-  package = NULL,
+class_prov %:=% S7::new_class(class_catalog, package = NULL,
   properties = list(access = class_current)
 )
 #' @noRd
@@ -173,9 +169,7 @@ class_response %:=% S7::new_class(
     found = S7::class_integer,
     total = S7::class_integer,
     pages = S7::new_property(S7::class_integer,
-      getter = function(self) {
-        purrr::map_int(self@found, offset, limit = self@limit)
-      }),
+      getter = function(self) page_count(self@found, self@limit)),
     error = S7::new_property(S7::class_logical,
       getter = function(self) {
         if (empty(self@param)) FALSE else self@found == self@total

@@ -35,7 +35,7 @@ year_only_response <- function(p, obj) {
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' build(
 #'   endpoint("drug_state"),
 #'   query(year = 2022:2024,

@@ -19,4 +19,5 @@ Convert raw field names to a known constant.
 }
 \examples{
 field_switch(c("FIRST NAME - OWNER", "FIRST_NAME"))
+field_switch("ASDFAGED sghfh")
 }

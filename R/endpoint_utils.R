@@ -45,11 +45,17 @@ alias_lookup <- function(x, call = rlang::caller_env()) {
 
   x <- cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
   x <- cheapr::list_combine(x, get_dimensions(x))
-  x$fields     <- class_fields(x$fields)
-  x$dimensions <- class_dimensions(x$limit, x$total)
-  x$limit      <- NULL
-  x$total      <- NULL
-  x
+
+  cheapr::list_modify(
+    x,
+    list(
+      fields = switch(
+        x$point,
+        current = class_fields(x$fields),
+        temporal = fields_list(x$fields)),
+      dimensions = class_dimensions(x$limit, x$total)
+      )
+    )
 }
 
 # endpoint2("dial_facility")

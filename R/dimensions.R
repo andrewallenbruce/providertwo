@@ -1,10 +1,13 @@
 #' @autoglobal
 #' @noRd
 get_dimensions <- function(x) {
-  if (x$catalog == "care") {
-    return(switch(x$point, current = dim_care_current(x), temporal = dim_care_temporal(x)))
-  }
-  switch(x$point, current = dim_current(x), temporal = dim_temporal(x))
+  switch(x$catalog,
+         care = switch(x$point,
+                       current  = dim_care_current(x),
+                       temporal = dim_care_temporal(x)),
+         switch(x$point,
+                current  = dim_current(x),
+                temporal = dim_temporal(x)))
 }
 
 #' @autoglobal
@@ -16,7 +19,9 @@ dim_current <- function(x) {
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE)
 
-  list(total = i$count, fields = collapse::get_elem(i, "properties"))
+  list(
+    total  = i$count,
+    fields = collapse::get_elem(i, "properties"))
 }
 
 #' @autoglobal
@@ -24,12 +29,15 @@ dim_current <- function(x) {
 dim_care_current <- function(x) {
   i <- paste0(x$identifier, "?offset=0&size=1") |>
     httr2::request() |>
+    httr2::req_error(is_error = ~ FALSE) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = TRUE, check_type = FALSE) |>
     collapse::get_elem("meta") |>
     collapse::get_elem(c("total_rows", "headers"))
 
-  list(total = i$total_rows, fields = i$headers)
+  list(
+    total  = i$total_rows,
+    fields = i$headers)
 }
 
 #' @autoglobal
@@ -40,7 +48,7 @@ dim_temporal <- function(x) {
     rlang::set_names(x$year)
 
   list(
-    total = unname(purrr::map_int(i, function(x) x[["count"]])),
+    total  = unname(purrr::map_int(i, function(x) x[["count"]])),
     fields = collapse::get_elem(i, "properties")
   )
 }

@@ -70,13 +70,14 @@ npi_nppes <- function(npi = NULL,
     state                = state,
     postal_code          = zip,
     country_code         = country,
+    limit                = 1200L,
     skip                 = 0L)
 
   if (length(args$number) > 1L) return(.nppes_multi_npi(args$number))
 
     args <- purrr::compact(args)
 
-    "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=200" |>
+    "https://npiregistry.cms.hhs.gov/api/?version=2.1&limit=1200" |>
       httr2::request() |>
       httr2::req_url_query(!!!args) |>
       perform_simple() |>

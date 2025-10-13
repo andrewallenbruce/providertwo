@@ -129,3 +129,9 @@ offset <- function(nres, limit, type = "size") {
     seq  = seq_(    from = 0L, to = nres, by = limit)
   )
 }
+
+#' @autoglobal
+#' @noRd
+page_count <- function(total, limit) {
+  purrr::map_int(total, \(x) offset(nres = x, limit = limit))
+}

@@ -300,7 +300,7 @@ make_field_switch <- function(x) {
     collapse::roworder(constant, field)
 
   function(x) {
-    kit::vswitch(x, e$field, e$constant, nThread = 4L)
+    kit::vswitch(x, e$field, e$constant, default = clean_names(x), nThread = 4L)
   }
 }
 
@@ -309,6 +309,7 @@ make_field_switch <- function(x) {
 #' @param x A character vector of raw field names.
 #' @examples
 #' field_switch(c("FIRST NAME - OWNER", "FIRST_NAME"))
+#' field_switch("ASDFAGED sghfh")
 #' @returns A character vector of standardized field names.
 #' @autoglobal
 #' @export
