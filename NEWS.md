@@ -1,5 +1,15 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9512 (2025-10-13)
+
+* feat: new `class_fields_list`
+* fix: `field_switch` now defaults to `clean_names` instead of `NA_character`
+* fix: `page_count` helper for class setters
+* fix: bug in `clog_care`
+* `alias_lookup` now loads fields and dimensions classes
+* fix: `collection` loading aliases correctly
+
+
 # providertwo 0.0.0.9511 (2025-10-11)
 
 * removed `class_metadata`
