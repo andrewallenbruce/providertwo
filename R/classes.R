@@ -26,9 +26,9 @@ NULL
 class_fields %:=% S7::new_class(
   package = NULL,
   properties = list(
-    keys = S7::class_character,
-    stds = S7::new_property(S7::class_character,
-      getter = function(self) field_switch(self@keys))
+    keys = S7::class_character
+    # stds = S7::new_property(S7::class_character,
+    #   getter = function(self) field_switch(self@keys))
     )
   )
 
