@@ -103,8 +103,8 @@
 <span class="r-in"><span>    state <span class="op">=</span> <span class="st">"GA"</span>,</span></span>
 <span class="r-in"><span>    city <span class="op">=</span> <span class="st">"Atlanta"</span>,</span></span>
 <span class="r-in"><span>    provcity <span class="op">=</span> <span class="st">"Atlanta"</span>,</span></span>
-<span class="r-in"><span>    provider_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    provname <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    provider_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    provname <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data/stats?offset=0&amp;size=1&amp;</span>
@@ -119,7 +119,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2021</span><span class="op">:</span><span class="fl">2023</span>,</span></span>
 <span class="r-in"><span>    practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    practice_size <span class="op">=</span> <span class="fu"><a href="query_modifier.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    practice_size <span class="op">=</span> <span class="fu"><a href="modifiers.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data/stats?offset=0&amp;size=1&amp;</span>
@@ -138,8 +138,8 @@
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="query_modifier.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;conditions[1][property]=provider_last_name&amp;conditions[1][operator]=contains&amp;conditions[1][value]=JE&amp;conditions[2][property]=provider_first_name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=An&amp;conditions[3][property]=state&amp;conditions[3][operator]=in&amp;conditions[3][value][]=CA&amp;conditions[3][value][]=GA&amp;conditions[3][value][]=NY"</span>
 <span class="r-in"><span></span></span>
