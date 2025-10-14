@@ -2,8 +2,7 @@
 % Please edit documentation in R/fields.R
 \name{field_switch}
 \alias{field_switch}
-\title{Field Switch
-Convert raw field names to a known constant.}
+\title{Field Switch}
 \usage{
 field_switch(x)
 }
@@ -14,10 +13,10 @@ field_switch(x)
 A character vector of standardized field names.
 }
 \description{
-Field Switch
 Convert raw field names to a known constant.
 }
 \examples{
 field_switch(c("FIRST NAME - OWNER", "FIRST_NAME"))
 field_switch("ASDFAGED sghfh")
+
 }

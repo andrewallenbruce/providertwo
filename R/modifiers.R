@@ -9,12 +9,63 @@
 #' @param x input
 #' @param ... input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
-#' @name query_modifier
-#' @returns An S7 `<class_modifier>` object.
+#' @name modifiers
+#' @returns An S7 `<class_modifier/class_junction>` object.
 #' @source [JSON-API: Query Parameters](https://jsonapi.org/format/#query-parameters)
 NULL
 
-# query_modifier
+#' @noRd
+#' @autoglobal
+class_junction <- S7::new_class(
+  name          = "class_junction",
+  package       = NULL,
+  properties    = list(
+    conjunction = S7::class_character,
+    members     = S7::class_character)
+)
+
+#' @autoglobal
+#' @noRd
+is_junction <- function(x) {
+  S7::S7_inherits(x, class_junction)
+}
+
+#' @rdname modifiers
+#' @examples
+#' and("foo", "bar")
+#' @autoglobal
+#' @export
+and <- S7::new_class(
+  name        = "and",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(...) {
+    S7::new_object(
+      class_junction(),
+      conjunction = "AND",
+      members     = c(...)
+    )
+  }
+)
+
+#' @rdname modifiers
+#' @examples
+#' or("foo", "bar")
+#' @autoglobal
+#' @export
+or <- S7::new_class(
+  name        = "or",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(...) {
+    S7::new_object(
+      class_junction(),
+      conjunction = "OR",
+      members     = c(...)
+    )
+  }
+)
+
 #' @noRd
 #' @autoglobal
 class_modifier <- S7::new_class(
@@ -37,7 +88,7 @@ is_modifier <- function(x) {
   S7::S7_inherits(x, class_modifier)
 }
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' equal(1000)
 #' @autoglobal
@@ -55,7 +106,7 @@ equal <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' any_of(state.abb[10:15])
 #' @autoglobal
@@ -73,7 +124,7 @@ any_of <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' none_of(state.abb[1:3])
 #' @autoglobal
@@ -91,7 +142,7 @@ none_of <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' not_equal(10000.23)
 #' @autoglobal
@@ -109,7 +160,7 @@ not_equal <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' between(1000, 1100, 125)
 #' @autoglobal
@@ -129,7 +180,7 @@ between <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' not_between(0.95, 0.67, 0.75)
 #' @autoglobal
@@ -149,7 +200,7 @@ not_between <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' greater_than(1000)
 #' greater_than(0.125, or_equal = TRUE)
@@ -171,7 +222,7 @@ greater_than <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' less_than(1000)
 #' less_than(0.125, or_equal = TRUE)
@@ -193,7 +244,7 @@ less_than <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' starts_with("foo")
 #' @autoglobal
@@ -211,7 +262,7 @@ starts_with <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' ends_with("bar")
 #' @autoglobal
@@ -229,7 +280,7 @@ ends_with <- S7::new_class(
   }
 )
 
-#' @rdname query_modifier
+#' @rdname modifiers
 #' @examples
 #' contains("baz")
 #' @autoglobal
@@ -247,7 +298,7 @@ contains <- S7::new_class(
   }
 )
 
-# @rdname query_modifier
+# @rdname modifiers
 #' @examplesIf interactive()
 #' like("baz")
 #' @autoglobal

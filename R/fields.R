@@ -305,32 +305,37 @@ make_field_switch <- function(x) {
 }
 
 #' Field Switch
+#'
 #' Convert raw field names to a known constant.
+#'
 #' @param x A character vector of raw field names.
+#'
 #' @examples
 #' field_switch(c("FIRST NAME - OWNER", "FIRST_NAME"))
 #' field_switch("ASDFAGED sghfh")
+#'
 #' @returns A character vector of standardized field names.
+#'
 #' @autoglobal
 #' @export
 field_switch <- make_field_switch(x = FIELD)
 
 #' Field Dictionary
-#' @examples
+#' @examplesIf interactive()
 #' dictionary()
 #' @returns A data frame
 #' @autoglobal
-#' @export
+#' @noRd
 dictionary <- function() {
   get_pin("dicts")
 }
 
 #' Field Table
-#' @examples
+#' @examplesIf interactive()
 #' field_table()
 #' @returns A data frame
 #' @autoglobal
-#' @export
+#' @noRd
 field_table <- function() {
 
   collapse::mtt(
