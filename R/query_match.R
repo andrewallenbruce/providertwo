@@ -12,6 +12,18 @@ S7::method(params, class_query) <- function(obj) {
 
 #' @autoglobal
 #' @noRd
+param_names <- function(x) {
+  rlang::names2(params(x))
+}
+
+#' @autoglobal
+#' @noRd
+not_year <- function(x) {
+  params(x)[param_names(x) %!=% "year"]
+}
+
+#' @autoglobal
+#' @noRd
 key <- S7::new_generic("key", "obj", function(obj) {
   S7::S7_dispatch()
 })
@@ -30,18 +42,6 @@ S7::method(key, class_endpoint) <- function(obj) {
 
 S7::method(key, class_fields) <- function(obj) {
   S7::prop(obj, "key")
-}
-
-#' @autoglobal
-#' @noRd
-param_names <- function(x) {
-  rlang::names2(params(x))
-}
-
-#' @autoglobal
-#' @noRd
-not_year <- function(x) {
-  params(x)[param_names(x) %!=% "year"]
 }
 
 #' @autoglobal

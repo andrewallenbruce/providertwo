@@ -9,6 +9,12 @@ select_alias <- function(alias, catalog, point) {
 
 #' @autoglobal
 #' @noRd
+c1 <- function(x) {
+  cheapr::na_rm(c(x))
+}
+
+#' @autoglobal
+#' @noRd
 c2 <- function(x) {
   end <- yank(x$endpoints) |>
     collapse::sbt(!is.na(identifier)) |>
@@ -42,7 +48,7 @@ alias_lookup <- function(x, call = rlang::caller_env()) {
 
   check_alias_results(x$alias, tbl, call = call)
 
-  x <- cheapr::list_combine(x, switch(x$point, current = c(tbl), temporal = c2(tbl)))
+  x <- cheapr::list_combine(x, switch(x$point, current = c1(tbl), temporal = c2(tbl)))
   x <- cheapr::list_combine(x, get_dimensions(x))
 
   cheapr::list_modify(

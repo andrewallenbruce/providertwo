@@ -18,6 +18,7 @@ A list of query parameters matched to an endpoint's fields.
 Standardize Query to Endpoint
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 standardize(
   endpoint("drug_state"),
   query2(
@@ -75,5 +76,5 @@ standardize(
     state = c("CA", "GA", "NY")
   )
 )
-
+\dontshow{\}) # examplesIf}
 }
