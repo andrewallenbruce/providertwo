@@ -12,24 +12,24 @@ S7::method(params, class_query) <- function(obj) {
 
 #' @autoglobal
 #' @noRd
-keys <- S7::new_generic("keys", "obj", function(obj) {
+key <- S7::new_generic("key", "obj", function(obj) {
   S7::S7_dispatch()
 })
 
-S7::method(keys, class_group) <- function(obj) {
-  S7::prop(obj, "members") |> purrr::map(keys)
+S7::method(key, class_group) <- function(obj) {
+  S7::prop(obj, "members") |> purrr::map(key)
 }
 
-S7::method(keys, class_catalog) <- function(obj) {
-  S7::prop(obj, "access") |> keys()
+S7::method(key, class_catalog) <- function(obj) {
+  S7::prop(obj, "access") |> key()
 }
 
-S7::method(keys, class_endpoint) <- function(obj) {
-  S7::prop(obj, "fields") |> keys()
+S7::method(key, class_endpoint) <- function(obj) {
+  S7::prop(obj, "fields") |> key()
 }
 
-S7::method(keys, class_fields) <- function(obj) {
-  S7::prop(obj, "keys")
+S7::method(key, class_fields) <- function(obj) {
+  S7::prop(obj, "key")
 }
 
 #' @autoglobal
@@ -50,7 +50,7 @@ match_query <- function(obj, qry) {
 
   param   <- not_year(qry)
   p_name  <- rlang::names2(param)
-  field   <- keys(obj)
+  field   <- key(obj)
   clean   <- clean_names(field)
 
   rlang::set_names(
@@ -65,7 +65,7 @@ select_years <- function(obj, qry) {
     idx   = seq_along(obj@year),
     year  = obj@year,
     id    = obj@identifier,
-    field = keys(obj))
+    field = key(obj))
 
   if ("year" %!in_% param_names(qry)) {
     return(x)
@@ -80,7 +80,7 @@ select_years <- function(obj, qry) {
   list(idx   = idx,
        year  = obj@year[idx],
        id    = obj@identifier[idx],
-       field = keys(obj)[idx])
+       field = key(obj)[idx])
 }
 
 #' @autoglobal
@@ -130,7 +130,7 @@ match_dict <- function(obj, qry) {
 
   param   <- not_year(qry)
   p_name  <- rlang::names2(param)
-  field   <- keys(obj)
+  field   <- key(obj)
   clean   <- clean_names(field)
 
   # the$dict |>

@@ -18,6 +18,7 @@ A list of query parameters matched to an endpoint's fields.
 Assemble a Query for an Endpoint
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 assemble(
   endpoint("drug_state"),
@@ -66,5 +67,5 @@ assemble(
     provider_first_name = starts_with("An"),
     provider_last_name = contains("JE"),
     state = c("CA", "GA", "NY")))
-
+\dontshow{\}) # examplesIf}
 }

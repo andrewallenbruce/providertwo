@@ -4,8 +4,7 @@ select_alias <- function(alias, catalog, point) {
 
   x <- str2lang(glue::glue("the$clog${catalog}${point}"))
 
-  collapse::sbt(
-    eval(x), title %iin% alias_match_endpoint(alias))
+  collapse::sbt(eval(x), title %iin% alias_match_endpoint(alias))
 }
 
 #' @autoglobal
@@ -52,7 +51,7 @@ alias_lookup <- function(x, call = rlang::caller_env()) {
       fields = switch(
         x$point,
         current = class_fields(x$fields),
-        temporal = fields_list(x$fields)),
+        temporal = fields_df(x$fields)),
       dimensions = class_dimensions(x$limit, x$total)
       )
     )

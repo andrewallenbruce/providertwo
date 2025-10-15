@@ -8,7 +8,7 @@ match_query_G <- function(obj, qry) {
   cheapr::list_combine(
     rlang::set_names(
       qry@params[qmatch(clean, pnames)],
-      obj@fields@keys[sort(qmatch(pnames, clean))]
+      obj@fields@key[sort(qmatch(pnames, clean))]
     ),
     list(group = get_junctions(qry@groups))
   )
@@ -22,7 +22,7 @@ select_years_2G <- function(obj, qry) {
     idx   = seq_along(obj@year),
     year  = obj@year,
     id    = obj@identifier,
-    field = obj@fields@keys)
+    field = obj@fields@key)
 
   if (empty(qry@year)) {
     return(x)
@@ -39,7 +39,7 @@ select_years_2G <- function(obj, qry) {
     list(
       year  = obj@year[x$idx],
       id    = obj@identifier[x$idx],
-      field = obj@fields@keys[x$idx]))
+      field = obj@fields@key[x$idx]))
 }
 
 

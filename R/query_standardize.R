@@ -6,7 +6,7 @@
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examples
+#' @examplesIf interactive()
 #' standardize(
 #'   endpoint("drug_state"),
 #'   query2(
@@ -84,12 +84,12 @@ S7::method(standardize, class_catalog) <- function(obj, qry) {
 S7::method(standardize, class_current) <- function(obj, qry) {
 
   pname <- rlang::names2(qry@params)
-  clean <- clean_names(obj@fields@keys)
+  clean <- clean_names(obj@fields@key)
 
   list(
     field = rlang::set_names(
       qry@params[qmatch(clean, pname)],
-      obj@fields@keys[sort(qmatch(pname, clean))]),
+      obj@field@keys[sort(qmatch(pname, clean))]),
     group = get_junctions(qry@groups)
   )
 }
@@ -100,7 +100,7 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
     idx   = if (empty(qry@year)) seq_along(obj@year) else obj@year %iin% qry@year,
     year  = if (empty(idx)) obj@year else obj@year[idx],
     id    = if (empty(idx)) obj@identifier else obj@identifier[idx],
-    field = if (empty(idx)) obj@fields@keys else obj@fields@keys[idx]
+    field = if (empty(idx)) obj@fields@key else obj@fields@key[idx]
   )
 
   if (empty(qry@params)) {

@@ -6,7 +6,7 @@
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examples
+#' @examplesIf interactive()
 #'
 #' assemble(
 #'   endpoint("drug_state"),

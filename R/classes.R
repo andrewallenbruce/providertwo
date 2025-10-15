@@ -25,20 +25,39 @@ NULL
 #' @autoglobal
 class_fields %:=% S7::new_class(
   package = NULL,
-  properties = list(
-    keys = S7::class_character
-    # stds = S7::new_property(S7::class_character,
-    #   getter = function(self) field_switch(self@keys))
-    )
-  )
+  properties = list(key = S7::class_character))
 
 #' @noRd
 #' @autoglobal
 class_fields_list %:=% S7::new_class(
   parent     = class_fields,
   package    = NULL,
-  properties = list(sets = S7::class_list)
+  properties = list(set = S7::class_list | S7::class_data.frame)
 )
+
+#' @noRd
+#' @autoglobal
+fields_df <- function(x) {
+  k <- collapse::funique(unlist(x, use.names = FALSE))
+  s <- purrr::map(x, function(x) collapse::fmatch(x, k))
+  i <- cheapr::cheapr_rep_each(rlang::names2(s), cheapr::list_lengths(s))
+
+  split <- vctrs::vec_split(unlist(s, use.names = FALSE), i) |>
+    rlang::set_names(c("year", "index"))
+
+  runs <- cheapr::attrs_rm(vctrs::vec_identify_runs(split$index))
+
+  split <- cheapr::col_c(split, group = runs)
+
+  index <- vctrs::vec_unique(split[c("group", "index")])
+
+  year <- vctrs::vec_split(split$year, split$group) |>
+    rlang::set_names(c("group", "year"))
+
+  class_fields_list(
+    key = k,
+    set = collapse::join(index, year, on = "group", verbose = 0L))
+}
 
 #' @noRd
 #' @autoglobal
@@ -46,8 +65,8 @@ fields_list <- function(x) {
   k <- collapse::funique(unlist(x, use.names = FALSE))
 
   class_fields_list(
-    keys = k,
-    sets = purrr::map(x, function(x) collapse::fmatch(x, k)))
+    key = k,
+    set = purrr::map(x, function(x) collapse::fmatch(x, k)))
 }
 
 
