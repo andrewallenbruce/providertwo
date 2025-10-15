@@ -105,56 +105,16 @@
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$ENRLMT_ID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "I20040309000221"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Can't find property &lt;care_current&gt;@field</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$field$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "AL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list$group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation$field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation$group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$field$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "AL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state$group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in purrr::map(S7::prop(obj, "members"), function(x) standardize(obj = x,     qry = qry)):</span> <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: dial_list.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't find property &lt;class_current&gt;@field</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">standardize</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>,</span></span>
@@ -290,29 +250,7 @@
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$provider_last_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;contains&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "CONTAINS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "JE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$provider_first_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "An"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $field$state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:3] "CA" "GA" "NY"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> named list()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Can't find property &lt;class_current&gt;@field</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

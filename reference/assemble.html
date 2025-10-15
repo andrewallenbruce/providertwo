@@ -67,7 +67,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"drug_state"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span></span></span>
@@ -75,27 +76,14 @@
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/61729e5a-7aa8-448c-8903-ba3e0cd0ea3c/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/d890d3a9-6b00-43fd-8b31-fcba4c8e2909/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/200c2cba-e58d-4a95-aa60-14b99736808d/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"enroll_prov"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>enrlmt_id <span class="op">=</span> <span class="st">"I20040309000221"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http://data.cms.gov/data-api/v1/dataset/2457ea29-fc82-48b0-86ec-3b0755de7515/data-viewer/stats?offset=0&amp;size=1&amp;filter[1][condition][path]=ENRLMT_ID&amp;filter[1][condition][operator]==&amp;filter[1][condition][value]=I20040309000221"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">collection</a></span><span class="op">(</span><span class="st">"dialysis"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="st">"AL"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_list</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/23ew-n7w9/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_nation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/2rkq-ygai/0?count=true&amp;results=true&amp;offset=0&amp;limit=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dial_state</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/2fpu-cgbb/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;conditions[1][property]=state&amp;conditions[1][operator]==&amp;conditions[1][value]=AL"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span>,</span></span>
@@ -107,12 +95,6 @@
 <span class="r-in"><span>    provname <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/7d4e7bd1-f08a-4fca-8085-6af24026a19a/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/62d125ff-c959-4c5c-8a46-8cacba50bfd4/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/200e7e7e-a5a6-4450-ba18-ab53d237cc45/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/ebc64ad1-164c-455a-80ca-cb0753e44a46/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/e66eaf03-398f-4a8c-9d1b-6aaf25fb6425/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/44aedde0-c535-497d-ab27-b415ec12ff5a/data/stats?offset=0&amp;size=1&amp;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"qppe"</span><span class="op">)</span>,</span></span>
@@ -122,18 +104,11 @@
 <span class="r-in"><span>    practice_size <span class="op">=</span> <span class="fu"><a href="modifiers.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/3545dc8e-7037-41ee-8a1d-9f3198fe4927/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/b3438273-b4a6-44ca-8fb2-9e6026b74642/data/stats?offset=0&amp;size=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> http://data.cms.gov/data-api/v1/dataset/8c2ab3e4-597e-43c9-9d94-7223c66d7f25/data/stats?offset=0&amp;size=1&amp;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"hc_quality"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="query.html">query2</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Georgia"</span>, <span class="st">"Alabama"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2023</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/e85033c7-367e-467e-9e81-8e85048102b8/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/dfd13757-d763-4f7a-9641-3f06ce21b4c6/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/a058ef78-e18b-4435-94aa-b70ab6ce5904/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> https://data.medicaid.gov/api/1/datastore/query/fbbe1734-b448-4e5a-bc94-3f8688534741/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">assemble</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="endpoint.html">endpoint</a></span><span class="op">(</span><span class="st">"pdc_clinician"</span><span class="op">)</span>,</span></span>
@@ -141,8 +116,7 @@
 <span class="r-in"><span>    provider_first_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"An"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    provider_last_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0?count=true&amp;results=true&amp;offset=0&amp;limit=1&amp;conditions[1][property]=provider_last_name&amp;conditions[1][operator]=contains&amp;conditions[1][value]=JE&amp;conditions[2][property]=provider_first_name&amp;conditions[2][operator]=starts+with&amp;conditions[2][value]=An&amp;conditions[3][property]=state&amp;conditions[3][operator]=in&amp;conditions[3][value][]=CA&amp;conditions[3][value][]=GA&amp;conditions[3][value][]=NY"</span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
