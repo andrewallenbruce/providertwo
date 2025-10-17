@@ -45,11 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">and</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">or</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">equal</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">equal</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">any_of</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
 <span></span>
@@ -80,11 +76,11 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>input</p></dd>
 
 
-<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>input</p></dd>
 
 
@@ -103,79 +99,32 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">and</span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;and&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ conjunction: chr "AND"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members    : chr [1:2] "foo" "bar"</span>
-<span class="r-in"><span><span class="fu">or</span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;or&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ conjunction: chr "OR"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ members    : chr [1:2] "foo" "bar"</span>
-<span class="r-in"><span><span class="fu">equal</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 1000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">equal</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">any_of</span><span class="op">(</span><span class="va">state.abb</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;any_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:6] "GA" "HI" "ID" "IL" "IN" "IA"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">none_of</span><span class="op">(</span><span class="va">state.abb</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;none_of&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "NOT+IN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr [1:3] "AL" "AK" "AZ"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">not_equal</span><span class="op">(</span><span class="fl">10000.23</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;not_equal&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;&gt;"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 10000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">between</span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1100</span>, <span class="fl">125</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;between&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "BETWEEN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num [1:2] 125 1100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">not_between</span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">0.67</span>, <span class="fl">0.75</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;not_between&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "NOT+BETWEEN"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num [1:2] 0.67 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">greater_than</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;greater_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&gt;"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 1000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">greater_than</span><span class="op">(</span><span class="fl">0.125</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;greater_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&gt;="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 0.125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">less_than</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;less_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 1000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">less_than</span><span class="op">(</span><span class="fl">0.125</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;less_than&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "&lt;="</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : num 0.125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;starts_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "STARTS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "foo"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;ends_with&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "ENDS_WITH"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "bar"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 <span class="r-in"><span><span class="fu">contains</span><span class="op">(</span><span class="st">"baz"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;contains&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ operator : chr "CONTAINS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ value    : chr "baz"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  @ member_of: chr(0) </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_object(S7_object(), operator = operator, value = value):</span> Can't construct an object from abstract class &lt;class_modifier&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
