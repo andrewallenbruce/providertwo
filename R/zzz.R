@@ -10,6 +10,6 @@ the <- new.env(parent = emptyenv())
 
 }
 
-the$clog <- catalogs()
-the$aka  <- make_aka()
-the$col  <- make_col()
+# the$clog <- catalogs()
+# the$aka  <- make_aka()
+# the$col  <- make_col()

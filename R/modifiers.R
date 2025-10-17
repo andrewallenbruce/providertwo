@@ -19,7 +19,6 @@ NULL
 class_modifier <- S7::new_class(
   name        = "class_modifier",
   package     = NULL,
-  abstract    = TRUE,
   properties  = list(
     operator  = S7::class_character,
     value     = S7::class_character | S7::class_numeric),
