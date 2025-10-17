@@ -2,8 +2,6 @@
 % Please edit documentation in R/modifiers.R
 \name{modifiers}
 \alias{modifiers}
-\alias{and}
-\alias{or}
 \alias{equal}
 \alias{any_of}
 \alias{none_of}
@@ -20,10 +18,6 @@
 \href{https://jsonapi.org/format/#query-parameters}{JSON-API: Query Parameters}
 }
 \usage{
-and(...)
-
-or(...)
-
 equal(x)
 
 any_of(...)
@@ -47,9 +41,9 @@ ends_with(x)
 contains(x)
 }
 \arguments{
-\item{...}{input}
-
 \item{x}{input}
+
+\item{...}{input}
 
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
@@ -63,8 +57,6 @@ Helpers for use in constructing conditions in queries.
 Query modifiers are part of a small DSL for use in query construction, in the \href{https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module/filtering}{JSON-API} format.
 }
 \examples{
-and("foo", "bar")
-or("foo", "bar")
 equal(1000)
 any_of(state.abb[10:15])
 none_of(state.abb[1:3])

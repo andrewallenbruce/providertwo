@@ -16,13 +16,65 @@ NULL
 
 #' @noRd
 #' @autoglobal
+class_junction <- S7::new_class(
+  name          = "class_junction",
+  package       = NULL,
+  properties    = list(
+    conjunction = S7::class_character,
+    members     = S7::class_character)
+)
+
+#' @autoglobal
+#' @noRd
+is_junction <- function(x) {
+  S7::S7_inherits(x, class_junction)
+}
+
+#' @rdname modifiers
+#' @examples
+#' and("foo", "bar")
+#' @autoglobal
+#' @export
+and <- S7::new_class(
+  name        = "and",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(...) {
+    S7::new_object(
+      class_junction(),
+      conjunction = "AND",
+      members     = c(...)
+    )
+  }
+)
+
+#' @rdname modifiers
+#' @examples
+#' or("foo", "bar")
+#' @autoglobal
+#' @export
+or <- S7::new_class(
+  name        = "or",
+  package     = NULL,
+  parent      = class_junction,
+  constructor = function(...) {
+    S7::new_object(
+      class_junction(),
+      conjunction = "OR",
+      members     = c(...)
+    )
+  }
+)
+
+#' @noRd
+#' @autoglobal
 class_modifier <- S7::new_class(
   name        = "class_modifier",
   package     = NULL,
-  abstract    = TRUE,
   properties  = list(
-    operator  = S7::class_character,
-    value     = S7::class_character | S7::class_numeric),
+    operator  = S7::new_property(S7::class_character, default = "="),
+    value     = S7::class_character | S7::class_numeric,
+    member_of = S7::class_character),
   validator   = function(self) {
     if (length(self@operator) != 1L) {
       cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call = NULL)

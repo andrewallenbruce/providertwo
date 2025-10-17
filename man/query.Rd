@@ -37,7 +37,6 @@ try(query2(a = 1, a = 2))
 try(query2(a = 1, or("a")))
 try(query2(a = 1, or("a", "year")))
 try(query2(year = none_of(2000:2020)))
-try(query2(ccn = "01256", and("ccn", "npii")))
 
 query2(
   first_name  = starts_with("And"),
@@ -52,8 +51,7 @@ query2(
 query2(
   year  = 2018:2025,
   state = c("CA", "GA", "NY"),
-  state_owner = c("GA", "MD"),
-  or("state", "state_owner"))
+  state_owner = c("GA", "MD"))
 
 query2(
   year = 2022:2024,
@@ -66,7 +64,5 @@ query2(
   provider_first_name = starts_with("An"),
   provider_last_name = contains("JE"),
   practice_state_or_us_territory = c("GA", "FL"),
-  practice_size = less_than(10, or_equal = TRUE),
-  or("state", "city"),
-  or("provider_name", "provider_first_name"))
+  practice_size = less_than(10, or_equal = TRUE))
 }
