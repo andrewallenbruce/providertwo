@@ -89,8 +89,6 @@ raised.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"dial_facility"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [working] (0 + 0) -&gt; 1 -&gt; 5 | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■      </span>  83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [working] (0 + 0) -&gt; 0 -&gt; 6 | <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ </span> 100%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_care&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  @ access: &lt;care_temporal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ alias     : chr "dial_facility"</span>
@@ -102,18 +100,16 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ total : int [1:6] 11985275 11679243 11716732 10821385 9701304 9289559</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int [1:6] 2398 2336 2344 2165 1941 1858</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ simple: logi FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields_list&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ key: chr [1:36] "state" "CCN" "Provider_Name" "city" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ set:'data.frame':	3 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ group: int  1 2 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ index:List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : int  15 2 16 17 18 19 7 20 9 21 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : int  1 25 26 27 28 29 30 31 32 33 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ year :List of 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : chr  "2025" "2024" "2023" "2022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : chr "2021"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. ..  ..$ : chr "2020"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ key  : chr [1:36] "state" "CCN" "Provider_Name" "city" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ index:List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : int [1:14] 1 2 3 4 5 6 7 8 9 10 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : int [1:14] 15 2 16 17 18 19 7 20 9 21 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : int [1:14] 1 25 26 27 28 29 30 31 32 33 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ year :List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : chr [1:4] "2025" "2024" "2023" "2022"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : chr "2021"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. $ : chr "2020"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ year      : int [1:6] 2025 2024 2023 2022 2021 2020</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ resources : chr [1:6] "https://data.cms.gov/data-api/v1/dataset-resources/7d4e7bd1-f08a-4fca-8085-6af24026a19a" ...</span>
 <span class="r-in"><span><span class="fu">endpoint</span><span class="op">(</span><span class="st">"man_state"</span><span class="op">)</span></span></span>
@@ -128,8 +124,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ total : int 195</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ simple: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. @ key: chr [1:69] "state" "program_name" "program_type" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. @ fields    : chr [1:69] "state" "program_name" "program_type" ...</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">endpoint</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asc_facility"</span>, <span class="st">"enterprise"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Only one <span style="color: #0000BB;">&lt;endpoint&gt;</span> can be loaded at a time.</span>
@@ -154,8 +149,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 780</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:5] "state" "reporting_period" "release_date" "value" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:5] "state" "reporting_period" "release_date" "value" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_mark: &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_mark"</span>
@@ -167,8 +161,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 204</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:30] "state" "metric" "april_2023_net_count" "april_2023_net_percentage" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:30] "state" "metric" "april_2023_net_count" "april_2023_net_percentage" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_sbm : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_sbm"</span>
@@ -180,8 +173,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 128</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:59] "state" "metric" "april_2023_count" "april_2023_percentage_applications" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:59] "state" "metric" "april_2023_count" "april_2023_percentage_applications" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ wind_tran: &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "wind_tran"</span>
@@ -193,8 +185,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 59527</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:9] "state" "data_record_note" "metric" "time_period" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:9] "state" "data_record_note" "metric" "time_period" ...</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">collection</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"asc_facility"</span>, <span class="st">"enterprise"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> Only one <span style="color: #0000BB;">&lt;collection&gt;</span> can be loaded at a time.</span>
@@ -216,8 +207,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 11088</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:50] "facility_name" "facility_id" "npi" "citytown" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:50] "facility_name" "facility_id" "npi" "citytown" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ enterprise  : &lt;class_caid&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ access: &lt;class_current&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ alias     : chr "enterprise"</span>
@@ -229,8 +219,7 @@ raised.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ total : int 68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ pages : int 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ simple: logi TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : &lt;class_fields&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. .. @ key: chr [1:13] "implementation_year" "policyupdate_type" "policyupdate_title" "potential_mes_impact" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. .. .. @ fields    : chr [1:13] "implementation_year" "policyupdate_type" "policyupdate_title" "potential_mes_impact" ...</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">group</span><span class="op">(</span><span class="st">"asc_facility"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> A <span style="color: #0000BB;">&lt;group&gt;</span> must contain more than one <span style="color: #0000BB;">&lt;endpoint&gt;</span>.</span>
