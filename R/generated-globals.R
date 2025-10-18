@@ -140,11 +140,11 @@ utils::globalVariables(c(
   # <dict_field>
   # <match_dict2>
   "type",
+  # <dict_field>
   # <clog_care>
   # <clog_open>
   # <clog_caid>
   # <clog_hgov>
-  # <dict_field>
   # <tidy_resources>
   # <match_dict2>
   "year",

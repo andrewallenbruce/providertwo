@@ -1,3 +1,6 @@
+#' @include classes.R
+NULL
+
 #' Assemble a Query for an Endpoint
 #'
 #' @param obj An `<endpoint>`, `<collection>` or `<group>` object.
@@ -81,11 +84,7 @@ S7::method(assemble, class_current) <- function(obj, qry) {
   }
 
   append_url(obj@identifier) |>
-    collapse_query(
-      cheapr::list_combine(
-        query_def_GRP(p),
-        query_def_ARG(p)) |>
-        purrr::list_c())
+    collapse_query(query_def_ARG(p))
 }
 
 S7::method(assemble, care_current) <- function(obj, qry) {
@@ -97,11 +96,7 @@ S7::method(assemble, care_current) <- function(obj, qry) {
   }
 
   append_url(obj@identifier, "stats") |>
-    collapse_query(
-      cheapr::list_combine(
-        query_care_GRP(p),
-        query_care_ARG(p)) |>
-        purrr::list_c())
+    collapse_query(query_care_ARG(p))
 }
 
 S7::method(assemble, class_temporal) <- function(obj, qry) {

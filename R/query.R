@@ -47,7 +47,7 @@ query <- function(...) {
 }
 
 #' @rdname query
-#' @examplesIf interactive()
+#' @examples
 #' try(query2())
 #' try(query2(1))
 #' try(query2(a = 1, a = 2))
@@ -82,26 +82,23 @@ query <- function(...) {
 #' @autoglobal
 #' @export
 query2 <- function(..., call = rlang::caller_env()) {
-
   check_query_dots(..., call = call)
 
   x <- purrr::compact(rlang::enexprs(..., .ignore_null = "all"))
 
   x <- rlang::list2(
-    year = is_year(x),
+    !!!is_year(x),
     mods = is_year(purrr::keep(x, is_mod), negate = TRUE),
-    bare = is_year(purrr::keep(x, is_bare), negate = TRUE))
+    bare = is_year(purrr::keep(x, is_bare), negate = TRUE)
+  )
 
   check_query_params(x, call = call)
 
-  x$params <- eval_params(x$mods, x$bare)
-
   if (empty(x$year)) {
+    class_query(params = eval_params(x$mods, x$bare))
 
-    class_query(params = x$params)
-
-   } else {
-
-    class_query(params = x$params, year = eval(x$year))
+  } else {
+    class_query(params = eval_params(x$mods, x$bare),
+                year   = eval(x$year))
   }
 }

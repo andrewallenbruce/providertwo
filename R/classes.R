@@ -49,9 +49,9 @@ fields_df <- function(x) {
   index <- collapse::join(index, year, on = "group", verbose = 0L)
 
   class_fields(
-    key = key,
+    key   = key,
     index = index$index,
-    year = index$year)
+    year  = index$year)
 }
 
 #' @noRd

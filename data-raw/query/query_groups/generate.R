@@ -71,29 +71,49 @@ S7::method(generate, class_catalog) <- function(obj, qry) {
 S7::method(generate, class_current) <- function(obj, qry) {
   x <- standardize(obj, qry)
 
-  x$field |>
+  if (!empty(x$group)) {
+    x$group <- x$group |>
+      purrr::imap(function(x, N)
+        paste0("conditions[", N, "][conjunction]=", x)) |>
+      unname() |>
+      purrr::map_chr(paste0, collapse = "&")
+  }
+
+  x$field <- x$field |>
     purrr::imap(function(x, N) {
-      c(place_path2(N),
+      c(place_member_of2(x),
+        place_path2(N),
         place_operator2(x),
         place_value2(x))
     }) |>
     unname() |>
     purrr::imap(function(x, idx)
       gsub(
-        x           = x - 1L,
+        x           = x,
         pattern     = "<<i>>",
         replacement = idx,
         fixed       = TRUE
       )) |>
     purrr::map_chr(paste0, collapse = "&")
+
+  cheapr::cheapr_c(x$group, x$field)
 }
 
 S7::method(generate, care_current) <- function(obj, qry) {
   x <- standardize(obj, qry)
 
-  x$field |>
+  if (!empty(x$group)) {
+    x$group <- x$group |>
+      purrr::imap(function(x, N)
+        paste0("filter[", N, "][group][conjunction]=", x)) |>
+      unname() |>
+      purrr::map_chr(paste0, collapse = "&")
+  }
+
+  x$field <- x$field |>
     purrr::imap(function(x, N) {
-      c(place_path(N),
+      c(place_member_of(x),
+        place_path(N),
         place_operator(x),
         place_value(x))
     }) |>
@@ -106,22 +126,37 @@ S7::method(generate, care_current) <- function(obj, qry) {
         fixed       = TRUE
       )) |>
     purrr::map_chr(paste0, collapse = "&")
+
+  cheapr::cheapr_c(x$group, x$field)
 }
 
 S7::method(generate, class_temporal) <- function(obj, qry) {
 
   x <- standardize(obj, qry)
 
-  .fn <- function(x) {
+  if (!empty(x$group)) {
+    group <- x$group |>
+      collapse::get_elem("^junc", regex = TRUE) |>
+      rlang::set_names(\(x) gsub("junc_", "g",  x)) |>
+      purrr::imap(function(x, N)
+        paste0("conditions[", N, "][conjunction]=", x))
+
+    grp_yrs <- x$group |>
+      collapse::get_elem("^year", regex = TRUE) |>
+      rlang::set_names(\(x) gsub("year_", "g",  x))
+  }
+
+  .fun <- function(x) {
     purrr::imap(x, function(x, N) {
-      c(place_path2(N),
+      c(place_member_of2(x),
+        place_path2(N),
         place_operator2(x),
         place_value2(x))
     }) |>
       unname() |>
       purrr::imap(function(x, idx)
         gsub(
-          x           = x - 1L,
+          x           = x,
           pattern     = "<<i>>",
           replacement = idx,
           fixed       = TRUE
@@ -129,6 +164,12 @@ S7::method(generate, class_temporal) <- function(obj, qry) {
       purrr::map_chr(paste0, collapse = "&")
   }
 
-  purrr::map(x$field, .fn)
+  x$field <- purrr::map(x$field, .fun)
+
+  cheapr::list_combine(
+    if (!empty(x$group)) group else NULL,
+    if (!empty(x$group)) grp_yrs else NULL,
+    x$field
+  )
 
 }

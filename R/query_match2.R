@@ -5,12 +5,9 @@ match_query_G <- function(obj, qry) {
   pnames <- rlang::names2(qry@params)
   clean  <- clean_names(obj@fields@key)
 
-  cheapr::list_combine(
-    rlang::set_names(
-      qry@params[qmatch(clean, pnames)],
-      obj@fields@key[sort(qmatch(pnames, clean))]
-    ),
-    list(group = get_junctions(qry@groups))
+  rlang::set_names(
+    qry@params[qmatch(clean, pnames)],
+    obj@fields@key[sort(qmatch(pnames, clean))]
   )
 }
 
@@ -100,8 +97,5 @@ match_query_2G <- function(obj, qry) {
         df[df$year == yr, ]$field)) |>
     rlang::set_names(x$year)
 
-  cheapr::list_modify(x,
-    list(
-      field = df,
-      group = get_junctions(qry@groups)))
+  cheapr::list_modify(x, list(field = df))
 }

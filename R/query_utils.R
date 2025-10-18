@@ -11,30 +11,6 @@ as_default_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
-get_junctions <- function(x) {
-  purrr::map(x, function(i) S7::prop(i, "conjunction"))
-}
-
-#' @autoglobal
-#' @noRd
-get_members <- function(x) {
-  purrr::map(x, function(i) S7::prop(i, "members"))
-}
-
-#' @autoglobal
-#' @noRd
-set_members <- function(x, i) {
-  S7::set_props(x, member_of = i)
-}
-
-#' @autoglobal
-#' @noRd
-map_members <- function(x, index, name) {
-  purrr::map2(x[index], name, set_members)
-}
-
-#' @autoglobal
-#' @noRd
 are_empty <- function(x) {
   purrr::map(x, rlang::is_empty) |>
     unlist(use.names = FALSE)
@@ -49,21 +25,8 @@ are_not_empty <- function(x) {
 
 #' @autoglobal
 #' @noRd
-eval_groups <- function(x) {
-  rlang::set_names(map_eval(x), paste0("g", seq_along(x)))
-}
-
-#' @autoglobal
-#' @noRd
 eval_params <- function(mods, bare) {
   map_eval(rlang::list2(!!!mods, !!!as_default_mod(bare)))
-}
-#' @autoglobal
-#' @noRd
-group_index <- function(g, p) {
-  get_members(g) |>
-    purrr::map(function(x)
-      rlang::names2(p) %iin% x)
 }
 
 #' @autoglobal
@@ -116,16 +79,6 @@ found_rows <- function(x) {
 
 #' @autoglobal
 #' @noRd
-flatten_query <- function(x) {
-  # purrr::map(x, paste0, collapse = "&")
-  purrr::map(x, function(x)
-    paste0(x, collapse = "&")) |>
-    unlist(use.names = FALSE) |>
-    paste0(collapse = "&")
-}
-
-#' @autoglobal
-#' @noRd
 is_mod <- function(x) {
   rlang::is_call(
     x,
@@ -148,12 +101,6 @@ is_mod <- function(x) {
 
 #' @autoglobal
 #' @noRd
-is_junc <- function(x) {
-  rlang::is_call(x, name = c("and", "or"))
-}
-
-#' @autoglobal
-#' @noRd
 is_year <- function(x, negate = FALSE) {
   x[cheapr::which_(rlang::names2(x) == "year", invert = negate)]
 }
@@ -161,5 +108,5 @@ is_year <- function(x, negate = FALSE) {
 #' @autoglobal
 #' @noRd
 is_bare <- function(x) {
-  !is_junc(x) & !is_mod(x)
+  !is_mod(x)
 }

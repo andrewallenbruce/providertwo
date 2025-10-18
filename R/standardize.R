@@ -86,12 +86,9 @@ S7::method(standardize, class_current) <- function(obj, qry) {
   pname <- rlang::names2(qry@params)
   clean <- clean_names(obj@fields@key)
 
-  list(
-    field = rlang::set_names(
+  rlang::set_names(
       qry@params[qmatch(clean, pname)],
-      obj@field@keys[sort(qmatch(pname, clean))]),
-    group = get_junctions(qry@groups)
-  )
+      obj@field@keys[sort(qmatch(pname, clean))])
 }
 
 S7::method(standardize, class_temporal) <- function(obj, qry) {
@@ -113,16 +110,6 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
     collapse::mtt(clean = clean_names(field)) |>
     collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
     collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
-
-  if (!empty(qry@groups)) {
-    grp <- qry@groups |>
-      purrr::map(\(x) cheapr::fast_df(clean = S7::prop(x, "members")) |>
-          join_on(df, on = "clean") |> _$year |> collapse::funique())
-
-    grp <- list(year = unname(grp),
-         junc = unname(get_junctions(qry@groups))) |>
-      purrr::list_flatten()
-  }
 
   df <- x$year |>
     purrr::map(\(yr) rlang::set_names(
