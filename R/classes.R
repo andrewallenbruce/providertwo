@@ -24,15 +24,12 @@ NULL
 #' @noRd
 #' @autoglobal
 class_fields %:=% S7::new_class(
-  package = NULL,
-  properties = list(key = S7::class_character))
-
-#' @noRd
-#' @autoglobal
-class_fields_list %:=% S7::new_class(
-  parent     = class_fields,
   package    = NULL,
-  properties = list(set = S7::class_data.frame)
+  properties = list(
+    key      = S7::class_character,
+    index    = S7::class_list,
+    year     = S7::class_list
+  )
 )
 
 #' @noRd
@@ -49,11 +46,13 @@ fields_df <- function(x) {
   index <- vctrs::vec_unique(split[c("group", "index")])
   year  <- rlang::set_names(vctrs::vec_split(split$year, split$group), c("group", "year"))
 
-  class_fields_list(
-    key = key,
-    set = collapse::join(index, year, on = "group", verbose = 0L))
-}
+  index <- collapse::join(index, year, on = "group", verbose = 0L)
 
+  class_fields(
+    key = key,
+    index = index$index,
+    year = index$year)
+}
 
 #' @noRd
 #' @autoglobal
@@ -89,14 +88,14 @@ class_endpoint %:=% S7::new_class(
 #' @noRd
 #' @autoglobal
 class_current %:=% S7::new_class(class_endpoint, package = NULL,
-  properties = list(fields = class_fields)
+  properties = list(fields = S7::class_character)
 )
 
 #' @noRd
 #' @autoglobal
 class_temporal %:=% S7::new_class(class_endpoint, package = NULL,
   properties = list(
-    fields = class_fields_list,
+    fields = class_fields,
     year = S7::class_integer
   )
 )
@@ -149,10 +148,10 @@ class_hgov %:=% S7::new_class(class_catalog, package = NULL)
 #' @noRd
 #' @autoglobal
 class_group %:=% S7::new_class(
-  package = NULL,
+  package    = NULL,
   properties = list(
-    title = S7::class_character,
-    members = S7::class_list
+    title    = S7::class_character,
+    members  = S7::class_list
   )
 )
 
@@ -163,18 +162,18 @@ class_collection %:=% S7::new_class(class_group, package = NULL)
 #' @noRd
 #' @autoglobal
 class_response %:=% S7::new_class(
-  package = NULL,
+  package    = NULL,
   properties = list(
-    alias = S7::class_character,
-    param = S7::class_character | S7::class_list,
-    year = S7::class_integer,
-    string = S7::class_character,
-    limit = S7::class_integer,
-    found = S7::class_integer,
-    total = S7::class_integer,
-    pages = S7::new_property(S7::class_integer,
+    alias    = S7::class_character,
+    param    = S7::class_character | S7::class_list,
+    year     = S7::class_integer,
+    string   = S7::class_character,
+    limit    = S7::class_integer,
+    found    = S7::class_integer,
+    total    = S7::class_integer,
+    pages    = S7::new_property(S7::class_integer,
       getter = function(self) page_count(self@found, self@limit)),
-    error = S7::new_property(S7::class_logical,
+    error    = S7::new_property(S7::class_logical,
       getter = function(self) {
         if (empty(self@param)) FALSE else self@found == self@total
       })

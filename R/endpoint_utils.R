@@ -9,8 +9,10 @@ select_alias <- function(alias, catalog, point) {
 
 #' @autoglobal
 #' @noRd
-c1 <- function(x) {
-  cheapr::na_rm(c(x))
+c1 <- function(x, tbl) {
+  switch(x,
+    current  = cheapr::na_rm(c(tbl)),
+    temporal = c2(tbl))
 }
 
 #' @autoglobal
@@ -48,17 +50,15 @@ alias_lookup <- function(x, call = rlang::caller_env()) {
 
   check_alias_results(x$alias, tbl, call = call)
 
-  x <- cheapr::list_combine(x, switch(x$point, current = c1(tbl), temporal = c2(tbl)))
+  x <- cheapr::list_combine(x, c1(x$point, tbl))
   x <- cheapr::list_combine(x, get_dimensions(x))
 
-  cheapr::list_modify(
-    x,
+  cheapr::list_modify(x,
     list(
       fields = switch(
         x$point,
-        current = class_fields(x$fields),
+        current = x$fields,
         temporal = fields_df(x$fields)),
       dimensions = class_dimensions(x$limit, x$total)
-      )
-    )
+      ))
 }

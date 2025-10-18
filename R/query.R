@@ -73,14 +73,11 @@ query <- function(...) {
 #' query2(
 #'   year = 2022:2024,
 #'   state = c("GA", "NY"),
-#'   enrlmt_id = "I20040309000221",
+#'   enid_id = "I20040309000221",
 #'   city = "Atlanta",
-#'   provcity = "Atlanta",
 #'   provider_name = starts_with("C"),
-#'   provname = starts_with("C"),
-#'   provider_first_name = starts_with("An"),
-#'   provider_last_name = contains("JE"),
-#'   practice_state_or_us_territory = c("GA", "FL"),
+#'   first_name = starts_with("An"),
+#'   last_name = contains("JE"),
 #'   practice_size = less_than(10, or_equal = TRUE))
 #' @autoglobal
 #' @export
