@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9513 (2025-10-17)
+
+* using `catalog_backup`
+* catalog backup impl
+* query: groups removed due to complexity
+* `select_years_df` method for `class_fields`
+* feat: `fields_df` method for simplifying the `class_fields` structure
+* fix: decoupled `field_switch` from `class_fields`
+* clean up
+
+
 # providertwo 0.0.0.9512 (2025-10-13)
 
 * feat: new `class_fields_list`
