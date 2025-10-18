@@ -51,7 +51,7 @@ fields_df <- function(x) {
   class_fields(
     key   = key,
     index = index$index,
-    year  = index$year)
+    year  = purrr::map(index$year, as.integer))
 }
 
 #' @noRd

@@ -6,7 +6,7 @@
 #'
 #' @returns A list of query parameters matched to an endpoint's fields.
 #'
-#' @examplesIf interactive()
+#' @examples
 #' select_years(
 #'   endpoint("drug_state"),
 #'   query2(

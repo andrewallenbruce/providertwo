@@ -18,7 +18,6 @@ A list of query parameters matched to an endpoint's fields.
 Standardize Query to Endpoint
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 select_years(
   endpoint("drug_state"),
   query2(
@@ -52,5 +51,5 @@ select_years(
     year = 2020:2023
   )
 )
-\dontshow{\}) # examplesIf}
+
 }
