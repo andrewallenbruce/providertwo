@@ -1,56 +1,13 @@
 #' @include query.R
-
-#' @autoglobal
-#' @noRd
-params <- S7::new_generic("params", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(params, class_query) <- function(obj) {
-  S7::prop(obj, "params")
-}
-
-#' @autoglobal
-#' @noRd
-param_names <- function(x) {
-  rlang::names2(params(x))
-}
-
-#' @autoglobal
-#' @noRd
-not_year <- function(x) {
-  params(x)[param_names(x) %!=% "year"]
-}
-
-#' @autoglobal
-#' @noRd
-key <- S7::new_generic("key", "obj", function(obj) {
-  S7::S7_dispatch()
-})
-
-S7::method(key, class_group) <- function(obj) {
-  S7::prop(obj, "members") |> purrr::map(key)
-}
-
-S7::method(key, class_catalog) <- function(obj) {
-  S7::prop(obj, "access") |> key()
-}
-
-S7::method(key, class_endpoint) <- function(obj) {
-  S7::prop(obj, "fields") |> key()
-}
-
-S7::method(key, class_fields) <- function(obj) {
-  S7::prop(obj, "key")
-}
+NULL
 
 #' @autoglobal
 #' @noRd
 match_query <- function(obj, qry) {
 
-  param   <- not_year(qry)
+  param   <- qry@params[rlang::names2(qry@params) %!=% "year"]
   p_name  <- rlang::names2(param)
-  field   <- key(obj)
+  field   <- obj@fields
   clean   <- clean_names(field)
 
   rlang::set_names(
@@ -65,13 +22,13 @@ select_years <- function(obj, qry) {
     idx   = seq_along(obj@year),
     year  = obj@year,
     id    = obj@identifier,
-    field = key(obj))
+    field = obj@fields)
 
-  if ("year" %!in_% param_names(qry)) {
+  if ("year" %!in_% names(qry@params)) {
     return(x)
   }
 
-  idx <- cheapr::which_(obj@year %in_% params(qry)$year)
+  idx <- cheapr::which_(obj@year %in_% qry@params$year)
 
   if (rlang::is_empty(idx)) {
     return(x)
@@ -80,7 +37,7 @@ select_years <- function(obj, qry) {
   list(idx   = idx,
        year  = obj@year[idx],
        id    = obj@identifier[idx],
-       field = key(obj)[idx])
+       field = obj@fields[idx])
 }
 
 #' @autoglobal
@@ -89,18 +46,18 @@ match_query2 <- function(obj, qry) {
 
   x <- select_years(obj, qry)
 
-  if (identical("year", param_names(qry))) {
+  if (identical("year", rlang::names2(qry@params))) {
     return(x)
   }
 
   qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
-  param <- not_year(qry)
+  param <- qry@params[rlang::names2(qry@params) %!=% "year"]
 
   df <- purrr::imap(x$field, function(x, i) {
     cheapr::new_df(year = i, field = x)
   }) |>
     purrr::list_rbind() |>
-    collapse::mtt(clean = clean_names(field)) |>
+    collapse::mtt(clean = field_switch(field)) |>
     collapse::sbt(clean %in_% rlang::names2(param)) |>
     collapse::mtt(qdx = qdx[clean])
 
@@ -128,9 +85,9 @@ match_query2 <- function(obj, qry) {
 #' @noRd
 match_dict <- function(obj, qry) {
 
-  param   <- not_year(qry)
+  param   <- qry@params[rlang::names2(qry@params) %!=% "year"]
   p_name  <- rlang::names2(param)
-  field   <- key(obj)
+  field   <- obj@fields
   clean   <- clean_names(field)
 
   # the$dict |>
@@ -157,12 +114,12 @@ match_dict2 <- function(obj, qry) {
 
   x <- select_years(obj, qry)
 
-  if (identical("year", param_names(qry))) {
+  if (identical("year", names(qry@params))) {
     return(x)
   }
 
   qdx   <- rlang::set_names(seq_along(qry@params), rlang::names2(qry@params))
-  param <- not_year(qry)
+  param <- qry@params[rlang::names2(qry@params) %!=% "year"]
 
   the$dict |>
     collapse::sbt(alias %==% obj@metadata$alias) |>

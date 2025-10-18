@@ -19,6 +19,7 @@ quality_eligibility(year, npi)
 Quality Payment Program
 }
 \examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 qpp_metrics <- quality_metrics(year = 2018:2025)
 
 qpp_eligible <- quality_eligibility(
@@ -43,4 +44,5 @@ list(
   experience  = providertwo:::set_clean(qpp_exp, names(qpp_exp)),
   eligibility = qpp_eligible,
   metrics     = qpp_metrics)
+\dontshow{\}) # examplesIf}
 }

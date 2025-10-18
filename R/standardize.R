@@ -84,11 +84,11 @@ S7::method(standardize, class_catalog) <- function(obj, qry) {
 S7::method(standardize, class_current) <- function(obj, qry) {
 
   pname <- rlang::names2(qry@params)
-  clean <- clean_names(obj@fields@key)
+  clean <- field_switch(obj@fields)
 
   rlang::set_names(
       qry@params[qmatch(clean, pname)],
-      obj@field@keys[sort(qmatch(pname, clean))])
+      obj@fields[sort(qmatch(pname, clean))])
 }
 
 S7::method(standardize, class_temporal) <- function(obj, qry) {
@@ -107,7 +107,7 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
   df <- x$field |>
     purrr::map(\(x) cheapr::fast_df(field = x)) |>
     purrr::list_rbind(names_to = "year") |>
-    collapse::mtt(clean = clean_names(field)) |>
+    collapse::mtt(clean = field_switch(field)) |>
     collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
     collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
 
@@ -117,9 +117,5 @@ S7::method(standardize, class_temporal) <- function(obj, qry) {
       df[df$year == yr, ]$field)) |>
     rlang::set_names(x$year)
 
-  cheapr::list_modify(
-    x,
-    list(
-      field = df,
-      group = if (!empty(qry@groups)) grp else qry@groups))
+  cheapr::list_modify(x, list(field = df))
 }

@@ -2,7 +2,7 @@
 #' @name quality_payment
 #' @param year A vector of years from 2018 to 2025
 #' @param npi A vector of NPIs
-#' @examples
+#' @examplesIf interactive()
 #' qpp_metrics <- quality_metrics(year = 2018:2025)
 #'
 #' qpp_eligible <- quality_eligibility(
