@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9514 (2025-10-18)
+
+* `select_years` generic for `class_temporal`
+* cleaning up old implementations
+* fix: `query2`
+* simplified `class_fields`
+
+
 # providertwo 0.0.0.9513 (2025-10-17)
 
 * using `catalog_backup`
