@@ -80,6 +80,7 @@ Collate:
     'query_match.R'
     'query_match2.R'
     'query_utils.R'
+    'select_years.R'
     'standardize.R'
     'tidyup_names.R'
     'tidyup_utils.R'

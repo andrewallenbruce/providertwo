@@ -60,13 +60,15 @@ select_years_df <- function(obj, qry) {
   S7::props(obj@dimensions) <- list(
     total = obj@dimensions@total[idx])
 
-  idx_y <- cheapr::which_(obj@fields@set$year %in% qry@year)
+  idy <- cheapr::which_(obj@fields@year %in% qry@year)
 
-  if (length(idx_y) == nrow(obj@fields@set)) {
+  if (length(idy) == length(obj@fields@year)) {
     return(obj)
   }
 
-  S7::props(obj@fields) <- list(set = cheapr::sset(obj@fields@set, idx_y))
+  S7::props(obj@fields) <- list(
+    index = obj@fields@index[idy],
+    year = obj@fields@year[idy])
 
   obj
 }
