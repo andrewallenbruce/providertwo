@@ -1,5 +1,5 @@
-#' @include aka_end.R
-#' @include aka_col.R
+#' @include aka_endpoints.R
+#' @include aka_collections.R
 NULL
 
 #' @autoglobal

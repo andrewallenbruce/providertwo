@@ -48,7 +48,7 @@ contains(x)
 \item{or_equal}{\verb{<lgl>} append \code{=} to \code{>} or \code{<}}
 }
 \value{
-An S7 \verb{<class_modifier/class_junction>} object.
+An S7 \verb{<class_modifier>} object.
 }
 \description{
 Helpers for use in constructing conditions in queries.

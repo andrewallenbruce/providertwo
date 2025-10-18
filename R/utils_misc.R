@@ -1,5 +1,11 @@
 #' @autoglobal
 #' @noRd
+to_str <- function(x) {
+  purrr::map_chr(x, \(i) toString(unlist(i, use.names = FALSE), width = NULL))
+}
+
+#' @autoglobal
+#' @noRd
 match_names <- function(x, aka) {
   collapse::fmatch(x, table = rlang::names2(aka))
 }

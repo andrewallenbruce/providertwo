@@ -1,9 +1,12 @@
 #' @include utils_misc.R
 #' @include catalog_utils.R
+#' @include checks.R
+#' @include pins.R
 NULL
 
 #' @name catalogs
 #' @title API Catalogs
+#' @param backup `<lgl>` default `TRUE`; use local backup of catalog data
 #' @description
 #' List of API catalogs:
 #'   * `care`: CMS Medicare API
@@ -17,38 +20,70 @@ NULL
 #' @autoglobal
 #' @keywords internal
 #' @export
-catalogs <- function() {
-  x <- catalog_raw()
+catalogs <- function(backup = TRUE) {
+  x <- if (backup) catalog_backup() else catalog_raw()
 
-  list(clog_care(x),
-       clog_prov(x),
-       clog_open(x),
-       clog_caid(x),
-       clog_hgov(x)) |>
-    rlang::set_names(rlang::names2(x))
+  list(
+    care = clog_care(x),
+    prov = clog_prov(x),
+    open = clog_open(x),
+    caid = clog_caid(x),
+    hgov = clog_hgov(x)
+  )
+}
+
+#' @autoglobal
+#' @noRd
+catalog_backup <- function() {
+  x <- purrr::map(
+    get_pin("catalog_raw"),
+    fastplyr::as_tbl)
+
+  x$care <- fastplyr::as_tbl(x$care$dataset)
+
+  x
 }
 
 #' @autoglobal
 #' @noRd
 catalog_raw <- function() {
-  base_url <- c(
+
+  check_online()
+
+  base <- c(
     care = "https://data.cms.gov/data.json",
     prov = "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items",
     open = "https://openpaymentsdata.cms.gov/api/1/metastore/schemas/dataset/items",
     caid = "https://data.medicaid.gov/api/1/metastore/schemas/dataset/items",
-    hgov = "https://data.healthcare.gov/api/1/metastore/schemas/dataset/items"
-  )
+    hgov = "https://data.healthcare.gov/api/1/metastore/schemas/dataset/items")
 
-  base_url |>
+  resp <- base |>
     purrr::map(httr2::request) |>
-    httr2::req_perform_parallel(on_error = "continue") |>
-    httr2::resps_successes() |>
+    httr2::req_perform_parallel(on_error = "continue")
+
+  if (empty(httr2::resps_failures(resp))) {
+    return(
+      purrr::map2(resp, c("/dataset", rep(NA_character_, 4)), function(x, q) {
+      httr2::resp_body_string(x) |>
+        RcppSimdJson::fparse(query = if (is.na(q)) NULL else q) |>
+        fastplyr::as_tbl()
+    }) |>
+      rlang::set_names(rlang::names2(base))
+    )
+  }
+
+  # successes
+  success <- httr2::resps_successes(resp)
+  x <- httr2::resps_requests(resp)
+  x[[1]]$url
     purrr::map2(c("/dataset", rep(NA_character_, 4)), function(x, q) {
       httr2::resp_body_string(x) |>
         RcppSimdJson::fparse(query = if (is.na(q)) NULL else q) |>
         fastplyr::as_tbl()
     }) |>
-    rlang::set_names(rlang::names2(base_url))
+    rlang::set_names(rlang::names2(base))
+
+  httr2::resps_failures(resp)
 }
 
 #' @autoglobal

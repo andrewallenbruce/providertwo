@@ -4,7 +4,10 @@
 \alias{catalogs}
 \title{API Catalogs}
 \usage{
-catalogs()
+catalogs(backup = TRUE)
+}
+\arguments{
+\item{backup}{\verb{<lgl>} default \code{TRUE}; use local backup of catalog data}
 }
 \value{
 \verb{<list>} of catalogs

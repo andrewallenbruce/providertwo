@@ -128,8 +128,8 @@ utils::globalVariables(c(
   "state.name",
   # <clog_prov>
   "theme",
-  # <caid_download>
   # <ss_title>
+  # <caid_download>
   # <clog_care>
   # <clog_prov>
   # <clog_open>

@@ -47,7 +47,7 @@ query <- function(...) {
 }
 
 #' @rdname query
-#' @examples
+#' @examplesIf interactive()
 #' try(query2())
 #' try(query2(1))
 #' try(query2(a = 1, a = 2))

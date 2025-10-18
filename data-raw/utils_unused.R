@@ -107,6 +107,61 @@ url_type <- function(x) {
 
 #' @autoglobal
 #' @noRd
+fmt_contactpoint <- function(x) {
+  x <- collapse::get_elem(x, "contactPoint")
+
+  glue::glue("{rlang::names2(x)} ({x})",
+             x = collapse::get_elem(x, "^has", regex = TRUE) |>
+               unlist(use.names = FALSE) |>
+               rlang::set_names(
+                 collapse::get_elem(x, "fn") |>
+                   unlist(use.names = FALSE))) |>
+    as.character()
+}
+
+#' @autoglobal
+#' @noRd
+fmt_temporal <- function(x) {
+  greplace(x, "/", paste0(" ", cli::symbol$bullet, " "))
+}
+
+#' ISO 8601 Recurring Time Intervals
+#' @section References:
+#' - [DCAT Schema: accrualPeriodicity](https://resources.data.gov/resources/dcat-us/#accrualPeriodicity)
+#' - [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+#' - [ISO 8601 Repeating_intervals](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals)
+#' - [Recurring Time Intervals](https://sentenz.github.io/convention/convention/iso-8601/#19-recurring-time-intervals)
+#' @autoglobal
+#' @noRd
+fmt_periodicity <- function(x) {
+  cheapr::val_match(
+    x,
+    "R/P10Y"   ~ "Decennially [R/P10Y]",
+    "R/P4Y"    ~ "Quadrennially [R/P4Y]",
+    "R/P3Y"    ~ "Triennially [R/P3Y]",
+    "R/P2Y"    ~ "Biennially [R/P2Y]",
+    "R/P1Y"    ~ "Annually [R/P1Y]",
+    "R/P6M"    ~ "Biannually [R/P6M]",
+    "R/P4M"    ~ "Triannually [R/P4M]",
+    "R/P3M"    ~ "Quarterly [R/P3M]",
+    "R/P2M"    ~ "Bimonthly [R/P2M]",
+    "R/P1M"    ~ "Monthly [R/P1M]",
+    "R/P0.5M"  ~ "Biweekly [R/P0.5M]",
+    "R/P2W"    ~ "Biweekly [R/P2W]",
+    "R/P0.33M" ~ "Three Times a Month [R/P0.33M]",
+    "R/P1W"    ~ "Weekly [R/P1W]",
+    "R/P0.5W"  ~ "Twice a Week [R/P0.5W]",
+    "R/P3.5D"  ~ "Twice a Week [R/P3.5D]",
+    "R/P0.33W" ~ "Three Times a Week [R/P0.33W]",
+    "R/P1D"    ~ "Daily [R/P1D]",
+    "R/PT1H"   ~ "Hourly [R/PT1H]",
+    "R/PT1S"   ~ "Continuously [R/PT1S]",
+    .default = x
+  )
+}
+
+#' @autoglobal
+#' @noRd
 roxy8601 <- function(x) {
   cheapr::val_match(
     x,

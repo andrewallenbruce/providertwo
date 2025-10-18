@@ -1,4 +1,4 @@
-#' @include aka_end.R
+#' @include aka_endpoints.R
 NULL
 
 #' @autoglobal

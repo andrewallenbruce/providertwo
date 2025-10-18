@@ -31,6 +31,7 @@ query(
   ccn         = "01256",
   rate        = between(0.45, 0.67),
   year        = 2014:2025)
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 try(query2())
 try(query2(1))
 try(query2(a = 1, a = 2))
@@ -65,4 +66,5 @@ query2(
   provider_last_name = contains("JE"),
   practice_state_or_us_territory = c("GA", "FL"),
   practice_size = less_than(10, or_equal = TRUE))
+\dontshow{\}) # examplesIf}
 }

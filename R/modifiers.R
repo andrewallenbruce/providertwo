@@ -10,7 +10,7 @@
 #' @param ... input
 #' @param or_equal `<lgl>` append `=` to `>` or `<`
 #' @name modifiers
-#' @returns An S7 `<class_modifier/class_junction>` object.
+#' @returns An S7 `<class_modifier>` object.
 #' @source [JSON-API: Query Parameters](https://jsonapi.org/format/#query-parameters)
 NULL
 
@@ -21,13 +21,9 @@ class_modifier <- S7::new_class(
   package     = NULL,
   properties  = list(
     operator  = S7::class_character,
-    value     = S7::class_character | S7::class_numeric),
-  validator   = function(self) {
-    if (length(self@operator) != 1L) {
-      cli::cli_abort(c("x" = "{.field @operator} must be length 1"), call = NULL)
-    }
-  }
-)
+    value     = S7::class_character | S7::class_numeric
+    )
+  )
 
 #' @autoglobal
 #' @noRd

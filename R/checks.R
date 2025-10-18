@@ -1,5 +1,13 @@
 #' @autoglobal
 #' @noRd
+check_online <- function() {
+  if (!httr2::is_online()) {
+    cli::cli_abort("No internet connection")
+  }
+}
+
+#' @autoglobal
+#' @noRd
 check_year <- function(x,
                        min = NULL,
                        arg = rlang::caller_arg(x),

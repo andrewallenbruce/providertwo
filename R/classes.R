@@ -54,16 +54,6 @@ fields_df <- function(x) {
     set = collapse::join(index, year, on = "group", verbose = 0L))
 }
 
-#' @noRd
-#' @autoglobal
-fields_list <- function(x) {
-  k <- collapse::funique(unlist(x, use.names = FALSE))
-
-  class_fields_list(
-    key = k,
-    set = purrr::map(x, function(x) collapse::fmatch(x, k)))
-}
-
 
 #' @noRd
 #' @autoglobal
