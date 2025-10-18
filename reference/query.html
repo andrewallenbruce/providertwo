@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">providertwo</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9512</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9513</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,31 +79,31 @@ See Details.</p></dd>
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="modifiers.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;class_query&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ params:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ first_name: &lt;starts_with&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "STARTS_WITH"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "And"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ last_name : &lt;contains&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "CONTAINS"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr "J"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state     : &lt;any_of&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "IN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : chr [1:3] "CA" "GA" "NY"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ state_own : chr [1:2] "GA" "MD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ ccn       : chr "01256"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ rate      : &lt;between&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ operator: chr "BETWEEN"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ..  ..@ value   : num [1:2] 0.45 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  .. $ year      : int [1:12] 2014 2015 2016 2017 2018 2019 2020 2021 2022 2023 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  @ year  : int(0) </span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> cannot be <span style="font-weight: bold;">empty</span>.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> values must be <span style="font-weight: bold;">named</span>.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Unnamed value: <span style="color: #0000BB;">1</span>.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, a <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in eval(expr, envir) : </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">Query</span> field names must be <span style="font-weight: bold;">unique</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Field <span style="color: #00BB00;">a</span> appears multiple times.</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu">or</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in .f(.x[[i]], ...) : <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: a.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span>, <span class="fu">or</span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error in .f(.x[[i]], ...) : <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: a.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">query2</span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="modifiers.html">none_of</a></span><span class="op">(</span><span class="fl">2000</span><span class="op">:</span><span class="fl">2020</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Error : &lt;class_query&gt; object properties are invalid:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - @year must be &lt;integer&gt;, not &lt;list&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">query2</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  first_name  <span class="op">=</span> <span class="fu"><a href="modifiers.html">starts_with</a></span><span class="op">(</span><span class="st">"And"</span><span class="op">)</span>,</span></span>
@@ -114,19 +114,11 @@ See Details.</p></dd>
 <span class="r-in"><span>  ccn         <span class="op">=</span> <span class="st">"01256"</span>,</span></span>
 <span class="r-in"><span>  rate        <span class="op">=</span> <span class="fu"><a href="modifiers.html">between</a></span><span class="op">(</span><span class="fl">0.45</span>, <span class="fl">0.67</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  year        <span class="op">=</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2025</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .f(.x[[i]], ...):</span> <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: first_name.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">query2</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  year  <span class="op">=</span> <span class="fl">2018</span><span class="op">:</span><span class="fl">2025</span>,</span></span>
 <span class="r-in"><span>  state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CA"</span>, <span class="st">"GA"</span>, <span class="st">"NY"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  state_owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"MD"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .f(.x[[i]], ...):</span> <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: state.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">query2</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  year <span class="op">=</span> <span class="fl">2022</span><span class="op">:</span><span class="fl">2024</span>,</span></span>
@@ -140,10 +132,7 @@ See Details.</p></dd>
 <span class="r-in"><span>  provider_last_name <span class="op">=</span> <span class="fu"><a href="modifiers.html">contains</a></span><span class="op">(</span><span class="st">"JE"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  practice_state_or_us_territory <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GA"</span>, <span class="st">"FL"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  practice_size <span class="op">=</span> <span class="fu"><a href="modifiers.html">less_than</a></span><span class="op">(</span><span class="fl">10</span>, or_equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .f(.x[[i]], ...):</span> <span style="color: #00BBBB;">ℹ</span> In index: 1.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> With name: provider_name.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> <span style="color: #00BB00;">@operator</span> must be length 1</span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
