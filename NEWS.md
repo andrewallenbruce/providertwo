@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# providertwo 0.0.0.9515 (2025-10-20)
+
+* feat: `hrsa_facilities` (API is working again)
+* fix: `query2` bug in years arg
+* fix: `class_fields` prop year -> as.integer
+
+
 # providertwo 0.0.0.9514 (2025-10-18)
 
 * `select_years` generic for `class_temporal`
