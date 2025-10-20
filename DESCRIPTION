@@ -32,7 +32,8 @@ Imports:
     vctrs (>= 0.6.5.9000)
 Suggests: 
     rrapply (>= 1.2.7),
-    testthat (>= 3.2.3)
+    testthat (>= 3.2.3),
+    arcgislayers (>= 0.5.0)
 Remotes: 
     github::r-lib/rlang,
     github::r-lib/vctrs
@@ -65,6 +66,7 @@ Collate:
     'endpoint_utils.R'
     'generate.R'
     'generated-globals.R'
+    'hrsa.R'
     'httr2.R'
     'import-standalone-obj-type.R'
     'import-standalone-types-check.R'
@@ -77,7 +79,6 @@ Collate:
     'query_checks.R'
     'query_generate.R'
     'query_generate2.R'
-    'query_match.R'
     'query_match2.R'
     'query_utils.R'
     'select_years.R'

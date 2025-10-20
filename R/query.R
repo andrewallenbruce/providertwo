@@ -99,6 +99,6 @@ query2 <- function(..., call = rlang::caller_env()) {
 
   } else {
     class_query(params = eval_params(x$mods, x$bare),
-                year   = eval(x$year))
+                year   = as.integer(eval(x$year)))
   }
 }

@@ -1,21 +1,4 @@
-# 2 Group Conjunctions
-# Index ([2]) ids the group
-#
-# "filter[g1][group][conjunction]=OR"
-# "filter[g2][group][conjunction]=AND"
-#
-# Add memberOf to params in group
-#
-# "filter[1][condition][memberOf]=g2"
 
-#' @autoglobal
-#' @noRd
-place_member_of <- function(x) {
-  if (empty(x@member_of)) {
-    return(NULL)
-  }
-  paste0("filter[<<i>>][condition][memberOf]=", x@member_of)
-}
 
 #' @autoglobal
 #' @noRd
@@ -37,15 +20,6 @@ place_value <- function(x) {
   } else {
     paste0("filter[<<i>>][condition][value]=", x@value)
   }
-}
-
-#' @autoglobal
-#' @noRd
-place_member_of2 <- function(x) {
-  if (empty(x@member_of)) {
-    return(NULL)
-  }
-  paste0("conditions[<<i>>][memberOf]=", x@member_of)
 }
 
 #' @autoglobal
@@ -85,8 +59,7 @@ place_value2_1 <- function(x) {
 query_care_ARG <- function(args) {
   args[rlang::names2(args) %!=% "group"] |>
     purrr::imap(function(x, N) {
-      c(place_member_of(x),
-        place_path(N),
+      c(place_path(N),
         place_operator(x),
         place_value(x))
     }) |>
@@ -103,21 +76,10 @@ query_care_ARG <- function(args) {
 
 #' @autoglobal
 #' @noRd
-query_care_GRP <- function(args) {
-  args$group |>
-    purrr::imap(function(x, N)
-      paste0("filter[", N, "][group][conjunction]=", x)) |>
-    unname() |>
-    purrr::map(paste0, collapse = "&")
-}
-
-#' @autoglobal
-#' @noRd
 query_def_ARG <- function(args) {
   args[rlang::names2(args) %!=% "group"] |>
     purrr::imap(function(x, N) {
-      c(place_member_of2(x),
-        place_path2(N),
+      c(place_path2(N),
         place_operator2(x),
         place_value2(x))
     }) |>
@@ -126,18 +88,8 @@ query_def_ARG <- function(args) {
       gsub(
         x           = x,
         pattern     = "<<i>>",
-        replacement = idx,
+        replacement = idx - 1L,
         fixed       = TRUE
       )) |>
-    purrr::map(paste0, collapse = "&")
-}
-
-#' @autoglobal
-#' @noRd
-query_def_GRP <- function(args) {
-  args$group |>
-    purrr::imap(function(x, N)
-      paste0("conditions[", N, "][conjunction]=", x)) |>
-    unname() |>
     purrr::map(paste0, collapse = "&")
 }

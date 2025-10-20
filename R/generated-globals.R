@@ -9,15 +9,12 @@ utils::globalVariables(c(
   "accrualPeriodicity",
   # <alias_column>
   # <dict_field>
-  # <match_dict2>
   "alias",
   # <alias_lookup>
   "catalog",
   # <quality_metrics>
   "category",
   # <match_query2>
-  # <match_dict2>
-  # <match_query_2G>
   "clean",
   # <make_field_switch>
   "constant",
@@ -52,9 +49,6 @@ utils::globalVariables(c(
   # <make_field_switch>
   # <field_table>
   # <dict_field>
-  # <match_query2>
-  # <match_dict2>
-  # <match_query_2G>
   "field",
   # <tidy_resources>
   "fileSize",
@@ -138,7 +132,6 @@ utils::globalVariables(c(
   # <select_alias>
   "title",
   # <dict_field>
-  # <match_dict2>
   "type",
   # <dict_field>
   # <clog_care>
@@ -146,7 +139,6 @@ utils::globalVariables(c(
   # <clog_caid>
   # <clog_hgov>
   # <tidy_resources>
-  # <match_dict2>
   "year",
   NULL
 ))

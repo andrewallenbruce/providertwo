@@ -1,13 +1,13 @@
 #' @autoglobal
 #' @noRd
-match_query_G <- function(obj, qry) {
+match_query <- function(obj, qry) {
 
-  pnames <- rlang::names2(qry@params)
-  clean  <- clean_names(obj@fields@key)
+  pname <- rlang::names2(qry@params)
+  clean <- field_switch(obj@fields)
 
   rlang::set_names(
-    qry@params[qmatch(clean, pnames)],
-    obj@fields@key[sort(qmatch(pnames, clean))]
+    qry@params[qmatch(clean, pname)],
+    obj@fields[sort(qmatch(pname, clean))]
   )
 }
 
@@ -53,16 +53,15 @@ select_years_df <- function(obj, qry) {
     return(obj)
   }
 
-  S7::props(obj) <- list(
-    year       = obj@year[idx],
-    identifier = obj@identifier[idx])
+  S7::props(obj) <- list(year = obj@year[idx], identifier = obj@identifier[idx])
 
-  S7::props(obj@dimensions) <- list(
-    total = obj@dimensions@total[idx])
+  S7::props(obj@dimensions) <- list(total = obj@dimensions@total[idx])
 
-  idy <- cheapr::which_(obj@fields@year %in% qry@year)
+  idy <- purrr::map(obj@fields@year, function(x) x %iin% qry@year)
 
-  if (length(idy) == length(obj@fields@year)) {
+  idy <- cheapr::which_(purrr::map_lgl(idy, Negate(rlang::is_empty)))
+
+  if (identical(length(idy), length(obj@fields@year))) {
     return(obj)
   }
 
@@ -76,28 +75,33 @@ select_years_df <- function(obj, qry) {
 
 #' @autoglobal
 #' @noRd
-match_query_2G <- function(obj, qry) {
+match_query2 <- function(obj, qry) {
 
   if (empty(qry@params)) {
-    return(select_years_2G(obj, qry))
+    return(select_years_df(obj, qry))
   }
 
-  x <- select_years_2G(obj, qry)
+  x <- select_years_df(obj, qry)
 
-  df <- purrr::imap(
-    x$field, function(x, i)
-      cheapr::new_df(year = i, field = x)) |>
-    purrr::list_rbind() |>
-    collapse::mtt(clean = clean_names(field)) |>
+  # pname <- rlang::names2(qry@params)
+  # clean <- field_switch(obj@fields@key)
+  #
+  # rlang::set_names(
+  #   qry@params[qmatch(clean, pname)],
+  #   obj@fields@key[sort(qmatch(pname, clean))]
+  # )
+
+  df <- cheapr::fast_df(raw = obj@fields@key) |>
+    collapse::mtt(clean = field_switch(raw)) |>
     collapse::sbt(clean %iin% rlang::names2(qry@params)) |>
     collapse::mtt(qdx = unname(set_along(qry@params)[clean]))
 
   df <- purrr::map(
-    x$year, function(yr)
+    x@year, function(yr)
       rlang::set_names(
         qry@params[df[df$year == yr, ]$qdx],
         df[df$year == yr, ]$field)) |>
-    rlang::set_names(x$year)
+    rlang::set_names(x@year)
 
   cheapr::list_modify(x, list(field = df))
 }
